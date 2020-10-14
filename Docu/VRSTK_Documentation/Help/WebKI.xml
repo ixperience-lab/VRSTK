@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="AddButton method" Url="html/beb26642-c1dc-1239-1c51-808155106600.htm" />
+  <HelpKINode Title="AddElement method" Url="html/b6a494f4-9174-7852-83ac-31c3d2150e5c.htm" />
+  <HelpKINode Title="AddInputProperty method" Url="html/ed5359b0-2eed-ad61-0759-59d5510f462b.htm" />
+  <HelpKINode Title="AddParameter method" Url="html/9e3e7037-d614-db0b-b36b-b7b85a087f4e.htm" />
+  <HelpKINode Title="AddRunningProperties method" Url="html/8fa97955-3cba-2bf4-314e-46de046add9c.htm" />
+  <HelpKINode Title="AddStage method" Url="html/1938660f-ed8c-541e-068d-7343f49bf3e9.htm" />
+  <HelpKINode Title="AddToggleProperty method" Url="html/c51c3338-5566-fe22-5401-d416a56bdc85.htm" />
+  <HelpKINode Title="allowedTypes field" Url="html/f7bd0d66-f5cb-b237-392f-895634cec0a7.htm" />
+  <HelpKINode Title="array field">
+    <HelpKINode Title="DoubleStringArray.array Field" Url="html/564c2ef7-8ee6-b2f4-2408-5bdcbdfa6f86.htm" />
+    <HelpKINode Title="DoubleStringArray.StringArray.array Field" Url="html/f53dfe5e-cce4-cfc5-4b9f-f9579f62479d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="baudRate field" Url="html/0a1f1f66-68b7-2c52-cc8c-1bd9ba060d3e.htm" />
+  <HelpKINode Title="buttonName field" Url="html/3a83891a-f9b7-bc0d-5c98-806c78a76d55.htm" />
+  <HelpKINode Title="buttonParent field" Url="html/d6b2df27-8278-7d57-6092-e7caac2357dd.htm" />
+  <HelpKINode Title="buttonPrefab field" Url="html/168c1f0a-205a-3e28-1914-1758cae8e7be.htm" />
+  <HelpKINode Title="CheckForNullReferences method" Url="html/498b6407-a565-322e-83ab-ead0b4a89633.htm" />
+  <HelpKINode Title="Clear method" Url="html/b8cc44b6-9e58-3a17-4069-c6d6efd597bd.htm" />
+  <HelpKINode Title="ClearEvents method" Url="html/c5051114-32e9-48c2-e39e-ccf1bd47b914.htm" />
+  <HelpKINode Title="ClearNullReferences method" Url="html/0702c0b7-6b01-823d-80a7-a5a214bd1b27.htm" />
+  <HelpKINode Title="CreateFile method" Url="html/00b26a6b-8ec3-a7ee-5640-bc49d4ad3313.htm" />
+  <HelpKINode Title="createFileWhenFull field" Url="html/5415bde7-5696-7d6c-e3bc-12556440baa0.htm" />
+  <HelpKINode Title="currentValue field" Url="html/c75d07eb-7627-dd8b-4204-92fe711d148b.htm" />
+  <HelpKINode Title="DeactivateAllComponents method" Url="html/a584f08f-7b48-98d3-a1b6-cff4adca7b3b.htm" />
+  <HelpKINode Title="Deploy method" Url="html/6a23aaea-59dd-28ab-77c3-e09838f51be8.htm" />
+  <HelpKINode Title="DoubleStringArray class">
+    <HelpKINode Title="DoubleStringArray Class" Url="html/ba3c9666-b1bf-af4c-ed95-588c1fbdc47a.htm" />
+    <HelpKINode Title="constructor" Url="html/2ac25440-7e44-8b1f-e545-0152ea498c32.htm" />
+    <HelpKINode Title="fields" Url="html/21465ec4-c56b-ef35-7d84-33929a09171e.htm" />
+    <HelpKINode Title="methods" Url="html/31cecaca-04a7-bbf9-9be6-122b951c3ca3.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DoubleStringArray.array field" Url="html/564c2ef7-8ee6-b2f4-2408-5bdcbdfa6f86.htm" />
+  <HelpKINode Title="DoubleStringArray.DoubleStringArray constructor" Url="html/2ac25440-7e44-8b1f-e545-0152ea498c32.htm" />
+  <HelpKINode Title="DoubleStringArray.StringArray class">
+    <HelpKINode Title="DoubleStringArray.StringArray Class" Url="html/9911baa1-d4fd-f125-fd6b-a8e16e1f93ed.htm" />
+    <HelpKINode Title="constructor" Url="html/bdadbed4-27ae-0d1a-3dcf-e8445e79f4f4.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DoubleStringArray.StringArray.array field" Url="html/f53dfe5e-cce4-cfc5-4b9f-f9579f62479d.htm" />
+  <HelpKINode Title="DoubleStringArray.StringArray.StringArray constructor" Url="html/bdadbed4-27ae-0d1a-3dcf-e8445e79f4f4.htm" />
+  <HelpKINode Title="eventBase field" Url="html/3d0830c4-0adc-11f2-169d-69f795aaee70.htm" />
+  <HelpKINode Title="EventMaximum field" Url="html/378e7763-bb62-1bdb-9f45-22713edd4599.htm" />
+  <HelpKINode Title="eventName field" Url="html/d629517a-0914-9352-58b2-b3194e335614.htm" />
+  <HelpKINode Title="EventParameter class">
+    <HelpKINode Title="EventParameter Class" Url="html/f113ed01-6fa2-5457-5693-51800f841073.htm" />
+    <HelpKINode Title="constructor" Url="html/83efe860-01b5-e4a9-dce8-867afb441656.htm" />
+    <HelpKINode Title="fields" Url="html/faf8b178-c65b-d4cc-5197-78cb99cbe09b.htm" />
+    <HelpKINode Title="methods" Url="html/54e0ea9e-95ce-8c66-7c8e-b9d418a50f58.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EventParameter.EventParameter constructor" Url="html/83efe860-01b5-e4a9-dce8-867afb441656.htm" />
+  <HelpKINode Title="EventParameter.hideFromInspector field" Url="html/f1723dcd-fd25-3eee-79db-491af31e6f2f.htm" />
+  <HelpKINode Title="EventParameter.name field" Url="html/bfc34f9c-8629-f187-d367-868d93366bb4.htm" />
+  <HelpKINode Title="EventParameter.SetTypeFromIndex method" Url="html/7f1fb971-71c7-3d78-3c2d-614eaafff790.htm" />
+  <HelpKINode Title="EventParameter.systemType field" Url="html/fea813ce-b7d4-f7a5-8046-68d6b263059a.htm" />
+  <HelpKINode Title="EventParameter.typeIndex field" Url="html/8b051b32-77ba-fe39-d706-7cf13a771598.htm" />
+  <HelpKINode Title="eventToSend field" Url="html/fb08acff-0ade-4800-61ac-6b66dea05f71.htm" />
+  <HelpKINode Title="eventVariableNames field" Url="html/b40cc1a4-25a4-3f53-675c-cdc1a9200561.htm" />
+  <HelpKINode Title="ForceStopTest method" Url="html/448b5d3b-e866-8d19-bb73-deb0efa4de4a.htm" />
+  <HelpKINode Title="GameobjectsToActivate field" Url="html/408c3757-0473-a6a2-4b3d-61488baa4d8c.htm" />
+  <HelpKINode Title="GameobjectsToDeActivate field" Url="html/93d98bba-34d2-0b02-d851-ef52cd40f9bf.htm" />
+  <HelpKINode Title="GameobjectsToSendMessageTo field" Url="html/eb27222d-1ddf-9f83-2943-4fb2c7be437f.htm" />
+  <HelpKINode Title="GetComponentFromParameter method" Url="html/61153370-290e-87f2-b0b0-315b1c9c4f2e.htm" />
+  <HelpKINode Title="GetEvents method" Url="html/a53aada4-0864-10da-0950-42bf19bbf63b.htm" />
+  <HelpKINode Title="getIndex method" Url="html/963a9924-0f9c-d3ac-c2b9-4f9e5f87da68.htm" />
+  <HelpKINode Title="getLookingAt method" Url="html/6632bdb1-2fd6-073e-32fc-c1bc58752d2e.htm" />
+  <HelpKINode Title="GetPropertyHeight method" Url="html/f8255640-b601-160e-505f-a9fce3eb4565.htm" />
+  <HelpKINode Title="GetStarted method" Url="html/8156b436-fc85-d495-cd49-b60cbde4b34a.htm" />
+  <HelpKINode Title="GetTime method" Url="html/b11fcd36-d8af-2f95-8558-be5f33d45ba0.htm" />
+  <HelpKINode Title="GetValue method" Url="html/43d1b771-41d3-3c7b-7021-af063a624d57.htm" />
+  <HelpKINode Title="GetVariableNameFromEventVariable method" Url="html/1b950a5b-5490-b306-4246-731494696f7c.htm" />
+  <HelpKINode Title="GoToPoint method" Url="html/59e218e5-11b3-8c71-e2ae-135ee514356f.htm" />
+  <HelpKINode Title="hasTimeLimit field" Url="html/ca846380-c4b4-77ee-ea86-236c1490163c.htm" />
+  <HelpKINode Title="hideFromInspector field" Url="html/f1723dcd-fd25-3eee-79db-491af31e6f2f.htm" />
+  <HelpKINode Title="inputField field" Url="html/8d31a12d-241a-7021-ef71-e1433d9bd5c7.htm" />
+  <HelpKINode Title="inputPropertyPrefab field" Url="html/eb296b35-c344-8cf1-582b-3f25b023a305.htm" />
+  <HelpKINode Title="interval field" Url="html/c04c5587-5064-2c7e-0fb6-4801f2a2c37c.htm" />
+  <HelpKINode Title="IsValid method" Url="html/f92b41cb-0959-53cd-248b-df2350d4d7f1.htm" />
+  <HelpKINode Title="jsonPath field" Url="html/9c03912c-6945-fdb1-0c46-3d305a151c70.htm" />
+  <HelpKINode Title="lastTrackedObject field" Url="html/afa06293-c542-742c-be92-6c7c4b81f627.htm" />
+  <HelpKINode Title="lookEvent field" Url="html/16cccb38-f30b-492c-9e04-6c7b5e248900.htm" />
+  <HelpKINode Title="messagesToSend field" Url="html/fbcacb89-b741-3ca9-121f-3ca1ffc19abf.htm" />
+  <HelpKINode Title="myController field" Url="html/da1f282d-0642-b5e7-13b6-fdd3ebff6e37.htm" />
+  <HelpKINode Title="name field" Url="html/bfc34f9c-8629-f187-d367-868d93366bb4.htm" />
+  <HelpKINode Title="numberOfStages field" Url="html/4547f785-8957-ace8-4d0d-badf2caba6ac.htm" />
+  <HelpKINode Title="objects field" Url="html/80a38243-945a-6882-abaf-49edf2939742.htm" />
+  <HelpKINode Title="Onclick method" Url="html/1f2d6d11-326c-0f38-099b-d031403b8629.htm" />
+  <HelpKINode Title="OnGUI method" Url="html/c19ade9b-4a24-ee05-6d5f-c73a0cc640a3.htm" />
+  <HelpKINode Title="OnInspectorGUI method">
+    <HelpKINode Title="STKSettingsEditor.OnInspectorGUI Method " Url="html/7d1dd572-f222-b02e-2158-bbd1d7912380.htm" />
+    <HelpKINode Title="STKTestControllerEditor.OnInspectorGUI Method " Url="html/390791e3-5cf4-51ee-40c9-de9b592a5e4d.htm" />
+    <HelpKINode Title="STKTestStageEditor.OnInspectorGUI Method " Url="html/c31a9b76-e919-f152-0cbc-9341ca0e8b03.htm" />
+  </HelpKINode>
+  <HelpKINode Title="parameters field" Url="html/e344548b-07a4-0383-944a-86819dcd01d2.htm" />
+  <HelpKINode Title="playbackMode field" Url="html/a6db81dc-8665-bbd4-2001-52290da89e7a.htm" />
+  <HelpKINode Title="port field" Url="html/9a50bdf5-5e00-cf09-f418-012d2682d5c2.htm" />
+  <HelpKINode Title="propertyName field" Url="html/99ed3e6a-680c-0457-54a6-f7089d506ab4.htm" />
+  <HelpKINode Title="propertyParent field" Url="html/4a852d93-c119-0fc7-9f8e-829db7c2928d.htm" />
+  <HelpKINode Title="ReceiveEvent method" Url="html/ad3c8a8b-7188-cad0-9e19-cc8441edbebb.htm" />
+  <HelpKINode Title="ReceiveEvents method" Url="html/f1b94b27-38d9-e83f-d0a9-c4432adc3689.htm" />
+  <HelpKINode Title="ReduceListData method" Url="html/bf39c5c2-26e8-1980-2356-3d347251ed35.htm" />
+  <HelpKINode Title="runningProperties field" Url="html/2ecffb95-94d5-2f4d-5cfc-965c1f35e176.htm" />
+  <HelpKINode Title="savedEvents field" Url="html/e4bbb462-9c20-0ea2-e0e2-b126e9cf1f51.htm" />
+  <HelpKINode Title="SaveRunning method" Url="html/75294e24-2088-a989-f7a9-3f77f5bdbbc8.htm" />
+  <HelpKINode Title="SendEvents method" Url="html/8c867c21-7eaa-96e2-467c-40a83006dc81.htm" />
+  <HelpKINode Title="SetEventValue method" Url="html/5f679f60-3f33-de86-1dc6-b968b7002a79.htm" />
+  <HelpKINode Title="SetTrackedVar method" Url="html/8bc6bba8-33db-fd55-9a2d-76464f0823b1.htm" />
+  <HelpKINode Title="SetTypeFromIndex method" Url="html/7f1fb971-71c7-3d78-3c2d-614eaafff790.htm" />
+  <HelpKINode Title="SetValue method" Url="html/b4245e53-b876-8ebf-4c85-27ba5b5b51b7.htm" />
+  <HelpKINode Title="SetVariable method" Url="html/73c3c8f4-d073-a1f2-4661-c671933373c3.htm" />
+  <HelpKINode Title="ShowWindow method">
+    <HelpKINode Title="STKPlaybackEditor.ShowWindow Method " Url="html/65c5977a-6590-758e-5826-728d7ea23553.htm" />
+    <HelpKINode Title="STKTrackEditor.ShowWindow Method " Url="html/78ab9049-f03c-599b-a733-3af556c7da7e.htm" />
+  </HelpKINode>
+  <HelpKINode Title="StageEnded method" Url="html/fe5fb9ca-97d2-a291-9a34-ef33f3f6080e.htm" />
+  <HelpKINode Title="stagePrefab field" Url="html/178e0c70-ab5f-fda0-2940-5b24e99be1b2.htm" />
+  <HelpKINode Title="startActivateObjects field" Url="html/6275e6e4-36de-453a-21c4-928293c91093.htm" />
+  <HelpKINode Title="startButton field" Url="html/789a345f-5361-5904-93ff-7a943104dbd9.htm" />
+  <HelpKINode Title="StartPlayback method" Url="html/e669c670-69c0-0327-da51-8f395a029771.htm" />
+  <HelpKINode Title="startProperties field" Url="html/b11e4bdb-1534-98df-a53a-284e77a947b8.htm" />
+  <HelpKINode Title="startProperty field" Url="html/50d86bcc-f8a4-62db-c069-c5bb82ae4bf2.htm" />
+  <HelpKINode Title="STK namespace" Url="html/cd613922-41b2-9fc2-1336-4b3cde1acdca.htm" />
+  <HelpKINode Title="STK.DoubleStringArray class" Url="html/ba3c9666-b1bf-af4c-ed95-588c1fbdc47a.htm" />
+  <HelpKINode Title="STK.DoubleStringArray.StringArray class" Url="html/9911baa1-d4fd-f125-fd6b-a8e16e1f93ed.htm" />
+  <HelpKINode Title="STK.EventParameter class" Url="html/f113ed01-6fa2-5457-5693-51800f841073.htm" />
+  <HelpKINode Title="STK.STKArrayTools class" Url="html/fb437008-85a9-1a36-a2f5-2831592148bd.htm" />
+  <HelpKINode Title="STK.STKEvent class" Url="html/e3c5c2cf-5635-4627-397e-bc4b2006f559.htm" />
+  <HelpKINode Title="STK.STKEventEditor class" Url="html/a8ff73e0-55ba-8f1a-db90-bf995c7e71a6.htm" />
+  <HelpKINode Title="STK.STKEventReceiver class" Url="html/4b0e12eb-c2a5-7f09-c777-bd5ef3455030.htm" />
+  <HelpKINode Title="STK.STKEventSender class" Url="html/8e61db06-b135-7b05-6f64-0ce7c456d9a3.htm" />
+  <HelpKINode Title="STK.STKEventTypeChecker class" Url="html/6f6753ba-9d48-10d6-9360-20da279c7bd2.htm" />
+  <HelpKINode Title="STK.STKJsonParser class" Url="html/9806c01e-c907-fc86-9bbd-5f6b2a73e0b2.htm" />
+  <HelpKINode Title="STK.STKLookDirection class" Url="html/d1c0e6be-6ffd-2cca-d55b-93e5eadcdd00.htm" />
+  <HelpKINode Title="STK.STKPlaybackEditor class" Url="html/5ba3361e-8950-ea7f-57bb-fe399908c4ef.htm" />
+  <HelpKINode Title="STK.STKReceiveSerial class" Url="html/25f4812f-ec81-be36-4380-8b09cd51fb0f.htm" />
+  <HelpKINode Title="STK.STKSaveButton class" Url="html/6cfe2240-f0ad-4d8c-b2a5-dc6daabdaa36.htm" />
+  <HelpKINode Title="STK.STKScenePlayback class" Url="html/ad0fc008-7204-e202-0aac-a5333d08e247.htm" />
+  <HelpKINode Title="STK.STKSettings class" Url="html/04c09f90-2f39-e66d-4a81-6a7373ac4ee9.htm" />
+  <HelpKINode Title="STK.STKSettingsEditor class" Url="html/779f91c9-1556-9bd0-f5da-c2bda79da3a5.htm" />
+  <HelpKINode Title="STK.STKStopButton class" Url="html/a70f3b10-9a78-902d-153c-2794ee8fb220.htm" />
+  <HelpKINode Title="STK.STKTestController class" Url="html/73ae24fb-b087-1992-7cac-055bc96e5f9b.htm" />
+  <HelpKINode Title="STK.STKTestControllerEditor class" Url="html/cffa4fa6-7a31-ebe4-94ed-5252d43e5924.htm" />
+  <HelpKINode Title="STK.STKTestControllerProperty class" Url="html/5b18f5b2-d8a1-8188-384b-71e5e542c682.htm" />
+  <HelpKINode Title="STK.STKTestStage class" Url="html/c5a912ba-3b0e-a1c8-9132-c96ba9ba1f28.htm" />
+  <HelpKINode Title="STK.STKTestStageEditor class" Url="html/05ba970c-07ad-d6d6-66e7-de54a260b524.htm" />
+  <HelpKINode Title="STK.STKTrackEditor class" Url="html/4ff941fb-088a-a45a-d3ee-76fff6dae3be.htm" />
+  <HelpKINode Title="STK.STKTrackedObjects class" Url="html/d73472d9-3470-4b89-2dc2-8cc367458124.htm" />
+  <HelpKINode Title="STK.STKVRInputTracker class" Url="html/1d1d451b-1945-5898-d17f-443936b8aed4.htm" />
+  <HelpKINode Title="STKArrayTools class">
+    <HelpKINode Title="STKArrayTools Class" Url="html/fb437008-85a9-1a36-a2f5-2831592148bd.htm" />
+    <HelpKINode Title="methods" Url="html/64cfd116-6bbf-b8c9-26a0-cc9d1e6f9caa.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKArrayTools.AddElement method" Url="html/b6a494f4-9174-7852-83ac-31c3d2150e5c.htm" />
+  <HelpKINode Title="STKArrayTools.ClearNullReferences method" Url="html/0702c0b7-6b01-823d-80a7-a5a214bd1b27.htm" />
+  <HelpKINode Title="STKEvent class">
+    <HelpKINode Title="STKEvent Class" Url="html/e3c5c2cf-5635-4627-397e-bc4b2006f559.htm" />
+    <HelpKINode Title="constructor" Url="html/9d242b74-28c6-004b-0ef0-1ca2ed225a6b.htm" />
+    <HelpKINode Title="fields" Url="html/6084d481-3880-a2c7-8930-ab91ecf0be4e.htm" />
+    <HelpKINode Title="methods" Url="html/f94c6f3b-0ab6-3726-f5a7-2728a56bf8f6.htm" />
+    <HelpKINode Title="properties" Url="html/b8d3b77f-5b5a-f2f2-9e44-888d4d4c17c2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKEvent.AddParameter method" Url="html/9e3e7037-d614-db0b-b36b-b7b85a087f4e.htm" />
+  <HelpKINode Title="STKEvent.eventName field" Url="html/d629517a-0914-9352-58b2-b3194e335614.htm" />
+  <HelpKINode Title="STKEvent.objects field" Url="html/80a38243-945a-6882-abaf-49edf2939742.htm" />
+  <HelpKINode Title="STKEvent.parameters field" Url="html/e344548b-07a4-0383-944a-86819dcd01d2.htm" />
+  <HelpKINode Title="STKEvent.SetValue method" Url="html/b4245e53-b876-8ebf-4c85-27ba5b5b51b7.htm" />
+  <HelpKINode Title="STKEvent.STKEvent constructor" Url="html/9d242b74-28c6-004b-0ef0-1ca2ed225a6b.htm" />
+  <HelpKINode Title="STKEvent.time field" Url="html/bdcd3c49-d072-f596-125c-a1ca5f49ba98.htm" />
+  <HelpKINode Title="STKEventEditor class">
+    <HelpKINode Title="STKEventEditor Class" Url="html/a8ff73e0-55ba-8f1a-db90-bf995c7e71a6.htm" />
+    <HelpKINode Title="constructor" Url="html/0b13f688-253c-155d-140b-32231843eed9.htm" />
+    <HelpKINode Title="methods" Url="html/0c9f3679-1ec6-e143-46a1-007341bf3ca7.htm" />
+    <HelpKINode Title="properties" Url="html/d70da8cc-0437-41a6-6138-ae09e86f4765.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKEventEditor.GetPropertyHeight method" Url="html/f8255640-b601-160e-505f-a9fce3eb4565.htm" />
+  <HelpKINode Title="STKEventEditor.OnGUI method" Url="html/c19ade9b-4a24-ee05-6d5f-c73a0cc640a3.htm" />
+  <HelpKINode Title="STKEventEditor.STKEventEditor constructor" Url="html/0b13f688-253c-155d-140b-32231843eed9.htm" />
+  <HelpKINode Title="STKEventReceiver class">
+    <HelpKINode Title="STKEventReceiver Class" Url="html/4b0e12eb-c2a5-7f09-c777-bd5ef3455030.htm" />
+    <HelpKINode Title="fields" Url="html/df5f641a-9ff0-261d-10e0-5d3cd8ac19cd.htm" />
+    <HelpKINode Title="methods" Url="html/9633f00f-7f54-812d-2831-2c9b92ca65eb.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKEventReceiver.ClearEvents method" Url="html/c5051114-32e9-48c2-e39e-ccf1bd47b914.htm" />
+  <HelpKINode Title="STKEventReceiver.GetEvents method" Url="html/a53aada4-0864-10da-0950-42bf19bbf63b.htm" />
+  <HelpKINode Title="STKEventReceiver.ReceiveEvent method" Url="html/ad3c8a8b-7188-cad0-9e19-cc8441edbebb.htm" />
+  <HelpKINode Title="STKEventReceiver.ReduceListData method" Url="html/bf39c5c2-26e8-1980-2356-3d347251ed35.htm" />
+  <HelpKINode Title="STKEventReceiver.savedEvents field" Url="html/e4bbb462-9c20-0ea2-e0e2-b126e9cf1f51.htm" />
+  <HelpKINode Title="STKEventReceiver.SendEvents method" Url="html/8c867c21-7eaa-96e2-467c-40a83006dc81.htm" />
+  <HelpKINode Title="STKEventSender class">
+    <HelpKINode Title="STKEventSender Class" Url="html/8e61db06-b135-7b05-6f64-0ce7c456d9a3.htm" />
+    <HelpKINode Title="constructor" Url="html/80e72078-7237-7dd0-f049-efa219752837.htm" />
+    <HelpKINode Title="fields" Url="html/23ffd0cf-36a5-167a-3796-9f4471aa7124.htm" />
+    <HelpKINode Title="methods" Url="html/d879b830-1c36-6a1e-59d2-59f887c64525.htm" />
+    <HelpKINode Title="properties" Url="html/4c29efb6-fd15-2e5d-3972-ab7fce243bad.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKEventSender.Deploy method" Url="html/6a23aaea-59dd-28ab-77c3-e09838f51be8.htm" />
+  <HelpKINode Title="STKEventSender.eventBase field" Url="html/3d0830c4-0adc-11f2-169d-69f795aaee70.htm" />
+  <HelpKINode Title="STKEventSender.eventToSend field" Url="html/fb08acff-0ade-4800-61ac-6b66dea05f71.htm" />
+  <HelpKINode Title="STKEventSender.eventVariableNames field" Url="html/b40cc1a4-25a4-3f53-675c-cdc1a9200561.htm" />
+  <HelpKINode Title="STKEventSender.GetComponentFromParameter method" Url="html/61153370-290e-87f2-b0b0-315b1c9c4f2e.htm" />
+  <HelpKINode Title="STKEventSender.GetVariableNameFromEventVariable method" Url="html/1b950a5b-5490-b306-4246-731494696f7c.htm" />
+  <HelpKINode Title="STKEventSender.interval field" Url="html/c04c5587-5064-2c7e-0fb6-4801f2a2c37c.htm" />
+  <HelpKINode Title="STKEventSender.SetEventValue method" Url="html/5f679f60-3f33-de86-1dc6-b968b7002a79.htm" />
+  <HelpKINode Title="STKEventSender.SetTrackedVar method" Url="html/8bc6bba8-33db-fd55-9a2d-76464f0823b1.htm" />
+  <HelpKINode Title="STKEventSender.STKEventSender constructor" Url="html/80e72078-7237-7dd0-f049-efa219752837.htm" />
+  <HelpKINode Title="STKEventSender.timedInterval field" Url="html/46e7c98c-9268-ba80-1e0d-9f5e8ceac7b7.htm" />
+  <HelpKINode Title="STKEventSender.trackedComponents field" Url="html/d7fb7c13-2384-ecfb-8f95-f98043aff5ea.htm" />
+  <HelpKINode Title="STKEventSender.trackedVariableNames field" Url="html/6d4b8ac6-3638-312e-683d-82b24d4580e1.htm" />
+  <HelpKINode Title="STKEventTypeChecker class">
+    <HelpKINode Title="STKEventTypeChecker Class" Url="html/6f6753ba-9d48-10d6-9360-20da279c7bd2.htm" />
+    <HelpKINode Title="fields" Url="html/8c72f437-0294-f6ab-deac-545c8b38d9db.htm" />
+    <HelpKINode Title="methods" Url="html/9e30d31f-11e2-e7ec-f9a4-08a9b8513284.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKEventTypeChecker.allowedTypes field" Url="html/f7bd0d66-f5cb-b237-392f-895634cec0a7.htm" />
+  <HelpKINode Title="STKEventTypeChecker.getIndex method" Url="html/963a9924-0f9c-d3ac-c2b9-4f9e5f87da68.htm" />
+  <HelpKINode Title="STKEventTypeChecker.IsValid method" Url="html/f92b41cb-0959-53cd-248b-df2350d4d7f1.htm" />
+  <HelpKINode Title="STKJsonParser class">
+    <HelpKINode Title="STKJsonParser Class" Url="html/9806c01e-c907-fc86-9bbd-5f6b2a73e0b2.htm" />
+    <HelpKINode Title="methods" Url="html/37ec3402-e871-850e-bc95-ea5e9b58f349.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKJsonParser.AddRunningProperties method" Url="html/8fa97955-3cba-2bf4-314e-46de046add9c.htm" />
+  <HelpKINode Title="STKJsonParser.CreateFile method" Url="html/00b26a6b-8ec3-a7ee-5640-bc49d4ad3313.htm" />
+  <HelpKINode Title="STKJsonParser.ReceiveEvents method" Url="html/f1b94b27-38d9-e83f-d0a9-c4432adc3689.htm" />
+  <HelpKINode Title="STKJsonParser.SaveRunning method" Url="html/75294e24-2088-a989-f7a9-3f77f5bdbbc8.htm" />
+  <HelpKINode Title="STKJsonParser.TestEnd method" Url="html/41fc99f7-bb4b-5c64-daa3-b00b997250fe.htm" />
+  <HelpKINode Title="STKJsonParser.TestStart method" Url="html/3205f121-12f0-eb4d-550d-4920fef0c715.htm" />
+  <HelpKINode Title="STKLookDirection class">
+    <HelpKINode Title="STKLookDirection Class" Url="html/d1c0e6be-6ffd-2cca-d55b-93e5eadcdd00.htm" />
+    <HelpKINode Title="constructor" Url="html/17e0de80-1271-e199-ccaf-cae95e0700d1.htm" />
+    <HelpKINode Title="fields" Url="html/d1d2fbbb-6f54-6d2c-df4f-269697799173.htm" />
+    <HelpKINode Title="methods" Url="html/f8e08463-5fcd-1033-6b5e-e60d820488dc.htm" />
+    <HelpKINode Title="properties" Url="html/6bb30e18-e12c-08c6-05d9-3205d65c44da.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKLookDirection.getLookingAt method" Url="html/6632bdb1-2fd6-073e-32fc-c1bc58752d2e.htm" />
+  <HelpKINode Title="STKLookDirection.lookEvent field" Url="html/16cccb38-f30b-492c-9e04-6c7b5e248900.htm" />
+  <HelpKINode Title="STKLookDirection.STKLookDirection constructor" Url="html/17e0de80-1271-e199-ccaf-cae95e0700d1.htm" />
+  <HelpKINode Title="STKPlaybackEditor class">
+    <HelpKINode Title="STKPlaybackEditor Class" Url="html/5ba3361e-8950-ea7f-57bb-fe399908c4ef.htm" />
+    <HelpKINode Title="constructor" Url="html/d7fb61c3-f4c7-7874-9471-2c41ee8323e0.htm" />
+    <HelpKINode Title="methods" Url="html/7be31777-ee8d-15ec-0cf9-59691bcdaccf.htm" />
+    <HelpKINode Title="properties" Url="html/220d4ce9-5164-3a52-b73c-520f0d7309da.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKPlaybackEditor.ShowWindow method" Url="html/65c5977a-6590-758e-5826-728d7ea23553.htm" />
+  <HelpKINode Title="STKPlaybackEditor.STKPlaybackEditor constructor" Url="html/d7fb61c3-f4c7-7874-9471-2c41ee8323e0.htm" />
+  <HelpKINode Title="STKReceiveSerial class">
+    <HelpKINode Title="STKReceiveSerial Class" Url="html/25f4812f-ec81-be36-4380-8b09cd51fb0f.htm" />
+    <HelpKINode Title="constructor" Url="html/6c0cb6c5-c1ab-46b4-6491-ac141116f4f7.htm" />
+    <HelpKINode Title="fields" Url="html/cd9e3cf1-0ed9-c856-1cfb-2240f7063859.htm" />
+    <HelpKINode Title="methods" Url="html/1f9ff896-66a8-66a6-47a5-2d05691257ec.htm" />
+    <HelpKINode Title="properties" Url="html/8846e6e3-abed-b701-46e7-e749bbaeb14a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKReceiveSerial.baudRate field" Url="html/0a1f1f66-68b7-2c52-cc8c-1bd9ba060d3e.htm" />
+  <HelpKINode Title="STKReceiveSerial.currentValue field" Url="html/c75d07eb-7627-dd8b-4204-92fe711d148b.htm" />
+  <HelpKINode Title="STKReceiveSerial.port field" Url="html/9a50bdf5-5e00-cf09-f418-012d2682d5c2.htm" />
+  <HelpKINode Title="STKReceiveSerial.STKReceiveSerial constructor" Url="html/6c0cb6c5-c1ab-46b4-6491-ac141116f4f7.htm" />
+  <HelpKINode Title="STKSaveButton class">
+    <HelpKINode Title="STKSaveButton Class" Url="html/6cfe2240-f0ad-4d8c-b2a5-dc6daabdaa36.htm" />
+    <HelpKINode Title="constructor" Url="html/0fd02b79-4e68-3c43-769a-64c1a0665135.htm" />
+    <HelpKINode Title="methods" Url="html/33897e07-28ea-c846-19d7-837102119565.htm" />
+    <HelpKINode Title="properties" Url="html/77422728-b8ad-4b72-f52b-20a442bcedbb.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKSaveButton.Onclick method" Url="html/1f2d6d11-326c-0f38-099b-d031403b8629.htm" />
+  <HelpKINode Title="STKSaveButton.STKSaveButton constructor" Url="html/0fd02b79-4e68-3c43-769a-64c1a0665135.htm" />
+  <HelpKINode Title="STKScenePlayback class">
+    <HelpKINode Title="STKScenePlayback Class" Url="html/ad0fc008-7204-e202-0aac-a5333d08e247.htm" />
+    <HelpKINode Title="fields" Url="html/c1e5bc96-6b98-acf3-55b8-c6115a824759.htm" />
+    <HelpKINode Title="methods" Url="html/1095daa4-ebd9-5e10-a460-bc89c761ce36.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKScenePlayback.DeactivateAllComponents method" Url="html/a584f08f-7b48-98d3-a1b6-cff4adca7b3b.htm" />
+  <HelpKINode Title="STKScenePlayback.GoToPoint method" Url="html/59e218e5-11b3-8c71-e2ae-135ee514356f.htm" />
+  <HelpKINode Title="STKScenePlayback.playbackMode field" Url="html/a6db81dc-8665-bbd4-2001-52290da89e7a.htm" />
+  <HelpKINode Title="STKScenePlayback.SetVariable method" Url="html/73c3c8f4-d073-a1f2-4661-c671933373c3.htm" />
+  <HelpKINode Title="STKScenePlayback.StartPlayback method" Url="html/e669c670-69c0-0327-da51-8f395a029771.htm" />
+  <HelpKINode Title="STKScenePlayback.StopPlayback method" Url="html/a1b1858b-4cc2-4b43-091a-8773cf992805.htm" />
+  <HelpKINode Title="STKSettings class">
+    <HelpKINode Title="STKSettings Class" Url="html/04c09f90-2f39-e66d-4a81-6a7373ac4ee9.htm" />
+    <HelpKINode Title="constructor" Url="html/73e8e1ba-152f-7f06-64af-392dd39470c9.htm" />
+    <HelpKINode Title="fields" Url="html/986a1140-d730-0a5a-6175-74e0d991115f.htm" />
+    <HelpKINode Title="methods" Url="html/24af9522-a19f-785c-035a-cea3cd06b470.htm" />
+    <HelpKINode Title="properties" Url="html/af4d1bd4-f0f8-668e-9b3c-f1f2f36ad406.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKSettings.createFileWhenFull field" Url="html/5415bde7-5696-7d6c-e3bc-12556440baa0.htm" />
+  <HelpKINode Title="STKSettings.EventMaximum field" Url="html/378e7763-bb62-1bdb-9f45-22713edd4599.htm" />
+  <HelpKINode Title="STKSettings.jsonPath field" Url="html/9c03912c-6945-fdb1-0c46-3d305a151c70.htm" />
+  <HelpKINode Title="STKSettings.STKSettings constructor" Url="html/73e8e1ba-152f-7f06-64af-392dd39470c9.htm" />
+  <HelpKINode Title="STKSettings.useDataReduction field" Url="html/2a4d0aec-240b-b120-80f2-d23a4c791ac0.htm" />
+  <HelpKINode Title="STKSettings.useSlidingWindow field" Url="html/1a635f46-0c62-862f-618d-114c06fd2b46.htm" />
+  <HelpKINode Title="STKSettingsEditor class">
+    <HelpKINode Title="STKSettingsEditor Class" Url="html/779f91c9-1556-9bd0-f5da-c2bda79da3a5.htm" />
+    <HelpKINode Title="constructor" Url="html/c3a17099-5540-16ed-3de0-bf4e3249d790.htm" />
+    <HelpKINode Title="methods" Url="html/16d91fe4-c61c-370a-125b-3fbc891ed8af.htm" />
+    <HelpKINode Title="properties" Url="html/275dff27-d8ee-19e1-8aa4-86e7369387b6.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKSettingsEditor.OnInspectorGUI method" Url="html/7d1dd572-f222-b02e-2158-bbd1d7912380.htm" />
+  <HelpKINode Title="STKSettingsEditor.STKSettingsEditor constructor" Url="html/c3a17099-5540-16ed-3de0-bf4e3249d790.htm" />
+  <HelpKINode Title="STKStopButton class">
+    <HelpKINode Title="STKStopButton Class" Url="html/a70f3b10-9a78-902d-153c-2794ee8fb220.htm" />
+    <HelpKINode Title="constructor" Url="html/24c7435c-5fa9-5f48-b580-6b659cf4d3c8.htm" />
+    <HelpKINode Title="methods" Url="html/91b6256e-0ca2-939a-0e09-e49cd922fad7.htm" />
+    <HelpKINode Title="properties" Url="html/99490dd2-2f03-8db6-861c-3514829b4289.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKStopButton.ForceStopTest method" Url="html/448b5d3b-e866-8d19-bb73-deb0efa4de4a.htm" />
+  <HelpKINode Title="STKStopButton.STKStopButton constructor" Url="html/24c7435c-5fa9-5f48-b580-6b659cf4d3c8.htm" />
+  <HelpKINode Title="STKTestController class">
+    <HelpKINode Title="STKTestController Class" Url="html/73ae24fb-b087-1992-7cac-055bc96e5f9b.htm" />
+    <HelpKINode Title="constructor" Url="html/ea6d3773-1f1d-466f-a3e5-43118e47ea3b.htm" />
+    <HelpKINode Title="fields" Url="html/f835f09c-a3a0-8a17-a0d9-779721c50884.htm" />
+    <HelpKINode Title="methods" Url="html/7628d7ae-b947-38fb-01da-4fec3e301977.htm" />
+    <HelpKINode Title="properties" Url="html/6c709a99-87d5-5610-721c-1c9108bc2666.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKTestController.AddStage method" Url="html/1938660f-ed8c-541e-068d-7343f49bf3e9.htm" />
+  <HelpKINode Title="STKTestController.buttonPrefab field" Url="html/168c1f0a-205a-3e28-1914-1758cae8e7be.htm" />
+  <HelpKINode Title="STKTestController.inputPropertyPrefab field" Url="html/eb296b35-c344-8cf1-582b-3f25b023a305.htm" />
+  <HelpKINode Title="STKTestController.numberOfStages field" Url="html/4547f785-8957-ace8-4d0d-badf2caba6ac.htm" />
+  <HelpKINode Title="STKTestController.StageEnded method" Url="html/fe5fb9ca-97d2-a291-9a34-ef33f3f6080e.htm" />
+  <HelpKINode Title="STKTestController.stagePrefab field" Url="html/178e0c70-ab5f-fda0-2940-5b24e99be1b2.htm" />
+  <HelpKINode Title="STKTestController.startActivateObjects field" Url="html/6275e6e4-36de-453a-21c4-928293c91093.htm" />
+  <HelpKINode Title="STKTestController.STKTestController constructor" Url="html/ea6d3773-1f1d-466f-a3e5-43118e47ea3b.htm" />
+  <HelpKINode Title="STKTestController.testStages field" Url="html/407a4ca7-918d-37f4-821b-e2422d7c42eb.htm" />
+  <HelpKINode Title="STKTestController.togglePropertyPrefab field" Url="html/bf4266f8-611f-8c2a-4aff-8c8a244d99ed.htm" />
+  <HelpKINode Title="STKTestController.verticalGroup field" Url="html/6a2b39fc-4dc9-cdc2-d534-84c5ba861474.htm" />
+  <HelpKINode Title="STKTestControllerEditor class">
+    <HelpKINode Title="STKTestControllerEditor Class" Url="html/cffa4fa6-7a31-ebe4-94ed-5252d43e5924.htm" />
+    <HelpKINode Title="constructor" Url="html/15257941-1476-4116-a192-d84bd36b2bec.htm" />
+    <HelpKINode Title="methods" Url="html/33ed0c74-c472-5afb-4cd8-55f782fd289d.htm" />
+    <HelpKINode Title="properties" Url="html/fa4305d9-d8e1-7e57-8bfe-f4d4b381923d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKTestControllerEditor.OnInspectorGUI method" Url="html/390791e3-5cf4-51ee-40c9-de9b592a5e4d.htm" />
+  <HelpKINode Title="STKTestControllerEditor.STKTestControllerEditor constructor" Url="html/15257941-1476-4116-a192-d84bd36b2bec.htm" />
+  <HelpKINode Title="STKTestControllerProperty class">
+    <HelpKINode Title="STKTestControllerProperty Class" Url="html/5b18f5b2-d8a1-8188-384b-71e5e542c682.htm" />
+    <HelpKINode Title="constructor" Url="html/a96f0988-418a-063d-2c18-d175861482fc.htm" />
+    <HelpKINode Title="fields" Url="html/226a86d4-7ffa-eecc-d1af-704ca7e76d8f.htm" />
+    <HelpKINode Title="methods" Url="html/38e08222-55f4-643d-eb60-31a7442c9039.htm" />
+    <HelpKINode Title="properties" Url="html/e167c8ea-5caf-c8a0-bc5b-8066773c6826.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKTestControllerProperty.Clear method" Url="html/b8cc44b6-9e58-3a17-4069-c6d6efd597bd.htm" />
+  <HelpKINode Title="STKTestControllerProperty.GetValue method" Url="html/43d1b771-41d3-3c7b-7021-af063a624d57.htm" />
+  <HelpKINode Title="STKTestControllerProperty.inputField field" Url="html/8d31a12d-241a-7021-ef71-e1433d9bd5c7.htm" />
+  <HelpKINode Title="STKTestControllerProperty.STKTestControllerProperty constructor" Url="html/a96f0988-418a-063d-2c18-d175861482fc.htm" />
+  <HelpKINode Title="STKTestControllerProperty.text field" Url="html/b4cffe50-0e03-50d4-fe42-f9ce42bbf8a5.htm" />
+  <HelpKINode Title="STKTestControllerProperty.toggle field" Url="html/ac59d4b0-c7bd-9f81-b931-434a3750798f.htm" />
+  <HelpKINode Title="STKTestStage class">
+    <HelpKINode Title="STKTestStage Class" Url="html/c5a912ba-3b0e-a1c8-9132-c96ba9ba1f28.htm" />
+    <HelpKINode Title="constructor" Url="html/6795e87c-9783-6c03-1d07-578b34c667d5.htm" />
+    <HelpKINode Title="fields" Url="html/f9c3efdc-0fa9-9e64-da17-74931fd9facd.htm" />
+    <HelpKINode Title="methods" Url="html/34dcfadd-0c13-ef80-5fff-388c578a41a6.htm" />
+    <HelpKINode Title="properties" Url="html/b4655d9b-374d-be06-0b2f-d387b5962864.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKTestStage.AddButton method" Url="html/beb26642-c1dc-1239-1c51-808155106600.htm" />
+  <HelpKINode Title="STKTestStage.AddInputProperty method" Url="html/ed5359b0-2eed-ad61-0759-59d5510f462b.htm" />
+  <HelpKINode Title="STKTestStage.AddToggleProperty method" Url="html/c51c3338-5566-fe22-5401-d416a56bdc85.htm" />
+  <HelpKINode Title="STKTestStage.buttonParent field" Url="html/d6b2df27-8278-7d57-6092-e7caac2357dd.htm" />
+  <HelpKINode Title="STKTestStage.GameobjectsToActivate field" Url="html/408c3757-0473-a6a2-4b3d-61488baa4d8c.htm" />
+  <HelpKINode Title="STKTestStage.GameobjectsToDeActivate field" Url="html/93d98bba-34d2-0b02-d851-ef52cd40f9bf.htm" />
+  <HelpKINode Title="STKTestStage.GameobjectsToSendMessageTo field" Url="html/eb27222d-1ddf-9f83-2943-4fb2c7be437f.htm" />
+  <HelpKINode Title="STKTestStage.GetStarted method" Url="html/8156b436-fc85-d495-cd49-b60cbde4b34a.htm" />
+  <HelpKINode Title="STKTestStage.GetTime method" Url="html/b11fcd36-d8af-2f95-8558-be5f33d45ba0.htm" />
+  <HelpKINode Title="STKTestStage.hasTimeLimit field" Url="html/ca846380-c4b4-77ee-ea86-236c1490163c.htm" />
+  <HelpKINode Title="STKTestStage.messagesToSend field" Url="html/fbcacb89-b741-3ca9-121f-3ca1ffc19abf.htm" />
+  <HelpKINode Title="STKTestStage.myController field" Url="html/da1f282d-0642-b5e7-13b6-fdd3ebff6e37.htm" />
+  <HelpKINode Title="STKTestStage.propertyParent field" Url="html/4a852d93-c119-0fc7-9f8e-829db7c2928d.htm" />
+  <HelpKINode Title="STKTestStage.runningProperties field" Url="html/2ecffb95-94d5-2f4d-5cfc-965c1f35e176.htm" />
+  <HelpKINode Title="STKTestStage.startButton field" Url="html/789a345f-5361-5904-93ff-7a943104dbd9.htm" />
+  <HelpKINode Title="STKTestStage.startProperties field" Url="html/b11e4bdb-1534-98df-a53a-284e77a947b8.htm" />
+  <HelpKINode Title="STKTestStage.STKTestStage constructor" Url="html/6795e87c-9783-6c03-1d07-578b34c667d5.htm" />
+  <HelpKINode Title="STKTestStage.timeLimit field" Url="html/78654f32-2b6a-325f-9e29-1b0f830cd7f1.htm" />
+  <HelpKINode Title="STKTestStage.timeText field" Url="html/1517e5d5-ac1f-9614-204f-d6aad3513c6f.htm" />
+  <HelpKINode Title="STKTestStage.ToggleTest method" Url="html/3070cd85-15bf-b4b5-fc8e-3d23b966e8e9.htm" />
+  <HelpKINode Title="STKTestStageEditor class">
+    <HelpKINode Title="STKTestStageEditor Class" Url="html/05ba970c-07ad-d6d6-66e7-de54a260b524.htm" />
+    <HelpKINode Title="constructor" Url="html/a0735f28-727e-72e5-5295-e1a9d63aa333.htm" />
+    <HelpKINode Title="fields" Url="html/92b42d6b-1be7-79da-ee64-26a5068ac267.htm" />
+    <HelpKINode Title="methods" Url="html/5430bb1b-6ce3-1543-f654-e1210363011a.htm" />
+    <HelpKINode Title="properties" Url="html/205ed7fd-c616-7752-a925-04bbbc03054a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKTestStageEditor.buttonName field" Url="html/3a83891a-f9b7-bc0d-5c98-806c78a76d55.htm" />
+  <HelpKINode Title="STKTestStageEditor.OnInspectorGUI method" Url="html/c31a9b76-e919-f152-0cbc-9341ca0e8b03.htm" />
+  <HelpKINode Title="STKTestStageEditor.propertyName field" Url="html/99ed3e6a-680c-0457-54a6-f7089d506ab4.htm" />
+  <HelpKINode Title="STKTestStageEditor.startProperty field" Url="html/50d86bcc-f8a4-62db-c069-c5bb82ae4bf2.htm" />
+  <HelpKINode Title="STKTestStageEditor.STKTestStageEditor constructor" Url="html/a0735f28-727e-72e5-5295-e1a9d63aa333.htm" />
+  <HelpKINode Title="STKTrackEditor class">
+    <HelpKINode Title="STKTrackEditor Class" Url="html/4ff941fb-088a-a45a-d3ee-76fff6dae3be.htm" />
+    <HelpKINode Title="constructor" Url="html/d1dd4fb0-a993-30c1-5cb5-1dc9df56907b.htm" />
+    <HelpKINode Title="fields" Url="html/185d2823-0096-7b89-e151-cf682c9d6e97.htm" />
+    <HelpKINode Title="methods" Url="html/c859871c-abf2-7f96-59b8-bca0b584bac0.htm" />
+    <HelpKINode Title="properties" Url="html/fff44e8b-022d-b918-4f54-fdd2902ae0a6.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKTrackEditor.lastTrackedObject field" Url="html/afa06293-c542-742c-be92-6c7c4b81f627.htm" />
+  <HelpKINode Title="STKTrackEditor.ShowWindow method" Url="html/78ab9049-f03c-599b-a733-3af556c7da7e.htm" />
+  <HelpKINode Title="STKTrackEditor.STKTrackEditor constructor" Url="html/d1dd4fb0-a993-30c1-5cb5-1dc9df56907b.htm" />
+  <HelpKINode Title="STKTrackEditor.trackedObject field" Url="html/de4a8958-9106-b2bd-36bd-bce3ac049f03.htm" />
+  <HelpKINode Title="STKTrackedObjects class">
+    <HelpKINode Title="STKTrackedObjects Class" Url="html/d73472d9-3470-4b89-2dc2-8cc367458124.htm" />
+    <HelpKINode Title="constructor" Url="html/193271e8-4cc2-8d1c-ff85-d4009b053225.htm" />
+    <HelpKINode Title="fields" Url="html/3aff6e1f-b01d-b254-d141-4a72893821eb.htm" />
+    <HelpKINode Title="methods" Url="html/ac2a3727-4ab6-925c-fcb0-c35ad66f8a43.htm" />
+    <HelpKINode Title="properties" Url="html/6d02c0e6-0064-7a10-b457-a9708011905f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKTrackedObjects.CheckForNullReferences method" Url="html/498b6407-a565-322e-83ab-ead0b4a89633.htm" />
+  <HelpKINode Title="STKTrackedObjects.STKTrackedObjects constructor" Url="html/193271e8-4cc2-8d1c-ff85-d4009b053225.htm" />
+  <HelpKINode Title="STKTrackedObjects.trackedObjects field" Url="html/8bc12bb0-d677-8574-d36b-20da0d950977.htm" />
+  <HelpKINode Title="STKVRInputTracker class">
+    <HelpKINode Title="STKVRInputTracker Class" Url="html/1d1d451b-1945-5898-d17f-443936b8aed4.htm" />
+    <HelpKINode Title="constructor" Url="html/a07831e9-e6d4-aab3-699c-8540b3e55e40.htm" />
+    <HelpKINode Title="methods" Url="html/8dbb7cfd-8302-7fe0-9355-776d8c4fa158.htm" />
+    <HelpKINode Title="properties" Url="html/cdd0b2d5-45eb-31ab-9bc1-22dbdce862f7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="STKVRInputTracker.STKVRInputTracker constructor" Url="html/a07831e9-e6d4-aab3-699c-8540b3e55e40.htm" />
+  <HelpKINode Title="StopPlayback method" Url="html/a1b1858b-4cc2-4b43-091a-8773cf992805.htm" />
+  <HelpKINode Title="StringArray class">
+    <HelpKINode Title="fields" Url="html/7ca37e34-68d4-62f1-e805-aaeb85c63c52.htm" />
+    <HelpKINode Title="methods" Url="html/b524869a-1b26-d40b-44cd-5db030ced06c.htm" />
+  </HelpKINode>
+  <HelpKINode Title="systemType field" Url="html/fea813ce-b7d4-f7a5-8046-68d6b263059a.htm" />
+  <HelpKINode Title="TestEnd method" Url="html/41fc99f7-bb4b-5c64-daa3-b00b997250fe.htm" />
+  <HelpKINode Title="testStages field" Url="html/407a4ca7-918d-37f4-821b-e2422d7c42eb.htm" />
+  <HelpKINode Title="TestStart method" Url="html/3205f121-12f0-eb4d-550d-4920fef0c715.htm" />
+  <HelpKINode Title="text field" Url="html/b4cffe50-0e03-50d4-fe42-f9ce42bbf8a5.htm" />
+  <HelpKINode Title="time field" Url="html/bdcd3c49-d072-f596-125c-a1ca5f49ba98.htm" />
+  <HelpKINode Title="timedInterval field" Url="html/46e7c98c-9268-ba80-1e0d-9f5e8ceac7b7.htm" />
+  <HelpKINode Title="timeLimit field" Url="html/78654f32-2b6a-325f-9e29-1b0f830cd7f1.htm" />
+  <HelpKINode Title="timeText field" Url="html/1517e5d5-ac1f-9614-204f-d6aad3513c6f.htm" />
+  <HelpKINode Title="toggle field" Url="html/ac59d4b0-c7bd-9f81-b931-434a3750798f.htm" />
+  <HelpKINode Title="togglePropertyPrefab field" Url="html/bf4266f8-611f-8c2a-4aff-8c8a244d99ed.htm" />
+  <HelpKINode Title="ToggleTest method" Url="html/3070cd85-15bf-b4b5-fc8e-3d23b966e8e9.htm" />
+  <HelpKINode Title="trackedComponents field" Url="html/d7fb7c13-2384-ecfb-8f95-f98043aff5ea.htm" />
+  <HelpKINode Title="trackedObject field" Url="html/de4a8958-9106-b2bd-36bd-bce3ac049f03.htm" />
+  <HelpKINode Title="trackedObjects field" Url="html/8bc12bb0-d677-8574-d36b-20da0d950977.htm" />
+  <HelpKINode Title="trackedVariableNames field" Url="html/6d4b8ac6-3638-312e-683d-82b24d4580e1.htm" />
+  <HelpKINode Title="typeIndex field" Url="html/8b051b32-77ba-fe39-d706-7cf13a771598.htm" />
+  <HelpKINode Title="useDataReduction field" Url="html/2a4d0aec-240b-b120-80f2-d23a4c791ac0.htm" />
+  <HelpKINode Title="useSlidingWindow field" Url="html/1a635f46-0c62-862f-618d-114c06fd2b46.htm" />
+  <HelpKINode Title="version">
+    <HelpKINode Title="1.0.0.0" Url="html/957e3074-3719-4802-9cf9-a5fb895a47d5.htm" />
+    <HelpKINode Title="history" Url="html/8dcb34bf-ad41-4736-9a51-89021f44f10d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="verticalGroup field" Url="html/6a2b39fc-4dc9-cdc2-d534-84c5ba861474.htm" />
+  <HelpKINode Title="Welcome" Url="html/5df4e6a9-7b55-4c23-8a4e-b63c2750e144.htm" />
+</HelpKI>

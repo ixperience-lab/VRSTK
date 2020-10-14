@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<topic id="5df4e6a9-7b55-4c23-8a4e-b63c2750e144" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+			<para>Welcome to the documentation for the Scientific Virtual Reality Toolkit. The Scientific Virtual Reality Toolkit (STK) simplifies the creation of experiments in VR environments. It was originally created as a master thesis by Felix Gähr at Hochschule Furtwangen.</para>
+		</introduction>
+
+
+		<relatedTopics>
+			<link xlink:href="8dcb34bf-ad41-4736-9a51-89021f44f10d" />
+		</relatedTopics>
+	</developerConceptualDocument>
+</topic>

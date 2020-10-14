@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddec862d19d4674b90cbebf15eafc4c, type: 3}
+  m_Name: VRInput
+  m_EditorClassIdentifier: 
+  parameters:
+  - name: Name
+    typeIndex: 2
+    hideFromInspector: 0
+  - name: singleValue
+    typeIndex: 1
+    hideFromInspector: 0
+  - name: boolValue
+    typeIndex: 3
+    hideFromInspector: 0
+  - name: vector2Value
+    typeIndex: 4
+    hideFromInspector: 0
+  - name: vector3Value
+    typeIndex: 5
+    hideFromInspector: 0
+  eventName: VRInput
+  uniqueID: 0
+  time: 0
