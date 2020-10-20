@@ -1,6 +1,7 @@
 # Scientific Virtual Reality Toolkit
 
-The Scientific Virtual Reality Toolkit facilitates the creation and execution of experiments in VR environments.
+The Scientific Virtual Reality Toolkit facilitates the creation and execution of experiments in VR environments by making object tracking and data collection easier.
+
 
 # MIT License
 
