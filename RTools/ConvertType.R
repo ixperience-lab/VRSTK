@@ -4,11 +4,13 @@ ConvertTypes <- function(l)
   {
     for (j in 1:length(l[[i]]))
     {
+      tmpDebug <- l[[i]][j]
       if (length(l[[i]][j]) == 1)
       {
-        if (!is.na(as.numeric(l[[i]][j])))
+        if (!is.na(as.numeric(unlist(l[[i]][j]))))
         {
-          l[[i]][j] = as.numeric(l[[i]][j]);
+          tmpResDebug <- as.numeric(unlist(l[[i]][j]));
+          #l[[i]][j] = as.numeric(l[[i]][j]);
         }
         if (l[[i]][j] == "True")
         {
