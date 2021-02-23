@@ -18,7 +18,6 @@ namespace STK
         public bool debugEyeTrackingPositionsWithLine;
         private Material lineRendererMaterial;
         private GameObject lineLeft;
-        //private GameObject lineRight;
 
         //The current eyedata
         private EyeData EyeData = new EyeData();
@@ -26,18 +25,6 @@ namespace STK
         //The world eye direction
         public Vector3 eyeDirection;
 
-        // --- test wh
-        //The vr camera
-        //public GameObject head;
-        //The world eye direction
-        //public Vector3 eyeLeftDirection;
-        //The world hitpoint is available, else the point 100 meter towards
-        //public Vector3 eyeLeftHitpoint;
-        //The world eye direction
-        //public Vector3 eyeRightDirection;
-        //The world hitpoint is available, else the point 100 meter towards
-        //public Vector3 eyeRightHitpoint;
-        // ---
 
         //True if the given eye tracking points are valid and up-to-date
         public bool validTracking = false;
@@ -50,10 +37,7 @@ namespace STK
             Debug.LogWarning("STKEyeLookDirection script started");
             lineLeft = new GameObject();
             lineLeft.AddComponent<LineRenderer>();
-            //lineRight = new GameObject();
-            //lineRight.AddComponent<LineRenderer>();
             lineLeft.GetComponent<LineRenderer>().enabled = false; 
-            //lineRight.GetComponent<LineRenderer>().enabled = false;
             lineRendererMaterial = new Material(Shader.Find("Specular"));
 
             //Initialize|Instancing off eye tracking 
@@ -78,19 +62,15 @@ namespace STK
             if (debugEyeTrackingPositionsWithLine)
             {
                 lineLeft.SetActive(true);
-                //lineRight.SetActive(true);
                 lineLeft.GetComponent<LineRenderer>().enabled = true;
-                //lineRight.GetComponent<LineRenderer>().enabled = true;
             }
             else
             {
                 lineLeft.SetActive(false);
-                //lineRight.SetActive(false);
                 lineLeft.GetComponent<LineRenderer>().enabled = false;
-                //lineRight.GetComponent<LineRenderer>().enabled = false;
             }
 
-                var error = SRanipal_Eye_API.GetEyeData(ref EyeData);
+            var error = SRanipal_Eye_API.GetEyeData(ref EyeData);
             var newData = SRanipal_Eye.GetVerboseData(out EyeData.verbose_data);
 
             //Debug.LogError("SRanipal (Status " + SRanipal_Eye_Framework.Status + ")");
@@ -108,9 +88,7 @@ namespace STK
             var leftEye = EyeData.verbose_data.left.gaze_direction_normalized;
             var rightEye = EyeData.verbose_data.right.gaze_direction_normalized;
 
-            // if (leftEye != Vector3.zero && rightEye != Vector3.zero)
-            // Debug.Log("Eyes: LEFT:=" + leftEye + ", RIGHT:=" + rightEye);
-
+            
             // with this conditions only one eye tracked (here the most the left Eye)!
             if (leftEye != Vector3.zero)
             {
@@ -147,10 +125,7 @@ namespace STK
             GetComponent<STKEventSender>().SetEventValue("EyeHitPoint", eyeHitpoint);
             GetComponent<STKEventSender>().SetEventValue("EyeDirection", eyeDirection);
             Debug.Log("lookingAt.name:=(" + lookingAt.name + ") \n eyeHitpoint:=(" + eyeHitpoint + ") \n eyeDirection=(" + eyeDirection + ") \n Duration=(" + duration + ")");
-            //GetComponent<STKEventSender>().SetEventValue("EyeRightHitPoint", eyeRightHitpoint);
-            //GetComponent<STKEventSender>().SetEventValue("EyeRightDirection", eyeRightDirection);
-            //Debug.Log("lookingAt.name:=(" + lookingAt.name + ") \n eyeLeftHitpoint:=(" + eyeLeftHitpoint + ") \n eyeLeftDirection=(" + eyeLeftDirection + ") \n eyeRightHitpoint:=(" + eyeRightHitpoint + ") \n eyeRightDirection=(" + eyeRightDirection + ") \n Duration=(" + duration + ")");
-
+            
             GetComponent<STKEventSender>().Deploy();
             lookingAt = null;
         }
@@ -185,8 +160,8 @@ namespace STK
             var eyeDirection2 = new Vector2(direction.x, direction.z);
             //var headDirection2 = new Vector2(head.transform.forward.x, head.transform.forward.z);
             var headDirection2 = new Vector2(transform.forward.x, transform.forward.z);
-            var correctedDirecion3 = Quaternion.AngleAxis(-2 * Vector2.SignedAngle(eyeDirection2, headDirection2), Vector3.up) * direction;
-            direction = correctedDirecion3;
+            var correctedDirection3 = Quaternion.AngleAxis(-2 * Vector2.SignedAngle(eyeDirection2, headDirection2), Vector3.up) * direction;
+            direction = correctedDirection3;
 
             this.eyeDirection = direction;
 
@@ -194,8 +169,26 @@ namespace STK
 
             //Physics.SphereCast(transform.position, 0.2f, transform.forward, out hit, 100);
             //RaycastHit hit;
-            if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity, layerMask))//if (Physics.Raycast(head.transform.position, direction, out hit, Mathf.Infinity, layerMask))
+
+            // SphereCollider test
+            //SphereCollider sphereCollider = this.GetComponent<SphereCollider>();
+
+            //var position = sphereCollider.center;
+            //var radius = sphereCollider.radius + 0.01f;
+            //Ray ray = new Ray(transform.position, direction);
+            //Debug.Log("Ray with direction:" + ray.direction + " hitPoint:" + ray.origin);
+
+            //if (sphereCollider.Raycast(ray, out hit, 100.0f))
+
+
+            //if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity, layerMask)) //org
+            //if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity))
+            //if (sphereCollider.Raycast(ray, out hit, 100.0f))
+            //if (Physics.Raycast(transform.position, direction, out hit, radius, layerMask, QueryTriggerInteraction.UseGlobal))//if (sphereCollider.Raycast(ray, out hit, radius))//if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity, layerMask)) //org
+            if (Physics.SphereCast(transform.position, 0.1f, direction, out hit, 0.5f))
             {
+                Debug.Log("Hit the collider with direction:" + direction + " hitPoint:" + hit.point);
+                Debug.Log("Works!!!");
                 //When hit collider: Use collider as hitpoint
                 this.eyeHitpoint = hit.point;
                 //Debug.DrawLine(transform.position, eyeHitpoint, Color.green, 0.2f);
@@ -204,28 +197,13 @@ namespace STK
             }
             else
             {
+                Debug.Log("Hit the collider with direction:" + direction + " hitPoint:" + transform.position);
+                Debug.Log("Not working!!!!");
                 //When not hit: Draw line 100 meters
                 this.eyeHitpoint = direction.normalized * 100;
+                if (debugEyeTrackingPositionsWithLine)
+                    DrawLine(transform.position, direction, Color.red, lineLeft);
             }
-
-            
-            // WH implementation
-            //if (isLeftEye)
-            //{
-            //    this.eyeLeftHitpoint = this.eyeHitpoint;
-            //    this.eyeLeftDirection = direction;
-            //    //Debug.DrawLine(transform.position, eyeHitpoint, Color.green, 0.2f);
-            //    if (debugEyeTrackingPositionsWithLine)
-            //        DrawLine(transform.position, eyeHitpoint, Color.green, lineLeft);
-            //}
-            //else
-            //{
-            //    this.eyeRightHitpoint = this.eyeHitpoint;
-            //    this.eyeRightDirection = direction;
-            //    //Debug.DrawLine(transform.position, eyeHitpoint, Color.red, 0.2f);
-            //    if (debugEyeTrackingPositionsWithLine)
-            //        DrawLine(transform.position, eyeHitpoint, Color.red, lineRight);
-            //}
             
             if (hit.transform != null && lookingAt != hit.transform.gameObject)
             {
