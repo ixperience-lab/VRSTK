@@ -36,8 +36,9 @@ namespace STK
         {
             Debug.LogWarning("STKEyeLookDirection script started");
             lineLeft = new GameObject();
+            lineLeft.SetActive(false);
             lineLeft.AddComponent<LineRenderer>();
-            lineLeft.GetComponent<LineRenderer>().enabled = false; 
+            lineLeft.GetComponent<LineRenderer>().enabled = false;
             lineRendererMaterial = new Material(Shader.Find("Specular"));
 
             //Initialize|Instancing off eye tracking 
@@ -59,12 +60,7 @@ namespace STK
         // Update is called once per frame
         void Update()
         {
-            if (debugEyeTrackingPositionsWithLine)
-            {
-                lineLeft.SetActive(true);
-                lineLeft.GetComponent<LineRenderer>().enabled = true;
-            }
-            else
+            if (!debugEyeTrackingPositionsWithLine)
             {
                 lineLeft.SetActive(false);
                 lineLeft.GetComponent<LineRenderer>().enabled = false;
@@ -167,33 +163,21 @@ namespace STK
 
             //Debug.Log("looked in direction:=" + direction);
 
-            //Physics.SphereCast(transform.position, 0.2f, transform.forward, out hit, 100);
-            //RaycastHit hit;
-
-            // SphereCollider test
-            //SphereCollider sphereCollider = this.GetComponent<SphereCollider>();
-
-            //var position = sphereCollider.center;
-            //var radius = sphereCollider.radius + 0.01f;
-            //Ray ray = new Ray(transform.position, direction);
-            //Debug.Log("Ray with direction:" + ray.direction + " hitPoint:" + ray.origin);
-
-            //if (sphereCollider.Raycast(ray, out hit, 100.0f))
-
+            // Get Sphere
+            GameObject sphere = GameObject.Find("Sphere");
+            float radius =  sphere.transform.lossyScale.x / 2.0f;
+            Debug.Log("sphere.radius:" + radius);
 
             //if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity, layerMask)) //org
-            //if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity))
-            //if (sphereCollider.Raycast(ray, out hit, 100.0f))
             //if (Physics.Raycast(transform.position, direction, out hit, radius, layerMask, QueryTriggerInteraction.UseGlobal))//if (sphereCollider.Raycast(ray, out hit, radius))//if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity, layerMask)) //org
-            if (Physics.SphereCast(transform.position, 0.1f, direction, out hit, 0.5f))
+            if (Physics.SphereCast(transform.position, 0.1f, direction, out hit, radius))
             {
                 Debug.Log("Hit the collider with direction:" + direction + " hitPoint:" + hit.point);
                 Debug.Log("Works!!!");
                 //When hit collider: Use collider as hitpoint
                 this.eyeHitpoint = hit.point;
                 //Debug.DrawLine(transform.position, eyeHitpoint, Color.green, 0.2f);
-                if (debugEyeTrackingPositionsWithLine)
-                    DrawLine(transform.position, eyeHitpoint, Color.green, lineLeft);
+                DrawLine(transform.position, eyeHitpoint, Color.green, lineLeft);
             }
             else
             {
@@ -201,8 +185,7 @@ namespace STK
                 Debug.Log("Not working!!!!");
                 //When not hit: Draw line 100 meters
                 this.eyeHitpoint = direction.normalized * 100;
-                if (debugEyeTrackingPositionsWithLine)
-                    DrawLine(transform.position, direction, Color.red, lineLeft);
+                DrawLine(transform.position, direction, Color.red, lineLeft);
             }
             
             if (hit.transform != null && lookingAt != hit.transform.gameObject)
@@ -216,19 +199,25 @@ namespace STK
 
         }
 
-
         //This method is for testing the plausibility for eyetracking positions
         //Line will be drawed by start and end pos. with given color 
         void DrawLine(Vector3 start, Vector3 end, Color color, GameObject line)
         {
-            line.transform.position = start;
-            LineRenderer lr = line.GetComponent<LineRenderer>();
-            lineRendererMaterial.SetColor("_Color", color);
-            lr.material = lineRendererMaterial;
-            lr.SetColors(color, color);
-            lr.SetWidth(0.01f, 0.01f);
-            lr.SetPosition(0, start);
-            lr.SetPosition(1, end);
+            if (debugEyeTrackingPositionsWithLine)
+            {
+                line.transform.position = start;
+                LineRenderer lr = line.GetComponent<LineRenderer>();
+                lineRendererMaterial.SetColor("_Color", color);
+                lr.material = lineRendererMaterial;
+                lr.SetColors(color, color);
+                lr.SetWidth(0.01f, 0.01f);
+                lr.SetPosition(0, start);
+                lr.SetPosition(1, end);
+
+                lineLeft.SetActive(true);
+                lineLeft.GetComponent<LineRenderer>().enabled = true;
+            }
+            
         }
     }
 }
