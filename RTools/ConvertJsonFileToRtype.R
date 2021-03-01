@@ -13,4 +13,5 @@ ConvertJsonFileToRtype <- function(filePath)
   return(myJSON);
 }
 
-ConvertJsonFileToRtype("N:\\TestJSonDatensatz\\12-16_17-21-18.json")
+#ConvertJsonFileToRtype("N:\\TestJSonDatensatz\\12-16_17-21-18.json")
+ConvertJsonFileToRtype("N:\\TestJSonDatensatz\\3-1_13-50-21.json")

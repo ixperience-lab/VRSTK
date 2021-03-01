@@ -9,8 +9,8 @@ ConvertTypes <- function(l)
       {
         if (!is.na(as.numeric(unlist(l[[i]][j]))))
         {
-          tmpResDebug <- as.numeric(unlist(l[[i]][j]));
-          #l[[i]][j] = as.numeric(l[[i]][j]);
+          #tmpResDebug <- as.numeric(unlist(l[[i]][j]));
+          l[[i]][j] = as.numeric(l[[i]][j]);
         }
         if (l[[i]][j] == "True")
         {

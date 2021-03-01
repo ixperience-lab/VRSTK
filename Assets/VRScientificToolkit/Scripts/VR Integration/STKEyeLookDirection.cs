@@ -131,6 +131,19 @@ namespace STK
             return lookingAt;
         }
 
+        private void SphereColliderEventSender()
+        {
+            lookingAt = hit.transform.gameObject;
+            float duration = STKTestStage.GetTime() - hitTime;
+            GetComponent<STKEventSender>().SetEventValue("ObjectName", lookingAt.name);
+            GetComponent<STKEventSender>().SetEventValue("Duration", duration);
+            GetComponent<STKEventSender>().SetEventValue("EyeHitPoint", eyeHitpoint);
+            GetComponent<STKEventSender>().SetEventValue("EyeDirection", eyeDirection);
+            Debug.Log("lookingAt.name:=(" + lookingAt.name + ") \n eyeHitpoint:=(" + eyeHitpoint + ") \n eyeDirection=(" + eyeDirection + ") \n Duration=(" + duration + ")");
+
+            GetComponent<STKEventSender>().Deploy();
+        }
+
         /**
         * Calculates the world direction and updates the "LookAt" position
         */
@@ -164,12 +177,10 @@ namespace STK
             //Debug.Log("looked in direction:=" + direction);
 
             // Get Sphere
-            GameObject sphere = GameObject.Find("Sphere");
+            GameObject sphere = GameObject.Find("SphereEyeCollider");
             float radius =  sphere.transform.lossyScale.x / 2.0f;
             Debug.Log("sphere.radius:" + radius);
 
-            //if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity, layerMask)) //org
-            //if (Physics.Raycast(transform.position, direction, out hit, radius, layerMask, QueryTriggerInteraction.UseGlobal))//if (sphereCollider.Raycast(ray, out hit, radius))//if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity, layerMask)) //org
             if (Physics.SphereCast(transform.position, 0.1f, direction, out hit, radius))
             {
                 Debug.Log("Hit the collider with direction:" + direction + " hitPoint:" + hit.point);
@@ -187,16 +198,18 @@ namespace STK
                 this.eyeHitpoint = direction.normalized * 100;
                 DrawLine(transform.position, direction, Color.red, lineLeft);
             }
-            
-            if (hit.transform != null && lookingAt != hit.transform.gameObject)
-            {
-                OnLookStart();
-            }
-            else if (hit.transform == null && lookingAt != null)
-            {
-                OnLookEnd();
-            }
 
+            if(hit.transform != null) SphereColliderEventSender();
+
+            //With out Sphere-Collider
+            //if (hit.transform != null && lookingAt != hit.transform.gameObject)
+            //{
+            //    OnLookStart();
+            //}
+            //else if (hit.transform == null && lookingAt != null)
+            //{
+            //    OnLookEnd();
+            //}
         }
 
         //This method is for testing the plausibility for eyetracking positions
