@@ -1,7 +1,8 @@
 CreateHeatmap <- function ()
 {
   #test = TestData$Stage0$Camera16770$position_Transform;
-  eyeHitPoints = TestData$Stage0$EyeLookAtObject$EyeHitPoint;
+  #eyeHitPoints = TestData$Stage0$EyeLookAtObject$EyeHitPoint;
+  eyeHitPoints = TestData$Stage0$EyeLookAtObject$EyeDirection;
   #test = JSONData$Stage0$Camera5952$position_Transform;
   require(MASS)
   unlisted <- matrix(unlist(eyeHitPoints), ncol = 3, byrow = TRUE);

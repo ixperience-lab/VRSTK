@@ -11,8 +11,18 @@ namespace STK
         public STKEvent lookEvent;
         private GameObject lookingAt;
 
-        private RaycastHit hit;
-        private float hitTime;
+        //RaycastHits for Sphere and Object Collider
+        private RaycastHit hitSphere;
+        private float hitTimeSphere;
+
+        private RaycastHit hitObjects;
+        private float hitTimeObejcts;
+
+        //GameObject for get the Sphere Collider radius
+        private GameObject sphereEyeCollider;
+
+        //Variable for enable Object Tracking
+        public bool enableEyeObjectTracking = false;
 
         //Material for a LineRenderer
         public bool debugEyeTrackingPositionsWithLine;
@@ -24,17 +34,18 @@ namespace STK
         public Vector3 eyeHitpoint;
         //The world eye direction
         public Vector3 eyeDirection;
-
-
+        
         //True if the given eye tracking points are valid and up-to-date
         public bool validTracking = false;
         //Variable for last Error
         private ViveSR.Error lastError;
-
-
+        
         void Start()
         {
             Debug.LogWarning("STKEyeLookDirection script started");
+
+            sphereEyeCollider = GameObject.Find("SphereEyeCollider");
+
             lineLeft = new GameObject();
             lineLeft.SetActive(false);
             lineLeft.AddComponent<LineRenderer>();
@@ -69,7 +80,6 @@ namespace STK
             var error = SRanipal_Eye_API.GetEyeData(ref EyeData);
             var newData = SRanipal_Eye.GetVerboseData(out EyeData.verbose_data);
 
-            //Debug.LogError("SRanipal (Status " + SRanipal_Eye_Framework.Status + ")");
             //No new data received from camera sensor - skip step
             if (!newData)
                 return;
@@ -84,8 +94,7 @@ namespace STK
             var leftEye = EyeData.verbose_data.left.gaze_direction_normalized;
             var rightEye = EyeData.verbose_data.right.gaze_direction_normalized;
 
-            
-            // with this conditions only one eye tracked (here the most the left Eye)!
+            //With this conditions only one eye is tracked (here is most the left Eye)!
             if (leftEye != Vector3.zero)
             {
                 this.validTracking = true;
@@ -109,13 +118,13 @@ namespace STK
             {
                 OnLookEnd();
             }
-            lookingAt = hit.transform.gameObject;
-            hitTime = STKTestStage.GetTime();
+            lookingAt = hitObjects.transform.gameObject;
+            hitTimeObejcts = STKTestStage.GetTime();
         }
 
         private void OnLookEnd()
         {
-            float duration = STKTestStage.GetTime() - hitTime;
+            float duration = STKTestStage.GetTime() - hitTimeObejcts;
             GetComponent<STKEventSender>().SetEventValue("ObjectName", lookingAt.name);
             GetComponent<STKEventSender>().SetEventValue("Duration", duration);
             GetComponent<STKEventSender>().SetEventValue("EyeHitPoint", eyeHitpoint);
@@ -133,13 +142,12 @@ namespace STK
 
         private void SphereColliderEventSender()
         {
-            lookingAt = hit.transform.gameObject;
-            float duration = STKTestStage.GetTime() - hitTime;
-            GetComponent<STKEventSender>().SetEventValue("ObjectName", lookingAt.name);
+            float duration = STKTestStage.GetTime() - hitTimeSphere;
+            GetComponent<STKEventSender>().SetEventValue("ObjectName", gameObject.name);
             GetComponent<STKEventSender>().SetEventValue("Duration", duration);
             GetComponent<STKEventSender>().SetEventValue("EyeHitPoint", eyeHitpoint);
             GetComponent<STKEventSender>().SetEventValue("EyeDirection", eyeDirection);
-            Debug.Log("lookingAt.name:=(" + lookingAt.name + ") \n eyeHitpoint:=(" + eyeHitpoint + ") \n eyeDirection=(" + eyeDirection + ") \n Duration=(" + duration + ")");
+            Debug.Log("name:=(" + gameObject.name + ") \n eyeHitpoint:=(" + eyeHitpoint + ") \n eyeDirection=(" + eyeDirection + ") \n Duration=(" + duration + ")");
 
             GetComponent<STKEventSender>().Deploy();
         }
@@ -149,10 +157,6 @@ namespace STK
         */
         void CalculateWorldSpace(Vector3 direction)
         {
-            // Bit shift the index of the layer (8) to get a bit mask
-            int layerMask = 1 << 8;
-            layerMask = ~layerMask;
-
             //The direction from sr_anipal is in "raw" world space
             //So no translation or rotation of the head is taken in account
             //This will translate it to the location and rotation of the world space
@@ -174,42 +178,71 @@ namespace STK
 
             this.eyeDirection = direction;
 
-            //Debug.Log("looked in direction:=" + direction);
+            RayToSphereColliderCast(direction);
+            
+            if (enableEyeObjectTracking)
+                RayToObjectColliderCast(direction);
+        }
 
-            // Get Sphere
-            GameObject sphere = GameObject.Find("SphereEyeCollider");
-            float radius =  sphere.transform.lossyScale.x / 2.0f;
+        void RayToSphereColliderCast(Vector3 direction)
+        {
+            int layerMask = 1 << 8;
+            layerMask = ~layerMask;
+
+            sphereEyeCollider.GetComponent<MeshCollider>().enabled = true;
+            //Get radius of Sphere Collider
+            float radius = sphereEyeCollider.transform.lossyScale.x / 2.0f;
             Debug.Log("sphere.radius:" + radius);
 
-            if (Physics.SphereCast(transform.position, 0.1f, direction, out hit, radius))
+            hitTimeSphere = STKTestStage.GetTime();
+
+            if (Physics.Raycast(transform.position, direction, out hitSphere, radius, layerMask))
             {
-                Debug.Log("Hit the collider with direction:" + direction + " hitPoint:" + hit.point);
-                Debug.Log("Works!!!");
+                Debug.Log("Hit the Sphere Collider with direction:" + direction + " hitPoint:" + hitSphere.point);
                 //When hit collider: Use collider as hitpoint
-                this.eyeHitpoint = hit.point;
-                //Debug.DrawLine(transform.position, eyeHitpoint, Color.green, 0.2f);
+                this.eyeHitpoint = hitSphere.point;
                 DrawLine(transform.position, eyeHitpoint, Color.green, lineLeft);
             }
             else
             {
-                Debug.Log("Hit the collider with direction:" + direction + " hitPoint:" + transform.position);
-                Debug.Log("Not working!!!!");
-                //When not hit: Draw line 100 meters
+                Debug.Log("No hit on the Sphere Collider!");
                 this.eyeHitpoint = direction.normalized * 100;
                 DrawLine(transform.position, direction, Color.red, lineLeft);
             }
 
-            if(hit.transform != null) SphereColliderEventSender();
+            if (hitSphere.transform != null)
+                SphereColliderEventSender();
+        }
+
+        void RayToObjectColliderCast(Vector3 direction)
+        {
+            int layerMask = 1 << 8;
+            layerMask = ~layerMask;
+
+            sphereEyeCollider.GetComponent<MeshCollider>().enabled = false;
+            
+            if (Physics.Raycast(transform.position, direction, out hitObjects, Mathf.Infinity, layerMask))
+            {
+                Debug.Log("Hit the Collider of an Object, with direction:" + direction + " and hitPoint:" + hitObjects.point);
+                //When hit collider: Use collider as hitpoint
+                this.eyeHitpoint = hitObjects.point;
+                DrawLine(transform.position, eyeHitpoint, Color.red, lineLeft);
+            }
+            else
+            {
+                Debug.Log("No hit on an Object Collider!");
+                this.eyeHitpoint = direction.normalized * 100;
+            }
 
             //With out Sphere-Collider
-            //if (hit.transform != null && lookingAt != hit.transform.gameObject)
-            //{
-            //    OnLookStart();
-            //}
-            //else if (hit.transform == null && lookingAt != null)
-            //{
-            //    OnLookEnd();
-            //}
+            if (hitObjects.transform != null && lookingAt != hitObjects.transform.gameObject)
+            {
+                OnLookStart();
+            }
+            else if (hitObjects.transform == null && lookingAt != null)
+            {
+                OnLookEnd();
+            }
         }
 
         //This method is for testing the plausibility for eyetracking positions
@@ -230,7 +263,7 @@ namespace STK
                 lineLeft.SetActive(true);
                 lineLeft.GetComponent<LineRenderer>().enabled = true;
             }
-            
+
         }
     }
 }
