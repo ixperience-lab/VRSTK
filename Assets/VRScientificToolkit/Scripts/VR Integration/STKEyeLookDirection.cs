@@ -9,6 +9,8 @@ namespace STK
     public class STKEyeLookDirection : MonoBehaviour
     {
         public STKEvent lookEvent;
+        public STKEvent eyeLookAtEvent;
+
         private GameObject lookingAt;
 
         //RaycastHits for Sphere and Object Collider
@@ -29,6 +31,7 @@ namespace STK
         private Material lineRendererMaterial;
         private GameObject lineLeft;
 
+        
         //The current eyedata
         private EyeData EyeData = new EyeData();
         public Vector3 eyeHitpoint;
@@ -143,13 +146,31 @@ namespace STK
         private void SphereColliderEventSender()
         {
             float duration = STKTestStage.GetTime() - hitTimeSphere;
-            GetComponent<STKEventSender>().SetEventValue("ObjectName", gameObject.name);
-            GetComponent<STKEventSender>().SetEventValue("Duration", duration);
-            GetComponent<STKEventSender>().SetEventValue("EyeHitPoint", eyeHitpoint);
-            GetComponent<STKEventSender>().SetEventValue("EyeDirection", eyeDirection);
+
+            // Disable the spring on all HingeJoints in this game object
+            List<STKEventSender> eventSender = new List<STKEventSender>();
+
+            GetComponents(eventSender);
+            // EyeLookAtObeject
+            eventSender[0].SetEventValue("ObjectName", gameObject.name);
+            eventSender[0].SetEventValue("EyeHitPoint", eyeHitpoint);
+            eventSender[0].SetEventValue("EyeDirection", eyeDirection);
+            eventSender[0].Deploy();
+
+            // EyeLookAt
+            eventSender[1].SetEventValue("position_Transform", transform.position);
+            eventSender[1].SetEventValue("rotation_Transform", Quaternion.LookRotation(eyeDirection));
+            eventSender[1].SetEventValue("Duration", duration);
+            eventSender[1].Deploy();
+
             Debug.Log("name:=(" + gameObject.name + ") \n eyeHitpoint:=(" + eyeHitpoint + ") \n eyeDirection=(" + eyeDirection + ") \n Duration=(" + duration + ")");
 
-            GetComponent<STKEventSender>().Deploy();
+            //orginal code base
+            //GetComponent<STKEventSender>().SetEventValue("ObjectName", gameObject.name);
+            //GetComponent<STKEventSender>().SetEventValue("EyeHitPoint", eyeHitpoint);
+            //GetComponent<STKEventSender>().SetEventValue("EyeDirection", eyeDirection);
+            //Debug.Log("name:=(" + gameObject.name + ") \n eyeHitpoint:=(" + eyeHitpoint + ") \n eyeDirection=(" + eyeDirection + ") \n Duration=(" + duration + ")");
+            //GetComponent<STKEventSender>().Deploy();
         }
 
         /**
@@ -201,13 +222,14 @@ namespace STK
                 Debug.Log("Hit the Sphere Collider with direction:" + direction + " hitPoint:" + hitSphere.point);
                 //When hit collider: Use collider as hitpoint
                 this.eyeHitpoint = hitSphere.point;
-                DrawLine(transform.position, eyeHitpoint, Color.green, lineLeft);
+                DrawLine(transform.position, eyeHitpoint, Color.green);
             }
             else
             {
                 Debug.Log("No hit on the Sphere Collider!");
                 this.eyeHitpoint = direction.normalized * 100;
-                DrawLine(transform.position, direction, Color.red, lineLeft);
+
+                DrawLine(transform.position, direction, Color.red);
             }
 
             if (hitSphere.transform != null)
@@ -226,7 +248,7 @@ namespace STK
                 Debug.Log("Hit the Collider of an Object, with direction:" + direction + " and hitPoint:" + hitObjects.point);
                 //When hit collider: Use collider as hitpoint
                 this.eyeHitpoint = hitObjects.point;
-                DrawLine(transform.position, eyeHitpoint, Color.red, lineLeft);
+                DrawLine(transform.position, eyeHitpoint, Color.red);
             }
             else
             {
@@ -247,12 +269,12 @@ namespace STK
 
         //This method is for testing the plausibility for eyetracking positions
         //Line will be drawed by start and end pos. with given color 
-        void DrawLine(Vector3 start, Vector3 end, Color color, GameObject line)
+        void DrawLine(Vector3 start, Vector3 end, Color color)
         {
             if (debugEyeTrackingPositionsWithLine)
             {
-                line.transform.position = start;
-                LineRenderer lr = line.GetComponent<LineRenderer>();
+                lineLeft.transform.position = start;
+                LineRenderer lr = lineLeft.GetComponent<LineRenderer>();
                 lineRendererMaterial.SetColor("_Color", color);
                 lr.material = lineRendererMaterial;
                 lr.SetColors(color, color);
@@ -263,7 +285,6 @@ namespace STK
                 lineLeft.SetActive(true);
                 lineLeft.GetComponent<LineRenderer>().enabled = true;
             }
-
         }
     }
 }

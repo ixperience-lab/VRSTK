@@ -131,7 +131,7 @@ Transform:
   - {fileID: 1637103702219128140}
   - {fileID: 1632976413505197827}
   m_Father: {fileID: 1632976412749715433}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1632976412636198788
 Camera:
@@ -234,6 +234,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 5779056764306888349}
   - {fileID: 1632976413118103560}
   - {fileID: 1632976413801104309}
   - {fileID: 1632976412636198789}
@@ -399,7 +400,7 @@ Transform:
   m_Children:
   - {fileID: 1632976412350623645}
   m_Father: {fileID: 1632976412749715433}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1632976413118103562
 MonoBehaviour:
@@ -466,6 +467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1632976413505197827}
   - component: {fileID: 1632976413505197829}
+  - component: {fileID: 646417999105284865}
   - component: {fileID: 1632976413505197830}
   m_Layer: 0
   m_Name: CameraTracking
@@ -509,6 +511,27 @@ MonoBehaviour:
     array: []
   timedInterval: 0
   interval: 0
+--- !u!114 &646417999105284865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632976413505197826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: 545ad53e125bc0f4f88571437d683e45, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents: []
+  trackedVariableNames:
+    array: []
+  eventVariableNames:
+    array: []
+  timedInterval: 0
+  interval: 1
 --- !u!114 &1632976413505197830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,7 +546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookEvent: {fileID: 11400000, guid: 565fb443d4130ba4cad9f4503ec6262f, type: 2}
   enableEyeObjectTracking: 0
-  debugEyeTrackingPositionsWithLine: 1
+  debugEyeTrackingPositionsWithLine: 0
   eyeHitpoint: {x: 0, y: 0, z: 0}
   eyeDirection: {x: 0, y: 0, z: 0}
   validTracking: 0
@@ -558,7 +581,7 @@ Transform:
   m_Children:
   - {fileID: 1632976412515386655}
   m_Father: {fileID: 1632976412749715433}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1632976413801104311
 MonoBehaviour:
@@ -615,6 +638,129 @@ MonoBehaviour:
       - rotation_Transform
   timedInterval: 1
   interval: 0.1
+--- !u!1 &3150216186330789755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5779056764306888349}
+  - component: {fileID: 3526602704247729779}
+  - component: {fileID: 4669078222249030429}
+  - component: {fileID: 8750568411175978864}
+  - component: {fileID: 2097883673712759859}
+  m_Layer: 0
+  m_Name: EyeLookAt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5779056764306888349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3150216186330789755}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.0009999999, y: 0, z: 0.049999997}
+  m_Children: []
+  m_Father: {fileID: 1632976412749715433}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3526602704247729779
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3150216186330789755}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &4669078222249030429
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3150216186330789755}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!64 &8750568411175978864
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3150216186330789755}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2097883673712759859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3150216186330789755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: 545ad53e125bc0f4f88571437d683e45, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents:
+  - {fileID: 5779056764306888349}
+  trackedVariableNames:
+    array:
+    - array:
+      - position
+      - rotation
+  eventVariableNames:
+    array:
+    - array:
+      - position_Transform
+      - rotation_Transform
+  timedInterval: 1
+  interval: 0.5
 --- !u!1001 &1632976412360886498
 PrefabInstance:
   m_ObjectHideFlags: 0
