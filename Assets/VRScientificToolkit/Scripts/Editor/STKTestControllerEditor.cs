@@ -12,6 +12,8 @@ namespace STK
 
         public override void OnInspectorGUI()
         {
+            DrawDefaultInspector();
+
             if (!EditorApplication.isPlaying)
             {
                 STKTestController myTarget = (STKTestController)target;

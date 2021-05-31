@@ -14,7 +14,7 @@ namespace STK
         ///<summary>Properties which are filled in while the stage is running.</summary>
         public STKTestControllerProperty[] runningProperties;
         public List<GameObject> GameobjectsToActivate = new List<GameObject>();
-        public List<GameObject> GameobjectsToDeActivate = new List<GameObject>();
+        public List<GameObject> GameobjectsToDeactivate = new List<GameObject>();
         public List<GameObject> GameobjectsToSendMessageTo = new List<GameObject>();
         public List<string> messagesToSend = new List<string>();
         public bool hasTimeLimit;
@@ -130,7 +130,7 @@ namespace STK
                 {
                     GameobjectsToSendMessageTo[i].SendMessage(messagesToSend[i]);
                 }
-                foreach (GameObject g in GameobjectsToDeActivate)
+                foreach (GameObject g in GameobjectsToDeactivate)
                 {
                     g.SetActive(false);
                 }
