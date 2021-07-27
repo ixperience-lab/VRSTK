@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb96a68267fed5347b8c033e27800a14, type: 3}
   m_Name: STKSettings
   m_EditorClassIdentifier: 
-  jsonPath: N:\TestJSonDatensatz
+  jsonPath: C:\My_JSON_Data
   EventMaximum: 50000
   useSlidingWindow: 0
   useDataReduction: 0
