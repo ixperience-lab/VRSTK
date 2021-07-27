@@ -182,16 +182,23 @@ namespace STK
 
         public static void SaveRunning() //Saves an unfinished Experiment/Stage
         {
-            ReceiveEvents(STKEventReceiver.GetEvents());
-            STKEventReceiver.ClearEvents();
-            endString = "}\n";
-            stageString[currentStage] = "\"Stage" + currentStage.ToString() + "\":" + startString + eventString + endString;
-            CreateFile();
-            startString = null;
-            stageString = null;
-            eventString = null;
-            endString = null;
-            TestStart(latestStage);
+            if (currentStage > 0)
+            {
+                ReceiveEvents(STKEventReceiver.GetEvents());
+                STKEventReceiver.ClearEvents();
+                endString = "}\n";
+                stageString[currentStage] = "\"Stage" + currentStage.ToString() + "\":" + startString + eventString + endString;
+                CreateFile();
+                startString = null;
+                stageString = null;
+                eventString = null;
+                endString = null;
+                TestStart(latestStage);
+            } else
+            {
+                Debug.Log("Nothing to save yet");
+            }
+            
         }
 
         public static string CreateFile() //Called at the end of the experiment. Completes JSON String and Saves it as a file
@@ -210,10 +217,12 @@ namespace STK
             }
             fullString += "}";
             string path = (settings.jsonPath + "\\" + System.DateTime.Now.Month + "-" + System.DateTime.Now.Day + "_" + System.DateTime.Now.Hour + "-" + System.DateTime.Now.Minute + "-" + System.DateTime.Now.Second + ".json");
+            (new FileInfo(path)).Directory.Create();
             using (StreamWriter sw = File.AppendText(path))
             {
                 sw.Write(fullString);
             }
+            Debug.Log("JSON data saved at: " + path);
             currentStage = 0;
             return fullString;
         }
