@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1273128320573754873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1273128320573754871}
+  - component: {fileID: 3211201217697526733}
+  - component: {fileID: 949292640109432677}
+  - component: {fileID: 2012528008915562251}
+  - component: {fileID: 6131823556288511791}
+  - component: {fileID: 1273128320573754878}
+  m_Layer: 0
+  m_Name: EmotivBrainComputerInterfaceTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1273128320573754871
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273128320573754873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3211201217697526733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273128320573754873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: 396f33867b7739247a9e456f79af2f50, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents: []
+  trackedVariableNames:
+    array: []
+  eventVariableNames:
+    array: []
+  timedInterval: 0
+  interval: 1
+--- !u!114 &949292640109432677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273128320573754873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: a5c7f91db0dde6e4bbeb22629520fb80, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents: []
+  trackedVariableNames:
+    array: []
+  eventVariableNames:
+    array: []
+  timedInterval: 0
+  interval: 1
+--- !u!114 &2012528008915562251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273128320573754873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: 5d8ab492170c6504abfe19d9d6cbcee2, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents: []
+  trackedVariableNames:
+    array: []
+  eventVariableNames:
+    array: []
+  timedInterval: 0
+  interval: 1
+--- !u!114 &6131823556288511791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273128320573754873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: 8e352d299925e5246b43262fa4f3846d, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents: []
+  trackedVariableNames:
+    array: []
+  eventVariableNames:
+    array: []
+  timedInterval: 0
+  interval: 1
+--- !u!114 &1273128320573754878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273128320573754873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d90eeae1c612f40a26bf42cb143b22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isMotionTracking:
+    name: 
+    hideFromInspector: 0
+    value: 0
+  _isEegTrackingActive:
+    name: 
+    hideFromInspector: 0
+    value: 0
+  _isPerformanceMetricsTrackingActive:
+    name: 
+    hideFromInspector: 0
+    value: 0
