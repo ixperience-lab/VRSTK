@@ -6,14 +6,14 @@ namespace STK
     static class STKCortexAppConfig
     {
         public static string AppUrl              = "wss://localhost:6868";
-        public static string AppName             = "UnityApp";
+        public static string AppName             = "vrstk-app-epocx";
     
         /// <summary>
         /// Name of directory where contain tmp data and logs file.
         /// </summary>
-        public static string TmpAppDataDir       = "UnityApp";
-        public static string ClientId            = "oh9TRvjlzEkDl0cVoMwphQ5C3IRHIgZX6tmJci7r";
-        public static string ClientSecret        = "Mh93oZJPuzGFIAlUEzKUtJYyLcTKflOI4h0FuplFmk8OsHD0ospRUTAYYnCJr8ByogJooESsYq7cz9lrrlpKZpLXS6VnXJiNJBICWhSNIoQpDnZ23K9ScZJhCWiHmAcX";
+        public static string TmpAppDataDir       = "vrstk-app-epocx";
+        public static string ClientId            = "tzZ4CeRQ6y7Z97daz3J28ArIVBfFixwN2SU5eJaY";
+        public static string ClientSecret        = "7QZLPApdlO0aqWusSd7ooTaLA8mKMOFWFsHliCkrP3LmK3uSe6aDGSLsRMPvk56PzUe1jFUNuIVc3FlCo7X4Wy703Q0dyy0LG2YITMRvtPsChIOanObKKwD8stxbcrjY";
         public static string AppVersion          = "1.0.0";
     
         /// <summary>
