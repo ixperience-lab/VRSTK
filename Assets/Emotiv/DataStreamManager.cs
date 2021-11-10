@@ -463,7 +463,7 @@ namespace EmotivUnityPlugin
                                 facEvent.LAct + " , " + facEvent.LPow.ToString());
             
             // TODO: emit event to other modules
-            // FacialExpReceived(this, facEvent);
+            FacialExpReceived(this, facEvent);
         }
 
         private void OnMentalCommandReceived(object sender, ArrayList data)
@@ -485,7 +485,7 @@ namespace EmotivUnityPlugin
                                 + comEvent.Act+ " , " + comEvent.Pow);
             
             // TODO: emit event to other modules
-            //MentalCommandReceived(this, comEvent);
+            MentalCommandReceived(this, comEvent);
         }
 
         private void OnSysEventReceived(object sender, ArrayList data)

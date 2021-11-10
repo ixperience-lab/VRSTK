@@ -10,6 +10,7 @@ using UnityEditor;
 using UnityEngine;
 using EmotivUnityPlugin;
 using Newtonsoft.Json.Linq;
+using TMPro;
 
 namespace STK
 {
@@ -29,7 +30,7 @@ namespace STK
             else
             {
                 EditorGUI.LabelField(new Rect(position.x, position.y, position.width, 17), property.FindPropertyRelative("name").stringValue);
-                EditorGUI.LabelField(new Rect(position.x, position.y, position.width, 17), property.FindPropertyRelative("value").stringValue);
+                //EditorGUI.LabelField(new Rect(position.x, position.y, position.width, 17), property.FindPropertyRelative("value").stringValue);
             }
 
         }
@@ -38,6 +39,127 @@ namespace STK
         {
             return 50.0f;
         }
+
+    }
+
+
+    ///<summary>Property drawer for defining Emotiv Cortex Event Parameters. Can also block the changing of Events that were Auto-generated</summary>
+    [CustomPropertyDrawer(typeof(EmotivGraphParameter))]
+    public class STKEmotivGraphEditor : PropertyDrawer
+    {
+        private Material material = new Material(Shader.Find("Hidden/Internal-Colored"));
+
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+
+            //if (property.FindPropertyRelative("hideFromInspector").boolValue == false)
+            //{
+            //    EditorGUI.PropertyField(new Rect(position.x, position.y, position.width, 17), property.FindPropertyRelative("name"));
+            //    EditorGUI.PropertyField(new Rect(position.x, position.y + 20f, position.width, 17), property.FindPropertyRelative("value"));
+            //}
+            //else
+            //{
+            //    EditorGUI.LabelField(new Rect(position.x, position.y, position.width, 17), property.FindPropertyRelative("name").stringValue);
+            //    //EditorGUI.LabelField(new Rect(position.x, position.y, position.width, 17), property.FindPropertyRelative("value").stringValue);
+            //}
+            // Begin to draw a horizontal layout, using the helpBox EditorStyle
+            GUILayout.BeginHorizontal(EditorStyles.helpBox);
+
+            // Reserve GUI space with a width from 10 to 10000, and a fixed height of 200, and 
+            // cache it as a rectangle.
+            Rect layoutRectangle = GUILayoutUtility.GetRect(10, 10000, 200, 200);
+
+            EditorGUI.PropertyField(new Rect(layoutRectangle.x, layoutRectangle.y, layoutRectangle.width, layoutRectangle.height), property.FindPropertyRelative("name"));
+
+            if (Event.current.type == EventType.Repaint)
+            {
+                // If we are currently in the Repaint event, begin to draw a clip of the size of 
+                // previously reserved rectangle, and push the current matrix for drawing.
+                GUI.BeginClip(layoutRectangle);
+                GL.PushMatrix();
+
+                // Clear the current render buffer, setting a new background colour, and set our
+                // material for rendering.
+                GL.Clear(true, false, Color.black);
+                material.SetPass(0);
+
+                // Start drawing in OpenGL Quads, to draw the background canvas. Set the
+                // colour black as the current OpenGL drawing colour, and draw a quad covering
+                // the dimensions of the layoutRectangle.
+                GL.Begin(GL.QUADS);
+                GL.Color(Color.black);
+                GL.Vertex3(0, 0, 0);
+                GL.Vertex3(layoutRectangle.width, 0, 0);
+                GL.Vertex3(layoutRectangle.width, layoutRectangle.height, 0);
+                GL.Vertex3(0, layoutRectangle.height, 0);
+                GL.End();
+
+                // Start drawing in OpenGL Lines, to draw the lines of the grid.
+                GL.Begin(GL.LINES);
+
+                // Store measurement values to determine the offset, for scrolling animation,
+                // and the line count, for drawing the grid.
+                int offset = (Time.frameCount * 2) % 50;
+                int count = (int)(layoutRectangle.width / 10) + 20;
+
+                for (int i = 0; i < count; i++)
+                {
+                    // For every line being drawn in the grid, create a colour placeholder; if the
+                    // current index is divisible by 5, we are at a major segment line; set this
+                    // colour to a dark grey. If the current index is not divisible by 5, we are
+                    // at a minor segment line; set this colour to a lighter grey. Set the derived
+                    // colour as the current OpenGL drawing colour.
+                    Color lineColour = (i % 5) == 0 ? new Color(0.5f, 0.5f, 0.5f) : new Color(0.2f, 0.2f, 0.2f);
+                    GL.Color(lineColour);
+
+                    // Derive a new x co-ordinate from the initial index, converting it straight
+                    // into line positions, and move it back to adjust for the animation offset.
+                    float x = i * 10 - offset;
+
+                    if (x >= 0 && x < layoutRectangle.width)
+                    {
+                        // If the current derived x position is within the bounds of the
+                        // rectangle, draw another vertical line.
+                        GL.Vertex3(x, 0, 0);
+                        GL.Vertex3(x, layoutRectangle.height, 0);
+                    }
+
+                    if (i < layoutRectangle.height / 10)
+                    {
+                        // Convert the current index value into a y position, and if it is within
+                        // the bounds of the rectangle, draw another horizontal line.
+                        GL.Vertex3(0, i * 10, 0);
+                        GL.Vertex3(layoutRectangle.width, i * 10, 0);
+                    }
+                }
+
+                // End lines drawing.
+                GL.End();
+
+
+                GL.Begin(GL.LINES);
+                GL.Color(Color.red);
+                //GL.Vertex3(0, 0, 0);
+                //GL.Vertex3(layoutRectangle.width, 0, 0);
+                Vector3 _vec = property.FindPropertyRelative("value").vector3Value;
+                GL.Vertex3(_vec.x, _vec.y, 0);
+                //GL.Vertex3(0, layoutRectangle.height, 0);
+                GL.End();
+
+                // Pop the current matrix for rendering, and end the drawing clip.
+                GL.PopMatrix();
+                GUI.EndClip();
+            }
+
+            // End our horizontal 
+            GUILayout.EndHorizontal();
+
+        }
+
+        //public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        //{
+        //    return 50.0f;
+        //}
 
     }
 
@@ -52,9 +174,29 @@ namespace STK
         public bool value;
     }
 
+    /// <summary>
+    /// Defines the parameter of an Emotiv Cortex Event handlingg. 
+    /// </summary>
+    [System.Serializable]
+    public class EmotivGraphParameter
+    {
+        public string name;
+        public bool hideFromInspector;
+        public Vector3 value;
+    }
+
     public class STKCortexBrainComputerInterfacePrototype : MonoBehaviour
     {
-        private enum DataStreamType { Motion, EEG, PerformanceMetrics };
+        double _engLastData = 0f;
+        double _excLastData = 0f;
+        double _lexLastData = 0f;
+        double _strLastData = 0f;
+        double _relLastData = 0f;
+        double _intLastData = 0f;
+        double _focLastData = 0f;
+
+
+        private enum DataStreamType { Motion, EEG, PerformanceMetrics, BandPowerData };
 
         [SerializeField]
         public EmotivParameter _isMotionTracking = new EmotivParameter();
@@ -68,6 +210,11 @@ namespace STK
         public EmotivParameter _isPerformanceMetricsTrackingActive = new EmotivParameter();
         private bool _previousIsPerformanceMetricsTrackingActiveValue;
 
+        [SerializeField]
+        public EmotivParameter _isBandPowerTrackingActive = new EmotivParameter();
+        private bool _previousIsBandPowerTrackingActiveValue;
+
+        
         public void Awake()
         {
             _isMotionTracking.name = "isMotionTracking";
@@ -84,6 +231,11 @@ namespace STK
             _isPerformanceMetricsTrackingActive.hideFromInspector = true;
             _isPerformanceMetricsTrackingActive.value = false;
             _previousIsPerformanceMetricsTrackingActiveValue = false;
+
+            _isBandPowerTrackingActive.name = "isBandPowerTrackingActive";
+            _isBandPowerTrackingActive.hideFromInspector = true;
+            _isBandPowerTrackingActive.value = false;
+            _previousIsBandPowerTrackingActiveValue = false;
         }
 
         ConnectToCortexStates _lastState;
@@ -134,13 +286,12 @@ namespace STK
 
             _dataStream.SessionActivatedOK += SessionActivatedOK;
             _dataStream.LicenseValidTo += OnLicenseValidTo;
-            
+
         }
 
         // Update is called once per frame
         void Update()
         {
-
             if (_isConnectDone)
             {
                 if (_isQueryHeadset)
@@ -151,7 +302,6 @@ namespace STK
                         Debug.Log("=============== Count GetDetectedHeadsets : " + _dataStream.GetDetectedHeadsets().Count);
                         startConnectToDevice();
                         _isConnectedToDevice = true;
-                        
                     }
 
                     _timerCounter_queryHeadset += Time.deltaTime;
@@ -213,6 +363,17 @@ namespace STK
                             _dataStream.UnSubscribeData(dataStreamList);
                     }
 
+                    if (_isBandPowerTrackingActive.value != _previousIsBandPowerTrackingActiveValue)
+                    {
+                        _previousIsBandPowerTrackingActiveValue = _isBandPowerTrackingActive.value;
+
+                        List<string> dataStreamList = new List<string>() { DataStreamName.BandPower };
+                        if (_isBandPowerTrackingActive.value == true)
+                            _dataStream.SubscribeMoreData(dataStreamList);
+                        else
+                            _dataStream.UnSubscribeData(dataStreamList);
+                    }
+
                     _timerDataUpdate += Time.deltaTime;
                     if (_timerDataUpdate < TIME_UPDATE_DATA)
                         return;
@@ -229,6 +390,7 @@ namespace STK
                         _isMotionTracking.hideFromInspector = false;
                         _isEegTrackingActive.hideFromInspector = false;
                         _isPerformanceMetricsTrackingActive.hideFromInspector = false;
+                        _isBandPowerTrackingActive.hideFromInspector = false;
 
                         if (_isMotionTracking.value)
                             MotionTracking();
@@ -238,6 +400,9 @@ namespace STK
 
                         if (_isPerformanceMetricsTrackingActive.value)
                             PerformanceMatricTracking();
+
+                        if (_isBandPowerTrackingActive.value)
+                            BandPowerDataTracking();
                     }
                     else
                     {
@@ -263,6 +428,14 @@ namespace STK
                             _dataStream.UnSubscribeData(dataStreamList);
                             _isPerformanceMetricsTrackingActive.value = false;
                             _previousIsPerformanceMetricsTrackingActiveValue = false;
+                        }
+
+                        if (_isBandPowerTrackingActive.value)
+                        {
+                            List<string> dataStreamList = new List<string>() { DataStreamName.BandPower };
+                            _dataStream.UnSubscribeData(dataStreamList);
+                            _isBandPowerTrackingActive.value = false;
+                            _previousIsBandPowerTrackingActiveValue = false;
                         }
                     }
                 }
@@ -381,21 +554,6 @@ namespace STK
                     DeployReceivedStreamData(DataStreamType.Motion, motDataStr);
                 }
 
-                // string title, float value, Color color = default
-                //DrawGraph.Add("title", 33.3f);
-
-                // only as an playback example
-                //{
-                //    GameObject motionHeaderTextField = GameObject.Find("EmotivDataStreamHeaderEvent");
-                //    if (motionHeaderTextField != null)
-                //        motionHeaderTextField.GetComponent<Text>().text = motHeaderStr;
-
-                //    GameObject motionDataTextField = GameObject.Find("EmotivDataStreamEvent");
-                //    if (motionDataTextField != null)
-                //        motionDataTextField.GetComponent<Text>().text = motDataStr;
-
-                //}
-
                 Debug.Log(" Motion Header : " + motHeaderStr);
                 Debug.Log(" Motion Data : " + motDataStr);
             }
@@ -435,6 +593,15 @@ namespace STK
                 string pmHeaderStr = string.Empty;
                 string pmDataStr = string.Empty;
                 bool hasPMUpdate = true;
+                
+                double engData = _engLastData;
+                double excData = _excLastData;
+                double lexData = _lexLastData;
+                double strData = _strLastData;
+                double relData = _relLastData;
+                double intData = _intLastData;
+                double focData = _focLastData;
+
                 foreach (var ele in _dataStream.GetPMLists())
                 {
                     string chanStr = ele;
@@ -447,10 +614,38 @@ namespace STK
                         break;
                     }
                     pmHeaderStr += chanStr + ", ";
+                    
+                    if (chanStr.Equals("eng"))
+                        engData = data;
+
+                    if (chanStr.Equals("exc"))
+                        excData = data;
+
+                    if (chanStr.Equals("lex"))
+                        lexData = data;
+
+                    if (chanStr.Equals("str"))
+                        strData = data;
+
+                    if (chanStr.Equals("rel"))
+                        relData = data;
+
+                    if (chanStr.Equals("int"))
+                        intData = data;
+
+                    if (chanStr.Equals("foc"))
+                        focData = data;
+
+                    //eng, exc, lex, str, rel, int, foc, 
+
                     pmDataStr += data.ToString() + ", ";
                 }
                 if (hasPMUpdate)
                 {
+                    GameObject dataRepresentationContainer = GameObject.Find("DataRepresentationContainer");
+                    if (dataRepresentationContainer != null)
+                        UpdateDataRepresentationContainer(engData, excData, lexData, strData, relData, intData, focData);
+
                     DeployReceivedStreamDataHeader(DataStreamType.PerformanceMetrics, pmHeaderStr);
                     DeployReceivedStreamData(DataStreamType.PerformanceMetrics, pmDataStr);
 
@@ -459,6 +654,40 @@ namespace STK
                 }
 
             }
+        }
+
+        private void BandPowerDataTracking()
+        {
+            string bandPowerDataHeaderStr = string.Empty;
+            string bandPowerDataStr = string.Empty;
+            if (_dataStream.GetNumberPowerBandSamples() > 0)
+            {
+                foreach (var ele in _dataStream.GetBandPowerLists())
+                {
+                    string chanStr = ele;
+                    if (chanStr.Equals("TIMESTAMP"))
+                    {
+                        bandPowerDataHeaderStr += chanStr + ", ";
+                        bandPowerDataStr += _dataStream.GetThetaData(ChannelStringList.StringToChannel(chanStr)).ToString() + ", ";
+                    }
+                    else
+                    {
+                        string chanFromStringListEmelent = chanStr.Split('/')[0];
+                        bandPowerDataHeaderStr += chanStr + ", ";
+                        bandPowerDataStr += _dataStream.GetThetaData(ChannelStringList.StringToChannel(chanFromStringListEmelent)).ToString() +   ", " + _dataStream.GetAlphaData(ChannelStringList.StringToChannel(chanFromStringListEmelent)).ToString() +    ", " +
+                                            _dataStream.GetLowBetaData(ChannelStringList.StringToChannel(chanFromStringListEmelent)).ToString() + ", " + _dataStream.GetHighBetaData(ChannelStringList.StringToChannel(chanFromStringListEmelent)).ToString() + ", " +
+                                            _dataStream.GetGammaData(ChannelStringList.StringToChannel(chanFromStringListEmelent)).ToString() +   ", ";
+                    }
+                }
+
+                //if (!bandPowerDataStr.Equals(string.Empty))
+                //{
+                //    DeployReceivedStreamDataHeader(DataStreamType.BandPowerData, bandPowerDataHeaderStr);
+                //    DeployReceivedStreamData(DataStreamType.BandPowerData, bandPowerDataStr);
+                //}
+            }
+            Debug.Log("BandPowerData Header: " + bandPowerDataHeaderStr);
+            Debug.Log("BandPowerData Data: " + bandPowerDataStr);
         }
 
         private void DevTracking()
@@ -494,6 +723,14 @@ namespace STK
 
         private void DeployReceivedStreamData(DataStreamType dataStreamType, string data)
         {
+
+            String[] splittedData = data.Split(',');
+            double timeStamp = double.Parse(splittedData[0]);
+
+            float key = float.Parse(splittedData[1]);
+            if (key < 0.0f)
+                key = 0.0f;
+ 
             switch (dataStreamType)
             {
                 case DataStreamType.Motion:
@@ -508,6 +745,164 @@ namespace STK
                         GetComponents<STKEventSender>()[3].Deploy();
                         break;
                     }
+            }
+        }
+
+        private void UpdateDataRepresentationContainer(double engData, double excData, double lexData, double strData, double relData, double intData, double focData)
+        {
+            _engLastData = engData;
+            _excLastData = excData;
+            _lexLastData = lexData;
+            _strLastData = strData;
+            _relLastData = relData;
+            _intLastData = intData;
+            _focLastData = focData;
+
+            GameObject barContainer1 = GameObject.Find("BarContainer");
+            if (barContainer1 != null)
+            {
+                GameObject bar = barContainer1.transform.Find("BarReprensentation").gameObject;
+                Vector3 updateScaleValue = bar.transform.localScale;
+                
+                if (engData < 0.0f)
+                    engData = 0.0f;
+                
+                updateScaleValue.y = (float)engData * 10.0f;
+                bar.transform.localScale = updateScaleValue;
+
+                GameObject barHeadDescription = barContainer1.transform.Find("BarHeadDescription").gameObject; //GameObject.Find("BarHeadDescription");
+                TMPro.TextMeshPro barHeadDescriptionText = barHeadDescription.GetComponent<TextMeshPro>();
+                barHeadDescriptionText.text = "Current: " + (engData * 100).ToString("F2") + " %";
+
+                GameObject barCaption = barContainer1.transform.Find("BarCaption").gameObject; //GameObject.Find("BarCaption");
+                TMPro.TextMeshPro barCaptionText = barCaption.GetComponent<TextMeshPro>();
+                barCaptionText.text = "Engagement";
+            }
+
+            GameObject barContainer2 = GameObject.Find("BarContainer (1)");
+            if (barContainer2 != null)
+            {
+                GameObject bar = barContainer2.transform.Find("BarReprensentation").gameObject;
+                Vector3 updateScaleValue = bar.transform.localScale;
+
+                if (excData < 0.0f)
+                    excData = 0.0f;
+
+                updateScaleValue.y = (float)excData * 10.0f;
+                bar.transform.localScale = updateScaleValue;
+
+                GameObject barHeadDescription = barContainer2.transform.Find("BarHeadDescription").gameObject;
+                TMPro.TextMeshPro barHeadDescriptionText = barHeadDescription.GetComponent<TextMeshPro>();
+                barHeadDescriptionText.text = "Current: " + (excData * 100).ToString("F2") + " %";
+
+                GameObject barCaption = barContainer2.transform.Find("BarCaption").gameObject;
+                TMPro.TextMeshPro barCaptionText = barCaption.GetComponent<TextMeshPro>();
+                barCaptionText.text = "Excitement";
+            }
+
+            GameObject barContainer3 = GameObject.Find("BarContainer (2)");
+            if (barContainer3 != null)
+            {
+                GameObject bar = barContainer3.transform.Find("BarReprensentation").gameObject;
+                Vector3 updateScaleValue = bar.transform.localScale;
+
+                if (lexData < 0.0f)
+                    lexData = 0.0f;
+
+                updateScaleValue.y = (float)lexData * 10.0f;
+                bar.transform.localScale = updateScaleValue;
+
+                GameObject barHeadDescription = barContainer3.transform.Find("BarHeadDescription").gameObject;
+                TMPro.TextMeshPro barHeadDescriptionText = barHeadDescription.GetComponent<TextMeshPro>();
+                barHeadDescriptionText.text = "Current: " + (lexData * 100).ToString("F2") + " %";
+
+                GameObject barCaption = barContainer3.transform.Find("BarCaption").gameObject;
+                TMPro.TextMeshPro barCaptionText = barCaption.GetComponent<TextMeshPro>();
+                barCaptionText.text = "L. term excitement";
+            }
+
+            GameObject barContainer4 = GameObject.Find("BarContainer (3)");
+            if (barContainer4 != null)
+            {
+                GameObject bar = barContainer4.transform.Find("BarReprensentation").gameObject;
+                Vector3 updateScaleValue = bar.transform.localScale;
+
+                if (strData < 0.0f)
+                    strData = 0.0f;
+
+                updateScaleValue.y = (float)strData * 10.0f;
+                bar.transform.localScale = updateScaleValue;
+
+                GameObject barHeadDescription = barContainer4.transform.Find("BarHeadDescription").gameObject;
+                TMPro.TextMeshPro barHeadDescriptionText = barHeadDescription.GetComponent<TextMeshPro>();
+                barHeadDescriptionText.text = "Current: " + (strData * 100).ToString("F2") + " %";
+
+                GameObject barCaption = barContainer4.transform.Find("BarCaption").gameObject;
+                TMPro.TextMeshPro barCaptionText = barCaption.GetComponent<TextMeshPro>();
+                barCaptionText.text = "Stress / Frustration";
+            }
+
+            GameObject barContainer5 = GameObject.Find("BarContainer (4)");
+            if (barContainer5 != null)
+            {
+                GameObject bar = barContainer5.transform.Find("BarReprensentation").gameObject;
+                Vector3 updateScaleValue = bar.transform.localScale;
+
+                if (relData < 0.0f)
+                    relData = 0.0f;
+
+                updateScaleValue.y = (float)relData * 10.0f;
+                bar.transform.localScale = updateScaleValue;
+
+                GameObject barHeadDescription = barContainer5.transform.Find("BarHeadDescription").gameObject;
+                TMPro.TextMeshPro barHeadDescriptionText = barHeadDescription.GetComponent<TextMeshPro>();
+                barHeadDescriptionText.text = "Current: " + (relData * 100).ToString("F2") + " %";
+
+                GameObject barCaption = barContainer5.transform.Find("BarCaption").gameObject;
+                TMPro.TextMeshPro barCaptionText = barCaption.GetComponent<TextMeshPro>();
+                barCaptionText.text = "Relaxation";
+            }
+
+            GameObject barContainer6 = GameObject.Find("BarContainer (5)");
+            if (barContainer6 != null)
+            {
+                GameObject bar = barContainer6.transform.Find("BarReprensentation").gameObject;
+                Vector3 updateScaleValue = bar.transform.localScale;
+
+                if (intData < 0.0f)
+                    intData = 0.0f;
+
+                updateScaleValue.y = (float)intData * 10.0f;
+                bar.transform.localScale = updateScaleValue;
+
+                GameObject barHeadDescription = barContainer6.transform.Find("BarHeadDescription").gameObject;
+                TMPro.TextMeshPro barHeadDescriptionText = barHeadDescription.GetComponent<TextMeshPro>();
+                barHeadDescriptionText.text = "Current: " + (intData * 100).ToString("F2") + " %";
+
+                GameObject barCaption = barContainer6.transform.Find("BarCaption").gameObject;
+                TMPro.TextMeshPro barCaptionText = barCaption.GetComponent<TextMeshPro>();
+                barCaptionText.text = "Interest / Affinity";
+            }
+
+            GameObject barContainer7 = GameObject.Find("BarContainer (6)");
+            if (barContainer7 != null)
+            {
+                GameObject bar = barContainer7.transform.Find("BarReprensentation").gameObject;
+                Vector3 updateScaleValue = bar.transform.localScale;
+
+                if (focData < 0.0f)
+                    focData = 0.0f;
+
+                updateScaleValue.y = (float)focData * 10.0f;
+                bar.transform.localScale = updateScaleValue;
+
+                GameObject barHeadDescription = barContainer7.transform.Find("BarHeadDescription").gameObject;
+                TMPro.TextMeshPro barHeadDescriptionText = barHeadDescription.GetComponent<TextMeshPro>();
+                barHeadDescriptionText.text = "Current: " + (focData * 100).ToString("F2") + " %";
+
+                GameObject barCaption = barContainer7.transform.Find("BarCaption").gameObject;
+                TMPro.TextMeshPro barCaptionText = barCaption.GetComponent<TextMeshPro>();
+                barCaptionText.text = "Focus";
             }
         }
 
