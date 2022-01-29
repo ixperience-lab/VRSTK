@@ -6,14 +6,14 @@ namespace STK
     static class STKCortexAppConfig
     {
         public static string AppUrl              = "wss://localhost:6868";
-        public static string AppName             = "vrstk-app-epocx";
+        public static string AppName             = "";
     
         /// <summary>
         /// Name of directory where contain tmp data and logs file.
         /// </summary>
-        public static string TmpAppDataDir       = "vrstk-app-epocx";
-        public static string ClientId            = "***REMOVED***";
-        public static string ClientSecret        = "***REMOVED***";
+        public static string TmpAppDataDir       = "";
+        public static string ClientId            = "";
+        public static string ClientSecret        = "";
         public static string AppVersion          = "1.0.0";
     
         /// <summary>
