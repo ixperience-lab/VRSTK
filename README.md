@@ -16,7 +16,9 @@ This repo is provided under a MIT License.
 - :vhs: Scene Replay
 - :file_folder: Import & Export of JSON data
 - :bar_chart: Analysis templates with R
-
+- :people_holding_hands: Multiplayer using [Mirror](https://github.com/vis2k/Mirror) (WiP)
+	- Embodiment (WiP)
+	- Asymmetric Normalization (WiP)
 
 ## Quickstart
 Visit our wiki for quickstart instructions
