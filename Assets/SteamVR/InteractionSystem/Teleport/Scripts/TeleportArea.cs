@@ -30,7 +30,11 @@ namespace Valve.VR.InteractionSystem
 		{
 			areaMesh = GetComponent<MeshRenderer>();
 
-			tintColorId = Shader.PropertyToID( "_TintColor" );
+#if UNITY_URP
+			tintColorId = Shader.PropertyToID( "_BaseColor" );
+#else
+			tintColorId = Shader.PropertyToID("_TintColor");
+#endif
 
 			CalculateBounds();
 		}
@@ -104,6 +108,9 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		public void UpdateVisualsInEditor()
 		{
+            if (Teleport.instance == null)
+                return;
+
 			areaMesh = GetComponent<MeshRenderer>();
 
 			if ( locked )

@@ -43,7 +43,9 @@ namespace Valve.VR
         const int recommended_DefaultScreenWidth = 1024;
         const int recommended_DefaultScreenHeight = 768;
         const bool recommended_RunInBackground = true;
+#if !UNITY_2019_1_OR_NEWER
         const ResolutionDialogSetting recommended_DisplayResolutionDialog = ResolutionDialogSetting.HiddenByDefault;
+#endif
         const bool recommended_ResizableWindow = true;
         const D3D11FullscreenMode recommended_FullscreenMode = D3D11FullscreenMode.FullscreenWindow;
         const bool recommended_VisibleInBackground = true;
@@ -92,8 +94,10 @@ namespace Valve.VR
                     PlayerSettings.defaultScreenHeight != recommended_DefaultScreenHeight)) ||
                 (!EditorPrefs.HasKey(ignore + runInBackground) &&
                     PlayerSettings.runInBackground != recommended_RunInBackground) ||
+#if !UNITY_2019_1_OR_NEWER
                 (!EditorPrefs.HasKey(ignore + displayResolutionDialog) &&
                     PlayerSettings.displayResolutionDialog != recommended_DisplayResolutionDialog) ||
+#endif
                 (!EditorPrefs.HasKey(ignore + resizableWindow) &&
                     PlayerSettings.resizableWindow != recommended_ResizableWindow) ||
                 (!EditorPrefs.HasKey(ignore + visibleInBackground) &&
@@ -119,70 +123,22 @@ namespace Valve.VR
                 //window.title = "SteamVR";
             }
 
-            if (SteamVR_Preferences.AutoEnableVR)
-            {
-                // Switch to native OpenVR support.
-                var updated = false;
-
-                if (!PlayerSettings.virtualRealitySupported)
-                {
-                    PlayerSettings.virtualRealitySupported = true;
-                    updated = true;
-                }
-
-#if (UNITY_5_4 || UNITY_5_3 || UNITY_5_2 || UNITY_5_1 || UNITY_5_0)
-                var devices = UnityEditorInternal.VR.VREditor.GetVREnabledDevices(BuildTargetGroup.Standalone);
-#else
-			var devices = UnityEditorInternal.VR.VREditor.GetVREnabledDevicesOnTargetGroup(BuildTargetGroup.Standalone);
-#endif
-                var hasOpenVR = false;
-                foreach (var device in devices)
-                    if (device.ToLower() == "openvr")
-                        hasOpenVR = true;
-
-
-                if (!hasOpenVR)
-                {
-                    string[] newDevices;
-                    if (updated)
-                    {
-                        newDevices = new string[] { "OpenVR" };
-                    }
-                    else
-                    {
-                        newDevices = new string[devices.Length + 1];
-                        for (int i = 0; i < devices.Length; i++)
-                            newDevices[i] = devices[i];
-                        newDevices[devices.Length] = "OpenVR";
-                        updated = true;
-                    }
-#if (UNITY_5_4 || UNITY_5_3 || UNITY_5_2 || UNITY_5_1 || UNITY_5_0)
-                    UnityEditorInternal.VR.VREditor.SetVREnabledDevices(BuildTargetGroup.Standalone, newDevices);
-#else
-				UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(BuildTargetGroup.Standalone, newDevices);
-#endif
-                }
-
-                if (updated)
-                    Debug.Log("Switching to native OpenVR support.");
-            }
-
-            var dlls = new string[]
+            string[] dlls = new string[]
             {
             "Plugins/x86/openvr_api.dll",
             "Plugins/x86_64/openvr_api.dll"
             };
 
-            foreach (var path in dlls)
+            foreach (string path in dlls)
             {
                 if (!File.Exists(Application.dataPath + "/" + path))
                     continue;
 
                 if (AssetDatabase.DeleteAsset("Assets/" + path))
-                    Debug.Log("Deleting " + path);
+                    Debug.Log("<b>[SteamVR Setup]</b> Deleting " + path);
                 else
                 {
-                    Debug.Log(path + " in use; cannot delete.  Please restart Unity to complete upgrade.");
+                    Debug.Log("<b>[SteamVR Setup]</b> " + path + " in use; cannot delete.  Please restart Unity to complete upgrade.");
                 }
             }
 
@@ -368,6 +324,7 @@ namespace Valve.VR
                 GUILayout.EndHorizontal();
             }
 
+#if !UNITY_2019_1_OR_NEWER
             if (!EditorPrefs.HasKey(ignore + displayResolutionDialog) &&
                 PlayerSettings.displayResolutionDialog != recommended_DisplayResolutionDialog)
             {
@@ -391,6 +348,7 @@ namespace Valve.VR
 
                 GUILayout.EndHorizontal();
             }
+#endif
 
             if (!EditorPrefs.HasKey(ignore + resizableWindow) &&
                 PlayerSettings.resizableWindow != recommended_ResizableWindow)
@@ -641,8 +599,10 @@ namespace Valve.VR
                     }
                     if (!EditorPrefs.HasKey(ignore + runInBackground))
                         PlayerSettings.runInBackground = recommended_RunInBackground;
+#if !UNITY_2019_1_OR_NEWER
                     if (!EditorPrefs.HasKey(ignore + displayResolutionDialog))
                         PlayerSettings.displayResolutionDialog = recommended_DisplayResolutionDialog;
+#endif
                     if (!EditorPrefs.HasKey(ignore + resizableWindow))
                         PlayerSettings.resizableWindow = recommended_ResizableWindow;
                     if (!EditorPrefs.HasKey(ignore + visibleInBackground))
@@ -696,8 +656,10 @@ namespace Valve.VR
                             EditorPrefs.SetBool(ignore + defaultScreenSize, true);
                         if (PlayerSettings.runInBackground != recommended_RunInBackground)
                             EditorPrefs.SetBool(ignore + runInBackground, true);
+#if !UNITY_2019_1_OR_NEWER
                         if (PlayerSettings.displayResolutionDialog != recommended_DisplayResolutionDialog)
                             EditorPrefs.SetBool(ignore + displayResolutionDialog, true);
+#endif
                         if (PlayerSettings.resizableWindow != recommended_ResizableWindow)
                             EditorPrefs.SetBool(ignore + resizableWindow, true);
                         if (PlayerSettings.visibleInBackground != recommended_VisibleInBackground)

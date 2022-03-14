@@ -17,7 +17,7 @@ namespace Valve.VR.InteractionSystem
 
         [Tooltip("The local point which acts as a positional and rotational offset to use while held with a pinch type grab")]
         public Transform pinchOffset;
-        
+
         protected override void HandHoverUpdate(Hand hand)
         {
             GrabTypes startingGrabType = hand.GetGrabStarting();
@@ -39,6 +39,15 @@ namespace Valve.VR.InteractionSystem
 
                 hand.HideGrabHint();
             }
+        }
+        protected override void HandAttachedUpdate(Hand hand)
+        {
+            if (interactable.skeletonPoser != null)
+            {
+                interactable.skeletonPoser.SetBlendingBehaviourEnabled("PinchPose", hand.currentAttachedObjectInfo.Value.grabbedWithType == GrabTypes.Pinch);
+            }
+
+            base.HandAttachedUpdate(hand);
         }
     }
 }

@@ -93,7 +93,7 @@ namespace Valve.VR.InteractionSystem
 
 		private bool driving = false;
 
-		// If the drive is limited as is at min/max, angles greater than this are ignored 
+		// If the drive is limited as is at min/max, angles greater than this are ignored
 		private float minMaxAngularThreshold = 1.0f;
 
 		private bool frozen = false;
@@ -298,8 +298,8 @@ namespace Valve.VR.InteractionSystem
 			}
 			else
 			{
-				Debug.LogFormat( "The collider needs to be a minimum distance away from the CircularDrive GameObject {0}", gameObject.ToString() );
-				Debug.Assert( false, string.Format( "The collider needs to be a minimum distance away from the CircularDrive GameObject {0}", gameObject.ToString() ) );
+				Debug.LogFormat("<b>[SteamVR Interaction]</b> The collider needs to be a minimum distance away from the CircularDrive GameObject {0}", gameObject.ToString() );
+				Debug.Assert( false, string.Format("<b>[SteamVR Interaction]</b> The collider needs to be a minimum distance away from the CircularDrive GameObject {0}", gameObject.ToString() ) );
 			}
 
 			if ( debugPath && dbgPathLimit > 0 )

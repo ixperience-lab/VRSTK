@@ -30,8 +30,13 @@ namespace Valve.VR
         {
             get
             {
+#if UNITY_2020_1_OR_NEWER || OPENVR_XR_API
+                if (XRSettings.supportedDevices.Length == 0)
+                    enabled = false;
+#else
                 if (!XRSettings.enabled)
                     enabled = false;
+#endif
                 return _enabled;
             }
             set
@@ -74,6 +79,16 @@ namespace Valve.VR
             }
         }
 
+        public enum InitializedStates
+        {
+            None,
+            Initializing,
+            InitializeSuccess,
+            InitializeFailure,
+        }
+
+        public static InitializedStates initializedState = InitializedStates.None;
+
         public static void Initialize(bool forceUnityVRMode = false)
         {
             if (forceUnityVRMode)
@@ -92,7 +107,7 @@ namespace Valve.VR
             }
 
             if (_enabled)
-                SteamVR_Behaviour.Initialize();
+                SteamVR_Behaviour.Initialize(forceUnityVRMode);
         }
 
         public static bool usingNativeSupport
@@ -102,33 +117,60 @@ namespace Valve.VR
 
         public static SteamVR_Settings settings { get; private set; }
 
+        private static void ReportGeneralErrors()
+        {
+            string errorLog = "<b>[SteamVR]</b> Initialization failed. ";
+
+#if OPENVR_XR_API
+            errorLog += "Please verify that you have SteamVR installed, your hmd is functioning, and OpenVR Loader is checked in the XR Plugin Management section of Project Settings.";
+#else
+
+            if (XRSettings.enabled == false)
+                errorLog += "VR may be disabled in player settings. Go to player settings in the editor and check the 'Virtual Reality Supported' checkbox'. ";
+            if (XRSettings.supportedDevices != null && XRSettings.supportedDevices.Length > 0)
+            {
+                if (XRSettings.supportedDevices.Contains("OpenVR") == false)
+                    errorLog += "OpenVR is not in your list of supported virtual reality SDKs. Add it to the list in player settings. ";
+                else if (XRSettings.supportedDevices.First().Contains("OpenVR") == false)
+                    errorLog += "OpenVR is not first in your list of supported virtual reality SDKs. <b>This is okay, but if you have an Oculus device plugged in, and Oculus above OpenVR in this list, it will try and use the Oculus SDK instead of OpenVR.</b> ";
+            }
+            else
+            {
+                errorLog += "You have no SDKs in your Player Settings list of supported virtual reality SDKs. Add OpenVR to it. ";
+            }
+
+            errorLog += "To attempt to force OpenVR initialization call SteamVR.Initialize(true). ";
+#endif
+
+            Debug.LogWarning(errorLog);
+        }
+
         private static SteamVR CreateInstance()
         {
+            initializedState = InitializedStates.Initializing;
+
             try
             {
                 var error = EVRInitError.None;
+
+#if !OPENVR_XR_API
                 if (!SteamVR.usingNativeSupport)
                 {
-                    string errorLog = "[SteamVR] Initialization failed. ";
-
-                    if (XRSettings.enabled == false)
-                        errorLog += "VR may be disabled in player settings. Go to player settings in the editor and check the 'Virtual Reality Supported' checkbox'. ";
-                    if (XRSettings.supportedDevices.Contains("OpenVR") == false)
-                        errorLog += "OpenVR is not in your list of supported virtual reality SDKs. Add it to the list in player settings. ";
-
-                    errorLog += "To force OpenVR initialization call SteamVR.Initialize(true). ";
-
-                    Debug.Log(errorLog);
+                    ReportGeneralErrors();
+                    initializedState = InitializedStates.InitializeFailure;
                     SteamVR_Events.Initialized.Send(false);
                     return null;
                 }
+#endif
 
                 // Verify common interfaces are valid.
 
                 OpenVR.GetGenericInterface(OpenVR.IVRCompositor_Version, ref error);
                 if (error != EVRInitError.None)
                 {
+                    initializedState = InitializedStates.InitializeFailure;
                     ReportError(error);
+                    ReportGeneralErrors();
                     SteamVR_Events.Initialized.Send(false);
                     return null;
                 }
@@ -136,6 +178,16 @@ namespace Valve.VR
                 OpenVR.GetGenericInterface(OpenVR.IVROverlay_Version, ref error);
                 if (error != EVRInitError.None)
                 {
+                    initializedState = InitializedStates.InitializeFailure;
+                    ReportError(error);
+                    SteamVR_Events.Initialized.Send(false);
+                    return null;
+                }
+
+                OpenVR.GetGenericInterface(OpenVR.IVRInput_Version, ref error);
+                if (error != EVRInitError.None)
+                {
+                    initializedState = InitializedStates.InitializeFailure;
                     ReportError(error);
                     SteamVR_Events.Initialized.Send(false);
                     return null;
@@ -143,25 +195,32 @@ namespace Valve.VR
 
                 settings = SteamVR_Settings.instance;
 
-                SteamVR_Input.PreInitialize();
-
-                IdentifyApplication();
+#if !OPENVR_XR_API
+                if (Application.isEditor)
+                    IdentifyEditorApplication();
 
                 SteamVR_Input.IdentifyActionsFile();
+#endif
 
                 if (SteamVR_Settings.instance.inputUpdateMode != SteamVR_UpdateModes.Nothing || SteamVR_Settings.instance.poseUpdateMode != SteamVR_UpdateModes.Nothing)
                 {
                     SteamVR_Input.Initialize();
+
+#if UNITY_EDITOR
+                    if (SteamVR_Input.IsOpeningSetup())
+                        return null;
+#endif
                 }
             }
             catch (System.Exception e)
             {
-                Debug.LogError(e);
+                Debug.LogError("<b>[SteamVR]</b> " + e);
                 SteamVR_Events.Initialized.Send(false);
                 return null;
             }
 
             _enabled = true;
+            initializedState = InitializedStates.InitializeSuccess;
             SteamVR_Events.Initialized.Send(true);
             return new SteamVR();
         }
@@ -173,16 +232,16 @@ namespace Valve.VR
                 case EVRInitError.None:
                     break;
                 case EVRInitError.VendorSpecific_UnableToConnectToOculusRuntime:
-                    Debug.Log("[SteamVR] Initialization Failed!  Make sure device is on, Oculus runtime is installed, and OVRService_*.exe is running.");
+                    Debug.LogWarning("<b>[SteamVR]</b> Initialization Failed!  Make sure device is on, Oculus runtime is installed, and OVRService_*.exe is running.");
                     break;
                 case EVRInitError.Init_VRClientDLLNotFound:
-                    Debug.Log("[SteamVR] Drivers not found!  They can be installed via Steam under Library > Tools.  Visit http://steampowered.com to install Steam.");
+                    Debug.LogWarning("<b>[SteamVR]</b> Drivers not found!  They can be installed via Steam under Library > Tools.  Visit http://steampowered.com to install Steam.");
                     break;
                 case EVRInitError.Driver_RuntimeOutOfDate:
-                    Debug.Log("[SteamVR] Initialization Failed!  Make sure device's runtime is up to date.");
+                    Debug.LogWarning("<b>[SteamVR]</b> Initialization Failed!  Make sure device's runtime is up to date.");
                     break;
                 default:
-                    Debug.Log(OpenVR.GetStringForHmdError(error));
+                    Debug.LogWarning("<b>[SteamVR]</b> " + OpenVR.GetStringForHmdError(error));
                     break;
             }
         }
@@ -213,9 +272,15 @@ namespace Valve.VR
         public string hmd_TrackingSystemName { get { return GetStringProperty(ETrackedDeviceProperty.Prop_TrackingSystemName_String); } }
         public string hmd_ModelNumber { get { return GetStringProperty(ETrackedDeviceProperty.Prop_ModelNumber_String); } }
         public string hmd_SerialNumber { get { return GetStringProperty(ETrackedDeviceProperty.Prop_SerialNumber_String); } }
+        public string hmd_Type { get { return GetStringProperty(ETrackedDeviceProperty.Prop_ControllerType_String); } }
 
         public float hmd_SecondsFromVsyncToPhotons { get { return GetFloatProperty(ETrackedDeviceProperty.Prop_SecondsFromVsyncToPhotons_Float); } }
         public float hmd_DisplayFrequency { get { return GetFloatProperty(ETrackedDeviceProperty.Prop_DisplayFrequency_Float); } }
+
+        public EDeviceActivityLevel GetHeadsetActivityLevel()
+        {
+            return OpenVR.System.GetTrackedDeviceActivityLevel(OpenVR.k_unTrackedDeviceIndex_Hmd);
+        }
 
         public string GetTrackedDeviceString(uint deviceId)
         {
@@ -249,79 +314,138 @@ namespace Valve.VR
             return hmd.GetFloatTrackedDeviceProperty(deviceId, prop, ref error);
         }
 
+
+        private static bool runningTemporarySession = false;
+        public static bool InitializeTemporarySession(bool initInput = false)
+        {
+            if (Application.isEditor)
+            {
+                //bool needsInit = (!active && !usingNativeSupport && !runningTemporarySession);
+
+                EVRInitError initError = EVRInitError.None;
+                OpenVR.GetGenericInterface(OpenVR.IVRCompositor_Version, ref initError);
+                bool needsInit = initError != EVRInitError.None;
+
+                if (needsInit)
+                {
+                    EVRInitError error = EVRInitError.None;
+                    OpenVR.Init(ref error, EVRApplicationType.VRApplication_Overlay);
+
+                    if (error != EVRInitError.None)
+                    {
+                        Debug.LogError("<b>[SteamVR]</b> Error during OpenVR Init: " + error.ToString());
+                        return false;
+                    }
+
+                    IdentifyEditorApplication(false);
+
+                    SteamVR_Input.IdentifyActionsFile(false);
+
+                    runningTemporarySession = true;
+                }
+
+                if (initInput)
+                {
+                    SteamVR_Input.Initialize(true);
+                }
+
+                return needsInit;
+            }
+
+            return false;
+        }
+
+        public static void ExitTemporarySession()
+        {
+            if (runningTemporarySession)
+            {
+                OpenVR.Shutdown();
+                runningTemporarySession = false;
+            }
+        }
+
 #if UNITY_EDITOR
         public static void ShowBindingsForEditor()
         {
-            var initOpenVR = (!SteamVR.active && !SteamVR.usingNativeSupport);
-            if (initOpenVR)
-            {
-                var error = EVRInitError.None;
-                OpenVR.Init(ref error, EVRApplicationType.VRApplication_Utility);
+            bool temporarySession = InitializeTemporarySession(false);
 
-                if (error != EVRInitError.None)
-                    Debug.LogError("[SteamVR] Error during OpenVR Init: " + error.ToString());
-            }
 
             Valve.VR.EVRSettingsError bindingFlagError = Valve.VR.EVRSettingsError.None;
             Valve.VR.OpenVR.Settings.SetBool(Valve.VR.OpenVR.k_pch_SteamVR_Section, Valve.VR.OpenVR.k_pch_SteamVR_DebugInputBinding, true, ref bindingFlagError);
 
             if (bindingFlagError != Valve.VR.EVRSettingsError.None)
-                Debug.LogError("[SteamVR] Error turning on the debug input binding flag in steamvr: " + bindingFlagError.ToString());
+                Debug.LogError("<b>[SteamVR]</b> Error turning on the debug input binding flag in steamvr: " + bindingFlagError.ToString());
 
             if (Application.isPlaying == false)
             {
-                IdentifyApplication();
+                IdentifyEditorApplication();
 
                 SteamVR_Input.IdentifyActionsFile();
             }
 
-            /*
-            GameObject tempObject = new GameObject("[Temp] [SteamVR Input]");
-            SteamVR_Input.Initialize(tempObject);
+            OpenVR.Input.OpenBindingUI(SteamVR_Settings.instance.editorAppKey, 0, 0, true);
 
-            VRActiveActionSet_t[] sets = new VRActiveActionSet_t[SteamVR_Input.actionSets.Length];
-            for (int setIndex = 0; setIndex < SteamVR_Input.actionSets.Length; setIndex++)
-            {
-                sets[setIndex].ulActionSet = SteamVR_Input.actionSets[setIndex].handle;
-            }
-
-            EVRInputError showBindingsError = OpenVR.Input.ShowBindingsForActionSet(sets, (uint)(sets.Length * System.Runtime.InteropServices.Marshal.SizeOf(typeof(VRActiveActionSet_t))), 0);
-
-            if (showBindingsError != EVRInputError.None)
-            {
-                Debug.LogError("Error showing bindings ui: " + showBindingsError.ToString());
-            }
-            */
-
-            if (initOpenVR)
-                OpenVR.Shutdown();
-
-            Application.OpenURL("http://localhost:8998/dashboard/controllerbinding.html?app=" + SteamVR_Settings.instance.appKey.ToLower()); //todo: update with the actual call
+            if (temporarySession)
+                ExitTemporarySession();
         }
 
-        public static string GetResourcesFolderPath(bool fromAssetsDirectory = false)
+        public static string GetSteamVRFolderParentPath(bool localToAssetsFolder = false)
         {
-            SteamVR_Input_References asset = ScriptableObject.CreateInstance<SteamVR_Input_References>();
+            SteamVR_Settings asset = ScriptableObject.CreateInstance<SteamVR_Settings>();
             UnityEditor.MonoScript scriptAsset = UnityEditor.MonoScript.FromScriptableObject(asset);
 
             string scriptPath = UnityEditor.AssetDatabase.GetAssetPath(scriptAsset);
 
-            System.IO.FileInfo fi = new System.IO.FileInfo(scriptPath);
-            string rootPath = fi.Directory.Parent.ToString();
+            System.IO.FileInfo settingsScriptFileInfo = new System.IO.FileInfo(scriptPath);
 
-            string resourcesPath = System.IO.Path.Combine(rootPath, "Resources");
+            string fullPath = settingsScriptFileInfo.Directory.Parent.Parent.FullName;
 
-            resourcesPath = resourcesPath.Replace("//", "/");
-            resourcesPath = resourcesPath.Replace("\\\\", "\\");
-            resourcesPath = resourcesPath.Replace("\\", "/");
-
-            if (fromAssetsDirectory)
+            if (localToAssetsFolder == false)
+                return fullPath;
+            else
             {
-                int assetsIndex = resourcesPath.IndexOf("/Assets/");
-                resourcesPath = resourcesPath.Substring(assetsIndex + 1);
+                System.IO.DirectoryInfo assetsDirectoryInfo = new DirectoryInfo(Application.dataPath);
+                string localPath = fullPath.Substring(assetsDirectoryInfo.Parent.FullName.Length + 1); //plus separator char
+                return localPath;
             }
+        }
 
-            return resourcesPath;
+        public static string GetSteamVRFolderPath(bool localToAssetsFolder = false)
+        {
+            SteamVR_Settings asset = ScriptableObject.CreateInstance<SteamVR_Settings>();
+            UnityEditor.MonoScript scriptAsset = UnityEditor.MonoScript.FromScriptableObject(asset);
+
+            string scriptPath = UnityEditor.AssetDatabase.GetAssetPath(scriptAsset);
+
+            System.IO.FileInfo settingsScriptFileInfo = new System.IO.FileInfo(scriptPath);
+            string fullPath = settingsScriptFileInfo.Directory.Parent.FullName;
+
+
+            if (localToAssetsFolder == false)
+                return fullPath;
+            else
+            {
+                System.IO.DirectoryInfo assetsDirectoryInfo = new DirectoryInfo(Application.dataPath);
+                string localPath = fullPath.Substring(assetsDirectoryInfo.Parent.FullName.Length + 1); //plus separator char
+                return localPath;
+            }
+        }
+
+        public static string GetSteamVRResourcesFolderPath(bool localToAssetsFolder = false)
+        {
+            string basePath = GetSteamVRFolderParentPath(localToAssetsFolder);
+
+            string folderPath = Path.Combine(basePath, "SteamVR_Resources");
+
+            if (Directory.Exists(folderPath) == false)
+                Directory.CreateDirectory(folderPath);
+
+            string resourcesFolderPath = Path.Combine(folderPath, "Resources");
+
+            if (Directory.Exists(resourcesFolderPath) == false)
+                Directory.CreateDirectory(resourcesFolderPath);
+
+            return resourcesFolderPath;
         }
 #endif
 
@@ -330,6 +454,13 @@ namespace Valve.VR
         public const string defaultAppKeyTemplate = "application.generated.{0}";
 
         public static string GenerateAppKey()
+        {
+            string productName = GenerateCleanProductName();
+
+            return string.Format(defaultUnityAppKeyTemplate, productName);
+        }
+
+        public static string GenerateCleanProductName()
         {
             string productName = Application.productName;
             if (string.IsNullOrEmpty(productName))
@@ -340,7 +471,7 @@ namespace Valve.VR
                 productName = productName.ToLower();
             }
 
-            return string.Format(defaultUnityAppKeyTemplate, productName);
+            return productName;
         }
 
         private static string GetManifestFile()
@@ -351,13 +482,29 @@ namespace Valve.VR
 
             string fullPath = Path.Combine(currentPath, "unityProject.vrmanifest");
 
+            FileInfo fullManifestPath = new FileInfo(SteamVR_Input.GetActionsFilePath());
+
             if (File.Exists(fullPath))
             {
                 string jsonText = File.ReadAllText(fullPath);
                 SteamVR_Input_ManifestFile existingFile = Valve.Newtonsoft.Json.JsonConvert.DeserializeObject<SteamVR_Input_ManifestFile>(jsonText);
-                if (existingFile != null && existingFile.applications != null && existingFile.applications.Count > 0 && existingFile.applications[0].app_key != SteamVR_Settings.instance.appKey)
+
+                if (existingFile != null && existingFile.applications != null && existingFile.applications.Count > 0 &&
+                    existingFile.applications[0].app_key != SteamVR_Settings.instance.editorAppKey)
                 {
-                    Debug.Log("[SteamVR] Deleting existing VRManifest because it has a different app key.");
+                    Debug.Log("<b>[SteamVR]</b> Deleting existing VRManifest because it has a different app key.");
+                    FileInfo existingInfo = new FileInfo(fullPath);
+                    if (existingInfo.IsReadOnly)
+                        existingInfo.IsReadOnly = false;
+                    existingInfo.Delete();
+                }
+
+                if (existingFile != null && existingFile.applications != null && existingFile.applications.Count > 0 &&
+                    existingFile.applications[0].action_manifest_path != fullManifestPath.FullName)
+                {
+                    Debug.Log("<b>[SteamVR]</b> Deleting existing VRManifest because it has a different action manifest path:" +
+                        "\nExisting:" + existingFile.applications[0].action_manifest_path +
+                        "\nNew: " + fullManifestPath.FullName);
                     FileInfo existingInfo = new FileInfo(fullPath);
                     if (existingInfo.IsReadOnly)
                         existingInfo.IsReadOnly = false;
@@ -370,8 +517,8 @@ namespace Valve.VR
                 SteamVR_Input_ManifestFile manifestFile = new SteamVR_Input_ManifestFile();
                 manifestFile.source = "Unity";
                 SteamVR_Input_ManifestFile_Application manifestApplication = new SteamVR_Input_ManifestFile_Application();
-                manifestApplication.app_key = SteamVR_Settings.instance.appKey;
-                //manifestApplication.action_manifest_path = SteamVR_Settings.instance.actionsFilePath;
+                manifestApplication.app_key = SteamVR_Settings.instance.editorAppKey;
+                manifestApplication.action_manifest_path = fullManifestPath.FullName;
                 manifestApplication.launch_type = "url";
                 //manifestApplication.binary_path_windows = SteamVR_Utils.ConvertToForwardSlashes(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
                 //manifestApplication.binary_path_linux = SteamVR_Utils.ConvertToForwardSlashes(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
@@ -399,12 +546,12 @@ namespace Valve.VR
                     }
                     else
                     {
-                        Debug.LogError("[SteamVR] Mismatch in available binding files.");
+                        Debug.LogError("<b>[SteamVR]</b> Mismatch in available binding files.");
                     }
                 }
                 else
                 {
-                    Debug.LogError("[SteamVR] Could not load actions file.");
+                    Debug.LogError("<b>[SteamVR]</b> Could not load actions file.");
                 }
                 */
 
@@ -420,31 +567,40 @@ namespace Valve.VR
             return fullPath;
         }
 
-        private static void IdentifyApplication()
+        private static void IdentifyEditorApplication(bool showLogs = true)
         {
-            bool isInstalled = OpenVR.Applications.IsApplicationInstalled(SteamVR_Settings.instance.appKey);
+            //bool isInstalled = OpenVR.Applications.IsApplicationInstalled(SteamVR_Settings.instance.editorAppKey);
 
-            if (isInstalled == false)
+            if (string.IsNullOrEmpty(SteamVR_Settings.instance.editorAppKey))
             {
-                string manifestPath = GetManifestFile();
+                Debug.LogError("<b>[SteamVR]</b> Critical Error identifying application. EditorAppKey is null or empty. Input may not work.");
+                return;
+            }
 
-                var addManifestErr = OpenVR.Applications.AddApplicationManifest(manifestPath, true);
-                if (addManifestErr != EVRApplicationError.None)
-                    Debug.LogError("Error adding vr manifest file: " + addManifestErr.ToString());
-                else
-                    Debug.Log("Successfully added vr manifest");
+            string manifestPath = GetManifestFile();
+
+            EVRApplicationError addManifestErr = OpenVR.Applications.AddApplicationManifest(manifestPath, true);
+            if (addManifestErr != EVRApplicationError.None)
+                Debug.LogError("<b>[SteamVR]</b> Error adding vr manifest file: " + addManifestErr.ToString());
+            else
+            {
+                if (showLogs)
+                    Debug.Log("<b>[SteamVR]</b> Successfully added VR manifest to SteamVR");
             }
 
             int processId = System.Diagnostics.Process.GetCurrentProcess().Id;
-            var applicationIdentifyErr = OpenVR.Applications.IdentifyApplication((uint)processId, SteamVR_Settings.instance.appKey);
+            EVRApplicationError applicationIdentifyErr = OpenVR.Applications.IdentifyApplication((uint)processId, SteamVR_Settings.instance.editorAppKey);
 
             if (applicationIdentifyErr != EVRApplicationError.None)
-                Debug.LogError("Error identifying application: " + applicationIdentifyErr.ToString());
+                Debug.LogError("<b>[SteamVR]</b> Error identifying application: " + applicationIdentifyErr.ToString());
             else
-                Debug.Log("Successfully identified application");
+            {
+                if (showLogs)
+                    Debug.Log(string.Format("<b>[SteamVR]</b> Successfully identified process as editor project to SteamVR ({0})", SteamVR_Settings.instance.editorAppKey));
+            }
         }
 
-        #region Event callbacks
+#region Event callbacks
 
         private void OnInitializing(bool initializing)
         {
@@ -509,12 +665,12 @@ namespace Valve.VR
             }
         }
 
-        #endregion
+#endregion
 
         private SteamVR()
         {
             hmd = OpenVR.System;
-            Debug.Log("Connected to " + hmd_TrackingSystemName + ":" + hmd_SerialNumber);
+            Debug.LogFormat("<b>[SteamVR]</b> Initialized. Connected to {0} : {1} : {2} :: {3}", hmd_TrackingSystemName, hmd_ModelNumber, hmd_SerialNumber, hmd_Type);
 
             compositor = OpenVR.Compositor;
             overlay = OpenVR.Overlay;

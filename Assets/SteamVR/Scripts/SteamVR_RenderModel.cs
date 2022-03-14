@@ -86,17 +86,13 @@ namespace Valve.VR
                 {
                     if (_instance == null && !failedLoadInterface)
                     {
-                        if (!SteamVR.active && !SteamVR.usingNativeSupport)
-                        {
-                            var error = EVRInitError.None;
-                            OpenVR.Init(ref error, EVRApplicationType.VRApplication_Utility);
-                            needsShutdown = true;
-                        }
+                        if (Application.isEditor && Application.isPlaying == false)
+                            needsShutdown = SteamVR.InitializeTemporarySession();
 
                         _instance = OpenVR.RenderModels;
                         if (_instance == null)
                         {
-                            Debug.LogError("Failed to load IVRRenderModels interface version " + OpenVR.IVRRenderModels_Version);
+                            Debug.LogError("<b>[SteamVR]</b> Failed to load IVRRenderModels interface version " + OpenVR.IVRRenderModels_Version);
                             failedLoadInterface = true;
                         }
                     }
@@ -106,7 +102,7 @@ namespace Valve.VR
             public void Dispose()
             {
                 if (needsShutdown)
-                    OpenVR.Shutdown();
+                    SteamVR.ExitTemporarySession();
             }
         }
 
@@ -124,7 +120,9 @@ namespace Valve.VR
             for (int rendererIndex = 0; rendererIndex < meshRenderers.Count; rendererIndex++)
             {
                 MeshRenderer renderer = meshRenderers[rendererIndex];
-                renderer.enabled = state;
+
+                if (renderer != null)
+                    renderer.enabled = state;
             }
         }
 
@@ -147,14 +145,14 @@ namespace Valve.VR
         public void UpdateModel()
         {
             var system = OpenVR.System;
-            if (system == null)
+            if (system == null || index == SteamVR_TrackedObject.EIndex.None)
                 return;
 
             var error = ETrackedPropertyError.TrackedProp_Success;
             var capacity = system.GetStringTrackedDeviceProperty((uint)index, ETrackedDeviceProperty.Prop_RenderModelName_String, null, 0, ref error);
             if (capacity <= 1)
             {
-                Debug.LogError("Failed to get render model name for tracked object " + index);
+                Debug.LogError("<b>[SteamVR]</b> Failed to get render model name for tracked object " + index);
                 return;
             }
 
@@ -246,7 +244,7 @@ namespace Valve.VR
                         var pRenderModel = System.IntPtr.Zero;
 
                         var error = renderModels.LoadRenderModel_Async(renderModelNames[renderModelNameIndex], ref pRenderModel);
-                        //Debug.Log("renderModels.LoadRenderModel_Async(" + renderModelNames[renderModelNameIndex] + ": " + error.ToString());
+                        //Debug.Log("<b>[SteamVR]</b> renderModels.LoadRenderModel_Async(" + renderModelNames[renderModelNameIndex] + ": " + error.ToString());
 
                         if (error == EVRRenderModelError.Loading)
                         {
@@ -264,7 +262,7 @@ namespace Valve.VR
                                 var pDiffuseTexture = System.IntPtr.Zero;
 
                                 error = renderModels.LoadTexture_Async(renderModel.diffuseTextureId, ref pDiffuseTexture);
-                                //Debug.Log("renderModels.LoadRenderModel_Async(" + renderModelNames[renderModelNameIndex] + ": " + error.ToString());
+                                //Debug.Log("<b>[SteamVR]</b> renderModels.LoadRenderModel_Async(" + renderModelNames[renderModelNameIndex] + ": " + error.ToString());
 
                                 if (error == EVRRenderModelError.Loading)
                                 {
@@ -306,7 +304,7 @@ namespace Valve.VR
                         return true;
                     }
 
-                    Debug.Log("[" + gameObject.name + "] Render model does not support components, falling back to single mesh.");
+                    Debug.Log("<b>[SteamVR]</b> [" + gameObject.name + "] Render model does not support components, falling back to single mesh.");
                 }
 
                 if (!string.IsNullOrEmpty(renderModelName))
@@ -319,7 +317,7 @@ namespace Valve.VR
                             return false;
 
                         if (verbose)
-                            Debug.Log("Loading render model " + renderModelName);
+                            Debug.Log("<b>[SteamVR]</b> Loading render model " + renderModelName);
 
                         model = LoadRenderModel(renderModels, renderModelName, renderModelName);
                         if (model == null)
@@ -355,7 +353,7 @@ namespace Valve.VR
 
             if (error != EVRRenderModelError.None)
             {
-                Debug.LogError(string.Format("Failed to load render model {0} - {1}", renderModelName, error.ToString()));
+                Debug.LogError(string.Format("<b>[SteamVR]</b> Failed to load render model {0} - {1}", renderModelName, error.ToString()));
                 return null;
             }
 
@@ -454,7 +452,12 @@ namespace Valve.VR
                         texture.Apply();
                     }
 
+#if UNITY_URP
+                    material = new Material(shader != null ? shader : Shader.Find("Universal Render Pipeline/Lit"));
+#else
                     material = new Material(shader != null ? shader : Shader.Find("Standard"));
+#endif
+
                     material.mainTexture = texture;
                     //material.hideFlags = HideFlags.DontUnloadUnusedAsset;
 
@@ -464,7 +467,7 @@ namespace Valve.VR
                 }
                 else
                 {
-                    Debug.Log("Failed to load render model texture for render model " + renderModelName + ". Error: " + error.ToString());
+                    Debug.Log("<b>[SteamVR]</b> Failed to load render model texture for render model " + renderModelName + ". Error: " + error.ToString());
                 }
             }
 
@@ -608,7 +611,7 @@ namespace Valve.VR
                 if (model == null || model.mesh == null)
                 {
                     if (verbose)
-                        Debug.Log("Loading render model " + componentRenderModelName);
+                        Debug.Log("<b>[SteamVR]</b> Loading render model " + componentRenderModelName);
 
                     model = LoadRenderModel(renderModels, componentRenderModelName, renderModelName);
                     if (model == null)
@@ -643,7 +646,7 @@ namespace Valve.VR
 #endif
             if (!string.IsNullOrEmpty(modelOverride))
             {
-                Debug.Log(modelOverrideWarning);
+                Debug.Log("<b>[SteamVR]</b> " + modelOverrideWarning);
                 enabled = false;
                 return;
             }
@@ -753,7 +756,7 @@ namespace Valve.VR
             {
                 Transform child = transform.GetChild(childIndex);
 
-                // Cache names since accessing an object's name allocate memory.
+                // Cache names since accessing an object's name allocates memory.
                 string componentName;
                 if (!nameCache.TryGetValue(child.GetInstanceID(), out componentName))
                 {
@@ -765,8 +768,8 @@ namespace Valve.VR
                 if (!renderModels.GetComponentStateForDevicePath(renderModelName, componentName, SteamVR_Input_Source.GetHandle(inputSource), ref controllerModeState, ref componentState))
                     continue;
 
-                child.localPosition = SteamVR_Utils.GetPosition(componentState.mTrackingToComponentRenderModel);
-                child.localRotation = SteamVR_Utils.GetRotation(componentState.mTrackingToComponentRenderModel);
+                child.localPosition = componentState.mTrackingToComponentRenderModel.GetPosition();
+                child.localRotation = componentState.mTrackingToComponentRenderModel.GetRotation();
 
                 Transform attach = null;
                 for (int childChildIndex = 0; childChildIndex < child.childCount; childChildIndex++)
@@ -786,8 +789,8 @@ namespace Valve.VR
 
                 if (attach != null)
                 {
-                    attach.position = transform.TransformPoint(SteamVR_Utils.GetPosition(componentState.mTrackingToComponentLocal));
-                    attach.rotation = transform.rotation * SteamVR_Utils.GetRotation(componentState.mTrackingToComponentLocal);
+                    attach.position = transform.TransformPoint(componentState.mTrackingToComponentLocal.GetPosition());
+                    attach.rotation = transform.rotation * componentState.mTrackingToComponentLocal.GetRotation();
 
                     initializedAttachPoints = true;
                 }
@@ -826,7 +829,7 @@ namespace Valve.VR
         }
 
         /// <summary>
-        /// Helper function to handle the inconvenient fact that the packing for RenderModel_t is 
+        /// Helper function to handle the inconvenient fact that the packing for RenderModel_t is
         /// different on Linux/OSX (4) than it is on Windows (8)
         /// </summary>
         /// <param name="pRenderModel">native pointer to the RenderModel_t</param>
@@ -848,7 +851,7 @@ namespace Valve.VR
         }
 
         /// <summary>
-        /// Helper function to handle the inconvenient fact that the packing for RenderModel_TextureMap_t is 
+        /// Helper function to handle the inconvenient fact that the packing for RenderModel_TextureMap_t is
         /// different on Linux/OSX (4) than it is on Windows (8)
         /// </summary>
         /// <param name="pRenderModel">native pointer to the RenderModel_TextureMap_t</param>

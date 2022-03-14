@@ -11,11 +11,13 @@ namespace Valve.VR
     {
         public const string steamVRInputExampleJSONCopiedKey = "SteamVR_Input_CopiedExamples";
 
+        public const string exampleJSONFolderParent = "Input";
         public const string exampleJSONFolderName = "ExampleJSON";
 
         [UnityEditor.Callbacks.DidReloadScripts]
         private static void OnReloadScripts()
         {
+            SteamVR_Input.CheckOldLocation();
             CopyFiles();
         }
 
@@ -24,42 +26,31 @@ namespace Valve.VR
             bool hasCopied = EditorPrefs.GetBool(steamVRInputExampleJSONCopiedKey, false);
             if (hasCopied == false || force == true)
             {
-                string actionsFilePath = SteamVR_Settings.instance.actionsFilePath;
+                string actionsFilePath = SteamVR_Input.GetActionsFilePath();
                 bool exists = File.Exists(actionsFilePath);
                 if (exists == false)
                 {
-                    MonoScript[] monoScripts = MonoImporter.GetAllRuntimeMonoScripts();
+                    string steamVRFolder = SteamVR.GetSteamVRFolderPath();
+                    string exampleLocation = Path.Combine(steamVRFolder, exampleJSONFolderParent);
+                    string exampleFolderPath = Path.Combine(exampleLocation, exampleJSONFolderName);
 
-                    Type steamVRInputType = typeof(SteamVR_Input);
-                    MonoScript monoScript = monoScripts.FirstOrDefault(script => script.GetClass() == steamVRInputType);
-                    string path = AssetDatabase.GetAssetPath(monoScript);
+                    string streamingAssetsPath = SteamVR_Input.GetActionsFileFolder();
 
-                    int lastIndex = path.LastIndexOf("/");
-                    path = path.Substring(0, lastIndex + 1);
-                    path += exampleJSONFolderName;
-
-                    string dataPath = Application.dataPath;
-                    lastIndex = dataPath.LastIndexOf("/Assets");
-                    dataPath = dataPath.Substring(0, lastIndex + 1);
-
-                    path = dataPath + path;
-
-                    string[] files = Directory.GetFiles(path, "*.json");
+                    string[] files = Directory.GetFiles(exampleFolderPath, "*.json");
                     foreach (string file in files)
                     {
-                        lastIndex = file.LastIndexOf("\\");
-                        string filename = file.Substring(lastIndex + 1);
+                        string filename = Path.GetFileName(file);
 
-                        string newPath = Path.Combine(dataPath, filename);
+                        string newPath = Path.Combine(streamingAssetsPath, filename);
 
                         try
                         {
                             File.Copy(file, newPath, false);
-                            Debug.Log("[SteamVR Input] Copied example input JSON to path: " + newPath);
+                            Debug.Log("<b>[SteamVR]</b> Copied example input JSON to path: " + newPath);
                         }
                         catch
                         {
-                            Debug.LogError("[SteamVR Input] Could not copy file: " + file + " to path: " + newPath);
+                            Debug.LogError("<b>[SteamVR]</b> Could not copy file: " + file + " to path: " + newPath);
                         }
                     }
 

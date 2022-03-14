@@ -12,6 +12,9 @@ namespace Valve.VR
 {
     public class SteamVR_ExternalCamera : MonoBehaviour
     {
+        private SteamVR_Action_Pose cameraPose = null;
+        private SteamVR_Input_Sources cameraInputSource = SteamVR_Input_Sources.Camera;
+
         [System.Serializable]
         public struct Config
         {
@@ -27,8 +30,12 @@ namespace Valve.VR
             public bool disableStandardAssets;
         }
 
+        [Space()]
         public Config config;
         public string configPath;
+
+        [Tooltip("This will automatically activate the action set the specified pose belongs to. And deactivate it when this component is disabled.")]
+        public bool autoEnableDisableActionSet = true;
 
         public void ReadConfig()
         {
@@ -112,29 +119,65 @@ namespace Valve.VR
             }
         }
 
+        System.IO.FileSystemWatcher watcher;
+#else
+	}
+#endif
+
+        public void SetupPose(SteamVR_Action_Pose newCameraPose, SteamVR_Input_Sources newCameraSource)
+        {
+            cameraPose = newCameraPose;
+            cameraInputSource = newCameraSource;
+
+            AutoEnableActionSet();
+
+            SteamVR_Behaviour_Pose poseBehaviour = this.gameObject.AddComponent<SteamVR_Behaviour_Pose>();
+            poseBehaviour.poseAction = newCameraPose;
+            poseBehaviour.inputSource = newCameraSource;
+        }
+
+        public void SetupDeviceIndex(int deviceIndex)
+        {
+            SteamVR_TrackedObject trackedObject = this.gameObject.AddComponent<SteamVR_TrackedObject>();
+            trackedObject.SetDeviceIndex(deviceIndex);
+        }
+
         void OnChanged(object source, System.IO.FileSystemEventArgs e)
         {
             ReadConfig();
         }
 
-        System.IO.FileSystemWatcher watcher;
-#else
-	}
-#endif
         Camera cam;
         Transform target;
         GameObject clipQuad;
         Material clipMaterial;
 
-        public void AttachToCamera(SteamVR_Camera vrcam)
+        protected SteamVR_ActionSet activatedActionSet;
+        protected SteamVR_Input_Sources activatedInputSource;
+        public void AttachToCamera(SteamVR_Camera steamVR_Camera)
         {
-            if (target == vrcam.head)
-                return;
+            Camera vrcam;
+            if (steamVR_Camera == null)
+            {
+                vrcam = Camera.main;
 
-            target = vrcam.head;
+                if (target == vrcam.transform)
+                    return;
+                target = vrcam.transform;
+            }
+            else
+            {
+                vrcam = steamVR_Camera.camera;
+
+                if (target == steamVR_Camera.head)
+                    return;
+                target = steamVR_Camera.head;
+            }
+
+
 
             var root = transform.parent;
-            var origin = vrcam.head.parent;
+            var origin = target.parent;
             root.parent = origin;
             root.localPosition = Vector3.zero;
             root.localRotation = Quaternion.identity;
@@ -154,6 +197,7 @@ namespace Valve.VR
             cam.fieldOfView = config.fov;
             cam.useOcclusionCulling = false;
             cam.enabled = false; // manually rendered
+            cam.rect = new Rect(0, 0, 1, 1); //fix order of operations issue
 
             colorMat = new Material(Shader.Find("Custom/SteamVR_ColorOut"));
             alphaMat = new Material(Shader.Find("Custom/SteamVR_AlphaOut"));
@@ -306,7 +350,7 @@ namespace Valve.VR
         void OnEnable()
         {
             // Move game view cameras to lower-right quadrant.
-            cameras = FindObjectsOfType<Camera>() as Camera[];
+            cameras = FindObjectsOfType<Camera>();
             if (cameras != null)
             {
                 var numCameras = cameras.Length;
@@ -334,10 +378,38 @@ namespace Valve.VR
                 sceneResolutionScale = SteamVR_Camera.sceneResolutionScale;
                 SteamVR_Camera.sceneResolutionScale = config.sceneResolutionScale;
             }
+
+            AutoEnableActionSet();
+        }
+
+        private void AutoEnableActionSet()
+        {
+            if (autoEnableDisableActionSet)
+            {
+                if (cameraPose != null)
+                {
+                    if (cameraPose.actionSet.IsActive(cameraInputSource) == false)
+                    {
+                        activatedActionSet = cameraPose.actionSet; //automatically activate the actionset if it isn't active already. (will deactivate on component disable)
+                        activatedInputSource = cameraInputSource;
+                        cameraPose.actionSet.Activate(cameraInputSource);
+                    }
+                }
+            }
         }
 
         void OnDisable()
         {
+            if (autoEnableDisableActionSet)
+            {
+                if (activatedActionSet != null) //deactivate the action set we activated for this camera
+                {
+                    activatedActionSet.Deactivate(activatedInputSource);
+                    activatedActionSet = null;
+                }
+            }
+
+
             // Restore game view cameras.
             if (cameras != null)
             {
