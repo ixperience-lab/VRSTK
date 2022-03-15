@@ -109,6 +109,8 @@ GameObject:
   - component: {fileID: 1632976412636198789}
   - component: {fileID: 1632976412636198788}
   - component: {fileID: 1632976412636198787}
+  - component: {fileID: 1480913339}
+  - component: {fileID: 1480913341}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -204,6 +206,36 @@ MonoBehaviour:
       - rotation_Transform
   timedInterval: 1
   interval: 0.1
+--- !u!114 &1480913339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632976412636198786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Device: 0
+  m_PoseSource: 2
+  m_PoseProviderComponent: {fileID: 0}
+  m_TrackingType: 0
+  m_UpdateType: 0
+  m_UseRelativeTransform: 0
+--- !u!114 &1480913341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632976412636198786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30a2316e98e1dc4b97e432a1301f85c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1632976412749715432
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +288,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -280,6 +313,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1632976412749715435
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -414,7 +448,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5fb0ca93b55ef4b8d54b512b103341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poseAction: {fileID: 11400000, guid: ef4acd8d2210e2e458c5e8d4cae70d77, type: 2}
+  poseAction:
+    actionPath: /actions/default/in/Pose
+    needsReinit: 0
   inputSource: 1
   origin: {fileID: 0}
   onTransformUpdated:
@@ -429,6 +465,10 @@ MonoBehaviour:
   onTrackingChanged:
     m_PersistentCalls:
       m_Calls: []
+  onDeviceIndexChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  broadcastDeviceChanges: 1
 --- !u!114 &1632976413118103561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,7 +585,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookEvent: {fileID: 11400000, guid: 565fb443d4130ba4cad9f4503ec6262f, type: 2}
-  enableEyeObjectTracking: 0
+  eyeLookAtEvent: {fileID: 11400000, guid: 545ad53e125bc0f4f88571437d683e45, type: 2}
+  enableEyeObjectTracking: 1
   debugEyeTrackingPositionsWithLine: 0
   eyeHitpoint: {x: 0, y: 0, z: 0}
   eyeDirection: {x: 0, y: 0, z: 0}
@@ -595,7 +636,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5fb0ca93b55ef4b8d54b512b103341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poseAction: {fileID: 11400000, guid: ef4acd8d2210e2e458c5e8d4cae70d77, type: 2}
+  poseAction:
+    actionPath: /actions/default/in/Pose
+    needsReinit: 0
   inputSource: 2
   origin: {fileID: 0}
   onTransformUpdated:
@@ -610,6 +653,10 @@ MonoBehaviour:
   onTrackingChanged:
     m_PersistentCalls:
       m_Calls: []
+  onDeviceIndexChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  broadcastDeviceChanges: 1
 --- !u!114 &1632976413801104310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,10 +742,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 040ee45f81d69f844b762725efdbe813, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -719,6 +767,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &8750568411175978864
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -773,6 +822,10 @@ PrefabInstance:
       value: SRanipal Eye Framework
       objectReference: {fileID: 0}
     - target: {fileID: 4879914434278830, guid: f676e25d0fcd1ec4fa22af3017316de9, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879914434278830, guid: f676e25d0fcd1ec4fa22af3017316de9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -785,6 +838,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4879914434278830, guid: f676e25d0fcd1ec4fa22af3017316de9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879914434278830, guid: f676e25d0fcd1ec4fa22af3017316de9, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -795,14 +852,6 @@ PrefabInstance:
     - target: {fileID: 4879914434278830, guid: f676e25d0fcd1ec4fa22af3017316de9, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4879914434278830, guid: f676e25d0fcd1ec4fa22af3017316de9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4879914434278830, guid: f676e25d0fcd1ec4fa22af3017316de9, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4879914434278830, guid: f676e25d0fcd1ec4fa22af3017316de9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

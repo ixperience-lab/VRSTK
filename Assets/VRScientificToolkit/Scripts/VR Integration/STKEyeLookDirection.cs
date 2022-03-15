@@ -58,7 +58,7 @@ namespace STK
             //Initialize|Instancing off eye tracking 
             if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING)
             {
-                Debug.LogError("SRanipal not running (Status " + SRanipal_Eye_Framework.Status + "). Trying to (re)initialise");
+                Debug.LogWarning("SRanipal not running (Status " + SRanipal_Eye_Framework.Status + "). Trying to (re)initialise");
                 var sranipal = SRanipal_Eye_Framework.Instance;
                 if (sranipal == null)
                 {
