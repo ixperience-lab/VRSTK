@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.XR.OpenXR.Input;
-//using Valve.VR;
 
 namespace STK
 {
-    ///<summary>Tracks all VR-Inputs using SteamVRInput and sends them out as Events for Tracking</summary>
+    ///<summary>Tracks all VR-Inputs using OpenXR and InputActionAsset and sends them out as Events for Tracking</summary>
     [RequireComponent(typeof(STKEventSender))]
     public class VRSTKInputTracker : MonoBehaviour
     {
@@ -22,7 +21,6 @@ namespace STK
             
         }
 
-
         void Update()
         {
             if(!initialized && _inputActionMapping.enabled)
@@ -34,40 +32,15 @@ namespace STK
                 }
                 initialized = true;
             }
-
-            //if (!initialized && SteamVR_Input.initialized) //Once Input is initialized, check for all Input Actions and create Listeners for them
-            //{
-            //    foreach (SteamVR_Action_Boolean a in SteamVR_Input.actionsBoolean)
-            //    {
-            //        Debug.Log(a);
-            //        a.AddOnChangeListener(OnChange, SteamVR_Input_Sources.Any);
-            //    }
-            //    foreach (SteamVR_Action_Single a in SteamVR_Input.actionsSingle)
-            //    {
-            //        Debug.Log(a);
-            //        a.AddOnChangeListener(OnChange, SteamVR_Input_Sources.Any);
-            //    }
-            //    foreach (SteamVR_Action_Vector2 a in SteamVR_Input.actionsVector2)
-            //    {
-            //        Debug.Log(a);
-            //        a.AddOnChangeListener(OnChange, SteamVR_Input_Sources.Any);
-            //    }
-            //    foreach (SteamVR_Action_Vector3 a in SteamVR_Input.actionsVector3)
-            //    {
-            //        Debug.Log(a);
-            //        a.AddOnChangeListener(OnChange, SteamVR_Input_Sources.Any);
-            //    }
-            //    initialized = true;
-            //}
         }
 
         private void OnPerform(InputAction.CallbackContext ctx)
         {
-            if (ctx.action.name.Contains("hmd") && ctx.action.name.Contains("Eye")) return;
+            if (ctx.action.actionMap.ToString().ToLower().Contains("vrstk head")) return;
 
             STKEventSender sender = GetComponent<STKEventSender>();
 
-            Debug.Log("ctx.valueType: " + ctx.valueType);
+            //Debug.Log("ctx.valueType: " + ctx.valueType);
             
             sender.SetEventValue("Name", ctx.action.name);
             
@@ -75,9 +48,17 @@ namespace STK
             {
                 sender.SetEventValue("boolValue", ctx.ReadValue<bool>());
             }
-            if (ctx.valueType == typeof(Button))
+            if (ctx.action.type == InputActionType.Button)
             {
-                sender.SetEventValue("buttonBoolValue", ctx.ReadValueAsButton());
+                sender.SetEventValue("buttonTriggertValue", ctx.ReadValueAsButton());
+            }
+            if (ctx.valueType == typeof(System.Int32))
+            {
+                sender.SetEventValue("integerValue", ctx.ReadValue<System.Int32>());
+            }
+            if (ctx.valueType == typeof(System.Double))
+            {
+                sender.SetEventValue("doubleValue", ctx.ReadValue<System.Double>());
             }
             if (ctx.valueType == typeof(System.Single))
             {
@@ -95,56 +76,15 @@ namespace STK
             {
                 sender.SetEventValue("quaternionValue", ctx.ReadValue<Quaternion>());
             }
-
+            if (ctx.valueType == typeof(UnityEngine.XR.OpenXR.Input.Haptic))
+            {
+                sender.SetEventValue("HapticValue", ctx.ReadValue<UnityEngine.XR.OpenXR.Input.Haptic>());
+            }
+            if (ctx.valueType == typeof(UnityEngine.XR.OpenXR.Input.Pose))
+            {
+                sender.SetEventValue("HapticValue", ctx.ReadValue<UnityEngine.XR.OpenXR.Input.Pose>());
+            }
             sender.Deploy();
         }
-
-        //private void OnChange(SteamVR_Action_Boolean actionIn, SteamVR_Input_Sources inputSource, bool newState)
-        //{
-        //    STKEventSender sender = GetComponent<STKEventSender>();
-        //    sender.SetEventValue("Name", actionIn.GetShortName());
-        //    if (actionIn.GetType() == typeof(SteamVR_Action_Boolean))
-        //    {
-        //        SteamVR_Action_Boolean v = (SteamVR_Action_Boolean)actionIn;
-        //        sender.SetEventValue("boolValue", v.GetState(SteamVR_Input_Sources.Any));
-        //    }
-        //    sender.Deploy();
-        //}
-
-        //private void OnChange(SteamVR_Action_Single actionIn, SteamVR_Input_Sources fromSource, float newAxis, float newDelta)
-        //{
-        //    STKEventSender sender = GetComponent<STKEventSender>();
-        //    sender.SetEventValue("Name", actionIn.GetShortName());
-        //    if (actionIn.GetType() == typeof(SteamVR_Action_Single))
-        //    {
-        //        SteamVR_Action_Single v = (SteamVR_Action_Single)actionIn;
-        //        sender.SetEventValue("singleValue", v.GetAxis(SteamVR_Input_Sources.Any));
-        //    }
-        //    sender.Deploy();
-        //}
-
-        //private void OnChange(SteamVR_Action_Vector2 actionIn, SteamVR_Input_Sources fromSource, Vector2 axis, Vector2 delta)
-        //{
-        //    STKEventSender sender = GetComponent<STKEventSender>();
-        //    sender.SetEventValue("Name", actionIn.GetShortName());
-        //    if (actionIn.GetType() == typeof(SteamVR_Action_Vector2))
-        //    {
-        //        SteamVR_Action_Vector2 v = (SteamVR_Action_Vector2)actionIn;
-        //        sender.SetEventValue("vector2Value", v.GetAxis(SteamVR_Input_Sources.Any));
-        //    }
-        //    sender.Deploy();
-        //}
-
-        //private void OnChange(SteamVR_Action_Vector3 actionIn, SteamVR_Input_Sources fromSource, Vector3 axis, Vector3 delta)
-        //{
-        //    STKEventSender sender = GetComponent<STKEventSender>();
-        //    sender.SetEventValue("Name", actionIn.GetShortName());
-        //    if (actionIn.GetType() == typeof(SteamVR_Action_Vector3))
-        //    {
-        //        SteamVR_Action_Vector3 v = (SteamVR_Action_Vector3)actionIn;
-        //        sender.SetEventValue("vector3Value", v.GetAxis(SteamVR_Input_Sources.Any));
-        //    }
-        //    sender.Deploy();
-        //}
     }
 }
