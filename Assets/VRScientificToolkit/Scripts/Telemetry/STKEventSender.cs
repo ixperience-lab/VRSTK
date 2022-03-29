@@ -69,10 +69,13 @@ namespace STK
             {
                 for (int i = 0; i < trackedComponents.Length; i++)
                 {
+                    Debug.LogWarning("trackedComponents.Length: " + trackedComponents.Length + " name: " + trackedComponents[i].name);
+                    Debug.LogWarning("trackedVariableNames.array[i].array.Length: " + trackedVariableNames.array[i].array.Length);
                     for (int j = 0; j < trackedVariableNames.array[i].array.Length; j++)
                     {
                         if (trackedComponents[i].GetType().GetProperty(trackedVariableNames.array[i].array[j]) != null)
                         {
+                            Debug.LogWarning("eventVariableNames.array[i].array[j]: " + eventVariableNames.array[i].array[j]);
                             eventToSend.SetValue(eventVariableNames.array[i].array[j], trackedComponents[i].GetType().GetProperty(trackedVariableNames.array[i].array[j]).GetValue(trackedComponents[i]));
                         }
                         else if (trackedComponents[i].GetType().GetField(trackedVariableNames.array[i].array[j]) != null)

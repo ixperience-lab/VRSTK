@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 3204676200831660674}
   - component: {fileID: 2346659901761565866}
   - component: {fileID: 1879421370019799074}
+  - component: {fileID: 8269565302342240612}
   m_Layer: 0
   m_Name: Controller (left)
   m_TagString: Untagged
@@ -145,6 +146,34 @@ MonoBehaviour:
       - rotation_Transform
   timedInterval: 1
   interval: 0.1
+--- !u!114 &8269565302342240612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513607149978677775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: d40263b5f889b674e8e6871c88ab7ffa, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents:
+  - {fileID: 1072815306945705324}
+  trackedVariableNames:
+    array:
+    - array:
+      - position
+      - rotation
+  eventVariableNames:
+    array:
+    - array:
+      - position_Transform
+      - rotation_Transform
+  timedInterval: 0
+  interval: 1
 --- !u!1 &1743782161060414398
 GameObject:
   m_ObjectHideFlags: 0
