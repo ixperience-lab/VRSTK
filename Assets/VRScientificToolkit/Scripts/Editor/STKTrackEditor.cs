@@ -151,7 +151,7 @@ namespace STK
             }
             catch (NullReferenceException e)
             {
-                Debug.LogError("The STKTrackedObjects GameObject was not found in the scene. Please add it to the scene from the prefabs folder.");
+                Debug.LogError("The STKTrackedObjects GameObject was not found in the scene. Please add it to the scene from the prefabs folder. Exception message: " + e.Message);
             }
 
             //Attach Eventsender

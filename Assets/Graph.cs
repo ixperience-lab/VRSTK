@@ -21,7 +21,8 @@ public class Graph : MonoBehaviour
         graphWidth = transform.Find("Linerenderer").GetComponent<RectTransform>().rect.width;
         graphHeight = transform.Find("Linerenderer").GetComponent<RectTransform>().rect.height;
         newLineRenderer = GetComponentInChildren<LineRenderer>();
-        newLineRenderer.SetVertexCount(vertexAmount);
+        //newLineRenderer.SetVertexCount(vertexAmount); //obsolete
+        newLineRenderer.positionCount = vertexAmount;
 
         xInterval = graphWidth / vertexAmount;
         

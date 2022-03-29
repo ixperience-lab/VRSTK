@@ -44,12 +44,12 @@ namespace STK
         private Headset _headsetInformation;
         private BCITraining _bciTraining;
 
-        float _timerCortex_state = 0;
+        //float _timerCortex_state = 0;
         const float TIME_UPDATE_CORTEX_STATE = 0.5f;
 
-        float _timerCounter_CQ = 0;
+        //float _timerCounter_CQ = 0;
         float _timerCounter_queryHeadset = 0;
-        float _timerCounter_LicenseValidDay = 0;
+        //float _timerCounter_LicenseValidDay = 0;
 
         double _nRemainingDay = -1;
 
@@ -61,7 +61,7 @@ namespace STK
         float _timerDataUpdate = 0;
 
         bool _isConnectDone = false;
-        bool _isConnected = false;
+        //bool _isConnected = false;
         bool _isQueryHeadset = false;
         bool _isQueryHeadsetDeactivated = false;
         bool _isConnectedToDevice = false;

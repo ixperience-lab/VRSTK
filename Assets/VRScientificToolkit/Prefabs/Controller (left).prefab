@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 402477091176153215}
   - component: {fileID: 3204676200831660674}
   - component: {fileID: 2346659901761565866}
+  - component: {fileID: 1879421370019799074}
   m_Layer: 0
   m_Name: Controller (left)
   m_TagString: Untagged
@@ -116,6 +117,34 @@ MonoBehaviour:
   _actionReference: {fileID: -9186931079000282114, guid: 9b087b044cca9eb43937ba8c9eda3777,
     type: 3}
   _target: {fileID: 4312718313974055855}
+--- !u!114 &1879421370019799074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513607149978677775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: bb073ea4ed466ad4dac49ea57bda96e6, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents:
+  - {fileID: 4320819205389357825}
+  trackedVariableNames:
+    array:
+    - array:
+      - position
+      - rotation
+  eventVariableNames:
+    array:
+    - array:
+      - position_Transform
+      - rotation_Transform
+  timedInterval: 1
+  interval: 0.1
 --- !u!1 &1743782161060414398
 GameObject:
   m_ObjectHideFlags: 0

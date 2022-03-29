@@ -277,8 +277,12 @@ namespace STK
                 LineRenderer lr = lineLeft.GetComponent<LineRenderer>();
                 lineRendererMaterial.SetColor("_Color", color);
                 lr.material = lineRendererMaterial;
-                lr.SetColors(color, color);
-                lr.SetWidth(0.01f, 0.01f);
+                //lr.SetColors(color, color); // obsolete
+                lr.startColor = color;
+                lr.endColor = color;
+                //lr.SetWidth(0.01f, 0.01f); // obsolete
+                lr.startWidth = 0.01f;
+                lr.endWidth = 0.01f;
                 lr.SetPosition(0, start);
                 lr.SetPosition(1, end);
 
