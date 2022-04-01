@@ -45,7 +45,7 @@ namespace STK
         
         void Start()
         {
-            Debug.LogWarning("STKEyeLookDirection script started");
+            Debug.Log("STKEyeLookDirection script started");
 
             sphereEyeCollider = GameObject.Find("SphereEyeCollider");
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9148911851293354158}
   - component: {fileID: 9149657578417975426}
   m_Layer: 0
-  m_Name: VRSTKInputActionTracker
+  m_Name: VRSTKPrefabInputActionTracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
