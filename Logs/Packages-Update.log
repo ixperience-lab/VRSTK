@@ -65,3 +65,18 @@ The following packages were updated:
   com.unity.purchasing from version 3.0.2 to 3.2.2
   com.unity.test-framework from version 1.1.24 to 1.1.29
   com.unity.xr.legacyinputhelpers from version 2.1.7 to 2.1.8
+
+=== Mon Mar 14 12:28:02 2022
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.analytics from version 3.6.11 to 3.6.12
+  com.unity.ide.rider from version 1.2.1 to 2.0.7
+  com.unity.ide.visualstudio from version 2.0.11 to 2.0.14
+  com.unity.purchasing from version 3.2.2 to 4.1.2
+  com.unity.textmeshpro from version 2.1.4 to 3.0.6
+  com.unity.timeline from version 1.2.18 to 1.4.8
+The following packages were removed:
+  com.unity.xr.openvr.standalone@2.0.5

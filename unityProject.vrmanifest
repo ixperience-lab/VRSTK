@@ -5,6 +5,7 @@
       "app_key": "application.generated.unity.vrscientifictoolkit.exe",
       "launch_type": "url",
       "url": "steam://launch/",
+      "action_manifest_path": "C:\\Users\\Wladimir Hettmann\\Documents\\GitHub\\VRSTK\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "VRScientificToolkit [Testing]"

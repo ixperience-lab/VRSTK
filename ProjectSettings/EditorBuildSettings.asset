@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/VRScientificToolkit/Scenes/VRSTK.unity
     guid: fad018ab01baddd45869b2130d68374d
-  m_configObjects: {}
+  m_configObjects:
+    Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: c160feeeee83d8e47877ae7ce83e9b4b,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: aa8180c7644bf5f43995aa43ab3dccd9,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 5bba1d92f47ff394f93dbcaef9626e25,
+      type: 2}
