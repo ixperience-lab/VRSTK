@@ -27,6 +27,11 @@ Visit our wiki for quickstart instructions
 [:uk: Quickstart](https://github.com/ixperience-lab/VRSTK/wiki/Quickstart-English)
 
 
+
 ## Requirements
-- Unity3D 2019.4.x
-- SteamVR plugin for Unity3D 
+- Unity3D 2020.3.x
+- OpenXR Unity Package min. 4.2.X
+- New Unity Input System
+#### Optional Requirements
+- :eyes: [Eye-Tracking with Vive Pro Eye](https://developer-express.vive.com/resources/vive-sense/eye-and-facial-tracking-sdk/)
+- :brain: [EEG with Emotiv](https://github.com/Emotiv/unity-plugin)
