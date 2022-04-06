@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb96a68267fed5347b8c033e27800a14, type: 3}
-  m_Name: Settings
+  m_Script: {fileID: 11500000, guid: 5ddec862d19d4674b90cbebf15eafc4c, type: 3}
+  m_Name: TrackRightHandControllerMenuButtonPress38400
   m_EditorClassIdentifier: 
-  jsonPath: C:\My_JSON_Data
-  EventMaximum: 80000
-  useSlidingWindow: 0
-  useDataReduction: 0
-  createFileWhenFull: 1
+  parameters: []
+  eventName: ButtonPress38400
+  time: 0

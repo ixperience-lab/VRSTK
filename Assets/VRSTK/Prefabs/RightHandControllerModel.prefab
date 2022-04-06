@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 3648781955555383098}
   - component: {fileID: 7533367601480951621}
   - component: {fileID: 1474229332509757569}
+  - component: {fileID: 4934542581447638661}
   m_Layer: 0
   m_Name: TriggerPress
   m_TagString: Untagged
@@ -386,6 +387,36 @@ MonoBehaviour:
     type: 3}
   _normalColor: {r: 1, g: 0, b: 0, a: 1}
   _pressedColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &4934542581447638661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2812118583453278896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: 0ccc3c709d82aaa498ab936973901ed2, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents:
+  - {fileID: 8645323362984614218}
+  - {fileID: 1720748215712949178}
+  - {fileID: 3648781955555383098}
+  trackedVariableNames:
+    array:
+    - array: []
+    - array: []
+    - array: []
+  eventVariableNames:
+    array:
+    - array: []
+    - array: []
+    - array: []
+  timedInterval: 1
+  interval: 0.1
 --- !u!1 &3760516415192177063
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,6 +666,7 @@ GameObject:
   - component: {fileID: 4969267954844730845}
   - component: {fileID: 1165382367015883987}
   - component: {fileID: 6646687951237667768}
+  - component: {fileID: 5342921682130400227}
   m_Layer: 0
   m_Name: ButtonPress
   m_TagString: Untagged
@@ -734,6 +766,40 @@ MonoBehaviour:
     type: 3}
   _normalColor: {r: 1, g: 0, b: 0, a: 1}
   _pressedColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &5342921682130400227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6486532496333549895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: 9da7c9f19a743c64399bea03cb94f5a9, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents:
+  - {fileID: 4865921927887635728}
+  - {fileID: 4215036363479559370}
+  - {fileID: 4969267954844730845}
+  trackedVariableNames:
+    array:
+    - array:
+      - position
+      - rotation
+    - array: []
+    - array: []
+  eventVariableNames:
+    array:
+    - array:
+      - position_Transform
+      - rotation_Transform
+    - array: []
+    - array: []
+  timedInterval: 1
+  interval: 0.1
 --- !u!1 &6547476333537810510
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,6 +813,7 @@ GameObject:
   - component: {fileID: 6906206336179348964}
   - component: {fileID: 1343773351642537532}
   - component: {fileID: 3790800079686180242}
+  - component: {fileID: 6093972937190698482}
   m_Layer: 0
   m_Name: ButtonPress
   m_TagString: Untagged
@@ -846,6 +913,36 @@ MonoBehaviour:
     type: 3}
   _normalColor: {r: 1, g: 0, b: 0, a: 1}
   _pressedColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &6093972937190698482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6547476333537810510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: d8f7de837f0d09c40a70dee098b80de9, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents:
+  - {fileID: 3174189000845750856}
+  - {fileID: 2530556153979957657}
+  - {fileID: 6906206336179348964}
+  trackedVariableNames:
+    array:
+    - array: []
+    - array: []
+    - array: []
+  eventVariableNames:
+    array:
+    - array: []
+    - array: []
+    - array: []
+  timedInterval: 1
+  interval: 0.1
 --- !u!1 &6985230795417996932
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,6 +1018,7 @@ GameObject:
   - component: {fileID: 2755511302131616937}
   - component: {fileID: 82824269367780862}
   - component: {fileID: 1046286623459065320}
+  - component: {fileID: 2130479316881682527}
   m_Layer: 0
   m_Name: GripPressLeft
   m_TagString: Untagged
@@ -1020,6 +1118,36 @@ MonoBehaviour:
     type: 3}
   _normalColor: {r: 1, g: 0, b: 0, a: 1}
   _pressedColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &2130479316881682527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7944115039686106913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: 3304382d0e8a29a4a945ba027ebce8b7, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents:
+  - {fileID: 7165026713818753262}
+  - {fileID: 3635232732924233831}
+  - {fileID: 2755511302131616937}
+  trackedVariableNames:
+    array:
+    - array: []
+    - array: []
+    - array: []
+  eventVariableNames:
+    array:
+    - array: []
+    - array: []
+    - array: []
+  timedInterval: 1
+  interval: 0.1
 --- !u!1 &8237145618457041632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,6 +1161,7 @@ GameObject:
   - component: {fileID: 8561545882293384608}
   - component: {fileID: 6571837572659600067}
   - component: {fileID: 4809991103778279255}
+  - component: {fileID: 3317554435818450735}
   m_Layer: 0
   m_Name: Touch
   m_TagString: Untagged
@@ -1133,6 +1262,43 @@ MonoBehaviour:
     type: 3}
   _normalColor: {r: 1, g: 0, b: 0, a: 1}
   _pressedColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &3317554435818450735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8237145618457041632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: 12f3231ae3cdcb84d9f291b1db22d0b3, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents:
+  - {fileID: 2029078818730406825}
+  - {fileID: 2740218600900372352}
+  - {fileID: 8561545882293384608}
+  - {fileID: 6571837572659600067}
+  trackedVariableNames:
+    array:
+    - array:
+      - position
+      - rotation
+    - array: []
+    - array: []
+    - array: []
+  eventVariableNames:
+    array:
+    - array:
+      - position_Transform
+      - rotation_Transform
+    - array: []
+    - array: []
+    - array: []
+  timedInterval: 1
+  interval: 0.1
 --- !u!1 &8420621059571789156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1343,7 @@ GameObject:
   - component: {fileID: 5267004316988716675}
   - component: {fileID: 2171189286948744704}
   - component: {fileID: 1312223784139056905}
+  - component: {fileID: 4548269299371587627}
   m_Layer: 0
   m_Name: GripPressRight
   m_TagString: Untagged
@@ -1276,3 +1443,33 @@ MonoBehaviour:
     type: 3}
   _normalColor: {r: 1, g: 0, b: 0, a: 1}
   _pressedColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &4548269299371587627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8774875043942538553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: a5a0a7aaa75b38a4f9cb736dfef76f14, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents:
+  - {fileID: 7464263906932259816}
+  - {fileID: 2402996969764960178}
+  - {fileID: 5267004316988716675}
+  trackedVariableNames:
+    array:
+    - array: []
+    - array: []
+    - array: []
+  eventVariableNames:
+    array:
+    - array: []
+    - array: []
+    - array: []
+  timedInterval: 1
+  interval: 0.1

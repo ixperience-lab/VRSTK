@@ -10,14 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ddec862d19d4674b90cbebf15eafc4c, type: 3}
-  m_Name: TrackRightHandController16244
+  m_Name: TrackLocomotionProviderTelepotation30030
   m_EditorClassIdentifier: 
-  parameters:
-  - name: position_Transform
-    typeIndex: 5
-    hideFromInspector: 1
-  - name: rotation_Transform
-    typeIndex: 7
-    hideFromInspector: 1
-  eventName: RightHandController16244
+  parameters: []
+  eventName: LocomotionProviderTelepotation30030
   time: 0

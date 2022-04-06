@@ -10,14 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ddec862d19d4674b90cbebf15eafc4c, type: 3}
-  m_Name: TrackAim (right)31936
+  m_Name: TrackLocomotionProviderContinousMoveBridge30698
   m_EditorClassIdentifier: 
   parameters:
-  - name: position_Transform
-    typeIndex: 5
+  - name: enabled_MeshRenderer
+    typeIndex: 3
     hideFromInspector: 1
-  - name: rotation_Transform
-    typeIndex: 7
-    hideFromInspector: 1
-  eventName: Aim(right)31936
+  eventName: Bridge30698
   time: 0

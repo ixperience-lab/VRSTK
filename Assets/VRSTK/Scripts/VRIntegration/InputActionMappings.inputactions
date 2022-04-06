@@ -1,5 +1,5 @@
 {
-    "name": "VRSTKInputActionMapping",
+    "name": "InputActionMappings",
     "maps": [
         {
             "name": "VRSTK Head",
@@ -1648,7 +1648,7 @@
                     "type": "Value",
                     "id": "b63d89a9-76b5-47d2-ba4e-25f948007fc0",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -1704,7 +1704,7 @@
                 {
                     "name": "",
                     "id": "7f2edcd7-4b8f-4b1d-8662-451adcd50771",
-                    "path": "<XRController>{RightHand}/Primary2DAxis",
+                    "path": "*/{Primary2DAxis}",
                     "interactions": "Sector(directions=1)",
                     "processors": "",
                     "groups": "Generic XR Controller",
@@ -1731,6 +1731,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db4f09ed-d8f1-4948-843f-9e590cf89b41",
+                    "path": "*/{Primary2DAxis}",
+                    "interactions": "",
+                    "processors": "StickDeadzone",
+                    "groups": "",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

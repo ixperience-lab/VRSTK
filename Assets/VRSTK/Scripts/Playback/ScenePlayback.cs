@@ -361,7 +361,10 @@ namespace VRSTK
                         }
                         else
                         {
-                            c.GetType().GetProperty(name).SetValue(c, s);
+                            // hewl ToDo: Converting "True" to boolean true
+                            bool b = node;
+                            c.GetType().GetProperty(name).SetValue(c, b);
+                            //c.GetType().GetProperty(name).SetValue(c, s);
                         }
                     }
                 }
