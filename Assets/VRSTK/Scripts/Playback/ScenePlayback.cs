@@ -362,9 +362,13 @@ namespace VRSTK
                         else
                         {
                             // hewl ToDo: Converting "True" to boolean true
-                            bool b = node;
-                            c.GetType().GetProperty(name).SetValue(c, b);
-                            //c.GetType().GetProperty(name).SetValue(c, s);
+                            if (c.GetType() == typeof(bool) || c.GetType() == typeof(System.Boolean))
+                            {
+                                bool b = node;
+                                c.GetType().GetProperty(name).SetValue(c, b);
+                            }
+                            else
+                                c.GetType().GetProperty(name).SetValue(c, s);
                         }
                     }
                 }
