@@ -1,29 +1,29 @@
 Using pre-set license
-Built from '2020.3/staging' branch; Version is '2020.3.25f1 (9b9180224418) revision 10195328'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10  (10.0.19043) 64bit Enterprise' Language: 'de' Physical Memory: 65474 MB
+Built from '2020.3/staging' branch; Version is '2020.3.30f1 (1fb1bf06830e) revision 2077119'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19043) 64bit Education' Language: 'de' Physical Memory: 32689 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
 COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2020.3.25f1\Editor\Unity.exe
+C:\Program Files\Unity\Hub\Editor\2020.3.30f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-D:/hewl/VRSTK_Master
+C:/Users/Wladimir Hettmann/Documents/GitHub/VRSTK_Master
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-64905
-Successfully changed project path to: D:/hewl/VRSTK_Master
-D:/hewl/VRSTK_Master
+61125
+Successfully changed project path to: C:/Users/Wladimir Hettmann/Documents/GitHub/VRSTK_Master
+C:/Users/Wladimir Hettmann/Documents/GitHub/VRSTK_Master
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 53.98 ms, found 11 plugins.
+Refreshing native plugins compatible for Editor in 55.83 ms, found 11 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Initialize engine version: 2020.3.25f1 (9b9180224418)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path D:/hewl/VRSTK_Master/Assets
+Initialize engine version: 2020.3.30f1 (1fb1bf06830e)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Wladimir Hettmann/Documents/GitHub/VRSTK_Master/Assets
 [Subsystems] No descriptors matched for  examples in Assets/MeshingFeaturePlugin/UnitySubsystemsManifest.json.
 [Subsystems] No descriptors matched for  inputs in Assets/MeshingFeaturePlugin/UnitySubsystemsManifest.json.
 [Subsystems] No descriptors matched for  displays in Assets/MeshingFeaturePlugin/UnitySubsystemsManifest.json.
@@ -31,100 +31,100 @@ Initialize engine version: 2020.3.25f1 (9b9180224418)
 GfxDevice: creating device client; threaded=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce RTX 2080 Ti (ID=0x1e04)
+    Renderer: NVIDIA GeForce RTX 2060 (ID=0x1f08)
     Vendor:   
-    VRAM:     11048 MB
-    Driver:   30.0.14.7247
+    VRAM:     5980 MB
+    Driver:   27.21.14.5671
 Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56572
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56192
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.002166 seconds.
-Native extension for LinuxStandalone target not found
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001781 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 43.84 ms, found 11 plugins.
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 38.78 ms, found 11 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.499 seconds
+- Completed reload, in  0.383 seconds
 Domain Reload Profiling:
-	ReloadAssembly (499ms)
-		BeginReloadAssembly (45ms)
+	ReloadAssembly (384ms)
+		BeginReloadAssembly (43ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (392ms)
-			LoadAssemblies (43ms)
+			CreateAndSetChildDomain (0ms)
+		EndReloadAssembly (294ms)
+			LoadAssemblies (42ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (125ms)
+			SetupTypeCache (87ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (27ms)
-			SetupLoadedEditorAssemblies (155ms)
+			RebuildScriptCaches (17ms)
+			SetupLoadedEditorAssemblies (120ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (6ms)
+				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (44ms)
-				BeforeProcessingInitializeOnLoad (13ms)
-				ProcessInitializeOnLoadAttributes (69ms)
-				ProcessInitializeOnLoadMethodAttributes (22ms)
+				RefreshPlugins (39ms)
+				BeforeProcessingInitializeOnLoad (9ms)
+				ProcessInitializeOnLoadAttributes (52ms)
+				ProcessInitializeOnLoadMethodAttributes (16ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.005416 seconds.
+Registered in 0.007629 seconds.
 Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 50.84 ms, found 11 plugins.
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 39.17 ms, found 11 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.991 seconds
+- Completed reload, in  0.730 seconds
 Domain Reload Profiling:
-	ReloadAssembly (992ms)
-		BeginReloadAssembly (122ms)
+	ReloadAssembly (731ms)
+		BeginReloadAssembly (96ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
+			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (18ms)
-		EndReloadAssembly (819ms)
-			LoadAssemblies (79ms)
+			CreateAndSetChildDomain (14ms)
+		EndReloadAssembly (594ms)
+			LoadAssemblies (74ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (211ms)
+			SetupTypeCache (151ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (54ms)
-			SetupLoadedEditorAssemblies (366ms)
+			RebuildScriptCaches (32ms)
+			SetupLoadedEditorAssemblies (262ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (5ms)
+				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (51ms)
-				BeforeProcessingInitializeOnLoad (96ms)
-				ProcessInitializeOnLoadAttributes (166ms)
-				ProcessInitializeOnLoadMethodAttributes (42ms)
-				AfterProcessingInitializeOnLoad (6ms)
+				RefreshPlugins (39ms)
+				BeforeProcessingInitializeOnLoad (69ms)
+				ProcessInitializeOnLoadAttributes (116ms)
+				ProcessInitializeOnLoadMethodAttributes (29ms)
+				AfterProcessingInitializeOnLoad (5ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 0.93 ms, found 11 plugins.
+Refreshing native plugins compatible for Editor in 0.94 ms, found 11 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2777 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 112.4 MB.
-System memory in use after: 112.6 MB.
+System memory in use before: 184.8 MB.
+System memory in use after: 185.0 MB.
 
-Unloading 81 unused Assets to reduce memory usage. Loaded Objects now: 3169.
-Total: 5.164100 ms (FindLiveObjects: 0.221400 ms CreateObjectMapping: 0.127500 ms MarkObjects: 4.741400 ms  DeleteObjects: 0.072800 ms)
+Unloading 81 unused Assets to reduce memory usage. Loaded Objects now: 3177.
+Total: 4.818500 ms (FindLiveObjects: 0.189400 ms CreateObjectMapping: 0.093900 ms MarkObjects: 4.388500 ms  DeleteObjects: 0.145800 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -138,131 +138,565 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/VRSTK/Scenes/EMotivTracking.unity
-  artifactKey: Guid(4692439727be9614c8dfbe5c3496ef3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scenes/EMotivTracking.unity using Guid(4692439727be9614c8dfbe5c3496ef3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef851419e6516b5208bd7504f4a17c71') in 0.015206 seconds 
-  Import took 0.018474 seconds .
-
+  path: Assets/VRSTK/Events/TrackMotionDataHeaderEvent.asset
+  artifactKey: Guid(9c86d7d9b3993f94f85f95ce89a404de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Events/TrackMotionDataHeaderEvent.asset using Guid(9c86d7d9b3993f94f85f95ce89a404de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc0faadd8d2141bcd3259e7b26b33c05') in 0.025309 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000210 seconds.
+  Time since last request: 0.002422 seconds.
+  path: Assets/VRSTK/Prefabs/EmotivBrainComputerInterfaceTracker.prefab
+  artifactKey: Guid(e7a87001cb4231e4f9527ef8c1e9c57c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/EmotivBrainComputerInterfaceTracker.prefab using Guid(e7a87001cb4231e4f9527ef8c1e9c57c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eeaa57c885be9182f55d6a0997017a63') in 0.016434 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002146 seconds.
+  path: Assets/VRSTK/Scripts/Telemetry/EventSender.cs
+  artifactKey: Guid(3e4e587abd9a01a4cba77ffb1d452b60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Telemetry/EventSender.cs using Guid(3e4e587abd9a01a4cba77ffb1d452b60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c48c7e7ebfbbedea9f0267f417cc77cf') in 0.004355 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001295 seconds.
+  path: Assets/VRSTK/Prefabs
+  artifactKey: Guid(ad293a593a52ffb4587f9494d21f4313) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs using Guid(ad293a593a52ffb4587f9494d21f4313) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a1ca17d98ab21d40ad394bb631df5a3') in 0.001238 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001805 seconds.
+  path: Assets/VRSTK/SampleSceneData/Bar4.mat
+  artifactKey: Guid(d26b0c48cdbb7be4192b11068eb5dec5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Bar4.mat using Guid(d26b0c48cdbb7be4192b11068eb5dec5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5c0c1038c4a63653fafb45824bd60ef') in 0.044981 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002140 seconds.
+  path: Assets/VRSTK/Scripts/Playback/ScenePlayback.cs
+  artifactKey: Guid(6087532069a181e42bbc609dfcc6d87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Playback/ScenePlayback.cs using Guid(6087532069a181e42bbc609dfcc6d87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c28481296207198458530d0f300dddf8') in 0.001347 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001956 seconds.
+  path: Assets/VRSTK/Scripts/Playback/TrackedObjects.cs
+  artifactKey: Guid(7f10f3b5e810ce14e8fd0a26699c1838) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Playback/TrackedObjects.cs using Guid(7f10f3b5e810ce14e8fd0a26699c1838) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '20d5378d722d2370fcb6f5a59667968c') in 0.001313 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003514 seconds.
+  path: Assets/VRSTK/Prefabs/ToggleProperty.prefab
+  artifactKey: Guid(dcff3c95ea0916a48be021d29aa43074) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/ToggleProperty.prefab using Guid(dcff3c95ea0916a48be021d29aa43074) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f2f692d837de0e535439e6068c796a9') in 0.012557 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003280 seconds.
+  path: Assets/VRSTK/SampleSceneData/Bar1.mat
+  artifactKey: Guid(5838737d7913d6d47964d3074dc0eaab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Bar1.mat using Guid(5838737d7913d6d47964d3074dc0eaab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30f7a2235c4d29a93dbe212441eb8567') in 0.005736 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002194 seconds.
+  path: Assets/VRSTK/SampleSceneData/Grey.mat
+  artifactKey: Guid(f0f09411fe853d14ebb01e7de14a9ffd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Grey.mat using Guid(f0f09411fe853d14ebb01e7de14a9ffd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2cca8a84444d50e893fcf74a4d8dd824') in 0.005741 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002629 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/InputActionToButton.cs
+  artifactKey: Guid(118c9a8e2967a2040bd1fcf6e5526501) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/InputActionToButton.cs using Guid(118c9a8e2967a2040bd1fcf6e5526501) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d21ebcfd0934c926b7ea3f5a424e953') in 0.001240 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002262 seconds.
+  path: Assets/VRSTK/Prefabs/EmotivBrainComputerInterfaceTraining.prefab
+  artifactKey: Guid(ce22e50914a05b44c8d81bf9f97cf173) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/EmotivBrainComputerInterfaceTraining.prefab using Guid(ce22e50914a05b44c8d81bf9f97cf173) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0faf159f83106b6a8839442d46a407c') in 0.004079 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002105 seconds.
+  path: Assets/VRSTK/Scripts/EditorControl/PlaybackEditor.cs
+  artifactKey: Guid(77c9ae2fbf805844d9a3b3ab6f536890) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/EditorControl/PlaybackEditor.cs using Guid(77c9ae2fbf805844d9a3b3ab6f536890) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9719140beade62abbfcea3012bf5824') in 0.001231 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003163 seconds.
   path: Assets/VRSTK/Scenes
   artifactKey: Guid(3b1d9971e8e871845889d4349016150e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scenes using Guid(3b1d9971e8e871845889d4349016150e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77b28c9b86e129a140a17d20cdd14bb6') in 0.004890 seconds 
-  Import took 0.008410 seconds .
-
+Start importing Assets/VRSTK/Scenes using Guid(3b1d9971e8e871845889d4349016150e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77b28c9b86e129a140a17d20cdd14bb6') in 0.001213 seconds 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.005424 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.84 ms, found 11 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.924 seconds
-Domain Reload Profiling:
-	ReloadAssembly (925ms)
-		BeginReloadAssembly (107ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (5ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (30ms)
-		EndReloadAssembly (764ms)
-			LoadAssemblies (82ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (234ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (40ms)
-			SetupLoadedEditorAssemblies (311ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (5ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (84ms)
-				ProcessInitializeOnLoadAttributes (173ms)
-				ProcessInitializeOnLoadMethodAttributes (41ms)
-				AfterProcessingInitializeOnLoad (6ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (6ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.21 ms, found 11 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2746 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 110.6 MB.
-System memory in use after: 110.9 MB.
-
-Unloading 70 unused Assets to reduce memory usage. Loaded Objects now: 3172.
-Total: 5.374800 ms (FindLiveObjects: 0.204000 ms CreateObjectMapping: 0.112600 ms MarkObjects: 5.030300 ms  DeleteObjects: 0.026900 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+Received Import Request.
+  Time since last request: 0.001788 seconds.
+  path: Assets/VRSTK/Scripts/EditorControl/TrackEditor.cs
+  artifactKey: Guid(4f177f826baf9ba46beb6d5c3c166fca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/EditorControl/TrackEditor.cs using Guid(4f177f826baf9ba46beb6d5c3c166fca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9594664ea49afd872c691b9b1f7e37aa') in 0.001194 seconds 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.005453 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.57 ms, found 11 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.922 seconds
-Domain Reload Profiling:
-	ReloadAssembly (922ms)
-		BeginReloadAssembly (92ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (5ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (27ms)
-		EndReloadAssembly (778ms)
-			LoadAssemblies (86ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (248ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (40ms)
-			SetupLoadedEditorAssemblies (306ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (6ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (2ms)
-				BeforeProcessingInitializeOnLoad (85ms)
-				ProcessInitializeOnLoadAttributes (169ms)
-				ProcessInitializeOnLoadMethodAttributes (38ms)
-				AfterProcessingInitializeOnLoad (6ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (6ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.86 ms, found 11 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2746 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 110.7 MB.
-System memory in use after: 110.9 MB.
-
-Unloading 70 unused Assets to reduce memory usage. Loaded Objects now: 3175.
-Total: 5.625600 ms (FindLiveObjects: 0.209000 ms CreateObjectMapping: 0.135300 ms MarkObjects: 5.251000 ms  DeleteObjects: 0.029300 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+Received Import Request.
+  Time since last request: 0.002305 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/LookDirection.cs
+  artifactKey: Guid(991b5f2d553bc0047b849fbad97950eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/LookDirection.cs using Guid(991b5f2d553bc0047b849fbad97950eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6fa8640c656fe2efe2a2e1bea2312eb') in 0.001198 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001828 seconds.
+  path: Assets/VRSTK/SampleSceneData/RandomMoveCube.cs
+  artifactKey: Guid(b04d32fce17746442a9c0e36a6c35cc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/RandomMoveCube.cs using Guid(b04d32fce17746442a9c0e36a6c35cc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e3307ae7d8d01f7140d1a219ff6f54f') in 0.001211 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002167 seconds.
+  path: Assets/VRSTK/Prefabs/DataRepresentationContainer.prefab
+  artifactKey: Guid(81c5ec218946fda4dbfcfa07db7a1997) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/DataRepresentationContainer.prefab using Guid(81c5ec218946fda4dbfcfa07db7a1997) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb6fe90ae061a23a824d788bec2af127') in 0.048017 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002332 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/Graph.cs
+  artifactKey: Guid(bf45f7be5cf43674b9847c746ed95b5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/Graph.cs using Guid(bf45f7be5cf43674b9847c746ed95b5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b03f94c0af2a5240cb42daaa71063cdd') in 0.001241 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002109 seconds.
+  path: Assets/VRSTK/Prefabs/LeftHandControllerModel.prefab
+  artifactKey: Guid(d8c1beeb734eabc408e3a8a8f0fa5718) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/LeftHandControllerModel.prefab using Guid(d8c1beeb734eabc408e3a8a8f0fa5718) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '38ed34ee1eb402a0d333a27f77c46c37') in 0.013244 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003350 seconds.
+  path: Assets/VRSTK/SampleSceneData/Bar5.mat
+  artifactKey: Guid(06726e303d4398d4990393af8db2fccd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Bar5.mat using Guid(06726e303d4398d4990393af8db2fccd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa4f3b2b68495b4e98b0c2fde0d58f96') in 0.005853 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002460 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/CortexBrainComputerInterfacePrototype.cs
+  artifactKey: Guid(d3d90eeae1c612f40a26bf42cb143b22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/CortexBrainComputerInterfacePrototype.cs using Guid(d3d90eeae1c612f40a26bf42cb143b22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba42f09bd16d09f6c93cabbe47b387c8') in 0.001266 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003078 seconds.
+  path: Assets/VRSTK/Events
+  artifactKey: Guid(a4a72fda84bde364f88fc43be34690bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Events using Guid(a4a72fda84bde364f88fc43be34690bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27e21bd713e7949f46eb623bc54deb9f') in 0.001178 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001943 seconds.
+  path: Assets/VRSTK/Scripts/EditorControl/EventEditor.cs
+  artifactKey: Guid(9aaa3f3062355224b8f39fb47ea48c40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/EditorControl/EventEditor.cs using Guid(9aaa3f3062355224b8f39fb47ea48c40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6c5c45cbc1125b5ae2f2f184aa96ccf') in 0.001495 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002028 seconds.
+  path: Assets/VRSTK/Scripts/EditorControl/SettingsEditor.cs
+  artifactKey: Guid(4359051c18ec48e44854f541c1dcb110) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/EditorControl/SettingsEditor.cs using Guid(4359051c18ec48e44854f541c1dcb110) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff539650d3621dc516df67f68e91c281') in 0.001241 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.004369 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/CortexAppConfig.cs
+  artifactKey: Guid(0c0b098639498b842a79231b54993cdd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/CortexAppConfig.cs using Guid(0c0b098639498b842a79231b54993cdd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dcd2e245175307ce4aa80ff735e072e0') in 0.001292 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001282 seconds.
+  path: Assets/VRSTK/Scripts/Playback
+  artifactKey: Guid(3c01ac2e2471b9b4db0981dfab2779d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Playback using Guid(3c01ac2e2471b9b4db0981dfab2779d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f3898ec977d731e8109f61420acf9fa1') in 0.001176 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002086 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/InputActionMappingsEnabler.cs
+  artifactKey: Guid(41aaacd5efc9fca4094e59d49a8b8365) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/InputActionMappingsEnabler.cs using Guid(41aaacd5efc9fca4094e59d49a8b8365) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1062998afe690031a0f531ab06c365e8') in 0.001190 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001950 seconds.
+  path: Assets/VRSTK/Prefabs/Stage.prefab
+  artifactKey: Guid(2f17e2aadc75d6e49ad53314410414b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/Stage.prefab using Guid(2f17e2aadc75d6e49ad53314410414b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75fabdc9ee930a84a8896757c16234b3') in 0.011145 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001420 seconds.
+  path: Assets/VRSTK/Plugins
+  artifactKey: Guid(4b1a48c5743e1dc4b9bdc0f326539c3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Plugins using Guid(4b1a48c5743e1dc4b9bdc0f326539c3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f58cfbae64c36481ccf9c96baa3f99cf') in 0.001236 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.005311 seconds.
+  path: Assets/VRSTK/Scripts/TestControl/TestController.cs
+  artifactKey: Guid(fc09d9bc62bc5684d95a862ec7689390) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/TestControl/TestController.cs using Guid(fc09d9bc62bc5684d95a862ec7689390) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c75a2fa07af7b6012e9348ae56716ad0') in 0.001127 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001802 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/LeftController.preset
+  artifactKey: Guid(272a6ebb089470340ac535fd19142bd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/LeftController.preset using Guid(272a6ebb089470340ac535fd19142bd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Body: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Head: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (GripPressLeft: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (GripPressRight: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (TriggerPress: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (ButtonPress: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (TouchField: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Touch: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (ButtonPress: OnMeshFilterChanged)
+ -> (artifact id: 'd31662329afe7230f170710e8dde6604') in 0.011938 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001433 seconds.
+  path: Assets/VRSTK/Scripts/Visualization
+  artifactKey: Guid(f65998c54f5a38a42a5f40bc71110348) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization using Guid(f65998c54f5a38a42a5f40bc71110348) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5438a3a5bf3464328abfe9cbfcf25fcc') in 0.001233 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002034 seconds.
+  path: Assets/VRSTK/Prefabs/InputProperty.prefab
+  artifactKey: Guid(5328120db5e566f40aea0c9d715cd2ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/InputProperty.prefab using Guid(5328120db5e566f40aea0c9d715cd2ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88d3b0d5abdd98f06c093ed897bed25b') in 0.003266 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003128 seconds.
+  path: Assets/VRSTK
+  artifactKey: Guid(1adab6b41266d314bb753042b3a7d02a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK using Guid(1adab6b41266d314bb753042b3a7d02a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82314d55260b36c2f6314ebdb335e67a') in 0.001217 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001857 seconds.
+  path: Assets/VRSTK/Prefabs/RightHandControllerModel.prefab
+  artifactKey: Guid(2ce585b2a42430141a5570e5dd6bd23b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/RightHandControllerModel.prefab using Guid(2ce585b2a42430141a5570e5dd6bd23b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1eb468310ad00eea5a7b8c5265b5cb0f') in 0.008558 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002386 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/CreateObjectLookGraph.R
+  artifactKey: Guid(ca3d1084949ffc84dbca36b840e3b620) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/CreateObjectLookGraph.R using Guid(ca3d1084949ffc84dbca36b840e3b620) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cea5fd77490fff1f360446f07f5af082') in 0.002604 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002845 seconds.
+  path: Assets/VRSTK/Scripts
+  artifactKey: Guid(ce834f71ba16cc447ba7df3b74a7f043) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts using Guid(ce834f71ba16cc447ba7df3b74a7f043) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2159b091b00c0e462fe6bbaa01888eab') in 0.001220 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001816 seconds.
+  path: Assets/VRSTK/SampleSceneData/Bar2.mat
+  artifactKey: Guid(e7e506356b9dc51438e22bec3b82729f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Bar2.mat using Guid(e7e506356b9dc51438e22bec3b82729f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f367a257dc7608d0d3e53ee62ccc13c5') in 0.005793 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002184 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/ConvertType.R
+  artifactKey: Guid(c1cc22e6e98d35242915fc59d3c76dd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/ConvertType.R using Guid(c1cc22e6e98d35242915fc59d3c76dd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d5fb2105cd4508e84e88223afc3f409') in 0.001492 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003314 seconds.
+  path: Assets/VRSTK/Prefabs/XROriginEye.prefab
+  artifactKey: Guid(3da1d58fca33ef144ba7397273e57bca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/XROriginEye.prefab using Guid(3da1d58fca33ef144ba7397273e57bca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2443256e9a12ba07b88bde2c56fdbce5') in 0.026628 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003928 seconds.
+  path: Assets/VRSTK/SampleSceneData/Bar3.mat
+  artifactKey: Guid(3035d5fd4503f23478f802b82847a88a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Bar3.mat using Guid(3035d5fd4503f23478f802b82847a88a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f13b8a28356db815a677dc1867cd5684') in 0.005657 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001933 seconds.
+  path: Assets/VRSTK/SampleSceneData/Green.mat
+  artifactKey: Guid(cf78382196aba8744b013a7d05ca83a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Green.mat using Guid(cf78382196aba8744b013a7d05ca83a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dce70bc522226f764e31f4ba85c8b830') in 0.005065 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003796 seconds.
+  path: Assets/VRSTK/Prefabs/InputActionTracker.prefab
+  artifactKey: Guid(df5f4eadd5ffa68438b9b8798c9ef051) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/InputActionTracker.prefab using Guid(df5f4eadd5ffa68438b9b8798c9ef051) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd559f57a19323de134775ae0f5071ae4') in 0.003850 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002935 seconds.
+  path: Assets/VRSTK/Scripts/TestControl
+  artifactKey: Guid(72f32e9963a98a1429d8dfcf0c9d2b30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/TestControl using Guid(72f32e9963a98a1429d8dfcf0c9d2b30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8ebf96e69ed8827c8131347373c88df') in 0.001284 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002032 seconds.
+  path: Assets/VRSTK/Scripts/EditorControl/EditorGraph.cs
+  artifactKey: Guid(2a55b90387c55d14cb69390d830de350) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/EditorControl/EditorGraph.cs using Guid(2a55b90387c55d14cb69390d830de350) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d792aca2d6fd2c5646c3a68693fea6c') in 0.001193 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001373 seconds.
+  path: Assets/VRSTK/Resources
+  artifactKey: Guid(a9ec44919e4fedf40bc7cee20b956db1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Resources using Guid(a9ec44919e4fedf40bc7cee20b956db1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a06bb6fa96a56722052c2583d73b1304') in 0.001205 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003453 seconds.
+  path: Assets/VRSTK/Prefabs/XROriginLocomotion.prefab
+  artifactKey: Guid(2de97a3bb8970fa4d80209ea6f82915d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/XROriginLocomotion.prefab using Guid(2de97a3bb8970fa4d80209ea6f82915d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b5b496e9ed2f7bce50f65180b3e24ba') in 0.010934 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003073 seconds.
+  path: Assets/VRSTK/Scripts/EditorControl
+  artifactKey: Guid(c6bd391654ef4204eb81c87482278ae1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/EditorControl using Guid(c6bd391654ef4204eb81c87482278ae1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '176f86753c09637f73b470b4ce783e65') in 0.001213 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001759 seconds.
+  path: Assets/VRSTK/SampleSceneData/BoxRotate.cs
+  artifactKey: Guid(eeca0e56102a7c748887da2071dd766d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/BoxRotate.cs using Guid(eeca0e56102a7c748887da2071dd766d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '207eb618d164dd8b69e8b8ac2db1e4fa') in 0.001280 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001766 seconds.
+  path: Assets/VRSTK/Resources/Settings.asset
+  artifactKey: Guid(311d6decfd6a4a54d86d4a44eeef35d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Resources/Settings.asset using Guid(311d6decfd6a4a54d86d4a44eeef35d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7743075648b6d75489d43b8673a6edf9') in 0.001735 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001824 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/RightController.preset
+  artifactKey: Guid(dcd835b422d686f43abb22e8522e4b58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/RightController.preset using Guid(dcd835b422d686f43abb22e8522e4b58) Importer(815301076,1909f56bfc062723c751e8b465ee728b) SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Body: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Head: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (TriggerPress: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (ButtonPress: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (GripPressLeft: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (GripPressRight: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (TouchField: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Touch: OnMeshFilterChanged)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (ButtonPress: OnMeshFilterChanged)
+ -> (artifact id: 'c6a06dd72e41d7d6a93cbc45069c3252') in 0.006340 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001362 seconds.
+  path: Assets/VRSTK/Scripts/Telemetry
+  artifactKey: Guid(5bffc71f89482af4d92e79758f018310) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Telemetry using Guid(5bffc71f89482af4d92e79758f018310) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff558b0aae2e8bb83ea3cec480216024') in 0.001195 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001840 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/EyeLookDirection.cs
+  artifactKey: Guid(6c126fcdb933b854cbbd7397ccafba15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/EyeLookDirection.cs using Guid(6c126fcdb933b854cbbd7397ccafba15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82dfc06a69ad1192893e202c52b3bb04') in 0.001200 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003969 seconds.
+  path: Assets/VRSTK/Scripts/EditorControl/TestStageEditor.cs
+  artifactKey: Guid(80491acebc9af1d42afcc4a8117b1c13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/EditorControl/TestStageEditor.cs using Guid(80491acebc9af1d42afcc4a8117b1c13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f72830639d5ef8164e532e9eb4aec61') in 0.001238 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001745 seconds.
+  path: Assets/VRSTK/Scripts/TestControl/TestControllerProperty.cs
+  artifactKey: Guid(beecb874f2803134d887f7dabdd5c0c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/TestControl/TestControllerProperty.cs using Guid(beecb874f2803134d887f7dabdd5c0c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f69a9d6b901218bd624a3aa50b9b14e6') in 0.001226 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001771 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/InputActionToControl.cs
+  artifactKey: Guid(94e8424e4e1d5284bab7ce528aab5528) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/InputActionToControl.cs using Guid(94e8424e4e1d5284bab7ce528aab5528) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd64b47f4739006917a65a011883043e1') in 0.001239 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.004325 seconds.
+  path: Assets/VRSTK/SampleSceneData
+  artifactKey: Guid(8073f2b9af45c1e4998f33b5414087cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData using Guid(8073f2b9af45c1e4998f33b5414087cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9708d304125b6c6cf6b5c9e4823bb9df') in 0.001214 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001878 seconds.
+  path: Assets/VRSTK/Events/TrackEyeLookAtObject.asset
+  artifactKey: Guid(565fb443d4130ba4cad9f4503ec6262f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Events/TrackEyeLookAtObject.asset using Guid(565fb443d4130ba4cad9f4503ec6262f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2bb402edc285f80c68fd6a9f82d28771') in 0.001679 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002674 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration
+  artifactKey: Guid(82af7db500a7b8b4e9c246f0025b7327) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration using Guid(82af7db500a7b8b4e9c246f0025b7327) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89fc9b8df738c2d6da445fd4ae01c67c') in 0.001470 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003361 seconds.
+  path: Assets/VRSTK/SampleSceneData/Red.mat
+  artifactKey: Guid(040ee45f81d69f844b762725efdbe813) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Red.mat using Guid(040ee45f81d69f844b762725efdbe813) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2aefff7ea1419eab86d366051bb3622a') in 0.005970 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002254 seconds.
+  path: Assets/VRSTK/Scripts/EditorControl/CortexBrainComputerInterfaceGraphEditor.cs
+  artifactKey: Guid(916f70fb44a36464f845f99840091237) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/EditorControl/CortexBrainComputerInterfaceGraphEditor.cs using Guid(916f70fb44a36464f845f99840091237) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7238ea1964edcf388c90f32b112a44f9') in 0.001234 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001992 seconds.
+  path: Assets/VRSTK/Scripts/Telemetry/JsonParser.cs
+  artifactKey: Guid(06318131740f26b48b457b1947e45fa2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Telemetry/JsonParser.cs using Guid(06318131740f26b48b457b1947e45fa2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32b9d1cb7a885ef95214ed9e0eb2825c') in 0.001202 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001934 seconds.
+  path: Assets/VRSTK/Prefabs/EmotivTrainedMentelCommands.prefab
+  artifactKey: Guid(e19f1cd1ab06a1c44a51c5e9ef976395) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/EmotivTrainedMentelCommands.prefab using Guid(e19f1cd1ab06a1c44a51c5e9ef976395) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96af1f9a4dd8fe5481dff552624a4f16') in 0.006522 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002228 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/CortexBrainComputerInterfaceTraining.cs
+  artifactKey: Guid(709528d842ce52b4aad2f662eac5d233) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/CortexBrainComputerInterfaceTraining.cs using Guid(709528d842ce52b4aad2f662eac5d233) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd1e460fcf6b7c7eeefe0b6827a4ee10') in 0.001234 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001781 seconds.
+  path: Assets/VRSTK/Scripts/Telemetry/Event.cs
+  artifactKey: Guid(5ddec862d19d4674b90cbebf15eafc4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Telemetry/Event.cs using Guid(5ddec862d19d4674b90cbebf15eafc4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c80fe3dfc1d7b3f60bb853b52a3eb75') in 0.001434 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002267 seconds.
+  path: Assets/VRSTK/Prefabs/ControllerButton.prefab
+  artifactKey: Guid(302bb1e95948b6646a19fad33a84e8e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/ControllerButton.prefab using Guid(302bb1e95948b6646a19fad33a84e8e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b63700a5cf25d623f3e095d49cf6015') in 0.003353 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001955 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/CortexTrainedMentalCommandsTest.cs
+  artifactKey: Guid(5a989da4b0d6908469cb69baa987eefa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/CortexTrainedMentalCommandsTest.cs using Guid(5a989da4b0d6908469cb69baa987eefa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67d90416fa3b5e48c447874894e59182') in 0.001358 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.005139 seconds.
+  path: Assets/VRSTK/Scripts/Telemetry/EventTypeChecker.cs
+  artifactKey: Guid(369db23dde4f3614192c0d97aedc5e4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Telemetry/EventTypeChecker.cs using Guid(369db23dde4f3614192c0d97aedc5e4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cadde9795d2459e8fa01ca3adf98b50a') in 0.001228 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002000 seconds.
+  path: Assets/VRSTK/Scripts/ArrayTools.cs
+  artifactKey: Guid(66189751505ed814ea38b6ae221af531) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/ArrayTools.cs using Guid(66189751505ed814ea38b6ae221af531) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e988ef25f7619aaf21de86483179d5ed') in 0.001217 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001800 seconds.
+  path: Assets/VRSTK/Scenes/LocomotionTracking.unity
+  artifactKey: Guid(d03b51087d3b8eb4681c3d3bf2e60bbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scenes/LocomotionTracking.unity using Guid(d03b51087d3b8eb4681c3d3bf2e60bbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ffb854c527d7cb35fcd1f85990a8315') in 0.001473 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003685 seconds.
+  path: Assets/VRSTK/Scenes/EMotivTracking.unity
+  artifactKey: Guid(4692439727be9614c8dfbe5c3496ef3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scenes/EMotivTracking.unity using Guid(4692439727be9614c8dfbe5c3496ef3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7cb27c7a4f1ec841c5aa204bb6ef39da') in 0.001403 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003432 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/SaveFilesToWorkspace.R
+  artifactKey: Guid(9cb5431a4eb9fed4e8502c0bb56ba13e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/SaveFilesToWorkspace.R using Guid(9cb5431a4eb9fed4e8502c0bb56ba13e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4796dc9ca03dc42bb03688a4ff5adf52') in 0.001364 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001620 seconds.
+  path: Assets/VRSTK/Scripts/SaveButton.cs
+  artifactKey: Guid(799ccd0ee90404f488126497acf483de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/SaveButton.cs using Guid(799ccd0ee90404f488126497acf483de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b41d325e89bfac45a2f251fdced56e0') in 0.001221 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001797 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/InputActionToVector2.cs
+  artifactKey: Guid(5143c5425a6016a4181be5e99b845391) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/InputActionToVector2.cs using Guid(5143c5425a6016a4181be5e99b845391) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '911f57915b6d1ddef117ffbb98500eaa') in 0.001229 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003272 seconds.
+  path: Assets/VRSTK/Scripts/Settings.cs
+  artifactKey: Guid(bb96a68267fed5347b8c033e27800a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Settings.cs using Guid(bb96a68267fed5347b8c033e27800a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6b47049e280717a0ef3dcecdca2160e') in 0.001106 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.004634 seconds.
+  path: Assets/VRSTK/Scripts/StopButton.cs
+  artifactKey: Guid(acbd116b56527a64698826742b3d87fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/StopButton.cs using Guid(acbd116b56527a64698826742b3d87fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c262d86f707c8cbb8f1dcb8e91db52b') in 0.001207 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001753 seconds.
+  path: Assets/VRSTK/Events/TrackVRInput.asset
+  artifactKey: Guid(3a2e0a9bd25a1ba4fbd89249deab328b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Events/TrackVRInput.asset using Guid(3a2e0a9bd25a1ba4fbd89249deab328b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34e2c9493c1c7a795adf1570e09de045') in 0.001767 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001929 seconds.
+  path: Assets/VRSTK/Scripts/EditorControl/TestControllerEditor.cs
+  artifactKey: Guid(a47ee25e50866b64b9567fe5743e3240) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/EditorControl/TestControllerEditor.cs using Guid(a47ee25e50866b64b9567fe5743e3240) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0bd321a7bfc33039bb6604b866bdac7') in 0.001198 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.003562 seconds.
+  path: Assets/VRSTK/Scripts/TestControl/TestStage.cs
+  artifactKey: Guid(ae53efe4c01810c45af315f9d42512fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/TestControl/TestStage.cs using Guid(ae53efe4c01810c45af315f9d42512fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '66ae37f8f45cbe98389c06b2695a7d19') in 0.001243 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001989 seconds.
+  path: Assets/VRSTK/Plugins/SimpleJSON.cs
+  artifactKey: Guid(a2f3b6ea030be794e8e5a59544576f98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Plugins/SimpleJSON.cs using Guid(a2f3b6ea030be794e8e5a59544576f98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8da937239b6a955ec9f4b954ffc43e71') in 0.001239 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002165 seconds.
+  path: Assets/VRSTK/Scripts/SerialConnection/ReceiveSerial.cs
+  artifactKey: Guid(99b7599f62ae11c419ddebca054134c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/SerialConnection/ReceiveSerial.cs using Guid(99b7599f62ae11c419ddebca054134c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a572c0fd139bec87dadf90f68a5daee') in 0.001211 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001819 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/InputActionToVisibility.cs
+  artifactKey: Guid(9c056e56b76d9d446a59e4483ab88807) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/InputActionToVisibility.cs using Guid(9c056e56b76d9d446a59e4483ab88807) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c797bdd51f12c4a70586b2f10d734183') in 0.001223 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001798 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/InputActionToHaptics.cs
+  artifactKey: Guid(f02a02ee9ae6db648bae3263806013a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/InputActionToHaptics.cs using Guid(f02a02ee9ae6db648bae3263806013a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca0344e0b46eff91b9c7be7f1998aa97') in 0.001197 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001829 seconds.
+  path: Assets/VRSTK/Scripts/Telemetry/EventReceiver.cs
+  artifactKey: Guid(bf9e590f58a2bfb47918d368b7f2718b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Telemetry/EventReceiver.cs using Guid(bf9e590f58a2bfb47918d368b7f2718b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a2b8880ea9fa7558556f84cd3359887') in 0.001185 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002086 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/CreatePositionalHeatmap.R
+  artifactKey: Guid(772a422fe7024904a81e2f325be54292) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/CreatePositionalHeatmap.R using Guid(772a422fe7024904a81e2f325be54292) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3fe49bec394705cb28c451d8d5e8cbe1') in 0.001488 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3063.483248 seconds.
+  path: Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
+  artifactKey: Guid(fe393ace9b354375a9cb14cdbbc28be4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader using Guid(fe393ace9b354375a9cb14cdbbc28be4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f3fbf2bc84b876b391f5bb7caa95a0b') in 0.002905 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.040774 seconds.
+  path: Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc
+  artifactKey: Guid(3997e2241185407d80309a82f9148466) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc using Guid(3997e2241185407d80309a82f9148466) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da321eb65fb4c39702a55ea267d0ad49') in 0.002687 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.007958 seconds.
+  path: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
+  artifactKey: Guid(8f586378b4e144a9851e7b34d9b748ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset using Guid(8f586378b4e144a9851e7b34d9b748ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77475b453203d69eda0f11c7eab5a389') in 0.027470 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.027831 seconds.
+  path: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+  artifactKey: Guid(2e498d1c8094910479dc3e1b768306a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset using Guid(2e498d1c8094910479dc3e1b768306a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73c4f4f2da4d2ab57d901e0f40ae3f2f') in 0.008092 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.037324 seconds.
+  path: Assets/TextMesh Pro/Fonts/LiberationSans.ttf
+  artifactKey: Guid(e3265ab4bf004d28a9537516768c1c75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Fonts/LiberationSans.ttf using Guid(e3265ab4bf004d28a9537516768c1c75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cec1587b7129bde4b287cc77833a66ca') in 0.012560 seconds 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
