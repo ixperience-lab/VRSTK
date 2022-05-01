@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6386916479290784552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6386916479290784555}
+  - component: {fileID: 6386916479290784554}
+  - component: {fileID: 6386916479290784553}
+  m_Layer: 0
+  m_Name: EyeLookAtObject-108362
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6386916479290784555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6386916479290784552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.62175703, y: 0.5911702, z: -5.3368106}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6386916479290784554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6386916479290784552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e8acf626f98f14cb3e16d1fa083a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eyeHitPoint: {x: 0, y: 0, z: 0}
+  ObjectName: 
+  Duration: 0
+  Time: 0
+  _yellow: {fileID: 2100000, guid: 06a69a03542a1f44085fbb1f38a26ab6, type: 2}
+  _red: {fileID: 2100000, guid: 7973690b2c8875941b296da1ad054ac7, type: 2}
+--- !u!114 &6386916479290784553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6386916479290784552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: 206a9bc68444e474182cd69f3c2073fb, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents:
+  - {fileID: 6386916479290784554}
+  trackedVariableNames:
+    array:
+    - array:
+      - EyeHitPoint
+      - ObjectName
+      - Duration
+  eventVariableNames:
+    array:
+    - array:
+      - EyeHitPoint_EyeLookAtObjectPlayBack
+      - ObjectName_EyeLookAtObjectPlayBack
+      - Duration_EyeLookAtObjectPlayBack
+  timedInterval: 0
+  interval: 1
