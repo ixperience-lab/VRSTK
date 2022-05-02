@@ -47,6 +47,8 @@ public class EyeLookAtObjectPlayBack : MonoBehaviour
             sphere.name = ObjectName + "_" + Time;
             sphere.transform.position = new Vector3(_eyeHitPoint.x, _eyeHitPoint.y, _eyeHitPoint.z);
             sphere.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            sphere.GetComponent<MeshRenderer>().receiveShadows = false;
+            sphere.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             Renderer rend = sphere.GetComponent<Renderer>();
 
             if (Duration > 0.5f)
