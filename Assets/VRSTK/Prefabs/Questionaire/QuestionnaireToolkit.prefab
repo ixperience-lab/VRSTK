@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6707981411239160808}
   - component: {fileID: 6707981411239160811}
-  - component: {fileID: 6707981411239160822}
+  - component: {fileID: 7066219339176096721}
   - component: {fileID: 6707981411239160821}
   - component: {fileID: 6707981411239160809}
   - component: {fileID: 6707981411239160820}
@@ -63,14 +63,16 @@ MonoBehaviour:
   VibratingDurationForHovering: 0.05
   VibratingFrequencyForHovering: 1
   VibratingAmplitudeForHovering: 5
-  SoundClipForHovering: {fileID: 8300000, guid: d7d08c266925c5446947a004fde53aa0, type: 3}
+  SoundClipForHovering: {fileID: 8300000, guid: d7d08c266925c5446947a004fde53aa0,
+    type: 3}
   HoveringVolume: 1
   VibratingDurationForSelecting: 0.05
   VibratingFrequencyForSelecting: 200
   VibratingAmplitudeForSelecting: 1
-  SoundClipForSelecting: {fileID: 8300000, guid: 7b660b21fad7af34e806c3f3c4eb8868, type: 3}
+  SoundClipForSelecting: {fileID: 8300000, guid: 7b660b21fad7af34e806c3f3c4eb8868,
+    type: 3}
   SelectingVolume: 1
---- !u!114 &6707981411239160822
+--- !u!114 &7066219339176096721
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,7 +81,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6707981411239160810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35cf11b04392eb647bcf6d164697981c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe9e5866d96ac1848bab8f0a9b76735d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   JsonInputPath_1: Assets/Questionnaires/Data/Questions/questionnaire_example
@@ -93,7 +95,9 @@ MonoBehaviour:
   JsonInputPath_9: 
   JsonInputPath_10: 
   Questionnaires: []
-  questionnaire: {fileID: 1977427658288308199, guid: 4c6cc58c027d248458484da2093c22bc, type: 3}
+  _indexOfAQuestionnaireToSetActive: 0
+  questionnaire: {fileID: 3951100406968845949, guid: 7a44fb57c0f78554483ef7c4995adcbd,
+    type: 3}
   QuestionRecTest: {fileID: 6707981411239160808}
 --- !u!223 &6707981411239160821
 Canvas:
@@ -138,7 +142,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6707981411239160820
 MonoBehaviour:
   m_ObjectHideFlags: 0
