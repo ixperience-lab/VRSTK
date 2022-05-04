@@ -78,6 +78,7 @@ public class LocomotionRouteWithLinesPlayback : MonoBehaviour
             eyeViewLine.AddComponent<LineRenderer>();
             LineRenderer lr = eyeViewLine.GetComponent<LineRenderer>();
             lr.material = _red;
+            lr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             //lr.SetColors(color, color);
             lr.SetWidth(0.01f, 0.01f);
             lr.SetPosition(0, _headsetPotion);
