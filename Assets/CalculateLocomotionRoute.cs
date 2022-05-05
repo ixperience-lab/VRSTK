@@ -34,12 +34,19 @@ public class CalculateLocomotionRoute : MonoBehaviour
 
     void AddPoitToLineRenderer()
     {
-        _headsetPotions.Add(new Vector3(_headsetPotion.x, _headsetPotion.y - _yOffset, _headsetPotion.z));
-        
-        LineRenderer lineRenderer = GetComponent<LineRenderer>();
-        
-        Vector3[] headsetPotions = _headsetPotions.ToArray();
-        lineRenderer.positionCount = headsetPotions.Length;
-        lineRenderer.SetPositions(headsetPotions);
+        RaycastHit hitPosition;
+        float maxDistance = 2.0f;
+        Physics.Raycast(_headsetPotion, Vector3.down, out hitPosition, maxDistance);
+        Debug.Log("hitPosition: " + hitPosition.point);
+        if (Physics.Raycast(_headsetPotion, Vector3.down, out hitPosition, maxDistance))
+        {
+            _headsetPotions.Add(new Vector3(hitPosition.point.x, hitPosition.point.y, hitPosition.point.z));
+
+            LineRenderer lineRenderer = GetComponent<LineRenderer>();
+
+            Vector3[] headsetPotions = _headsetPotions.ToArray();
+            lineRenderer.positionCount = headsetPotions.Length;
+            lineRenderer.SetPositions(headsetPotions);
+        }
     }
 }

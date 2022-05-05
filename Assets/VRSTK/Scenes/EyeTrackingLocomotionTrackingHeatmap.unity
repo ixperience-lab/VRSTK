@@ -8546,6 +8546,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1013096814955168147, guid: 3da1d58fca33ef144ba7397273e57bca,
+        type: 3}
+      propertyPath: m_CameraYOffset
+      value: 1.1176
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013096814955168147, guid: 3da1d58fca33ef144ba7397273e57bca,
+        type: 3}
+      propertyPath: m_RequestedTrackingOriginMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1013096814955168149, guid: 3da1d58fca33ef144ba7397273e57bca,
         type: 3}
       propertyPath: m_Name
@@ -8675,7 +8685,7 @@ CharacterController:
   m_GameObject: {fileID: 1013096816232647120}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.5
@@ -8706,6 +8716,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4087444820028603339, guid: 33cf9e8f77006c54cae5c4b81618d79e,
+        type: 3}
+      propertyPath: _yOffset
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 4087444820028603340, guid: 33cf9e8f77006c54cae5c4b81618d79e,
         type: 3}

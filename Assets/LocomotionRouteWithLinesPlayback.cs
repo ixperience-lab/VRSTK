@@ -68,8 +68,9 @@ public class LocomotionRouteWithLinesPlayback : MonoBehaviour
 
     void CreateLine()
     {
-        Vector3 headHit = (_hitPosition - _headsetPotion).normalized;
-        Vector3 secondPosition = _headsetPotion + (1.5f * headHit);
+        //Vector3 headHit = (_hitPosition - _headsetPotion).normalized;
+        //Vector3 secondPosition = _headsetPotion + (1.5f * headHit);
+        Vector3 secondPosition = _hitPosition;
 
         //if (Duration > 0.5f)
         {
