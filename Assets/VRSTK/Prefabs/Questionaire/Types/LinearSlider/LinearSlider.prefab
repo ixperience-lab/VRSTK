@@ -599,8 +599,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ad5df255829514c90128aed693f12b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hapticActionRightHand: {fileID: 0}
-  _hapticActionLeftHand: {fileID: 0}
+  _hapticActionRightHand: {fileID: -5529395958081720620, guid: 9b087b044cca9eb43937ba8c9eda3777,
+    type: 3}
+  _hapticActionLeftHand: {fileID: -5817452738269439547, guid: 9b087b044cca9eb43937ba8c9eda3777,
+    type: 3}
 --- !u!1 &9212301326709747103
 GameObject:
   m_ObjectHideFlags: 0

@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 4915310004952974655}
   - component: {fileID: 1336610564005685247}
   - component: {fileID: 564170471926380486}
+  - component: {fileID: 9139938893160142579}
   m_Layer: 5
   m_Name: DropdownButon
   m_TagString: Untagged
@@ -329,6 +330,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &9139938893160142579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412088402770477206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29ad5df255829514c90128aed693f12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hapticActionRightHand: {fileID: -5529395958081720620, guid: 9b087b044cca9eb43937ba8c9eda3777,
+    type: 3}
+  _hapticActionLeftHand: {fileID: -5817452738269439547, guid: 9b087b044cca9eb43937ba8c9eda3777,
+    type: 3}
 --- !u!1 &1477090997868356045
 GameObject:
   m_ObjectHideFlags: 0

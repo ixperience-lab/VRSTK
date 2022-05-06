@@ -32,7 +32,15 @@ namespace VRSTK
                 public string JsonInputPath_10;
 
                 private List<string> JsonInputFiles;
-                public List<GameObject> Questionnaires; // list containing all questionnaires 
+
+                [SerializeField]
+                private List<GameObject> _questionnaires; // list containing all questionnaires 
+
+                public List<GameObject> Questionnaires
+                {
+                    get { return _questionnaires; }
+                    set { _questionnaires = value; }
+                }
 
                 //public List<GameObject> TestList; // list containing all questionnaires 
 
@@ -65,7 +73,7 @@ namespace VRSTK
                     _exportToCsvScript.QuestionnaireFinishedEvent.AddListener(FireEvent);
 
                     numberQuestionnaires = 1;
-                    Questionnaires = new List<GameObject>();
+                    _questionnaires = new List<GameObject>();
                     JsonInputFiles = new List<string>();
 
                     if (JsonInputPath_1 != "")
@@ -115,18 +123,18 @@ namespace VRSTK
                     foreach (string InputPath in JsonInputFiles)
                         GenerateNewQuestionnaire(InputPath);
 
-                    for (int i = 1; i < Questionnaires.Count; i++)
-                        Questionnaires[i].SetActive(false);
+                    for (int i = 1; i < _questionnaires.Count; i++)
+                        _questionnaires[i].SetActive(false);
 
-                    Questionnaires[_indexOfAQuestionnaireToSetActive].SetActive(true);
+                    _questionnaires[_indexOfAQuestionnaireToSetActive].SetActive(true);
                 }
 
                 void Start()
                 {
                     //Debug.Log("TestList.Count: " + TestList.Count);
-                    Debug.Log("Questionnaires.Count: " + Questionnaires.Count);
+                    Debug.Log("Questionnaires.Count: " + _questionnaires.Count);
 
-                    if (Questionnaires == null || Questionnaires.Count == 1)
+                    if (_questionnaires.Count == 0)
                     {
                         Debug.Log("Test creation before");
                         PrepareConfigurations();
@@ -161,7 +169,7 @@ namespace VRSTK
 
                     _pageFactory = this.GetComponentInChildren<PageFactory>();
 
-                    Questionnaires.Add(currentQuestionnaire);
+                    _questionnaires.Add(currentQuestionnaire);
                     numberQuestionnaires++;
 
                     ReadJson(inputPath);

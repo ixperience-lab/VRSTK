@@ -658,7 +658,7 @@ GameObject:
   - component: {fileID: 2126233725634045285}
   - component: {fileID: 2126233725634045284}
   - component: {fileID: 2126233725634045287}
-  - component: {fileID: 5375047165767478168}
+  - component: {fileID: 6973424154775098265}
   - component: {fileID: 2251824175179976080}
   m_Layer: 5
   m_Name: ButtonNext
@@ -769,8 +769,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5375047165767478168}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 6973424154775098265}
+        m_TargetAssemblyTypeName: VRSTK.Scripts.Questionnaire.PageController, Assembly-CSharp
         m_MethodName: GoToNextPage
         m_Mode: 1
         m_Arguments:
@@ -781,7 +781,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5375047165767478168
+--- !u!114 &6973424154775098265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -790,7 +790,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2126233725634045281}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49dc399efade2584a87ebb8a828bd7a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e3cb973edb778641ae3a2ac0ebbd1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unansweredMandatoryQuestions: []
@@ -806,8 +806,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ad5df255829514c90128aed693f12b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hapticActionRightHand: {fileID: 0}
-  _hapticActionLeftHand: {fileID: 0}
+  _hapticActionRightHand: {fileID: -5529395958081720620, guid: 9b087b044cca9eb43937ba8c9eda3777,
+    type: 3}
+  _hapticActionLeftHand: {fileID: -5817452738269439547, guid: 9b087b044cca9eb43937ba8c9eda3777,
+    type: 3}
 --- !u!1 &2126233725775806772
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,7 +858,7 @@ GameObject:
   - component: {fileID: 2126233725809796236}
   - component: {fileID: 2126233725809796239}
   - component: {fileID: 2126233725809796238}
-  - component: {fileID: 4255106386039550229}
+  - component: {fileID: 8557400145572461429}
   - component: {fileID: 1075000858301312859}
   m_Layer: 5
   m_Name: ButtonPrevious
@@ -967,8 +969,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4255106386039550229}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 8557400145572461429}
+        m_TargetAssemblyTypeName: VRSTK.Scripts.Questionnaire.PageController, Assembly-CSharp
         m_MethodName: GoToPreviousPage
         m_Mode: 1
         m_Arguments:
@@ -979,7 +981,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4255106386039550229
+--- !u!114 &8557400145572461429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -988,7 +990,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2126233725809796232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49dc399efade2584a87ebb8a828bd7a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e3cb973edb778641ae3a2ac0ebbd1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unansweredMandatoryQuestions: []
@@ -1004,8 +1006,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ad5df255829514c90128aed693f12b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hapticActionRightHand: {fileID: 0}
-  _hapticActionLeftHand: {fileID: 0}
+  _hapticActionRightHand: {fileID: -5529395958081720620, guid: 9b087b044cca9eb43937ba8c9eda3777,
+    type: 3}
+  _hapticActionLeftHand: {fileID: -5817452738269439547, guid: 9b087b044cca9eb43937ba8c9eda3777,
+    type: 3}
 --- !u!1 &2126233725981982715
 GameObject:
   m_ObjectHideFlags: 0

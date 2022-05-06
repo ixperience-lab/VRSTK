@@ -7277,50 +7277,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &1593736862
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1593736864}
-  - component: {fileID: 1593736863}
-  m_Layer: 0
-  m_Name: ExampleExperiment
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1593736863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593736862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 268b5b5272b3b25409d20cfe1e1b96a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RunDemo: 0
---- !u!4 &1593736864
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593736862}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1597476103
 GameObject:
   m_ObjectHideFlags: 0
@@ -8311,12 +8267,27 @@ PrefabInstance:
     - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
@@ -8331,7 +8302,7 @@ PrefabInstance:
     - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
@@ -8356,12 +8327,12 @@ PrefabInstance:
     - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3
+      value: 2.82
       objectReference: {fileID: 0}
     - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
@@ -8380,13 +8351,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6707981411239160809, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707981411239160809, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6707981411239160810, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
       propertyPath: m_Name
-      value: QuestionnaireToolkit
+      value: VRQuestionnaireToolkit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707981411239160810, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707981411239160811, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707981411239160811, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: SoundOnOff
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707981411239160821, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707981411239160821, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707981411239160821, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6707981411239160822, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
@@ -8399,6 +8405,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3951100406968845949, guid: 7a44fb57c0f78554483ef7c4995adcbd,
         type: 3}
+    - target: {fileID: 6707981412283293468, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066219339176096721, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7066219339176096721, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
       propertyPath: TestList.Array.size
@@ -8446,6 +8462,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7066219339176096721, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
+      propertyPath: _questionnaires.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066219339176096721, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
       propertyPath: Questionnaires.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -8477,6 +8498,46 @@ PrefabInstance:
     - target: {fileID: 7066219339176096721, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
       propertyPath: Questionnaires.Array.data[6]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066219339176096721, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: _questionnaires.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066219339176096721, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: _questionnaires.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066219339176096721, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: _questionnaires.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066219339176096721, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: _questionnaires.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066219339176096721, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: _questionnaires.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066219339176096721, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: _questionnaires.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066219339176096721, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: _questionnaires.Array.data[6]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066219339176096721, guid: 153de377b4ba0d148bde185bc340a990,
+        type: 3}
+      propertyPath: _questionnaires.Array.data[7]
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7066219339176096721, guid: 153de377b4ba0d148bde185bc340a990,
@@ -9812,6 +9873,35 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &2122517718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6707981412283293470, guid: 153de377b4ba0d148bde185bc340a990,
+    type: 3}
+  m_PrefabInstance: {fileID: 1817005810}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2122517720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122517718}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbfcd7393ab4ddb4eb82d9adff5e4e5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FileName: example-answer
+  Delimiter: ;
+  Filetype: 0
+  SaveToLocal: 1
+  StorePath: /Questionnaires/Data/Answers/
+  UseGlobalPath: 0
+  SaveToServer: 0
+  TargetURI: http://www.example-server.com/survey-results.php
+  QuestionnaireFinishedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2133410121
 GameObject:
   m_ObjectHideFlags: 0
@@ -9922,6 +10012,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RaycastMask.m_Bits
       value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8698932152325522462, guid: 49fc75f24426cbe46bfafcacd963c5b2,
+        type: 3}
+      propertyPath: m_HapticHoverEnterDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8698932152325522462, guid: 49fc75f24426cbe46bfafcacd963c5b2,
+        type: 3}
+      propertyPath: m_HapticHoverEnterIntensity
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8698932152325522462, guid: 49fc75f24426cbe46bfafcacd963c5b2,
+        type: 3}
+      propertyPath: m_PlayHapticsOnHoverEntered
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8698932153421673924, guid: 49fc75f24426cbe46bfafcacd963c5b2,
         type: 3}

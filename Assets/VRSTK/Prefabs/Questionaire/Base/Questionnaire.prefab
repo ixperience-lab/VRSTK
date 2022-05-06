@@ -45,7 +45,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5515363432229473292}
-  - component: {fileID: 4391184576487464522}
+  - component: {fileID: 853239205669405024}
   m_Layer: 0
   m_Name: Pages
   m_TagString: QuestionnaireFactory
@@ -72,7 +72,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4391184576487464522
+--- !u!114 &853239205669405024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,20 +81,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 5671004094947289064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b2097301ffe27e448d4950405ee4889, type: 3}
+  m_Script: {fileID: 11500000, guid: 88dc864b2626fa8428a8f327e1564540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NumPages: 0
   CurrentPage: 0
   PageList: []
   PageParent: {fileID: 5515363432229473292}
-  PagePrefab: {fileID: 2126233725775806772, guid: 7c1f4381e520e704ca23dc2931a50ad8, type: 3}
-  RadioHorizontalPrefab: {fileID: 8080259207330096802, guid: 9bf3cf3c1164d3e4c949e6e5325faa98, type: 3}
-  RadioGridPrefab: {fileID: 1842614079482050646, guid: 31811624d9ce08a41ab7413164253db4, type: 3}
-  Checkbox: {fileID: 7723888752828865803, guid: 43859c6bd59d8284c943160a749c0e2c, type: 3}
+  PagePrefab: {fileID: 2126233725775806772, guid: 7c1f4381e520e704ca23dc2931a50ad8,
+    type: 3}
+  RadioHorizontalPrefab: {fileID: 8080259207330096802, guid: 9bf3cf3c1164d3e4c949e6e5325faa98,
+    type: 3}
+  RadioGridPrefab: {fileID: 1842614079482050646, guid: 31811624d9ce08a41ab7413164253db4,
+    type: 3}
+  Checkbox: {fileID: 7723888752828865803, guid: 43859c6bd59d8284c943160a749c0e2c,
+    type: 3}
   CheckboxGrid: {fileID: 0}
-  Dropdown: {fileID: 5176551976415444739, guid: 0178c88a70e13ed4b8c5f383e36f0ec5, type: 3}
-  LinearGrid: {fileID: 2972589160377234563, guid: 897062dcf793b6e498aa373709935e7c, type: 3}
-  LinearSlider: {fileID: 3347914053654185840, guid: 0d9ce8f471afe9641a395100aaf569b8, type: 3}
+  Dropdown: {fileID: 5176551976415444739, guid: 0178c88a70e13ed4b8c5f383e36f0ec5,
+    type: 3}
+  LinearGrid: {fileID: 2972589160377234563, guid: 897062dcf793b6e498aa373709935e7c,
+    type: 3}
+  LinearSlider: {fileID: 3347914053654185840, guid: 0d9ce8f471afe9641a395100aaf569b8,
+    type: 3}
   TextInput: {fileID: 0}
-  LastPagePrefab: {fileID: 7585923087694151227, guid: 1b2cccbd184a3564e9f805c7d4321290, type: 3}
+  LastPagePrefab: {fileID: 7585923087694151227, guid: 1b2cccbd184a3564e9f805c7d4321290,
+    type: 3}
