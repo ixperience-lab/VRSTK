@@ -192,5 +192,6 @@ MonoBehaviour:
   QMin: 0
   QMax: 0
   QMandatory: 0
+  _scaleFactor: 0.01
   Sliders: {fileID: 9212301326796648606, guid: 06f5c5fb749f5584791e089743039c9c, type: 3}
   SliderList: []

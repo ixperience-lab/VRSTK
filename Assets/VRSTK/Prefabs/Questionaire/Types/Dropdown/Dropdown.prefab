@@ -204,5 +204,7 @@ MonoBehaviour:
   QInstructions: 
   QText: 
   QMandatory: 0
-  Dropbdown: {fileID: 1412088402770477206, guid: 4f321484db31fe645a14e64c16151d23, type: 3}
+  _scaleFactor: 0.01
+  Dropbdown: {fileID: 1412088402770477206, guid: 4f321484db31fe645a14e64c16151d23,
+    type: 3}
   DropdownList: []

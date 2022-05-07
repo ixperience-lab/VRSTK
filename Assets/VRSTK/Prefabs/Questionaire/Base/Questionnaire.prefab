@@ -86,7 +86,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NumPages: 0
   CurrentPage: 0
-  PageList: []
+  _pageList: []
+  _questionList: []
   PageParent: {fileID: 5515363432229473292}
   PagePrefab: {fileID: 2126233725775806772, guid: 7c1f4381e520e704ca23dc2931a50ad8,
     type: 3}
@@ -104,5 +105,5 @@ MonoBehaviour:
   LinearSlider: {fileID: 3347914053654185840, guid: 0d9ce8f471afe9641a395100aaf569b8,
     type: 3}
   TextInput: {fileID: 0}
-  LastPagePrefab: {fileID: 7585923087694151227, guid: 1b2cccbd184a3564e9f805c7d4321290,
+  LastPagePrefab: {fileID: 5335607307082613704, guid: fd4f676b99e71d24bb99b3e063da60de,
     type: 3}

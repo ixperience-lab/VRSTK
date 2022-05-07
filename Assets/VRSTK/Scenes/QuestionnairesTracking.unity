@@ -8277,17 +8277,17 @@ PrefabInstance:
     - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6707981411239160808, guid: 153de377b4ba0d148bde185bc340a990,
         type: 3}

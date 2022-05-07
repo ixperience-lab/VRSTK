@@ -98,6 +98,10 @@ namespace VRSTK
                         RectTransform pageRec = _newPage.GetComponent<RectTransform>();
                         pageRec.SetParent(PageParent);
                         SetRec(pageRec);
+                        //pageRec.localPosition = new Vector3(0, 0, 0);
+                        //pageRec.localRotation = Quaternion.identity;
+                        //rec.localScale = new Vector3(rec.localScale.x * 0.01f, rec.localScale.y * 0.01f, rec.localScale.z * 0.01f);
+                        //pageRec.localScale = new Vector3(1, 1, 1);
 
                         //ensuring the anchor of q_panel is centered
                         GameObject q_panel = GameObject.Find("Q_Panel");
@@ -334,8 +338,8 @@ namespace VRSTK
                 {
                     rec.localPosition = new Vector3(0, 0, 0);
                     rec.localRotation = Quaternion.identity;
-                    rec.localScale = new Vector3(rec.localScale.x * 0.01f, rec.localScale.y * 0.01f, rec.localScale.z * 0.01f);
-                    //rec.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+                    //rec.localScale = new Vector3(rec.localScale.x * 0.01f, rec.localScale.y * 0.01f, rec.localScale.z * 0.01f);
+                    rec.localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 }
 
 
@@ -374,12 +378,22 @@ namespace VRSTK
                     //ensuring correct placement and scaling in the UI
                     RectTransform pageRec = _newPage.GetComponent<RectTransform>();
                     pageRec.SetParent(PageParent);
+                    //pageRec.localPosition = new Vector3(0, 0, 0);
+                    //pageRec.localRotation = Quaternion.identity;
+                    //rec.localScale = new Vector3(rec.localScale.x * 0.01f, rec.localScale.y * 0.01f, rec.localScale.z * 0.01f);
+                    //pageRec.localScale = new Vector3(1, 1, 1);
                     SetRec(pageRec);
 
                     //ensuring the anchor of q_panel is centered
-                    GameObject q_panel = GameObject.Find("Q_Panel");
+
+                    GameObject q_panel = pageRec.Find("Q_Panel").gameObject;//GameObject.Find("Q_Panel");
                     RectTransform qPanelRect = q_panel.GetComponent<RectTransform>();
+                    
                     CenterRec(qPanelRect);
+
+                   
+                    //qPanelRect.ForceUpdateRectTransforms();
+                    //qPanelRect.hasChanged = true;
 
                     //display instruction on page
                     GameObject q_header = GameObject.Find("Q_Header");
@@ -415,6 +429,12 @@ namespace VRSTK
                     text.text = qText;
                     text.transform.localPosition = new Vector3(0, 60, text.transform.localPosition.z);
                     SetRec(pageFinalRec);
+
+
+                    //_newPage.SetActive(true);
+
+                    //qPanelRect.ForceUpdateRectTransforms();
+                    //qPanelRect.hasChanged = true;
 
                     _newPage.SetActive(false);
                 }

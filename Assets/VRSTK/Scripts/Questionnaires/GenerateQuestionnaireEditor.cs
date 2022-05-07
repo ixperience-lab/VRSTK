@@ -225,7 +225,8 @@ namespace VRSTK
 
                     radioGridRec.localPosition = new Vector3(0, 0, 0);
                     radioGridRec.localRotation = Quaternion.identity;
-                    radioGridRec.localScale = new Vector3(radioGridRec.localScale.x * 0.01f, radioGridRec.localScale.y * 0.01f, radioGridRec.localScale.z * 0.01f);
+                    //radioGridRec.localScale = new Vector3(radioGridRec.localScale.x * 0.01f, radioGridRec.localScale.y * 0.01f, radioGridRec.localScale.z * 0.01f);
+                    radioGridRec.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
                     _pageFactory = q.GetComponentInChildren<PageFactory>();
 

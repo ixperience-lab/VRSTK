@@ -190,5 +190,7 @@ MonoBehaviour:
   QInstructions: 
   QText: 
   QMandatory: 0
-  CheckboxButtons: {fileID: 6467321817364091196, guid: 625e74e018ff2254e989b1bed611402e, type: 3}
+  _scaleFactor: 0.01
+  CheckboxButtons: {fileID: 6467321817364091196, guid: 625e74e018ff2254e989b1bed611402e,
+    type: 3}
   CheckboxList: []
