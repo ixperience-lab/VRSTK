@@ -16,6 +16,9 @@ namespace VRSTK
             ///<summary>Creates the interface for Gameobject/component tracking.</summary>
             public class TrackEditor : EditorWindow
             {
+                Vector2 _scrollPosition = Vector2.zero;
+                float _widht;
+                float _height;
 
                 public GameObject trackedObject;
                 public GameObject lastTrackedObject;
@@ -52,6 +55,11 @@ namespace VRSTK
                 {
                     if (trackedObject != null)
                     {
+                        _widht = position.width;
+                        _height = position.height;
+
+                        _scrollPosition = GUILayout.BeginScrollView(_scrollPosition, true, true, GUILayout.Width(_widht), GUILayout.Height(_height));
+
                         if (trackedObject != lastTrackedObject)
                         {
                             trackedComponents = new bool[trackedObject.GetComponents(typeof(Component)).Length];
@@ -102,6 +110,8 @@ namespace VRSTK
                             CreateEvent();
                             trackedObject = null;
                         }
+
+                        GUILayout.EndScrollView();
                     }
                     else
                     {
