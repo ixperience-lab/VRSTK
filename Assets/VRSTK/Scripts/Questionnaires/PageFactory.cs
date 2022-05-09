@@ -85,7 +85,7 @@ namespace VRSTK
                 /*
                  * This method adds 1..n pages to a questionnaire
                 */
-                public void AddPage(string qId, string qType, string qInstructions, JSONArray _qData, JSONArray qConditions, JSONArray qOptions)
+                public void AddPage(string qId, string qType, string qInstructions, VRSTK.Scripts.JSONArray _qData, VRSTK.Scripts.JSONArray qConditions, VRSTK.Scripts.JSONArray qOptions)
                 {
                     if (_qData != null && qOptions != null)
                     {
@@ -175,7 +175,10 @@ namespace VRSTK
                                     text.transform.localPosition = new Vector3(0, 120 - (i * 92), text.transform.localPosition.z);
                                     SetRec(radioHorizontalRec);
 
-                                    _questionList.Add(new GameObjectList(temp.GetComponent<VRQuestionnaireToolkit.Radio>().CreateRadioQuestion(qId, qType, qInstructions, _qData[i][0], _qData[i][1], _qData[i][2].AsBool, _qData[i][3].AsArray, i, radioHorizontalRec)));
+                                    VRSTK.Scripts.JSONArray tempJSONArray = new JSONArray();
+                                    tempJSONArray.ConvertFromJSONArrayToVRSTKJSONArray(_qData[i][3].AsArray);
+
+                                    _questionList.Add(new GameObjectList(temp.GetComponent<VRQuestionnaireToolkit.Radio>().CreateRadioQuestion(qId, qType, qInstructions, _qData[i][0], _qData[i][1], _qData[i][2].AsBool, tempJSONArray, i, radioHorizontalRec)));
                                 }
                             }
                             else
@@ -321,7 +324,10 @@ namespace VRSTK
                                 text.transform.localPosition = new Vector3(0, 120 - (i * 90), text.transform.localPosition.z);
                                 SetRec(radioHorizontalRec);
 
-                                _questionList.Add(new GameObjectList(temp.GetComponent<VRQuestionnaireToolkit.Dropdown>().CreateDropdownQuestion(qId, qType, qInstructions, _qData[i][0], _qData[i][1], _qData[i][2].AsArray, i, radioHorizontalRec)));
+                                VRSTK.Scripts.JSONArray tempJSONArray = new JSONArray();
+                                tempJSONArray.ConvertFromJSONArrayToVRSTKJSONArray(_qData[i][2].AsArray);
+
+                                _questionList.Add(new GameObjectList(temp.GetComponent<VRQuestionnaireToolkit.Dropdown>().CreateDropdownQuestion(qId, qType, qInstructions, _qData[i][0], _qData[i][1], tempJSONArray, i, radioHorizontalRec)));
                             }
                             break;
                         case "textInput":

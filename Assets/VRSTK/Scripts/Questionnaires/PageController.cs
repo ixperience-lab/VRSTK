@@ -10,11 +10,16 @@ namespace VRSTK
     {
         namespace Questionnaire
         {
+            [System.Serializable]
             public class PageController : MonoBehaviour
             {
+                [SerializeField]
                 private GameObject _vrQuestionnaireFactory;
+                [SerializeField]
                 private PageFactory _pageFactory;
+                [SerializeField]
                 private GameObject _export;
+                
                 public List<GameObject> unansweredMandatoryQuestions;
 
                 void Start()

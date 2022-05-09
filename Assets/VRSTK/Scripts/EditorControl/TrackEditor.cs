@@ -25,6 +25,8 @@ namespace VRSTK
                 private bool[] trackedComponents;
                 private bool[][] trackedVariables;
 
+                //private bool[] trackedProperties;
+
                 [MenuItem("Window/VRSTK/Track Object")]
                 public static void ShowWindow()
                 {
@@ -38,6 +40,7 @@ namespace VRSTK
                     {
                         trackedComponents = new bool[trackedObject.GetComponents(typeof(Component)).Length];
                         trackedVariables = new bool[trackedObject.GetComponents(typeof(Component)).Length][];
+                        //trackedProperties = new bool[trackedObject.GetType().GetProperties().Length];
                         //lastTrackedObject = trackedObject;
                     }
                 }
@@ -64,6 +67,7 @@ namespace VRSTK
                         {
                             trackedComponents = new bool[trackedObject.GetComponents(typeof(Component)).Length];
                             trackedVariables = new bool[trackedObject.GetComponents(typeof(Component)).Length][];
+                            //trackedProperties = new bool[trackedObject.GetType().GetProperties().Length];
                         }
                         EditorGUILayout.LabelField("Select the components and variables you want to track:");
                         //Cycle through components of the tracked object
@@ -72,9 +76,19 @@ namespace VRSTK
                             Component c = trackedObject.GetComponents(typeof(Component))[i];
                             if (c != null)
                             {
-                                EditorStyles.label.fontStyle = FontStyle.Bold;
-                                trackedComponents[i] = EditorGUILayout.Toggle(c.GetType().ToString(), trackedComponents[i]);
-                                EditorStyles.label.fontStyle = FontStyle.Normal;
+                                EditorGUILayout.BeginHorizontal();
+                                {
+                                    EditorStyles.label.fontStyle = FontStyle.Bold;
+                                    EditorGUILayout.LabelField(c.GetType().ToString());
+                                    trackedComponents[i] = EditorGUILayout.Toggle("", trackedComponents[i]);
+                                    EditorStyles.label.fontStyle = FontStyle.Normal;
+                                }
+                                EditorGUILayout.EndHorizontal();
+
+                                //EditorStyles.label.fontStyle = FontStyle.Bold;
+                                //trackedComponents[i] = EditorGUILayout.Toggle(c.GetType().ToString(), trackedComponents[i]);
+                                //EditorStyles.label.fontStyle = FontStyle.Normal;
+
                                 if (trackedObject != lastTrackedObject)
                                 {
                                     trackedVariables[i] = new bool[c.GetType().GetProperties().Length + c.GetType().GetFields().Length];
@@ -90,7 +104,14 @@ namespace VRSTK
                                     var varToCheck = c.GetType().GetProperties()[j];
                                     if (EventTypeChecker.IsValid(varToCheck.PropertyType))
                                     {
-                                        trackedVariables[i][j] = EditorGUILayout.Toggle(varToCheck.Name, trackedVariables[i][j]);
+                                        EditorGUILayout.BeginHorizontal();
+                                        {
+                                            EditorGUILayout.LabelField(varToCheck.Name);
+                                            trackedVariables[i][j] = EditorGUILayout.Toggle("", trackedVariables[i][j]);
+                                        }
+                                        EditorGUILayout.EndHorizontal();
+
+                                        //trackedVariables[i][j] = EditorGUILayout.Toggle(varToCheck.Name, trackedVariables[i][j]);
                                     }
                                 }
 
@@ -99,12 +120,40 @@ namespace VRSTK
                                     var varToCheck = c.GetType().GetFields()[j - c.GetType().GetProperties().Length];
                                     if (EventTypeChecker.IsValid(varToCheck.FieldType))
                                     {
-                                        trackedVariables[i][j] = EditorGUILayout.Toggle(varToCheck.Name, trackedVariables[i][j]);
+                                        EditorGUILayout.BeginHorizontal();
+                                        {
+                                            EditorGUILayout.LabelField(varToCheck.Name);
+                                            trackedVariables[i][j] = EditorGUILayout.Toggle("", trackedVariables[i][j]);
+                                        }
+                                        EditorGUILayout.EndHorizontal();
+
+                                        //trackedVariables[i][j] = EditorGUILayout.Toggle(varToCheck.Name, trackedVariables[i][j]);
                                     }
                                 }
                                 EditorGUI.indentLevel--;
                             }
                         }
+
+                        EditorGUILayout.Space();
+
+                        //Cycle through properties of the tracked object
+                        //for (int i = 0; i < trackedObject.GetType().GetProperties().Length; i++)
+                        //{
+                        //    var varToCheck = trackedObject.GetType().GetProperties()[i];
+                        //    if (EventTypeChecker.IsValid(varToCheck.PropertyType))
+                        //    {
+                        //        EditorGUILayout.BeginHorizontal();
+                        //        {
+                        //            EditorStyles.label.fontStyle = FontStyle.Bold;
+                        //            EditorGUILayout.LabelField(varToCheck.Name);
+                        //            trackedProperties[i] = EditorGUILayout.Toggle("", trackedProperties[i]);
+                        //            EditorStyles.label.fontStyle = FontStyle.Normal;
+                        //        }
+                        //        EditorGUILayout.EndHorizontal();
+                        //        //trackedProperties[i] = EditorGUILayout.Toggle(varToCheck.Name, trackedProperties[i]);
+                        //    }
+                        //}
+
                         if (GUILayout.Button("Create Tracker"))
                         {
                             CreateEvent();
@@ -157,6 +206,14 @@ namespace VRSTK
                             }
                         }
                     }
+
+                    //for (int i = 0; i < trackedObject.GetType().GetProperties().Length; i++)
+                    //{
+                    //    if (trackedProperties[i])
+                    //    {
+                    //        savedNames.Add(string.Join("", new string[] { trackedObject.GetType().GetProperties()[i].Name, "_", trackedObject.GetType().Name }));
+                    //    }
+                    //}
 
                     try
                     {

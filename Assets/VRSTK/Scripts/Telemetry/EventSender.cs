@@ -88,7 +88,6 @@ namespace VRSTK
                                     eventToSend.SetValue(eventVariableNames.array[i].array[j], trackedComponents[i].GetType().GetField(trackedVariableNames.array[i].array[j]).GetValue(trackedComponents[i]));
                                 }
                             }
-
                         }
                     }
 

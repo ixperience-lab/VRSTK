@@ -39,7 +39,7 @@ namespace VRSTK
                         MonoBehaviour[] components = go.GetComponents<MonoBehaviour>();
                         foreach (MonoBehaviour c in components)
                         {
-                            c.enabled = false;
+                            if(c) c.enabled = false;
                         }
                         Rigidbody[] rigidbodies = go.GetComponents<Rigidbody>();
                         foreach (Rigidbody r in rigidbodies)
@@ -254,7 +254,7 @@ namespace VRSTK
                     return 0;
                 }
 
-                public static void SetVariable(JSONNode node, string name, Component c, GameObject g) //Sets ariable of a gameobject to a value from the JSON file
+                public static void SetVariable(JSONNode node, string name, Component c, GameObject g) //Sets variable of a gameobject to a value from the JSON file
                 {
                     if (node.IsArray) //Arrays are converted into vectors
                     {
@@ -321,7 +321,10 @@ namespace VRSTK
                         }
                         else
                         {
-                            c.GetType().GetProperty(name).SetValue(c, b);
+                            //if (g.GetType().GetProperty(name) != null)
+                            //    g.GetType().GetProperty(name).SetValue(g, b);
+                            //else
+                                c.GetType().GetProperty(name).SetValue(c, b);
                         }
                     }
                     else if (node.IsNumber)
@@ -362,11 +365,26 @@ namespace VRSTK
                         else
                         {
                             // hewl ToDo: Converting "True" to boolean true
-                            if (c.GetType() == typeof(bool) || c.GetType() == typeof(System.Boolean))
+                            if (c.GetType().GetProperty(name) != null)
                             {
-                                bool b = node;
-                                c.GetType().GetProperty(name).SetValue(c, b);
+                                if (c.GetType() == typeof(bool) || c.GetType() == typeof(System.Boolean))
+                                {
+                                    bool b = node;
+                                    c.GetType().GetProperty(name).SetValue(c, b);
+                                }
+                                else if (s == "True" || s == "False")
+                                {
+                                    bool b = node;
+                                    c.GetType().GetProperty(name).SetValue(c, b);
+                                }
+                                else
+                                    c.GetType().GetProperty(name).SetValue(c, s);
                             }
+                            //else if (g.GetType().GetProperty(name) != null)
+                            //{
+                            //    bool b = node;
+                            //    g.GetType().GetProperty(name).SetValue(g, b);
+                            //}
                             else
                                 c.GetType().GetProperty(name).SetValue(c, s);
                         }

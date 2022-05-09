@@ -16,6 +16,7 @@ namespace VRSTK
     {
         namespace Questionnaire
         {
+            [System.Serializable]
             public class ExportToCSV : MonoBehaviour
             {
                 public string FileName;

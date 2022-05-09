@@ -42,23 +42,50 @@ namespace VRSTK
                     set { _questionnaires = value; }
                 }
 
-                //public List<GameObject> TestList; // list containing all questionnaires 
-
                 public int _indexOfAQuestionnaireToSetActive = 0;
 
+                [SerializeField]
                 private PageFactory _pageFactory;
+                [SerializeField]
                 private ExportToCSV _exportToCsvScript;
+                [SerializeField]
                 private GameObject _exportToCsv;
+                
                 public GameObject questionnaire;
                 public RectTransform QuestionRecTest;
 
-                private JSONArray _qData;
-                private JSONArray _qConditions;
-                private JSONArray _qOptions;
+                [SerializeField]
+                private VRSTK.Scripts.JSONArray _qData;// = new SimpleJSON.JSONArray();
+                public VRSTK.Scripts.JSONArray qData
+                {
+                    get { return _qData; }
+                    set { _qData = value; }
+                }
 
+                [SerializeField]
+                private VRSTK.Scripts.JSONArray _qConditions;// = new SimpleJSON.JSONArray();
+                public VRSTK.Scripts.JSONArray qConditions
+                {
+                    get { return _qConditions; }
+                    set { _qConditions = value; }
+                }
+
+                [SerializeField]
+                private VRSTK.Scripts.JSONArray _qOptions;// = new JSONArray();
+
+                public VRSTK.Scripts.JSONArray qOptions
+                {
+                    get { return _qOptions; }
+                    set { _qOptions = value; }
+                }
+
+                [SerializeField]
                 private GameObject currentQuestionnaire;
+                [SerializeField]
                 private int numberQuestionnaires;
+                [SerializeField]
                 private string qId;
+                [SerializeField]
                 private string pId;
 
                 private void FireEvent()
@@ -203,15 +230,18 @@ namespace VRSTK
                             string qType = N["questions"][i]["qType"].Value;
                             string qInstructions = N["questions"][i]["qInstructions"].Value;
 
-                            _qData = N["questions"][i]["qData"].AsArray;
+                            _qData = new VRSTK.Scripts.JSONArray();
+                            _qData.ConvertFromJSONArrayToVRSTKJSONArray(N["questions"][i]["qData"].AsArray);
                             if (_qData == "")
                                 _qData[0] = N["questions"][i]["qData"].Value;
 
-                            _qConditions = N["questions"][i]["qConditions"].AsArray;
+                            _qConditions = new VRSTK.Scripts.JSONArray();
+                            _qConditions.ConvertFromJSONArrayToVRSTKJSONArray(N["questions"][i]["qConditions"].AsArray);
                             if (_qConditions == "")
                                 _qConditions[0] = N["questions"][i]["qConditions"].Value;
 
-                            _qOptions = N["questions"][i]["qOptions"].AsArray;
+                            _qOptions = new VRSTK.Scripts.JSONArray();
+                            _qOptions.ConvertFromJSONArrayToVRSTKJSONArray(N["questions"][i]["qOptions"].AsArray);
                             if (_qOptions == "")
                                 _qOptions[0] = N["questions"][i]["qOptions"].Value;
 
