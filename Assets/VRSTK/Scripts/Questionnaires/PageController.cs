@@ -38,7 +38,9 @@ namespace VRSTK
 
                     for (int i = 0; i < _pageFactory.QuestionList.Count; i++)
                     {
-                        if (_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<VRQuestionnaireToolkit.Radio>() != null)
+                        if (_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<VRQuestionnaireToolkit.Radio>() != null &&
+                            _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].gameObject.transform.parent.parent.parent.parent.GetComponent<Canvas>().enabled)
+                        //_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].gameObject.transform.parent.parent.parent.parent.GetComponent<Canvas>().enabled
                         {
                             if (_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<VRQuestionnaireToolkit.Radio>()
                                 .QMandatory)
@@ -63,7 +65,8 @@ namespace VRSTK
                                 }
                             }
                         }
-                        else if (_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<VRQuestionnaireToolkit.RadioGrid>() != null)
+                        else if (_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<VRQuestionnaireToolkit.RadioGrid>() != null &&
+                            _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].gameObject.transform.parent.parent.parent.parent.GetComponent<Canvas>().enabled)
                         {
                             if (_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<VRQuestionnaireToolkit.RadioGrid>()
                                 .QMandatory)
@@ -90,7 +93,8 @@ namespace VRSTK
                                 }
                             }
                         }
-                        else if (_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<VRQuestionnaireToolkit.Checkbox>() != null)
+                        else if (_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<VRQuestionnaireToolkit.Checkbox>() != null &&
+                            _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].gameObject.transform.parent.parent.parent.parent.GetComponent<Canvas>().enabled)
                         {
                             if (_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<VRQuestionnaireToolkit.Checkbox>() != null)
                             {
@@ -118,7 +122,8 @@ namespace VRSTK
                                 }
                             }
                         }
-                        else if (_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<VRQuestionnaireToolkit.LinearGrid>() != null)
+                        else if (_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<VRQuestionnaireToolkit.LinearGrid>() != null &&
+                            _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].gameObject.transform.parent.parent.parent.parent.GetComponent<Canvas>().enabled)
                         {
                             if (_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<VRQuestionnaireToolkit.LinearGrid>()
                                 .QMandatory)
@@ -164,9 +169,11 @@ namespace VRSTK
                     if (CheckMandatoryQuestionsAnswered() || _pageFactory.CurrentPage == 0)
                     {
                         // _pageFactory.GetComponentInChildren<TextMeshProUGUI>().gameObject.SetActive(false);
-                        _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(false);
+                        _pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = false;
+                        //_pageFactory.PageList[_pageFactory.CurrentPage].SetActive(false);
                         ++_pageFactory.CurrentPage;
-                        _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(true);
+                        _pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = true;
+                        //_pageFactory.PageList[_pageFactory.CurrentPage].SetActive(true);
 
                         //reached second-last page
                         if (_pageFactory.PageList.Count - 2 == _pageFactory.CurrentPage)
@@ -199,9 +206,11 @@ namespace VRSTK
                  */
                 public void GoToPreviousPage()
                 {
-                    _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(false);
+                    _pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = false;
+                    //_pageFactory.PageList[_pageFactory.CurrentPage].SetActive(false);
                     --_pageFactory.CurrentPage;
-                    _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(true);
+                    _pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = true;
+                    //_pageFactory.PageList[_pageFactory.CurrentPage].SetActive(true);
                 }
 
                 IEnumerator ChangeTextColor(GameObject textObj)
