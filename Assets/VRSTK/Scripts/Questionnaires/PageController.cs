@@ -169,11 +169,11 @@ namespace VRSTK
                     if (CheckMandatoryQuestionsAnswered() || _pageFactory.CurrentPage == 0)
                     {
                         // _pageFactory.GetComponentInChildren<TextMeshProUGUI>().gameObject.SetActive(false);
-                        _pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = false;
-                        //_pageFactory.PageList[_pageFactory.CurrentPage].SetActive(false);
+                        //_pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = false;
+                        _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(false);
                         ++_pageFactory.CurrentPage;
-                        _pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = true;
-                        //_pageFactory.PageList[_pageFactory.CurrentPage].SetActive(true);
+                        //_pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = true;
+                        _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(true);
 
                         //reached second-last page
                         if (_pageFactory.PageList.Count - 2 == _pageFactory.CurrentPage)
@@ -206,11 +206,11 @@ namespace VRSTK
                  */
                 public void GoToPreviousPage()
                 {
-                    _pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = false;
-                    //_pageFactory.PageList[_pageFactory.CurrentPage].SetActive(false);
+                    //_pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = false;
+                    _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(false);
                     --_pageFactory.CurrentPage;
-                    _pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = true;
-                    //_pageFactory.PageList[_pageFactory.CurrentPage].SetActive(true);
+                    //_pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = true;
+                    _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(true);
                 }
 
                 IEnumerator ChangeTextColor(GameObject textObj)
