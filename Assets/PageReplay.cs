@@ -59,7 +59,7 @@ namespace VRSTK
 
                         //Q_Main
                         page.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().enabled = true;
-
+                                                
                         if (_currentActivePageIndex != 0 && _currentActivePageIndex != (pf.PageList.Count - 1))
                         {
                             
@@ -107,9 +107,11 @@ namespace VRSTK
                                             root_leaf_leaf_child.GetComponent<Slider>().value = value;
                                         }
 
-                                        if (root_leaf_leaf_type == "TextMeshPro")
+                                        if (root_leaf_leaf_type == "TMP_Dropdown")
                                         {
-                                            root_leaf_leaf_child.transform.GetChild(0).GetChild(0).GetComponent<TextMeshPro>().text = root_leaf_leaf_value;
+                                            int value = int.Parse(root_leaf_leaf_value);
+                                            root_leaf_leaf_child.GetComponent<TMP_Dropdown>().value = value;
+                                            root_leaf_leaf_child.GetComponent<TMP_Dropdown>().Select();
                                         }
                                     }
 
@@ -119,6 +121,8 @@ namespace VRSTK
                                 }
                             }
                         }
+                        else
+                            page.transform.GetChild(0).GetChild(1).GetChild(0).GetChild(0).gameObject.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
 
                         //Q_Footer
                         page.transform.GetChild(0).GetChild(2).gameObject.GetComponent<Image>().enabled = true;

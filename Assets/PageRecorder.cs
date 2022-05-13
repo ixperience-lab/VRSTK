@@ -72,9 +72,9 @@ namespace VRSTK
                                     {
                                         selectedContentToggle_PageReplay += child.name + "." + child.transform.GetChild(j).gameObject.name + "." + child.transform.GetChild(j).GetChild(0).gameObject.name + "." + "Slider" + "." + child.transform.GetChild(j).GetChild(0).gameObject.GetComponent<Slider>().value + ";";
                                     }
-                                    else if (child.transform.GetChild(j).GetChild(0).gameObject.GetComponent<TextMeshPro>() != null)
+                                    else if (child.transform.GetChild(j).GetChild(0).gameObject.GetComponent<TMP_Dropdown>() != null)
                                     {
-                                        selectedContentToggle_PageReplay += child.name + "." + child.transform.GetChild(j).gameObject.name + "." + child.transform.GetChild(j).GetChild(0).gameObject.name + "." + "TextMeshPro" + "." + child.transform.GetChild(j).GetChild(0).GetChild(0).GetComponent<TextMeshPro>().text + ";";
+                                        selectedContentToggle_PageReplay += child.name + "." + child.transform.GetChild(j).gameObject.name + "." + child.transform.GetChild(j).GetChild(0).gameObject.name + "." + "TMP_Dropdown" + "." + child.transform.GetChild(j).GetChild(0).GetComponent<TMPro.TMP_Dropdown>().value + ";";
                                     }
                                 }
                             }
