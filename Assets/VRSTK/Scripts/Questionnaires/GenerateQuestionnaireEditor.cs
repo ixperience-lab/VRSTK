@@ -136,72 +136,6 @@ namespace VRSTK
                     _lastQuestionnaireToolkit = _questionnaireToolkit;
                 }
 
-                //private void FireEvent()
-                //{
-                //    Debug.Log("QuestionnaireFinishedEvent");
-                //}
-
-                //public void PrepareConfigurations()
-                //{   
-                //    _exportToCsvScript = _questionnaireToolkit.GetComponentInChildren<ExportToCSV>();
-                //    _exportToCsvScript.QuestionnaireFinishedEvent.AddListener(FireEvent);
-
-                //    numberQuestionnaires = 1;
-                //    _jsonInputFiles = new List<string>();
-
-                //    if (_jsonInputPath_1 != "")
-                //    {
-                //        _jsonInputFiles.Add(_jsonInputPath_1);
-                //    }
-                //    if (_jsonInputPath_2 != "")
-                //    {
-                //        _jsonInputFiles.Add(_jsonInputPath_2);
-                //    }
-                //    if (_jsonInputPath_3 != "")
-                //    {
-                //        _jsonInputFiles.Add(_jsonInputPath_3);
-                //    }
-                //    if (_jsonInputPath_4 != "")
-                //    {
-                //        _jsonInputFiles.Add(_jsonInputPath_4);
-                //    }
-                //    if (_jsonInputPath_5 != "")
-                //    {
-                //        _jsonInputFiles.Add(_jsonInputPath_5);
-                //    }
-                //    if (_jsonInputPath_6 != "")
-                //    {
-                //        _jsonInputFiles.Add(_jsonInputPath_6);
-                //    }
-                //    if (_jsonInputPath_7 != "")
-                //    {
-                //        _jsonInputFiles.Add(_jsonInputPath_7);
-                //    }
-                //    if (_jsonInputPath_8 != "")
-                //    {
-                //        _jsonInputFiles.Add(_jsonInputPath_8);
-                //    }
-                //    if (_jsonInputPath_9 != "")
-                //    {
-                //        _jsonInputFiles.Add(_jsonInputPath_9);
-                //    }
-                //    if (_jsonInputPath_10 != "")
-                //    {
-                //        _jsonInputFiles.Add(_jsonInputPath_10);
-                //    }
-                //}
-
-                //public void InitializeQuestionnaire(GenerateQuestionnaire q)
-                //{
-                //    foreach (string InputPath in _jsonInputFiles)
-                //        GenerateNewQuestionnaire(InputPath, q);
-
-                //    for (int i = 1; i < q.Questionnaires.Count; i++)
-                //        q.Questionnaires[i].SetActive(false);
-
-                //    q.Questionnaires[_indexOfAQuestionnaireToSetActive].SetActive(true);
-                //}
-
                 void DeleteQuestionnaire(GenerateQuestionnaire q)
                 {
                     Undo.RegisterCompleteObjectUndo(q, "Added to Questionnaire objects");
@@ -220,64 +154,6 @@ namespace VRSTK
 
                     AssetDatabase.SaveAssets();
                 }
-
-                //void GenerateNewQuestionnaire(string inputPath, GenerateQuestionnaire q)
-                //{
-                //    if (numberQuestionnaires > 1)
-                //        currentQuestionnaire.SetActive(false);
-
-                //    currentQuestionnaire = Instantiate(q.questionnaire);
-                //    currentQuestionnaire.name = "Questionnaire_" + numberQuestionnaires;
-
-
-
-                //    // Place in hierarchy 
-                //    RectTransform radioGridRec = currentQuestionnaire.GetComponent<RectTransform>();
-                //    radioGridRec.SetParent(q.QuestionRecTest);
-
-                //    Undo.RegisterCompleteObjectUndo(radioGridRec, "Added to Questionnaire objects");
-                //    Undo.FlushUndoRecordObjects();
-
-
-                //    radioGridRec.localPosition = new Vector3(0, 0, 0);
-                //    radioGridRec.localRotation = Quaternion.identity;
-                //    //radioGridRec.localScale = new Vector3(radioGridRec.localScale.x * 0.01f, radioGridRec.localScale.y * 0.01f, radioGridRec.localScale.z * 0.01f);
-                //    radioGridRec.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-
-                //    _pageFactory = q.GetComponentInChildren<PageFactory>();
-
-                    
-
-                //    q.Questionnaires.Add(currentQuestionnaire);
-                //    numberQuestionnaires++;
-
-                //    EditorUtility.SetDirty(radioGridRec);
-
-                //    AssetDatabase.Refresh();
-
-                //    AssetDatabase.SaveAssets();
-
-                //    ReadJson(inputPath);
-
-                //    //for (int i = 0; i < _pageFactory.PageList.Count; i++)
-                //    //{
-                //    //    for (int j = 0; j < _pageFactory.PageList[i].GetComponent<RectTransform>().childCount; j++)
-                //    //    {
-                //    //        Undo.RegisterCompleteObjectUndo(_pageFactory.PageList[i].GetComponent<RectTransform>().GetChild(j).gameObject.GetComponent<RectTransform>(), "Added to Questionnaire objects");
-                //    //        Undo.FlushUndoRecordObjects();
-                //    //        _pageFactory.PageList[i].GetComponent<RectTransform>().GetChild(j).gameObject.GetComponent<RectTransform>();
-
-                //    //        EditorUtility.SetDirty(_pageFactory.PageList[i].GetComponent<RectTransform>().GetChild(j).gameObject.GetComponent<RectTransform>());
-
-                //    //        AssetDatabase.Refresh();
-
-                //    //        AssetDatabase.SaveAssets();
-                //    //    }
-                //    //    //GameObject q_panel = GameObject.Find("Q_Panel");
-                //    //    //RectTransform qPanelRect = q_panel.GetComponent<RectTransform>();
-                //    //    //CenterRec(qPanelRect);
-                //    //}
-                //}
 
                 private void GenerateQuestionnaire()
                 {
@@ -306,66 +182,6 @@ namespace VRSTK
 
                     AssetDatabase.SaveAssets();
                 }
-
-                //void ReadJson(string jsonPath)
-                //{
-                //    // reads and parses .json input file
-                //    string JSONString = File.ReadAllText(jsonPath);
-                //    var N = JSON.Parse(JSONString);
-
-                //    //----------- Read metadata from .JSON file ----------//
-                //    string title = N["qTitle"].Value;
-                //    string instructions = N["qInstructions"].Value;
-                //    qId = N["qId"].Value; //read questionnaire ID
-
-                //    // Generates the last page
-                //    _pageFactory.GenerateAndDisplayFirstAndLastPage(true, instructions, title);
-
-                //    int i = 0;
-
-                //    /*
-                //    Continuously reads data from the .json file 
-                //    */
-                //    while (true)
-                //    {
-                //        pId = N["questions"][i]["pId"].Value; //read new page
-
-                //        if (pId != "")
-                //        {
-                //            string qType = N["questions"][i]["qType"].Value;
-                //            string qInstructions = N["questions"][i]["qInstructions"].Value;
-
-                //            _qData = N["questions"][i]["qData"].AsArray;
-                //            if (_qData == "")
-                //                _qData[0] = N["questions"][i]["qData"].Value;
-
-                //            _qConditions = N["questions"][i]["qConditions"].AsArray;
-                //            if (_qConditions == "")
-                //                _qConditions[0] = N["questions"][i]["qConditions"].Value;
-
-                //            _qOptions.L = N["questions"][i]["qOptions"].AsArray;
-                //            if (_qOptions == "")
-                //                _qOptions[0] = N["questions"][i]["qOptions"].Value;
-
-                //            _pageFactory.AddPage(qId, qType, qInstructions, _qData, _qConditions, _qOptions);
-                //            i++;
-                //        }
-                //        else
-                //        {
-                //            // Read data for final page from .JSON file
-                //            string headerFinalSlide = N["qMessage"].Value;
-                //            string textFinalSlide = N["qAcknowledgments"].Value;
-
-                //            // Generates the last page
-                //            _pageFactory.GenerateAndDisplayFirstAndLastPage(false, textFinalSlide, headerFinalSlide);
-
-                //            // Initialize (Dis-/enable GameObjects)
-                //            _pageFactory.InitSetup();
-
-                //            break;
-                //        }
-                //    }
-                //}
 
             }
         }

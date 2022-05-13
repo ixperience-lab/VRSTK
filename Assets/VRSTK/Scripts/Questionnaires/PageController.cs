@@ -168,11 +168,19 @@ namespace VRSTK
                 {
                     if (CheckMandatoryQuestionsAnswered() || _pageFactory.CurrentPage == 0)
                     {
+                        PagesParameters pagesParameters = _vrQuestionnaireFactory.GetComponent<PagesParameters>();
+                        if (pagesParameters)
+                        {
+                            // fill LASTDATA
+                            pagesParameters.LASTDATA = System.DateTime.Now.ToString();
+                            // fill LASTPAGE
+                            pagesParameters.LASTPAGE = _pageFactory.CurrentPage;
+                            // fill FINISHED
+                            pagesParameters.FINISHED = 1;
+                        }
                         // _pageFactory.GetComponentInChildren<TextMeshProUGUI>().gameObject.SetActive(false);
-                        //_pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = false;
                         _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(false);
                         ++_pageFactory.CurrentPage;
-                        //_pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = true;
                         _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(true);
 
                         //reached second-last page
@@ -185,6 +193,11 @@ namespace VRSTK
 
                         if (_pageFactory.PageList.Count - 1 == _pageFactory.CurrentPage)
                         {
+                            if (pagesParameters)
+                            {
+                                // fill FINISHED
+                                pagesParameters.FINISHED = 1;
+                            }
                             _export.GetComponent<ExportToCSV>().Save();
                         }
                     }
@@ -206,10 +219,8 @@ namespace VRSTK
                  */
                 public void GoToPreviousPage()
                 {
-                    //_pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = false;
                     _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(false);
                     --_pageFactory.CurrentPage;
-                    //_pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<Canvas>().enabled = true;
                     _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(true);
                 }
 

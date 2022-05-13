@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6507758506534145216}
+  - component: {fileID: 6571895945216384865}
+  - component: {fileID: 7871533320245460257}
   m_Layer: 0
   m_Name: Questionnaire
   m_TagString: Untagged
@@ -36,6 +38,40 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 35}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6571895945216384865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951100406968845949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1426b1112d138be4a838b7000eb7ae43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackPages: {fileID: 11400000, guid: fe7d8b527e21e9e41b89b87e759bd104, type: 2}
+--- !u!114 &7871533320245460257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951100406968845949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: fe7d8b527e21e9e41b89b87e759bd104, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents: []
+  trackedVariableNames:
+    array: []
+  eventVariableNames:
+    array: []
+  timedInterval: 0
+  interval: 1
 --- !u!1 &5671004094947289064
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,6 +82,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5515363432229473292}
   - component: {fileID: 853239205669405024}
+  - component: {fileID: 3497450370689197199}
+  - component: {fileID: 8632469435541728293}
+  - component: {fileID: 2489244673944495294}
   m_Layer: 0
   m_Name: Pages
   m_TagString: QuestionnaireFactory
@@ -107,3 +146,61 @@ MonoBehaviour:
   TextInput: {fileID: 0}
   LastPagePrefab: {fileID: 5335607307082613704, guid: fd4f676b99e71d24bb99b3e063da60de,
     type: 3}
+--- !u!114 &3497450370689197199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5671004094947289064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d13faae518bdb499ce261b7118061e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentActivePageIndex: 0
+  _selectedContentToggle: 
+--- !u!114 &8632469435541728293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5671004094947289064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: fe7d8b527e21e9e41b89b87e759bd104, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents:
+  - {fileID: 3497450370689197199}
+  trackedVariableNames:
+    array:
+    - array:
+      - CurrentActivePageIndex
+      - SelectedContentToggle
+  eventVariableNames:
+    array:
+    - array:
+      - CurrentActivePageIndex_PageReplay
+      - SelectedContentToggle_PageReplay
+  timedInterval: 0
+  interval: 1
+--- !u!114 &2489244673944495294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5671004094947289064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0412335dfe22c4b41b169a38df670380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LASTDATA: 
+  LASTPAGE: 0
+  MAXPAGE: 0
+  FINISHED: 0

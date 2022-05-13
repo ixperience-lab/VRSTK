@@ -159,7 +159,7 @@ namespace VRSTK
                 void Start()
                 {
                     //Debug.Log("TestList.Count: " + TestList.Count);
-                    Debug.Log("Questionnaires.Count: " + _questionnaires.Count);
+                    //Debug.Log("Questionnaires.Count: " + _questionnaires.Count);
 
                     if (_questionnaires.Count == 0)
                     {
@@ -168,15 +168,6 @@ namespace VRSTK
                         InitializeQuestionnaire();
                         Debug.Log("Test creation after");
                     }
-
-                    //foreach (string InputPath in JsonInputFiles)
-                    //    GenerateNewQuestionnaire(InputPath);
-
-                    //for (int i = 1; i < Questionnaires.Count; i++)
-                    //    Questionnaires[i].SetActive(false);
-
-                    //Questionnaires[_indexOfAQuestionnaireToSetActive].SetActive(true);
-
                 }
 
                 void GenerateNewQuestionnaire(string inputPath)
@@ -263,6 +254,11 @@ namespace VRSTK
                             break;
                         }
                     }
+
+                    PagesParameters pagesParameters = this.GetComponentInChildren<PagesParameters>();
+                    if (pagesParameters)
+                        pagesParameters.MAXPAGE = _pageFactory.PageList.Count;
+
                 }
             }
         }
