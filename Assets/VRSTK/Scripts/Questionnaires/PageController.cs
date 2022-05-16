@@ -176,7 +176,7 @@ namespace VRSTK
                             // fill LASTPAGE
                             pagesParameters.LASTPAGE = _pageFactory.CurrentPage;
                             // fill FINISHED
-                            pagesParameters.FINISHED = 1;
+                            pagesParameters.FINISHED = 0;
                         }
                         // _pageFactory.GetComponentInChildren<TextMeshProUGUI>().gameObject.SetActive(false);
                         _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(false);

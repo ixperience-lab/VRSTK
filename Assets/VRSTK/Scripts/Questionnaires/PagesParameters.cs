@@ -72,7 +72,7 @@ namespace VRSTK
                 }
 
 
-                // Completion Times
+                // Quality indicator
                 /// <summary>
                 /// An index that indicates how much faster a participant has completed the questionnaire than the typical participant (median) has done.
                 /// </summary>
@@ -84,6 +84,21 @@ namespace VRSTK
                     get { return _TIME_RSI; }
                     set { _TIME_RSI = value; }
                 }
+
+                /// <summary>
+                /// 
+                /// </summary>
+                [SerializeField]
+                private float _MISSING = 0f;
+
+                public float MISSING
+                {
+                    get { return _MISSING; }
+                    set { _MISSING = value; }
+                }
+
+                private bool _checkboxPageUnanswered = false;
+
 
                 // Start is called before the first frame update
                 void Start()
@@ -99,7 +114,25 @@ namespace VRSTK
                 {
                     if (TestStage.GetStarted())
                     {
+                        PageFactory pageFactory = GetComponent<PageFactory>();
+                        
+                        if (pageFactory && (pageFactory.NumPages - 1) == pageFactory.CurrentPage)
+                        {
+                            int[] pageQuestionsCounter = new int[pageFactory.NumPages - 2];
 
+
+
+                            for (int i = 0; i < pageFactory.QuestionList.Count; i++)
+                            {
+                                GameObjectList gameObjectList = pageFactory.QuestionList[i];
+                                int countRadioButtonQuetionPageAnswered = 0;
+                                int countCheckBoxQuetionPageAnswered = 0;
+                                for (int j = 0; j < gameObjectList.QuestionList.Count; j++)
+                                {
+
+                                }
+                            }
+                        }
                     }
                 }
             }

@@ -84,12 +84,12 @@ namespace VRSTK
 
                                     Debug.Log(_currentActivePageIndex.ToString() + "___" + root + "_" + root_leaf + "_" + root_leaf_leaf + "_" + root_leaf_leaf_type + "_" + root_leaf_leaf_value);
 
-                                    GameObject root_child = page.transform.GetChild(0).GetChild(1).FindChild(root).gameObject;
+                                    GameObject root_child = page.transform.GetChild(0).GetChild(1).Find(root).gameObject;
 
                                     if (root_child == null) continue;
 
-                                    GameObject root_leaf_child = root_child.transform.FindChild(root_leaf).gameObject;
-                                    GameObject root_leaf_leaf_child = root_leaf_child.transform.FindChild(root_leaf_leaf).gameObject;
+                                    GameObject root_leaf_child = root_child.transform.Find(root_leaf).gameObject;
+                                    GameObject root_leaf_leaf_child = root_leaf_child.transform.Find(root_leaf_leaf).gameObject;
 
                                     if (root_leaf_leaf_child != null)
                                     {
