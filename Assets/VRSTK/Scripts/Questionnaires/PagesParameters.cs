@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using VRSTK.Scripts.TestControl;
+//using VRQuestionnaireToolkit;
 
 namespace VRSTK
 {
@@ -86,7 +88,8 @@ namespace VRSTK
                 }
 
                 /// <summary>
-                /// 
+                /// The percentage of answers omitted by the participant (0 to 100). 
+                /// Only such questions and items are counted that have been shown to the participant – therefore someone dropping out early may have answered all questions (to this page, 0% missing)
                 /// </summary>
                 [SerializeField]
                 private float _MISSING = 0f;
@@ -118,20 +121,80 @@ namespace VRSTK
                         
                         if (pageFactory && (pageFactory.NumPages - 1) == pageFactory.CurrentPage)
                         {
-                            int[] pageQuestionsCounter = new int[pageFactory.NumPages - 2];
-
-
-
-                            for (int i = 0; i < pageFactory.QuestionList.Count; i++)
+                            int questionsCounter = 0;
+                            int answeresCounter = 0;
+                            
+                            for (int i = 0; i < pageFactory.NumPages - 1; i++)
                             {
-                                GameObjectList gameObjectList = pageFactory.QuestionList[i];
-                                int countRadioButtonQuetionPageAnswered = 0;
-                                int countCheckBoxQuetionPageAnswered = 0;
-                                for (int j = 0; j < gameObjectList.QuestionList.Count; j++)
+                                if (i != 0 && i != (pageFactory.NumPages - 2))
                                 {
+                                    GameObject page = pageFactory.PageList[i];
+                                    // Q_Main.childCount
+                                    for(int j = 0; j < page.transform.GetChild(0).GetChild(1).childCount; j++)
+                                    {
+                                        questionsCounter++;
+                                        if (page.transform.GetChild(0).GetChild(1).GetChild(j).name.Contains("radioHorizontal_") && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Radio>() != null)
+                                        {
+                                            bool answered = false;
+                                            VRQuestionnaireToolkit.Radio radio = page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Radio>();
+                                            for (int k = 0; k < radio.RadioList.Count; k++)
+                                                if (radio.RadioList[k].transform.GetChild(0).GetComponent<Toggle>().isOn)
+                                                {
+                                                    answered = true;
+                                                    break;
+                                                }
+                                            
+                                            if(answered)
+                                                answeresCounter++;
+                                        }
+                                        else if (page.transform.GetChild(0).GetChild(1).GetChild(j).name.Contains("radioGrid_") && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.RadioGrid>() != null)
+                                        {
+                                            bool answered = false;
+                                            VRQuestionnaireToolkit.RadioGrid radioGrid = page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.RadioGrid>();
+                                            for (int k = 0; k < radioGrid.RadioList.Count; k++)
+                                                if (radioGrid.RadioList[k].transform.GetChild(0).GetComponent<Toggle>().isOn)
+                                                {
+                                                    answered = true;
+                                                    break;
+                                                }
 
+                                            if (answered)
+                                                answeresCounter++;
+                                        }
+                                        else if (page.transform.GetChild(0).GetChild(1).GetChild(j).name.Contains("checkbox_") && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Checkbox>() != null)
+                                        {
+                                            answeresCounter++;
+                                        }
+                                        else if (page.transform.GetChild(0).GetChild(1).GetChild(j).name.Contains("linearSlider_") && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Slider>() != null)
+                                        {
+                                            answeresCounter++;
+                                        }
+                                        else if (page.transform.GetChild(0).GetChild(1).GetChild(j).name.Contains("dropdown_") && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Dropdown>() != null)
+                                        {
+                                            answeresCounter++;
+                                        }
+                                        else //if(page.transform.GetChild(0).GetChild(1).GetChild(j).name.Contains("linearGrid_") && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.LinearGrid>() != null)
+                                        {
+                                            bool answered = false;
+                                            VRQuestionnaireToolkit.LinearGrid linearGrid = page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.LinearGrid>();
+                                            for (int k = 0; k < linearGrid.LinearGridList.Count; k++)
+                                                if (linearGrid.LinearGridList[k].transform.GetChild(0).GetComponent<Toggle>().isOn)
+                                                {
+                                                    answered = true;
+                                                    break;
+                                                }
+
+                                            if (answered)
+                                                answeresCounter++;
+                                        }
+                                    }
                                 }
                             }
+
+                            if (questionsCounter > 0)
+                                _MISSING = (questionsCounter - answeresCounter) / questionsCounter;
+                            else
+                                _MISSING = 0f;
                         }
                     }
                 }
