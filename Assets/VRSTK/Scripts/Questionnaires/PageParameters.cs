@@ -28,7 +28,7 @@ namespace VRSTK
                 private float _current_Time_nnn = 0f;
 
                 private float _started_time = 0f;
-
+                private float _last_start_time = 0f;
                 // Start is called before the first frame update
                 void Start()
                 {
@@ -39,7 +39,12 @@ namespace VRSTK
                 void Update()
                 {
                     _current_Time_nnn = TestStage.GetTime() - _started_time;
-                    TIME_nnn += _current_Time_nnn;
+                    if(_last_start_time != _started_time)
+                        TIME_nnn += _current_Time_nnn;
+                    else
+                        TIME_nnn += Mathf.Abs(TIME_nnn - _current_Time_nnn);
+
+                    _last_start_time = _started_time;
                 }
             }
         }

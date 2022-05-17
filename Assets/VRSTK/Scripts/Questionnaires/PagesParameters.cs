@@ -198,8 +198,6 @@ namespace VRSTK
                             int questionsCounter = 0;
                             int answeresCounter = 0;
 
-                            //int degTimeThresholdOfOnePage = _degTimeThreshold / (pageFactory.NumPages - 2);
-
                             for (int i = 0; i < pageFactory.NumPages - 1; i++)
                             {
                                 if (i != 0 && i != (pageFactory.NumPages - 2))
@@ -287,6 +285,10 @@ namespace VRSTK
                                 _degTimeLowQuality = true;
                             else
                                 _degTimeLowQuality = false;
+
+                            GenerateQuestionnaire generateQuestionnaire = transform.parent.parent.GetComponent<GenerateQuestionnaire>(); 
+                            QualityParameters qualityParameters = transform.parent.parent.GetComponent<QualityParameters>();
+                            qualityParameters.TIME_SUMs[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _TIME_SUM;
                         }
                     }
                 }
