@@ -16,7 +16,13 @@ namespace VRSTK
                 /// The variables TIME001 etc. store the time (in seconds) that a participant stayed on a questionnaire page.
                 /// </summary>
                 [SerializeField]
-                private float TIME_nnn = 0f;
+                private float _TIME_nnn = 0f;
+
+                public float TIME_nnn
+                {
+                    get { return _TIME_nnn; }
+                    set { _TIME_nnn = value; }
+                }
 
                 [SerializeField]
                 private float _current_Time_nnn = 0f;

@@ -11,9 +11,13 @@ namespace VRSTK
     {
         namespace Questionnaire
         {
+            /// <summary>
+            /// PagesParameter class sets all statistic relevant parameter of a questionnaire, like:
+            /// soscisurvey.de/help/doku.php/en:results:variables
+            /// </summary>
             public class PagesParameters : MonoBehaviour
             {
-                // Interview Identification
+                /// INTERVIEW IDENTIFICATION
                 /// <summary>
                 /// Time when the participant started the interview.
                 /// </summary>
@@ -26,7 +30,7 @@ namespace VRSTK
                     set { _STARTED = value; }
                 }
 
-                // Interview Progress variables
+                /// Interview Progress variables
                 /// <summary>
                 /// Time when the participant most recently clicked the “next”
                 /// </summary>
@@ -73,8 +77,19 @@ namespace VRSTK
                     set { _FINISHED = value; }
                 }
 
+                /// COMPILITION TIMES
+                /// <summary>
+                /// The sum of dwell times (in seconds) after correction for breaks.
+                /// </summary>
+                [SerializeField]
+                private float _TIME_SUM = 0f;
+                public float TIME_SUM
+                {
+                    get { return _TIME_SUM; }
+                    set { _TIME_SUM = value; }
+                }
 
-                // Quality indicator
+                /// QUALITY INDICATOR
                 /// <summary>
                 /// An index that indicates how much faster a participant has completed the questionnaire than the typical participant (median) has done.
                 /// </summary>
@@ -100,7 +115,66 @@ namespace VRSTK
                     set { _MISSING = value; }
                 }
 
-                private bool _checkboxPageUnanswered = false;
+                /// <summary>
+                /// Negative points for extremely fast completion. This value is normed in such way that values of more than 100 points indicate low-quality data.
+                /// If you prefer a more strict filtering, a threshold of 75 or even 50 points may as well be useful as a threshold of 200 for more liberal filtering.
+                /// </summary>
+                [SerializeField]
+                private int _DEG_TIME = 0;
+
+                public int  DEG_TIME
+                {
+                    get { return _DEG_TIME; }
+                    set { _DEG_TIME = value; }
+                }
+
+                /// <summary>
+                /// _DEG_TIME threshold to indicate low-quality data amd extremely fast completion.
+                /// </summary>
+                [SerializeField]
+                private int _degTimeThreshold = 100;
+
+                public int DegTimeThreshold
+                {
+                    get { return _degTimeThreshold; }
+                    set { _degTimeThreshold = value; }
+                }
+
+                /// <summary>
+                /// _DEG_TIME threshold to indicate low-quality data amd extremely fast completion.
+                /// </summary>
+                [SerializeField]
+                private bool _degTimeLowQuality = false;
+
+                public bool DegTimeLowQuality
+                {
+                    get { return _degTimeLowQuality; }
+                    set { _degTimeLowQuality = value; }
+                }
+
+                /// <summary>
+                /// _DEG_TIME threshold for one question in seconds.
+                /// </summary>
+                [SerializeField]
+                private float _degTimeThresholdForOnePage = 15f;
+
+                public float DegTimeThresholdForOnePage
+                {
+                    get { return _degTimeThresholdForOnePage; }
+                    set { _degTimeThresholdForOnePage = value; }
+                }
+
+                /// <summary>
+                /// _DEG_TIME value one question.
+                /// </summary>
+                [SerializeField]
+                private int _degTimeValueForOnePage = 20;
+
+                public int DegTimeValueForOnePage
+                {
+                    get { return _degTimeValueForOnePage; }
+                    set { _degTimeValueForOnePage = value; }
+                }
 
 
                 // Start is called before the first frame update
@@ -123,14 +197,27 @@ namespace VRSTK
                         {
                             int questionsCounter = 0;
                             int answeresCounter = 0;
-                            
+
+                            //int degTimeThresholdOfOnePage = _degTimeThreshold / (pageFactory.NumPages - 2);
+
                             for (int i = 0; i < pageFactory.NumPages - 1; i++)
                             {
                                 if (i != 0 && i != (pageFactory.NumPages - 2))
                                 {
-                                    GameObject page = pageFactory.PageList[i];
+                                    GameObject page = pageFactory.PageList[i+1];
+
+                                    PageParameters pageParameters = page.GetComponent<PageParameters>();
+
+                                    // _TIME_SUM
+                                    _TIME_SUM += pageParameters.TIME_nnn;
+
+                                    // _DEG_TIME
+                                    if (pageParameters.TIME_nnn < _degTimeThresholdForOnePage)
+                                        _DEG_TIME += _degTimeValueForOnePage;
+                                    
+                                    // _MISSING
                                     // Q_Main.childCount
-                                    for(int j = 0; j < page.transform.GetChild(0).GetChild(1).childCount; j++)
+                                    for (int j = 0; j < page.transform.GetChild(0).GetChild(1).childCount; j++)
                                     {
                                         questionsCounter++;
                                         if (page.transform.GetChild(0).GetChild(1).GetChild(j).name.Contains("radioHorizontal_") && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Radio>() != null)
@@ -195,6 +282,11 @@ namespace VRSTK
                                 _MISSING = (questionsCounter - answeresCounter) / questionsCounter;
                             else
                                 _MISSING = 0f;
+
+                            if (_DEG_TIME >= _degTimeThreshold)
+                                _degTimeLowQuality = true;
+                            else
+                                _degTimeLowQuality = false;
                         }
                     }
                 }
