@@ -176,6 +176,19 @@ namespace VRSTK
                     set { _degTimeValueForOnePage = value; }
                 }
 
+                /// <summary>
+                /// 
+                /// </summary>
+                [SerializeField]
+                private List<QuestionsAnswerRecord> _questionsAnswerRecordList;
+
+                public List<QuestionsAnswerRecord> QuestionsAnswerRecordList
+                {
+                    get { return _questionsAnswerRecordList; }
+                    set { _questionsAnswerRecordList = value; }
+                }
+
+                private bool finisched = false;
 
                 // Start is called before the first frame update
                 void Start()
@@ -183,13 +196,15 @@ namespace VRSTK
                     if (TestStage.GetStarted())
                     {
                         _STARTED = System.DateTime.Now.ToString();
+
+                        _questionsAnswerRecordList = new List<QuestionsAnswerRecord>();
                     }
                 }
 
                 // Update is called once per frame
                 void Update()
                 {
-                    if (TestStage.GetStarted())
+                    if (TestStage.GetStarted() && !finisched)
                     {
                         PageFactory pageFactory = GetComponent<PageFactory>();
                         
@@ -198,11 +213,13 @@ namespace VRSTK
                             int questionsCounter = 0;
                             int answeresCounter = 0;
 
-                            for (int i = 0; i < pageFactory.NumPages - 1; i++)
+                            for (int i = 1; i < pageFactory.NumPages - 1; i++)
                             {
-                                if (i != 0 && i != (pageFactory.NumPages - 2))
+                                if (i != (pageFactory.NumPages - 1))
                                 {
-                                    GameObject page = pageFactory.PageList[i+1];
+                                    GameObject page = pageFactory.PageList[i];
+
+                                    page.SetActive(true);
 
                                     PageParameters pageParameters = page.GetComponent<PageParameters>();
 
@@ -212,30 +229,47 @@ namespace VRSTK
                                     // _DEG_TIME
                                     if (pageParameters.TIME_nnn < _degTimeThresholdForOnePage)
                                         _DEG_TIME += _degTimeValueForOnePage;
-                                    
+
+                                    Debug.Log("Childscount: " + page.transform.GetChild(0).GetChild(1).childCount);
+
                                     // _MISSING
                                     // Q_Main.childCount
                                     for (int j = 0; j < page.transform.GetChild(0).GetChild(1).childCount; j++)
                                     {
                                         questionsCounter++;
-                                        if (page.transform.GetChild(0).GetChild(1).GetChild(j).name.Contains("radioHorizontal_") && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Radio>() != null)
-                                        {
+                                        _questionsAnswerRecordList.Add( new QuestionsAnswerRecord("", 1, 0));
+
+                                        string childName = page.transform.GetChild(0).GetChild(1).GetChild(j).name;
+
+                                        int currentQuestionsAnswerRecordListIndex = _questionsAnswerRecordList.Count - 1;//(i - 1) + j;
+
+                                        Debug.Log("Page: " + i.ToString() + "-" + childName);
+                                        
+                                        if (childName.Contains("radioHorizontal_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Radio>() != null)
+                                        {   
                                             bool answered = false;
                                             VRQuestionnaireToolkit.Radio radio = page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Radio>();
+                                            _questionsAnswerRecordList[j].Question = childName + "_" + radio.QuestionnaireId + "-" + radio.QId;// + "-" + radio.QText;
+                                            
                                             for (int k = 0; k < radio.RadioList.Count; k++)
                                                 if (radio.RadioList[k].transform.GetChild(0).GetComponent<Toggle>().isOn)
                                                 {
                                                     answered = true;
                                                     break;
                                                 }
-                                            
-                                            if(answered)
+
+                                            if (answered)
+                                            {
+                                                _questionsAnswerRecordList[j].AnsweredCounter = 1;
                                                 answeresCounter++;
+                                            }
                                         }
-                                        else if (page.transform.GetChild(0).GetChild(1).GetChild(j).name.Contains("radioGrid_") && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.RadioGrid>() != null)
-                                        {
+                                        else if (childName.Contains("radioGrid_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.RadioGrid>() != null)
+                                        {   
                                             bool answered = false;
                                             VRQuestionnaireToolkit.RadioGrid radioGrid = page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.RadioGrid>();
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = childName + "_" + radioGrid.QuestionnaireId + "-" + radioGrid.QId;// + "-" + radioGrid.QText;
+                                            
                                             for (int k = 0; k < radioGrid.RadioList.Count; k++)
                                                 if (radioGrid.RadioList[k].transform.GetChild(0).GetComponent<Toggle>().isOn)
                                                 {
@@ -244,24 +278,38 @@ namespace VRSTK
                                                 }
 
                                             if (answered)
+                                            {
+                                                _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].AnsweredCounter = 1;
                                                 answeresCounter++;
+                                            }
                                         }
-                                        else if (page.transform.GetChild(0).GetChild(1).GetChild(j).name.Contains("checkbox_") && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Checkbox>() != null)
+                                        else if (childName.Contains("checkbox_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Checkbox>() != null)
                                         {
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = childName + "_"  + "checkbox";
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].AnsweredCounter = 1;
+                                            
                                             answeresCounter++;
                                         }
-                                        else if (page.transform.GetChild(0).GetChild(1).GetChild(j).name.Contains("linearSlider_") && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Slider>() != null)
+                                        else if (childName.Contains("linearSlider_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Slider>() != null)
                                         {
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = childName + "_" + "linearSlider";
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].AnsweredCounter = 1;
+                                            
                                             answeresCounter++;
                                         }
-                                        else if (page.transform.GetChild(0).GetChild(1).GetChild(j).name.Contains("dropdown_") && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Dropdown>() != null)
+                                        else if (childName.Contains("dropdown_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Dropdown>() != null)
                                         {
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = childName + "_" + "dropdown";
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].AnsweredCounter = 1;
+                                            
                                             answeresCounter++;
                                         }
-                                        else //if(page.transform.GetChild(0).GetChild(1).GetChild(j).name.Contains("linearGrid_") && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.LinearGrid>() != null)
-                                        {
+                                        else if(childName.Contains("linearGrid_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.LinearGrid>() != null)
+                                        {   
                                             bool answered = false;
                                             VRQuestionnaireToolkit.LinearGrid linearGrid = page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.LinearGrid>();
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = childName + "_" + linearGrid.QuestionnaireId + "-" + linearGrid.QId; //+ "-" + linearGrid.QText;
+
                                             for (int k = 0; k < linearGrid.LinearGridList.Count; k++)
                                                 if (linearGrid.LinearGridList[k].transform.GetChild(0).GetComponent<Toggle>().isOn)
                                                 {
@@ -270,14 +318,19 @@ namespace VRSTK
                                                 }
 
                                             if (answered)
+                                            {
+                                                _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].AnsweredCounter = 1;
                                                 answeresCounter++;
+                                            }
                                         }
                                     }
+
+                                    page.SetActive(false);
                                 }
                             }
 
                             if (questionsCounter > 0)
-                                _MISSING = (questionsCounter - answeresCounter) / questionsCounter;
+                                _MISSING = ((questionsCounter - answeresCounter) / questionsCounter) * 100;
                             else
                                 _MISSING = 0f;
 
@@ -288,7 +341,34 @@ namespace VRSTK
 
                             GenerateQuestionnaire generateQuestionnaire = transform.parent.parent.GetComponent<GenerateQuestionnaire>(); 
                             QualityParameters qualityParameters = transform.parent.parent.GetComponent<QualityParameters>();
-                            qualityParameters.TIME_SUMs[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _TIME_SUM;
+                            qualityParameters.TIME_SUM_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _TIME_SUM;
+                            qualityParameters.MISSING_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _MISSING;
+                            qualityParameters.DEG_TIME_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _DEG_TIME;
+
+                            // MISSREL
+                            for (int i = 0; i < _questionsAnswerRecordList.Count - 1; i++)//foreach (QuestionsAnswerRecord qar in _questionsAnswerRecordList)
+                                if ((qualityParameters.QuestionsAnswerRecords.Count == _questionsAnswerRecordList.Count) && (qualityParameters.QuestionsAnswerRecords[i].Question == _questionsAnswerRecordList[i].Question))
+                                {
+                                    qualityParameters.QuestionsAnswerRecords[i].AnsweredCounter += _questionsAnswerRecordList[i].AnsweredCounter;
+                                    qualityParameters.QuestionsAnswerRecords[i].QuestionedCounter += _questionsAnswerRecordList[i].QuestionedCounter;
+                                }
+                                else
+                                {
+                                    bool exists = false;
+                                    for (int j = 0; j < qualityParameters.QuestionsAnswerRecords.Count - 1; j++)
+                                        if (qualityParameters.QuestionsAnswerRecords[j].Question == _questionsAnswerRecordList[i].Question)
+                                        {
+                                            exists = true;
+                                            break;
+                                        }
+                                    
+                                    if (!exists)
+                                        qualityParameters.QuestionsAnswerRecords.Add(new QuestionsAnswerRecord(_questionsAnswerRecordList[i].Question, _questionsAnswerRecordList[i].QuestionedCounter, _questionsAnswerRecordList[i].AnsweredCounter));
+                                }
+                            Debug.Log(qualityParameters.QuestionsAnswerRecords.Count.ToString());
+                            qualityParameters.EvaluateMissRels();
+
+                            finisched = true;
                         }
                     }
                 }

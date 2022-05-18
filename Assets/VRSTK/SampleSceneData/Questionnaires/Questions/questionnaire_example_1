@@ -1,0 +1,146 @@
+{
+   "qTitle":"Example Questionnaire",
+   "qInstructions":"Please answer all questions....",
+   "qId":"exampleQE",
+   "questions":[
+      {
+         "pId":"page1",
+         "qType":"radio",
+         "qInstructions":"Choose one option for each question",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"UIST is an amazing conference",
+               "qMandatory":"false",
+               "qOptions":[
+                  "",
+				  "Strongly Disagree",
+                  "Disagree",  
+                  "Neutral",			                    
+                  "Agree",
+				  "Strongly Agree",
+                  ""
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"VR is a beautiful research tool",
+               "qMandatory":"false",
+               "qOptions":[
+                  "",
+				  "Strongly Disagree",
+                  "Disagree",  
+                  "Neutral",			                    
+                  "Agree",
+				  "Strongly Agree",
+                  ""
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Happiness is the key to success",
+               "qMandatory":"false",
+               "qOptions":[
+                  "",
+				  "Strongly Disagree",
+                  "Disagree",  
+                  "Neutral",			                    
+                  "Agree",
+				  "Strongly Agree",
+                  ""
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page2",
+         "qType":"radio",
+         "qInstructions":"Choose an option...",
+         "qData":[
+            {
+               "qId":"q4",
+               "qText":"Debugging is awesome",
+               "qMandatory":"false",
+               "qOptions":[
+                  "Strongly Disagree",
+				  "Disagree",
+                  "Somewhat Disagree",
+                  "Neutral",
+				  "Somewhat Agree",
+                  "Agree",
+                  "Strongly Agree"
+               ]
+            },
+            {
+               "qId":"q5",
+               "qText":"I like fixing bugs",
+               "qMandatory":"false",
+               "qOptions":[
+                  "Strongly Disagree",
+				  "Disagree",
+                  "Somewhat Disagree",
+                  "Neutral",
+				  "Somewhat Agree",
+                  "Agree",
+                  "Strongly Agree"
+               ]
+            },
+            {
+               "qId":"q6",
+               "qText":"I would use the VRQuestionnaireToolkit",
+               "qMandatory":"false",
+               "qOptions":[
+                  "Strongly Disagree",
+				  "Disagree",
+                  "Somewhat Disagree",
+                  "Neutral",
+				  "Somewhat Agree",
+                  "Agree",
+                  "Strongly Agree"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page3",
+         "qType":"radioGrid",
+         "qInstructions":"Choose one option for each condition",
+         "qOptions":[
+            "",
+			"Strongly Disagree",
+            "Disagree",  
+            "Neutral",			                    
+            "Agree",
+			"Strongly Agree",
+            ""
+         ],
+         "qConditions":[
+            {
+               "qId":"c1",
+               "qText":"Hololens"
+            },
+            {
+               "qId":"c2",
+               "qText":"Oculus Rift"
+            },
+            {
+               "qId":"c3",
+               "qText":"Vive"
+            },
+            {
+               "qId":"c4",
+               "qText":"Magic Leap"
+            }
+         ],
+         "qData":[
+            {
+               "qId":"q7",
+               "qText":"The system was easy to use",
+               "qMandatory":"false"
+            }
+         ]
+      }
+   ],
+   "qMessage":"You have completed the questionnaire",
+   "qAcknowledgments":"Thank you very much for taking part in the experiment! We appreciate your time!"
+}

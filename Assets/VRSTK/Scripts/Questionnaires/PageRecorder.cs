@@ -27,7 +27,6 @@ namespace VRSTK
                         GetComponent<EventSender>().SetEventValue("CurrentActivePageIndex_PageReplay", (System.Int32)transform.GetChild(0).GetComponent<PageFactory>().CurrentPage);
 
                         string selectedContentToggle_PageReplay = "";
-                        bool loopBreaker = false;
                         PageFactory pf = transform.GetChild(0).GetComponent<PageFactory>();
 
                         GameObject page = pf.PageList[pf.CurrentPage];
