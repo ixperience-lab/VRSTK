@@ -49,7 +49,7 @@ namespace VRSTK
 
                 public float CalculateWeightFactor()
                 {
-                    return _questionedCounter > 0 ? _answeredCounter / _questionedCounter : 0f ;
+                    return _questionedCounter > 0 ? (float)((float)_answeredCounter / (float)_questionedCounter) : 0f ;
                 }
             }
         }

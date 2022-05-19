@@ -210,8 +210,8 @@ namespace VRSTK
                         
                         if (pageFactory && (pageFactory.NumPages - 1) == pageFactory.CurrentPage)
                         {
-                            int questionsCounter = 0;
-                            int answeresCounter = 0;
+                            //int questionsCounter = 0;
+                            //int answeresCounter = 0;
 
                             for (int i = 1; i < pageFactory.NumPages - 1; i++)
                             {
@@ -230,14 +230,12 @@ namespace VRSTK
                                     if (pageParameters.TIME_nnn < _degTimeThresholdForOnePage)
                                         _DEG_TIME += _degTimeValueForOnePage;
 
-                                    Debug.Log("Childscount: " + page.transform.GetChild(0).GetChild(1).childCount);
-
                                     // _MISSING
                                     // Q_Main.childCount
                                     for (int j = 0; j < page.transform.GetChild(0).GetChild(1).childCount; j++)
                                     {
-                                        questionsCounter++;
-                                        _questionsAnswerRecordList.Add( new QuestionsAnswerRecord("", 1, 0));
+                                        //questionsCounter++;
+                                        _questionsAnswerRecordList.Add(new QuestionsAnswerRecord("", 1, 0));
 
                                         string childName = page.transform.GetChild(0).GetChild(1).GetChild(j).name;
 
@@ -249,7 +247,7 @@ namespace VRSTK
                                         {   
                                             bool answered = false;
                                             VRQuestionnaireToolkit.Radio radio = page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Radio>();
-                                            _questionsAnswerRecordList[j].Question = childName + "_" + radio.QuestionnaireId + "-" + radio.QId;// + "-" + radio.QText;
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = i + "_" + childName + "_" + radio.QuestionnaireId + "-" + radio.QId;// + "-" + radio.QText;
                                             
                                             for (int k = 0; k < radio.RadioList.Count; k++)
                                                 if (radio.RadioList[k].transform.GetChild(0).GetComponent<Toggle>().isOn)
@@ -260,15 +258,15 @@ namespace VRSTK
 
                                             if (answered)
                                             {
-                                                _questionsAnswerRecordList[j].AnsweredCounter = 1;
-                                                answeresCounter++;
+                                                _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].AnsweredCounter = 1;
+                                                //answeresCounter++;
                                             }
                                         }
                                         else if (childName.Contains("radioGrid_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.RadioGrid>() != null)
                                         {   
                                             bool answered = false;
                                             VRQuestionnaireToolkit.RadioGrid radioGrid = page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.RadioGrid>();
-                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = childName + "_" + radioGrid.QuestionnaireId + "-" + radioGrid.QId;// + "-" + radioGrid.QText;
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = i + "_" + childName + "_" + radioGrid.QuestionnaireId + "-" + radioGrid.QId;// + "-" + radioGrid.QText;
                                             
                                             for (int k = 0; k < radioGrid.RadioList.Count; k++)
                                                 if (radioGrid.RadioList[k].transform.GetChild(0).GetComponent<Toggle>().isOn)
@@ -280,35 +278,35 @@ namespace VRSTK
                                             if (answered)
                                             {
                                                 _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].AnsweredCounter = 1;
-                                                answeresCounter++;
+                                                //answeresCounter++;
                                             }
                                         }
                                         else if (childName.Contains("checkbox_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Checkbox>() != null)
                                         {
-                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = childName + "_"  + "checkbox";
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = i + "_" + childName + "_"  + "checkbox";
                                             _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].AnsweredCounter = 1;
                                             
-                                            answeresCounter++;
+                                            //answeresCounter++;
                                         }
                                         else if (childName.Contains("linearSlider_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Slider>() != null)
                                         {
-                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = childName + "_" + "linearSlider";
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = i + "_" + childName + "_" + "linearSlider";
                                             _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].AnsweredCounter = 1;
                                             
-                                            answeresCounter++;
+                                            //answeresCounter++;
                                         }
                                         else if (childName.Contains("dropdown_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Dropdown>() != null)
                                         {
-                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = childName + "_" + "dropdown";
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = i + "_" + childName + "_" + "dropdown";
                                             _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].AnsweredCounter = 1;
                                             
-                                            answeresCounter++;
+                                            //answeresCounter++;
                                         }
                                         else if(childName.Contains("linearGrid_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.LinearGrid>() != null)
                                         {   
                                             bool answered = false;
                                             VRQuestionnaireToolkit.LinearGrid linearGrid = page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.LinearGrid>();
-                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = childName + "_" + linearGrid.QuestionnaireId + "-" + linearGrid.QId; //+ "-" + linearGrid.QText;
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = i + "_" + childName + "_" + linearGrid.QuestionnaireId + "-" + linearGrid.QId; //+ "-" + linearGrid.QText;
 
                                             for (int k = 0; k < linearGrid.LinearGridList.Count; k++)
                                                 if (linearGrid.LinearGridList[k].transform.GetChild(0).GetComponent<Toggle>().isOn)
@@ -320,7 +318,7 @@ namespace VRSTK
                                             if (answered)
                                             {
                                                 _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].AnsweredCounter = 1;
-                                                answeresCounter++;
+                                                //answeresCounter++;
                                             }
                                         }
                                     }
@@ -329,10 +327,7 @@ namespace VRSTK
                                 }
                             }
 
-                            if (questionsCounter > 0)
-                                _MISSING = ((questionsCounter - answeresCounter) / questionsCounter) * 100;
-                            else
-                                _MISSING = 0f;
+                            finisched = true;
 
                             if (_DEG_TIME >= _degTimeThreshold)
                                 _degTimeLowQuality = true;
@@ -342,12 +337,21 @@ namespace VRSTK
                             GenerateQuestionnaire generateQuestionnaire = transform.parent.parent.GetComponent<GenerateQuestionnaire>(); 
                             QualityParameters qualityParameters = transform.parent.parent.GetComponent<QualityParameters>();
                             qualityParameters.TIME_SUM_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _TIME_SUM;
-                            qualityParameters.MISSING_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _MISSING;
+                            qualityParameters.TIME_RSI_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _TIME_SUM;
                             qualityParameters.DEG_TIME_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _DEG_TIME;
+                            qualityParameters.LastQuestionnaire_TIME_SUM = _TIME_SUM;
 
-                            // MISSREL
-                            for (int i = 0; i < _questionsAnswerRecordList.Count - 1; i++)//foreach (QuestionsAnswerRecord qar in _questionsAnswerRecordList)
-                                if ((qualityParameters.QuestionsAnswerRecords.Count == _questionsAnswerRecordList.Count) && (qualityParameters.QuestionsAnswerRecords[i].Question == _questionsAnswerRecordList[i].Question))
+                            // _MISSING
+                            int questionsCounter = _questionsAnswerRecordList.Count;
+                            int answeresCounter = 0;
+
+                            for (int i = 0; i < _questionsAnswerRecordList.Count; i++)//foreach (QuestionsAnswerRecord qar in _questionsAnswerRecordList)
+                            {
+                                // _MISSING
+                                answeresCounter += _questionsAnswerRecordList[i].AnsweredCounter;
+
+                                // MISSREL
+                                if ((qualityParameters.QuestionsAnswerRecords.Count == _questionsAnswerRecordList.Count)) //&& (qualityParameters.QuestionsAnswerRecords[i].Question == _questionsAnswerRecordList[i].Question))
                                 {
                                     qualityParameters.QuestionsAnswerRecords[i].AnsweredCounter += _questionsAnswerRecordList[i].AnsweredCounter;
                                     qualityParameters.QuestionsAnswerRecords[i].QuestionedCounter += _questionsAnswerRecordList[i].QuestionedCounter;
@@ -355,20 +359,26 @@ namespace VRSTK
                                 else
                                 {
                                     bool exists = false;
-                                    for (int j = 0; j < qualityParameters.QuestionsAnswerRecords.Count - 1; j++)
-                                        if (qualityParameters.QuestionsAnswerRecords[j].Question == _questionsAnswerRecordList[i].Question)
+                                    for (int j = 0; j < qualityParameters.QuestionsAnswerRecords.Count; j++)
+                                        if (qualityParameters.QuestionsAnswerRecords[j].Question.Equals(_questionsAnswerRecordList[i].Question))
                                         {
                                             exists = true;
                                             break;
                                         }
-                                    
+
                                     if (!exists)
                                         qualityParameters.QuestionsAnswerRecords.Add(new QuestionsAnswerRecord(_questionsAnswerRecordList[i].Question, _questionsAnswerRecordList[i].QuestionedCounter, _questionsAnswerRecordList[i].AnsweredCounter));
                                 }
-                            Debug.Log(qualityParameters.QuestionsAnswerRecords.Count.ToString());
+                            }
+                            //Debug.Log(qualityParameters.QuestionsAnswerRecords.Count.ToString());
                             qualityParameters.EvaluateMissRels();
 
-                            finisched = true;
+                            if (questionsCounter > 0)
+                                _MISSING = (float) ((float)((questionsCounter) - answeresCounter) / (float) (questionsCounter)) * 100;
+                            else
+                                _MISSING = 0f;
+
+                            qualityParameters.MISSING_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _MISSING;
                         }
                     }
                 }

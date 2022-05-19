@@ -12,6 +12,22 @@ namespace VRSTK
             {
                 public GenerateQuestionnaire _generateQuestionnaire;
 
+                /// COMPILITION TIMES
+                /// <summary>
+                /// The sum of dwell times (in seconds) after correction for breaks. 
+                /// </summary>
+                [SerializeField]
+                private float _lastQuestionnaire_TIME_SUM = 0f;
+                public float LastQuestionnaire_TIME_SUM
+                {
+                    get { return _lastQuestionnaire_TIME_SUM; }
+                    set 
+                    {
+                        _lastQuestionnaire_TIME_SUM = value;
+                        EvaluateTimeRsi();
+                    }
+                }
+
                 /// QUALITY INDICATOR
                 /// <summary>
                 /// An index that indicates how much faster a participant has completed the questionnaire than the typical participant (median) has done.
@@ -61,11 +77,7 @@ namespace VRSTK
                 public float[] TIME_SUM_s
                 {
                     get { return _TIME_SUM_s; }
-                    set
-                    {
-                        _TIME_SUM_s = value;
-                        EvaluateTimeRsi();
-                    }
+                    set { _TIME_SUM_s = value; }
                 }
 
                 /// <summary>
@@ -116,18 +128,24 @@ namespace VRSTK
 
                 private float CalculateMedian()
                 {
+                    
                     float median = 0f;
-                    if (TIME_SUM_s.Length == 1)
-                        median = TIME_SUM_s[0];
-                    else if (TIME_SUM_s.Length > 1)
-                    {
-                        int n = (TIME_SUM_s.Length - 1) / 2;
-                        int n1 = TIME_SUM_s.Length / 2;
+                    float[] copyOfTIME_SUM = new float[_generateQuestionnaire.Questionnaires.Count];
+                    System.Array.Copy(TIME_SUM_s, copyOfTIME_SUM, _generateQuestionnaire.Questionnaires.Count);
+                    System.Array.Sort(copyOfTIME_SUM);
 
-                        if ((TIME_SUM_s.Length % 2) == 1)
-                            median = 0.5f * (TIME_SUM_s[n] + TIME_SUM_s[n1]);
+                    if (copyOfTIME_SUM.Length == 1)
+                        median = copyOfTIME_SUM[0];
+                    else if (copyOfTIME_SUM.Length > 1)
+                    {
+                        //float value = ((float)TIME_SUM_s.Length / 2.0f);
+                        int n = (int)Mathf.Floor(((float)copyOfTIME_SUM.Length / 2.0f));
+                        int n1 = (int) System.Math.Round(((float)copyOfTIME_SUM.Length / 2.0f), System.MidpointRounding.AwayFromZero);
+
+                        if ((copyOfTIME_SUM.Length % 2) == 0)
+                            median = 0.5f * (copyOfTIME_SUM[n] + copyOfTIME_SUM[n1]);
                         else
-                            median = n1;
+                            median = copyOfTIME_SUM[n];
                     }
                     return median;
                 }
@@ -139,15 +157,14 @@ namespace VRSTK
                     for(int i = 0; i < _generateQuestionnaire.Questionnaires.Count; i++)
                     {
                         GameObject go = _generateQuestionnaire.Questionnaires[i];
-                        PagesParameters pp = go.transform.GetChild(0).GetChild(0).GetComponent<PagesParameters>();
-                        //Debug.Log(pp);
-                        //Debug.Log(pp.QuestionsAnswerRecordList.Count);
+                        PagesParameters pp = go.transform.GetChild(0).GetComponent<PagesParameters>();
+                        
                         float weightedAnsweresCounter = 0f;
                         if(pp != null)
                             for (int j = 0; j < pp.QuestionsAnswerRecordList.Count; j++)
-                                weightedAnsweresCounter += pp.QuestionsAnswerRecordList[j].AnsweredCounter * _questionsAnswerRecords[j].CalculateWeightFactor(); 
+                                weightedAnsweresCounter += (float) pp.QuestionsAnswerRecordList[j].AnsweredCounter * _questionsAnswerRecords[j].CalculateWeightFactor(); 
                         
-                        _MISSREL_s[i] = (questionsCounter - weightedAnsweresCounter) / questionsCounter;
+                        _MISSREL_s[i] = (float) ((float)((questionsCounter - 1) - weightedAnsweresCounter) / (questionsCounter - 1));
                     }
                 }
             }
