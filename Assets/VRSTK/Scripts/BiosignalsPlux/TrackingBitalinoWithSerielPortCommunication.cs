@@ -391,9 +391,9 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
             int numberOfBytesToRead = 8;
             int numberOfActivechannels = 0;
 
-            //for (int i = 0; i < _analogChannels.Length; i++)
-            //    if (_analogChannels[i])
-            //        numberOfActivechannels++;
+            for (int i = 0; i < _analogChannels.Length; i++)
+                if (_analogChannels[i])
+                    numberOfActivechannels++;
 
             //if (numberOfActivechannels <= 4) 
             //    numberOfBytesToRead = (int)(Math.Round((12.0f+ 10.0f * numberOfActivechannels), MidpointRounding.AwayFromZero) / 8.0f);
@@ -470,11 +470,20 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
                                 _analogChannelsResults[1] = j;
                             }
 
+                            // EDA (Electrodermal Activity) port A3
                             if (numberOfActivechannels > 2)//if (_analogChannels[2]) //        if nChannels > 2:
                             {
                                 int j = ((buffer[3]) << 2) | (buffer[2] >> 6); //            dataAcquired[sample, 7] = (decodedData[-5] << 2) | (decodedData[-6] >> 6)
                                 Debug.Log("analog[2] = " + j);
-                                _analogChannelsResults[2] = j;
+
+                                // Transfer function [0uS, 25uS] (micro Siemens)
+                                int VCC = 3; // Operating voltage
+                                int ADC = j; // Value sampled form the channel
+                                int n = 8; // Number of bits of the channel
+                                float EDA_uS = (((float)ADC / (float)Math.Pow(2.0, (double)n)) * (float) VCC) / 0.12f;
+                                Debug.Log("A3 (micro Siemens) = " + EDA_uS);
+                                Debug.Log("A3 (Siemens) = " + (EDA_uS * Math.Pow(10.0, -6)));
+                                _analogChannelsResults[2] = (int) EDA_uS;
                             }
 
                             if (numberOfActivechannels > 3)//if (_analogChannels[3]) //        if nChannels > 3:
