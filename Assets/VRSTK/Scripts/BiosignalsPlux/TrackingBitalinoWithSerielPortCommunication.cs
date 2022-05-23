@@ -463,10 +463,22 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
                                 _analogChannelsResults[0] = j;
                             }
 
+                            // ECG (Electrpcardiography)
                             if (numberOfActivechannels > 1) //if (_analogChannels[1]) //        if nChannels > 1:
                             {
                                 int j = ((buffer[5] & 0x03) << 8) | (buffer[4]);    //            dataAcquired[sample, 6] = ((decodedData[-3] & 0x03) << 8) | decodedData[-4]
                                 Debug.Log("analog[1] = " + j);
+                                
+                                // Transfer function [-1.47mV, +1.47mV] (micro Volt)
+                                int VCC = 3; // Operating voltage
+                                int ADC = j; // Value sampled form the channel
+                                int n = 8; // Number of bits of the channel
+                                int gECG = 1019; // sensor gain
+                                float ECG_V = ((((float)ADC / (float)Math.Pow(2.0, (double)n)) - 0.5f) * (float) VCC) / (float)gECG;
+                                Debug.Log("A3 (Volt) = " + ECG_V);
+                                Debug.Log("A3 (milli Volt) = " + (ECG_V * 1000));
+                                
+
                                 _analogChannelsResults[1] = j;
                             }
 
