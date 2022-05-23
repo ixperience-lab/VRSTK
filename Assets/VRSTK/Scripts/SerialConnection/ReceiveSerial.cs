@@ -36,6 +36,7 @@ namespace VRSTK
                         if (stream.BytesToRead != 0)
                         {
                             currentValue = stream.ReadLine();
+                            Debug.Log(currentValue);
                         }
                     }
                 }
