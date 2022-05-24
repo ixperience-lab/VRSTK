@@ -334,58 +334,90 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
             for (int i = 0; i < samples; i++)//for sample in range(nSamples):
             {
                 int bufferSizeToRead = _serialPortStream.BytesToRead;
-                if (bufferSizeToRead > 0)
+                if (bufferSizeToRead > 8)
                 {
                     byte[] buffer = new byte[numberOfBytesToRead];
-                    //for (int n = 0; n < numberOfBytesToRead; n++)
-                    //{
-                    //    byte[] tempBuffer = new byte[1];
-                    //    _serialPortStream.Read(tempBuffer, 0, 1); //    Data = self.receive(number_bytes)
-                    //    buffer[n] = tempBuffer[0];
-                    //}
-
-                    if (_serialPortStream.Read(buffer, 0, numberOfBytesToRead - 1) != numberOfBytesToRead - 1) 
-                        return;
-
-                    while (!checkCRC4(buffer, numberOfBytesToRead))
                     {
-                        // if CRC check failed, try to resynchronize with the next valid frame
-                        // checking with one new byte at a time
-                        //memmove(buffer, buffer + 1, nBytes - 1);
-                        //if (recv(buffer + nBytes - 1, 1) != 1) return int(it - frames.begin());   // a timeout has occurred
+                        //byte[] test = new byte[bufferSizeToRead];
+                        //_serialPortStream.Read(test, 0, bufferSizeToRead - 1);
+
                         
-                        byte[] tempBuffer = new byte[numberOfBytesToRead];
-                        for (int l = numberOfBytesToRead - 1; l > 0; l--)
-                            tempBuffer[l-1] = buffer[l];
+                        //int counter = 0;
+                        //for (int p = bufferSizeToRead - 8; p < bufferSizeToRead; p++)
+                        //{
+                        //    buffer[counter] = test[p];
+                        //    counter++;
+                        //}
+                        //Array.Resize(ref test, bufferSizeToRead - 8);
+                        //int len = test.Length;
 
-                        buffer = tempBuffer;
+                        //while (!checkCRC4(buffer, numberOfBytesToRead) && len > 8)
+                        //{
+                        //    for (int l = 0; l < numberOfBytesToRead - 1; l++)
+                        //        buffer[l] = buffer[l + 1];
 
-                        byte[] tempBufferSizeOne = new byte[1];
-                        if (_serialPortStream.Read(tempBufferSizeOne, 0, 1) != 1) 
-                            return;
-                        buffer[numberOfBytesToRead - 1] = tempBufferSizeOne[0];
-
+                        //    len = test.Length;
+                        //    buffer[7] = test[len - 1];
+                        //    Array.Resize(ref test, len - 1);
+                        //    len = test.Length;
+                        //}
                     }
 
+                    byte seq = 0;
+
+                    {
+                        //byte[] buffer = new byte[numberOfBytesToRead];
+
+                        for (int n = 0; n < numberOfBytesToRead; n++)
+                        {
+                            byte[] tempBuffer = new byte[1];
+                            if (_serialPortStream.Read(tempBuffer, 0, 1) != 1) return;
+                            buffer[n] = tempBuffer[0];
+                        }
+
+                        seq = (byte)(buffer[numberOfBytesToRead - 1] >> 4);
+
+                        //if (_serialPortStream.Read(buffer, 0, numberOfBytesToRead - 1) != numberOfBytesToRead - 1) 
+                        //    return;
+
+                        while (!checkCRC4(buffer, numberOfBytesToRead))
+                        {
+                            // if CRC check failed, try to resynchronize with the next valid frame
+                            // checking with one new byte at a time
+                            //memmove(buffer, buffer + 1, nBytes - 1);
+                            //if (recv(buffer + nBytes - 1, 1) != 1) return int(it - frames.begin());   // a timeout has occurred
+
+                            for (int l = 0; l < numberOfBytesToRead - 1; l++)
+                                buffer[l] = buffer[l + 1];
+
+                            byte[] tempBufferSizeOne = new byte[1];
+                            if (_serialPortStream.Read(tempBufferSizeOne, 0, 1) != 1)
+                                return;
+                            buffer[numberOfBytesToRead - 1] = tempBufferSizeOne[0];
+                        }
+                    }
+
+                    if (seq != (byte)(buffer[numberOfBytesToRead - 1] >> 4)) return;
+
                     byte crc = (byte)(buffer[numberOfBytesToRead - 1] & 0x0F);//    crc = decodedData[-1] & 0x0F
-                    byte seq = (byte)(buffer[numberOfBytesToRead - 1] >> 4);
+                    //byte seq = (byte)(buffer[numberOfBytesToRead - 1] >> 4);
 
                     Debug.Log("Seq = " + seq);
                     Debug.Log("crc = " + crc);
 
-                    buffer[numberOfBytesToRead - 1] = (byte)(buffer[numberOfBytesToRead - 1] & 0xF0);
+                    //buffer[numberOfBytesToRead - 1] = (byte)(buffer[numberOfBytesToRead - 1] & 0xF0);
 
-                    int x = 0;
-                    for (int m = 0; m < numberOfBytesToRead; m++)
-                        for (int bit = 7; bit >= 0; bit--)
-                        {
-                            x = x << 1;
-                            if ((x & 0x10) > 0)
-                                x = x ^ 0x03;
-                            x = x ^ ((buffer[m] >> bit) & 0x01);
-                        }
+                    //int x = 0;
+                    //for (int m = 0; m < numberOfBytesToRead; m++)
+                    //    for (int bit = 7; bit >= 0; bit--)
+                    //    {
+                    //        x = x << 1;
+                    //        if ((x & 0x10) > 0)
+                    //            x = x ^ 0x03;
+                    //        x = x ^ ((buffer[m] >> bit) & 0x01);
+                    //    }
 
-                    if (crc == (x & 0x0F))//if (checkCRC4(buffer, numberOfBytesToRead))
+                    //if (crc == (x & 0x0F))//if (checkCRC4(buffer, numberOfBytesToRead))
                     {
                         {
                             //        dataAcquired[sample, 0] = decodedData[-1] >> 4
@@ -464,24 +496,27 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
     }
 
     // CRC4 check function
-    int[] crc4tab = new int[] { 0, 3, 6, 5, 12, 15, 10, 9, 11, 8, 13, 14, 7, 4, 1, 2 };
+    uint[] crc4tab = new uint[] { 0, 3, 6, 5, 12, 15, 10, 9, 11, 8, 13, 14, 7, 4, 1, 2 };
 
     bool checkCRC4(byte[] data, int len)
     {
-       int crc = 0;
-
-       for (int i = 0; i < len - 1; i++)
-       {
-          byte b = data[i];
-          crc = crc4tab[crc] ^ (b >> 4);
-          crc = crc4tab[crc] ^ (b & 0x0F);
-       }
+        byte[] copyData = new byte[len];
+        Array.Copy(data, copyData, len);
+        uint crc = 0;
+        byte b;
+        for (int i = 0; i < len - 1; i++)
+        {
+           b = copyData[i];
+           crc = crc4tab[crc] ^ (UInt16)((UInt16)b >> (UInt16)4);
+           crc = crc4tab[crc] ^ (UInt16)((UInt16)b & 0x0F);
+        }
 
         // CRC for last byte
-        crc = crc4tab[crc] ^ (data[len - 1] >> 4);
+        b = copyData[len - 1];
+        crc = crc4tab[crc] ^ (UInt16)((UInt16)b >> 4);
         crc = crc4tab[crc];
 
-        return (crc == (data[len - 1] & 0x0F));
+        return ((UInt16)crc == (UInt16)((UInt16)b & 0x0F));
     }
 
     private string Version()
