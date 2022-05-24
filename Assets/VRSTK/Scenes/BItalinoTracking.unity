@@ -4658,6 +4658,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7803995793254214828, guid: e20627ff6ab84d4428f40cc77537b6d3,
         type: 3}
+      propertyPath: _port
+      value: COM6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803995793254214828, guid: e20627ff6ab84d4428f40cc77537b6d3,
+        type: 3}
       propertyPath: _samples
       value: 100
       objectReference: {fileID: 0}

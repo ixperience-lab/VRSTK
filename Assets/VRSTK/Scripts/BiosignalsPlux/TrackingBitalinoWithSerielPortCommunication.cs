@@ -88,7 +88,7 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
     {
         if (_serialPortStream == null)
         {
-            _serialPortStream = new SerialPort(_port, _speed);//, Parity.None, 8, StopBits.One);
+            _serialPortStream = new SerialPort(_port, _speed, Parity.None, 8, StopBits.One);
         }
         if (_serialPortStream != null)
         {
@@ -98,7 +98,8 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
                 {
                     _serialPortStream.ReadTimeout = 5000;  // sets the timeout value before reporting error
                     _serialPortStream.WriteTimeout = 5000;
-
+                    _serialPortStream.RtsEnable = true;
+                    
                     _serialPortStream.Open();  // opens the connection
 
                     Debug.Log("Port Open!");
@@ -124,78 +125,6 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
             {
                 Debug.Log(e.ToString());
             }
-        }
-    }
-
-    //Send commande to the controller
-    public void SendCommand(string cmd)
-    {
-        try
-        {
-            //int batteryThreshold = 10;
-            //int commandBattery = 0;
-            //if (0 <= batteryThreshold && batteryThreshold <= 63)
-            //    commandBattery = batteryThreshold << 2;
-
-            //if (serialPortStream.IsOpen)
-            //{
-            //    if (!battaryMessageSended)
-            //    {
-            //        serialPortStream.Write(BitConverter.GetBytes(commandBattery), 0, 4);
-            //        battaryMessageSended = true;
-            //    }
-            //    if (battaryMessageSended && !versionInfMessageSended)
-            //    {
-            //        serialPortStream.Write(BitConverter.GetBytes(7), 0, 4);
-            //        versionInfMessageSended = true;
-            //    }
-
-            //}
-
-            //string buffer = "";
-            //if (serialPortStream.IsOpen && versionInfMessageSended)
-            //{
-            //    int idx = 0;
-            //    int toRead = serialPortStream.ReadBufferSize;    // make sure there actually are bytes to read first
-            //    byte[] buffer = new byte[toRead];
-            //    //for (int i = 0; i < toRead; i++)
-            //    {
-            //        // where msgArray is an array for storing the incoming bytes
-            //        // and idx is the current idx in that array
-            //        //buffer[idx] = sp.ReadByte();  // this should be quick, because it's already 
-            //                                            // in the buffer
-            //        //if (buffer[idx] = newLineChar)    // whatever newLineChar you are using
-            //        {
-            //            serialPortStream.Read(buffer, 0, toRead);
-
-            //            // Read your string
-            //            string msg = Encoding.ASCII.GetString(buffer, 0, toRead);   // or whatever encoding you 
-            //            Debug.Log(msg);
-                        
-            //            // are using
-            //                                                                                    //    idx = 0;
-            //        }
-            //        //else
-            //       // {
-            //       //     idx++;
-            //       // }
-            //    }
-            //}
-
-            //Debug.Log(buffer);
-            //char c = (char)7;
-            //char[] charBuffer = new char[1];
-            //charBuffer[0] = (char)7;
-            //sp.Write(charBuffer, 0, 1);
-
-            //string buffer = sp.ReadLine();
-            //sp.ReadTo(buffer);
-            //byte[] buffer = new byte[sp.BytesToRead];
-            //sp.Read(buffer,0, buffer.Length);
-        }
-        catch (System.Exception e)
-        {
-            Debug.Log(e.ToString());
         }
     }
 
@@ -408,35 +337,43 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
                 if (bufferSizeToRead > 0)
                 {
                     byte[] buffer = new byte[numberOfBytesToRead];
-                    for (int n = 0; n < numberOfBytesToRead; n++)
-                    {
-                        byte[] tempBuffer = new byte[1];
-                        _serialPortStream.Read(tempBuffer, 0, 1); //    Data = self.receive(number_bytes)
-                        buffer[n] = tempBuffer[0];
-                    }
-
-                    //    decodedData = list(struct.unpack(number_bytes*"B ", Data))
-                    //if (checkCRC4(buffer, numberOfBytesToRead))
-                    //while (!checkCRC4(buffer, numberOfBytesToRead))
+                    //for (int n = 0; n < numberOfBytesToRead; n++)
                     //{
-                    ////    // if CRC check failed, try to resynchronize with the next valid frame
-                    ////    // checking with one new byte at a time
-                    ////    //if (_serialPortStream.Read(buffer[numberOfBytesToRead-1], 0, 1) != 1) return;   // a timeout has occurred
-                    ////    byte[] copybuffer = new byte[numberOfBytesToRead];
-                    ////    for (int n = 0; n < numberOfBytesToRead; n++)
-                    ////    {
-                    ////        byte[] tempBuffer = new byte[1];
-                    ////        _serialPortStream.Read(tempBuffer, 0, 1); //    Data = self.receive(number_bytes)
-                    ////        copybuffer[(numberOfBytesToRead - 1) - n] = tempBuffer[0];
+                    //    byte[] tempBuffer = new byte[1];
+                    //    _serialPortStream.Read(tempBuffer, 0, 1); //    Data = self.receive(number_bytes)
+                    //    buffer[n] = tempBuffer[0];
                     //}
+
+                    if (_serialPortStream.Read(buffer, 0, numberOfBytesToRead - 1) != numberOfBytesToRead - 1) 
+                        return;
+
+                    while (!checkCRC4(buffer, numberOfBytesToRead))
+                    {
+                        // if CRC check failed, try to resynchronize with the next valid frame
+                        // checking with one new byte at a time
+                        //memmove(buffer, buffer + 1, nBytes - 1);
+                        //if (recv(buffer + nBytes - 1, 1) != 1) return int(it - frames.begin());   // a timeout has occurred
+                        
+                        byte[] tempBuffer = new byte[numberOfBytesToRead];
+                        for (int l = numberOfBytesToRead - 1; l > 0; l--)
+                            tempBuffer[l-1] = buffer[l];
+
+                        buffer = tempBuffer;
+
+                        byte[] tempBufferSizeOne = new byte[1];
+                        if (_serialPortStream.Read(tempBufferSizeOne, 0, 1) != 1) 
+                            return;
+                        buffer[numberOfBytesToRead - 1] = tempBufferSizeOne[0];
+
+                    }
 
                     byte crc = (byte)(buffer[numberOfBytesToRead - 1] & 0x0F);//    crc = decodedData[-1] & 0x0F
                     byte seq = (byte)(buffer[numberOfBytesToRead - 1] >> 4);
 
-                    buffer[numberOfBytesToRead - 1] = (byte) (buffer[numberOfBytesToRead - 1] & 0xF0);
-
                     Debug.Log("Seq = " + seq);
                     Debug.Log("crc = " + crc);
+
+                    buffer[numberOfBytesToRead - 1] = (byte)(buffer[numberOfBytesToRead - 1] & 0xF0);
 
                     int x = 0;
                     for (int m = 0; m < numberOfBytesToRead; m++)
@@ -447,7 +384,7 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
                                 x = x ^ 0x03;
                             x = x ^ ((buffer[m] >> bit) & 0x01);
                         }
-                    
+
                     if (crc == (x & 0x0F))//if (checkCRC4(buffer, numberOfBytesToRead))
                     {
                         {
@@ -475,11 +412,11 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
                                 int n = 8; // Number of bits of the channel
                                 int gECG = 1019; // sensor gain
                                 float ECG_V = ((((float)ADC / (float)Math.Pow(2.0, (double)n)) - 0.5f) * (float) VCC) / (float)gECG;
-                                Debug.Log("A3 (Volt) = " + ECG_V);
-                                Debug.Log("A3 (milli Volt) = " + (ECG_V * 1000));
+                                Debug.Log("A2 (Volt) = " + ECG_V);
+                                Debug.Log("A2 (milli Volt) = " + (ECG_V * 1000));
                                 
 
-                                _analogChannelsResults[1] = j;
+                                _analogChannelsResults[1] = (int)(ECG_V * 1000);
                             }
 
                             // EDA (Electrodermal Activity) port A3
