@@ -36,8 +36,8 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
 
     public int[] _digitalOutputArray = new int[] { 0, 0, 1, 1 };
 
-    public int _samples = 10;
-
+    public int _samples = 100;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -64,7 +64,7 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
         //}
         if (_started && _serialPortStream.IsOpen)
         {
-            Read(_samples);
+            Read();
         }
         if(_versionInfSended && !_started)
         {
@@ -314,7 +314,7 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
     //    (...)
     //    ==================  ========= ========= ========= ========= ======== ======== ========
     // Note:: * The sequence number overflows at 15 
-    private void Read(int samples)
+    void Read()
     {
         {
             int numberOfBytesToRead = 8;
@@ -324,47 +324,13 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
                 if (_analogChannels[i])
                     numberOfActivechannels++;
 
-            //if (numberOfActivechannels <= 4) 
-            //    numberOfBytesToRead = (int)(Math.Round((12.0f+ 10.0f * numberOfActivechannels), MidpointRounding.AwayFromZero) / 8.0f);
-            //else
-            //    numberOfBytesToRead = (int)(Math.Round((52.0f + 6.0f * (numberOfActivechannels - 4)) / 8.0f));
-
-            //dataAcquired = numpy.zeros((nSamples, 5 + nChannels))
-
-            for (int i = 0; i < samples; i++)//for sample in range(nSamples):
+            for (int i = 0; i < _samples; i++)
             {
                 int bufferSizeToRead = _serialPortStream.BytesToRead;
                 if (bufferSizeToRead > 8)
                 {
                     byte[] buffer = new byte[numberOfBytesToRead];
-                    {
-                        //byte[] test = new byte[bufferSizeToRead];
-                        //_serialPortStream.Read(test, 0, bufferSizeToRead - 1);
-
-                        
-                        //int counter = 0;
-                        //for (int p = bufferSizeToRead - 8; p < bufferSizeToRead; p++)
-                        //{
-                        //    buffer[counter] = test[p];
-                        //    counter++;
-                        //}
-                        //Array.Resize(ref test, bufferSizeToRead - 8);
-                        //int len = test.Length;
-
-                        //while (!checkCRC4(buffer, numberOfBytesToRead) && len > 8)
-                        //{
-                        //    for (int l = 0; l < numberOfBytesToRead - 1; l++)
-                        //        buffer[l] = buffer[l + 1];
-
-                        //    len = test.Length;
-                        //    buffer[7] = test[len - 1];
-                        //    Array.Resize(ref test, len - 1);
-                        //    len = test.Length;
-                        //}
-                    }
-
-                    byte seq = 0;
-
+                    byte seq;
                     {
                         //byte[] buffer = new byte[numberOfBytesToRead];
 
@@ -375,18 +341,14 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
                             buffer[n] = tempBuffer[0];
                         }
 
-                        seq = (byte)(buffer[numberOfBytesToRead - 1] >> 4);
+                        //if (_serialPortStream.Read(buffer, 0, numberOfBytesToRead - 1) != numberOfBytesToRead - 1) return;
 
-                        //if (_serialPortStream.Read(buffer, 0, numberOfBytesToRead - 1) != numberOfBytesToRead - 1) 
-                        //    return;
+                        seq = (byte)(buffer[numberOfBytesToRead - 1] >> 4);
 
                         while (!checkCRC4(buffer, numberOfBytesToRead))
                         {
                             // if CRC check failed, try to resynchronize with the next valid frame
                             // checking with one new byte at a time
-                            //memmove(buffer, buffer + 1, nBytes - 1);
-                            //if (recv(buffer + nBytes - 1, 1) != 1) return int(it - frames.begin());   // a timeout has occurred
-
                             for (int l = 0; l < numberOfBytesToRead - 1; l++)
                                 buffer[l] = buffer[l + 1];
 
@@ -400,8 +362,7 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
                     if (seq != (byte)(buffer[numberOfBytesToRead - 1] >> 4)) return;
 
                     byte crc = (byte)(buffer[numberOfBytesToRead - 1] & 0x0F);//    crc = decodedData[-1] & 0x0F
-                    //byte seq = (byte)(buffer[numberOfBytesToRead - 1] >> 4);
-
+                   
                     Debug.Log("Seq = " + seq);
                     Debug.Log("crc = " + crc);
 
@@ -487,6 +448,9 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
                                 Debug.Log("analog[5] = " + j);
                                 _analogChannelsResults[5] = j;
                             }
+
+                            Debug.Log("Seq = " + seq + ", CRC = " + crc + ": " + _analogChannelsResults[0] + " "  + _analogChannelsResults[1] + " " + _analogChannelsResults[2] + " " + _analogChannelsResults[3]
+                                + " " + _analogChannelsResults[4] + " " + _analogChannelsResults[5]);
                         }
                     }
                 }
@@ -507,16 +471,16 @@ public class TrackingBitalinoWithSerielPortCommunication : MonoBehaviour
         for (int i = 0; i < len - 1; i++)
         {
            b = copyData[i];
-           crc = crc4tab[crc] ^ (UInt16)((UInt16)b >> (UInt16)4);
-           crc = crc4tab[crc] ^ (UInt16)((UInt16)b & 0x0F);
+           crc = crc4tab[crc] ^ (uint)(b >> (UInt16)4);
+           crc = crc4tab[crc] ^ (uint)(b & 0x0F);
         }
 
         // CRC for last byte
         b = copyData[len - 1];
-        crc = crc4tab[crc] ^ (UInt16)((UInt16)b >> 4);
+        crc = crc4tab[crc] ^ (uint)(b >> 4);
         crc = crc4tab[crc];
 
-        return ((UInt16)crc == (UInt16)((UInt16)b & 0x0F));
+        return (crc == (uint)(b & 0x0F));
     }
 
     private string Version()
