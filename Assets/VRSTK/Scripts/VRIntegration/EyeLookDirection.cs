@@ -49,6 +49,24 @@ namespace VRSTK
                 //Variable for last Error
                 private ViveSR.Error lastError;
 
+                [SerializeField]
+                public float eyeOpennessRight;
+
+                [SerializeField]
+                public float pupilDiameterRight;
+
+                [SerializeField]
+                public Vector2 pupilPositionInSensorAreaRight;
+
+                [SerializeField]
+                public float eyeOpennessLeft;
+
+                [SerializeField]
+                public float pupilDiameterLeft;
+
+                [SerializeField]
+                public Vector2 pupilPositionInSensorAreaLeft;
+
                 void Start()
                 {
                     Debug.Log("EyeLookDirection script started");
@@ -103,6 +121,20 @@ namespace VRSTK
                     var leftEye = EyeData.verbose_data.left.gaze_direction_normalized;
                     var rightEye = EyeData.verbose_data.right.gaze_direction_normalized;
 
+                    var leftEyeProperties = EyeData.verbose_data.left;
+                    eyeOpennessLeft = leftEyeProperties.eye_openness;
+                    pupilDiameterLeft = leftEyeProperties.pupil_diameter_mm;
+                    pupilPositionInSensorAreaLeft = leftEyeProperties.pupil_position_in_sensor_area;
+
+                    Debug.Log(string.Format("Left eye traking informations, Opennes: {0} , Pupil diameter: {1} , Pupil position: {2}", eyeOpennessLeft, pupilDiameterLeft, pupilPositionInSensorAreaLeft));
+
+                    var rightEyeProperties = EyeData.verbose_data.right;
+                    eyeOpennessRight = rightEyeProperties.eye_openness;
+                    pupilDiameterRight = rightEyeProperties.pupil_diameter_mm;
+                    pupilPositionInSensorAreaLeft = rightEyeProperties.pupil_position_in_sensor_area;
+
+                    Debug.Log(string.Format("Right eye traking informations, Opennes: {0} , Pupil diameter: {1} , Pupil position: {2}", eyeOpennessRight, pupilDiameterRight, pupilPositionInSensorAreaRight));
+
                     //With this conditions only one eye is tracked (here is most the left Eye)!
                     if (leftEye != Vector3.zero)
                     {
@@ -143,28 +175,28 @@ namespace VRSTK
                     GetComponent<EventSender>().Deploy();
 
                     // Disable the spring on all HingeJoints in this game object
-                    List<EventSender> eventSender = new List<EventSender>();
+                    //List<EventSender> eventSender = new List<EventSender>();
 
-                    GetComponents(eventSender);
+                    //GetComponents(eventSender);
                     
-                    // EyeLookAtObjectPlayBack
-                    eventSender[2].SetEventValue("EyeHitPoint_EyeLookAtObjectPlayBack", eyeHitpoint);
-                    eventSender[2].SetEventValue("ObjectName_EyeLookAtObjectPlayBack", lookingAt.name);
-                    eventSender[2].SetEventValue("Duration_EyeLookAtObjectPlayBack", duration);
-                    eventSender[2].Deploy();
+                    //// EyeLookAtObjectPlayBack
+                    //eventSender[2].SetEventValue("EyeHitPoint_EyeLookAtObjectPlayBack", eyeHitpoint);
+                    //eventSender[2].SetEventValue("ObjectName_EyeLookAtObjectPlayBack", lookingAt.name);
+                    //eventSender[2].SetEventValue("Duration_EyeLookAtObjectPlayBack", duration);
+                    //eventSender[2].Deploy();
 
-                    // CalculateLocomotionRoute
-                    eventSender[3].SetEventValue("HeadsetPotion_CalculateLocomotionRoute", transform.position);
-                    eventSender[3].SetEventValue("enabled_CalculateLocomotionRoute", "True");
-                    eventSender[3].Deploy();
+                    //// CalculateLocomotionRoute
+                    //eventSender[3].SetEventValue("HeadsetPotion_CalculateLocomotionRoute", transform.position);
+                    //eventSender[3].SetEventValue("enabled_CalculateLocomotionRoute", "True");
+                    //eventSender[3].Deploy();
 
-                    // CalculateLocomotionRoute
-                    eventSender[4].SetEventValue("HeadsetPotion_LocomotionRouteWithLinesPlayback", transform.position);
-                    eventSender[4].SetEventValue("HitPosition_LocomotionRouteWithLinesPlayback", eyeHitpoint);
-                    eventSender[4].SetEventValue("Direction_LocomotionRouteWithLinesPlayback", eyeDirection);
-                    eventSender[4].SetEventValue("Duration_LocomotionRouteWithLinesPlayback", duration);
-                    eventSender[4].SetEventValue("enabled_LocomotionRouteWithLinesPlayback", "True");
-                    eventSender[4].Deploy();
+                    //// CalculateLocomotionRoute
+                    //eventSender[4].SetEventValue("HeadsetPotion_LocomotionRouteWithLinesPlayback", transform.position);
+                    //eventSender[4].SetEventValue("HitPosition_LocomotionRouteWithLinesPlayback", eyeHitpoint);
+                    //eventSender[4].SetEventValue("Direction_LocomotionRouteWithLinesPlayback", eyeDirection);
+                    //eventSender[4].SetEventValue("Duration_LocomotionRouteWithLinesPlayback", duration);
+                    //eventSender[4].SetEventValue("enabled_LocomotionRouteWithLinesPlayback", "True");
+                    //eventSender[4].Deploy();
 
                     lookingAt = null;
                 }

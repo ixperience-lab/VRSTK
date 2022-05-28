@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7803995793254214829}
   - component: {fileID: 7803995793254214828}
+  - component: {fileID: 7549644237878987006}
   m_Layer: 0
   m_Name: BItalinoTracker
   m_TagString: Untagged
@@ -38,7 +39,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7803995793254214835}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9ce79e4853395e4bad33b201c1f7d97, type: 3}
   m_Name: 
@@ -52,3 +53,28 @@ MonoBehaviour:
   _samplingRate: 1000
   _digitalOutputArray: 00000000000000000100000001000000
   _samples: 100
+--- !u!114 &7549644237878987006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7803995793254214835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535d277b40a1f3442bec07bf7a9ddb47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RemoteIP: 127.0.0.1
+  SendToPort: 9000
+  ListenerPort: 5555
+  SequenceNumber: -1
+  DigitalIO: 00000000000000000000000000000000
+  AnalogOutput: 000000000000000000000000000000000000000000000000
+  AnalogOutputTransfered:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
