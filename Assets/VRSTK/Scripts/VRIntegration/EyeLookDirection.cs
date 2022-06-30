@@ -44,6 +44,16 @@ namespace VRSTK
                 //The world eye direction
                 public Vector3 eyeDirection;
 
+                //[SerializeField]
+                //public Vector3 eyeHitpointRight;
+                //[SerializeField]
+                //public Vector3 eyeHitDirectionRight;
+
+                //[SerializeField]
+                //public Vector3 eyeHitpointLeft;
+                //[SerializeField]
+                //public Vector3 eyeHitDirectionLeft;
+
                 //True if the given eye tracking points are valid and up-to-date
                 public bool validTracking = false;
                 //Variable for last Error
