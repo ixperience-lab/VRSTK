@@ -84,7 +84,7 @@ namespace VRSTK
 
                 private void OnGUI()
                 {
-                    if (_questionnaireToolkit != null && _questionnaireToolkit.name.Equals("VRQuestionnaireToolkit"))
+                    if (_questionnaireToolkit != null && _questionnaireToolkit.name.Contains("VRQuestionnaireToolkit"))
                     {
                         _widht = position.width;
                         _height = position.height;
