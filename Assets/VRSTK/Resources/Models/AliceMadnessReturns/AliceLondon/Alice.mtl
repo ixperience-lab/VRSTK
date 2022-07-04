@@ -1,0 +1,100 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 13.02.2012 19:57:16
+
+newmtl Material__252
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Cloth_DM.png
+	map_Kd C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Cloth_DM.png
+	map_bump C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Eye_NM.png
+	bump C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Eye_NM.png
+
+newmtl Material__258
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Skirt_DM.png
+	map_Kd C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Skirt_DM.png
+	map_bump C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Skirt_NM.png
+	bump C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Skirt_NM.png
+
+newmtl Material__251
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\hair_DM.png
+	map_Kd C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\hair_DM.png
+	map_d C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\hair_DM.png
+	map_bump C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\hair_NM.png
+	bump C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\hair_NM.png
+
+newmtl Material__257
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Skin_DM.png
+	map_Kd C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Skin_DM.png
+	map_bump C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Skin_NM.png
+	bump C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Skin_NM.png
+
+newmtl Material__256
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Eye_DM.png
+	map_Kd C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Eye_DM.png
+	map_bump C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Eye_NM.png
+	bump C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Eye_NM.png
+
+newmtl Material__2575
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Skin_DM.png
+	map_Kd C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Skin_DM.png
+	map_d C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Skin_DM.png
+	map_bump C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Skin_NM.png
+	bump C:\Users\Owner\Desktop\AliceMadnessReturns_Alice_London_by_o0Crofty0o\AliceL_Skin_NM.png

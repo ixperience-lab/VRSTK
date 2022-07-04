@@ -11,7 +11,7 @@
             {
                "qId":"q1",
                "qText":"Allgemeines Unwohlsein (General discomfort)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -25,7 +25,7 @@
             {
                "qId":"q2",
                "qText":"Müdigkeit (Fatique)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -39,7 +39,7 @@
             {
                "qId":"q3",
                "qText":"Kopfschmerzen (Headache)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -56,12 +56,12 @@
          "pId":"page2",
          "qType":"radio",
          "qInstructions":"Bitte wählen Sie aus, wie stark jedes der folgenden Symptome Sie im Moment beeinträchtigt.",
-         "qMandatory":"false",
+         "qMandatory":"true",
          "qData":[
             {
                "qId":"q4",
                "qText":"Belastung der Augen (Eye strain)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -75,7 +75,7 @@
             {
                "qId":"q5",
                "qText":"Schwierigkeiten bei der Fokussierung (Difficulty focusing)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -89,7 +89,7 @@
             {
                "qId":"q6",
                "qText":"Zunehmende Speichelbildung (Salivation increasing)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -106,12 +106,12 @@
          "pId":"page3",
          "qType":"radio",
          "qInstructions":"Bitte wählen Sie aus, wie stark jedes der unten aufgeführten Symptome Sie im Moment beeinträchtigt.",
-         "qMandatory":"false",
+         "qMandatory":"true",
          "qData":[
             {
                "qId":"q7",
                "qText":"Schwitzen (Sweating)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -125,7 +125,7 @@
             {
                "qId":"q8",
                "qText":"Übelkeit (Nausea)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -139,7 +139,7 @@
             {
                "qId":"q9",
                "qText":"Konzentrationsschwierigkeiten (Difficulty concentrating)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -156,12 +156,12 @@
          "pId":"page4",
          "qType":"radio",
          "qInstructions":"Bitte wählen Sie aus, wie stark jedes der unten aufgeführten Symptome Sie im Moment beeinträchtigt.",
-         "qMandatory":"false",
+         "qMandatory":"true",
          "qData":[
             {
                "qId":"q10",
                "qText":"Fülle des Kopfes (Fullness of the Head)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -175,7 +175,7 @@
             {
                "qId":"q11",
                "qText":"Verschwommensehen (Blurred vision)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -189,7 +189,7 @@
             {
                "qId":"q12",
                "qText":"Schwindelgefühl bei geöffneten Augen (Dizziness with eyes open)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -206,12 +206,12 @@
          "pId":"page5",
          "qType":"radio",
          "qInstructions":"Bitte wählen Sie aus, wie stark jedes der unten aufgeführten Symptome Sie im Moment beeinträchtigt.",
-         "qMandatory":"false",
+         "qMandatory":"true",
          "qData":[
             {
                "qId":"q13",
                "qText":"Schwindelgefühl bei geschlossenen Augen (Dizziness with eyes closed)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -225,7 +225,7 @@
             {
                "qId":"q14",
                "qText":"Gleichgewichtsstörung (Vertigo)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -239,7 +239,7 @@
             {
                "qId":"q15",
                "qText":"Magenwahrnehmung (Gefühl von Unbehagen, das knapp an Übelkeit grenzt) (Stomach awareness)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",
@@ -256,12 +256,12 @@
          "pId":"page6",
          "qType":"radio",
          "qInstructions":"Bitte wählen Sie aus, wie stark jedes der unten aufgeführten Symptome Sie im Moment beeinträchtigt.",
-         "qMandatory":"false",
+         "qMandatory":"true",
          "qData":[
             {
                "qId":"q16",
                "qText":"Aufstoßen (Burping)",
-               "qMandatory":"false",
+               "qMandatory":"true",
                "qOptions":[
                   "",
                   "Keine",

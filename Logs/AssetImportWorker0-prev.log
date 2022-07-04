@@ -15,11 +15,11 @@ C:/Users/Wladimir Hettmann/Documents/GitHub/VRSTK
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-58910
+53758
 Successfully changed project path to: C:/Users/Wladimir Hettmann/Documents/GitHub/VRSTK
 C:/Users/Wladimir Hettmann/Documents/GitHub/VRSTK
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 74.65 ms, found 11 plugins.
+Refreshing native plugins compatible for Editor in 74.62 ms, found 11 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.30f1 (1fb1bf06830e)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/Resources/UnitySubsystems
@@ -39,77 +39,77 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56324
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56176
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001944 seconds.
+Registered in 0.001844 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 58.14 ms, found 11 plugins.
+Refreshing native plugins compatible for Editor in 57.30 ms, found 11 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.427 seconds
+- Completed reload, in  0.433 seconds
 Domain Reload Profiling:
-	ReloadAssembly (427ms)
-		BeginReloadAssembly (45ms)
+	ReloadAssembly (433ms)
+		BeginReloadAssembly (47ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (333ms)
-			LoadAssemblies (44ms)
+		EndReloadAssembly (337ms)
+			LoadAssemblies (45ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (89ms)
+			SetupTypeCache (91ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (21ms)
+			RebuildScriptCaches (22ms)
 			SetupLoadedEditorAssemblies (149ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (5ms)
+				InitializePlatformSupportModulesInManaged (4ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (58ms)
+				RefreshPlugins (57ms)
 				BeforeProcessingInitializeOnLoad (12ms)
-				ProcessInitializeOnLoadAttributes (56ms)
-				ProcessInitializeOnLoadMethodAttributes (17ms)
+				ProcessInitializeOnLoadAttributes (58ms)
+				ProcessInitializeOnLoadMethodAttributes (18ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.008690 seconds.
+Registered in 0.008485 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 58.87 ms, found 11 plugins.
+Refreshing native plugins compatible for Editor in 58.81 ms, found 11 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.883 seconds
+- Completed reload, in  0.889 seconds
 Domain Reload Profiling:
-	ReloadAssembly (884ms)
-		BeginReloadAssembly (101ms)
+	ReloadAssembly (890ms)
+		BeginReloadAssembly (102ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (3ms)
+			DisableScriptedObjects (4ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (16ms)
-		EndReloadAssembly (740ms)
-			LoadAssemblies (82ms)
+			CreateAndSetChildDomain (15ms)
+		EndReloadAssembly (745ms)
+			LoadAssemblies (85ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (180ms)
+			SetupTypeCache (187ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (48ms)
-			SetupLoadedEditorAssemblies (348ms)
+			RebuildScriptCaches (47ms)
+			SetupLoadedEditorAssemblies (343ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (59ms)
-				BeforeProcessingInitializeOnLoad (104ms)
-				ProcessInitializeOnLoadAttributes (145ms)
-				ProcessInitializeOnLoadMethodAttributes (31ms)
+				BeforeProcessingInitializeOnLoad (102ms)
+				ProcessInitializeOnLoadAttributes (141ms)
+				ProcessInitializeOnLoadMethodAttributes (32ms)
 				AfterProcessingInitializeOnLoad (5ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
@@ -118,14 +118,14 @@ Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 1.18 ms, found 11 plugins.
+Refreshing native plugins compatible for Editor in 1.13 ms, found 11 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 4069 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 240.7 MB.
 System memory in use after: 241.0 MB.
 
 Unloading 82 unused Assets to reduce memory usage. Loaded Objects now: 4467.
-Total: 5.362100 ms (FindLiveObjects: 0.345700 ms CreateObjectMapping: 0.171700 ms MarkObjects: 4.803700 ms  DeleteObjects: 0.040400 ms)
+Total: 5.344000 ms (FindLiveObjects: 0.316600 ms CreateObjectMapping: 0.172000 ms MarkObjects: 4.815800 ms  DeleteObjects: 0.039100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -139,19 +139,107 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/VRSTK/Scripts/BiosignalsPlux/TrackingBitalinoWithOSC.cs
-  artifactKey: Guid(535d277b40a1f3442bec07bf7a9ddb47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/BiosignalsPlux/TrackingBitalinoWithOSC.cs using Guid(535d277b40a1f3442bec07bf7a9ddb47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b477048f52e66c0b38f3a5fc27d6fdbb') in 0.034117 seconds 
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/Questions/questionnaire_example
+  artifactKey: Guid(c869c273a4d8bd244bdb76c5ae0b53ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/Questions/questionnaire_example using Guid(c869c273a4d8bd244bdb76c5ae0b53ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a55d2cfd58b6b1dc726fd6afa621a61d') in 0.013994 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 47.197036 seconds.
-  path: Assets/VRSTK/Plugins/Osc.cs
-  artifactKey: Guid(be734b194f1ddb140bb4ac8d9c5d3abb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Plugins/Osc.cs using Guid(be734b194f1ddb140bb4ac8d9c5d3abb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd1cdb0c11404111c8808258d3f6236f') in 0.001738 seconds 
+  Time since last request: 8.601050 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/Questions/Simulation Sickness Questionnaire
+  artifactKey: Guid(dc134ce4cc2f63f42b889452283d37fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/Questions/Simulation Sickness Questionnaire using Guid(dc134ce4cc2f63f42b889452283d37fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a111eb8151cc95fa039c2ff48f32aea0') in 0.001924 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 6.304483 seconds.
-  path: Assets/VRSTK/Plugins/UDPPacketIO.cs
-  artifactKey: Guid(8255e3e9f7ce4db4b99495e4a20a5496) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Plugins/UDPPacketIO.cs using Guid(8255e3e9f7ce4db4b99495e4a20a5496) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b8034d4ddaef738df6c0526d17e811c') in 0.001485 seconds 
+  Time since last request: 9.872224 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/Questions/Simulation_Sickness_Questionnaire
+  artifactKey: Guid(dc134ce4cc2f63f42b889452283d37fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/Questions/Simulation_Sickness_Questionnaire using Guid(dc134ce4cc2f63f42b889452283d37fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4744a9ca9aee1416af7a78da319bcfe0') in 0.001788 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 8.283714 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/Questions/SimulationSicknessQuestionnaire
+  artifactKey: Guid(dc134ce4cc2f63f42b889452283d37fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/Questions/SimulationSicknessQuestionnaire using Guid(dc134ce4cc2f63f42b889452283d37fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f97e2bb4ac2b9ab969a1107b9d3139c6') in 0.001813 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 11.022222 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/Questions/Uncaquestionnaire
+  artifactKey: Guid(c869c273a4d8bd244bdb76c5ae0b53ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/Questions/Uncaquestionnaire using Guid(c869c273a4d8bd244bdb76c5ae0b53ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1419fae3bd6c1954c959d198e6766879') in 0.002137 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 28.601035 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/Questions/UncannyValleyQuestionnaire
+  artifactKey: Guid(c869c273a4d8bd244bdb76c5ae0b53ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/Questions/UncannyValleyQuestionnaire using Guid(c869c273a4d8bd244bdb76c5ae0b53ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c8a88e0fe978418314b84fc118dbe79') in 0.001796 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3092.071356 seconds.
+  path: Assets/VRSTK/Scripts/Questionnaires/GenerateQuestionnaireEditor.cs
+  artifactKey: Guid(dd6e9bb0a7229d340990508afe42d71d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Questionnaires/GenerateQuestionnaireEditor.cs using Guid(dd6e9bb0a7229d340990508afe42d71d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d66fedb31b0e6a2e6a5c3b28976c1ed') in 0.021139 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 53.195390 seconds.
+  path: Assets/VRSTK/Scripts/Questionnaires/GenerateQuestionnaireEditor.cs
+  artifactKey: Guid(dd6e9bb0a7229d340990508afe42d71d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Questionnaires/GenerateQuestionnaireEditor.cs using Guid(dd6e9bb0a7229d340990508afe42d71d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5bfed46497aac1606f8e179960282ad') in 0.001578 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.008793 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.19 ms, found 11 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.793 seconds
+Domain Reload Profiling:
+	ReloadAssembly (793ms)
+		BeginReloadAssembly (99ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (30ms)
+		EndReloadAssembly (650ms)
+			LoadAssemblies (86ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (186ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (33ms)
+			SetupLoadedEditorAssemblies (275ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (90ms)
+				ProcessInitializeOnLoadAttributes (143ms)
+				ProcessInitializeOnLoadMethodAttributes (31ms)
+				AfterProcessingInitializeOnLoad (5ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.24 ms, found 11 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3982 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 233.4 MB.
+System memory in use after: 233.6 MB.
+
+Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 4470.
+Total: 5.538100 ms (FindLiveObjects: 0.323300 ms CreateObjectMapping: 0.181700 ms MarkObjects: 4.996300 ms  DeleteObjects: 0.036200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
