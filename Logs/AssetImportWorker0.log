@@ -142,3 +142,4 @@ Received Import Request.
   path: Assets/VRSTK/Scripts/EditorControl/CortexBrainComputerInterfaceGraphEditor.cs
   artifactKey: Guid(916f70fb44a36464f845f99840091237) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/VRSTK/Scripts/EditorControl/CortexBrainComputerInterfaceGraphEditor.cs using Guid(916f70fb44a36464f845f99840091237) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7238ea1964edcf388c90f32b112a44f9') in 0.036964 seconds 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
