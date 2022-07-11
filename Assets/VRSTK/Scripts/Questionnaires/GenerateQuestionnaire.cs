@@ -191,6 +191,8 @@ namespace VRSTK
                     numberQuestionnaires++;
 
                     ReadJson(inputPath);
+                    
+                    radioGridRec.localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 }
 
                 void ReadJson(string jsonPath)

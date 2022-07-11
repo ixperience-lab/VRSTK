@@ -56,7 +56,7 @@ namespace VRSTK
                 void OnEnable()
                 {
                     _questionnaireToolkit = Selection.activeGameObject;
-                    if (_lastQuestionnaireToolkit == null && _questionnaireToolkit != null)
+                    if (_lastQuestionnaireToolkit == null && _questionnaireToolkit != null && _questionnaireToolkit.name.Contains("VRQuestionnaireToolkit"))
                     {
                         GenerateQuestionnaire q = _questionnaireToolkit.GetComponent<GenerateQuestionnaire>();
                         _jsonInputPath_1 = q.JsonInputPath_1;
@@ -76,8 +76,20 @@ namespace VRSTK
                 private void OnInspectorUpdate()
                 {
                     _questionnaireToolkit = Selection.activeGameObject;
-                    if (_questionnaireToolkit != _lastQuestionnaireToolkit)
+                    if (_questionnaireToolkit != _lastQuestionnaireToolkit && _questionnaireToolkit != null && _questionnaireToolkit.name.Contains("VRQuestionnaireToolkit"))
                     {
+                        GenerateQuestionnaire q = _questionnaireToolkit.GetComponent<GenerateQuestionnaire>();
+                        _jsonInputPath_1 = q.JsonInputPath_1;
+                        _jsonInputPath_2 = q.JsonInputPath_2;
+                        _jsonInputPath_3 = q.JsonInputPath_3;
+                        _jsonInputPath_4 = q.JsonInputPath_4;
+                        _jsonInputPath_5 = q.JsonInputPath_5;
+                        _jsonInputPath_6 = q.JsonInputPath_6;
+                        _jsonInputPath_7 = q.JsonInputPath_7;
+                        _jsonInputPath_8 = q.JsonInputPath_8;
+                        _jsonInputPath_9 = q.JsonInputPath_9;
+                        _jsonInputPath_10 = q.JsonInputPath_10;
+                        _indexOfAQuestionnaireToSetActive = q._indexOfAQuestionnaireToSetActive;
                         Repaint();
                     }
                 }

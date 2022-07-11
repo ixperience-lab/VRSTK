@@ -18,7 +18,7 @@
                   "Leicht",
                   "Moderat",
                   "Stark",
-                  "",
+				  "",
                   ""
                ]
             },
@@ -32,7 +32,7 @@
                   "Leicht",
                   "Moderat",
                   "Stark",
-                  "",
+				  "",
                   ""
                ]
             },
@@ -46,7 +46,7 @@
                   "Leicht",
                   "Moderat",
                   "Stark",
-                  "",
+				  "",
                   ""
                ]
             }
@@ -188,7 +188,7 @@
             },
             {
                "qId":"q12",
-               "qText":"Schwindelgefühl bei geöffneten Augen (Dizziness with eyes open)",
+               "qText":"Schwindelgefühl bei geöffneten Augen (Vertigo eyes opened)",
                "qMandatory":"true",
                "qOptions":[
                   "",
@@ -210,7 +210,7 @@
          "qData":[
             {
                "qId":"q13",
-               "qText":"Schwindelgefühl bei geschlossenen Augen (Dizziness with eyes closed)",
+               "qText":"Schwindelgefühl bei geschlossenen Augen (Vertigo eyes closed)",
                "qMandatory":"true",
                "qOptions":[
                   "",
@@ -238,7 +238,7 @@
             },
             {
                "qId":"q15",
-               "qText":"Magenwahrnehmung (Gefühl von Unbehagen, das knapp an Übelkeit grenzt) (Stomach awareness)",
+               "qText":"Magenwahrnehmung (Unbehagen) (Stomach awareness)",
                "qMandatory":"true",
                "qOptions":[
                   "",

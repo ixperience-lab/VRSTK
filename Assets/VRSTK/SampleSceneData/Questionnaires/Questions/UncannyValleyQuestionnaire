@@ -13,15 +13,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				      "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -29,15 +27,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				  "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				  "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -45,15 +41,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				  "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				  "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -68,15 +62,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				  "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				  "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -84,15 +76,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -100,15 +90,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -123,15 +111,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				      "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -139,15 +125,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -155,15 +139,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -178,15 +160,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				      "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -194,15 +174,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -210,15 +188,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -233,15 +209,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				      "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -249,15 +223,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -265,15 +237,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -288,15 +258,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				      "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -304,15 +272,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -320,15 +286,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -343,15 +307,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				  "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				  "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -359,15 +321,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				  "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				  "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -375,15 +335,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				  "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				  "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -398,15 +356,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				  "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				  "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -414,15 +370,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				  "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				  "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -430,15 +384,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				  "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				  "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -453,15 +405,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				  "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				  "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -469,15 +419,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				  "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				  "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -485,15 +433,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -508,15 +454,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				      "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -524,15 +468,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+				  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -540,15 +482,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -563,15 +503,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				      "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -579,15 +517,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -595,15 +531,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -618,15 +552,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				      "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -634,15 +566,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -650,15 +580,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -673,15 +601,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				      "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -689,15 +615,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -705,15 +629,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -728,15 +650,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				      "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -744,15 +664,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -760,15 +678,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -783,15 +699,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				      "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -799,15 +713,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -815,15 +727,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]
@@ -838,15 +748,13 @@
                "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Eindeutig roboterhaft",
+                  "Eindeutig roboterhaft",
                   "Stark roboterhaft",
                   "Leicht roboterhaft",
                   "Dazwischen",			                    
                   "Leicht menschlich",
                   "Stark menschlich",  
-				      "Eindeutig menschlich",
-                  ""
+				  "Eindeutig menschlich"
                ]
             },
             {
@@ -854,15 +762,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             },
             {
@@ -870,15 +776,13 @@
                "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
                "qMandatory":"true",
                "qOptions":[
-                  "",
-				      "Stimme überhaupt nicht zu",
+                  "Stimme überhaupt nicht zu",
                   "Stimme nicht zu",
                   "Stimme eher nicht zu",  
                   "Neutral",
                   "Stimme eher zu",			                    
                   "Stimme zu",
-				      "Stimme voll zu",
-                  ""
+				  "Stimme voll zu"
                ]
             }
          ]

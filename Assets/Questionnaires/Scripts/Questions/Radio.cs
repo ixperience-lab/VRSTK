@@ -97,7 +97,9 @@ namespace VRQuestionnaireToolkit
             RectTransform radioRec = temp.GetComponent<RectTransform>();
             radioRec.SetParent(_questionRecTest);
 
-            radioRec.localPosition = isOdd ? new Vector3(-190 + (numOptions * 85), 91 - (numQuestions * 92), 0) : new Vector3(-150 + (numOptions * 85), 90 - (numQuestions * 100), 0);
+            //radioRec.localPosition = isOdd ? new Vector3(-190 + (numOptions * 85), 91 - (numQuestions * 92), 0) : new Vector3(-150 + (numOptions * 85), 90 - (numQuestions * 100), 0);
+            radioRec.localPosition = isOdd ? new Vector3(-172 + (numOptions * 85), 91 - (numQuestions * 92), 0) : new Vector3(-150 + (numOptions * 85), 90 - (numQuestions * 100), 0);
+            //radioRec.localPosition = isOdd ? new Vector3(-230 + (numOptions * 75), 91 - (numQuestions * 92), 0) : new Vector3(-150 + (numOptions * 85), 90 - (numQuestions * 100), 0);
 
             radioRec.localRotation = Quaternion.identity;
             radioRec.localScale = new Vector3(radioRec.localScale.x * 0.01f, radioRec.localScale.y * 0.01f, radioRec.localScale.z * 0.01f);

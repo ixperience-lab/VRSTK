@@ -96,9 +96,16 @@ MonoBehaviour:
   JsonInputPath_10: 
   _questionnaires: []
   _indexOfAQuestionnaireToSetActive: 0
+  _pageFactory: {fileID: 0}
+  _exportToCsvScript: {fileID: 0}
+  _exportToCsv: {fileID: 0}
   questionnaire: {fileID: 3951100406968845949, guid: 7a44fb57c0f78554483ef7c4995adcbd,
     type: 3}
   QuestionRecTest: {fileID: 6707981411239160808}
+  currentQuestionnaire: {fileID: 0}
+  numberQuestionnaires: 0
+  qId: 
+  pId: 
 --- !u!223 &6707981411239160821
 Canvas:
   m_ObjectHideFlags: 0
@@ -265,7 +272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6707981412283293471}
-  - component: {fileID: 6707981412283293468}
+  - component: {fileID: 1913189789934064987}
   m_Layer: 0
   m_Name: ExportToCSV
   m_TagString: ExportToCSV
@@ -287,7 +294,7 @@ Transform:
   m_Father: {fileID: 6707981411239160808}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6707981412283293468
+--- !u!114 &1913189789934064987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -296,17 +303,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6707981412283293470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e1b011cae3bf814d840b3ee9acb236f, type: 3}
+  m_Script: {fileID: 11500000, guid: bbfcd7393ab4ddb4eb82d9adff5e4e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FileName: example-answer-sheet
-  Delimiter: ;
+  FileName: 
+  Delimiter: 
   Filetype: 0
   SaveToLocal: 1
-  StorePath: /Questionnaires/Data/Answers/
+  StorePath: 
   UseGlobalPath: 0
   SaveToServer: 0
-  TargetURI: http://localhost/test-vr-questionnaire/survey-results.php
+  TargetURI: http://www.example-server.com/survey-results.php
   QuestionnaireFinishedEvent:
     m_PersistentCalls:
       m_Calls: []

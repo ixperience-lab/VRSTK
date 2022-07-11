@@ -291,11 +291,11 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
             //GetComponent<LineRenderer>().SetPosition(counter, _currentfixations[1]);
             _saccads.Add(new Vector3(currentfixations_v0.x, currentfixations_v0.y, currentfixations_v0.z));
             _saccads.Add(new Vector3(currentfixations_v1.x, currentfixations_v1.y, currentfixations_v1.z));
-            tempSaccades.Add(new Vector3(currentfixations_v0.x, currentfixations_v0.y, currentfixations_v0.z));
-            tempSaccades.Add(new Vector3(currentfixations_v1.x, currentfixations_v1.y, currentfixations_v1.z));
+            //tempSaccades.Add(new Vector3(currentfixations_v0.x, currentfixations_v0.y, currentfixations_v0.z));
+            //tempSaccades.Add(new Vector3(currentfixations_v1.x, currentfixations_v1.y, currentfixations_v1.z));
             _saccadeCounter++;
-            GetComponent<LineRenderer>().positionCount = tempSaccades.Count;
-            GetComponent<LineRenderer>().SetPositions(tempSaccades.ToArray());
+            //GetComponent<LineRenderer>().positionCount = tempSaccades.Count;
+            //GetComponent<LineRenderer>().SetPositions(tempSaccades.ToArray());
             isSaccade = true;
         }
 
@@ -304,40 +304,40 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
         //for (int i = 0; i < _currentfixations.Count; i++)
             if (!isSaccade)
             {
-                GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                sphere.name = "TestSphere_" + currentfixations_v0.magnitude;
-                sphere.transform.position = new Vector3(currentfixations_v0.x, currentfixations_v0.y, currentfixations_v0.z);
-                sphere.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-                sphere.GetComponent<MeshRenderer>().receiveShadows = false;
-                sphere.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-                Renderer rend = sphere.GetComponent<Renderer>();
-                rend.material = _material;
+                //GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                //sphere.name = "TestSphere_" + currentfixations_v0.magnitude;
+                //sphere.transform.position = new Vector3(currentfixations_v0.x, currentfixations_v0.y, currentfixations_v0.z);
+                //sphere.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+                //sphere.GetComponent<MeshRenderer>().receiveShadows = false;
+                //sphere.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                //Renderer rend = sphere.GetComponent<Renderer>();
+                //rend.material = _material;
 
                 //sphere.transform.parent = transform;
 
-                _fixations.Add(new Vector3(currentfixations_v0.x, currentfixations_v0.y, currentfixations_v0.z));
+                //_fixations.Add(new Vector3(currentfixations_v0.x, currentfixations_v0.y, currentfixations_v0.z));
                 _fixationCounter++;
 
-                sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                sphere.name = "TestSphere_" + currentfixations_v1.magnitude;
-                sphere.transform.position = new Vector3(currentfixations_v1.x, currentfixations_v1.y, currentfixations_v1.z);
-                sphere.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-                sphere.GetComponent<MeshRenderer>().receiveShadows = false;
-                sphere.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-                rend = sphere.GetComponent<Renderer>();
-                rend.material = _material;
+                //sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                //sphere.name = "TestSphere_" + currentfixations_v1.magnitude;
+                //sphere.transform.position = new Vector3(currentfixations_v1.x, currentfixations_v1.y, currentfixations_v1.z);
+                //sphere.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+                //sphere.GetComponent<MeshRenderer>().receiveShadows = false;
+                //sphere.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                //rend = sphere.GetComponent<Renderer>();
+                //rend.material = _material;
 
                 //sphere.transform.parent = transform;
 
-                _fixations.Add(new Vector3(currentfixations_v1.x, currentfixations_v1.y, currentfixations_v1.z));
+                //_fixations.Add(new Vector3(currentfixations_v1.x, currentfixations_v1.y, currentfixations_v1.z));
                 _fixationCounter++;
             }
 
         Vector3 tempCurrentFixation = _currentfixations[1];
         _currentfixations.Clear();
         _currentfixations.Add(tempCurrentFixation);
-        Vector3 tempCurrentHeadPosition = _headPositions[1];
-        _headPositions.Clear();
-        _headPositions.Add(tempCurrentHeadPosition);
+        //Vector3 tempCurrentHeadPosition = _headPositions[1];
+        //_headPositions.Clear();
+        //_headPositions.Add(tempCurrentHeadPosition);
     }
 }
