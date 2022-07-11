@@ -46,6 +46,11 @@ namespace VRSTK
 
                     _last_start_time = _started_time;
                 }
+
+                private void OnEnable()
+                {
+                    if (GetComponent<PageConcatenationToAvatarSelection>() != null) GetComponent<PageConcatenationToAvatarSelection>().GetSelectedModelInformations();
+                }
             }
         }
     }

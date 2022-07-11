@@ -15,11 +15,16 @@ namespace VRSTK
             {
                 [SerializeField]
                 private GameObject _vrQuestionnaireFactory;
+                
                 [SerializeField]
                 private PageFactory _pageFactory;
+                
                 [SerializeField]
                 private GameObject _export;
-                
+
+                [SerializeField]
+                private GameObject _centerOfView;
+
                 public List<GameObject> unansweredMandatoryQuestions;
 
                 void Start()
@@ -183,6 +188,14 @@ namespace VRSTK
                         ++_pageFactory.CurrentPage;
                         _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(true);
 
+                        if (_centerOfView != null && _centerOfView.active && _centerOfView.GetComponent<ActivateModels>() != null)
+                            if (_pageFactory.CurrentPage == 1)
+                                _centerOfView.GetComponent<ActivateModels>().FirstPage();
+                            else if (_pageFactory.CurrentPage > 1 && _pageFactory.CurrentPage < _pageFactory.PageList.Count - 1)
+                                _centerOfView.GetComponent<ActivateModels>().GoToNextPage();
+                            else if (_pageFactory.CurrentPage == _pageFactory.PageList.Count - 1)
+                                _centerOfView.GetComponent<ActivateModels>().LastPage();
+
                         //reached second-last page
                         if (_pageFactory.PageList.Count - 2 == _pageFactory.CurrentPage)
                         {
@@ -222,6 +235,12 @@ namespace VRSTK
                     _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(false);
                     --_pageFactory.CurrentPage;
                     _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(true);
+
+                    if (_centerOfView != null && _centerOfView.active && _centerOfView.GetComponent<ActivateModels>() != null)
+                        if (_pageFactory.CurrentPage == 0)
+                            _centerOfView.GetComponent<ActivateModels>().StartPage();
+                        else
+                            _centerOfView.GetComponent<ActivateModels>().GoToPreviousPage();
                 }
 
                 IEnumerator ChangeTextColor(GameObject textObj)

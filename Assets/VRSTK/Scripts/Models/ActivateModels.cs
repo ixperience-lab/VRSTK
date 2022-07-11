@@ -6,11 +6,16 @@ using UnityEngine;
 
 public class ActivateModels : MonoBehaviour
 {
+    [SerializeField]
     public List<GameObject> modelList = new List<GameObject>();
-    public GameObject _currentActivatedModel;
-    private int currentIndex = 0;
     
-    private bool delay = true;
+    [SerializeField]
+    public GameObject _currentActivatedModel;
+
+    [SerializeField]
+    public int _currenSelectedtIndex = 0;
+    
+    //private bool delay = true;
 
     // Start is called before the first frame update
     void Start()
@@ -24,39 +29,56 @@ public class ActivateModels : MonoBehaviour
 
     }
 
+    public void FirstPage()
+    {
+        _currenSelectedtIndex = 0;
+        _currentActivatedModel = modelList[_currenSelectedtIndex];
+        _currentActivatedModel.SetActive(true);
+    }
+
+    public void LastPage()
+    {
+        modelList[_currenSelectedtIndex].SetActive(false);
+    }
+
+    public void StartPage()
+    {
+        modelList[_currenSelectedtIndex].SetActive(false);
+    }
+
     public void GoToNextPage()
     {
-        if (currentIndex + 1 >= modelList.Capacity)
+        if (_currenSelectedtIndex + 1 >= modelList.Capacity)
         {
             Debug.Log("Test done. \n Reset now with 'R'");
             return;
         }
-        else if (delay)
-        {
-            delay = !delay;
-            modelList[currentIndex].SetActive(false);
-            return;
-        }
-        delay = true;
-        modelList[currentIndex].SetActive(false);
-        currentIndex++;
-        modelList[currentIndex].SetActive(true);
+        //else if (delay)
+        //{
+        //    delay = !delay;
+        //    modelList[_currenSelectedtIndex].SetActive(false);
+        //    return;
+        //}
+        //delay = true;
+        modelList[_currenSelectedtIndex].SetActive(false);
+        _currenSelectedtIndex++;
+        modelList[_currenSelectedtIndex].SetActive(true);
 
-        _currentActivatedModel = modelList[currentIndex];
+        _currentActivatedModel = modelList[_currenSelectedtIndex];
     }
 
     public void GoToPreviousPage()
     {
-        if (currentIndex == 0)
+        if (_currenSelectedtIndex == 0)
         {
             Debug.Log("Already at first element.");
             return;
         }
-        modelList[currentIndex].SetActive(false);
-        currentIndex--;
-        modelList[currentIndex].SetActive(true);
+        modelList[_currenSelectedtIndex].SetActive(false);
+        _currenSelectedtIndex--;
+        modelList[_currenSelectedtIndex].SetActive(true);
 
-        _currentActivatedModel = modelList[currentIndex];
+        _currentActivatedModel = modelList[_currenSelectedtIndex];
     }
 
     public void ResetModels()
@@ -65,7 +87,7 @@ public class ActivateModels : MonoBehaviour
         {
             model.SetActive(false);
         }
-        currentIndex = 0;
+        _currenSelectedtIndex = 0;
 
         modelList.Shuffle();
         string arrangement = "";
@@ -77,13 +99,13 @@ public class ActivateModels : MonoBehaviour
         Debug.Log("Reihenfolge: \n" + arrangement);
         Debug.Log("Test reset");
 
-        _currentActivatedModel = modelList[currentIndex];
+        _currentActivatedModel = modelList[_currenSelectedtIndex];
     }
 
     public void StartActivateModels()
     {
-        modelList[currentIndex].SetActive(true);
-        _currentActivatedModel = modelList[currentIndex];
+        modelList[_currenSelectedtIndex].SetActive(true);
+        _currentActivatedModel = modelList[_currenSelectedtIndex];
         Debug.Log("Test started.");
     }
 }
