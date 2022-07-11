@@ -32,7 +32,7 @@ namespace VRSTK
                 // Start is called before the first frame update
                 void Start()
                 {
-                    _started_time = TestStage.GetTime();
+                    _started_time = TestStage.GetTime();                    
                 }
 
                 // Update is called once per frame
@@ -45,11 +45,6 @@ namespace VRSTK
                         TIME_nnn += Mathf.Abs(TIME_nnn - _current_Time_nnn);
 
                     _last_start_time = _started_time;
-                }
-
-                private void OnEnable()
-                {
-                    if (GetComponent<PageConcatenationToAvatarSelection>() != null) GetComponent<PageConcatenationToAvatarSelection>().GetSelectedModelInformations();
                 }
             }
         }

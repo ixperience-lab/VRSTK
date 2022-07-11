@@ -16,12 +16,14 @@ public class PageConcatenationToAvatarSelection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetSelectedModelInformations();
     }
 
     // Update is called once per frame
     void Update()
-    { }
+    {
+
+    }
 
     public void GetSelectedModelInformations()
     {

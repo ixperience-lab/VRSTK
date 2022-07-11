@@ -21,6 +21,7 @@ namespace VRSTK
             {
                 public string FileName;
                 public string Delimiter;
+                public bool _compareQuestionIdsInConsolidatedContent = false;
                 public enum FileType
                 {
                     Csv,
@@ -138,11 +139,13 @@ namespace VRSTK
                                 csvTemp[0] = _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<Radio>().QType;
                                 csvTemp[1] = _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<Radio>().QText;
                                 csvTemp[2] = _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<Radio>().QId;
+                                
+                                PageConcatenationToAvatarSelection pageConcatenationToAvatarSelection = _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<Radio>()
+                                    .GetComponentInParent<Image>().GetComponentInParent<Canvas>().GetComponentInParent<PageConcatenationToAvatarSelection>();
+                                if (pageConcatenationToAvatarSelection != null)
+                                    csvTemp[2] = _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<Radio>().QId + "_" + pageConcatenationToAvatarSelection._activatedModelName;
 
-                                for (int j = 0;
-                                    j < _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<Radio>()
-                                        .RadioList.Count;
-                                    j++)
+                                for (int j = 0; j < _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<Radio>().RadioList.Count; j++)
                                 {
                                     if (_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[j].GetComponentInChildren<Toggle>().isOn)
                                     {
@@ -334,10 +337,23 @@ namespace VRSTK
                         {
                             StreamReader sr = new StreamReader(filepath);
                             sb_all_content.AppendLine(sr.ReadLine() + Delimiter + header); // copy the first row in the existing file and add a header for the new data
-                            for (int row = 1; row < newData.GetLength(0); row++) // from the second row
-                            {
-                                sb_all_content.AppendLine(sr.ReadLine() + Delimiter + newData[row][3]); // copy old data and add new data
-                            }
+                            if (_compareQuestionIdsInConsolidatedContent)
+                                while (sr.EndOfStream)
+                                {
+                                    string tempLineContent = sr.ReadLine();
+                                    string id = tempLineContent.Split(Delimiter.ToCharArray()[0])[2];
+                                    for (int row = 1; row < newData.GetLength(0); row++) // from the second row
+                                    {
+                                        if(id.Equals(newData[row][2]))
+                                            sb_all_content.AppendLine(tempLineContent + Delimiter + newData[row][3]); // copy old data and add new data
+                                    }
+                                }
+                            else
+                                for (int row = 1; row < newData.GetLength(0); row++) // from the second row
+                                {
+                                    sb_all_content.AppendLine(sr.ReadLine() + Delimiter + newData[row][3]); // copy old data and add new data
+                                }
+
                             sr.Close();
                         }
                     }
