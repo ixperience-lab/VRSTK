@@ -184,6 +184,14 @@ namespace VRSTK
                             pagesParameters.FINISHED = 0;
                         }
                         // _pageFactory.GetComponentInChildren<TextMeshProUGUI>().gameObject.SetActive(false);
+
+                        PageParameters pageParameters = _pageFactory.PageList[_pageFactory.CurrentPage].GetComponent<PageParameters>();
+                        if (pageParameters != null)
+                        {
+                            pageParameters.CalculateStandardDeviationStraightLineAnswer();
+                            pageParameters.CalculateAbsoluteDerivationOfResponseValue();
+                        }
+
                         _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(false);
                         ++_pageFactory.CurrentPage;
                         _pageFactory.PageList[_pageFactory.CurrentPage].SetActive(true);

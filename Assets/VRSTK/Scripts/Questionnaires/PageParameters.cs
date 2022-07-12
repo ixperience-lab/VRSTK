@@ -33,6 +33,8 @@ namespace VRSTK
                 private float _standardDeviationStraightLineAnswer = 1f;        // close to zero -> straight line
 
                 // Second line checker
+                //[SerializeField]
+                //private float _patternAlgorithemStraightLineAnswer = 1f;        // close to zero -> straight line
 
                 // Third line checker
                 [SerializeField]
@@ -125,6 +127,13 @@ namespace VRSTK
                     else
                         _absoluteDerivationOfResponseValue = 0f;
                 }
+
+                //public void CalculatePatternAlgorithemStraightLineAnswer()
+                //{
+                //    if (transform.GetChild(0).GetChild(1).childCount < 1)
+                //        return;
+
+                //}
             }
         }
     }
