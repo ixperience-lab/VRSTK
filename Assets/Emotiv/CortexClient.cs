@@ -90,7 +90,7 @@ namespace EmotivUnityPlugin
         public event EventHandler<JObject> InjectMarkerOK;
         public event EventHandler<JObject> UpdateMarkerOK;
         public event EventHandler<JObject> GetDetectionInfoDone;
-        public event EventHandler<string> GetCurrentProfileDone;
+        public event EventHandler<JObject> GetCurrentProfileDone;
         public event EventHandler<string> CreateProfileOK;
         public event EventHandler<string> LoadProfileOK;
         public event EventHandler<string> SaveProfileOK;
@@ -103,6 +103,8 @@ namespace EmotivUnityPlugin
         public event EventHandler<string> StreamStopNotify;
         public event EventHandler<string> SessionClosedNotify;
         public event EventHandler<string> RefreshTokenOK;
+
+        public event EventHandler<bool> BTLEPermissionGrantedNotify; // notify btle permision grant status
 
         private CortexClient()
         {
@@ -233,7 +235,7 @@ namespace EmotivUnityPlugin
                     JObject error = (JObject)response["error"];
                     int code = (int)error["code"];
                     string messageError = (string)error["message"];
-                    UnityEngine.Debug.Log("Received: " + messageError);
+                    UnityEngine.Debug.Log("An error received: " + messageError);
                     //Send Error message event
                     ErrorMsgReceived(this, new ErrorMsgEventArgs(code, messageError, method));
                     
@@ -241,6 +243,15 @@ namespace EmotivUnityPlugin
                     // handle response
                     JToken data = response["result"];
                     HandleResponse(method, data);
+                    // check bluetooth permisison granted
+                    if (method == "queryHeadsets" && response.ContainsKey("attention")) {
+                        JObject attentionObj =  (JObject)response["attention"];
+                        bool btlePermisionGranted = true;
+                        if ((int)attentionObj["code"] == WarningCode.BTLEPermissionNotGranted) {
+                            btlePermisionGranted = false;
+                        }
+                        BTLEPermissionGrantedNotify(this, btlePermisionGranted);
+                    }
                 }
             }
             else if (response["sid"] != null)
@@ -258,7 +269,13 @@ namespace EmotivUnityPlugin
                         foreach( var ele in property.Value){
                             if (ele.Type == JTokenType.Array){
                                 foreach (var item in ele){
-                                    data.Add(Convert.ToDouble(item));
+                                    if (item.Type == JTokenType.Object)
+                                    {
+                                        // Ignore marker data 
+                                        UnityEngine.Debug.Log("marker object " + item); 
+                                    }
+                                    else
+                                        data.Add(Convert.ToDouble(item));
                                 }
                             }
                             else if (ele.Type == JTokenType.String){
@@ -366,7 +383,7 @@ namespace EmotivUnityPlugin
                 {
                     JObject warning         = (JObject)data["warning"];
                     string warningMessage   = warning["message"].ToString();
-                    UnityEngine.Debug.Log("User has not accepted eula. Please accept EULA on EMOTIV App to proceed.");
+                    UnityEngine.Debug.Log("User has not accepted eula. Please accept EULA on EMOTIV Launcher to proceed.");
                     EULANotAccepted(this, warningMessage);
                 }
                 AuthorizeOK(this, token);
@@ -451,10 +468,7 @@ namespace EmotivUnityPlugin
             }
             else if (method == "getCurrentProfile")
             {
-                if (data["name"] == null)
-                    GetCurrentProfileDone(this, "");
-                else
-                    GetCurrentProfileDone(this, (string)data["name"]);
+                GetCurrentProfileDone(this, (JObject)data);
             }
             else if (method == "setupProfile")
             {
@@ -813,7 +827,9 @@ namespace EmotivUnityPlugin
 
         // InjectMarker
         // Required params: session, cortexToken, label, value, time
-        public void InjectMarker(string cortexToken, string sessionId, string label, JToken value, double time, string port = null)
+        public void InjectMarker(string cortexToken, string sessionId, 
+                                 string label, JToken value, double time,
+                                 string port = null, JObject extras = null)
         {
             JObject param = new JObject();
             param.Add("session", sessionId);
@@ -823,18 +839,23 @@ namespace EmotivUnityPlugin
             param.Add("value", value);
             if (port != null)
                 param.Add("port", port);
+            if (extras != null)
+                param.Add("extras", extras);
             SendTextMessage(param, "injectMarker", true);
         }
 
         // UpdateMarker
         // Required params: session, cortexToken, label, value, time
-        public void UpdateMarker(string cortexToken, string sessionId, string markerId, double time)
+        public void UpdateMarker(string cortexToken, string sessionId, string markerId, 
+                                 double time, JObject extras = null)
         {
             JObject param = new JObject();
             param.Add("session", sessionId);
             param.Add("cortexToken", cortexToken);
             param.Add("markerId", markerId);
             param.Add("time", time);
+            if (extras != null)
+                param.Add("extras", extras);
             SendTextMessage(param, "updateMarker", true);
         }
 

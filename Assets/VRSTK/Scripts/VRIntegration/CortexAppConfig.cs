@@ -10,14 +10,14 @@ namespace VRSTK
             static class CortexAppConfig
             {
                 public static string AppUrl = "wss://localhost:6868";
-                public static string AppName = "";
+                public static string AppName = "***REMOVED***";
 
                 /// <summary>
                 /// Name of directory where contain tmp data and logs file.
                 /// </summary>
-                public static string TmpAppDataDir = "";
-                public static string ClientId = "";
-                public static string ClientSecret = "";
+                public static string TmpAppDataDir = "***REMOVED***";
+                public static string ClientId = "***REMOVED***";
+                public static string ClientSecret = "***REMOVED***";
                 public static string AppVersion = "1.0.0";
 
                 /// <summary>

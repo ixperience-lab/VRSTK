@@ -57,6 +57,15 @@ namespace EmotivUnityPlugin
         CHAN_MAGX,  CHAN_MAGY,  CHAN_MAGZ
     }
 
+    public enum BandPowerType
+    {
+        Thetal = 0,
+        Alpha,
+        BetalL,
+        BetalH,
+        Gamma
+    };
+
     public static class ChannelStringList
     {
         public static Dictionary<Channel_t, string> list = new Dictionary<Channel_t, string>() {
@@ -144,6 +153,7 @@ namespace EmotivUnityPlugin
     public enum HeadsetTypes {
         HEADSET_TYPE_UNKNOWN,
         HEADSET_TYPE_INSIGHT,
+        HEADSET_TYPE_INSIGHT2,
         HEADSET_TYPE_EPOC_STD,
         HEADSET_TYPE_EPOC_PLUS,
         HEADSET_TYPE_EPOC_FLEX,
@@ -192,6 +202,7 @@ namespace EmotivUnityPlugin
         public static string epoc       = "EPOC";
         public static string epoc_plus  = "EPOCPLUS";
         public static string insight    = "INSIGHT";
+        public static string insight2   = "INSIGHT2";
         public static string epoc_x     = "EPOCX";
         public static string mn8        = "MN8";
         public static string epoc_flex  = "EPOCFLEX";

@@ -165,7 +165,7 @@ namespace VRSTK
                                     {
                                         //_bciTraining.UnLoadProfile(_mentalCommandProfileName);
                                         //Thread.Sleep(1000);
-                                        _bciTraining.LoadProfile(_mentalCommandProfileName);
+                                        //_bciTraining.LoadProfile(_mentalCommandProfileName);
                                         Thread.Sleep(1000);
                                     }
                                     else
