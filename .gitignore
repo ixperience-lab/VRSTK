@@ -37,3 +37,4 @@ sysinfo.txt
 
 # Emotiv Client informations
 CortexAppConfig.cs
+Config.cs
