@@ -42,15 +42,19 @@ public class ChangeSpotLightAngleAndColor : MonoBehaviour
 
             if (_objectToActivate != null && _spotLights != null && !_isEffectActivatedDone)
             {
-                string activatedModelName = _objectToActivate.GetComponent<ActivateModels>()._currentActivatedModel.name;
-                if (activatedModelName.Equals("Pose_Zombiegirl"))
+                if (_objectToActivate.GetComponent<ActivateModels>()._currentActivatedModel != null)
                 {
-                    for (int i = 0; i < _spotLights.Count; i++)
+                    string activatedModelName = _objectToActivate.GetComponent<ActivateModels>()._currentActivatedModel.name;
+
+                    if (activatedModelName.Equals("Pose_Zombiegirl"))
                     {
-                        _spotLights[i].GetComponent<Light>().spotAngle = 1.0f;
-                        _spotLights[i].GetComponent<Light>().color = new Color(255f, 0f, 0f, 255f);
+                        for (int i = 0; i < _spotLights.Count; i++)
+                        {
+                            _spotLights[i].GetComponent<Light>().spotAngle = 1.0f;
+                            _spotLights[i].GetComponent<Light>().color = new Color(255f, 0f, 0f, 255f);
+                        }
+                        _isEffectActivatedDone = true;
                     }
-                    _isEffectActivatedDone = true;
                 }
             }
         }
