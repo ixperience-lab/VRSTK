@@ -1,4 +1,5 @@
 # Imports
+import time
 from pylsl import StreamInlet, resolve_stream
 from pythonosc import udp_client
 
@@ -18,19 +19,20 @@ class Lsl():
                 sample, timestamp = self.inlet.pull_sample()
                 print(timestamp, sample)
                 #{0} - Seq[{1}] : O[{2} {3} {4} {5}] ; A[{6} {7} {8} {9} {10} {11}]"
-                message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} 0.0 0.0 0.0 0.0 0.0 0.0]".format(timestamp, sample[0], sample[1])
+                message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} 0.0 0.0 0.0 0.0 0.0 0.0]".format(timestamp, int(sample[0]), int(sample[1]))
                 if len(sample) == 3:
-                    message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} {3} 0.0 0.0 0.0 0.0]".format(timestamp, sample[0], sample[1], sample[2])
+                    message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} {3} 0.0 0.0 0.0 0.0]".format(timestamp, int(sample[0]), int(sample[1]), int(sample[2]))
                 if len(sample) == 4:
-                    message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} {3} {4} 0.0 0.0 0.0]".format(timestamp, sample[0], sample[1], sample[2], sample[3])
+                    message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} {3} {4} 0.0 0.0 0.0]".format(timestamp, int(sample[0]), int(sample[1]), int(sample[2]), int(sample[3]))
                 if len(sample) == 5:
-                    message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} {3} {4} {5} 0.0 0.0]".format(timestamp, sample[0], sample[1], sample[2], sample[3], sample[4])
+                    message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} {3} {4} {5} 0.0 0.0]".format(timestamp, int(sample[0]), int(sample[1]), int(sample[2]), int(sample[3]), int(sample[4]))
                 if len(sample) == 6:
-                    message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} {3} {4} {5} {6} 0.0]".format(timestamp, sample[0], sample[1], sample[2], sample[3], sample[4], sample[5])
+                    message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} {3} {4} {5} {6} 0.0]".format(timestamp, int(sample[0]), int(sample[1]), int(sample[2]), int(sample[3]), int(sample[4]), int(sample[5]))
                 if len(sample) == 7:
-                    message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} {3} {4} {5} {6} {7}]".format(timestamp, sample[0], sample[1], sample[2], sample[3], sample[4], sample[5], sample[6])
+                    message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} {3} {4} {5} {6} {7}]".format(timestamp, int(sample[0]), int(sample[1]), int(sample[2]), int(sample[3]), int(sample[4]), int(sample[5]), int(sample[6]))
                 print(message)
                 client.send_message("/Bitalino/OpenSinglesStream", message)
+                # time.sleep(1)
         except KeyboardInterrupt:
             self.inlet.close_stream()
 

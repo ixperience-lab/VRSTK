@@ -81,23 +81,30 @@ using System;
         {
             while (ReaderRunning)
             {
-                byte[] buffer = new byte[1000];
-                int length = OscPacketIO.ReceivePacket(buffer);
-                //Debug.Log("received packed of len=" + length);
-                if (length > 0)
+                try
                 {
-                    ArrayList messages = Osc.PacketToOscMessages(buffer, length);
-                    foreach (OscMessage om in messages)
+                    byte[] buffer = new byte[1000];
+                    int length = OscPacketIO.ReceivePacket(buffer);
+                    //Debug.Log("received packed of len=" + length);
+                    if (length > 0)
                     {
-                        if (AllMessageHandler != null)
-                            AllMessageHandler(om);
-                        OscMessageHandler h = (OscMessageHandler)Hashtable.Synchronized(AddressTable)[om.Address];
-                        if (h != null)
-                            h(om);
+                        ArrayList messages = Osc.PacketToOscMessages(buffer, length);
+                        foreach (OscMessage om in messages)
+                        {
+                            if (AllMessageHandler != null)
+                                AllMessageHandler(om);
+                            OscMessageHandler h = (OscMessageHandler)Hashtable.Synchronized(AddressTable)[om.Address];
+                            if (h != null)
+                                h(om);
+                        }
                     }
+                    else
+                        Thread.Sleep(20);
                 }
-                else
+                catch (Exception e)
+                {
                     Thread.Sleep(20);
+                }
             }
         }
         catch (Exception e)
