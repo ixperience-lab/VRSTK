@@ -43,6 +43,15 @@ namespace VRSTK
                     set { _TIME_RSI_s = value; }
                 }
 
+                [SerializeField]
+                private string _TIME_RSI_Message = "";
+
+                public string TIME_RSI_Message
+                {
+                    get { return _TIME_RSI_Message; }
+                    set { _TIME_RSI_Message = value; }
+                }
+
                 /// <summary>
                 /// Percentage of missing answers weighted by the other participants answering behavior.
                 /// </summary>
@@ -53,6 +62,15 @@ namespace VRSTK
                 {
                     get { return _MISSREL_s; }
                     set { _MISSREL_s = value; }
+                }
+
+                [SerializeField]
+                private string _MISSREL_Message = "";
+
+                public string MISSREL_Message
+                {
+                    get { return _MISSREL_Message; }
+                    set { _MISSREL_Message = value; }
                 }
 
                 /// <summary>
@@ -68,6 +86,15 @@ namespace VRSTK
                     set { _MISSING_s = value; }
                 }
 
+                [SerializeField]
+                private string _MISSING_Message = "";
+
+                public string MISSING_Message
+                {
+                    get { return _MISSING_Message; }
+                    set { _MISSING_Message = value; }
+                }
+
                 /// <summary>
                 /// ...
                 /// </summary>
@@ -78,6 +105,15 @@ namespace VRSTK
                 {
                     get { return _TIME_SUM_s; }
                     set { _TIME_SUM_s = value; }
+                }
+
+                [SerializeField]
+                private string _TIME_SUM_Message = "";
+
+                public string TIME_SUM_Message
+                {
+                    get { return _TIME_SUM_Message; }
+                    set { _TIME_SUM_Message = value; }
                 }
 
                 /// <summary>
@@ -105,6 +141,15 @@ namespace VRSTK
                     set { _DEG_TIME_s = value; }
                 }
 
+                [SerializeField]
+                private string _DEG_TIME_Message = "";
+
+                public string DEG_TIME_Message
+                {
+                    get { return _DEG_TIME_Message; }
+                    set { _DEG_TIME_Message = value; }
+                }
+
                 public void Start()
                 {
                     _TIME_RSI_s = new float[_generateQuestionnaire.Questionnaires.Count];
@@ -120,10 +165,14 @@ namespace VRSTK
                     float median = CalculateMedian();
 
                     for (int i = 0; i < TIME_SUM_s.Length; i++)
+                    {
                         if (TIME_SUM_s[i] > 0)
                             TIME_RSI_s[i] = median / TIME_SUM_s[i];
                         else
                             TIME_RSI_s[i] = 0f;
+
+                        TIME_RSI_Message += TIME_RSI_s[i].ToString() + "; ";
+                    }
                 }
 
                 private float CalculateMedian()
@@ -165,6 +214,8 @@ namespace VRSTK
                                 weightedAnsweresCounter += (float) pp.QuestionsAnswerRecordList[j].AnsweredCounter * _questionsAnswerRecords[j].CalculateWeightFactor(); 
                         
                         _MISSREL_s[i] = (float) ((float)((questionsCounter - 1) - weightedAnsweresCounter) / (questionsCounter - 1));
+
+                        MISSREL_Message += _MISSREL_s[i].ToString() + "; ";
                     }
                 }
             }

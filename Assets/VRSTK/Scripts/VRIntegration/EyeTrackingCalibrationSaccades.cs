@@ -247,7 +247,7 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
             hitPoint = hitObjects.point;
         }
        
-        Debug.Log(hitlog);
+        //Debug.Log(hitlog);
         return hitPoint;
     }
 

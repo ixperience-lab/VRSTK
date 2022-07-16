@@ -14,7 +14,10 @@ public class ActivateModels : MonoBehaviour
 
     [SerializeField]
     public int _currenSelectedtIndex = 0;
-    
+
+    [SerializeField]
+    public string _currentActivatedModelName;
+
     //private bool delay = true;
 
     // Start is called before the first frame update
@@ -34,6 +37,7 @@ public class ActivateModels : MonoBehaviour
         _currenSelectedtIndex = 0;
         _currentActivatedModel = modelList[_currenSelectedtIndex];
         _currentActivatedModel.SetActive(true);
+        _currentActivatedModelName = _currentActivatedModel.name;
     }
 
     public void LastPage()
@@ -53,18 +57,13 @@ public class ActivateModels : MonoBehaviour
             Debug.Log("Test done. \n Reset now with 'R'");
             return;
         }
-        //else if (delay)
-        //{
-        //    delay = !delay;
-        //    modelList[_currenSelectedtIndex].SetActive(false);
-        //    return;
-        //}
-        //delay = true;
+
         modelList[_currenSelectedtIndex].SetActive(false);
         _currenSelectedtIndex++;
         modelList[_currenSelectedtIndex].SetActive(true);
 
         _currentActivatedModel = modelList[_currenSelectedtIndex];
+        _currentActivatedModelName = _currentActivatedModel.name;
     }
 
     public void GoToPreviousPage()
@@ -79,6 +78,7 @@ public class ActivateModels : MonoBehaviour
         modelList[_currenSelectedtIndex].SetActive(true);
 
         _currentActivatedModel = modelList[_currenSelectedtIndex];
+        _currentActivatedModelName = _currentActivatedModel.name;
     }
 
     public void ResetModels()
@@ -100,12 +100,14 @@ public class ActivateModels : MonoBehaviour
         Debug.Log("Test reset");
 
         _currentActivatedModel = modelList[_currenSelectedtIndex];
+        _currentActivatedModelName = _currentActivatedModel.name;
     }
 
     public void StartActivateModels()
     {
         modelList[_currenSelectedtIndex].SetActive(true);
         _currentActivatedModel = modelList[_currenSelectedtIndex];
+        _currentActivatedModelName = _currentActivatedModel.name;
         Debug.Log("Test started.");
     }
 }

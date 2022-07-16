@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddec862d19d4674b90cbebf15eafc4c, type: 3}
+  m_Name: TrackVRQuestionnaireToolkitUncannyValley34206
+  m_EditorClassIdentifier: 
+  parameters:
+  - name: enabled_Canvas
+    typeIndex: 3
+    hideFromInspector: 1
+  - name: enabled_CanvasScaler
+    typeIndex: 3
+    hideFromInspector: 1
+  - name: enabled_GraphicRaycaster
+    typeIndex: 3
+    hideFromInspector: 1
+  - name: LastQuestionnaire_TIME_SUM_QualityParameters
+    typeIndex: 1
+    hideFromInspector: 1
+  - name: TIME_RSI_Message_QualityParameters
+    typeIndex: 2
+    hideFromInspector: 1
+  - name: MISSREL_Message_QualityParameters
+    typeIndex: 2
+    hideFromInspector: 1
+  - name: MISSING_Message_QualityParameters
+    typeIndex: 2
+    hideFromInspector: 1
+  - name: TIME_SUM_Message_QualityParameters
+    typeIndex: 2
+    hideFromInspector: 1
+  - name: DEG_TIME_Message_QualityParameters
+    typeIndex: 2
+    hideFromInspector: 1
+  - name: enabled_QualityParameters
+    typeIndex: 3
+    hideFromInspector: 1
+  eventName: VRQuestionnaireToolkitUncannyValley34206
+  time: 0

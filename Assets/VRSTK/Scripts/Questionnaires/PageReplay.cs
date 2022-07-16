@@ -17,7 +17,10 @@ namespace VRSTK
 
                 public System.Int32 CurrentActivePageIndex
                 {
-                    get { return _currentActivePageIndex; }
+                    get 
+                    { 
+                        return _currentActivePageIndex; 
+                    }
                     set
                     {
                         _currentActivePageIndex = value;
@@ -30,8 +33,14 @@ namespace VRSTK
 
                 public System.String SelectedContentToggle
                 {
-                    get { return _selectedContentToggle; }
-                    set { _selectedContentToggle = value; }
+                    get 
+                    { 
+                        return _selectedContentToggle; 
+                    }
+                    set 
+                    {
+                        _selectedContentToggle = value; 
+                    }
                 }
 
                 private System.Int32 _lastCurrentActivePageIndex = -1;

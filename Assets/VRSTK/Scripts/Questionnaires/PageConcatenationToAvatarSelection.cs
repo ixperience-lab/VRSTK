@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRSTK.Scripts.Telemetry;
+using VRSTK.Scripts.TestControl;
 
 public class PageConcatenationToAvatarSelection : MonoBehaviour
 {
@@ -16,7 +18,10 @@ public class PageConcatenationToAvatarSelection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetSelectedModelInformations();
+        if (TestStage.GetStarted())
+        {
+            GetSelectedModelInformations();
+        }
     }
 
     // Update is called once per frame

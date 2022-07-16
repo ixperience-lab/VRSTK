@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRSTK.Scripts.Telemetry;
+using VRSTK.Scripts.TestControl;
 
 public class ResetModelList : MonoBehaviour
 {
@@ -8,8 +10,11 @@ public class ResetModelList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _objectToActivate.active = true;
-        _objectToActivate.GetComponent<ActivateModels>().ResetModels();
+        if (TestStage.GetStarted())
+        {
+            _objectToActivate.active = true;
+            _objectToActivate.GetComponent<ActivateModels>().ResetModels();
+        }
     }
 
     // Update is called once per frame
