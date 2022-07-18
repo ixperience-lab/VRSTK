@@ -9,18 +9,95 @@ using System;
 
 public class EyeTrackingCalibrationSaccades : MonoBehaviour
 {
-    public List<Vector3> _saccads;
-    public List<Vector3> _fixations;
-    public List<Vector3> _currentfixations;
-
+    private List<Vector3> _saccads;
+    private List<Vector3> _fixations;
+    private List<Vector3> _currentfixations;
     private float _currentTime, _lastTime = 0f;
+    private EyeData _eyeData = new EyeData();//private EyeData_v2 _eyeDataV2 = new EyeData_v2();
+    private ViveSR.Error _lastError;
+    //private Vector3 _meanHeadPosition;
+    //private List<Vector3> _headPositions;
+    //private List<Vector3> tempSaccades;
 
+    [SerializeField]
+    private string _saccadsPositionsAsMessage;
+
+    public string SaccadsPositionsAsMessage
+    {
+        get { return _saccadsPositionsAsMessage; }
+        set { _saccadsPositionsAsMessage = value; }
+    }
+
+    [SerializeField]
+    private string _saccadsInformationsAsMessage;
+
+    public string SaccadsInformationsAsMessage
+    {
+        get { return _saccadsInformationsAsMessage; }
+        set { _saccadsInformationsAsMessage = value; }
+    }
+
+    [SerializeField]
+    private string _fixationPositionsAsMessage;
+
+    public string FixationPositionsAsMessage
+    {
+        get { return _fixationPositionsAsMessage; }
+        set { _fixationPositionsAsMessage = value; }
+    }
+
+    [SerializeField]
+    private string _fixationsInformationAsMessage;
+
+    public string FixationsInformationAsMessage
+    {
+        get { return _fixationsInformationAsMessage; }
+        set { _fixationsInformationAsMessage = value; }
+    }
+
+    [SerializeField]
+    private string _eyeTrackingLeftEyeInformationsAsMessage;
+
+    public string EyeTrackingLeftEyeInformationsAsMessage
+    {
+        get { return _eyeTrackingLeftEyeInformationsAsMessage; }
+        set { _eyeTrackingLeftEyeInformationsAsMessage = value; }
+    }
+
+    [SerializeField]
+    private string _eyeTrackingRightEyeInformationsAsMessage;
+
+    public string EyeTrackingRightEyeInformationsAsMessage
+    {
+        get { return _eyeTrackingRightEyeInformationsAsMessage; }
+        set { _eyeTrackingRightEyeInformationsAsMessage = value; }
+    }
+
+    [SerializeField]
+    private string _eyeTrackingCombineEyeInformationsAsMessage;
+
+    public string EyeTrackingCombineEyeInformationsAsMessage
+    {
+        get { return _eyeTrackingCombineEyeInformationsAsMessage; }
+        set { _eyeTrackingCombineEyeInformationsAsMessage = value; }
+    }
+
+    [SerializeField]
     public int _saccadeCounter = 0;
+
+    [SerializeField]
     public int _fixationCounter = 0;
-    public float _saccadeVelocityThreshold = 300f;
+    
+    [SerializeField]
+    public float _saccadeVelocityThreshold = 70f;
+
     //public bool _isEyeDataCallbackFunctionRegistered = false;
+    [SerializeField]
     public bool _isUserNeedCalibration;
+    
+    [SerializeField]
     public bool _calibrationResult;
+    
     public float _measuredDifferceTime = 0;
     public float _measuredVisualAngle = 0f;
     public float _measuredVelocity = 0;
@@ -71,12 +148,7 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
     [SerializeField]
     public bool _convergenceDistanceValidity;
 
-    private EyeData _eyeData = new EyeData();//private EyeData_v2 _eyeDataV2 = new EyeData_v2();
-    private ViveSR.Error _lastError;
-    private Vector3 _meanHeadPosition;
-    public List<Vector3> _headPositions;
     public Material _material;
-    private List<Vector3> tempSaccades;
 
     // Start is called before the first frame update
     void Start()
@@ -86,8 +158,8 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
         _saccads = new List<Vector3>();
         _fixations = new List<Vector3>();
         _currentfixations = new List<Vector3>();
-        _headPositions = new List<Vector3>();
-        tempSaccades = new List<Vector3>();
+        //_headPositions = new List<Vector3>();
+        //tempSaccades = new List<Vector3>();
 
         //Initialize|Instancing off eye tracking 
         if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING)
@@ -133,40 +205,61 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
         EyeParameter eyeParameter = new EyeParameter();
         SRanipal_Eye_API.GetEyeParameter(ref eyeParameter);
 
-        var leftEye = _eyeData.verbose_data.left.gaze_direction_normalized;
-        var rightEye = _eyeData.verbose_data.right.gaze_direction_normalized;
-        
-        
-        
+        //var leftEye = _eyeData.verbose_data.left.gaze_direction_normalized;
+        //var rightEye = _eyeData.verbose_data.right.gaze_direction_normalized;
+
+        //_eyeData.timestamp
+
         _sRanipalFrameSequence = _eyeData.frame_sequence;
         _leftEyeDataValidataBitMask = _eyeData.verbose_data.left.eye_data_validata_bit_mask;
-        _rightEyeDataValidataBitMask = _eyeData.verbose_data.right.eye_data_validata_bit_mask;
         _leftEyeOpenness = _eyeData.verbose_data.left.eye_openness;
-        _rightEyeOpenness = _eyeData.verbose_data.right.eye_openness;
         _leftPupilDiameter = _eyeData.verbose_data.left.pupil_diameter_mm;
-        _rightPupilDiameter = _eyeData.verbose_data.right.pupil_diameter_mm;
         _leftPupilPositionInSensorArea = _eyeData.verbose_data.left.pupil_position_in_sensor_area;
-        _rightPupilPositionInSensorArea = _eyeData.verbose_data.right.pupil_position_in_sensor_area;
         _leftGazeOrigin_mm = _eyeData.verbose_data.left.gaze_origin_mm;
+        _leftGazeDirectionNormalized = _eyeData.verbose_data.left.gaze_direction_normalized;
+
+        CalculateWorldSpace(_leftGazeDirectionNormalized, ref _leftGazeDirectionNormalizedTranslatedToWorldSpace);
+
+        string leftEyeInformations = string.Format("{0};{1};{2};{3};{4};{5};{6};", _leftEyeDataValidataBitMask, _leftEyeOpenness, 
+                                                                                   _leftPupilDiameter, _leftPupilPositionInSensorArea.ToString(), 
+                                                                                   _leftGazeOrigin_mm.ToString(), _leftGazeDirectionNormalized.ToString(), 
+                                                                                   _leftGazeDirectionNormalizedTranslatedToWorldSpace.ToString());
+        EyeTrackingLeftEyeInformationsAsMessage = _eyeData.timestamp.ToString() + ";" + _sRanipalFrameSequence.ToString() + ";" + leftEyeInformations;
+
+        _rightEyeDataValidataBitMask = _eyeData.verbose_data.right.eye_data_validata_bit_mask;
+        _rightEyeOpenness = _eyeData.verbose_data.right.eye_openness;
+        _rightPupilDiameter = _eyeData.verbose_data.right.pupil_diameter_mm;
+        _rightPupilPositionInSensorArea = _eyeData.verbose_data.right.pupil_position_in_sensor_area;
         _rightGazeOrigin_mm = _eyeData.verbose_data.right.gaze_origin_mm;
-        _leftGazeDirectionNormalized = _eyeData.verbose_data.left.gaze_direction_normalized;                                               
         _rightGazeDirectionNormalized = _eyeData.verbose_data.right.gaze_direction_normalized;
-        _gazeSensitiveFactor = eyeParameter.gaze_ray_parameter.sensitive_factor;
+        CalculateWorldSpace(_rightGazeDirectionNormalized, ref _rightGazeDirectionNormalizedTranslatedToWorldSpace);
+
+        string rightEyeInformations = string.Format("{0};{1};{2};{3};{4};{5};{6};", _rightEyeDataValidataBitMask, _rightEyeOpenness,
+                                                                                    _rightPupilDiameter, _rightPupilPositionInSensorArea.ToString(),
+                                                                                    _rightGazeOrigin_mm.ToString(), _rightGazeDirectionNormalized.ToString(),
+                                                                                    _rightGazeDirectionNormalizedTranslatedToWorldSpace.ToString());
+        EyeTrackingRightEyeInformationsAsMessage = _eyeData.timestamp.ToString() + ";" + _sRanipalFrameSequence.ToString() + ";" + rightEyeInformations;
+
         //_leftEyeExpressionData_EyeFrown = _eyeDataV2.expression_data.left.eye_frown;
         //_rightEyeExpressionData_EyeFrown = _eyeDataV2.expression_data.right.eye_frown;
         //_leftEyeExpressionData_EyeSqueeze = _eyeDataV2.expression_data.left.eye_squeeze;
         //_rightEyeExpressionData_EyeSqueeze = _eyeDataV2.expression_data.right.eye_squeeze;
         //_leftEyeExpressionData_EyeWide = _eyeDataV2.expression_data.left.eye_wide;
         //_rightEyeExpressionData_EyeWide = _eyeDataV2.expression_data.right.eye_wide;
-        _combinedGazeDirectionNormalized = _eyeData.verbose_data.combined.eye_data.gaze_direction_normalized;
+
+        _gazeSensitiveFactor = eyeParameter.gaze_ray_parameter.sensitive_factor;
         _convergenceDistanceValidity = _eyeData.verbose_data.combined.convergence_distance_validity;
+        _combinedGazeDirectionNormalized = _eyeData.verbose_data.combined.eye_data.gaze_direction_normalized;
         _convergenceDistance_mm = _eyeData.verbose_data.combined.convergence_distance_mm;
 
-        CalculateWorldSpace(_leftGazeDirectionNormalized, ref _leftGazeDirectionNormalizedTranslatedToWorldSpace);
-        CalculateWorldSpace(_rightGazeDirectionNormalized, ref _rightGazeDirectionNormalizedTranslatedToWorldSpace);
         CalculateWorldSpace(_combinedGazeDirectionNormalized, ref _combinedGazeDirectionNormalizedTranslatedToWorldSpace);
-
         Vector3 v = GazeIntersectionPoint(_combinedGazeDirectionNormalizedTranslatedToWorldSpace);
+
+        string combineEyeInformations = string.Format("{0};{1};{2};{3};{4};{5};", _convergenceDistanceValidity, _convergenceDistance_mm, _gazeSensitiveFactor,
+                                                                                                          _combinedGazeDirectionNormalized.ToString(), 
+                                                                                                          _combinedGazeDirectionNormalizedTranslatedToWorldSpace.ToString(),
+                                                                                                          v.ToString());
+        EyeTrackingCombineEyeInformationsAsMessage = _eyeData.timestamp.ToString() + ";" + _sRanipalFrameSequence.ToString() + ";" + combineEyeInformations;
 
         _measuredDifferceTime = 0f;
         if (_lastTime != 0)
@@ -174,6 +267,9 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
 
         CalculateSaccades(v, _measuredDifferceTime);
         
+        SaccadsInformationsAsMessage = string.Format("{0};{1};{2};{3};", _saccadeVelocityThreshold, _measuredVisualAngle, _measuredVelocity, _saccadeCounter);
+        FixationsInformationAsMessage = _fixationCounter.ToString();        
+
         _lastTime = _currentTime;
     }
 
@@ -260,7 +356,7 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
     {
         if (_currentfixations.Count < 2)
         {
-            _headPositions.Add(transform.position);
+            //_headPositions.Add(transform.position);
             _currentfixations.Add(gazeVector);
             return;
         }
@@ -283,7 +379,7 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
         if (gazeVelocity > _saccadeVelocityThreshold)
         {
             _saccads.Clear();
-            _fixations.Clear();
+            //_fixations.Clear();
             
             //int counter = GetComponent<LineRenderer>().positionCount;
             //if (counter == 0) counter = 1;
@@ -291,6 +387,9 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
             //GetComponent<LineRenderer>().SetPosition(counter, _currentfixations[1]);
             _saccads.Add(new Vector3(currentfixations_v0.x, currentfixations_v0.y, currentfixations_v0.z));
             _saccads.Add(new Vector3(currentfixations_v1.x, currentfixations_v1.y, currentfixations_v1.z));
+
+            SaccadsPositionsAsMessage = currentfixations_v0.ToString() + ";" + currentfixations_v1 + ";";
+
             //tempSaccades.Add(new Vector3(currentfixations_v0.x, currentfixations_v0.y, currentfixations_v0.z));
             //tempSaccades.Add(new Vector3(currentfixations_v1.x, currentfixations_v1.y, currentfixations_v1.z));
             _saccadeCounter++;
@@ -331,7 +430,9 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
 
                 //_fixations.Add(new Vector3(currentfixations_v1.x, currentfixations_v1.y, currentfixations_v1.z));
                 _fixationCounter++;
-            }
+
+                FixationPositionsAsMessage = currentfixations_v0.ToString() + ";" + currentfixations_v1 + ";";
+        }
 
         Vector3 tempCurrentFixation = _currentfixations[1];
         _currentfixations.Clear();
