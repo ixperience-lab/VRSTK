@@ -43,8 +43,8 @@ public class ReplayLineRendererPositionsAndColor : MonoBehaviour
             if (positions.Length == 2)
             {
                 string message = string.Format("{0};{1};{2};{3};{4};{5};", positions[0].ToString(), positions[1].ToString(), color.r, color.g, color.b, color.a); 
-                GetComponents<EventSender>()[1].SetEventValue("PositionsAndColorMessage_ReplayLineRendererPositionsAndColor", message);
-                GetComponents<EventSender>()[1].Deploy();
+                GetComponents<EventSender>()[2].SetEventValue("PositionsAndColorMessage_ReplayLineRendererPositionsAndColor", message);
+                GetComponents<EventSender>()[2].Deploy();
             }
         }
     }
@@ -61,11 +61,11 @@ public class ReplayLineRendererPositionsAndColor : MonoBehaviour
 
             Color color = new Color(float.Parse(temp[2]), float.Parse(temp[3]), float.Parse(temp[4]), float.Parse(temp[5]));
 
-            XRInteractorLineVisual xrInteractorLineVisual = GetComponent<XRInteractorLineVisual>();
-            xrInteractorLineVisual.enabled = true;
+            //XRInteractorLineVisual xrInteractorLineVisual = GetComponent<XRInteractorLineVisual>();
+            //xrInteractorLineVisual.enabled = true;
 
             LineRenderer lineRenderer = GetComponent<LineRenderer>();
-            lineRenderer.enabled = true;
+            //lineRenderer.enabled = true;
 
             lineRenderer.SetColors(color, color);
             lineRenderer.positionCount = 2;
