@@ -6,6 +6,8 @@ using ViveSR.anipal;
 using ViveSR;
 using System.Runtime.InteropServices;
 using System;
+using VRSTK.Scripts.Telemetry;
+using VRSTK.Scripts.TestControl;
 
 public class EyeTrackingCalibrationSaccades : MonoBehaviour
 {
@@ -279,6 +281,13 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
         SaccadsInformationsAsMessage = string.Format("{0};{1};{2};{3};", _saccadeVelocityThreshold, _measuredVisualAngle, _measuredVelocity, _saccadeCounter);
         FixationsInformationAsMessage = string.Format("{0};{1};{2};{3};", _totalFixationCounter, _fixationCounter, _totalFixationDuration, _fixationDuration);
 
+        if (TestStage.GetStarted())
+        {
+            GetComponents<EventSender>()[3].SetEventValue("SaccadesPositions_SaccadesTrackerReplay", SaccadsPositionsAsMessage);
+            GetComponents<EventSender>()[3].SetEventValue("FixationPosition_SaccadesTrackerReplay", FixationPositionsAsMessage);
+            GetComponents<EventSender>()[3].Deploy();
+        }
+
         _lastTime = _currentTime;
     }
 
@@ -356,13 +365,31 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
         return hitPoint;
     }
 
-    //private Vector3 CalculateMeanVektor(List<Vector3> vectorList)
-    //{
-    //    return vectorList[0] + 0.5f * (vectorList[0] - vectorList[1]);
-    //}
-
     private void CalculateSaccades(Vector3 gazeVector, float timeDiff)
     {
+        if (_fixationCounter >= int.MaxValue)
+            _fixationCounter = 0;
+
+        _fixationCounter++;
+
+
+        if (_totalFixationCounter >= int.MaxValue)
+            _totalFixationCounter = 0;
+
+        _totalFixationCounter++;
+
+        if (_fixationDuration >= float.MaxValue)
+            _fixationDuration = 0f;
+
+        _fixationDuration += timeDiff;
+
+        if (_totalFixationDuration >= float.MaxValue)
+            _totalFixationDuration = 0f;
+
+        _totalFixationDuration += timeDiff;
+
+        FixationPositionsAsMessage += gazeVector.ToString() + ";";
+
         if (_currentfixations.Count < 2)
         {
             //_headPositions.Add(transform.position);
@@ -383,13 +410,14 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
         _measuredVisualAngle = visualAngle;
         _measuredVelocity = gazeVelocity;
 
-        bool isSaccade = false;
+        //bool isSaccade = false;
 
         if (gazeVelocity > _saccadeVelocityThreshold)
         {
             _saccads.Clear();
             _fixationCounter = 0;
             _fixationDuration = 0f;
+            FixationPositionsAsMessage = "";
             //_fixations.Clear();
 
             //int counter = GetComponent<LineRenderer>().positionCount;
@@ -409,14 +437,14 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
             _saccadeCounter++;
             //GetComponent<LineRenderer>().positionCount = tempSaccades.Count;
             //GetComponent<LineRenderer>().SetPositions(tempSaccades.ToArray());
-            isSaccade = true;
+            //isSaccade = true;
         }
 
 
 
         //for (int i = 0; i < _currentfixations.Count; i++)
-        if (!isSaccade)
-        {
+        //if (!isSaccade)
+        //{
             //GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             //sphere.name = "TestSphere_" + currentfixations_v0.magnitude;
             //sphere.transform.position = new Vector3(currentfixations_v0.x, currentfixations_v0.y, currentfixations_v0.z);
@@ -429,43 +457,43 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
             //sphere.transform.parent = transform;
 
             //_fixations.Add(new Vector3(currentfixations_v0.x, currentfixations_v0.y, currentfixations_v0.z));
-            if (_fixationCounter >= int.MaxValue)
-                _fixationCounter = 0;
+            //if (_fixationCounter >= int.MaxValue)
+            //    _fixationCounter = 0;
 
-            _fixationCounter += 2;
-            //_fixationCounter++;
+            //_fixationCounter += 2;
+            ////_fixationCounter++;
 
-            //sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            //sphere.name = "TestSphere_" + currentfixations_v1.magnitude;
-            //sphere.transform.position = new Vector3(currentfixations_v1.x, currentfixations_v1.y, currentfixations_v1.z);
-            //sphere.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-            //sphere.GetComponent<MeshRenderer>().receiveShadows = false;
-            //sphere.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-            //rend = sphere.GetComponent<Renderer>();
-            //rend.material = _material;
+            ////sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            ////sphere.name = "TestSphere_" + currentfixations_v1.magnitude;
+            ////sphere.transform.position = new Vector3(currentfixations_v1.x, currentfixations_v1.y, currentfixations_v1.z);
+            ////sphere.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            ////sphere.GetComponent<MeshRenderer>().receiveShadows = false;
+            ////sphere.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            ////rend = sphere.GetComponent<Renderer>();
+            ////rend.material = _material;
 
-            //sphere.transform.parent = transform;
+            ////sphere.transform.parent = transform;
 
-            //_fixations.Add(new Vector3(currentfixations_v1.x, currentfixations_v1.y, currentfixations_v1.z));
-            //_fixationCounter++;
+            ////_fixations.Add(new Vector3(currentfixations_v1.x, currentfixations_v1.y, currentfixations_v1.z));
+            ////_fixationCounter++;
 
-            if (_totalFixationCounter >= int.MaxValue)
-                _totalFixationCounter = 0;
+            //if (_totalFixationCounter >= int.MaxValue)
+            //    _totalFixationCounter = 0;
 
-            _totalFixationCounter +=2;
+            //_totalFixationCounter +=2;
 
-            if (_fixationDuration >= float.MaxValue)
-                _fixationDuration = 0f;
+            //if (_fixationDuration >= float.MaxValue)
+            //    _fixationDuration = 0f;
 
-            _fixationDuration += timeDiff;
+            //_fixationDuration += timeDiff;
 
-            if (_totalFixationDuration >= float.MaxValue)
-                _totalFixationDuration = 0f;
+            //if (_totalFixationDuration >= float.MaxValue)
+            //    _totalFixationDuration = 0f;
 
-            _totalFixationDuration += timeDiff;
+            //_totalFixationDuration += timeDiff;
 
-            FixationPositionsAsMessage = currentfixations_v0.ToString() + ";" + currentfixations_v1 + ";";
-        }
+            //FixationPositionsAsMessage = currentfixations_v0.ToString() + ";" + currentfixations_v1 + ";";
+        //}
 
         Vector3 tempCurrentFixation = _currentfixations[1];
         _currentfixations.Clear();
