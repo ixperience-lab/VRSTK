@@ -55,7 +55,7 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
     public int _heartRate = 0;
     public List<double> _rawValue;
     public List<double> _valueTimeStamp;
-    //public List<double> _rrCandidate;
+    public List<double> _rrCandidate;
     public List<double> _rrTimeStampCandidate;
 
     // QRS detection scheme by Fraden and Neuman [5]
@@ -78,10 +78,15 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
     //public List<double> _rrCandidate;
     //public List<double> _rrTimeStampCandidate;
 
-    private int _WINDOWSIZE = 20;   // Integrator window size, in samples. The article recommends 150ms. So, FS*0.15.
+    public static int M = 5;
+    public static int N = 30;
+    public static int winSize = 90;
+    public static float HP_CONSTANT = (float)1 / M;
+
+    private int _WINDOWSIZE = 90;   // Integrator window size, in samples. The article recommends 150ms. So, FS*0.15.
                                     // However, you should check empirically if the waveform looks ok.
     private int _NOSAMPLE = -32000; // An indicator that there are no more samples to read. Use an impossible value for a sample.
-    private int _FS = 360;          // Sampling frequency.
+    private int _FS = 1000;          // Sampling frequency.
     private int _BUFFSIZE = 600;    // The size of the buffers (in samples). Must fit more than 1.66 times an RR interval, which
                                     // typically could be around 1 second.
 
@@ -95,6 +100,7 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
         _rawValue = new List<double>();
         _valueTimeStamp = new List<double>();
         _rrTimeStampCandidate = new List<double>();
+        _rrCandidate = new List<double>();
         //_rTimeStampValues = new List<double>();
         //Initializes on start up to listen for messages
 
@@ -209,6 +215,10 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
                             {
                                 _rawValue.Add(_NOSAMPLE);
                                 _rawValue.Add(_NOSAMPLE);
+                                
+                                //detect();
+
+                                // Gustafson();
                                 panTompkins();
                                 _rawValue.Clear();
                                 _valueTimeStamp.Clear();
@@ -255,12 +265,16 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
                                 //if (ECG_mV >= _rThreshold)
                                 //    _rTimeStampValues.Add(double.Parse(_timeStamp));
 
-                            if (_rrTimeStampCandidate.Count > 1)
+                            if (_rrCandidate.Count > 1)
                             {
-                                _rrInterval = _rrTimeStampCandidate[1] - _rrTimeStampCandidate[0];
-                                if (_rrInterval > 0f)
-                                    _heartRate = (int) (60f / _rrInterval);
-                                _rrTimeStampCandidate.Clear();
+                                _rrInterval = Mathf.Abs((float) (_rrCandidate[1] - _rrCandidate[0]));
+                                if (_rrInterval > 0f) 
+                                    _heartRate = (int)(_FS * (60f / _rrInterval));
+                                _rrCandidate.Clear();
+                                //_rrInterval = _rrTimeStampCandidate[1] - _rrTimeStampCandidate[0];
+                                //if (_rrInterval > 0f)
+                                //    _heartRate = * (int) (60f / _rrInterval);
+                                //_rrTimeStampCandidate.Clear();
                             }
 
                             Debug.Log("A2 (Volt) = " + ECG_V);
@@ -285,6 +299,52 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
                 _analogOutputsTransfered[0].ToString(), _analogOutputsTransfered[1].ToString(), _analogOutputsTransfered[2].ToString(), _analogOutputsTransfered[3].ToString(), _analogOutputsTransfered[4].ToString(), _analogOutputsTransfered[5].ToString());
         }
 	}
+
+    void Gustafson()
+    {
+        double[] signals = new double[_BUFFSIZE];
+        bool[] outputSignal = new bool[_BUFFSIZE];
+
+        double[] y = new double[_BUFFSIZE];
+
+        double threshold = 0.15;
+        double positiveThreshold = 0f;
+
+        signals = _rawValue.ToArray();
+
+        for (int n = 1; n < signals.Length - 1; n++)
+        {
+            y[n] = signals[n + 1] - signals[n - 1];
+        }
+
+        for (int i = 1; i < y.Length - 3; i++)
+        {
+            if (y[i] >= threshold)
+            {
+                if (y[i + 1] >= threshold && y[i + 2] >= threshold && y[i + 3] >= threshold)
+                { 
+                    if ((y[i + 1] * signals[i + 1]) > positiveThreshold && (y[i + 2] * signals[i + 2]) > positiveThreshold)
+                    { 
+                        outputSignal[i] = true; 
+                    }
+                    else
+                        outputSignal[i] = false;
+                }
+                else
+                    outputSignal[i] = false;
+            }
+            else
+                outputSignal[i] = false;
+        }
+
+        for (int i = 1; i < _BUFFSIZE; i++)
+        {
+            if (outputSignal[i])
+                _rrTimeStampCandidate.Add(_valueTimeStamp[i]);
+            //Debug.Log("outputSignal" + outputSignal[i]);
+        }
+    }
+
 
     void panTompkins()
     {
@@ -376,16 +436,16 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
                 // DC Block filter
                 // This was not proposed on the original paper.
                 // It is not necessary and can be removed if your sensor or database has no DC noise.
-                if (current >= 1)
-                    dcblock[current] = signal[current] - signal[current - 1] + 0.995 * dcblock[current - 1];
-                else
-                    dcblock[current] = 0;
+                //if (current >= 1)
+                //    dcblock[current] = signal[current] - signal[current - 1] + 0.995 * dcblock[current - 1];
+                //else
+                //    dcblock[current] = 0;
 
                 // Low Pass filter
                 // Implemented as proposed by the original paper.
                 // y(nT) = 2y(nT - T) - y(nT - 2T) + x(nT) - 2x(nT - 6T) + x(nT - 12T)
                 // Can be removed if your signal was previously filtered, or replaced by a different filter.
-                lowpass[current] = dcblock[current];
+                lowpass[current] = signal[current];//dcblock[current];
                 if (current >= 1)
                     lowpass[current] += 2 * lowpass[current - 1];
                 if (current >= 2)
@@ -476,6 +536,7 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
 
                                 lastSlope = currentSlope;
                                 qrs = true;
+                                _rrCandidate.Add(spk_f);
                             }
                         }
                         // If it was above both thresholds and respects both latency periods, it certainly is a R peak.
@@ -496,6 +557,8 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
 
                             lastSlope = currentSlope;
                             qrs = true;
+
+                            //_rrCandidate.Add(spk_f);
                         }
                     }
                     // If the new peak doesn't respect the 200ms latency, it's noise. Update thresholds and move on to the next sample.
@@ -645,6 +708,8 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
                                         }
                                     }
 
+                                    //_rrCandidate.Add(spk_f);
+
                                     break;
                                 }
                             }
@@ -694,16 +759,190 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
             return;
         }
         // Output the last remaining samples on the buffer
-        for (i = 1; i < _BUFFSIZE; i++)
-        {
-            if(outputSignal[i] == 1)
-                _rrTimeStampCandidate.Add(_valueTimeStamp[i]);
-            //Debug.Log("outputSignal" + outputSignal[i]);
-        }
+        //for (i = 1; i < _BUFFSIZE; i++)
+        //{
+        //    if (outputSignal[i] == 1)
+        //        _rrCandidate.Add(_rawValue[i]);//_rrTimeStampCandidate.Add(_valueTimeStamp[i]);
+        //    //Debug.Log("outputSignal" + outputSignal[i]);
+        //}
 
         // These last two lines must be deleted if you are not working with files.
         //fclose(fin);
         //fclose(fout);
+    }
+
+    public int[] detect()//float[] ecg)
+    {
+        // circular buffer for input ecg signal
+        // we need to keep a history of M + 1 samples for High Pass filter
+        float[] ecg_circ_buff = new float[M + 1];
+        int ecg_circ_WR_idx = 0;
+        int ecg_circ_RD_idx = 0;
+
+        // circular buffer for input ecg signal
+        // we need to keep a history of N+1 samples for Low Pass filter
+        float[] hp_circ_buff = new float[N + 1];
+        int hp_circ_WR_idx = 0;
+        int hp_circ_RD_idx = 0;
+
+        // Low Pass filter outputs a single point for every input point
+        // This goes straight to adaptive filtering for eval
+        float next_eval_pt = 0;
+
+        double[] temp = _rawValue.ToArray();
+
+        // output 
+        int[] QRS = new int[temp.Length];//new int[ecg.Length];
+
+        // running sums for High Pass and Low Pass filters, values shifted in FILO
+        float hp_sum = 0;
+        float lp_sum = 0;
+
+        // parameters for adaptive thresholding
+        double treshold = 0;
+        Boolean triggered = false;
+        int trig_time = 0;
+        float win_max = 0;
+        int win_idx = 0;
+
+        for (int i = 0; i < temp.Length; i++)//ecg.Length; i++)
+        {
+            ecg_circ_buff[ecg_circ_WR_idx++] = (float)temp[i];//ecg[i];
+            ecg_circ_WR_idx %= (M + 1);
+
+            /* High pass filtering */
+            if (i < M)
+            {
+                // first fill buffer with enough points for High Pass filter
+                hp_sum += ecg_circ_buff[ecg_circ_RD_idx];
+                hp_circ_buff[hp_circ_WR_idx] = 0;
+            }
+            else
+            {
+                hp_sum += ecg_circ_buff[ecg_circ_RD_idx];
+
+                int tmp = ecg_circ_RD_idx - M;
+                if (tmp < 0)
+                {
+                    tmp += M + 1;
+                }
+                hp_sum -= ecg_circ_buff[tmp];
+
+                float y1 = 0;
+                float y2 = 0;
+
+                tmp = (ecg_circ_RD_idx - ((M + 1) / 2));
+                if (tmp < 0)
+                {
+                    tmp += M + 1;
+                }
+                y2 = ecg_circ_buff[tmp];
+
+                y1 = HP_CONSTANT * hp_sum;
+
+                hp_circ_buff[hp_circ_WR_idx] = y2 - y1;
+            }
+
+            ecg_circ_RD_idx++;
+            ecg_circ_RD_idx %= (M + 1);
+
+            hp_circ_WR_idx++;
+            hp_circ_WR_idx %= (N + 1);
+
+            /* Low pass filtering */
+
+            // shift in new sample from high pass filter
+            lp_sum += hp_circ_buff[hp_circ_RD_idx] * hp_circ_buff[hp_circ_RD_idx];
+
+            if (i < N)
+            {
+                // first fill buffer with enough points for Low Pass filter
+                next_eval_pt = 0;
+
+            }
+            else
+            {
+                // shift out oldest data point
+                int tmp = hp_circ_RD_idx - N;
+                if (tmp < 0)
+                {
+                    tmp += N + 1;
+                }
+                lp_sum -= hp_circ_buff[tmp] * hp_circ_buff[tmp];
+
+                next_eval_pt = lp_sum;
+            }
+
+            hp_circ_RD_idx++;
+            hp_circ_RD_idx %= (N + 1);
+
+            /* Adapative thresholding beat detection */
+            // set initial threshold				
+            if (i < winSize)
+            {
+                if (next_eval_pt > treshold)
+                {
+                    treshold = next_eval_pt;
+                }
+            }
+
+            // check if detection hold off period has passed
+            if (triggered)
+            {
+                trig_time++;
+
+                if (trig_time >= 100)
+                {
+                    triggered = false;
+                    trig_time = 0;
+                }
+            }
+
+            // find if we have a new max
+            if (next_eval_pt > win_max) win_max = next_eval_pt;
+
+            // find if we are above adaptive threshold
+            if (next_eval_pt > treshold && !triggered)
+            {
+                QRS[i] = 1;
+
+                triggered = true;
+            }
+            else
+            {
+                QRS[i] = 0;
+            }
+
+            // adjust adaptive threshold using max of signal found 
+            // in previous window            
+            if (++win_idx > winSize)
+            {
+                // weighting factor for determining the contribution of
+                // the current peak value to the threshold adjustment
+                double gamma = 0.175;
+
+                System.Random random = new System.Random();
+
+                // forgetting factor - 
+                // rate at which we forget old observations
+                double alpha = 0.01 + (random.Next() * ((0.1 - 0.01)));
+
+                treshold = alpha * gamma * win_max + (1 - alpha) * treshold;
+
+                // reset current window ind
+                win_idx = 0;
+                win_max = -10000000;
+            }
+        }
+
+        for (int i = 1; i < _BUFFSIZE; i++)
+        {
+            if (QRS[i] == 1)
+                _rrTimeStampCandidate.Add(_valueTimeStamp[i]);
+            //Debug.Log("outputSignal" + outputSignal[i]);
+        }
+
+        return QRS;
     }
 
 }

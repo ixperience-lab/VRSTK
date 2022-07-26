@@ -35,9 +35,10 @@ public class ChangeSpotLightAngleAndColor : MonoBehaviour
         if (_effectActionActivated)
         {
             //Debug.Log("DateTime.Now.Second : " + DateTime.Now.Second.ToString());
-            _diffTime = _startTime - DateTime.Now.Second;
+            _diffTime += Time.deltaTime;
+            float duration = _diffTime - _startTime;
             //Debug.Log("_diffTime : " + _diffTime);
-            if (_isEffectActivatedDone && _diffTime > _effectDurationTime && _spotLights != null)
+            if (_isEffectActivatedDone && duration > _effectDurationTime && _spotLights != null)
             {
                 //Debug.Log("_effectActionActivated = true");
                 for (int i = 0; i < _spotLights.Count; i++)
@@ -62,7 +63,7 @@ public class ChangeSpotLightAngleAndColor : MonoBehaviour
                             _spotLights[i].GetComponent<Light>().spotAngle = 1.0f;
                             _spotLights[i].GetComponent<Light>().color = new Color(1.0f, 0f, 0f, 1.0f);
                         }
-                        _startTime = DateTime.Now.Second;
+                        _startTime = Time.deltaTime;
                         //Debug.Log("_isEffectActivatedDone = true");
                         _isEffectActivatedDone = true;
                     }

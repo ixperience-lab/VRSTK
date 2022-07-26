@@ -335,26 +335,30 @@ namespace VRSTK
                         }
                         else
                         {
-                            StreamReader sr = new StreamReader(filepath);
-                            sb_all_content.AppendLine(sr.ReadLine() + Delimiter + header); // copy the first row in the existing file and add a header for the new data
+                            StreamReader streamReader = new StreamReader(filepath);
+                            sb_all_content.AppendLine(streamReader.ReadLine() + Delimiter + header); // copy the first row in the existing file and add a header for the new data
                             if (_compareQuestionIdsInConsolidatedContent)
-                                while (sr.EndOfStream)
+                            {
+                                //(line = sr.ReadLine()) != null
+                                string tempLineContent;
+                                while ((tempLineContent = streamReader.ReadLine()) != null)//sr.EndOfStream)
                                 {
-                                    string tempLineContent = sr.ReadLine();
+                                    //string tempLineContent = sr.ReadLine();
                                     string id = tempLineContent.Split(Delimiter.ToCharArray()[0])[2];
                                     for (int row = 1; row < newData.GetLength(0); row++) // from the second row
                                     {
-                                        if(id.Equals(newData[row][2]))
+                                        if (id.Equals(newData[row][2]))
                                             sb_all_content.AppendLine(tempLineContent + Delimiter + newData[row][3]); // copy old data and add new data
                                     }
                                 }
+                            }
                             else
                                 for (int row = 1; row < newData.GetLength(0); row++) // from the second row
                                 {
-                                    sb_all_content.AppendLine(sr.ReadLine() + Delimiter + newData[row][3]); // copy old data and add new data
+                                    sb_all_content.AppendLine(streamReader.ReadLine() + Delimiter + newData[row][3]); // copy old data and add new data
                                 }
 
-                            sr.Close();
+                            streamReader.Close();
                         }
                     }
                     catch (IOException ex)

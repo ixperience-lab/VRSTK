@@ -1,0 +1,18 @@
+QuestionType;Question;QuestionID;Answer
+radio;Allgemeines Unwohlsein (General discomfort);q1;0
+radio;Müdigkeit (Fatique);q2;1
+radio;Kopfschmerzen (Headache);q3;1
+radio;Belastung der Augen (Eye strain);q4;0
+radio;Schwierigkeiten bei der Fokussierung (Difficulty focusing);q5;1
+radio;Zunehmende Speichelbildung (Salivation increasing);q6;0
+radio;Schwitzen (Sweating);q7;0
+radio;Übelkeit (Nausea);q8;1
+radio;Konzentrationsschwierigkeiten (Difficulty concentrating);q9;0
+radio;Fülle des Kopfes (Fullness of the Head);q10;0
+radio;Verschwommensehen (Blurred vision);q11;1
+radio;Schwindelgefühl bei geöffneten Augen (Vertigo eyes opened);q12;0
+radio;Schwindelgefühl bei geschlossenen Augen (Vertigo eyes closed);q13;0
+radio;Gleichgewichtsstörung (Vertigo);q14;1
+radio;Magenwahrnehmung (Unbehagen) (Stomach awareness);q15;2
+radio;Aufstoßen (Burping);q16;0
+
