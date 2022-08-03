@@ -6,3 +6,4 @@ ImportUncannyValleyAnswers <- function()
   return(uncannyValleyAnswersRawData);
 }
 
+# uncannyValleyAnswersRawData <- ImportUncannyValleyAnswers()
