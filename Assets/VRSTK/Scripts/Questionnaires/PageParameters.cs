@@ -30,7 +30,13 @@ namespace VRSTK
 
                 // First line checker
                 [SerializeField]
-                private float _standardDeviationStraightLineAnswer = 1f;        // close to zero -> straight line
+                private float _standardDeviationStraightLineAnswer = -1f;        // close to zero -> straight line
+
+                public float StandardDeviationStraightLineAnswer
+                {
+                    get { return _standardDeviationStraightLineAnswer; }
+                    set { _standardDeviationStraightLineAnswer = value; }
+                }
 
                 // Second line checker
                 //[SerializeField]
@@ -38,8 +44,13 @@ namespace VRSTK
 
                 // Third line checker
                 [SerializeField]
-                private float _absoluteDerivationOfResponseValue = 0f;        // sensetive to straight, diagonal, and zigzag lines
-
+                private float _absoluteDerivationOfResponseValue = -1f;        // sensetive to straight, diagonal, and zigzag lines
+                
+                public float AbsoluteDerivationOfResponseValue
+                {
+                    get { return _absoluteDerivationOfResponseValue; }
+                    set { _absoluteDerivationOfResponseValue = value; }
+                }
 
                 private float _started_time = 0f;
                 private float _last_start_time = 0f;
@@ -90,9 +101,9 @@ namespace VRSTK
                         variance = 0f;
 
                     if (variance != 0)
-                        _standardDeviationStraightLineAnswer = Mathf.Sqrt(variance);
+                        StandardDeviationStraightLineAnswer = Mathf.Sqrt(variance);
                     else
-                        _standardDeviationStraightLineAnswer = 1f;
+                        StandardDeviationStraightLineAnswer = 1f;
                 }
 
                 public void CalculateAbsoluteDerivationOfResponseValue()
@@ -123,9 +134,9 @@ namespace VRSTK
                         absoluteResponesValues += Mathf.Abs(respones[i+2] - 2 * respones[i + 1] + respones[i]);
 
                     if ((respones.Length - 2) != 0)
-                        _absoluteDerivationOfResponseValue = absoluteResponesValues / (respones.Length - 2);
+                        AbsoluteDerivationOfResponseValue = absoluteResponesValues / (respones.Length - 2);
                     else
-                        _absoluteDerivationOfResponseValue = 0f;
+                        AbsoluteDerivationOfResponseValue = 0f;
                 }
 
                 //public void CalculatePatternAlgorithemStraightLineAnswer()

@@ -389,10 +389,13 @@ namespace VRSTK
 
                             qualityParameters.MISSING_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _MISSING;
 
+                            PageParameters tempPageParameters = pageFactory.PageList[pageFactory.CurrentPage].GetComponent<PageParameters>();
+
                             // Message  structure: STARTED; LASTDATA; LASTPAGE; MAXPAGE; FINISHED; TIME_SUM; TIME_RSI; MISSING; DEG_TIME;
-                            // DegTimeThreshold; DegTimeLowQuality; DegTimeThresholdForOnePage; DegTimeValueForOnePage
-                            _parametersAsMessage = string.Format("QualityParameters: {0}; {1}; {2}; {3}; {4}; {5}; {6}; {7}; {8}; {9}; {10}; {11}; {12};", _STARTED, _LASTDATA, _LASTPAGE, _MAXPAGE,
-                                _FINISHED, _TIME_SUM, _TIME_RSI, _MISSING, _DEG_TIME, _degTimeThreshold, _degTimeLowQuality, _degTimeThresholdForOnePage, _degTimeValueForOnePage);
+                            // DegTimeThreshold; DegTimeLowQuality; DegTimeThresholdForOnePage; DegTimeValueForOnePage; StandardDeviationStraightLineAnswer; AbsoluteDerivationOfResponseValue
+                            _parametersAsMessage = string.Format("QualityParameters: {0}; {1}; {2}; {3}; {4}; {5}; {6}; {7}; {8}; {9}; {10}; {11}; {12}; {13}; {14};", _STARTED, _LASTDATA, _LASTPAGE, _MAXPAGE,
+                                _FINISHED, _TIME_SUM, _TIME_RSI, _MISSING, _DEG_TIME, _degTimeThreshold, _degTimeLowQuality, _degTimeThresholdForOnePage, _degTimeValueForOnePage, 
+                                tempPageParameters.StandardDeviationStraightLineAnswer, tempPageParameters.AbsoluteDerivationOfResponseValue);
                         }
                     }
                 }

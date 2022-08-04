@@ -8,4 +8,4 @@ ImportTrackingData <- function(filePath)
 }
 
 
-#rawTrackingData <- ImportTrackingData('C:/My_JSON_Data/7-26_10-39-55.json')
+#rawTrackingData <- ImportTrackingData('C:/My_JSON_Data/EEGundBitalinoStage08-4_13-24-22.json')
