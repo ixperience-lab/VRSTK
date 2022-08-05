@@ -1,18 +1,18 @@
 QuestionType;Question;QuestionID;Answer
-radio;Allgemeines Unwohlsein (General discomfort);q1;1
-radio;Müdigkeit (Fatique);q2;1
-radio;Kopfschmerzen (Headache);q3;1
+radio;Allgemeines Unwohlsein (General discomfort);q1;2
+radio;Müdigkeit (Fatique);q2;2
+radio;Kopfschmerzen (Headache);q3;3
 radio;Belastung der Augen (Eye strain);q4;2
-radio;Schwierigkeiten bei der Fokussierung (Difficulty focusing);q5;3
-radio;Zunehmende Speichelbildung (Salivation increasing);q6;3
-radio;Schwitzen (Sweating);q7;2
-radio;Übelkeit (Nausea);q8;3
+radio;Schwierigkeiten bei der Fokussierung (Difficulty focusing);q5;1
+radio;Zunehmende Speichelbildung (Salivation increasing);q6;0
+radio;Schwitzen (Sweating);q7;1
+radio;Übelkeit (Nausea);q8;2
 radio;Konzentrationsschwierigkeiten (Difficulty concentrating);q9;3
-radio;Fülle des Kopfes (Fullness of the Head);q10;2
-radio;Verschwommensehen (Blurred vision);q11;2
-radio;Schwindelgefühl bei geöffneten Augen (Vertigo eyes opened);q12;2
-radio;Schwindelgefühl bei geschlossenen Augen (Vertigo eyes closed);q13;2
-radio;Gleichgewichtsstörung (Vertigo);q14;1
+radio;Fülle des Kopfes (Fullness of the Head);q10;3
+radio;Verschwommensehen (Blurred vision);q11;3
+radio;Schwindelgefühl bei geöffneten Augen (Vertigo eyes opened);q12;3
+radio;Schwindelgefühl bei geschlossenen Augen (Vertigo eyes closed);q13;3
+radio;Gleichgewichtsstörung (Vertigo);q14;2
 radio;Magenwahrnehmung (Unbehagen) (Stomach awareness);q15;1
-radio;Aufstoßen (Burping);q16;2
+radio;Aufstoßen (Burping);q16;3
 

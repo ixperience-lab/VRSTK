@@ -344,11 +344,14 @@ namespace VRSTK
                                 while ((tempLineContent = streamReader.ReadLine()) != null)//sr.EndOfStream)
                                 {
                                     //string tempLineContent = sr.ReadLine();
-                                    string id = tempLineContent.Split(Delimiter.ToCharArray()[0])[2];
-                                    for (int row = 1; row < newData.GetLength(0); row++) // from the second row
+                                    if (tempLineContent != null && tempLineContent != string.Empty)
                                     {
-                                        if (id.Equals(newData[row][2]))
-                                            sb_all_content.AppendLine(tempLineContent + Delimiter + newData[row][3]); // copy old data and add new data
+                                        string id = tempLineContent.Split(Delimiter.ToCharArray())[2];
+                                        for (int row = 1; row < newData.GetLength(0); row++) // from the second row
+                                        {
+                                            if (id.Equals(newData[row][2]))
+                                                sb_all_content.AppendLine(tempLineContent + Delimiter + newData[row][3]); // copy old data and add new data
+                                        }
                                     }
                                 }
                             }
