@@ -216,7 +216,7 @@ namespace VRSTK
                     if (TestStage.GetStarted() && !finisched)
                     {
                         PageFactory pageFactory = GetComponent<PageFactory>();
-                        
+
                         if (pageFactory && (pageFactory.NumPages - 1) == pageFactory.CurrentPage)
                         {
                             //int questionsCounter = 0;
@@ -251,13 +251,13 @@ namespace VRSTK
                                         int currentQuestionsAnswerRecordListIndex = _questionsAnswerRecordList.Count - 1;//(i - 1) + j;
 
                                         Debug.Log("Page: " + i.ToString() + "-" + childName);
-                                        
+
                                         if (childName.Contains("radioHorizontal_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Radio>() != null)
-                                        {   
+                                        {
                                             bool answered = false;
                                             VRQuestionnaireToolkit.Radio radio = page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Radio>();
                                             _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = i + "_" + childName + "_" + radio.QuestionnaireId + "-" + radio.QId;// + "-" + radio.QText;
-                                            
+
                                             for (int k = 0; k < radio.RadioList.Count; k++)
                                                 if (radio.RadioList[k].transform.GetChild(0).GetComponent<Toggle>().isOn)
                                                 {
@@ -272,11 +272,11 @@ namespace VRSTK
                                             }
                                         }
                                         else if (childName.Contains("radioGrid_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.RadioGrid>() != null)
-                                        {   
+                                        {
                                             bool answered = false;
                                             VRQuestionnaireToolkit.RadioGrid radioGrid = page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.RadioGrid>();
                                             _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = i + "_" + childName + "_" + radioGrid.QuestionnaireId + "-" + radioGrid.QId;// + "-" + radioGrid.QText;
-                                            
+
                                             for (int k = 0; k < radioGrid.RadioList.Count; k++)
                                                 if (radioGrid.RadioList[k].transform.GetChild(0).GetComponent<Toggle>().isOn)
                                                 {
@@ -292,27 +292,27 @@ namespace VRSTK
                                         }
                                         else if (childName.Contains("checkbox_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Checkbox>() != null)
                                         {
-                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = i + "_" + childName + "_"  + "checkbox";
+                                            _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = i + "_" + childName + "_" + "checkbox";
                                             _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].AnsweredCounter = 1;
-                                            
+
                                             //answeresCounter++;
                                         }
                                         else if (childName.Contains("linearSlider_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Slider>() != null)
                                         {
                                             _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = i + "_" + childName + "_" + "linearSlider";
                                             _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].AnsweredCounter = 1;
-                                            
+
                                             //answeresCounter++;
                                         }
                                         else if (childName.Contains("dropdown_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.Dropdown>() != null)
                                         {
                                             _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = i + "_" + childName + "_" + "dropdown";
                                             _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].AnsweredCounter = 1;
-                                            
+
                                             //answeresCounter++;
                                         }
-                                        else if(childName.Contains("linearGrid_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.LinearGrid>() != null)
-                                        {   
+                                        else if (childName.Contains("linearGrid_"))// && page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.LinearGrid>() != null)
+                                        {
                                             bool answered = false;
                                             VRQuestionnaireToolkit.LinearGrid linearGrid = page.transform.GetChild(0).GetChild(1).GetChild(j).GetComponent<VRQuestionnaireToolkit.LinearGrid>();
                                             _questionsAnswerRecordList[currentQuestionsAnswerRecordListIndex].Question = i + "_" + childName + "_" + linearGrid.QuestionnaireId + "-" + linearGrid.QId; //+ "-" + linearGrid.QText;
@@ -343,7 +343,7 @@ namespace VRSTK
                             else
                                 _degTimeLowQuality = false;
 
-                            GenerateQuestionnaire generateQuestionnaire = transform.parent.parent.GetComponent<GenerateQuestionnaire>(); 
+                            GenerateQuestionnaire generateQuestionnaire = transform.parent.parent.GetComponent<GenerateQuestionnaire>();
                             QualityParameters qualityParameters = transform.parent.parent.GetComponent<QualityParameters>();
                             qualityParameters.TIME_SUM_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _TIME_SUM;
                             qualityParameters.TIME_RSI_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _TIME_SUM;
@@ -383,7 +383,7 @@ namespace VRSTK
                             qualityParameters.EvaluateMissRels();
 
                             if (questionsCounter > 0)
-                                _MISSING = (float) ((float)((questionsCounter) - answeresCounter) / (float) (questionsCounter)) * 100;
+                                _MISSING = (float)((float)((questionsCounter) - answeresCounter) / (float)(questionsCounter)) * 100;
                             else
                                 _MISSING = 0f;
 
@@ -396,6 +396,19 @@ namespace VRSTK
                             _parametersAsMessage = string.Format("QualityParameters: {0}; {1}; {2}; {3}; {4}; {5}; {6}; {7}; {8}; {9}; {10}; {11}; {12}; {13}; {14}; {15};", _STARTED, _LASTDATA, _LASTPAGE, _MAXPAGE,
                                 _FINISHED, _TIME_SUM, _TIME_RSI, _MISSING, _DEG_TIME, _degTimeThreshold, _degTimeLowQuality, _degTimeThresholdForOnePage, _degTimeValueForOnePage,
                                 pageFactory.CurrentPage, tempPageParameters.StandardDeviationStraightLineAnswer, tempPageParameters.AbsoluteDerivationOfResponseValue);
+                        }
+                        else
+                        {
+                            if (pageFactory.CurrentPage > 0)
+                            {
+                                PageParameters tempPageParameters = pageFactory.PageList[pageFactory.CurrentPage].GetComponent<PageParameters>();
+
+                                // Message  structure: STARTED; LASTDATA; LASTPAGE; MAXPAGE; FINISHED; TIME_SUM; TIME_RSI; MISSING; DEG_TIME;
+                                // DegTimeThreshold; DegTimeLowQuality; DegTimeThresholdForOnePage; DegTimeValueForOnePage; CurrentPageNumber; StandardDeviationStraightLineAnswer; AbsoluteDerivationOfResponseValue
+                                _parametersAsMessage = string.Format("QualityParameters: {0}; {1}; {2}; {3}; {4}; {5}; {6}; {7}; {8}; {9}; {10}; {11}; {12}; {13}; {14}; {15};", _STARTED, _LASTDATA, _LASTPAGE, _MAXPAGE,
+                                    _FINISHED, _TIME_SUM, _TIME_RSI, _MISSING, _DEG_TIME, _degTimeThreshold, _degTimeLowQuality, _degTimeThresholdForOnePage, _degTimeValueForOnePage,
+                                    pageFactory.CurrentPage, tempPageParameters.StandardDeviationStraightLineAnswer, tempPageParameters.AbsoluteDerivationOfResponseValue);
+                            }
                         }
                     }
                 }
