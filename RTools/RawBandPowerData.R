@@ -102,3 +102,9 @@ for(i in 1:nrow(rawEmotivTrackingDataStage0)) {
 
 }
 
+#plot with more then one lines
+#plot(rawBandPowerDataFrameStage0$time, rawBandPowerDataFrameStage0$AF3.betaL, type='l')
+#lines(rawBandPowerDataFrameStage0$time, rawBandPowerDataFrameStage0$AF3,col='green')
+#lines(rawBandPowerDataFrameStage0$time, rawBandPowerDataFrameStage0$F7.betaL,col='blue')
+
+#abline(rawBandPowerDataFrameStage0$AF3.alpha,col="dark green",lty=2)

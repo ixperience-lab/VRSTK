@@ -1,7 +1,3 @@
-# Simple Text Format
-# Sampling Rate (Hz):= 1000.00
-# Resolution:= 10
-# Labels:= ECG
 504
 506
 509

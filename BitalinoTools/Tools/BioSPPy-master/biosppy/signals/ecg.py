@@ -87,7 +87,7 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
     )
 
     # segment
-    (rpeaks,) = ssf_segmenter(signal=filtered, sampling_rate=sampling_rate)#hamilton_segmenter(signal=filtered, sampling_rate=sampling_rate)
+    (rpeaks,) = hamilton_segmenter(signal=filtered, sampling_rate=sampling_rate)#ssf_segmenter(signal=filtered, sampling_rate=sampling_rate)
 
     # correct R-peak locations
     (rpeaks,) = correct_rpeaks(

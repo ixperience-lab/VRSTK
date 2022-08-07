@@ -44,3 +44,5 @@ for(i in 1:nrow(rawEmotivTrackingDataStage0)) {
     }
   }
 }
+
+#plot(rawPerformanceMetricDataFrameStage0$time, rawPerformanceMetricDataFrameStage0$eng, type='l')
