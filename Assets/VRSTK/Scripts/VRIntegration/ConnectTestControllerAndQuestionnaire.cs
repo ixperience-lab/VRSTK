@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRSTK.Scripts.TestControl;
 using VRQuestionnaireToolkit;
+using UnityEngine.UI;
 
 public class ConnectTestControllerAndQuestionnaire : MonoBehaviour
 {
