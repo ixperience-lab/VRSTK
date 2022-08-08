@@ -212,22 +212,26 @@ def kbk_scr(signal=None, sampling_rate=1000.0, min_amplitude=0.1):
     if signal is None:
         raise TypeError("Please specify an input signal.")
 
+    #print (signal)
     # differentiation
     df = np.diff(signal)
-
+    #print(df)
     # smooth
     size = int(1.0 * sampling_rate)
     df, _ = st.smoother(signal=df, kernel="bartlett", size=size, mirror=True)
 
     # zero crosses
+    #print(df)
     (zeros,) = st.zero_cross(signal=df, detrend=False)
+    #print(zeros[0])
     if np.all(df[: zeros[0]] > 0):
         zeros = zeros[1:]
     if np.all(df[zeros[-1] :] > 0):
         zeros = zeros[:-1]
-
+    #print(zeros)
     scrs, amps, ZC, pks = [], [], [], []
     for i in range(0, len(zeros) - 1, 2):
+        #print(zeros[i])
         scrs += [df[zeros[i] : zeros[i + 1]]]
         ZC += [zeros[i]]
         ZC += [zeros[i + 1]]
@@ -235,6 +239,10 @@ def kbk_scr(signal=None, sampling_rate=1000.0, min_amplitude=0.1):
         amps += [signal[pks[-1]] - signal[ZC[-2]]]
 
     # exclude SCRs with small amplitude
+    #print(ZC)
+    #print(scrs)
+    #print(pks)
+    #print(amps)
     thr = min_amplitude * np.max(amps)
     idx = np.where(amps > thr)
 
