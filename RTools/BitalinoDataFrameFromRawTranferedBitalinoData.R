@@ -66,7 +66,7 @@ for(i in 1:nrow(rawBitalinoDataStage0)) {
     
     tempDataFrame <- data.frame("time" = c(as.numeric(rowTimeValue)), "EDA raw" = c(as.numeric(splittedSecondRawValue[3])), "ECG raw" = c(as.numeric(splittedSecondRawValue[4])));
     
-    if (is.null(rawTransferedBitalinoDataFrameStage0))
+    if (is.null(rawBitalinoDataFrameStage0))
     {
       rawBitalinoDataFrameStage0 <- tempDataFrame
     }
@@ -86,4 +86,5 @@ for(i in 1:nrow(rawBitalinoDataStage0)) {
 #plot(rawBitalinoDataFrameStage0$time, rawBitalinoDataFrameStage0$ECG.raw, type='s')
 #plot(rawBitalinoDataFrameStage0$time, rawBitalinoDataFrameStage0$ECG.raw, type='l')
 
-write.csv2(rawBitalinoDataFrameStage0, file = "Bitalino_Raw_data_Stage0.csv")
+#write.csv2(rawBitalinoDataFrameStage0, file = "Bitalino_Raw_data_Stage0.csv")
+write.table(rawBitalinoDataFrameStage0, file = "Bitalino_Raw_data_Stage0.txt", sep = " ")

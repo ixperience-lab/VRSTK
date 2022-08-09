@@ -17,7 +17,7 @@ class Lsl():
             while True:
                 # Receive samples
                 sample, timestamp = self.inlet.pull_sample()
-                print(timestamp, sample)
+                #print(timestamp, sample)
                 #{0} - Seq[{1}] : O[{2} {3} {4} {5}] ; A[{6} {7} {8} {9} {10} {11}]"
                 message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} 0 0 0 0 0 0]".format(timestamp, int(sample[0]), int(sample[1]))
                 if len(sample) == 3:
@@ -30,7 +30,7 @@ class Lsl():
                     message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} {3} {4} {5} {6} 0]".format(timestamp, int(sample[0]), int(sample[1]), int(sample[2]), int(sample[3]), int(sample[4]), int(sample[5]))
                 if len(sample) == 7:
                     message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} {3} {4} {5} {6} {7}]".format(timestamp, int(sample[0]), int(sample[1]), int(sample[2]), int(sample[3]), int(sample[4]), int(sample[5]), int(sample[6]))
-                print(message)
+                #print(message)
                 client.send_message("/Bitalino/OpenSinglesStream", message)
                 # time.sleep(1)
         except KeyboardInterrupt:
