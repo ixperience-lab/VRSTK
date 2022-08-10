@@ -30,7 +30,10 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
 	[SerializeField]
 	public string _rawReceivedMessage;
 
-	[SerializeField]
+    [SerializeField]
+    public List<string>  _rawReceivedMessages;
+
+    [SerializeField]
 	public string _transferedReceivedMessage;
 
 	[SerializeField]
@@ -103,6 +106,7 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
     void Start()
 	{
         _rawValue = new List<double>();
+        _rawReceivedMessages = new List<string>();
         //_rawValue2 = new List<float>();
         //_valueTimeStamp = new List<double>();
         //_rrTimeStampCandidate = new List<double>();
@@ -155,182 +159,189 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
 	{
 		string msgString = Osc.OscMessageToString(oscMessage); //the message and value combined
 		string msgAddress = oscMessage.Address; //the message address
-		_rawReceivedMessage = msgString;
-		//Debug.Log(msgString); //log the message and values coming from OSC
-		//if (msgAddress.Equals(_address))
-  //      {
-  //          // message structure = "{0} - Seq[{1}] : O[{2} {3} {4} {5}] ; A[{6} {7} {8} {9} {10} {11}]"
-  //          _timeStamp = msgString.Split(' ')[1];
+        
+        _rawReceivedMessages.Add(msgString);
+        
+        _rawReceivedMessage = msgString;
 
-  //          int startIndex = msgString.IndexOf("Seq[") + 4;
-  //          for (int i = 0; i < msgString.Length; i++)
-  //              if (msgString.Substring(startIndex + i, 1).Equals("]"))
-  //              {
-  //                  _sequenceNumber = Convert.ToInt32(msgString.Substring(startIndex, i));
-  //                  break;
-  //              }
+        if (_rawReceivedMessages.Count > 22)
+            _rawReceivedMessages.Clear();
 
-  //          startIndex = msgString.IndexOf("O[") + 2;
-  //          for (int i = 0; i < msgString.Length; i++)
-  //              if (msgString.Substring(startIndex + i, 1).Equals("]"))
-  //              {
-  //                  _sigitalIOs[0] = msgString.Substring(startIndex, i).Split(' ')[0] == "True" ? 1 : 0;
-  //                  _sigitalIOs[1] = msgString.Substring(startIndex, i).Split(' ')[1] == "True" ? 1 : 0;
-  //                  _sigitalIOs[2] = msgString.Substring(startIndex, i).Split(' ')[2] == "True" ? 1 : 0;
-  //                  _sigitalIOs[3] = msgString.Substring(startIndex, i).Split(' ')[3] == "True" ? 1 : 0;
-  //                  break;
-  //              }
+        //Debug.Log(msgString); //log the message and values coming from OSC
+        //if (msgAddress.Equals(_address))
+        //      {
+        //          // message structure = "{0} - Seq[{1}] : O[{2} {3} {4} {5}] ; A[{6} {7} {8} {9} {10} {11}]"
+        //          _timeStamp = msgString.Split(' ')[1];
 
-  //          startIndex = msgString.IndexOf("A[") + 2;
-  //          for (int i = 0; i < msgString.Length; i++)
-  //              if (msgString.Substring(startIndex + i, 1).Equals("]"))
-  //              {
-  //                  // EDA (Electrodermal Activity) port A3
-  //                  {
-  //                      int eda_raw = Convert.ToInt32(msgString.Substring(startIndex, i).Split(' ')[0]);
-  //                      _analogOutputs[0] = eda_raw;
-  //                      //Debug.Log("A3 raw = " + eda_raw);
-  //                      // Transfer function [0uS, 25uS] (micro Siemens)
+            //          int startIndex = msgString.IndexOf("Seq[") + 4;
+            //          for (int i = 0; i < msgString.Length; i++)
+            //              if (msgString.Substring(startIndex + i, 1).Equals("]"))
+            //              {
+            //                  _sequenceNumber = Convert.ToInt32(msgString.Substring(startIndex, i));
+            //                  break;
+            //              }
 
-  //                      //int VCC = 3; // Operating voltage
-  //                      //int ADC = eda_raw; // Value sampled form the channel
-  //                      //int n = 10; // Number of bits of the channel
-  //                      //float EDA_uS = (((float)ADC / (float)Math.Pow(2.0, (double)n)) * (float)VCC) / 0.12f;
+            //          startIndex = msgString.IndexOf("O[") + 2;
+            //          for (int i = 0; i < msgString.Length; i++)
+            //              if (msgString.Substring(startIndex + i, 1).Equals("]"))
+            //              {
+            //                  _sigitalIOs[0] = msgString.Substring(startIndex, i).Split(' ')[0] == "True" ? 1 : 0;
+            //                  _sigitalIOs[1] = msgString.Substring(startIndex, i).Split(' ')[1] == "True" ? 1 : 0;
+            //                  _sigitalIOs[2] = msgString.Substring(startIndex, i).Split(' ')[2] == "True" ? 1 : 0;
+            //                  _sigitalIOs[3] = msgString.Substring(startIndex, i).Split(' ')[3] == "True" ? 1 : 0;
+            //                  break;
+            //              }
 
-  //                      //Debug.Log("A3 (micro Siemens) = " + EDA_uS);
-  //                      //Debug.Log("A3 (Siemens) = " + (EDA_uS * Math.Pow(10.0, -6)));
-  //                      _analogOutputsTransfered[0] = eda_raw;//EDA_uS;
-  //                  }
+            //          startIndex = msgString.IndexOf("A[") + 2;
+            //          for (int i = 0; i < msgString.Length; i++)
+            //              if (msgString.Substring(startIndex + i, 1).Equals("]"))
+            //              {
+            //                  // EDA (Electrodermal Activity) port A3
+            //                  {
+            //                      int eda_raw = Convert.ToInt32(msgString.Substring(startIndex, i).Split(' ')[0]);
+            //                      _analogOutputs[0] = eda_raw;
+            //                      //Debug.Log("A3 raw = " + eda_raw);
+            //                      // Transfer function [0uS, 25uS] (micro Siemens)
 
-  //                  // ECG (Electrpcardiography)	
-  //                  {
-  //                      int ecg_raw = Convert.ToInt32(msgString.Substring(startIndex, i).Split(' ')[1]);
-  //                      //Debug.Log("A2 raw = " + ecg_raw);
-  //                      _analogOutputs[1] = ecg_raw;
-  //                      // Transfer function [-1.47mV, +1.47mV] (micro Volt)
-  //                      {
-  //                          //float VCC = 3.3f; // Operating voltage
-  //                          //int ADC = ecg_raw; // Value sampled form the channel
-  //                          //int n = 10; // Number of bits of the channel
-  //                          //int gECG = 1100; // sensor gain
-  //                          //float ECG_V = ((((float)ADC / (float)Math.Pow(2.0, (double)n)) - 0.5f) * VCC) / (float)gECG;
-  //                          //float ECG_mV = (ECG_V * 1000);
+            //                      //int VCC = 3; // Operating voltage
+            //                      //int ADC = eda_raw; // Value sampled form the channel
+            //                      //int n = 10; // Number of bits of the channel
+            //                      //float EDA_uS = (((float)ADC / (float)Math.Pow(2.0, (double)n)) * (float)VCC) / 0.12f;
 
-  //                          //_rawValue.Add(ecg_raw);
-  //                          ////_rawValue2.Add(ecg_raw);
-  //                          //_valueTimeStamp.Add(double.Parse(_timeStamp));
+            //                      //Debug.Log("A3 (micro Siemens) = " + EDA_uS);
+            //                      //Debug.Log("A3 (Siemens) = " + (EDA_uS * Math.Pow(10.0, -6)));
+            //                      _analogOutputsTransfered[0] = eda_raw;//EDA_uS;
+            //                  }
 
-  //                          //if (_rawValue.Count > _BUFFSIZE - 2)
-  //                          //{
-  //                          //    _rawValue.Add(_NOSAMPLE);
-  //                          //    _rawValue.Add(_NOSAMPLE);
+            //                  // ECG (Electrpcardiography)	
+            //                  {
+            //                      int ecg_raw = Convert.ToInt32(msgString.Substring(startIndex, i).Split(' ')[1]);
+            //                      //Debug.Log("A2 raw = " + ecg_raw);
+            //                      _analogOutputs[1] = ecg_raw;
+            //                      // Transfer function [-1.47mV, +1.47mV] (micro Volt)
+            //                      {
+            //                          //float VCC = 3.3f; // Operating voltage
+            //                          //int ADC = ecg_raw; // Value sampled form the channel
+            //                          //int n = 10; // Number of bits of the channel
+            //                          //int gECG = 1100; // sensor gain
+            //                          //float ECG_V = ((((float)ADC / (float)Math.Pow(2.0, (double)n)) - 0.5f) * VCC) / (float)gECG;
+            //                          //float ECG_mV = (ECG_V * 1000);
 
-  //                          //    //SsfSegmenter(FilterSignal(_rawValue2.ToArray()));
-  //                          //    // _rawValue2.Clear();
+            //                          //_rawValue.Add(ecg_raw);
+            //                          ////_rawValue2.Add(ecg_raw);
+            //                          //_valueTimeStamp.Add(double.Parse(_timeStamp));
 
-  //                          //    // detect();
-  //                          //    PanTompkins();
-  //                          //    _rawValue.Clear();
-  //                          //    _valueTimeStamp.Clear();
-  //                          //}
+            //                          //if (_rawValue.Count > _BUFFSIZE - 2)
+            //                          //{
+            //                          //    _rawValue.Add(_NOSAMPLE);
+            //                          //    _rawValue.Add(_NOSAMPLE);
 
-  //                          //if (ECG_mV >= _rThreshold)
-  //                          //    _rTimeStampValues.Add(double.Parse(_timeStamp));
+            //                          //    //SsfSegmenter(FilterSignal(_rawValue2.ToArray()));
+            //                          //    // _rawValue2.Clear();
 
-  //                          //if (_rrCandidate.Count > 1)
-  //                          //{
-  //                          //    for (int j = 1; j < _rrCandidate.Count; j++)
-  //                          //    {
-  //                          //        _rrInterval = Mathf.Abs((float)(_rrCandidate[j] - _rrCandidate[j-1]));
-  //                          //        if (_rrInterval > 0f && (int)(_FS * (60f / _rrInterval)) > 40 && (int)(_FS * (60f / _rrInterval)) < 200)
-  //                          //            _heartRate = (int)(_FS * (60f / _rrInterval));
-  //                          //    }
-  //                          //    _rrCandidate.Clear();
-  //                          //    _rrTimeStampCandidate.Clear();
-  //                          //}
+            //                          //    // detect();
+            //                          //    PanTompkins();
+            //                          //    _rawValue.Clear();
+            //                          //    _valueTimeStamp.Clear();
+            //                          //}
 
-  //                          //if (_rrCandidate.Count > 1)
-  //                          //{
-  //                          //    for (int j = 1; j < _rrCandidate.Count; j++)
-  //                          //    {
-  //                          //        _rrInterval += Mathf.Abs((float)(_rrCandidate[j] - _rrCandidate[j - 1]));
-  //                          //    }
+            //                          //if (ECG_mV >= _rThreshold)
+            //                          //    _rTimeStampValues.Add(double.Parse(_timeStamp));
 
-  //                          //    _rrInterval /= _rrCandidate.Count;
+            //                          //if (_rrCandidate.Count > 1)
+            //                          //{
+            //                          //    for (int j = 1; j < _rrCandidate.Count; j++)
+            //                          //    {
+            //                          //        _rrInterval = Mathf.Abs((float)(_rrCandidate[j] - _rrCandidate[j-1]));
+            //                          //        if (_rrInterval > 0f && (int)(_FS * (60f / _rrInterval)) > 40 && (int)(_FS * (60f / _rrInterval)) < 200)
+            //                          //            _heartRate = (int)(_FS * (60f / _rrInterval));
+            //                          //    }
+            //                          //    _rrCandidate.Clear();
+            //                          //    _rrTimeStampCandidate.Clear();
+            //                          //}
 
-  //                          //    if (_rrInterval > 0f)//&& (int)(60f / _rrInterval) > 40 && (int)(60f / _rrInterval) < 200)
-  //                          //        _heartRate = (int)(6000f / _rrInterval);
+            //                          //if (_rrCandidate.Count > 1)
+            //                          //{
+            //                          //    for (int j = 1; j < _rrCandidate.Count; j++)
+            //                          //    {
+            //                          //        _rrInterval += Mathf.Abs((float)(_rrCandidate[j] - _rrCandidate[j - 1]));
+            //                          //    }
 
-  //                          //    _rrTimeStampCandidate.Clear();
-  //                          //    _rrCandidate.Clear();
-  //                          //}
+            //                          //    _rrInterval /= _rrCandidate.Count;
 
-  //                          //if (_rrCandidate.Count > 1)
-  //                          //{
-  //                          //    _rrInterval = Mathf.Abs((float)(_rrCandidate[1] - _rrCandidate[0]));
-  //                          //    if (_rrInterval > 0f)
-  //                          //        _heartRate = (int)(6000f / _rrInterval);//(int)(_FS * (60f / _rrInterval));
-  //                          //    _rrCandidate.Clear();
-  //                          //    _rrTimeStampCandidate.Clear();
-  //                          //}
+            //                          //    if (_rrInterval > 0f)//&& (int)(60f / _rrInterval) > 40 && (int)(60f / _rrInterval) < 200)
+            //                          //        _heartRate = (int)(6000f / _rrInterval);
 
-  //                          //if (_rrTimeStampCandidate.Count > 1)
-  //                          //{
-  //                          //    for (int j = 1; j < _rrTimeStampCandidate.Count; j++)
-  //                          //    {
-  //                          //        _rrInterval += Mathf.Abs((float)(_rrTimeStampCandidate[j] - _rrTimeStampCandidate[j - 1]));
-  //                          //    }
+            //                          //    _rrTimeStampCandidate.Clear();
+            //                          //    _rrCandidate.Clear();
+            //                          //}
 
-  //                          //    _rrInterval /= _rrTimeStampCandidate.Count;
+            //                          //if (_rrCandidate.Count > 1)
+            //                          //{
+            //                          //    _rrInterval = Mathf.Abs((float)(_rrCandidate[1] - _rrCandidate[0]));
+            //                          //    if (_rrInterval > 0f)
+            //                          //        _heartRate = (int)(6000f / _rrInterval);//(int)(_FS * (60f / _rrInterval));
+            //                          //    _rrCandidate.Clear();
+            //                          //    _rrTimeStampCandidate.Clear();
+            //                          //}
 
-  //                          //    if (_rrInterval > 0f)//&& (int)(60f / _rrInterval) > 40 && (int)(60f / _rrInterval) < 200)
-  //                          //        _heartRate = (int)(6000f / _rrInterval);
+            //                          //if (_rrTimeStampCandidate.Count > 1)
+            //                          //{
+            //                          //    for (int j = 1; j < _rrTimeStampCandidate.Count; j++)
+            //                          //    {
+            //                          //        _rrInterval += Mathf.Abs((float)(_rrTimeStampCandidate[j] - _rrTimeStampCandidate[j - 1]));
+            //                          //    }
 
-  //                          //    _rrTimeStampCandidate.Clear();
-  //                          //    _rrCandidate.Clear();
-  //                          //}
+            //                          //    _rrInterval /= _rrTimeStampCandidate.Count;
 
-  //                          //if (_rrTimeStampCandidate.Count > 1)
-  //                          //{
-  //                          //    _rrInterval = _rrTimeStampCandidate[1] - _rrTimeStampCandidate[0];
-  //                          //    if (_rrInterval > 0f)
-  //                          //        _heartRate = (int)(6000f / _rrInterval);
+            //                          //    if (_rrInterval > 0f)//&& (int)(60f / _rrInterval) > 40 && (int)(60f / _rrInterval) < 200)
+            //                          //        _heartRate = (int)(6000f / _rrInterval);
 
-  //                          //    _rrCandidate.Clear();
-  //                          //    _rrTimeStampCandidate.Clear();
-  //                          //}
+            //                          //    _rrTimeStampCandidate.Clear();
+            //                          //    _rrCandidate.Clear();
+            //                          //}
 
-  //                          //Debug.Log("A2 (Volt) = " + ECG_V);
-  //                          //Debug.Log("A2 (milli Volt) = " + ECG_mV);
-  //                          _analogOutputsTransfered[1] = ecg_raw;//ECG_mV;
-  //                      }
-  //                  }
+            //                          //if (_rrTimeStampCandidate.Count > 1)
+            //                          //{
+            //                          //    _rrInterval = _rrTimeStampCandidate[1] - _rrTimeStampCandidate[0];
+            //                          //    if (_rrInterval > 0f)
+            //                          //        _heartRate = (int)(6000f / _rrInterval);
 
-  //                  //_analogOutputs[2] = Convert.ToInt32(msgString.Substring(startIndex, i).Split(' ')[2]);
-  //                  //_analogOutputsTransfered[2] = _analogOutputs[2];
-  //                  //_analogOutputs[3] = Convert.ToInt32(msgString.Substring(startIndex, i).Split(' ')[3]);
-  //                  //_analogOutputsTransfered[3] = _analogOutputs[3];
-  //                  //_analogOutputs[4] = Convert.ToInt32(msgString.Substring(startIndex, i).Split(' ')[4]);
-  //                  //_analogOutputsTransfered[4] = _analogOutputs[4];
-  //                  //_analogOutputs[5] = Convert.ToInt32(msgString.Substring(startIndex, i).Split(' ')[5]);
-  //                  //_analogOutputsTransfered[5] = _analogOutputs[5];
-  //                  break;
-  //              }
+            //                          //    _rrCandidate.Clear();
+            //                          //    _rrTimeStampCandidate.Clear();
+            //                          //}
 
-  //          //_transferedReceivedMessage = string.Format("{0} {1} - Seq[{2}] : O[{3} {4} {5} {6}] ; A[{7} {8} {9} {10} {11} {12}]",
-  //          //msgAddress, _timeStamp, _sequenceNumber.ToString(), _sigitalIOs[0] == 1 ? "true":"false", _sigitalIOs[1] == 1 ? "true" : "false", _sigitalIOs[2] == 1 ? "true" : "false", _sigitalIOs[3] == 1 ? "true" : "false",
-  //          //_analogOutputsTransfered[0].ToString(), _analogOutputsTransfered[1].ToString(), _analogOutputsTransfered[2].ToString(), _analogOutputsTransfered[3].ToString(), _analogOutputsTransfered[4].ToString(), _analogOutputsTransfered[5].ToString());
-            
-  //          //if (TestStage.GetStarted())
-  //          //{
-  //          //    GetComponents<EventSender>()[0].SetEventValue("enabled_TrackingBitalinoWithOSC", true);
-  //          //    GetComponents<EventSender>()[0].SetEventValue("_rawReceivedMessage_TrackingBitalinoWithOSC", _rawReceivedMessage);
-  //          //    GetComponents<EventSender>()[0].SetEventValue("_transferedReceivedMessage_TrackingBitalinoWithOSC", _analogOutputsTransfered);
-  //          //    GetComponents<EventSender>()[0].Deploy();
-  //          //}
+            //                          //Debug.Log("A2 (Volt) = " + ECG_V);
+            //                          //Debug.Log("A2 (milli Volt) = " + ECG_mV);
+            //                          _analogOutputsTransfered[1] = ecg_raw;//ECG_mV;
+            //                      }
+            //                  }
 
-  //      }
-	}
+            //                  //_analogOutputs[2] = Convert.ToInt32(msgString.Substring(startIndex, i).Split(' ')[2]);
+            //                  //_analogOutputsTransfered[2] = _analogOutputs[2];
+            //                  //_analogOutputs[3] = Convert.ToInt32(msgString.Substring(startIndex, i).Split(' ')[3]);
+            //                  //_analogOutputsTransfered[3] = _analogOutputs[3];
+            //                  //_analogOutputs[4] = Convert.ToInt32(msgString.Substring(startIndex, i).Split(' ')[4]);
+            //                  //_analogOutputsTransfered[4] = _analogOutputs[4];
+            //                  //_analogOutputs[5] = Convert.ToInt32(msgString.Substring(startIndex, i).Split(' ')[5]);
+            //                  //_analogOutputsTransfered[5] = _analogOutputs[5];
+            //                  break;
+            //              }
+
+            //          //_transferedReceivedMessage = string.Format("{0} {1} - Seq[{2}] : O[{3} {4} {5} {6}] ; A[{7} {8} {9} {10} {11} {12}]",
+            //          //msgAddress, _timeStamp, _sequenceNumber.ToString(), _sigitalIOs[0] == 1 ? "true":"false", _sigitalIOs[1] == 1 ? "true" : "false", _sigitalIOs[2] == 1 ? "true" : "false", _sigitalIOs[3] == 1 ? "true" : "false",
+            //          //_analogOutputsTransfered[0].ToString(), _analogOutputsTransfered[1].ToString(), _analogOutputsTransfered[2].ToString(), _analogOutputsTransfered[3].ToString(), _analogOutputsTransfered[4].ToString(), _analogOutputsTransfered[5].ToString());
+
+            //          //if (TestStage.GetStarted())
+            //          //{
+            //          //    GetComponents<EventSender>()[0].SetEventValue("enabled_TrackingBitalinoWithOSC", true);
+            //          //    GetComponents<EventSender>()[0].SetEventValue("_rawReceivedMessage_TrackingBitalinoWithOSC", _rawReceivedMessage);
+            //          //    GetComponents<EventSender>()[0].SetEventValue("_transferedReceivedMessage_TrackingBitalinoWithOSC", _analogOutputsTransfered);
+            //          //    GetComponents<EventSender>()[0].Deploy();
+            //          //}
+
+            //      }
+    }
 
     void PanTompkins()
     {
