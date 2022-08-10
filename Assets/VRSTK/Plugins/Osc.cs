@@ -93,13 +93,13 @@ using System;
                         {
                             if (AllMessageHandler != null)
                                 AllMessageHandler(om);
-                            OscMessageHandler h = (OscMessageHandler)Hashtable.Synchronized(AddressTable)[om.Address];
-                            if (h != null)
-                                h(om);
+                            //OscMessageHandler h = (OscMessageHandler)Hashtable.Synchronized(AddressTable)[om.Address];
+                            //if (h != null)
+                            //    h(om);
                         }
                     }
                     else
-                        Thread.Sleep(20);
+                        Thread.Sleep(1);
                 }
                 catch (Exception e)
                 {

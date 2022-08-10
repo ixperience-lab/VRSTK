@@ -7,6 +7,8 @@ class Lsl():
 
     def recv_data_unspecified_OS_stream(self, client):
         # Resolve an available OpenSignals stream
+        # Open a file with access mode 'a'
+        #file_object = open('sample.txt', 'a')
         print("# Looking for an available OpenSignals stream...")
         self.os_stream = resolve_stream("name", "OpenSignals")
 
@@ -31,9 +33,13 @@ class Lsl():
                 if len(sample) == 7:
                     message = "{0} - Seq[{1}] : O[false false false false] ; A[{2} {3} {4} {5} {6} {7}]".format(timestamp, int(sample[0]), int(sample[1]), int(sample[2]), int(sample[3]), int(sample[4]), int(sample[5]), int(sample[6]))
                 #print(message)
+                # Append 'hello' at the end of file
+                #file_object.write(message + "\n")
                 client.send_message("/Bitalino/OpenSinglesStream", message)
                 # time.sleep(1)
         except KeyboardInterrupt:
+            # Close the file
+            #file_object.close()
             self.inlet.close_stream()
 
 
