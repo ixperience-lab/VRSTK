@@ -469,6 +469,9 @@ namespace VRSTK
                     }
 
                     RawEegDataMessage = dataText;
+                    
+                    // ToDo: to get all samples with sampling rate of 2000 hz needs to create a streamwrite here
+                    
                     // print out data to console
                     //UnityEngine.Debug.Log(dataText);
                 }

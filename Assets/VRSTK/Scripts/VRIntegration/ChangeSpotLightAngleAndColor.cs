@@ -35,19 +35,22 @@ public class ChangeSpotLightAngleAndColor : MonoBehaviour
         if (_effectActionActivated)
         {
             //Debug.Log("DateTime.Now.Second : " + DateTime.Now.Second.ToString());
-            _diffTime += Time.deltaTime;
-            float duration = _diffTime - _startTime;
+            //_diffTime += Time.deltaTime;
+            //float duration = _diffTime - _startTime;
             //Debug.Log("_diffTime : " + _diffTime);
-            if (_isEffectActivatedDone && duration > _effectDurationTime && _spotLights != null)
+            if (_isEffectActivatedDone)
             {
-                //Debug.Log("_effectActionActivated = true");
-                for (int i = 0; i < _spotLights.Count; i++)
-                {
-                    _spotLights[i].GetComponent<Light>().spotAngle = 179.0f;
-                    _spotLights[i].GetComponent<Light>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                _diffTime += Time.deltaTime;
+                if (_diffTime > _effectDurationTime && _spotLights != null)
+                {    //Debug.Log("_effectActionActivated = true");
+                    for (int i = 0; i < _spotLights.Count; i++)
+                    {
+                        _spotLights[i].GetComponent<Light>().spotAngle = 179.0f;
+                        _spotLights[i].GetComponent<Light>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    }
+                    //Debug.Log("_effectActionActivated = false");
+                    _effectActionActivated = false;
                 }
-                //Debug.Log("_effectActionActivated = false");
-                _effectActionActivated = false;
             }
 
             if (_objectToActivate != null && _spotLights != null && !_isEffectActivatedDone)
@@ -63,7 +66,7 @@ public class ChangeSpotLightAngleAndColor : MonoBehaviour
                             _spotLights[i].GetComponent<Light>().spotAngle = 1.0f;
                             _spotLights[i].GetComponent<Light>().color = new Color(1.0f, 0f, 0f, 1.0f);
                         }
-                        _startTime = Time.deltaTime;
+                        //_startTime = Time.deltaTime;
                         //Debug.Log("_isEffectActivatedDone = true");
                         _isEffectActivatedDone = true;
                     }

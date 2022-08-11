@@ -37,6 +37,14 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
     [SerializeField]
     public int _messageCounter;
 
+    [SerializeField]
+    public string _path;
+
+    [SerializeField]
+    public string _fileName;
+
+    public GameObject _testController;
+
     //[SerializeField]
     //public int _frameRateInMs;
 
@@ -118,6 +126,33 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
         _rawValue = new List<double>();
         _rawReceivedMessages = new List<string>();
         _messageCounter = 0;
+
+        if (TestStage.GetStarted() && _testController != null)
+        {
+            TestController testController = _testController.GetComponent<TestController>();
+            for (int i = 0; i < testController.testStages.Length; i++)
+            {
+                if (testController.testStages[i].active)
+                {
+                    _fileName += "_" + testController.testStages[i].name;
+                    TestStage testStage = testController.testStages[i].GetComponent<TestStage>();
+
+                    for (int j = 0; j < testStage.startProperties.Length; j++)
+                    {
+                        if (testStage.startProperties[j].text.text.ToLower().Contains("id"))
+                            _fileName += "_" + testStage.startProperties[j].GetValue();
+                        if (testStage.startProperties[j].text.text.ToLower().Contains("condition") && testStage.startProperties[j].GetValue().ToLower().Equals("true"))
+                            _fileName += "_" + testStage.startProperties[j].text.text;
+                    }
+
+                    _fileName += "_" + DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss") + ".txt";
+                    break;
+                }
+            }
+        }
+
+        _fileName += ".txt";
+        _path += _fileName; 
         //_rawValue2 = new List<float>();
         //_valueTimeStamp = new List<double>();
         //_rrTimeStampCandidate = new List<double>();
@@ -178,10 +213,10 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
         //_messageCounter++;
         _rawReceivedMessage = msgString;
 
-        if (!File.Exists("BitalinoResults.txt"))
+        if (!File.Exists(_path))//"BitalinoResults.txt"))
         {
             // Create a file to write to.
-            using (StreamWriter sw = File.CreateText("BitalinoResults.txt"))
+            using (StreamWriter sw = File.CreateText(_path))//"BitalinoResults.txt"))
             {
                 sw.WriteLine(msgString);
             }
@@ -190,7 +225,7 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
         {
             // This text is always added, making the file longer over time
             // if it is not deleted.
-            using (StreamWriter sw = File.AppendText("BitalinoResults.txt"))
+            using (StreamWriter sw = File.AppendText(_path))//"BitalinoResults.txt"))
             {
                 sw.WriteLine(msgString);
             }
