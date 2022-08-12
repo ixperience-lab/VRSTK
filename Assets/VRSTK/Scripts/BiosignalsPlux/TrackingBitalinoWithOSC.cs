@@ -41,7 +41,9 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
     public string _path;
 
     [SerializeField]
-    public string _fileName;
+    public string _fileName = "";
+
+    private string _privateFileName = "BitalinoRawData";
 
     public GameObject _testController;
 
@@ -127,32 +129,34 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
         _rawReceivedMessages = new List<string>();
         _messageCounter = 0;
 
-        if (TestStage.GetStarted() && _testController != null)
-        {
-            TestController testController = _testController.GetComponent<TestController>();
-            for (int i = 0; i < testController.testStages.Length; i++)
-            {
-                if (testController.testStages[i].active)
-                {
-                    _fileName += "_" + testController.testStages[i].name;
-                    TestStage testStage = testController.testStages[i].GetComponent<TestStage>();
+        //create for every stage and id a new file
+        //if (TestStage.GetStarted() && _testController != null)
+        //{
+        //    TestController testController = _testController.GetComponent<TestController>();
+        //    for (int i = 0; i < testController.testStages.Length; i++)
+        //    {
+        //        if (testController.testStages[i].active)
+        //        {
+        //            _fileName += "_" + testController.testStages[i].name;
+        //            TestStage testStage = testController.testStages[i].GetComponent<TestStage>();
 
-                    for (int j = 0; j < testStage.startProperties.Length; j++)
-                    {
-                        if (testStage.startProperties[j].text.text.ToLower().Contains("id"))
-                            _fileName += "_" + testStage.startProperties[j].GetValue();
-                        if (testStage.startProperties[j].text.text.ToLower().Contains("condition") && testStage.startProperties[j].GetValue().ToLower().Equals("true"))
-                            _fileName += "_" + testStage.startProperties[j].text.text;
-                    }
+        //            for (int j = 0; j < testStage.startProperties.Length; j++)
+        //            {
+        //                if (testStage.startProperties[j].text.text.ToLower().Contains("id"))
+        //                    _fileName += "_" + testStage.startProperties[j].GetValue();
+        //                if (testStage.startProperties[j].text.text.ToLower().Contains("condition") && testStage.startProperties[j].GetValue().ToLower().Equals("true"))
+        //                    _fileName += "_" + testStage.startProperties[j].text.text;
+        //            }
 
-                    _fileName += "_" + DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss") + ".txt";
-                    break;
-                }
-            }
-        }
+        //            _fileName += "_" + DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss") + ".txt";
+        //            break;
+        //        }
+        //    }
+        //}
 
-        _fileName += ".txt";
-        _path += _fileName; 
+        //if (!_fileName.Contains(".txt"))
+        //    _fileName += ".txt";
+        //_path += _fileName;
         //_rawValue2 = new List<float>();
         //_valueTimeStamp = new List<double>();
         //_rrTimeStampCandidate = new List<double>();
@@ -168,38 +172,106 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
         //_rrCandidate = new List<double>();
         //_rrTimeStampCandidate = new List<double>();
 
-
-        _udp = new UDPPacketIO();
-		_udp.init(_remoteIP, _sendToPort, _listenerPort);
-		_handler = new Osc();
-		_handler.init(_udp);
-		_handler.SetAllMessageHandler(AllMessageHandler);
-		Debug.Log("OSC Connection initialized: " + Application.targetFrameRate);
-
-        //_frameRateInMs = (int) (Time.deltaTime * 1000);
-
+        //if (_udp == null)
+        //{
+        //    _udp = new UDPPacketIO();
+        //    _udp.init(_remoteIP, _sendToPort, _listenerPort);
+        //    Debug.Log("OnStart: Init UDP connection!");
+        //}
+        //if (_handler == null)
+        //{
+        //    _handler = new Osc();
+        //    _handler.init(_udp);
+        //    Debug.Log("OnStart: Init OSC Handler!");
+        //    _handler.SetAllMessageHandler(AllMessageHandler);
+        //}
     }
 
 	// Update is called once per frame
 	void Update()
 	{
-        //_frameRateInMs = (int)(Time.deltaTime * 1000);
+         
+    }
+
+    void OnEnable()
+    {
+        if (!_fileName.Equals(_privateFileName))
+        {
+            _fileName = _privateFileName;
+            //create for every stage and id a new file
+            if (_testController != null)
+            {
+                TestController testController = _testController.GetComponent<TestController>();
+                for (int i = 0; i < testController.testStages.Length; i++)
+                {
+                    if (testController.testStages[i].active)
+                    {
+                        _fileName += "_" + testController.testStages[i].name;
+                        TestStage testStage = testController.testStages[i].GetComponent<TestStage>();
+
+                        for (int j = 0; j < testStage.startProperties.Length; j++)
+                        {
+                            if (testStage.startProperties[j].text.text.ToLower().Contains("id"))
+                                _fileName += "_" + testStage.startProperties[j].GetValue();
+                            if (testStage.startProperties[j].text.text.ToLower().Contains("condition") && testStage.startProperties[j].GetValue().ToLower().Equals("true"))
+                                _fileName += "_" + testStage.startProperties[j].text.text;
+                        }
+
+                        _fileName += "_" + DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss") + ".txt";
+                        break;
+                    }
+                }
+            }
+
+            if (!_fileName.Contains(".txt"))
+                _fileName += ".txt";
+        }
+
+        if (_udp == null)
+        {
+            _udp = new UDPPacketIO();
+            _udp.init(_remoteIP, _sendToPort, _listenerPort);
+            Debug.Log("OnEnable: Init UDP connection!");
+        }
+        if (_handler == null)
+        {
+            _handler = new Osc();
+            _handler.init(_udp);
+            Debug.Log("OnEnable: Init OSC Handler!");
+            _handler.SetAllMessageHandler(AllMessageHandler);
+        }
     }
 
     void OnDisable()
     {
         if (_handler != null)
-		    _handler.Cancel();
+        {
+            _handler.Cancel();
+            _handler = null;
+            Debug.Log("Cancel OSC Handler!");
+        }
         if (_udp != null)
-		    _udp.Close();
+        {
+            _udp.Close();
+            _udp = null;
+            Debug.Log("Udp connection closed!");
+        }
 	}
 
     private void OnApplicationQuit()
     {
         if (_handler != null)
+        {
             _handler.Cancel();
+            _handler = null;
+            Debug.Log("Cancel OSC Handler!");
+        }
         if (_udp != null)
+        {
             _udp.Close();
+            _udp = null;
+            Debug.Log("Udp connection closed!");
+        }
     }
 
     //These functions are called when messages are received
@@ -213,10 +285,12 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
         //_messageCounter++;
         _rawReceivedMessage = msgString;
 
-        if (!File.Exists(_path))//"BitalinoResults.txt"))
+        string path = _path + _fileName;
+
+        if (!File.Exists(path))//"BitalinoResults.txt"))
         {
             // Create a file to write to.
-            using (StreamWriter sw = File.CreateText(_path))//"BitalinoResults.txt"))
+            using (StreamWriter sw = File.CreateText(path))//"BitalinoResults.txt"))
             {
                 sw.WriteLine(msgString);
             }
@@ -225,7 +299,7 @@ public class TrackingBitalinoWithOSC : MonoBehaviour
         {
             // This text is always added, making the file longer over time
             // if it is not deleted.
-            using (StreamWriter sw = File.AppendText(_path))//"BitalinoResults.txt"))
+            using (StreamWriter sw = File.AppendText(path))//"BitalinoResults.txt"))
             {
                 sw.WriteLine(msgString);
             }

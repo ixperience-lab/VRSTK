@@ -4,6 +4,8 @@ using UnityEngine;
 using EmotivUnityPlugin;
 using Newtonsoft.Json.Linq;
 using System.IO;
+using VRSTK.Scripts.TestControl;
+using System;
 
 namespace VRSTK
 {
@@ -92,6 +94,14 @@ namespace VRSTK
                     set { _sysEventDataMessage = value; }
                 }
 
+                [SerializeField]
+                public string _path;
+
+                [SerializeField]
+                public string _rawEEGFileName;
+
+                public GameObject _testController;
+
                 DataStreamManager _dataStream = DataStreamManager.Instance;
                 Logger _logger = Logger.Instance;
                 private HeadsetFinder _headsetFinder = HeadsetFinder.Instance;
@@ -151,6 +161,33 @@ namespace VRSTK
                 // Start is called before the first frame update
                 void Start()
                 {
+                    // create for every stage and id a new file
+                    if (TestStage.GetStarted() && _testController != null)
+                    {
+                        TestController testController = _testController.GetComponent<TestController>();
+                        for (int i = 0; i < testController.testStages.Length; i++)
+                        {
+                            if (testController.testStages[i].active)
+                            {
+                                _rawEEGFileName += "_" + testController.testStages[i].name;
+                                TestStage testStage = testController.testStages[i].GetComponent<TestStage>();
+
+                                for (int j = 0; j < testStage.startProperties.Length; j++)
+                                {
+                                    if (testStage.startProperties[j].text.text.ToLower().Contains("id"))
+                                        _rawEEGFileName += "_" + testStage.startProperties[j].GetValue();
+                                    if (testStage.startProperties[j].text.text.ToLower().Contains("condition") && testStage.startProperties[j].GetValue().ToLower().Equals("true"))
+                                        _rawEEGFileName += "_" + testStage.startProperties[j].text.text;
+                                }
+
+                                _rawEEGFileName += "_" + DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss") + ".txt";
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!_rawEEGFileName.Contains(".txt"))
+                        _rawEEGFileName += ".txt";
                     
                     // init EmotivUnityItf without data buffer using
                     Init(_isDataBufferUsing);
@@ -469,9 +506,29 @@ namespace VRSTK
                     }
 
                     RawEegDataMessage = dataText;
-                    
+
+                    string path = _path + _rawEEGFileName;
+
+                    if (!File.Exists(path))//"EmotivCortexBCI.txt"))
+                    {
+                        // Create a file to write to.
+                        using (StreamWriter sw = File.CreateText(path))//"BitalinoResults.txt"))
+                        {
+                            sw.WriteLine(dataText);
+                        }
+                    }
+                    else
+                    {
+                        // This text is always added, making the file longer over time
+                        // if it is not deleted.
+                        using (StreamWriter sw = File.AppendText(path))//"BitalinoResults.txt"))
+                        {
+                            sw.WriteLine(dataText);
+                        }
+                    }
+
                     // ToDo: to get all samples with sampling rate of 2000 hz needs to create a streamwrite here
-                    
+
                     // print out data to console
                     //UnityEngine.Debug.Log(dataText);
                 }
