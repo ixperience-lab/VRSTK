@@ -1,18 +1,18 @@
-QuestionType;Question;QuestionID;Answer_Participant_id1_condition_A;Answer_Participant_id1_condition_A;Answer_Participant_id1_condition_A;Answer_Participant_id-i11_condition_Condition C;Answer_Participant_io12_condition_Condition A
-radio;Allgemeines Unwohlsein (General discomfort);q1;0;2;1;1;3
-radio;Müdigkeit (Fatique);q2;1;2;1;1;3
-radio;Kopfschmerzen (Headache);q3;1;3;0;1;3
-radio;Belastung der Augen (Eye strain);q4;0;2;1;1;3
-radio;Schwierigkeiten bei der Fokussierung (Difficulty focusing);q5;1;1;1;1;2
-radio;Zunehmende Speichelbildung (Salivation increasing);q6;0;0;1;1;1
-radio;Schwitzen (Sweating);q7;0;1;0;1;2
-radio;Übelkeit (Nausea);q8;1;2;1;1;3
-radio;Konzentrationsschwierigkeiten (Difficulty concentrating);q9;0;3;1;1;2
-radio;Fülle des Kopfes (Fullness of the Head);q10;0;3;0;1;2
-radio;Verschwommensehen (Blurred vision);q11;1;3;1;1;3
-radio;Schwindelgefühl bei geöffneten Augen (Vertigo eyes opened);q12;0;3;1;1;2
-radio;Schwindelgefühl bei geschlossenen Augen (Vertigo eyes closed);q13;0;3;1;1;3
-radio;Gleichgewichtsstörung (Vertigo);q14;1;2;0;0;3
-radio;Magenwahrnehmung (Unbehagen) (Stomach awareness);q15;2;1;1;0;3
-radio;Aufstoßen (Burping);q16;0;3;0;0;2
+QuestionType;Question;QuestionID;Answer_Participant_id1_condition_A;Answer_Participant_id1_condition_A;Answer_Participant_id1_condition_A;Answer_Participant_id-i11_condition_Condition C;Answer_Participant_io12_condition_Condition A;Answer_Participant_id-42_condition_Condition A
+radio;Allgemeines Unwohlsein (General discomfort);q1;0;2;1;1;3;0
+radio;Müdigkeit (Fatique);q2;1;2;1;1;3;0
+radio;Kopfschmerzen (Headache);q3;1;3;0;1;3;0
+radio;Belastung der Augen (Eye strain);q4;0;2;1;1;3;0
+radio;Schwierigkeiten bei der Fokussierung (Difficulty focusing);q5;1;1;1;1;2;1
+radio;Zunehmende Speichelbildung (Salivation increasing);q6;0;0;1;1;1;0
+radio;Schwitzen (Sweating);q7;0;1;0;1;2;1
+radio;Übelkeit (Nausea);q8;1;2;1;1;3;0
+radio;Konzentrationsschwierigkeiten (Difficulty concentrating);q9;0;3;1;1;2;1
+radio;Fülle des Kopfes (Fullness of the Head);q10;0;3;0;1;2;0
+radio;Verschwommensehen (Blurred vision);q11;1;3;1;1;3;1
+radio;Schwindelgefühl bei geöffneten Augen (Vertigo eyes opened);q12;0;3;1;1;2;0
+radio;Schwindelgefühl bei geschlossenen Augen (Vertigo eyes closed);q13;0;3;1;1;3;0
+radio;Gleichgewichtsstörung (Vertigo);q14;1;2;0;0;3;0
+radio;Magenwahrnehmung (Unbehagen) (Stomach awareness);q15;2;1;1;0;3;0
+radio;Aufstoßen (Burping);q16;0;3;0;0;2;0
 

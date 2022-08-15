@@ -100,6 +100,8 @@ namespace VRSTK
                 [SerializeField]
                 public string _rawEEGFileName;
 
+                private string _privateRawEEGFileName = "EmotivRawDataCortexEEG";
+
                 public GameObject _testController;
 
                 DataStreamManager _dataStream = DataStreamManager.Instance;
@@ -127,22 +129,22 @@ namespace VRSTK
                 {
                     _isMotionTracking.name = "isMotionTracking";
                     _isMotionTracking.hideFromInspector = true;
-                    _isMotionTracking.value = false;
+                    _isMotionTracking.value = true;
                     _previousIsMotionTrackingValue = false;
 
                     _isEegTrackingActive.name = "isEegTrackingActive";
                     _isEegTrackingActive.hideFromInspector = true;
-                    _isEegTrackingActive.value = false;
+                    _isEegTrackingActive.value = true;
                     _previousIsEegTrackingActiveValue = false;
 
                     _isPerformanceMetricsTrackingActive.name = "isPerformanceMetricsTrackingActive";
                     _isPerformanceMetricsTrackingActive.hideFromInspector = true;
-                    _isPerformanceMetricsTrackingActive.value = false;
+                    _isPerformanceMetricsTrackingActive.value = true;
                     _previousIsPerformanceMetricsTrackingActiveValue = false;
 
                     _isBandPowerTrackingActive.name = "isBandPowerTrackingActive";
                     _isBandPowerTrackingActive.hideFromInspector = true;
-                    _isBandPowerTrackingActive.value = false;
+                    _isBandPowerTrackingActive.value = true;
                     _previousIsBandPowerTrackingActiveValue = false;
 
 
@@ -161,45 +163,52 @@ namespace VRSTK
                 // Start is called before the first frame update
                 void Start()
                 {
-                    // create for every stage and id a new file
-                    if (TestStage.GetStarted() && _testController != null)
+                    if (!_rawEEGFileName.Equals(_privateRawEEGFileName))
                     {
-                        TestController testController = _testController.GetComponent<TestController>();
-                        for (int i = 0; i < testController.testStages.Length; i++)
+                        _rawEEGFileName = _privateRawEEGFileName;
+                        //create for every stage and id a new file
+                        if (_testController != null)
                         {
-                            if (testController.testStages[i].active)
+                            TestController testController = _testController.GetComponent<TestController>();
+                            for (int i = 0; i < testController.testStages.Length; i++)
                             {
-                                _rawEEGFileName += "_" + testController.testStages[i].name;
-                                TestStage testStage = testController.testStages[i].GetComponent<TestStage>();
-
-                                for (int j = 0; j < testStage.startProperties.Length; j++)
+                                if (testController.testStages[i].active)
                                 {
-                                    if (testStage.startProperties[j].text.text.ToLower().Contains("id"))
-                                        _rawEEGFileName += "_" + testStage.startProperties[j].GetValue();
-                                    if (testStage.startProperties[j].text.text.ToLower().Contains("condition") && testStage.startProperties[j].GetValue().ToLower().Equals("true"))
-                                        _rawEEGFileName += "_" + testStage.startProperties[j].text.text;
-                                }
+                                    _rawEEGFileName += "_" + testController.testStages[i].name;
+                                    TestStage testStage = testController.testStages[i].GetComponent<TestStage>();
 
-                                _rawEEGFileName += "_" + DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss") + ".txt";
-                                break;
+                                    for (int j = 0; j < testStage.startProperties.Length; j++)
+                                    {
+                                        if (testStage.startProperties[j].text.text.ToLower().Contains("id"))
+                                            _rawEEGFileName += "_" + testStage.startProperties[j].GetValue();
+                                        if (testStage.startProperties[j].text.text.ToLower().Contains("condition") && testStage.startProperties[j].GetValue().ToLower().Equals("true"))
+                                            _rawEEGFileName += "_" + testStage.startProperties[j].text.text;
+                                    }
+
+                                    _rawEEGFileName += "_" + DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss") + ".txt";
+                                    break;
+                                }
                             }
                         }
+
+                        if (!_rawEEGFileName.Contains(".txt"))
+                            _rawEEGFileName += ".txt";
                     }
 
-                    if (!_rawEEGFileName.Contains(".txt"))
-                        _rawEEGFileName += ".txt";
-                    
-                    // init EmotivUnityItf without data buffer using
-                    Init(_isDataBufferUsing);
+                    if (!_isAuthorizedOK)
+                    {
+                        // init EmotivUnityItf without data buffer using
+                        Init(_isDataBufferUsing);
 
-                    // Init logger
-                    _logger.Init();
+                        // Init logger
+                        _logger.Init();
 
 
-                    Debug.Log("Configure PRODUCT SERVER - version: " + CortexAppConfig.AppVersion);
+                        Debug.Log("Configure PRODUCT SERVER - version: " + CortexAppConfig.AppVersion);
 
-                    // Start
-                    _dataStream.StartAuthorize();
+                        // Start
+                        _dataStream.StartAuthorize();
+                    }
                 }
 
                 // Update is called once per frame
@@ -318,7 +327,114 @@ namespace VRSTK
 
                 void OnApplicationQuit()
                 {
+                    _isMotionTracking.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.Motion));
+                    _previousIsMotionTrackingValue = _isMotionTracking.value;
+
+                    _isEegTrackingActive.value = false;
+                    _dataStream.SubscribeMoreData(GetStreamsList(DataStreamType.EEG));
+                    _previousIsEegTrackingActiveValue = _isEegTrackingActive.value;
+
+                    _isPerformanceMetricsTrackingActive.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.PerformanceMetrics));
+                    _previousIsPerformanceMetricsTrackingActiveValue = _isPerformanceMetricsTrackingActive.value;
+
+                    _isBandPowerTrackingActive.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.BandPowerData));
+                    _previousIsBandPowerTrackingActiveValue = _isBandPowerTrackingActive.value;
+
+                    _isDevDataTrackingActive.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.DevelopmentInformation));
+                    _previousIsDevDataTrackingActiveValue = _isDevDataTrackingActive.value;
+
+                    _isSysEventDataTrackingActive.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.SystemInformation));
+                    _previousIsSysEventDataTrackingActiveValue = _isSysEventDataTrackingActive.value;
+
                     Debug.Log("Application ending after " + Time.time + " seconds");
+                    Stop();
+                }
+
+                void OnEnable()
+                {
+                    if (!_rawEEGFileName.Equals(_privateRawEEGFileName))
+                    {
+                        _rawEEGFileName = _privateRawEEGFileName;
+                        //create for every stage and id a new file
+                        if (_testController != null)
+                        {
+                            TestController testController = _testController.GetComponent<TestController>();
+                            for (int i = 0; i < testController.testStages.Length; i++)
+                            {
+                                if (testController.testStages[i].active)
+                                {
+                                    _rawEEGFileName += "_" + testController.testStages[i].name;
+                                    TestStage testStage = testController.testStages[i].GetComponent<TestStage>();
+
+                                    for (int j = 0; j < testStage.startProperties.Length; j++)
+                                    {
+                                        if (testStage.startProperties[j].text.text.ToLower().Contains("id"))
+                                            _rawEEGFileName += "_" + testStage.startProperties[j].GetValue();
+                                        if (testStage.startProperties[j].text.text.ToLower().Contains("condition") && testStage.startProperties[j].GetValue().ToLower().Equals("true"))
+                                            _rawEEGFileName += "_" + testStage.startProperties[j].text.text;
+                                    }
+
+                                    _rawEEGFileName += "_" + DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss") + ".txt";
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (!_rawEEGFileName.Contains(".txt"))
+                            _rawEEGFileName += ".txt";
+                    }
+
+                    _isMotionTracking.value = true;
+                    _isEegTrackingActive.value = true;
+                    _isPerformanceMetricsTrackingActive.value = true;
+                    _isBandPowerTrackingActive.value = true;
+                    _isDevDataTrackingActive.value = true;
+                    _isSysEventDataTrackingActive.value = true;
+
+                    // init EmotivUnityItf without data buffer using
+                    Init(_isDataBufferUsing);
+
+                    // Init logger
+                    _logger.Init();
+
+                    Debug.Log("Configure PRODUCT SERVER - version: " + CortexAppConfig.AppVersion);
+
+                    // Start
+                    _dataStream.StartAuthorize();
+                }
+
+                void OnDisable()
+                {
+                    _isMotionTracking.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.Motion));
+                    _previousIsMotionTrackingValue = _isMotionTracking.value;
+
+                    _isEegTrackingActive.value = false;
+                    _dataStream.SubscribeMoreData(GetStreamsList(DataStreamType.EEG));
+                    _previousIsEegTrackingActiveValue = _isEegTrackingActive.value;
+
+                    _isPerformanceMetricsTrackingActive.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.PerformanceMetrics));
+                    _previousIsPerformanceMetricsTrackingActiveValue = _isPerformanceMetricsTrackingActive.value;
+
+                    _isBandPowerTrackingActive.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.BandPowerData));
+                    _previousIsBandPowerTrackingActiveValue = _isBandPowerTrackingActive.value;
+
+                    _isDevDataTrackingActive.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.DevelopmentInformation));
+                    _previousIsDevDataTrackingActiveValue = _isDevDataTrackingActive.value;
+
+                    _isSysEventDataTrackingActive.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.SystemInformation));
+                    _previousIsSysEventDataTrackingActiveValue = _isSysEventDataTrackingActive.value;
+
+                    Debug.Log("Object deactivated after " + Time.time + " seconds");
                     Stop();
                 }
 
