@@ -162,6 +162,9 @@ namespace VRSTK
 
                 private void EvaluateTimeRsi()
                 {
+                    float[] copyOfTIME_SUM = new float[_generateQuestionnaire.Questionnaires.Count];
+                    if (TIME_SUM_s.Length != copyOfTIME_SUM.Length) return;
+
                     float median = CalculateMedian();
 
                     for (int i = 0; i < TIME_SUM_s.Length; i++)
@@ -176,10 +179,10 @@ namespace VRSTK
                 }
 
                 private float CalculateMedian()
-                {
-                    
+                {                    
                     float median = 0f;
                     float[] copyOfTIME_SUM = new float[_generateQuestionnaire.Questionnaires.Count];
+                    
                     System.Array.Copy(TIME_SUM_s, copyOfTIME_SUM, _generateQuestionnaire.Questionnaires.Count);
                     System.Array.Sort(copyOfTIME_SUM);
 
