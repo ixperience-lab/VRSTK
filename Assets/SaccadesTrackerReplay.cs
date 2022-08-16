@@ -85,7 +85,7 @@ public class SaccadesTrackerReplay : MonoBehaviour
                 Vector3 position = new Vector3(float.Parse(pArray[0].Substring(1, pArray[0].Length - 1).Trim()), float.Parse(pArray[1].Trim()), float.Parse(pArray[2].Substring(0, pArray[2].Length - 1).Trim()));
                 string objectName = "TestSphere_" + position.x.ToString().Replace(".","_") + position.y.ToString().Replace(".", "_") + position.z.ToString().Replace(".", "_");
                 Debug.Log(objectName);
-                if (GameObject.Find(objectName) == null)
+                //if (GameObject.Find(objectName) == null)
                 {
                     GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                     sphere.name = objectName;

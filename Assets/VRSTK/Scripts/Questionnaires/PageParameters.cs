@@ -69,11 +69,17 @@ namespace VRSTK
                     else
                         TIME_nnn += Mathf.Abs(TIME_nnn - _current_Time_nnn);
 
+                    CalculateStandardDeviationStraightLineAnswer();
+                    CalculateAbsoluteDerivationOfResponseValue();
+
                     _last_start_time = _started_time;
                 }
 
                 public void CalculateStandardDeviationStraightLineAnswer()
                 {
+                    if (transform.GetChild(0).GetChild(1).childCount < 2)
+                        return;
+
                     float[] answers = new float[transform.GetChild(0).GetChild(1).childCount];
                     float arithmeticMean = 4f;
                     for (int j = 0; j < transform.GetChild(0).GetChild(1).childCount; j++)

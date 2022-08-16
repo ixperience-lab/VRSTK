@@ -372,23 +372,10 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
 
         _fixationCounter++;
 
-
-        if (_totalFixationCounter >= int.MaxValue)
-            _totalFixationCounter = 0;
-
-        _totalFixationCounter++;
-
         if (_fixationDuration >= float.MaxValue)
             _fixationDuration = 0f;
 
         _fixationDuration += timeDiff;
-
-        if (_totalFixationDuration >= float.MaxValue)
-            _totalFixationDuration = 0f;
-
-        _totalFixationDuration += timeDiff;
-
-        FixationPositionsAsMessage += gazeVector.ToString() + ";";
 
         if (_currentfixations.Count < 2)
         {
@@ -396,6 +383,8 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
             _currentfixations.Add(gazeVector);
             return;
         }
+
+        FixationPositionsAsMessage += _currentfixations[0].ToString() + ";";
 
         //_meanHeadPosition = CalculateMeanVektor(_headPositions);
 
@@ -414,6 +403,16 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
 
         if (gazeVelocity > _saccadeVelocityThreshold)
         {
+            if (_totalFixationCounter >= int.MaxValue)
+                _totalFixationCounter = 0;
+
+            _totalFixationCounter += _fixationCounter;
+
+            if (_totalFixationDuration >= float.MaxValue)
+                _totalFixationDuration = 0f;
+
+            _totalFixationDuration += _fixationDuration;
+
             _saccads.Clear();
             _fixationCounter = 0;
             _fixationDuration = 0f;
@@ -439,8 +438,6 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
             //GetComponent<LineRenderer>().SetPositions(tempSaccades.ToArray());
             //isSaccade = true;
         }
-
-
 
         //for (int i = 0; i < _currentfixations.Count; i++)
         //if (!isSaccade)
@@ -496,6 +493,7 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
         //}
 
         Vector3 tempCurrentFixation = _currentfixations[1];
+        FixationPositionsAsMessage += _currentfixations[1].ToString() + ";";
         _currentfixations.Clear();
         _currentfixations.Add(tempCurrentFixation);
         //Vector3 tempCurrentHeadPosition = _headPositions[1];

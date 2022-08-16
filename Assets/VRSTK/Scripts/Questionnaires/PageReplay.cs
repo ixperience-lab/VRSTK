@@ -14,11 +14,7 @@ namespace VRSTK
         namespace Questionnaire
         {
             public class PageReplay : MonoBehaviour
-            {
-                public GameObject PagePrefab;
-
-                private GameObject _templateObject = null;
-
+            {   
                 [SerializeField]
                 private System.Int32 _currentActivePageIndex;
 
@@ -55,8 +51,9 @@ namespace VRSTK
 
                 private void Replay()
                 {
-                    
                     PageFactory pf = GetComponent<PageFactory>();
+
+                    if (!pf.gameObject.active) return;
 
                     GameObject page = pf.PageList[_currentActivePageIndex];
 
