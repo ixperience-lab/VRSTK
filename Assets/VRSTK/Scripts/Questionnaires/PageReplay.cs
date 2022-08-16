@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace VRSTK
             public class PageReplay : MonoBehaviour
             {
                 public GameObject PagePrefab;
+
+                private GameObject _templateObject = null;
 
                 [SerializeField]
                 private System.Int32 _currentActivePageIndex;
@@ -62,19 +65,12 @@ namespace VRSTK
 
                     page.SetActive(true);
 
-                    //string prefabDir = "Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/" + page.name + ".prefab";
-                    //// Make sure the file name is unique, in case an existing Prefab has the same name.
-                    ////prefabDir = AssetDatabase.GenerateUniqueAssetPath(prefabDir);
-                    //if (!File.Exists("./" + prefabDir))
-                    //{
-                    //    Transform parent = page.transform.parent;
-                    //    page = PrefabUtility.SaveAsPrefabAsset(page, prefabDir);
-                    //    page = Instantiate(page);
-                    //    page.transform.parent = parent;
-                    //}
-                                        
+                    // Trying to render RectTransform in pause mode of unity app
+                    LayoutRebuilder.ForceRebuildLayoutImmediate(page.GetComponent<RectTransform>());
+                    LayoutRebuilder.ForceRebuildLayoutImmediate(page.GetComponent<RectTransform>());
+                    
                     page.GetComponent<Canvas>().enabled = true;
-
+                    
                     // Q_Header
                     page.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Image>().enabled = true;
                     // Q_Header.DescribtionText
@@ -87,8 +83,6 @@ namespace VRSTK
                                                 
                     if (_currentActivePageIndex != 0 && _currentActivePageIndex != (pf.PageList.Count - 1))
                     {
-                            
-
                         if (_selectedContentToggle != "" && _lastSelectedContentToggle != _selectedContentToggle)
                         {
                             string[] tempLoop = _selectedContentToggle.Split(';');
@@ -108,6 +102,8 @@ namespace VRSTK
                                 string root_leaf_leaf_value = tempContent[4];
 
                                 Debug.Log(_currentActivePageIndex.ToString() + "___" + root + "_" + root_leaf + "_" + root_leaf_leaf + "_" + root_leaf_leaf_type + "_" + root_leaf_leaf_value);
+
+                                if (page.transform.GetChild(0).GetChild(1).Find(root) == null) continue;
 
                                 GameObject root_child = page.transform.GetChild(0).GetChild(1).Find(root).gameObject;
 
@@ -177,8 +173,9 @@ namespace VRSTK
                     _lastCurrentActivePageIndex = _currentActivePageIndex;
                     _lastSelectedContentToggle = _selectedContentToggle;
 
-                    //string prefabDir = "./Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/" + page.name + ".prefab";
-                    //File.Delete(prefabDir);
+                    // Trying to render RectTransform in pause mode of unity app
+                    LayoutRebuilder.ForceRebuildLayoutImmediate(page.GetComponent<RectTransform>());
+                    LayoutRebuilder.ForceRebuildLayoutImmediate(page.GetComponent<RectTransform>());
                 }
             }
         }
