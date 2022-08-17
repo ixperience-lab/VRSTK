@@ -541,7 +541,8 @@ namespace VRSTK
                 /// </summary>
                 public void Stop()
                 {
-                    _dataStream.Stop();
+                    if (_dataStream != null)
+                        _dataStream.Stop();
                     _isAuthorizedOK = false;
                     //_isProfileLoaded = false;
                     _isSessionCreated = false;

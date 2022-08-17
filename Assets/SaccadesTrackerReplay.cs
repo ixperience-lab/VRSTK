@@ -27,8 +27,6 @@ public class SaccadesTrackerReplay : MonoBehaviour
     [SerializeField]
     private string _fixationPosition;
 
-    //private string _lastFixationPosition = "";
-
     public string FixationPosition
     {
         get
@@ -78,14 +76,13 @@ public class SaccadesTrackerReplay : MonoBehaviour
     {
         if (FixationPosition != string.Empty)
         {
-            string[] temp = SaccadesPositions.Split(';');
+            string[] temp = FixationPosition.Split(';');
             for(int i = 0; i < temp.Length-1; i++)
             {
                 string[] pArray = temp[i].Split(',');
                 Vector3 position = new Vector3(float.Parse(pArray[0].Substring(1, pArray[0].Length - 1).Trim()), float.Parse(pArray[1].Trim()), float.Parse(pArray[2].Substring(0, pArray[2].Length - 1).Trim()));
                 string objectName = "TestSphere_" + position.x.ToString().Replace(".","_") + position.y.ToString().Replace(".", "_") + position.z.ToString().Replace(".", "_");
                 Debug.Log(objectName);
-                //if (GameObject.Find(objectName) == null)
                 {
                     GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                     sphere.name = objectName;
@@ -97,19 +94,7 @@ public class SaccadesTrackerReplay : MonoBehaviour
                     rend.material = _material;
                 }
             }
-            //    string[] pArray = SaccadesPositions.Split(',');
-            //    Vector3 position = new Vector3(float.Parse(pArray[0].Substring(1, pArray[0].Length - 1).Trim()), float.Parse(pArray[1].Trim()), float.Parse(pArray[2].Substring(0, pArray[2].Length - 1).Trim()));
-
-            //    GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            //    sphere.name = "TestSphere_" + position.magnitude;
-            //    sphere.transform.position = new Vector3(position.x, position.y, position.z);
-            //    sphere.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-            //    sphere.GetComponent<MeshRenderer>().receiveShadows = false;
-            //    sphere.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-            //    Renderer rend = sphere.GetComponent<Renderer>();
-            //    rend.material = _material;
-
-            //    _lastFixationPosition = FixationPosition;
+            
         }
     }
 }

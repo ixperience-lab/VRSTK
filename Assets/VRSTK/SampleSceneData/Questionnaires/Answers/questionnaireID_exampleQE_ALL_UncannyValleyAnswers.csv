@@ -1,50 +1,50 @@
-QuestionType;Question;QuestionID;Answer_Participant_id1_condition_A;Answer_Participant_12345_condition_Condition A;Answer_Participant_1234_condition_Condition A;Answer_Participant_24_condition_Condition A;Answer_Participant_123_condition_Condition A;Answer_ParticipantID_5641_condition_Condition A;Answer_Participant_id_69_condition_Condition A;Answer_Participant_987_condition_;Answer_Participant_io12_condition_Condition B;Answer_Participant_id-42_condition_Condition A;Answer_Participant_id-42_condition_Condition A;Answer_Participant_id-46_condition_Condition B;Answer_Participant_id-89_condition_Condition B
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Lloid;4;4;5;4;4;4;4;4;7;4;4;3;4
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Lloid;4;4;5;4;4;4;4;4;7;4;3;4;4
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Lloid;4;4;5;4;4;7;4;4;7;5;5;4;4
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Atlas;4;4;5;4;4;2;3;2;6;1;1;1;3
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Atlas;4;5;4;4;4;3;4;3;6;3;3;3;3
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Atlas;4;5;3;4;4;4;4;4;6;4;4;4;3
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Duchess;4;4;5;3;4;4;4;5;6;5;5;5;4
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Duchess;4;4;4;4;4;5;4;4;6;4;5;5;4
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Duchess;4;5;3;5;4;6;4;4;6;4;3;4;4
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Katie;4;5;4;5;4;4;4;4;6;4;4;4;5
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Katie;4;4;4;5;4;4;4;4;7;4;4;3;4
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Katie;4;5;4;5;4;6;4;4;6;5;4;4;3
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Gettie;4;4;6;4;5;1;3;2;7;2;2;2;7
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Gettie;4;5;5;4;4;2;3;3;6;4;3;3;6
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Gettie;4;6;4;4;3;3;4;4;7;4;5;5;5
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Pose_remy;7;4;6;4;5;7;7;7;6;7;7;7;4
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Pose_remy;2;6;5;4;4;3;4;3;7;3;2;3;3
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Pose_remy;4;6;4;4;3;7;1;4;6;5;5;5;2
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_minitrileglv1galaxy;1;4;4;4;3;5;3;3;7;2;2;1;5
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_minitrileglv1galaxy;1;3;4;4;4;4;4;4;6;3;3;5;5
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_minitrileglv1galaxy;1;5;4;4;5;3;4;5;7;4;4;4;5
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_MedicBot;1;5;4;4;4;2;3;5;6;1;1;1;1
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_MedicBot;4;3;4;4;4;3;4;4;6;5;5;5;2
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_MedicBot;4;6;4;4;4;4;4;4;7;3;4;4;3
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Eyebot;1;4;4;4;5;3;3;1;6;1;1;1;1
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Eyebot;4;3;4;4;5;4;3;5;6;5;5;5;2
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Eyebot;4;5;4;5;5;5;4;4;7;5;4;3;3
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Freddy;4;6;6;4;7;6;3;3;7;3;3;3;6
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Freddy;4;5;5;5;6;5;3;5;6;5;5;5;5
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Freddy;4;6;4;5;5;5;3;4;5;4;4;3;6
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Pose_MixamoGirl;7;4;3;4;2;7;6;7;7;6;6;6;4
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Pose_MixamoGirl;4;3;4;6;4;6;5;3;7;3;3;3;5
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Pose_MixamoGirl;4;5;5;7;5;7;4;4;7;5;5;5;6
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_link;4;4;4;4;4;4;4;4;7;4;5;5;5
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_link;4;4;4;5;4;4;4;4;6;4;4;4;4
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_link;4;4;4;6;4;4;4;4;6;4;4;4;3
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Pose_Zombiegirl;4;5;3;5;1;4;4;5;6;5;5;5;4
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Pose_Zombiegirl;4;4;4;5;3;7;5;7;7;6;6;5;4
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Pose_Zombiegirl;4;5;5;5;5;5;6;4;6;2;2;4;4
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_ACPC_Alice;4;4;4;4;3;4;4;4;7;4;4;4;3
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_ACPC_Alice;5;5;4;5;4;4;4;4;7;4;4;4;3
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_ACPC_Alice;3;4;4;6;5;3;4;4;6;5;4;4;3
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_ACPC_Ribbot;1;5;4;4;4;3;3;1;7;2;2;3;2
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_ACPC_Ribbot;1;4;4;5;4;4;4;5;7;4;4;4;4
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_ACPC_Ribbot;1;6;4;6;4;5;5;4;7;5;4;4;4
-radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Turret;1;4;4;4;5;4;3;1;7;1;2;1;4
-radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Turret;1;4;4;5;4;3;4;4;7;3;3;3;4
-radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Turret;1;4;4;6;3;5;5;4;7;5;5;5;4
+QuestionType;Question;QuestionID;Answer_Participant_id1_condition_A;Answer_Participant_12345_condition_Condition A;Answer_Participant_1234_condition_Condition A;Answer_Participant_24_condition_Condition A;Answer_Participant_123_condition_Condition A;Answer_ParticipantID_5641_condition_Condition A;Answer_Participant_id_69_condition_Condition A;Answer_Participant_987_condition_;Answer_Participant_io12_condition_Condition B;Answer_Participant_id-42_condition_Condition A;Answer_Participant_id-42_condition_Condition A;Answer_Participant_id-46_condition_Condition B;Answer_Participant_id-89_condition_Condition B;Answer_Participant_id-357_condition_Condition A
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Lloid;4;4;5;4;4;4;4;4;7;4;4;3;4;3
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Lloid;4;4;5;4;4;4;4;4;7;4;3;4;4;3
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Lloid;4;4;5;4;4;7;4;4;7;5;5;4;4;5
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Atlas;4;4;5;4;4;2;3;2;6;1;1;1;3;1
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Atlas;4;5;4;4;4;3;4;3;6;3;3;3;3;3
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Atlas;4;5;3;4;4;4;4;4;6;4;4;4;3;5
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Duchess;4;4;5;3;4;4;4;5;6;5;5;5;4;5
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Duchess;4;4;4;4;4;5;4;4;6;4;5;5;4;5
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Duchess;4;5;3;5;4;6;4;4;6;4;3;4;4;3
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Katie;4;5;4;5;4;4;4;4;6;4;4;4;5;4
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Katie;4;4;4;5;4;4;4;4;7;4;4;3;4;3
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Katie;4;5;4;5;4;6;4;4;6;5;4;4;3;5
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Gettie;4;4;6;4;5;1;3;2;7;2;2;2;7;2
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Gettie;4;5;5;4;4;2;3;3;6;4;3;3;6;3
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Gettie;4;6;4;4;3;3;4;4;7;4;5;5;5;5
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Pose_remy;7;4;6;4;5;7;7;7;6;7;7;7;4;7
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Pose_remy;2;6;5;4;4;3;4;3;7;3;2;3;3;3
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Pose_remy;4;6;4;4;3;7;1;4;6;5;5;5;2;5
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_minitrileglv1galaxy;1;4;4;4;3;5;3;3;7;2;2;1;5;1
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_minitrileglv1galaxy;1;3;4;4;4;4;4;4;6;3;3;5;5;5
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_minitrileglv1galaxy;1;5;4;4;5;3;4;5;7;4;4;4;5;4
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_MedicBot;1;5;4;4;4;2;3;5;6;1;1;1;1;1
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_MedicBot;4;3;4;4;4;3;4;4;6;5;5;5;2;5
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_MedicBot;4;6;4;4;4;4;4;4;7;3;4;4;3;3
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Eyebot;1;4;4;4;5;3;3;1;6;1;1;1;1;1
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Eyebot;4;3;4;4;5;4;3;5;6;5;5;5;2;5
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Eyebot;4;5;4;5;5;5;4;4;7;5;4;3;3;3
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Freddy;4;6;6;4;7;6;3;3;7;3;3;3;6;3
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Freddy;4;5;5;5;6;5;3;5;6;5;5;5;5;5
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Freddy;4;6;4;5;5;5;3;4;5;4;4;3;6;4
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Pose_MixamoGirl;7;4;3;4;2;7;6;7;7;6;6;6;4;6
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Pose_MixamoGirl;4;3;4;6;4;6;5;3;7;3;3;3;5;3
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Pose_MixamoGirl;4;5;5;7;5;7;4;4;7;5;5;5;6;5
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_link;4;4;4;4;4;4;4;4;7;4;5;5;5;5
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_link;4;4;4;5;4;4;4;4;6;4;4;4;4;5
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_link;4;4;4;6;4;4;4;4;6;4;4;4;3;5
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Pose_Zombiegirl;4;5;3;5;1;4;4;5;6;5;5;5;4;5
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Pose_Zombiegirl;4;4;4;5;3;7;5;7;7;6;6;5;4;7
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Pose_Zombiegirl;4;5;5;5;5;5;6;4;6;2;2;4;4;1
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_ACPC_Alice;4;4;4;4;3;4;4;4;7;4;4;4;3;4
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_ACPC_Alice;5;5;4;5;4;4;4;4;7;4;4;4;3;3
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_ACPC_Alice;3;4;4;6;5;3;4;4;6;5;4;4;3;5
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_ACPC_Ribbot;1;5;4;4;4;3;3;1;7;2;2;3;2;2
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_ACPC_Ribbot;1;4;4;5;4;4;4;5;7;4;4;4;4;4
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_ACPC_Ribbot;1;6;4;6;4;5;5;4;7;5;4;4;4;4
+radio;Stufen Sie bitte die Menschen������hnlichkeit des ;q1_Turret;1;4;4;4;5;4;3;1;7;1;2;1;4;1
+radio;Ist das Erscheinungsbild des Avatares unheimlich?;q2_Turret;1;4;4;5;4;3;4;4;7;3;3;3;4;5
+radio;Ist das Erscheinungsbild des Avatares sympathisch?;q3_Turret;1;4;4;6;3;5;5;4;7;5;5;5;4;3
 
