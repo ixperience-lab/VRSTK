@@ -104,13 +104,9 @@ namespace VRSTK
 
                 public GameObject _testController;
 
-                //DataStreamManager _dataStream = DataStreamManager.Instance;
-                //Logger _logger = Logger.Instance;
-                //private HeadsetFinder _headsetFinder = HeadsetFinder.Instance;
-
-                DataStreamManager _dataStream = null;
-                Logger _logger = null;
-                private HeadsetFinder _headsetFinder = null;
+                DataStreamManager _dataStream = DataStreamManager.Instance;
+                Logger _logger = Logger.Instance;
+                private HeadsetFinder _headsetFinder = HeadsetFinder.Instance;
 
                 private Headset _headsetInformation;
 
@@ -202,37 +198,16 @@ namespace VRSTK
 
                     if (!_isAuthorizedOK)
                     {
-                        if (_dataStream != null && _logger != null && _headsetFinder == null)
-                        {
-                            // init EmotivUnityItf without data buffer using
-                            Init(_isDataBufferUsing);
+                        // init EmotivUnityItf without data buffer using
+                        Init(_isDataBufferUsing);
 
-                            // Init logger
-                            _logger.Init();
+                        // Init logger
+                        _logger.Init();
 
+                        Debug.Log("Configure PRODUCT SERVER - version: " + CortexAppConfig.AppVersion);
 
-                            Debug.Log("Configure PRODUCT SERVER - version: " + CortexAppConfig.AppVersion);
-
-                            // Start
-                            _dataStream.StartAuthorize();
-                        }
-                        else
-                        {
-                            _dataStream = DataStreamManager.Instance;
-                            _logger = Logger.Instance;
-                            _headsetFinder = HeadsetFinder.Instance;
-                            
-                            // init EmotivUnityItf without data buffer using
-                            Init(_isDataBufferUsing);
-
-                            // Init logger
-                            _logger.Init();
-
-                            Debug.Log("Configure PRODUCT SERVER - version: " + CortexAppConfig.AppVersion);
-
-                            // Start
-                            _dataStream.StartAuthorize();
-                        }
+                        // Start
+                        _dataStream.StartAuthorize();
                     }
                 }
 
@@ -352,42 +327,8 @@ namespace VRSTK
 
                 void OnApplicationQuit()
                 {
-                    if (_dataStream != null)
-                    {
-                        _isMotionTracking.value = false;
-                        _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.Motion));
-                        _previousIsMotionTrackingValue = _isMotionTracking.value;
-
-                        _isEegTrackingActive.value = false;
-                        _dataStream.SubscribeMoreData(GetStreamsList(DataStreamType.EEG));
-                        _previousIsEegTrackingActiveValue = _isEegTrackingActive.value;
-
-                        _isPerformanceMetricsTrackingActive.value = false;
-                        _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.PerformanceMetrics));
-                        _previousIsPerformanceMetricsTrackingActiveValue = _isPerformanceMetricsTrackingActive.value;
-
-                        _isBandPowerTrackingActive.value = false;
-                        _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.BandPowerData));
-                        _previousIsBandPowerTrackingActiveValue = _isBandPowerTrackingActive.value;
-
-                        _isDevDataTrackingActive.value = false;
-                        _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.DevelopmentInformation));
-                        _previousIsDevDataTrackingActiveValue = _isDevDataTrackingActive.value;
-
-                        _isSysEventDataTrackingActive.value = false;
-                        _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.SystemInformation));
-                        _previousIsSysEventDataTrackingActiveValue = _isSysEventDataTrackingActive.value;
-                    }
-
                     Debug.Log("Application ending after " + Time.time + " seconds");
                     Stop();
-
-                    if (_dataStream != null)
-                        _dataStream = null;
-                    if (_logger != null)
-                        _logger = null;
-                    if (_headsetFinder != null)
-                        _headsetFinder = null;
                 }
 
                 void OnEnable()
@@ -433,75 +374,23 @@ namespace VRSTK
 
                     if (!_isAuthorizedOK)
                     {
-                        if (_dataStream != null && _logger != null && _headsetFinder == null)
-                        {
-                            // init EmotivUnityItf without data buffer using
-                            Init(_isDataBufferUsing);
+                        // init EmotivUnityItf without data buffer using
+                        Init(_isDataBufferUsing);
 
-                            // Init logger
-                            _logger.Init();
+                        // Init logger
+                        _logger.Init();
 
+                        Debug.Log("Configure PRODUCT SERVER - version: " + CortexAppConfig.AppVersion);
 
-                            Debug.Log("Configure PRODUCT SERVER - version: " + CortexAppConfig.AppVersion);
-
-                            // Start
-                            _dataStream.StartAuthorize();
-                        }
-                        else
-                        {
-                            _dataStream = DataStreamManager.Instance;
-                            _logger = Logger.Instance;
-                            _headsetFinder = HeadsetFinder.Instance;
-
-                            // init EmotivUnityItf without data buffer using
-                            Init(_isDataBufferUsing);
-
-                            // Init logger
-                            _logger.Init();
-
-                            Debug.Log("Configure PRODUCT SERVER - version: " + CortexAppConfig.AppVersion);
-
-                            // Start
-                            _dataStream.StartAuthorize();
-                        }
+                        // Start
+                        _dataStream.StartAuthorize();                        
                     }
                 }
 
                 void OnDisable()
-                {
-                    _isMotionTracking.value = false;
-                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.Motion));
-                    _previousIsMotionTrackingValue = _isMotionTracking.value;
-
-                    _isEegTrackingActive.value = false;
-                    _dataStream.SubscribeMoreData(GetStreamsList(DataStreamType.EEG));
-                    _previousIsEegTrackingActiveValue = _isEegTrackingActive.value;
-
-                    _isPerformanceMetricsTrackingActive.value = false;
-                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.PerformanceMetrics));
-                    _previousIsPerformanceMetricsTrackingActiveValue = _isPerformanceMetricsTrackingActive.value;
-
-                    _isBandPowerTrackingActive.value = false;
-                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.BandPowerData));
-                    _previousIsBandPowerTrackingActiveValue = _isBandPowerTrackingActive.value;
-
-                    _isDevDataTrackingActive.value = false;
-                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.DevelopmentInformation));
-                    _previousIsDevDataTrackingActiveValue = _isDevDataTrackingActive.value;
-
-                    _isSysEventDataTrackingActive.value = false;
-                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.SystemInformation));
-                    _previousIsSysEventDataTrackingActiveValue = _isSysEventDataTrackingActive.value;
-
+                {   
                     Debug.Log("Object deactivated after " + Time.time + " seconds");
                     Stop();
-
-                    if (_dataStream != null)
-                        _dataStream = null;
-                    if (_logger != null)
-                        _logger = null;
-                    if (_headsetFinder != null)
-                        _headsetFinder = null;
                 }
 
                 // Init
@@ -541,14 +430,59 @@ namespace VRSTK
                 /// </summary>
                 public void Stop()
                 {
-                    if (_dataStream != null)
-                        _dataStream.Stop();
+                    _isMotionTracking.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.Motion));
+                    _previousIsMotionTrackingValue = _isMotionTracking.value;
+
+                    _isEegTrackingActive.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.EEG));
+                    _previousIsEegTrackingActiveValue = _isEegTrackingActive.value;
+
+                    _isPerformanceMetricsTrackingActive.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.PerformanceMetrics));
+                    _previousIsPerformanceMetricsTrackingActiveValue = _isPerformanceMetricsTrackingActive.value;
+
+                    _isBandPowerTrackingActive.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.BandPowerData));
+                    _previousIsBandPowerTrackingActiveValue = _isBandPowerTrackingActive.value;
+
+                    _isDevDataTrackingActive.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.DevelopmentInformation));
+                    _previousIsDevDataTrackingActiveValue = _isDevDataTrackingActive.value;
+
+                    _isSysEventDataTrackingActive.value = false;
+                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.SystemInformation));
+                    _previousIsSysEventDataTrackingActiveValue = _isSysEventDataTrackingActive.value;
+
+                    System.Threading.Thread.Sleep(1000);
+
+                    // binding
+                    _dataStream.LicenseValidTo -= OnLicenseValidTo;
+                    _dataStream.SessionActivatedOK -= OnSessionActiveOK;
+
+                    // if do not use data buffer to store data, we need to handle data stream signal
+                    if (!_isDataBufferUsing)
+                    {
+                        _dataStream.EEGDataReceived -= OnEEGDataReceived;
+                        _dataStream.MotionDataReceived -= OnMotionDataReceived;
+                        _dataStream.DevDataReceived -= OnDevDataReceived;
+                        _dataStream.PerfDataReceived -= OnPerfDataReceived;
+                        _dataStream.BandPowerDataReceived -= OnBandPowerDataReceived;
+                        _dataStream.InformSuccessSubscribedData -= OnInformSuccessSubscribedData;
+                    }
+
+                    _dataStream.FacialExpReceived -= OnFacialExpReceived;
+                    //_dataStream.MentalCommandReceived -= OnMentalCommandReceived;
+                    _dataStream.SysEventsReceived -= OnSysEventsReceived;
+
+                    _dataStream.Stop();
+
                     _isAuthorizedOK = false;
                     //_isProfileLoaded = false;
                     _isSessionCreated = false;
                     _workingHeadsetId = "";
 
-                    System.Threading.Thread.Sleep(5000);
+                    System.Threading.Thread.Sleep(1500);
                 }
 
                 private void GetHeatsetInformationOfIndexZero()
