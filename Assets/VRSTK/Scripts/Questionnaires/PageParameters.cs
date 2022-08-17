@@ -30,7 +30,7 @@ namespace VRSTK
 
                 // First line checker
                 [SerializeField]
-                private float _standardDeviationStraightLineAnswer = -1f;        // close to zero -> straight line
+                private float _standardDeviationStraightLineAnswer = -1f;        // straight line: 0; 1; 2; 3
 
                 public float StandardDeviationStraightLineAnswer
                 {
@@ -44,7 +44,7 @@ namespace VRSTK
 
                 // Third line checker
                 [SerializeField]
-                private float _absoluteDerivationOfResponseValue = -1f;        // sensetive to straight, diagonal, and zigzag lines
+                private float _absoluteDerivationOfResponseValue = -1f;        // sensetive to straight, diagonal, and zigzag lines -> close to zero
                 
                 public float AbsoluteDerivationOfResponseValue
                 {
@@ -77,11 +77,15 @@ namespace VRSTK
 
                 public void CalculateStandardDeviationStraightLineAnswer()
                 {
-                    if (transform.GetChild(0).GetChild(1).childCount < 2)
+                    if (transform.GetChild(0).GetChild(1).childCount < 1)
                         return;
 
+                    if (!gameObject.active) 
+                        return;
+
+                    float arithmeticMean = 0f;
+
                     float[] answers = new float[transform.GetChild(0).GetChild(1).childCount];
-                    float arithmeticMean = 4f;
                     for (int j = 0; j < transform.GetChild(0).GetChild(1).childCount; j++)
                     {
                         string childName = transform.GetChild(0).GetChild(1).GetChild(j).name;
@@ -91,25 +95,30 @@ namespace VRSTK
                             for (int k = 0; k < radio.RadioList.Count; k++)
                                 if (radio.RadioList[k].transform.GetChild(0).GetComponent<Toggle>().isOn)
                                 {
-                                    answers[j] = (k + 1); 
+                                    answers[j] = (k + 1);
+                                    arithmeticMean += (k + 1);
                                     break;
                                 }
                         }
                     }
 
+                    if (answers.Length != 0)
+                        arithmeticMean /= (float)answers.Length;
+                    else
+                        arithmeticMean = 0f;
+
                     float variance = 0f;
                     for (int i = 0; i < answers.Length; i++)
                         variance += Mathf.Pow(answers[i] - arithmeticMean, 2f);
 
+                    float standardDeviation = -1f;
                     if (answers.Length != 0)
-                        variance /= (float)answers.Length;
+                        standardDeviation = variance / (float)answers.Length;
+                    
+                    if (standardDeviation != -1)
+                        StandardDeviationStraightLineAnswer = Mathf.Sqrt(standardDeviation);
                     else
-                        variance = 0f;
-
-                    if (variance != 0)
-                        StandardDeviationStraightLineAnswer = Mathf.Sqrt(variance);
-                    else
-                        StandardDeviationStraightLineAnswer = 1f;
+                        StandardDeviationStraightLineAnswer = standardDeviation;
                 }
 
                 public void CalculateAbsoluteDerivationOfResponseValue()
@@ -117,7 +126,10 @@ namespace VRSTK
                     if (transform.GetChild(0).GetChild(1).childCount < 2)
                         return;
 
-                    int numberOfItems = transform.GetChild(0).GetChild(1).childCount;
+                    if (!gameObject.active) 
+                        return;
+
+                    //int numberOfItems = transform.GetChild(0).GetChild(1).childCount;
                     float[] respones = new float[transform.GetChild(0).GetChild(1).childCount];
 
                     for (int j = 0; j < transform.GetChild(0).GetChild(1).childCount; j++)
@@ -135,14 +147,14 @@ namespace VRSTK
                         }
                     }
 
-                    float absoluteResponesValues = 0f;
+                    float absoluteResponesValues = -1f;
                     for (int i = 0; i < respones.Length - 2; i++)
-                        absoluteResponesValues += Mathf.Abs(respones[i+2] - 2 * respones[i + 1] + respones[i]);
+                        absoluteResponesValues += Mathf.Abs(respones[i+2] - (2 * respones[i + 1]) + respones[i]);
 
                     if ((respones.Length - 2) != 0)
-                        AbsoluteDerivationOfResponseValue = absoluteResponesValues / (respones.Length - 2);
+                        AbsoluteDerivationOfResponseValue = (absoluteResponesValues + 1) / (respones.Length - 2);
                     else
-                        AbsoluteDerivationOfResponseValue = 0f;
+                        AbsoluteDerivationOfResponseValue = -1f;
                 }
 
                 //public void CalculatePatternAlgorithemStraightLineAnswer()
