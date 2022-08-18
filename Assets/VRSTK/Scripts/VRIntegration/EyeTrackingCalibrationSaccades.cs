@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System;
 using VRSTK.Scripts.Telemetry;
 using VRSTK.Scripts.TestControl;
+using UnityEngine.UI;
 
 public class EyeTrackingCalibrationSaccades : MonoBehaviour
 {
@@ -187,7 +188,7 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
             sranipal.StartFramework();
         }
 
-        //if (!SRanipal_Eye_v2.LaunchEyeCalibration()) Calibration();
+        if (!SRanipal_Eye_v2.LaunchEyeCalibration()) Calibration();
     }
 
     // Update is called once per frame
@@ -352,11 +353,13 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
         int layerMask = 1 << 8;
         layerMask = ~layerMask;
         Vector3 hitPoint = direction.normalized * 100;
-        string hitlog = "No hit on an Object Collider!";
+        //string hitlog = "No hit on an Object Collider!";
         RaycastHit hitObjects;
+        //GraphicRaycaster canvasRaycaster;
+        //Physics.RaycastAll()
         if (Physics.Raycast(transform.position, direction, out hitObjects, Mathf.Infinity, layerMask))
         {
-            hitlog = "Hit the Collider of an Object, with direction:" + direction + " and hitPoint:" + hitObjects.point;
+            //hitlog = "Hit the Collider of an Object, with direction:" + direction + " and hitPoint:" + hitObjects.point;
             //When hit collider: Use collider as hitpoint
             hitPoint = hitObjects.point;
         }

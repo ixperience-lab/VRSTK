@@ -346,8 +346,10 @@ namespace VRSTK
                             GenerateQuestionnaire generateQuestionnaire = transform.parent.parent.GetComponent<GenerateQuestionnaire>();
                             QualityParameters qualityParameters = transform.parent.parent.GetComponent<QualityParameters>();
                             qualityParameters.TIME_SUM_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _TIME_SUM;
+                            qualityParameters.TIME_SUM_Message = _TIME_SUM.ToString();
                             qualityParameters.TIME_RSI_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _TIME_SUM;
                             qualityParameters.DEG_TIME_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _DEG_TIME;
+                            qualityParameters.DEG_TIME_Message = _DEG_TIME.ToString();
                             qualityParameters.LastQuestionnaire_TIME_SUM = _TIME_SUM;
 
                             // _MISSING
@@ -388,6 +390,7 @@ namespace VRSTK
                                 _MISSING = 0f;
 
                             qualityParameters.MISSING_s[generateQuestionnaire.Questionnaires.IndexOf(transform.parent.gameObject)] = _MISSING;
+                            qualityParameters.MISSING_Message = _MISSING.ToString();
 
                             PageParameters tempPageParameters = pageFactory.PageList[pageFactory.CurrentPage].GetComponent<PageParameters>();
 

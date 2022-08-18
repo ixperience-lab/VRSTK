@@ -1,6 +1,6 @@
 {
    "qTitle":"Simulation Sickness Fragebogen",
-   "qInstructions":"Anweisungen: Bitte wählen Sie aus, wie sehr jedes der folgenden Symptome Sie im Moment beeinträchtigt.",
+   "qInstructions":"Anweisung: Bitte wählen Sie aus, wie sehr jedes der folgenden Symptome Sie im Moment beeinträchtigt.",
    "qId":"SSQ",
    "questions":[
       {
