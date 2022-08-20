@@ -29,6 +29,8 @@ from .. import plotting, utils
 from biosppy.inter_plotting import ecg as inter_plotting
 from scipy.signal import argrelextrema
 
+# hewl1012
+from os.path import exists
 
 def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=True):
     """Process a raw ECG signal and extract relevant signal features using
@@ -107,14 +109,56 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
     hr_idx, hr = st.get_heart_rate(
         beats=rpeaks, sampling_rate=sampling_rate, smooth=True, size=3
     )
-
+    
+           
     # get time vectors
     length = len(signal)
     T = (length - 1) / sampling_rate
     ts = np.linspace(0, T, length, endpoint=True)
     ts_hr = ts[hr_idx]
     ts_tmpl = np.linspace(-0.2, 0.4, templates.shape[1], endpoint=False)
-
+    
+    # hewl1012 creating a single file with results 
+    #---------------------------------------------
+    new_hr = hr
+    new_ts_hr = ts_hr
+    size_to_append = rpeaks.size - hr.size
+    #print(size_to_append) # for debug only 
+    if size_to_append > 0:
+        for _ in range(size_to_append):
+            new_hr = np.append(ts_hr, np.zeros(1) , axis=0) 
+            new_ts_hr = np.append(hr, np.zeros(1), axis=0)
+    
+    hear_rate_results_str = ""
+    
+    for index, data_element in enumerate(rpeaks):
+        hear_rate_results_str += str(new_hr[index]) + " ; " + str(new_ts_hr[index]) + " ; " + str(data_element) + "\n"
+    #print(hear_rate_results_str)  # for debug only 
+    
+    path_to_heart_rate_results_file = "./results/HearRateResults.txt"
+    if exists(path_to_heart_rate_results_file):
+        with open(path_to_heart_rate_results_file, 'w', encoding='utf-8') as f:
+            f.writelines(hear_rate_results_str)
+    else:
+        with open(path_to_heart_rate_results_file, 'a', encoding='utf-8') as f:
+            f.writelines(hear_rate_results_str)
+            
+    filtered_hear_rate_results_str = ""
+    
+    for _, data_element in enumerate(filtered):
+        filtered_hear_rate_results_str += str(data_element) + "\n"
+    #print(hear_rate_results_str)  # for debug only 
+    
+    path_to_filtered_heart_rate_results_file = "./results/FilteredHearRateResults.txt"
+    if exists(path_to_filtered_heart_rate_results_file):
+        with open(path_to_filtered_heart_rate_results_file, 'w', encoding='utf-8') as f:
+            f.writelines(filtered_hear_rate_results_str)
+    else:
+        with open(path_to_filtered_heart_rate_results_file, 'a', encoding='utf-8') as f:
+            f.writelines(filtered_hear_rate_results_str) 
+    
+    #---------------------------------------------
+  
     # plot
     if show:
         if interactive:

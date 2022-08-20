@@ -22,6 +22,9 @@ import numpy as np
 from . import tools as st
 from .. import plotting, utils
 
+# hewl1012
+from os.path import exists
+
 
 def eda(signal=None, sampling_rate=1000.0, path=None, show=True, min_amplitude=0.1):
     """Process a raw EDA signal and extract relevant signal features using
@@ -100,7 +103,39 @@ def eda(signal=None, sampling_rate=1000.0, path=None, show=True, min_amplitude=0
             path=path,
             show=True,
         )
-
+    
+    # hewl1012 creating a single file with results 
+    #---------------------------------------------
+    eda_results_str = ""
+    
+    for index, data_element in enumerate(peaks):
+        eda_results_str += str(onsets[index]) + " ; " + str(data_element) + " ; " + str(amps[index]) + "\n"
+    #print(eda_results_str)  # for debug only 
+    
+    path_to_eda_results_file = "./results/EdaResults.txt"
+    if exists(path_to_eda_results_file):
+        with open(path_to_eda_results_file, 'w', encoding='utf-8') as f:
+            f.writelines(eda_results_str)
+    else:
+        with open(path_to_eda_results_file, 'a', encoding='utf-8') as f:
+            f.writelines(eda_results_str)
+    
+    
+    filtered_eda_results_str = ""
+    
+    for index, data_element in enumerate(filtered):
+        filtered_eda_results_str += str(data_element) + "\n"
+    #print(filtered_eda_results_str)  # for debug only 
+    
+    path_to_filtered_eda_results_file = "./results/FilteredEdaResults.txt"
+    if exists(path_to_filtered_eda_results_file):
+        with open(path_to_filtered_eda_results_file, 'w', encoding='utf-8') as f:
+            f.writelines(filtered_eda_results_str)
+    else:
+        with open(path_to_filtered_eda_results_file, 'a', encoding='utf-8') as f:
+            f.writelines(filtered_eda_results_str)
+    #---------------------------------------------
+    
     # output
     args = (ts, filtered, onsets, peaks, amps)
     names = ("ts", "filtered", "onsets", "peaks", "amplitudes")
