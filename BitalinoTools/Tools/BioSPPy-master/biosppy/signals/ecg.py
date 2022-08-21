@@ -123,12 +123,17 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
     new_hr = hr
     new_ts_hr = ts_hr
     size_to_append = rpeaks.size - hr.size
+    #print(hr.size) # for debug only 
+    #print(rpeaks.size) # for debug only 
     #print(size_to_append) # for debug only 
     if size_to_append > 0:
-        for _ in range(size_to_append):
-            new_hr = np.append(ts_hr, np.zeros(1) , axis=0) 
-            new_ts_hr = np.append(hr, np.zeros(1), axis=0)
+        new_hr = np.append(ts_hr, np.zeros(1), axis=0) 
+        new_ts_hr = np.append(hr, np.zeros(1), axis=0)
+        for _ in range(size_to_append - 1):
+            new_hr = np.append(new_hr, np.zeros(1) , axis=0) 
+            new_ts_hr = np.append(new_ts_hr, np.zeros(1), axis=0)
     
+    print(new_hr.size) # for debug only 
     hear_rate_results_str = ""
     
     for index, data_element in enumerate(rpeaks):
@@ -137,10 +142,10 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
     
     path_to_heart_rate_results_file = "./results/HearRateResults.txt"
     if exists(path_to_heart_rate_results_file):
-        with open(path_to_heart_rate_results_file, 'w', encoding='utf-8') as f:
+        with open(path_to_heart_rate_results_file, 'a', encoding='utf-8') as f:
             f.writelines(hear_rate_results_str)
     else:
-        with open(path_to_heart_rate_results_file, 'a', encoding='utf-8') as f:
+        with open(path_to_heart_rate_results_file, 'w', encoding='utf-8') as f:
             f.writelines(hear_rate_results_str)
             
     filtered_hear_rate_results_str = ""
@@ -151,10 +156,10 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
     
     path_to_filtered_heart_rate_results_file = "./results/FilteredHearRateResults.txt"
     if exists(path_to_filtered_heart_rate_results_file):
-        with open(path_to_filtered_heart_rate_results_file, 'w', encoding='utf-8') as f:
+        with open(path_to_filtered_heart_rate_results_file, 'a', encoding='utf-8') as f:
             f.writelines(filtered_hear_rate_results_str)
     else:
-        with open(path_to_filtered_heart_rate_results_file, 'a', encoding='utf-8') as f:
+        with open(path_to_filtered_heart_rate_results_file, 'w', encoding='utf-8') as f:
             f.writelines(filtered_hear_rate_results_str) 
     
     #---------------------------------------------

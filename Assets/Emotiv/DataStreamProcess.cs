@@ -23,6 +23,7 @@ namespace EmotivUnityPlugin
         // Event
         public event EventHandler<ArrayList> MotionDataReceived;      // motion data
         public event EventHandler<ArrayList> EEGDataReceived;         // eeg data
+        public event EventHandler<ArrayList> EEGQualityDataReceived;         // eeg quality data
         public event EventHandler<ArrayList> DevDataReceived;         // contact quality
         public event EventHandler<ArrayList> PerfDataReceived;        // performance metric
         public event EventHandler<ArrayList> BandPowerDataReceived;   // band power
@@ -287,6 +288,10 @@ namespace EmotivUnityPlugin
             else if (e.StreamName == DataStreamName.SysEvents)
             {
                 SysEventsReceived(this, e.Data);
+            }
+            else if (e.StreamName == DataStreamName.EQ)
+            {
+                EEGQualityDataReceived(this, e.Data);
             }
         }
         private void MessageErrorRecieved(object sender, ErrorMsgEventArgs errorInfo)

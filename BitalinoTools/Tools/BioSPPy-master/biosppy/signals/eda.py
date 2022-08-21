@@ -114,10 +114,10 @@ def eda(signal=None, sampling_rate=1000.0, path=None, show=True, min_amplitude=0
     
     path_to_eda_results_file = "./results/EdaResults.txt"
     if exists(path_to_eda_results_file):
-        with open(path_to_eda_results_file, 'w', encoding='utf-8') as f:
+        with open(path_to_eda_results_file, 'a', encoding='utf-8') as f:
             f.writelines(eda_results_str)
     else:
-        with open(path_to_eda_results_file, 'a', encoding='utf-8') as f:
+        with open(path_to_eda_results_file, 'w', encoding='utf-8') as f:
             f.writelines(eda_results_str)
     
     
@@ -129,10 +129,10 @@ def eda(signal=None, sampling_rate=1000.0, path=None, show=True, min_amplitude=0
     
     path_to_filtered_eda_results_file = "./results/FilteredEdaResults.txt"
     if exists(path_to_filtered_eda_results_file):
-        with open(path_to_filtered_eda_results_file, 'w', encoding='utf-8') as f:
+        with open(path_to_filtered_eda_results_file, 'a', encoding='utf-8') as f:
             f.writelines(filtered_eda_results_str)
     else:
-        with open(path_to_filtered_eda_results_file, 'a', encoding='utf-8') as f:
+        with open(path_to_filtered_eda_results_file, 'w', encoding='utf-8') as f:
             f.writelines(filtered_eda_results_str)
     #---------------------------------------------
     

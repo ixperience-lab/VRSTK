@@ -62,6 +62,7 @@ namespace EmotivUnityPlugin
         // list signal if do not store data to buffer
         public event EventHandler<ArrayList> MotionDataReceived;      // motion data
         public event EventHandler<ArrayList> EEGDataReceived;         // eeg data
+        public event EventHandler<ArrayList> EEGQualityDataReceived;         // eeg quality data
         public event EventHandler<ArrayList> DevDataReceived;         // contact quality
         public event EventHandler<ArrayList> PerfDataReceived;        // performance metric
         public event EventHandler<ArrayList> BandPowerDataReceived;   // band power
@@ -77,7 +78,9 @@ namespace EmotivUnityPlugin
         ~DataStreamManager()
         {
         }
+        
         public static DataStreamManager Instance { get; } = new DataStreamManager();
+        
         public bool IsDataBufferUsing { get => _isDataBufferUsing; set => _isDataBufferUsing = value; }
 
         private void Init()
@@ -201,7 +204,6 @@ namespace EmotivUnityPlugin
                 if (sessionInfo.HeadsetId == _wantedHeadsetId) {
                     _isSessActivated    = true;
                     _readyCreateSession = false;
-
                     SessionActivatedOK(this, _wantedHeadsetId);
                     // subscribe data
                     _dsProcess.SubscribeData();
@@ -238,6 +240,10 @@ namespace EmotivUnityPlugin
                             _dsProcess.EEGDataReceived -= _eegBuff.OnDataReceived;
                             _eegBuff.Clear();
                             _eegBuff = null;
+                        }
+                        else if (_eegBuff == null)
+                        {
+                            _dsProcess.EEGDataReceived -= EEGDataReceived;
                         }
                     }
                     else if (streamName == DataStreamName.DevInfos) {
@@ -278,6 +284,10 @@ namespace EmotivUnityPlugin
                     }
                     else if (streamName == DataStreamName.MentalCommands) {
                         _dsProcess.MentalCommandReceived -= OnMentalCommandReceived;
+                    }
+                    else if (streamName == DataStreamName.EQ)
+                    {
+                        _dsProcess.EEGQualityDataReceived -= EEGQualityDataReceived;
                     }
                     else {
                         UnityEngine.Debug.Log("DataStreamManager-OnStreamStopNotify: stream name:" + streamName);
@@ -332,7 +342,7 @@ namespace EmotivUnityPlugin
                             UnityEngine.Debug.Log("Subscribed done EEG Data Stream");                           
                         }
                         else if (_eegBuff == null) {
-                            _dsProcess.EEGDataReceived += this.EEGDataReceived;
+                            _dsProcess.EEGDataReceived += EEGDataReceived;
                             successfulStreams.Add(DataStreamName.EEG);
                         }
                     }
@@ -409,6 +419,12 @@ namespace EmotivUnityPlugin
                         _dsProcess.SysEventsReceived += OnSysEventReceived;
                         UnityEngine.Debug.Log("Subscribed done: Sys event Stream");
                         successfulStreams.Add(DataStreamName.SysEvents);
+                    }
+                    else if (key == DataStreamName.EQ)
+                    {
+                        _dsProcess.EEGQualityDataReceived += EEGQualityDataReceived;
+                        UnityEngine.Debug.Log("Subscribed done: EQ event Stream");
+                        successfulStreams.Add(DataStreamName.EQ);
                     }
                     else {
                         UnityEngine.Debug.Log("SubscribedOK(): stream " + key);

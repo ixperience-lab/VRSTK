@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using VRSTK.Scripts.TestControl;
 using System;
+using System.Threading;
 
 namespace VRSTK
 {
@@ -106,17 +107,16 @@ namespace VRSTK
 
                 DataStreamManager _dataStream = DataStreamManager.Instance;
                 Logger _logger = Logger.Instance;
-                private HeadsetFinder _headsetFinder = HeadsetFinder.Instance;
-
+                
                 private Headset _headsetInformation;
 
                 bool _isAuthorizedOK = false;
                 bool _isSessionCreated = false;
-                
+
                 bool _isQueryHeadset = false;
                 bool _isQueryHeadsetDeactivated = false;
                 bool _isConnectedToDevice = false;
-                
+
                 float _timerCounter_queryHeadset = 0;
                 const float TIME_QUERY_HEADSET = 2.0f;
 
@@ -126,6 +126,8 @@ namespace VRSTK
                 private const float TIME_UPDATE_DATA = 1f;
                 public bool _isDataBufferUsing = false; // default subscribed data will not saved to Data buffer
 
+                private bool _propertiesChanged = false;
+                
                 public void Awake()
                 {
                     _isMotionTracking.name = "isMotionTracking";
@@ -154,7 +156,7 @@ namespace VRSTK
                     _isDevDataTrackingActive.value = true;
                     _previousIsDevDataTrackingActiveValue = false;
 
-                
+
                     _isSysEventDataTrackingActive.name = "isSysEventDataTrackingActive";
                     _isSysEventDataTrackingActive.hideFromInspector = true;
                     _isSysEventDataTrackingActive.value = true;
@@ -182,7 +184,8 @@ namespace VRSTK
                                     {
                                         if (testStage.startProperties[j].text.text.ToLower().Contains("id"))
                                             _rawEEGFileName += "_" + testStage.startProperties[j].GetValue();
-                                        if (testStage.startProperties[j].text.text.ToLower().Contains("condition") && testStage.startProperties[j].GetValue().ToLower().Equals("true"))
+                                        if (testStage.startProperties[j].text.text.ToLower().Contains("condition") && 
+                                            testStage.startProperties[j].GetValue().ToLower().Equals("true"))
                                             _rawEEGFileName += "_" + testStage.startProperties[j].text.text;
                                     }
 
@@ -196,7 +199,7 @@ namespace VRSTK
                             _rawEEGFileName += ".txt";
                     }
 
-                    if (!_isAuthorizedOK)
+                    if (!_isAuthorizedOK) 
                     {
                         // init EmotivUnityItf without data buffer using
                         Init(_isDataBufferUsing);
@@ -227,7 +230,7 @@ namespace VRSTK
                         _timerCounter_queryHeadset += Time.deltaTime;
                         if (_timerCounter_queryHeadset > TIME_QUERY_HEADSET && !_isSessionCreated)
                         {
-                            Debug.Log("=============== time for query Headset ");
+                            //Debug.Log("=============== time for query Headset ");
                             _timerCounter_queryHeadset -= TIME_QUERY_HEADSET;
                             _isQueryHeadset = false;
                         }
@@ -243,7 +246,7 @@ namespace VRSTK
 
                     if (!_isAuthorizedOK)
                     {
-                        return; 
+                        return;
                     }
 
                     if (!_isSessionCreated)
@@ -251,69 +254,32 @@ namespace VRSTK
                         if (_headsetInformation == null)
                             return;
                         
+                        //Debug.LogWarning("=============== CreateSessionWithHeadset");
                         CreateSessionWithHeadset(_headsetInformation.HeadsetID);
                         return;
                     }
 
                     if (_isSessionCreated)
                     {
-                        if (_isMotionTracking.value != _previousIsMotionTrackingValue)
+                        if (_isMotionTracking.value != _previousIsMotionTrackingValue || _isPerformanceMetricsTrackingActive.value != _previousIsPerformanceMetricsTrackingActiveValue ||
+                            _isEegTrackingActive.value != _previousIsEegTrackingActiveValue || _isBandPowerTrackingActive.value != _previousIsBandPowerTrackingActiveValue ||
+                            _isDevDataTrackingActive.value != _previousIsDevDataTrackingActiveValue || _isSysEventDataTrackingActive.value != _previousIsSysEventDataTrackingActiveValue)
                         {
+                            _propertiesChanged = true;
                             _previousIsMotionTrackingValue = _isMotionTracking.value;
-                            if (_isMotionTracking.value == true)
-                                _dataStream.SubscribeMoreData(GetStreamsList(DataStreamType.Motion));
-                            else
-                                _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.Motion));
-                        }
-
-                        if (_isPerformanceMetricsTrackingActive.value != _previousIsPerformanceMetricsTrackingActiveValue)
-                        {
                             _previousIsPerformanceMetricsTrackingActiveValue = _isPerformanceMetricsTrackingActive.value;
-
-                            if (_isPerformanceMetricsTrackingActive.value == true)
-                                _dataStream.SubscribeMoreData(GetStreamsList(DataStreamType.PerformanceMetrics));
-                            else
-                                _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.PerformanceMetrics));
-                        }
-
-                        if (_isEegTrackingActive.value != _previousIsEegTrackingActiveValue)
-                        {
                             _previousIsEegTrackingActiveValue = _isEegTrackingActive.value;
-
-                            if (_isEegTrackingActive.value == true)
-                                _dataStream.SubscribeMoreData(GetStreamsList(DataStreamType.EEG));
-                            else
-                                _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.EEG));
-                        }
-
-                        if (_isBandPowerTrackingActive.value != _previousIsBandPowerTrackingActiveValue)
-                        {
                             _previousIsBandPowerTrackingActiveValue = _isBandPowerTrackingActive.value;
-
-                            if (_isBandPowerTrackingActive.value == true)
-                                _dataStream.SubscribeMoreData(GetStreamsList(DataStreamType.BandPowerData));
-                            else
-                                _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.BandPowerData));
-                        }
-
-                        if (_isDevDataTrackingActive.value != _previousIsDevDataTrackingActiveValue)
-                        {
                             _previousIsDevDataTrackingActiveValue = _isDevDataTrackingActive.value;
-
-                            if (_isDevDataTrackingActive.value == true)
-                                _dataStream.SubscribeMoreData(GetStreamsList(DataStreamType.DevelopmentInformation));
-                            else
-                                _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.DevelopmentInformation));
+                            _previousIsSysEventDataTrackingActiveValue = _isSysEventDataTrackingActive.value;
                         }
 
-                        if (_isSysEventDataTrackingActive.value != _previousIsSysEventDataTrackingActiveValue)
+                        if (_propertiesChanged)
                         {
-                            _previousIsSysEventDataTrackingActiveValue = _isSysEventDataTrackingActive.value;
-
-                            if (_isSysEventDataTrackingActive.value == true)
-                                _dataStream.SubscribeMoreData(GetStreamsList(DataStreamType.SystemInformation));
-                            else
-                                _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.SystemInformation));
+                            Debug.LogWarning("--- Un- and Sub-scribe Data");
+                            _dataStream.UnSubscribeData(GetStreamsList());
+                            _dataStream.SubscribeMoreData(GetStreamsList());
+                            _propertiesChanged = false;
                         }
                     }
 
@@ -327,7 +293,7 @@ namespace VRSTK
 
                 void OnApplicationQuit()
                 {
-                    Debug.Log("Application ending after " + Time.time + " seconds");
+                    Debug.LogWarning("--- OnApplicationQuit ");
                     Stop();
                 }
 
@@ -372,25 +338,31 @@ namespace VRSTK
                     _isDevDataTrackingActive.value = true;
                     _isSysEventDataTrackingActive.value = true;
 
-                    if (!_isAuthorizedOK)
-                    {
-                        // init EmotivUnityItf without data buffer using
-                        Init(_isDataBufferUsing);
-
-                        // Init logger
-                        _logger.Init();
-
-                        Debug.Log("Configure PRODUCT SERVER - version: " + CortexAppConfig.AppVersion);
-
-                        // Start
-                        _dataStream.StartAuthorize();                        
-                    }
+                    //Debug.LogWarning("-- OnEnable");
                 }
 
                 void OnDisable()
-                {   
-                    Debug.Log("Object deactivated after " + Time.time + " seconds");
-                    Stop();
+                {
+                    //Debug.LogWarning("------------------------ OnDisable ");
+                    _dataStream.UnSubscribeData(GetStreamsList());
+
+                    _isMotionTracking.value = false;
+                    _previousIsMotionTrackingValue = _isMotionTracking.value;
+
+                    _isEegTrackingActive.value = false;
+                    _previousIsEegTrackingActiveValue = _isEegTrackingActive.value;
+
+                    _isPerformanceMetricsTrackingActive.value = false;
+                    _previousIsPerformanceMetricsTrackingActiveValue = _isPerformanceMetricsTrackingActive.value;
+
+                    _isBandPowerTrackingActive.value = false;
+                    _previousIsBandPowerTrackingActiveValue = _isBandPowerTrackingActive.value;
+
+                    _isDevDataTrackingActive.value = false;
+                    _previousIsDevDataTrackingActiveValue = _isDevDataTrackingActive.value;
+
+                    _isSysEventDataTrackingActive.value = false;
+                    _previousIsSysEventDataTrackingActiveValue = _isSysEventDataTrackingActive.value;
                 }
 
                 // Init
@@ -403,7 +375,7 @@ namespace VRSTK
                     }
                     _dataStream.SetAppConfig(CortexAppConfig.ClientId, CortexAppConfig.ClientSecret, CortexAppConfig.AppVersion, CortexAppConfig.AppName, CortexAppConfig.TmpAppDataDir, CortexAppConfig.AppUrl, EmotivAppslicationPath());
                     _dataStream.IsDataBufferUsing = isDataBufferUsing;
-                   
+
                     // binding
                     _dataStream.LicenseValidTo += OnLicenseValidTo;
                     _dataStream.SessionActivatedOK += OnSessionActiveOK;
@@ -411,13 +383,14 @@ namespace VRSTK
                     // if do not use data buffer to store data, we need to handle data stream signal
                     if (!isDataBufferUsing)
                     {
+                        Debug.LogWarning("------------------- OnInit  +  OnEEGDataReceived");
                         _dataStream.EEGDataReceived += OnEEGDataReceived;
                         _dataStream.MotionDataReceived += OnMotionDataReceived;
                         _dataStream.DevDataReceived += OnDevDataReceived;
                         _dataStream.PerfDataReceived += OnPerfDataReceived;
                         _dataStream.BandPowerDataReceived += OnBandPowerDataReceived;
                         _dataStream.InformSuccessSubscribedData += OnInformSuccessSubscribedData;
-
+                        _dataStream.EEGQualityDataReceived += EEGQualityDataReceived;
                     }
 
                     _dataStream.FacialExpReceived += OnFacialExpReceived;
@@ -430,31 +403,25 @@ namespace VRSTK
                 /// </summary>
                 public void Stop()
                 {
+                    _dataStream.UnSubscribeData(GetStreamsList());
+
                     _isMotionTracking.value = false;
-                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.Motion));
                     _previousIsMotionTrackingValue = _isMotionTracking.value;
 
                     _isEegTrackingActive.value = false;
-                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.EEG));
                     _previousIsEegTrackingActiveValue = _isEegTrackingActive.value;
 
                     _isPerformanceMetricsTrackingActive.value = false;
-                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.PerformanceMetrics));
                     _previousIsPerformanceMetricsTrackingActiveValue = _isPerformanceMetricsTrackingActive.value;
 
                     _isBandPowerTrackingActive.value = false;
-                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.BandPowerData));
                     _previousIsBandPowerTrackingActiveValue = _isBandPowerTrackingActive.value;
 
                     _isDevDataTrackingActive.value = false;
-                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.DevelopmentInformation));
                     _previousIsDevDataTrackingActiveValue = _isDevDataTrackingActive.value;
 
                     _isSysEventDataTrackingActive.value = false;
-                    _dataStream.UnSubscribeData(GetStreamsList(DataStreamType.SystemInformation));
                     _previousIsSysEventDataTrackingActiveValue = _isSysEventDataTrackingActive.value;
-
-                    System.Threading.Thread.Sleep(1000);
 
                     // binding
                     _dataStream.LicenseValidTo -= OnLicenseValidTo;
@@ -463,12 +430,14 @@ namespace VRSTK
                     // if do not use data buffer to store data, we need to handle data stream signal
                     if (!_isDataBufferUsing)
                     {
+                        Debug.LogWarning("------------------- OnStop  -  OnEEGDataReceived");
                         _dataStream.EEGDataReceived -= OnEEGDataReceived;
                         _dataStream.MotionDataReceived -= OnMotionDataReceived;
                         _dataStream.DevDataReceived -= OnDevDataReceived;
                         _dataStream.PerfDataReceived -= OnPerfDataReceived;
                         _dataStream.BandPowerDataReceived -= OnBandPowerDataReceived;
                         _dataStream.InformSuccessSubscribedData -= OnInformSuccessSubscribedData;
+                        _dataStream.EEGQualityDataReceived -= EEGQualityDataReceived;
                     }
 
                     _dataStream.FacialExpReceived -= OnFacialExpReceived;
@@ -478,16 +447,14 @@ namespace VRSTK
                     _dataStream.Stop();
 
                     _isAuthorizedOK = false;
-                    //_isProfileLoaded = false;
                     _isSessionCreated = false;
                     _workingHeadsetId = "";
-
-                    System.Threading.Thread.Sleep(1500);
                 }
 
                 private void GetHeatsetInformationOfIndexZero()
                 {
                     _headsetInformation = _dataStream.GetDetectedHeadsets()[0];
+                    Debug.LogWarning("_headsetInformation: " + _headsetInformation.Status.ToString() + "  " + _headsetInformation.Settings.ToString());
                 }
 
                 public void CreateSessionWithHeadset(string headsetId)
@@ -504,7 +471,7 @@ namespace VRSTK
                 {
                     UnityEngine.Debug.Log("OnLicenseValidTo: the license valid to " + Utils.ISODateTimeToString(validTo));
                     _isAuthorizedOK = true;
-//                    _messageLog = "Authorizing process done.";
+                    //                    _messageLog = "Authorizing process done.";
                 }
 
                 private void OnSessionActiveOK(object sender, string headsetId)
@@ -513,22 +480,22 @@ namespace VRSTK
                     _workingHeadsetId = headsetId;
 
                     // activating tracking parameters
-                    {
-                        _isMotionTracking.hideFromInspector = false;
-                        _isEegTrackingActive.hideFromInspector = false;
-                        _isPerformanceMetricsTrackingActive.hideFromInspector = false;
-                        _isBandPowerTrackingActive.hideFromInspector = false;
-                        _isDevDataTrackingActive.hideFromInspector = true;
-                        _isSysEventDataTrackingActive.hideFromInspector = true;
-                    }
+                    //{
+                    //    _isMotionTracking.hideFromInspector = false;
+                    //    _isEegTrackingActive.hideFromInspector = false;
+                    //    _isPerformanceMetricsTrackingActive.hideFromInspector = false;
+                    //    _isBandPowerTrackingActive.hideFromInspector = false;
+                    //    _isDevDataTrackingActive.hideFromInspector = true;
+                    //    _isSysEventDataTrackingActive.hideFromInspector = true;
+                    //}
                     UnityEngine.Debug.Log("A session working with " + headsetId + " is activated successfully.");
                     // _messageLog = "A session working with " + headsetId + " is activated successfully.";
                 }
 
                 private void OnInformLoadUnLoadProfileDone(object sender, bool isProfileLoaded)
                 {
-//                    _isProfileLoaded = isProfileLoaded;
-//                    if (isProfileLoaded)
+                    //                    _isProfileLoaded = isProfileLoaded;
+                    //                    if (isProfileLoaded)
                     //{
                     //    _messageLog = "The profile is loaded successfully.";
                     //}
@@ -551,8 +518,8 @@ namespace VRSTK
                 {
                     UnityEngine.Debug.Log("OnInformStopRecordResult recordId: " + record.Uuid + ", title: "
                         + record.Title + ", startDateTime: " + record.StartDateTime + ", endDateTime: " + record.EndDateTime);
-//                    _isRecording = false;
-//                    _messageLog = "The record " + record.Title + " is ended at " + record.EndDateTime;
+                    //                    _isRecording = false;
+                    //                    _messageLog = "The record " + record.Title + " is ended at " + record.EndDateTime;
 
                 }
 
@@ -616,17 +583,17 @@ namespace VRSTK
                     //UnityEngine.Debug.Log(dataText);
                 }
 
-                private void OnEEGDataReceived(object sender, ArrayList e)
+                private void EEGQualityDataReceived(object sender, ArrayList e)
                 {
-                    string dataText = "eeg data: ";
+                    string dataText = "eeg quality data data: ";
                     foreach (var item in e)
                     {
                         dataText += item.ToString() + ";";
                     }
 
-                    RawEegDataMessage = dataText;
+                    //RawEegDataMessage = dataText;
 
-                    string path = _path + _rawEEGFileName;
+                    string path = _path + "qulityData" +_rawEEGFileName;
 
                     if (!File.Exists(path))//"EmotivCortexBCI.txt"))
                     {
@@ -645,8 +612,38 @@ namespace VRSTK
                             sw.WriteLine(dataText);
                         }
                     }
+                }
 
-                    // ToDo: to get all samples with sampling rate of 2000 hz needs to create a streamwrite here
+
+                private void OnEEGDataReceived(object sender, ArrayList e)
+                {
+                    string dataText = "eeg data: ";
+                    foreach (var item in e)
+                    {
+                        dataText += item.ToString() + ";";
+                    }
+                    
+                    RawEegDataMessage = dataText;
+
+                    string path = _path + _rawEEGFileName;
+
+                    if (!File.Exists(path))
+                    {
+                        // Create a file to write to.
+                        using (StreamWriter sw = File.CreateText(path))
+                        {
+                            sw.WriteLine(dataText);
+                        }
+                    }
+                    else
+                    {
+                        // This text is always added, making the file longer over time
+                        // if it is not deleted.
+                        using (StreamWriter sw = File.AppendText(path))
+                        {
+                            sw.WriteLine(dataText);
+                        }
+                    }
 
                     // print out data to console
                     //UnityEngine.Debug.Log(dataText);
@@ -704,45 +701,35 @@ namespace VRSTK
                     return newPath;
                 }
 
-                private List<string> GetStreamsList(DataStreamType datataStreamType)
-                {
+                private List<string> GetStreamsList()
+                {   
                     List<string> _streams = new List<string> { };
-                    if (datataStreamType == DataStreamType.EEG)
+                    if (_isEegTrackingActive.value)
                     {
                         _streams.Add("eeg");
+                        _streams.Add("eq");
                     }
-                    if (datataStreamType == DataStreamType.Motion)
+                    if (_isMotionTracking.value)
                     {
                         _streams.Add("mot");
                     }
-                    if (datataStreamType == DataStreamType.PerformanceMetrics)
+                    if (_isPerformanceMetricsTrackingActive.value)
                     {
                         _streams.Add("met");
                     }
-                    if (datataStreamType == DataStreamType.DevelopmentInformation)
+                    if (_isDevDataTrackingActive.value)
                     {
                         _streams.Add("dev");
                     }
-                    if (datataStreamType == DataStreamType.SystemInformation)
+                    if (_isSysEventDataTrackingActive.value)
                     {
                         _streams.Add("sys");
                     }
-                    //if (EQToggle.isOn)
-                    //{
-                    //    _streams.Add("eq");
-                    //}
-                    if (datataStreamType == DataStreamType.BandPowerData)
+                    if (_isBandPowerTrackingActive.value)
                     {
                         _streams.Add("pow");
                     }
-                    //if (FEToggle.isOn)
-                    //{
-                    //    _streams.Add("fac");
-                    //}
-                    //if (COMToggle.isOn)
-                    //{
-                    //    _streams.Add("com");
-                    //}
+                    
                     return _streams;
                 }
             }

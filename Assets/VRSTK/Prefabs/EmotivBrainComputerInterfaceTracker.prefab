@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 949292640109432677}
   - component: {fileID: 2012528008915562251}
   - component: {fileID: 6131823556288511791}
-  - component: {fileID: 1273128320573754878}
   m_Layer: 0
   m_Name: EmotivBrainComputerInterfaceTracker
   m_TagString: Untagged
@@ -124,27 +123,3 @@ MonoBehaviour:
     array: []
   timedInterval: 0
   interval: 1
---- !u!114 &1273128320573754878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273128320573754873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3d90eeae1c612f40a26bf42cb143b22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isMotionTracking:
-    name: 
-    hideFromInspector: 0
-    value: 0
-  _isEegTrackingActive:
-    name: 
-    hideFromInspector: 0
-    value: 0
-  _isPerformanceMetricsTrackingActive:
-    name: 
-    hideFromInspector: 0
-    value: 0

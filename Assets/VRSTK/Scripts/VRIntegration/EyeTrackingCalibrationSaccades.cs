@@ -187,8 +187,15 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
             }
             sranipal.StartFramework();
         }
+        
+        SRanipal_Eye_API.IsUserNeedCalibration(ref _isUserNeedCalibration);
 
-        if (!SRanipal_Eye_v2.LaunchEyeCalibration()) Calibration();
+        if (_isUserNeedCalibration)
+        {
+            Debug.LogWarning("--------------- SRanipal_Eye_API.LaunchEyeCalibration OnStart!!!");
+            if (SRanipal_Eye_API.LaunchEyeCalibration(IntPtr.Zero) == (int)Error.WORK)//if (!SRanipal_Eye_v2.LaunchEyeCalibration()) Calibration();
+                Calibration();
+        }
     }
 
     // Update is called once per frame
@@ -316,8 +323,9 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
 
         if (_isUserNeedCalibration)
         {
+            Debug.LogWarning("--------------- SRanipal_Eye_API.LaunchEyeCalibration OnCalibration!!!");
             Debug.LogWarning("Somthing went wrong in the calibration process the user need to recalibrate!");
-            if (SRanipal_Eye_v2.LaunchEyeCalibration())
+            if(SRanipal_Eye_API.LaunchEyeCalibration(IntPtr.Zero) == (int)Error.WORK)//if (SRanipal_Eye_v2.LaunchEyeCalibration())
                 Debug.Log("Calibration is done successfully.");
             else
             {
