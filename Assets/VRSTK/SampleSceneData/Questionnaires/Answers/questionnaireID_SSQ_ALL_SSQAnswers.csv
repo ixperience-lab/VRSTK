@@ -1,17 +1,17 @@
 QuestionType;Question;QuestionID;Answer_Participant_id-2_condition_Condition A;Answer_Participant_id-1_condition_Condition A;Answer_Participant_id-3_condition_Condition A
 radio;Allgemeines Unwohlsein (General discomfort);q1;0;0;0
-radio;Mï¿½ï¿½digkeit (Fati;q2;1;0;1
+radio;Mï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï;q2;1;0;1
 radio;Kopfschmerzen (Headache);q3;0;1;0
 radio;Belastung der Augen (Eye strain);q4;1;0;1
 radio;Schwierigkeiten bei der Fokussierung (Difficulty focusing);q5;0;1;2
 radio;Zunehmende Speichelbildung (Salivation increasing);q6;0;0;1
 radio;Schwitzen (Sweating);q7;1;1;0
-radio;ýýbelkeit (Nausea);q8;0;0;0
+radio;ýýýýýýýýýýýýýýýýýýbelkeit (Nausea);q8;0;0;0
 radio;Konzentrationsschwierigkeiten (Difficulty concentrating);q9;0;0;0
-radio;Fï¿½ï¿½lle des Kopfes (Fullness of the H;q10;0;0;0
+radio;Fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½;q10;0;0;0
 radio;Verschwommensehen (Blurred vision);q11;0;1;2
-radio;Schwindelgefï¿½ï¿½hl bei geï¿½ï¿½ffneten Augen (Vertigo eyes;q12;0;0;0
-radio;Schwindelgefï¿½ï¿½hl bei geschlossenen Augen (Vertigo eyes clo;q13;0;0;0
-radio;Gleichgewichtsstï¿½ï¿½rung (Vert;q14;0;0;0
+radio;Schwindelgefï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½;q12;0;0;0
+radio;Schwindelgefï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿;q13;0;0;0
+radio;Gleichgewichtsstï¿½ï¿½ï¿½ï¿½ï¿½ï¿½;q14;0;0;0
 radio;Magenwahrnehmung (Unbehagen) (Stomach awareness);q15;1;0;0
-radio;Aufstoï¿½ï¿½en (Burp;q16;0;0;0
+radio;Aufstoï¿½ï¿½ï¿½ï¿½ï¿½;q16;0;0;0

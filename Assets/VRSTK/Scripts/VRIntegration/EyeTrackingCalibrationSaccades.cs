@@ -12,6 +12,8 @@ using UnityEngine.UI;
 
 public class EyeTrackingCalibrationSaccades : MonoBehaviour
 {
+    public static bool _deaktivateRunEyeCalibrationSecondTime = false;
+
     private List<Vector3> _saccads;
     private List<Vector3> _fixations;
     private List<Vector3> _currentfixations;
@@ -187,14 +189,23 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
             }
             sranipal.StartFramework();
         }
-        
+
+        if (!SRanipal_Eye_API.IsViveProEye())
+            Debug.LogError("The HMD is NOT a Vive Pro Eye!");
+
+
         SRanipal_Eye_API.IsUserNeedCalibration(ref _isUserNeedCalibration);
 
-        if (_isUserNeedCalibration)
+        if (_isUserNeedCalibration && !_deaktivateRunEyeCalibrationSecondTime)
         {
             Debug.LogWarning("--------------- SRanipal_Eye_API.LaunchEyeCalibration OnStart!!!");
-            if (SRanipal_Eye_API.LaunchEyeCalibration(IntPtr.Zero) == (int)Error.WORK)//if (!SRanipal_Eye_v2.LaunchEyeCalibration()) Calibration();
+            if (!SRanipal_Eye_v2.LaunchEyeCalibration())//if (SRanipal_Eye_API.LaunchEyeCalibration(IntPtr.Zero) != (int)Error.WORK)//if (!SRanipal_Eye_v2.LaunchEyeCalibration()) Calibration();
+            {
+                _deaktivateRunEyeCalibrationSecondTime = false;
                 Calibration();
+            }
+            else
+                _deaktivateRunEyeCalibrationSecondTime = true;
         }
     }
 
@@ -325,10 +336,14 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
         {
             Debug.LogWarning("--------------- SRanipal_Eye_API.LaunchEyeCalibration OnCalibration!!!");
             Debug.LogWarning("Somthing went wrong in the calibration process the user need to recalibrate!");
-            if(SRanipal_Eye_API.LaunchEyeCalibration(IntPtr.Zero) == (int)Error.WORK)//if (SRanipal_Eye_v2.LaunchEyeCalibration())
+            if (SRanipal_Eye_v2.LaunchEyeCalibration())//if (SRanipal_Eye_API.LaunchEyeCalibration(IntPtr.Zero) == (int)Error.WORK)//if (SRanipal_Eye_v2.LaunchEyeCalibration())
+            {
+                _deaktivateRunEyeCalibrationSecondTime = true;
                 Debug.Log("Calibration is done successfully.");
+            }
             else
             {
+                _deaktivateRunEyeCalibrationSecondTime = false;
                 Debug.Log("Calibration is failed. Restart the scene again");
                 if (UnityEditor.EditorApplication.isPlaying)
                     UnityEditor.EditorApplication.isPlaying = false;    // Stops Unity editor.
