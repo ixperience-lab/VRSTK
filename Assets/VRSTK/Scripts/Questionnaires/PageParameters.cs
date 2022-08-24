@@ -113,7 +113,7 @@ namespace VRSTK
 
                     float standardDeviation = -1f;
                     if (answers.Length != 0)
-                        standardDeviation = variance / (float)answers.Length;
+                        standardDeviation = variance / (float)(answers.Length - 1);
                     
                     if (standardDeviation != -1)
                         StandardDeviationStraightLineAnswer = Mathf.Sqrt(standardDeviation);
@@ -151,8 +151,8 @@ namespace VRSTK
                     for (int i = 0; i < respones.Length - 2; i++)
                         absoluteResponesValues += Mathf.Abs(respones[i+2] - (2 * respones[i + 1]) + respones[i]);
 
-                    if ((respones.Length - 2) != 0)
-                        AbsoluteDerivationOfResponseValue = (absoluteResponesValues + 1) / (respones.Length - 2);
+                    if ((respones.Length - 2) > 0)
+                        AbsoluteDerivationOfResponseValue = (absoluteResponesValues + 1f) / (float)(respones.Length - 2);
                     else
                         AbsoluteDerivationOfResponseValue = -1f;
                 }

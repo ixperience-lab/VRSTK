@@ -1266,7 +1266,7 @@
                 {
                     "name": "",
                     "id": "3ed8e042-59cc-4b36-b4e3-c9883d09617a",
-                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "path": "<ViveController>{RightHand}/trackpadClicked",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
@@ -1277,7 +1277,7 @@
                 {
                     "name": "",
                     "id": "31d3d585-1a73-4c71-a00a-31b8e7157a5b",
-                    "path": "<XRController>{RightHand}/trigger",
+                    "path": "<ViveController>{RightHand}/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
@@ -1715,7 +1715,7 @@
                 {
                     "name": "",
                     "id": "d1fbfd48-2d6d-4fa2-9660-c4ab6807bdb5",
-                    "path": "<XRController>{RightHand}/gripPressed",
+                    "path": "*/{TriggerTouch}",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
