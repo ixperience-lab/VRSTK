@@ -32,6 +32,11 @@ namespace VRQuestionnaireToolkit
         private bool _isOdd;
         public List<GameObject> RadioList; //contains all radiobuttons which correspond to one question
 
+        //public void Start()
+        //{
+        //    GetComponent<ToggleGroup>().SetAllTogglesOff();
+        //}
+
         //qText look how many q in one file >4 deny
         public List<GameObject> CreateRadioQuestion(string questionnaireId, string qType, string qInstructions, string qId, string qText, bool qMandatory, VRSTK.Scripts.JSONArray qOptions, int numberQuestion, RectTransform questionRec)
         {

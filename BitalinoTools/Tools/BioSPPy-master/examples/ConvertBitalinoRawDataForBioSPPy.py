@@ -1,7 +1,7 @@
 import os
 
 # Opening the file with absolute path
-raw_data_file = open(r'BitalinoRawData_Stage 2_id-6_Condition A_2022-08-24_01-48-03.txt', 'r')
+raw_data_file = open(r'BitalinoRawData_Stage 2_id-7_Condition A_2022-08-25_06-23-40.txt', 'r')
 
 ecg_file = 'ecg.txt'
 ecg_file_content = '# Simple Text Format\n# Sampling Rate (Hz):= 1000.00\n# Resolution:= 10\n# Labels:= ECG\n'
