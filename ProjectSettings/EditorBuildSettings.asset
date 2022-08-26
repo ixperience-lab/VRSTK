@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/VRScientificToolkit/Scenes/VRSTK.unity
-    guid: fad018ab01baddd45869b2130d68374d
+    path: Assets/VRSTK/Scenes/LocomotionTracking.unity
+    guid: d03b51087d3b8eb4681c3d3bf2e60bbb
   m_configObjects:
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: c160feeeee83d8e47877ae7ce83e9b4b,
       type: 2}
