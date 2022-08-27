@@ -230,3 +230,4 @@ tempDataFrame <- NULL
 splittedBandPowerValues <- NULL
 rowBandPowerValue <- NULL
 rowTimeValue <- NULL
+
