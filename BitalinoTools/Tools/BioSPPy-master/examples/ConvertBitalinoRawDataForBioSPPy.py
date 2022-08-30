@@ -1,7 +1,7 @@
 import os
 
 # Opening the file with absolute path
-raw_data_file = open(r'BitalinoRawData_Stage 2_id-16_Condition B_2022-08-27_11-21-27.txt', 'r')
+raw_data_file = open(r'BitalinoRawData_Stage 1_id-1_Condition A_2022-08-18_03-12-53.txt', 'r')
 
 ecg_file = 'ecg.txt'
 ecg_file_content = '# Simple Text Format\n# Sampling Rate (Hz):= 1000.00\n# Resolution:= 10\n# Labels:= ECG\n'
@@ -12,13 +12,8 @@ eda_file_content = '# Simple Text Format\n# Sampling Rate (Hz):= 1000.00\n# Reso
 # read file
 for line in raw_data_file:
     firstSplit = line.split(";")
-    #print (firstSplit)
     secondSplit = firstSplit[1].split("[")
-    #print (secondSplit)
     thridSplit = secondSplit[1].split(" ")
-    #print (secondSplit)
-    #print (thridSplit[0])
-    #print (thridSplit[1])
     eda_file_content += thridSplit[0] + "\n"
     ecg_file_content += thridSplit[1] + "\n"
 

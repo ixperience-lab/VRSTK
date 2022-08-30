@@ -95,7 +95,19 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
     (rpeaks,) = correct_rpeaks(
         signal=filtered, rpeaks=rpeaks, sampling_rate=sampling_rate, tol=0.05
     )
-
+    
+    #rpeaks_results_str = ""
+    #for index, data_element in enumerate(rpeaks):
+    #    rpeaks_results_str += str(rpeaks[index])  + "\n"
+    
+    #path_to_heart_rate_results_file = "./results/RPeaksResults.txt"
+    #if exists(path_to_heart_rate_results_file):
+    #    with open(path_to_heart_rate_results_file, 'a', encoding='utf-8') as f:
+    #        f.writelines(rpeaks_results_str)
+    #else:
+    #    with open(path_to_heart_rate_results_file, 'w', encoding='utf-8') as f:
+    #        f.writelines(rpeaks_results_str)
+    
     # extract templates
     templates, rpeaks = extract_heartbeats(
         signal=filtered,
@@ -104,7 +116,7 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
         before=0.2,
         after=0.4,
     )
-
+    
     # compute heart rate
     hr_idx, hr = st.get_heart_rate(
         beats=rpeaks, sampling_rate=sampling_rate, smooth=True, size=3
