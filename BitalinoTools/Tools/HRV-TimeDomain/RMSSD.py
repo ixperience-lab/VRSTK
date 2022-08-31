@@ -10,10 +10,9 @@ import os
 import math
 
 
-file_name_0 = "Bitalinoi-Proband-Stage-0-id-1-Condition-A-ECG_HearRateResults.txt"
-file_name_1 = "Bitalinoi-Proband-Stage-1-id-1-Condition-A-ECG_HearRateResults.txt"
-file_name_2 = "Bitalinoi-Proband-Stage-2-id-1-Condition-A-ECG_HearRateResults.txt"
-file_name_3 = "RPeaksResults.txt"
+file_name_0 = "Bitalinoi-Proband-Stage-0_id-18-Condition-B_ECG_HearRateResults.txt"
+file_name_1 = "Bitalinoi-Proband-Stage-1_id-18-Condition-B_ECG_HearRateResults.txt"
+file_name_2 = "Bitalinoi-Proband-Stage-2_id-18-Condition-B_ECG_HearRateResults.txt"
 folder_path = "./Input/"
 
 # stage 0
