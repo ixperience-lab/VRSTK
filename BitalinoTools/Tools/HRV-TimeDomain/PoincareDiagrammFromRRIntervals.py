@@ -12,14 +12,35 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 
-file_name_0 = "Bitalinoi-Proband-Stage-0_id-18-Condition-B_ECG_HearRateResults.txt"
-file_name_1 = "Bitalinoi-Proband-Stage-1_id-18-Condition-B_ECG_HearRateResults.txt"
-file_name_2 = "Bitalinoi-Proband-Stage-2_id-18-Condition-B_ECG_HearRateResults.txt"
-folder_path = "./Input/"
+def get_files(search_path):
+     for (dirpath, _, filenames) in os.walk(search_path):
+         for filename in filenames:
+             yield os.path.join(dirpath, filename)
+
+
+file_name_0 = ""
+file_name_1 = ""
+file_name_2 = ""
+folder_path = "./input/"
+
+filenames = []
+list_files = get_files(folder_path)
+for filename in list_files:
+    if "_id-" in filename :
+        filenames.append(filename)
+
+print(filenames)
+
+file_name_0 = filenames[0]
+file_name_1 = filenames[1]
+file_name_2 = filenames[2]
+
+
 
 # stage 0
 #--------------------------------------------------------------------------------------------
-file_path = folder_path + file_name_0
+file_path = file_name_0
+#file_path = folder_path + file_name_0
 raw_data_file = open(file_path, 'r')
 
 rpeak_time_input = []
@@ -149,7 +170,8 @@ print("--------------------------")
 
 # stage 1 
 #--------------------------------------------------------------------------------------------
-file_path = folder_path + file_name_1
+file_path = file_name_1
+#file_path = folder_path + file_name_1
 raw_data_file = open(file_path, 'r')
 
 rpeak_time_input = []
@@ -274,7 +296,8 @@ print("--------------------------")
 
 # stage 2 
 #--------------------------------------------------------------------------------------------
-file_path = folder_path + file_name_2
+file_path = file_name_2
+#file_path = folder_path + file_name_2
 raw_data_file = open(file_path, 'r')
 
 rpeak_time_input = []

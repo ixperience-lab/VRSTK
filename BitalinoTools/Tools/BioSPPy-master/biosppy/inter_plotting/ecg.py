@@ -153,8 +153,8 @@ def plot_ecg(
                 path_block_1 = "{}-summary{}".format(root, ext)
                 path_block_2 = "{}-templates{}".format(root, ext)
 
-            fig.savefig(path_block_1, dpi=200, bbox_inches="tight")
-            fig_2.savefig(path_block_2, dpi=200, bbox_inches="tight")
+            fig.savefig(path_block_1, dpi=1200) #, bbox_inches="tight")
+            fig_2.savefig(path_block_2, dpi=1200)#, bbox_inches="tight")
 
         mainloop()
 

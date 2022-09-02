@@ -617,7 +617,9 @@ def plot_eda(ts=None,
         If True, show the plot immediately.
 
     """
-
+    plt.rcParams["figure.figsize"] = [19.20, 10.80]
+    plt.rcParams["figure.autolayout"] = True
+    
     fig = plt.figure()
     fig.suptitle('EDA Summary')
 
@@ -674,7 +676,7 @@ def plot_eda(ts=None,
         if ext not in ['png', 'jpg']:
             path = root + '.png'
 
-        fig.savefig(path, dpi=200, bbox_inches='tight')
+        fig.savefig(path, dpi=600, bbox_inches='tight')
 
     # show
     if show:
@@ -1193,7 +1195,9 @@ def plot_ecg(ts=None,
         If True, show the plot immediately.
 
     """
-
+    plt.rcParams["figure.figsize"] = [19.20, 10.80]
+    plt.rcParams["figure.autolayout"] = True
+    
     fig = plt.figure()
     fig.suptitle('ECG Summary')
     gs = gridspec.GridSpec(6, 2)
@@ -1257,7 +1261,7 @@ def plot_ecg(ts=None,
         if ext not in ['png', 'jpg']:
             path = root + '.png'
 
-        fig.savefig(path, dpi=200, bbox_inches='tight')
+        fig.savefig(path, dpi=600, bbox_inches='tight')
 
     # show
     if show:

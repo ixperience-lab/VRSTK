@@ -100,7 +100,7 @@ def eda(signal=None, sampling_rate=1000.0, path=None, show=True, min_amplitude=0
             onsets=onsets,
             peaks=peaks,
             amplitudes=amps,
-            path=path,
+            path=path.split(" # ")[0],
             show=True,
         )
     
@@ -112,7 +112,7 @@ def eda(signal=None, sampling_rate=1000.0, path=None, show=True, min_amplitude=0
         eda_results_str += str(onsets[index]) + " ; " + str(data_element) + " ; " + str(amps[index]) + "\n"
     #print(eda_results_str)  # for debug only 
     
-    path_to_eda_results_file = "./results/EdaResults.txt"
+    path_to_eda_results_file = "./results/" + path.split(" # ")[1] + "_EdaResults.txt"
     if exists(path_to_eda_results_file):
         with open(path_to_eda_results_file, 'a', encoding='utf-8') as f:
             f.writelines(eda_results_str)
@@ -127,7 +127,7 @@ def eda(signal=None, sampling_rate=1000.0, path=None, show=True, min_amplitude=0
         filtered_eda_results_str += str(data_element) + "\n"
     #print(filtered_eda_results_str)  # for debug only 
     
-    path_to_filtered_eda_results_file = "./results/FilteredEdaResults.txt"
+    path_to_filtered_eda_results_file = "./results/" + path.split(" # ")[1] + "_FilteredEdaResults.txt"
     if exists(path_to_filtered_eda_results_file):
         with open(path_to_filtered_eda_results_file, 'a', encoding='utf-8') as f:
             f.writelines(filtered_eda_results_str)

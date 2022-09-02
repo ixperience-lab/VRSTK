@@ -67,7 +67,8 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
         Instantaneous heart rate (bpm).
 
     """
-
+    print(path)
+    
     # check inputs
     if signal is None:
         raise TypeError("Please specify an input signal.")
@@ -152,7 +153,7 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
         hear_rate_results_str += str(new_hr[index]) + " ; " + str(new_ts_hr[index]) + " ; " + str(data_element) + "\n"
     #print(hear_rate_results_str)  # for debug only 
     
-    path_to_heart_rate_results_file = "./results/HearRateResults.txt"
+    path_to_heart_rate_results_file = "./results/" + path.split(" # ")[1] + "_HearRateResults.txt"
     if exists(path_to_heart_rate_results_file):
         with open(path_to_heart_rate_results_file, 'a', encoding='utf-8') as f:
             f.writelines(hear_rate_results_str)
@@ -166,7 +167,7 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
         filtered_hear_rate_results_str += str(data_element) + "\n"
     #print(hear_rate_results_str)  # for debug only 
     
-    path_to_filtered_heart_rate_results_file = "./results/FilteredHearRateResults.txt"
+    path_to_filtered_heart_rate_results_file = "./results/" + path.split(" # ")[1] + "_FilteredHearRateResults.txt"
     if exists(path_to_filtered_heart_rate_results_file):
         with open(path_to_filtered_heart_rate_results_file, 'a', encoding='utf-8') as f:
             f.writelines(filtered_hear_rate_results_str)
@@ -188,7 +189,7 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
                 templates=templates,
                 heart_rate_ts=ts_hr,
                 heart_rate=hr,
-                path=path,
+                path=path.split(" # ")[0],
                 show=True,
             )
 
@@ -202,7 +203,7 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
                 templates=templates,
                 heart_rate_ts=ts_hr,
                 heart_rate=hr,
-                path=path,
+                path=path.split(" # ")[0],
                 show=True,
             )
 
