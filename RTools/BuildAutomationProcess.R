@@ -3,6 +3,7 @@
 # 0. Clear environment
 source("CleanUpEnvironmentFromTemporaryUsedVariables.r", echo=TRUE)
 
+
 # 1. ImportTrackingData
 source("ImportTrackingData.r", echo=TRUE)
 
@@ -54,28 +55,51 @@ for (file in biosppy_files) {
   }
 }
 
+
 # 2. RawEmotivTrackingData
 source("RawEmotivTrackingData.r", echo=TRUE)
+
 
 # 3. RawBandPowerData
 source("RawBandPowerData.r", echo=TRUE)
 #   3.1 Downsampling/Upsampling
+source("DownsampleToBitalinoResults.r", echo=TRUE) 
+bandPowerDataFrameStage0 <- downsampling(3,0)
+bandPowerDataFrameStage1 <- downsampling(3,1)
+bandPowerDataFrameStage2 <- downsampling(3,2)
+
 
 # 4. RawPerformanceMetricData
 source("RawPerformanceMetricData.r", echo=TRUE)
 #   4.1 Downsampling/Upsampling
+source("DownsampleToBitalinoResults.r", echo=TRUE) 
+performanceMetricDataFrameStage0 <- downsampling(4,0)
+performanceMetricFrameStage1     <- downsampling(4,1)
+performanceMetricDataFrameStage2 <- downsampling(4,2)
+
 
 # 5. PagesQualityParameters
 source("PagesQualityParameters.r", echo=TRUE)
 #   5.1 Downsampling/Upsampling
+source("DownsampleToBitalinoResults.r", echo=TRUE) 
+pagesQualityParametersStage1 <- downsampling(5,1)
+pagesQualityParametersStage2 <- downsampling(5,2)
+
 
 # 6. RawFixationSaccadsData
 source("RawFixationSaccadesData.r", echo=TRUE)
 #   6.1 Downsampling/Upsampling
+source("DownsampleToBitalinoResults.r", echo=TRUE)
+eyeTrackingInformationStage0 <- downsampling(6,0)
+eyeTrackingInformationStage1 <- downsampling(6,1)
+eyeTrackingInformationStage2 <- downsampling(6,2)
+
 
 # 7. RawVRQuestionnaireToolkitUncannyValleyData
 source("RawVRQuestionnaireToolkitUncannyValleyData.r", echo=TRUE)
 #   7.1 Downsampling/Upsampling
+source("DownsampleToBitalinoResults.r", echo=TRUE)
+#VRQuestionnaireToolkitUncannyValleyDataStage1 <- downsampling(7,1)
 
 # 8. RawVRQuestionnaireToolkitSSQDataFrame
 source("RawVRQuestionnaireToolkitSSQDataFrame.r", echo=TRUE)
