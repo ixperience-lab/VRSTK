@@ -40,7 +40,7 @@ downsampling <- function(automationStage, stage)
     downsampledBandPowerDataFrame <- NULL
     for(i in 1:countBandPowerSamples) {
       if (samplesCounter == factor && is.null(downsampledBandPowerDataFrame)) {
-        downsampledBandPowerDataFrame <- data.frame("time" = c(as.numeric(tempResultDataFrame[i,1])),      "AF3/theta" = c(as.numeric(tempResultDataFrame[i,2])), 
+        downsampledBandPowerDataFrame <- data.frame("time" = c(as.integer(tempResultDataFrame[i,1])),      "AF3/theta" = c(as.numeric(tempResultDataFrame[i,2])), 
                                     "AF3/alpha" = c(as.numeric(tempResultDataFrame[i,3])), "AF3/betaL" = c(as.numeric(tempResultDataFrame[i,4])), 
                                     "AF3/betaH" = c(as.numeric(tempResultDataFrame[i,5])), "AF3/gamma" = c(as.numeric(tempResultDataFrame[i,6])),
                                     "F7/theta"  = c(as.numeric(tempResultDataFrame[i,7])), "F7/alpha"  = c(as.numeric(tempResultDataFrame[i,8])),
@@ -97,6 +97,7 @@ downsampling <- function(automationStage, stage)
       else
         samplesCounter <- samplesCounter + 1
     }
+    downsampledBandPowerDataFrame$time <- as.integer(downsampledBandPowerDataFrame$time)
     return(downsampledBandPowerDataFrame)
   }
   
@@ -135,7 +136,7 @@ downsampling <- function(automationStage, stage)
     downsampledBandPowerDataFrame <- NULL
     for(i in 1:countPerformanceMetricSamples) {
       if (samplesCounter == factor && is.null(downsampledBandPowerDataFrame)) {
-        downsampledBandPowerDataFrame <- data.frame("time" = c(as.numeric(tempResultDataFrame[i, 1])), 
+        downsampledBandPowerDataFrame <- data.frame("time" = c(as.integer(tempResultDataFrame[i, 1])), 
                                                     "eng"  = c(as.numeric(tempResultDataFrame[i, 2])), 
                                                     "exc"  = c(as.numeric(tempResultDataFrame[i, 3])), 
                                                     "lex"  = c(as.numeric(tempResultDataFrame[i, 4])), 
@@ -159,6 +160,7 @@ downsampling <- function(automationStage, stage)
       else
         samplesCounter <- samplesCounter + 1
     }
+    downsampledBandPowerDataFrame$time <- as.integer(downsampledBandPowerDataFrame$time)
     return(downsampledBandPowerDataFrame)
   }
   
@@ -187,11 +189,13 @@ downsampling <- function(automationStage, stage)
     factor <- countPageQualityParmetersSamples %/% countTransformedBitalinoSamples
     print(factor, zero.print = ".") # quite nicer,
     
+    if (factor == 1) factor = 2
+      
     samplesCounter <- 1
     downsampledPageQualityParmetersDataFrame <- NULL
     for(i in 1:countPageQualityParmetersSamples) {
       if (samplesCounter == factor && is.null(downsampledPageQualityParmetersDataFrame)) {
-        downsampledPageQualityParmetersDataFrame <- data.frame("time"     = c(as.numeric(tempResultDataFrame[i, 1])), 
+        downsampledPageQualityParmetersDataFrame <- data.frame("time"     = c(as.integer(tempResultDataFrame[i, 1])), 
                                                                "STARTED"  = c(tempResultDataFrame[i, 2]), 
                                                                "LASTDATA" = c(tempResultDataFrame[i, 3]), 
                                                                "LASTPAGE" = c(as.numeric(tempResultDataFrame[i, 4])), 
@@ -224,6 +228,7 @@ downsampling <- function(automationStage, stage)
       else
         samplesCounter <- samplesCounter + 1
     }
+    downsampledPageQualityParmetersDataFrame$time <- as.integer(downsampledPageQualityParmetersDataFrame$time)
     return(downsampledPageQualityParmetersDataFrame)
   }
   
@@ -262,7 +267,7 @@ downsampling <- function(automationStage, stage)
     downsampledFixationSaccadsDataFrame <- NULL
     for(i in 1:countFixationSaccadsSamples) {
       if (samplesCounter == factor && is.null(downsampledFixationSaccadsDataFrame)) {
-        downsampledFixationSaccadsDataFrame <- data.frame("time"                  = c(as.numeric(tempResultDataFrame[i, 1])), 
+        downsampledFixationSaccadsDataFrame <- data.frame("time"                  = c(as.integer(tempResultDataFrame[i, 1])), 
                                                           "LeftEyeOpenness"       = c(as.numeric(tempResultDataFrame[i, 2])), 
                                                           "LeftPupilDiameter"     = c(as.numeric(tempResultDataFrame[i, 3])), 
                                                           "RightEyeOpenness"      = c(as.numeric(tempResultDataFrame[i, 4])), 
@@ -289,22 +294,8 @@ downsampling <- function(automationStage, stage)
       else
         samplesCounter <- samplesCounter + 1
     }
+    downsampledFixationSaccadsDataFrame$time <- as.integer(downsampledFixationSaccadsDataFrame$time)
     return(downsampledFixationSaccadsDataFrame)
-  }
-  
-  if(automationStage == 7)
-  {
-    return(NULL)
-  }
-  
-  if(automationStage == 8)
-  {
-    return(NULL)
-  }
-  
-  if(automationStage == 9)
-  {
-    return(NULL)
   }
 
 }

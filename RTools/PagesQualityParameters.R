@@ -58,9 +58,27 @@ for(i in 1:nrow(rawQualityParametersPages28114Stage1))
       rawQualityParametersPages28114DataFrameStage1Temp <- rawQualityParametersPages28114DataFrameStage1                   
       rawQualityParametersPages28114DataFrameStage1Temp[nrow(rawQualityParametersPages28114DataFrameStage1) + 1, ] <- row
       rawQualityParametersPages28114DataFrameStage1 <- rawQualityParametersPages28114DataFrameStage1Temp
+      
     }
   }
 }
+
+rawQualityParametersPages28114DataFrameStage1$time <- as.integer(rawQualityParametersPages28114DataFrameStage1$time)
+rawQualityParametersPages28114DataFrameStage1$LASTPAGE <- as.numeric(rawQualityParametersPages28114DataFrameStage1$LASTPAGE)
+rawQualityParametersPages28114DataFrameStage1$MAXPAGE <- as.numeric(rawQualityParametersPages28114DataFrameStage1$MAXPAGE)
+rawQualityParametersPages28114DataFrameStage1$FINISHED <- as.numeric(rawQualityParametersPages28114DataFrameStage1$FINISHED)
+rawQualityParametersPages28114DataFrameStage1$TIME_SUM <- as.numeric(rawQualityParametersPages28114DataFrameStage1$TIME_SUM)
+rawQualityParametersPages28114DataFrameStage1$TIME_RSI <- as.numeric(rawQualityParametersPages28114DataFrameStage1$TIME_RSI)
+rawQualityParametersPages28114DataFrameStage1$MISSING <- as.numeric(rawQualityParametersPages28114DataFrameStage1$MISSING)
+rawQualityParametersPages28114DataFrameStage1$DEG_TIME <- as.numeric(rawQualityParametersPages28114DataFrameStage1$DEG_TIME)
+rawQualityParametersPages28114DataFrameStage1$DegTimeThreshold <- as.numeric(rawQualityParametersPages28114DataFrameStage1$DegTimeThreshold)
+rawQualityParametersPages28114DataFrameStage1$DegTimeThresholdForOnePage <- as.numeric(rawQualityParametersPages28114DataFrameStage1$DegTimeThresholdForOnePage)
+rawQualityParametersPages28114DataFrameStage1$DegTimeValueForOnePage <- as.numeric(rawQualityParametersPages28114DataFrameStage1$DegTimeValueForOnePage)
+rawQualityParametersPages28114DataFrameStage1$CurrentPageNumber <- as.numeric(rawQualityParametersPages28114DataFrameStage1$CurrentPageNumber)
+rawQualityParametersPages28114DataFrameStage1$StandardDeviationStraightLineAnswer <- as.numeric(rawQualityParametersPages28114DataFrameStage1$StandardDeviationStraightLineAnswer)
+rawQualityParametersPages28114DataFrameStage1$AbsoluteDerivationOfResponseValue <- as.numeric(rawQualityParametersPages28114DataFrameStage1$AbsoluteDerivationOfResponseValue)
+
+#print (sapply(rawQualityParametersPages28114DataFrameStage1, class))
 
 
 rawQualityParametersPages28114Stage2 <- rawTrackingData[["Stage2"]][["Pages28800"]]
@@ -113,6 +131,8 @@ for(i in 1:nrow(rawQualityParametersPages28114Stage2))
       rawQualityParametersPages28114DataFrameStage2Temp <- rawQualityParametersPages28114DataFrameStage2                   
       rawQualityParametersPages28114DataFrameStage2Temp[nrow(rawQualityParametersPages28114DataFrameStage2) + 1, ] <- row
       rawQualityParametersPages28114DataFrameStage2 <- rawQualityParametersPages28114DataFrameStage2Temp
+      
+
     }
   }
 }

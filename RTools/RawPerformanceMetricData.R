@@ -29,15 +29,25 @@ for(i in 1:nrow(rawEmotivTrackingDataStage0)) {
     
     if (is.null(rawPerformanceMetricDataFrameStage0))
     {
-      rawPerformanceMetricDataFrameStage0 <- data.frame("time" = c(as.numeric(rowTimeValue)), "eng" = c(as.numeric(splittedPerformanceMetricValue[3])), "exc" = c(as.numeric(splittedPerformanceMetricValue[5])), 
-                                  "lex" = c(as.numeric(splittedPerformanceMetricValue[6])), "str" = c(as.numeric(splittedPerformanceMetricValue[8])), "rel" = c(as.numeric(splittedPerformanceMetricValue[10])), 
-                                  "int" = c(as.numeric(splittedPerformanceMetricValue[12])), "foc" = c(as.numeric(splittedPerformanceMetricValue[14])));
+      rawPerformanceMetricDataFrameStage0 <- data.frame("time" = c(as.numeric(rowTimeValue)), 
+                                                        "eng" = c(as.numeric(splittedPerformanceMetricValue[3])), 
+                                                        "exc" = c(as.numeric(splittedPerformanceMetricValue[5])), 
+                                                        "lex" = c(as.numeric(splittedPerformanceMetricValue[6])), 
+                                                        "str" = c(as.numeric(splittedPerformanceMetricValue[8])), 
+                                                        "rel" = c(as.numeric(splittedPerformanceMetricValue[10])), 
+                                                        "int" = c(as.numeric(splittedPerformanceMetricValue[12])), 
+                                                        "foc" = c(as.numeric(splittedPerformanceMetricValue[14])));
     }
     else
     {
-      row <- c(as.numeric(rowTimeValue), as.numeric(splittedPerformanceMetricValue[3]), as.numeric(splittedPerformanceMetricValue[5]), 
-               as.numeric(splittedPerformanceMetricValue[6]),  as.numeric(splittedPerformanceMetricValue[8]), as.numeric(splittedPerformanceMetricValue[10]), 
-               as.numeric(splittedPerformanceMetricValue[12]), as.numeric(splittedPerformanceMetricValue[14])); 
+      row <- c(as.numeric(rowTimeValue), 
+               as.numeric(splittedPerformanceMetricValue[3]), 
+               as.numeric(splittedPerformanceMetricValue[5]), 
+               as.numeric(splittedPerformanceMetricValue[6]),  
+               as.numeric(splittedPerformanceMetricValue[8]), 
+               as.numeric(splittedPerformanceMetricValue[10]), 
+               as.numeric(splittedPerformanceMetricValue[12]), 
+               as.numeric(splittedPerformanceMetricValue[14])); 
       
       rawPerformanceMetricDataFrameStage0Temp <- rawPerformanceMetricDataFrameStage0                   
       rawPerformanceMetricDataFrameStage0Temp[nrow(rawPerformanceMetricDataFrameStage0) + 1, ] <- row
@@ -67,15 +77,25 @@ for(i in 1:nrow(rawEmotivTrackingDataStage1)) {
     
     if (is.null(rawPerformanceMetricDataFrameStage1))
     {
-      rawPerformanceMetricDataFrameStage1 <- data.frame("time" = c(as.numeric(rowTimeValue)), "eng" = c(as.numeric(rawPerformanceMetricValue[3])), "exc" = c(as.numeric(rawPerformanceMetricValue[5])), 
-                                             "lex" = c(as.numeric(rawPerformanceMetricValue[6])), "str" = c(as.numeric(rawPerformanceMetricValue[8])), "rel" = c(as.numeric(rawPerformanceMetricValue[10])), 
-                                             "int" = c(as.numeric(rawPerformanceMetricValue[12])), "foc" = c(as.numeric(rawPerformanceMetricValue[14])));
+      rawPerformanceMetricDataFrameStage1 <- data.frame("time" = c(as.numeric(rowTimeValue)), 
+                                                        "eng" = c(as.numeric(splittedPerformanceMetricValue[3])), 
+                                                        "exc" = c(as.numeric(splittedPerformanceMetricValue[5])), 
+                                                        "lex" = c(as.numeric(splittedPerformanceMetricValue[6])), 
+                                                        "str" = c(as.numeric(splittedPerformanceMetricValue[8])), 
+                                                        "rel" = c(as.numeric(splittedPerformanceMetricValue[10])), 
+                                                        "int" = c(as.numeric(splittedPerformanceMetricValue[12])), 
+                                                        "foc" = c(as.numeric(splittedPerformanceMetricValue[14])));
     }
     else
     {
-      row <- c(as.numeric(rowTimeValue), as.numeric(rawPerformanceMetricValue[3]), as.numeric(rawPerformanceMetricValue[5]), 
-               as.numeric(rawPerformanceMetricValue[6]),  as.numeric(rawPerformanceMetricValue[8]), as.numeric(rawPerformanceMetricValue[10]), 
-               as.numeric(rawPerformanceMetricValue[12]), as.numeric(rawPerformanceMetricValue[14])); 
+      row <- c(as.numeric(rowTimeValue), 
+               as.numeric(splittedPerformanceMetricValue[3]), 
+               as.numeric(splittedPerformanceMetricValue[5]), 
+               as.numeric(splittedPerformanceMetricValue[6]),  
+               as.numeric(splittedPerformanceMetricValue[8]), 
+               as.numeric(splittedPerformanceMetricValue[10]), 
+               as.numeric(splittedPerformanceMetricValue[12]), 
+               as.numeric(splittedPerformanceMetricValue[14])); 
       
       rawPerformanceMetricDataFrameStage1Temp <- rawPerformanceMetricDataFrameStage1                   
       rawPerformanceMetricDataFrameStage1Temp[nrow(rawPerformanceMetricDataFrameStage1) + 1, ] <- row
@@ -105,20 +125,29 @@ for(i in 1:nrow(rawEmotivTrackingDataStage2)) {
     
     if (is.null(rawPerformanceMetricDataFrameStage2))
     {
-      rawPerformanceMetricDataFrameStage2 <- tempDataFrame <- data.frame("time" = c(as.numeric(rowTimeValue)), "eng" = c(as.numeric(splittedPerformanceMetricValue[3])), "exc" = c(as.numeric(splittedPerformanceMetricValue[5])), 
-                                  "lex" = c(as.numeric(splittedPerformanceMetricValue[6])), "str" = c(as.numeric(splittedPerformanceMetricValue[8])), "rel" = c(as.numeric(splittedPerformanceMetricValue[10])), 
-                                  "int" = c(as.numeric(splittedPerformanceMetricValue[12])), "foc" = c(as.numeric(splittedPerformanceMetricValue[14])));
-    }
+      rawPerformanceMetricDataFrameStage2 <- data.frame("time" = c(as.numeric(rowTimeValue)), 
+                                                        "eng" = c(as.numeric(splittedPerformanceMetricValue[3])), 
+                                                        "exc" = c(as.numeric(splittedPerformanceMetricValue[5])), 
+                                                        "lex" = c(as.numeric(splittedPerformanceMetricValue[6])), 
+                                                        "str" = c(as.numeric(splittedPerformanceMetricValue[8])),
+                                                        "rel" = c(as.numeric(splittedPerformanceMetricValue[10])), 
+                                                        "int" = c(as.numeric(splittedPerformanceMetricValue[12])), 
+                                                        "foc" = c(as.numeric(splittedPerformanceMetricValue[14])));
+                          }
     else
     {
-      row <- c(as.numeric(rowTimeValue), as.numeric(splittedPerformanceMetricValue[3]), as.numeric(splittedPerformanceMetricValue[5]), 
-               as.numeric(splittedPerformanceMetricValue[6]),  as.numeric(splittedPerformanceMetricValue[8]), as.numeric(splittedPerformanceMetricValue[10]), 
-               as.numeric(splittedPerformanceMetricValue[12]), as.numeric(splittedPerformanceMetricValue[14])); 
+      row <- c(as.numeric(rowTimeValue), 
+               as.numeric(splittedPerformanceMetricValue[3]), 
+               as.numeric(splittedPerformanceMetricValue[5]), 
+               as.numeric(splittedPerformanceMetricValue[6]), 
+               as.numeric(splittedPerformanceMetricValue[8]), 
+               as.numeric(splittedPerformanceMetricValue[10]), 
+               as.numeric(splittedPerformanceMetricValue[12]), 
+               as.numeric(splittedPerformanceMetricValue[14])); 
       
       rawPerformanceMetricDataFrameStage2Temp <- rawPerformanceMetricDataFrameStage2                   
       rawPerformanceMetricDataFrameStage2Temp[nrow(rawPerformanceMetricDataFrameStage2) + 1, ] <- row
       rawPerformanceMetricDataFrameStage2 <- rawPerformanceMetricDataFrameStage2Temp
-      #rawPerformanceMetricDataFrameStage2 <- rbind(rawPerformanceMetricDataFrameStage2, tempDataFrame)
     }
   }
 }

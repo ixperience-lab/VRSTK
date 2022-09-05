@@ -79,7 +79,7 @@ for(i in 1:nrow(rawBitalinoDataStage0)) {
 
 # point plot
 #plot(rawTransferedBitalinoDataFrameStage0$time, rawTransferedBitalinoDataFrameStage0$ECG.in.mV)
-#plot(rawBitalinoDataFrameStage0$time, rawBitalinoDataFrameStage0$ECG.raw)
+plot(rawBitalinoDataFrameStage0$time, rawBitalinoDataFrameStage0$ECG.raw)
 
 # wave plot
 #plot(rawTransferedBitalinoDataFrameStage0$time, rawTransferedBitalinoDataFrameStage0$ECG.in.mV, col='orange',type='s')
@@ -87,4 +87,4 @@ for(i in 1:nrow(rawBitalinoDataStage0)) {
 #plot(rawBitalinoDataFrameStage0$time, rawBitalinoDataFrameStage0$ECG.raw, type='l')
 
 #write.csv2(rawBitalinoDataFrameStage0, file = "Bitalino_Raw_data_Stage0.csv")
-write.table(rawBitalinoDataFrameStage0, file = "Bitalino_Raw_data_Stage0.txt", sep = " ")
+#write.table(rawBitalinoDataFrameStage0, file = "Bitalino_Raw_data_Stage0.txt", sep = " ")
