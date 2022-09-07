@@ -47,7 +47,7 @@ def run_eda_extraction():
         # Process it and plot. Set interactive=True to display an interactive window
         out_eda = eda.eda(signal=eda_signal, sampling_rate=1000., path=eda_plot_path + " # " + eda_file, show=True, min_amplitude=0.1)
         
-        print(out_eda)
+        #print(out_eda)
 
 if __name__ == "__main__":
    run_eda_extraction()

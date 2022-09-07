@@ -11,6 +11,9 @@ from biosppy.signals.acc import acc
 
 from examples.ConvertBitalinoRawDataForBioSPPy import prepare_ecg_files_for_extraction
 
+# hewl1012
+from os.path import exists
+
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 def get_files(search_path):
@@ -46,6 +49,8 @@ def run_heartrate_extraction():
 
         # Process it and plot. Set interactive=True to display an interactive window
         out_ecg = ecg.ecg(signal=ecg_signal, sampling_rate=1000., path=ecg_plot_path + " # " + ecg_file, interactive=False)
+
+        #print(out_ecg)
 
 if __name__ == "__main__":
    run_heartrate_extraction()

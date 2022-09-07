@@ -9,12 +9,13 @@ source("CleanUpEnvironmentFromTemporaryUsedVariables.r", echo=TRUE)
 # 1. ImportTrackingData
 source("ImportTrackingData.r", echo=TRUE)
 
-condition <- 'Condition B'
+condition <- 'Condition A'
 type_vrstk <- 'VRSTK'
 type_biosppy <- 'Biosppy'
-id <- 'id-13'
+id <- 'id-1'
 path <- file.path(condition,  type_vrstk, "/")
 
+#   1.1 ImportTrackingData
 # vrstk tracking files
 #rawTrackingData <- ImportTrackingData('Condition A/VRSTK/Proband-id-1-Condition-A_8-18_15-23-31.json')
 vrstk_files <- list.files(path, pattern=".json", all.files=T, full.names=T)
@@ -25,50 +26,56 @@ for (file in vrstk_files) {
   }
 }
 
+#   1.2 ImporttransformedBitalinoTrackingData
 # biosppy feature extracted file
-#transformedBilinoECGDataFrameStage0 <- ImporttransformedBilinoTrackingData('Condition A/Biosppy/id-1/Bitalinoi-Proband-Stage-0-id-1-Condition-A-ECG_HearRateResults.txt')
-#transformedBilinoEDADataFrameStage0 <- ImporttransformedBilinoTrackingData('Condition A/Biosppy/id-1/Bitalinoi-Proband-Stage-0_id-1-Condition-A-EDA_EdaResults.txt')
+#transformedBitalinoECGDataFrameStage0 <- ImporttransformedBitalinoTrackingData('Condition A/Biosppy/id-1/Bitalinoi-Proband-Stage-0-id-1-Condition-A-ECG_HearRateResults.txt')
+#transformedBitalinoEDADataFrameStage0 <- ImporttransformedBitalinoTrackingData('Condition A/Biosppy/id-1/Bitalinoi-Proband-Stage-0_id-1-Condition-A-EDA_EdaResults.txt')
 
-#transformedBilinoECGDataFrameStage1 <- ImporttransformedBilinoTrackingData('Condition A/Biosppy/id-1/Bitalinoi-Proband-Stage-1-id-1-Condition-A-ECG_HearRateResults.txt')
-#transformedBilinoEDADataFrameStage1 <- ImporttransformedBilinoTrackingData('Condition A/Biosppy/id-1/Bitalinoi-Proband-Stage-1-id-1-Condition-A-EDA_EdaResults.txt')
+#transformedBitalinoECGDataFrameStage1 <- ImporttransformedBitalinoTrackingData('Condition A/Biosppy/id-1/Bitalinoi-Proband-Stage-1-id-1-Condition-A-ECG_HearRateResults.txt')
+#transformedBitalinoEDADataFrameStage1 <- ImporttransformedBitalinoTrackingData('Condition A/Biosppy/id-1/Bitalinoi-Proband-Stage-1-id-1-Condition-A-EDA_EdaResults.txt')
 
-#transformedBilinoECGDataFrameStage2 <- ImporttransformedBilinoTrackingData('Condition A/Biosppy/id-1/Bitalinoi-Proband-Stage-2-id-1-Condition-A-ECG_HearRateResults.txt')
-#transformedBilinoEDADataFrameStage2 <- ImporttransformedBilinoTrackingData('Condition A/Biosppy/id-1/Bitalinoi-Proband-Stage-2-id-1-Condition-A-EDA_EdaResults.txt')
+#transformedBitalinoECGDataFrameStage2 <- ImporttransformedBitalinoTrackingData('Condition A/Biosppy/id-1/Bitalinoi-Proband-Stage-2-id-1-Condition-A-ECG_HearRateResults.txt')
+#transformedBitalinoEDADataFrameStage2 <- ImporttransformedBitalinoTrackingData('Condition A/Biosppy/id-1/Bitalinoi-Proband-Stage-2-id-1-Condition-A-EDA_EdaResults.txt')
 path <- file.path(condition,  type_biosppy, "/", id, "/")
 biosppy_files <- list.files(path, pattern=".txt", all.files=T, full.names=T)
 for (file in biosppy_files) {
   if(grepl(id, file) && grepl("Stage-0", file) && grepl("ECG_HearRateResults", file)){
-    transformedBilinoECGDataFrameStage0 <- ImporttransformedBilinoTrackingData(file)
-    colnames(transformedBilinoECGDataFrameStage0) <- c('time','HeartRate','RPeaks')
-    transformedBilinoECGDataFrameStage0 %<>% mutate_if(is.character, as.numeric)
+    transformedBitalinoECGDataFrameStage0 <- ImportTransformedBitalinoTrackingData(file)
+    colnames(transformedBitalinoECGDataFrameStage0) <- c('time','HeartRate','RPeaks')
+    transformedBitalinoECGDataFrameStage0 %<>% mutate_if(is.character, as.numeric)
   }
   if(grepl(id, file) && grepl("Stage-1", file) && grepl("ECG_HearRateResults", file)){
-    transformedBilinoECGDataFrameStage1 <- ImporttransformedBilinoTrackingData(file)
-    colnames(transformedBilinoECGDataFrameStage1) <- c('time','HeartRate','RPeaks')
-    transformedBilinoECGDataFrameStage1 %<>% mutate_if(is.character, as.numeric)
-    transformedBilinoECGDataFrameStage1$time <- as.integer(transformedBilinoECGDataFrameStage1$time)
+    transformedBitalinoECGDataFrameStage1 <- ImportTransformedBitalinoTrackingData(file)
+    colnames(transformedBitalinoECGDataFrameStage1) <- c('time','HeartRate','RPeaks')
+    transformedBitalinoECGDataFrameStage1 %<>% mutate_if(is.character, as.numeric)
+    transformedBitalinoECGDataFrameStage1$time <- as.integer(transformedBitalinoECGDataFrameStage1$time)
   }
   if(grepl(id, file) && grepl("Stage-2", file) && grepl("ECG_HearRateResults", file)){
-    transformedBilinoECGDataFrameStage2 <- ImporttransformedBilinoTrackingData(file)
-    colnames(transformedBilinoECGDataFrameStage2) <- c('time','HeartRate','RPeaks')
-    transformedBilinoECGDataFrameStage2 %<>% mutate_if(is.character, as.numeric)
+    transformedBitalinoECGDataFrameStage2 <- ImportTransformedBitalinoTrackingData(file)
+    colnames(transformedBitalinoECGDataFrameStage2) <- c('time','HeartRate','RPeaks')
+    transformedBitalinoECGDataFrameStage2 %<>% mutate_if(is.character, as.numeric)
   }
   if(grepl(id, file) && grepl("Stage-0", file) && grepl("EDA_EdaResults", file)){
-    transformedBilinoEDADataFrameStage0 <- ImporttransformedBilinoTrackingData(file)
-    colnames(transformedBilinoEDADataFrameStage0) <- c('onsets','peaks','amps')
-    transformedBilinoEDADataFrameStage0 %<>% mutate_if(is.character, as.numeric)
+    transformedBitalinoEDADataFrameStage0 <- ImportTransformedBitalinoTrackingData(file)
+    colnames(transformedBitalinoEDADataFrameStage0) <- c('onsets','peaks','amps')
+    transformedBitalinoEDADataFrameStage0 %<>% mutate_if(is.character, as.numeric)
   }
   if(grepl(id, file) && grepl("Stage-1", file) && grepl("EDA_EdaResults", file)){
-    transformedBilinoEDADataFrameStage1 <- ImporttransformedBilinoTrackingData(file)
-    colnames(transformedBilinoEDADataFrameStage1) <- c('onsets','peaks','amps')
-    transformedBilinoEDADataFrameStage1 %<>% mutate_if(is.character, as.numeric)
+    transformedBitalinoEDADataFrameStage1 <- ImportTransformedBitalinoTrackingData(file)
+    colnames(transformedBitalinoEDADataFrameStage1) <- c('onsets','peaks','amps')
+    transformedBitalinoEDADataFrameStage1 %<>% mutate_if(is.character, as.numeric)
   }
   if(grepl(id, file) && grepl("Stage-2", file) && grepl("EDA_EdaResults", file)){
-    transformedBilinoEDADataFrameStage2 <- ImporttransformedBilinoTrackingData(file)
-    colnames(transformedBilinoEDADataFrameStage2) <- c('onsets','peaks','amps')
-    transformedBilinoEDADataFrameStage2 %<>% mutate_if(is.character, as.numeric)
+    transformedBitalinoEDADataFrameStage2 <- ImportTransformedBitalinoTrackingData(file)
+    colnames(transformedBitalinoEDADataFrameStage2) <- c('onsets','peaks','amps')
+    transformedBitalinoEDADataFrameStage2 %<>% mutate_if(is.character, as.numeric)
   }
 }
+#   1.2.1 Upsampling transformed Bitalino EDA DataFrame
+source("UpsamplingTransformedBitalinoEDADataFrame.R", echo=TRUE)
+transformedBitalinoEDADataFrameStage0 <- upsamplingTransformedBitalinoEdeDataFrame(0)
+transformedBitalinoEDADataFrameStage1 <- upsamplingTransformedBitalinoEdeDataFrame(1)
+transformedBitalinoEDADataFrameStage2 <- upsamplingTransformedBitalinoEdeDataFrame(2)
 
 
 # 2. RawEmotivTrackingData
@@ -178,7 +185,7 @@ if (existsEnvVariable("all_pariticipent_dataframe"))
 }
 
 # cleanup globalenv
-rm(participent_variable_name)
+rm(get(participent_variable_name))
 rm(bandPowerDataFrameStage0)
 rm(bandPowerDataFrameStage1)
 rm(bandPowerDataFrameStage2)
@@ -200,13 +207,13 @@ rm(rawVRQuestionnaireToolkitSSQDataFrameStage2)
 rm(rawVRQuestionnaireToolkitUncannyValleyDataFrameStage1)
 rm(tempDataFrame)
 
-rm(transformedBilinoECGDataFrameStage0)
-rm(transformedBilinoECGDataFrameStage1)
-rm(transformedBilinoECGDataFrameStage2)
+rm(transformedBitalinoECGDataFrameStage0)
+rm(transformedBitalinoECGDataFrameStage1)
+rm(transformedBitalinoECGDataFrameStage2)
 
-rm(transformedBilinoEDADataFrameStage0)
-rm(transformedBilinoEDADataFrameStage1)
-rm(transformedBilinoEDADataFrameStage2)
+rm(transformedBitalinoEDADataFrameStage0)
+rm(transformedBitalinoEDADataFrameStage1)
+rm(transformedBitalinoEDADataFrameStage2)
 
 id <- NULL
 condition <- NULL

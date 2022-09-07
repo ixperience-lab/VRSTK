@@ -31,6 +31,7 @@ from scipy.signal import argrelextrema
 
 # hewl1012
 from os.path import exists
+import os
 
 def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=True):
     """Process a raw ECG signal and extract relevant signal features using
@@ -133,33 +134,41 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
     
     # hewl1012 creating a single file with results 
     #---------------------------------------------
-    new_hr = hr
-    new_ts_hr = ts_hr
+    new_hr = np.array([])#hr
+    new_ts_hr = np.array([])#ts_hr
     size_to_append = rpeaks.size - hr.size
     #print(hr.size) # for debug only 
     #print(rpeaks.size) # for debug only 
     #print(size_to_append) # for debug only 
+    
     if size_to_append > 0:
-        new_hr = np.append(ts_hr, np.zeros(1), axis=0) 
-        new_ts_hr = np.append(hr, np.zeros(1), axis=0)
-        for _ in range(size_to_append - 1):
+        for i in range(size_to_append):
             new_hr = np.append(new_hr, np.zeros(1) , axis=0) 
-            new_ts_hr = np.append(new_ts_hr, np.zeros(1), axis=0)
+            new_ts_hr = np.append(new_ts_hr, np.array([(rpeaks[i]/1000)]), axis=0)
+            print(new_hr)
     
-    print(new_hr.size) # for debug only 
+    new_hr = np.append(new_hr, hr, axis=0) 
+    new_ts_hr = np.append(new_ts_hr, ts_hr, axis=0)
+
     hear_rate_results_str = ""
-    
+
     for index, data_element in enumerate(rpeaks):
-        hear_rate_results_str += str(new_hr[index]) + " ; " + str(new_ts_hr[index]) + " ; " + str(data_element) + "\n"
+        hear_rate_results_str += str(new_ts_hr[index]) + " ; " + str(new_hr[index]) + " ; " +  str(data_element) + "\n"
     #print(hear_rate_results_str)  # for debug only 
     
     path_to_heart_rate_results_file = "./results/" + path.split(" # ")[1] + "_HearRateResults.txt"
     if exists(path_to_heart_rate_results_file):
-        with open(path_to_heart_rate_results_file, 'a', encoding='utf-8') as f:
-            f.writelines(hear_rate_results_str)
-    else:
-        with open(path_to_heart_rate_results_file, 'w', encoding='utf-8') as f:
-            f.writelines(hear_rate_results_str)
+        os.remove(path_to_heart_rate_results_file)
+    
+    with open(path_to_heart_rate_results_file, 'w', encoding='utf-8') as f:
+        f.writelines(hear_rate_results_str)
+
+    #if exists(path_to_heart_rate_results_file):
+    #    with open(path_to_heart_rate_results_file, 'a', encoding='utf-8') as f:
+    #        f.writelines(hear_rate_results_str)
+    #else:
+    #    with open(path_to_heart_rate_results_file, 'w', encoding='utf-8') as f:
+    #        f.writelines(hear_rate_results_str)
             
     filtered_hear_rate_results_str = ""
     
@@ -169,11 +178,17 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
     
     path_to_filtered_heart_rate_results_file = "./results/" + path.split(" # ")[1] + "_FilteredHearRateResults.txt"
     if exists(path_to_filtered_heart_rate_results_file):
-        with open(path_to_filtered_heart_rate_results_file, 'a', encoding='utf-8') as f:
-            f.writelines(filtered_hear_rate_results_str)
-    else:
-        with open(path_to_filtered_heart_rate_results_file, 'w', encoding='utf-8') as f:
-            f.writelines(filtered_hear_rate_results_str) 
+        os.remove(path_to_filtered_heart_rate_results_file)
+    
+    with open(path_to_filtered_heart_rate_results_file, 'w', encoding='utf-8') as f:
+        f.writelines(filtered_hear_rate_results_str) 
+    
+    #if exists(path_to_filtered_heart_rate_results_file):
+    #    with open(path_to_filtered_heart_rate_results_file, 'a', encoding='utf-8') as f:
+    #        f.writelines(filtered_hear_rate_results_str)
+    #else:
+    #    with open(path_to_filtered_heart_rate_results_file, 'w', encoding='utf-8') as f:
+    #        f.writelines(filtered_hear_rate_results_str) 
     
     #---------------------------------------------
   

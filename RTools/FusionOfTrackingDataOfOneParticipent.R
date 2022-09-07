@@ -3,7 +3,8 @@ library(dplyr)
 
 fuseParticipentDataFrames <- function(id, condition, stage)
 {
-  print (sapply(transformedBilinoECGDataFrameStage1, class))
+  print (sapply(transformedBitalinoECGDataFrameStage1, class))
+  print (sapply(transformedBitalinoEDADataFrameStage1, class))
   print (sapply(bandPowerDataFrameStage1, class))
   print (sapply(performanceMetricDataFrameStage1, class))
   print (sapply(eyeTrackingInformationStage1, class))
@@ -20,7 +21,8 @@ fuseParticipentDataFrames <- function(id, condition, stage)
   
   #fusedDataFrames <- merge(transformedBilinoECGDataFrameStage1, bandPowerDataFrameStage1, by="time")
    
-  fusedDataFrames <- merge(transformedBilinoECGDataFrameStage1, bandPowerDataFrameStage1, by="time", all = TRUE)
+  fusedDataFrames <- merge(transformedBitalinoECGDataFrameStage1, transformedBitalinoEDADataFrameStage1, by="time", all = TRUE)
+  fusedDataFrames <- merge(fusedDataFrames, bandPowerDataFrameStage1, by="time", all = TRUE)
   fusedDataFrames <- merge(fusedDataFrames, performanceMetricDataFrameStage1, by="time", all = TRUE)
   fusedDataFrames <- merge(fusedDataFrames, eyeTrackingInformationStage1, by="time", all = TRUE)
   fusedDataFrames <- merge(fusedDataFrames, pagesQualityParametersStage1, by="time", all = TRUE)

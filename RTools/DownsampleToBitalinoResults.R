@@ -13,21 +13,21 @@ downsampling <- function(automationStage, stage)
     tempDataFrame <- NULL
     if(stage == 0){
       countBandPowerSamples <- nrow(rawBandPowerDataFrameStage0)
-      countTransformedBitalinoSamples <- nrow(transformedBilinoECGDataFrameStage0)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage0)
       tempResultDataFrame <- rawBandPowerDataFrameStage0
-      tempDataFrame <- transformedBilinoECGDataFrameStage0
+      tempDataFrame <- transformedBitalinoECGDataFrameStage0
     }
     if(stage == 1){
       countBandPowerSamples <- nrow(rawBandPowerDataFrameStage1)
-      countTransformedBitalinoSamples <- nrow(transformedBilinoECGDataFrameStage1)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage1)
       tempResultDataFrame <- rawBandPowerDataFrameStage1
-      tempDataFrame <- transformedBilinoECGDataFrameStage1
+      tempDataFrame <- transformedBitalinoECGDataFrameStage1
     }
     if(stage == 2){
       countBandPowerSamples <- nrow(rawBandPowerDataFrameStage2)
-      countTransformedBitalinoSamples <- nrow(transformedBilinoECGDataFrameStage2)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage2)
       tempResultDataFrame <- rawBandPowerDataFrameStage2
-      tempDataFrame <- transformedBilinoECGDataFrameStage2
+      tempDataFrame <- transformedBitalinoECGDataFrameStage2
     }
     
     print(countBandPowerSamples, zero.print = ".") # quite nicer,
@@ -109,21 +109,21 @@ downsampling <- function(automationStage, stage)
     tempDataFrame <- NULL
     if(stage == 0){
       countPerformanceMetricSamples <- nrow(rawPerformanceMetricDataFrameStage0)
-      countTransformedBitalinoSamples <- nrow(transformedBilinoECGDataFrameStage0)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage0)
       tempResultDataFrame <- rawPerformanceMetricDataFrameStage0
-      tempDataFrame <- transformedBilinoECGDataFrameStage0
+      tempDataFrame <- transformedBitalinoECGDataFrameStage0
     }
     if(stage == 1){
       countPerformanceMetricSamples <- nrow(rawPerformanceMetricDataFrameStage1)
-      countTransformedBitalinoSamples <- nrow(transformedBilinoECGDataFrameStage1)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage1)
       tempResultDataFrame <- rawPerformanceMetricDataFrameStage1
-      tempDataFrame <- transformedBilinoECGDataFrameStage1
+      tempDataFrame <- transformedBitalinoECGDataFrameStage1
     }
     if(stage == 2){
       countPerformanceMetricSamples <- nrow(rawPerformanceMetricDataFrameStage2)
-      countTransformedBitalinoSamples <- nrow(transformedBilinoECGDataFrameStage2)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage2)
       tempResultDataFrame <- rawPerformanceMetricDataFrameStage2
-      tempDataFrame <- transformedBilinoECGDataFrameStage2
+      tempDataFrame <- transformedBitalinoECGDataFrameStage2
     }
     
     print(countPerformanceMetricSamples, zero.print = ".") # quite nicer,
@@ -172,15 +172,15 @@ downsampling <- function(automationStage, stage)
     tempDataFrame <- NULL
     if(stage == 1){
       countPageQualityParmetersSamples <- nrow(rawQualityParametersPages28114DataFrameStage1)
-      countTransformedBitalinoSamples <- nrow(transformedBilinoECGDataFrameStage1)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage1)
       tempResultDataFrame <- rawQualityParametersPages28114DataFrameStage1
-      tempDataFrame <- transformedBilinoECGDataFrameStage1
+      tempDataFrame <- transformedBitalinoECGDataFrameStage1
     }
     if(stage == 2){
       countPageQualityParmetersSamples <- nrow(rawQualityParametersPages28114DataFrameStage2)
-      countTransformedBitalinoSamples <- nrow(transformedBilinoECGDataFrameStage2)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage2)
       tempResultDataFrame <- rawQualityParametersPages28114DataFrameStage2
-      tempDataFrame <- transformedBilinoECGDataFrameStage2
+      tempDataFrame <- transformedBitalinoECGDataFrameStage2
     }
     
     print(countPageQualityParmetersSamples, zero.print = ".") # quite nicer,
@@ -240,21 +240,21 @@ downsampling <- function(automationStage, stage)
     tempDataFrame <- NULL
     if(stage == 0){
       countFixationSaccadsSamples <- nrow(rawEyeTrackingInformationDataFrameStage0)
-      countTransformedBitalinoSamples <- nrow(transformedBilinoECGDataFrameStage1)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage1)
       tempResultDataFrame <- rawEyeTrackingInformationDataFrameStage0
-      tempDataFrame <- transformedBilinoECGDataFrameStage1
+      tempDataFrame <- transformedBitalinoECGDataFrameStage1
     }
     if(stage == 1){
       countFixationSaccadsSamples <- nrow(rawEyeTrackingInformationDataFrameStage1)
-      countTransformedBitalinoSamples <- nrow(transformedBilinoECGDataFrameStage1)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage1)
       tempResultDataFrame <- rawEyeTrackingInformationDataFrameStage1
-      tempDataFrame <- transformedBilinoECGDataFrameStage1
+      tempDataFrame <- transformedBitalinoECGDataFrameStage1
     }
     if(stage == 2){
       countFixationSaccadsSamples <- nrow(rawEyeTrackingInformationDataFrameStage2)
-      countTransformedBitalinoSamples <- nrow(transformedBilinoECGDataFrameStage2)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage2)
       tempResultDataFrame <- rawEyeTrackingInformationDataFrameStage2
-      tempDataFrame <- transformedBilinoECGDataFrameStage2
+      tempDataFrame <- transformedBitalinoECGDataFrameStage2
     }
     
     print(countFixationSaccadsSamples, zero.print = ".") # quite nicer,

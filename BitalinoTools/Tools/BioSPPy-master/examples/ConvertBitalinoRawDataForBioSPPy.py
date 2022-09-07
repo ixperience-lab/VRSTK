@@ -84,7 +84,7 @@ def prepare_eda_files_for_extraction(input_file = None, ouput_file_name = None):
 
     # "..\\results\\"
     #------------------------------------
-    eda_file_raw = './results/' + ouput_file_name + 'eda_RAW.txt'
+    eda_file_raw = './results/' + ouput_file_name + '_RAW.txt'
     if os.path.exists(eda_file_raw):
         os.remove(eda_file_raw)
         
