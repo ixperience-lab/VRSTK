@@ -1,7 +1,23 @@
 # Evaluate Quality Paramters known as Validityscore
-# - TIMERSI
-# - MISSRELS
-# - DEGTIME
+# - TIMERSI  = EvaluateTimeRsi()  # Eibezogen werden Alle Probanden einer Condition
+# - MISSRELS = 0                  # Alle Fragen sind Pflichtfelder -> GEWICHTUNG aller Teilnemer ist 1 und MISSING 0 ->  MISSING * GEWICHTUNG -> 0 
+# - DEGTIME  = _DEGTIME           # Aus PageQualityParameters rauslesen
+# - MISSING  = 0                  # Alle Fragen sind Pflichtfelder -> 0
+                                  # Es gab bis jetzt auch keine Unterbrechungen
+
+EvaluateTimeRsi <- function()
+{
+  
+  medianTimeRsi <- 0
+  #medianTimeRsi <- median() 
+  TIMERSI <- 0
+  
+  
+  
+  return(TIMERSI)
+}
+
+
 
 #private void EvaluateTimeRsi()
 #{

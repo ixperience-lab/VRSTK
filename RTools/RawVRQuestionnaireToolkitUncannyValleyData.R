@@ -39,10 +39,13 @@ for(i in 1:nrow(rawVRQuestionnaireToolkitUncannyValleyDataStage1)) {
     
     if (is.null(rawVRQuestionnaireToolkitUncannyValleyDataFrameStage1)) 
     {
-      rawVRQuestionnaireToolkitUncannyValleyDataFrameStage1 <- data.frame("time" = c(as.numeric(rowTimeValue)), "MISSING" = c(as.numeric(rawMissingValue)), 
-                                                          "TIME_RSI" = c(as.numeric(splittedTIMERSIValue[1])), "TIME_SUM" = c(as.numeric(rawTIMESUMValue)), 
-                                                          "MISSREL" = c(as.numeric(splittedMISSRELValue[1])), "DEG_TIME" = c(as.numeric(rawDEGTIMEValue)), 
-                                                          "LastQuestionnaire_TIME_SUM" = c(as.numeric(rawLastTIMESUM)));
+      rawVRQuestionnaireToolkitUncannyValleyDataFrameStage1 <- data.frame("time" = c(as.numeric(rowTimeValue)), 
+                                                                          "MISSING" = c(as.numeric(rawMissingValue)), 
+                                                                          "TIME_RSI" = c(as.numeric(splittedTIMERSIValue[1])), 
+                                                                          "TIME_SUM" = c(as.numeric(rawTIMESUMValue)), 
+                                                                          "MISSREL" = c(as.numeric(splittedMISSRELValue[1])), 
+                                                                          "DEG_TIME" = c(as.numeric(rawDEGTIMEValue)), 
+                                                                          "LastQuestionnaire_TIME_SUM" = c(as.numeric(rawLastTIMESUM)));
     } 
     else 
     { 

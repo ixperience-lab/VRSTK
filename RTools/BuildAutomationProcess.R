@@ -2,6 +2,11 @@
 library(dplyr)
 library(magrittr)
 
+# Source: https://stackoverflow.com/questions/9368900/how-to-check-if-object-variable-is-defined-in-r
+existsEnvVariable <-function(name) {
+  return(1==length(ls(pattern=paste("^", name, "$", sep=""), env=globalenv())))
+}
+
 # 0. Clear environment
 source("CleanUpEnvironmentFromTemporaryUsedVariables.r", echo=TRUE)
 
@@ -106,7 +111,32 @@ source("PagesQualityParameters.r", echo=TRUE)
 source("DownsampleToBitalinoResults.r", echo=TRUE) 
 pagesQualityParametersStage1 <- downsampling(5,1)
 pagesQualityParametersStage2 <- downsampling(5,2)
-
+#   5.2 evaluating Quality parameters
+# pagesTIMESUMsStage1 <- NULL # only activating if it is a new condition group
+lastRow <- nrow(pagesQualityParametersStage1)
+if (is.null(pagesTIMESUMsStage1)) {
+  pagesTIMESUMsStage1 <- data.frame("MISSING"  = c(as.numeric(0)), 
+                                    "TIME_RSI" = c(as.numeric(0)), 
+                                    "TIME_SUM" = c(as.numeric(pagesQualityParametersStage1[lastRow, 7])), 
+                                    "MISSREL"  = c(as.numeric(0)), 
+                                    "DEG_TIME" = c(as.numeric(pagesQualityParametersStage1[lastRow, 10])));
+} else {
+  row <- c(as.numeric(0), 
+           as.numeric(0), 
+           as.numeric(pagesQualityParametersStage1[lastRow, 7]), 
+           as.numeric(0), 
+           as.numeric(pagesQualityParametersStage1[lastRow, 10]))  
+  
+  pagesTIMESUMsStage1Temp <- pagesTIMESUMsStage1                   
+  pagesTIMESUMsStage1Temp[nrow(pagesTIMESUMsStage1) + 1, ] <- row
+  pagesTIMESUMsStage1 <- pagesTIMESUMsStage1Temp
+}
+# call EvaluateQualityParamtersAsValidityscore
+if (!(is.null(pagesTIMESUMsStage1)) && nrow(pagesQualityParametersStage1) >= 10) {
+  source("EvaluateQualityParamtersAsValidityscore.r", echo=TRUE) 
+  pagesTIMESUMsStage1 <- EvaluateTimeRsi()
+}
+  
 
 # 6. RawFixationSaccadsData
 source("RawFixationSaccadesData.r", echo=TRUE)
@@ -133,7 +163,7 @@ source("CleanUpEnvironmentFromTemporaryUsedVariables.r", echo=TRUE)
 
 #--------------------------------------------------
 # 10. Data-Fusion of one Participant
-rm(participent_13_DataFrame)
+#rm(participent_13_DataFrame)
 source("FusionOfTrackingDataOfOneParticipent.r", echo=TRUE)
 participent_variable_name <- paste("participent_", id, "_DataFrame", sep="") #'participent_'+ as.character(id) + '_DataFrame'
 assign(participent_variable_name, fuseParticipentDataFrames(id, condition, 1))
@@ -166,15 +196,9 @@ assign(participent_variable_name, tempDataFrame)
 # some misc cleanup
 rm(nRows)
 rm(countRows)
-rm(participent_13_DataFrame_temp)
-rm(participent_13_Log)
+#rm(participent_13_DataFrame_temp)
+#rm(participent_13_Log)
 rm(participent_Log)
-
-# Source: https://stackoverflow.com/questions/9368900/how-to-check-if-object-variable-is-defined-in-r
-existsEnvVariable <-function(name) {
-  return(1==length(ls(pattern=paste("^", name, "$", sep=""), env=globalenv())))
-}
-
 
 if (existsEnvVariable("all_pariticipent_dataframe"))
 {
@@ -185,7 +209,7 @@ if (existsEnvVariable("all_pariticipent_dataframe"))
 }
 
 # cleanup globalenv
-rm(get(participent_variable_name))
+#rm(get(participent_variable_name))
 rm(bandPowerDataFrameStage0)
 rm(bandPowerDataFrameStage1)
 rm(bandPowerDataFrameStage2)
@@ -194,8 +218,8 @@ rm(eyeTrackingInformationStage0)
 rm(eyeTrackingInformationStage1)
 rm(eyeTrackingInformationStage2)
 
-rm(pagesQualityParametersStage1)
-rm(pagesQualityParametersStage2)
+#rm(pagesQualityParametersStage1)
+#rm(pagesQualityParametersStage2)
 
 rm(performanceMetricDataFrameStage0)
 rm(performanceMetricDataFrameStage1)
@@ -203,8 +227,8 @@ rm(performanceMetricDataFrameStage2)
 
 rm(rawTrackingData)
 
-rm(rawVRQuestionnaireToolkitSSQDataFrameStage2)
-rm(rawVRQuestionnaireToolkitUncannyValleyDataFrameStage1)
+#rm(rawVRQuestionnaireToolkitSSQDataFrameStage2)
+#rm(rawVRQuestionnaireToolkitUncannyValleyDataFrameStage1)
 rm(tempDataFrame)
 
 rm(transformedBitalinoECGDataFrameStage0)
