@@ -2,6 +2,11 @@
 library(dplyr)
 library(magrittr)
 
+# Conditions Ids:
+# A -> id-1, id-2, id-3, id-4, id-5, id-6, id-7, id-10, (id-42 eeg-quality 0%) => 8 (9) Participents
+# B -> id-11,
+# C -> id-21,
+
 # Source: https://stackoverflow.com/questions/9368900/how-to-check-if-object-variable-is-defined-in-r
 existsEnvVariable <-function(name) {
   return(1==length(ls(pattern=paste("^", name, "$", sep=""), env=globalenv())))
@@ -17,7 +22,7 @@ source("ImportTrackingData.r", echo=TRUE)
 condition <- 'Condition A'
 type_vrstk <- 'VRSTK'
 type_biosppy <- 'Biosppy'
-id <- 'id-1'
+id <- 'id-10'
 path <- file.path(condition,  type_vrstk, "/")
 
 #   1.1 ImportTrackingData
@@ -113,30 +118,56 @@ pagesQualityParametersStage1 <- downsampling(5,1)
 pagesQualityParametersStage2 <- downsampling(5,2)
 #   5.2 evaluating Quality parameters
 # pagesTIMESUMsStage1 <- NULL # only activating if it is a new condition group
-lastRow <- nrow(pagesQualityParametersStage1)
-if (is.null(pagesTIMESUMsStage1)) {
+
+#lastRow <- nrow(pagesQualityParametersStage1)
+#if (is.null(pagesTIMESUMsStage1)) {
+#  pagesTIMESUMsStage1 <- data.frame("MISSING"  = c(as.numeric(0)), 
+#                                    "TIME_RSI" = c(as.numeric(0)), 
+#                                    "TIME_SUM" = c(as.numeric(pagesQualityParametersStage1[lastRow, 7])), 
+#                                    "MISSREL"  = c(as.numeric(0)), 
+#                                    "DEG_TIME" = c(as.numeric(pagesQualityParametersStage1[lastRow, 10])));
+#} else {
+#  row <- c(as.numeric(0), 
+#           as.numeric(0), 
+#           as.numeric(pagesQualityParametersStage1[lastRow, 7]), 
+#           as.numeric(0), 
+#           as.numeric(pagesQualityParametersStage1[lastRow, 10]))  
+  
+#  pagesTIMESUMsStage1Temp <- pagesTIMESUMsStage1                   
+#  pagesTIMESUMsStage1Temp[nrow(pagesTIMESUMsStage1) + 1, ] <- row
+#  pagesTIMESUMsStage1 <- pagesTIMESUMsStage1Temp
+#}
+
+# call EvaluateQualityParamtersAsValidityscore
+
+if (existsEnvVariable("pagesTIMESUMsStage1") && !(is.null(pagesTIMESUMsStage1)))
+{
+  lastRow <- nrow(pagesQualityParametersStage1)
+  row <- c(as.numeric(0), 
+           as.numeric(0), 
+           as.numeric(pagesQualityParametersStage1[lastRow, 7]), 
+           as.numeric(0), 
+           as.numeric(pagesQualityParametersStage1[lastRow, 10]))
+  
+  pagesTIMESUMsStage1Temp <- pagesTIMESUMsStage1                   
+  pagesTIMESUMsStage1Temp[nrow(pagesTIMESUMsStage1) + 1, ] <- row
+  pagesTIMESUMsStage1 <- pagesTIMESUMsStage1Temp
+} else
+{
+  lastRow <- nrow(pagesQualityParametersStage1)
   pagesTIMESUMsStage1 <- data.frame("MISSING"  = c(as.numeric(0)), 
                                     "TIME_RSI" = c(as.numeric(0)), 
                                     "TIME_SUM" = c(as.numeric(pagesQualityParametersStage1[lastRow, 7])), 
                                     "MISSREL"  = c(as.numeric(0)), 
                                     "DEG_TIME" = c(as.numeric(pagesQualityParametersStage1[lastRow, 10])));
-} else {
-  row <- c(as.numeric(0), 
-           as.numeric(0), 
-           as.numeric(pagesQualityParametersStage1[lastRow, 7]), 
-           as.numeric(0), 
-           as.numeric(pagesQualityParametersStage1[lastRow, 10]))  
-  
-  pagesTIMESUMsStage1Temp <- pagesTIMESUMsStage1                   
-  pagesTIMESUMsStage1Temp[nrow(pagesTIMESUMsStage1) + 1, ] <- row
-  pagesTIMESUMsStage1 <- pagesTIMESUMsStage1Temp
 }
-# call EvaluateQualityParamtersAsValidityscore
-if (!(is.null(pagesTIMESUMsStage1)) && nrow(pagesQualityParametersStage1) >= 10) {
+
+# temporary fix pagesTIMESUMsStage1[2, 3] = 774.1054
+
+if (!(is.null(pagesTIMESUMsStage1)) && nrow(pagesTIMESUMsStage1) >= 10) {
   source("EvaluateQualityParamtersAsValidityscore.r", echo=TRUE) 
-  pagesTIMESUMsStage1 <- EvaluateTimeRsi()
+  #pagesTIMESUMsStage1 <- EvaluateTimeRsi()
 }
-  
 
 # 6. RawFixationSaccadsData
 source("RawFixationSaccadesData.r", echo=TRUE)
@@ -181,54 +212,27 @@ tempDataFrame[1:nRows,] <- id
 tempDataFrame <- cbind(tempDataFrame, get(participent_variable_name))
 assign(participent_variable_name, tempDataFrame)
 
-#participent_13_DataFrame <- NULL
-#participent_13_DataFrame <- fuseParticipentDataFrames(id, condition, 1)
-#participent_13_DataFrame <- unique(participent_13_DataFrame)
-#participent_13_Log <- duplicated(participent_13_DataFrame)
-#print(participent_13_Log)
-#participent_13_DataFrame <- participent_13_DataFrame %>% distinct(time, .keep_all = TRUE)
+# cleanup 
+rm(pagesTIMESUMsStage1Temp)
+rm(pagesQualityParametersStage1)
+rm(pagesQualityParametersStage2)
 
+rm(rawVRQuestionnaireToolkitSSQDataFrameStage2)
+rm(rawVRQuestionnaireToolkitUncannyValleyDataFrameStage1)
 
-#--------------------------------------------------
-# 11. Data-Fusion for all Probands
-# all_pariticipent_dataframe <- NULL
-
-# some misc cleanup
-rm(nRows)
-rm(countRows)
-#rm(participent_13_DataFrame_temp)
-#rm(participent_13_Log)
-rm(participent_Log)
-
-if (existsEnvVariable("all_pariticipent_dataframe"))
-{
-  all_pariticipent_dataframe <- rbind(all_pariticipent_dataframe, get(participent_variable_name))
-} else
-{
-  all_pariticipent_dataframe <- get(participent_variable_name)
-}
-
-# cleanup globalenv
-#rm(get(participent_variable_name))
 rm(bandPowerDataFrameStage0)
 rm(bandPowerDataFrameStage1)
 rm(bandPowerDataFrameStage2)
-
-rm(eyeTrackingInformationStage0)
-rm(eyeTrackingInformationStage1)
-rm(eyeTrackingInformationStage2)
-
-#rm(pagesQualityParametersStage1)
-#rm(pagesQualityParametersStage2)
 
 rm(performanceMetricDataFrameStage0)
 rm(performanceMetricDataFrameStage1)
 rm(performanceMetricDataFrameStage2)
 
-rm(rawTrackingData)
+rm(eyeTrackingInformationStage0)
+rm(eyeTrackingInformationStage1)
+rm(eyeTrackingInformationStage2)
 
-#rm(rawVRQuestionnaireToolkitSSQDataFrameStage2)
-#rm(rawVRQuestionnaireToolkitUncannyValleyDataFrameStage1)
+rm(rawTrackingData)
 rm(tempDataFrame)
 
 rm(transformedBitalinoECGDataFrameStage0)
@@ -238,6 +242,101 @@ rm(transformedBitalinoECGDataFrameStage2)
 rm(transformedBitalinoEDADataFrameStage0)
 rm(transformedBitalinoEDADataFrameStage1)
 rm(transformedBitalinoEDADataFrameStage2)
+
+# some misc cleanup
+rm(nRows)
+rm(countRows)
+rm(participent_Log)
+
+#participent_13_DataFrame <- NULL
+#participent_13_DataFrame <- fuseParticipentDataFrames(id, condition, 1)
+#participent_13_DataFrame <- unique(participent_13_DataFrame)
+#participent_13_Log <- duplicated(participent_13_DataFrame)
+#print(participent_13_Log)
+#participent_13_DataFrame <- participent_13_DataFrame %>% distinct(time, .keep_all = TRUE)
+
+#   10.1 Save data frames as backup
+path <- file.path(condition,  "RResults", "/")
+
+pathCSV <- file.path(path,  "PagesTIMESUMsStage1_DataFrame.csv", "")
+pathTXT <- file.path(path,  "PagesTIMESUMsStage1_DataFrame.txt", "")
+write.csv2(pagesTIMESUMsStage1, pathCSV, row.names = FALSE)
+write.table(pagesTIMESUMsStage1, pathTXT, sep=" # ", row.names=FALSE)
+
+pathCSV <- file.path(path,  "Participent_id-1_DataFrame.csv", "")
+pathTXT <- file.path(path,  "Participent_id-1_DataFrame.txt", "")
+write.csv2(`participent_id-1_DataFrame`, pathCSV, row.names = FALSE)
+write.table(`participent_id-1_DataFrame`, pathTXT, sep=" # ", row.names=FALSE)
+
+pathCSV <- file.path(path,  "Participent_id-2_DataFrame.csv", "")
+pathTXT <- file.path(path,  "Participent_id-2_DataFrame.txt", "")
+write.csv2(`participent_id-2_DataFrame`, pathCSV, row.names = FALSE)
+write.table(`participent_id-2_DataFrame`, pathTXT, sep=" # ", row.names=FALSE)
+
+pathCSV <- file.path(path,  "Participent_id-3_DataFrame.csv", "")
+pathTXT <- file.path(path,  "Participent_id-3_DataFrame.txt", "")
+write.csv2(`participent_id-3_DataFrame`, pathCSV, row.names = FALSE)
+write.table(`participent_id-3_DataFrame`, pathTXT, sep=" # ", row.names=FALSE)
+
+pathCSV <- file.path(path,  "Participent_id-4_DataFrame.csv", "")
+pathTXT <- file.path(path,  "Participent_id-4_DataFrame.txt", "")
+write.csv2(`participent_id-4_DataFrame`, pathCSV, row.names = FALSE)
+write.table(`participent_id-4_DataFrame`, pathTXT, sep=" # ", row.names=FALSE)
+
+pathCSV <- file.path(path,  "Participent_id-5_DataFrame.csv", "")
+pathTXT <- file.path(path,  "Participent_id-5_DataFrame.txt", "")
+write.csv2(`participent_id-5_DataFrame`, pathCSV, row.names = FALSE)
+write.table(`participent_id-5_DataFrame`, pathTXT, sep=" # ", row.names=FALSE)
+
+pathCSV <- file.path(path,  "Participent_id-6_DataFrame.csv", "")
+pathTXT <- file.path(path,  "Participent_id-6_DataFrame.txt", "")
+write.csv2(`participent_id-6_DataFrame`, pathCSV, row.names = FALSE)
+write.table(`participent_id-6_DataFrame`, pathTXT, sep=" # ", row.names=FALSE)
+
+pathCSV <- file.path(path,  "Participent_id-7_DataFrame.csv", "")
+pathTXT <- file.path(path,  "Participent_id-7_DataFrame.txt", "")
+write.csv2(`participent_id-7_DataFrame`, pathCSV, row.names = FALSE)
+write.table(`participent_id-7_DataFrame`, pathTXT, sep=" # ", row.names=FALSE)
+
+pathCSV <- file.path(path,  "Participent_id-10_DataFrame.csv", "")
+pathTXT <- file.path(path,  "Participent_id-10_DataFrame.txt", "")
+write.csv2(`participent_id-10_DataFrame`, pathCSV, row.names = FALSE)
+write.table(`participent_id-10_DataFrame`, pathTXT, sep=" # ", row.names=FALSE)
+
+
+#--------------------------------------------------
+# 11. Data-Fusion for all Probands
+# all_pariticipent_dataframe <- NULL
+
+#if (existsEnvVariable("all_pariticipent_dataframe"))
+#{
+#  all_pariticipent_dataframe <- rbind(all_pariticipent_dataframe, get(participent_variable_name))
+#} else
+#{
+#  all_pariticipent_dataframe <- get(participent_variable_name)
+#}
+
+# Condition A DataFrame
+all_participent_dataframe <- `participent_id-1_DataFrame`
+all_participent_dataframe <- rbind(all_participent_dataframe, `participent_id-2_DataFrame`)
+all_participent_dataframe <- rbind(all_participent_dataframe, `participent_id-3_DataFrame`)
+all_participent_dataframe <- rbind(all_participent_dataframe, `participent_id-4_DataFrame`)
+all_participent_dataframe <- rbind(all_participent_dataframe, `participent_id-5_DataFrame`)
+all_participent_dataframe <- rbind(all_participent_dataframe, `participent_id-6_DataFrame`)
+all_participent_dataframe <- rbind(all_participent_dataframe, `participent_id-7_DataFrame`)
+all_participent_dataframe <- rbind(all_participent_dataframe, `participent_id-10_DataFrame`)
+
+path <- file.path(condition,  "RResults", "/")
+
+pathCSV <- file.path(path,  "All_Participents_DataFrame.csv", "")
+write.csv2(all_participent_dataframe, pathCSV, row.names = FALSE)
+
+pathTXT <- file.path(path,  "All_Participents_DataFrame.txt", "")
+write.table(all_participent_dataframe, pathTXT, sep=" # ", row.names=FALSE)
+
+# cleanup globalenv
+#rm(get(participent_variable_name))
+
 
 id <- NULL
 condition <- NULL

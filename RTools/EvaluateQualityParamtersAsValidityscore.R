@@ -9,12 +9,49 @@ EvaluateTimeRsi <- function()
 {
   
   medianTimeRsi <- 0
-  #medianTimeRsi <- median() 
-  TIMERSI <- 0
+  medianTimeRsi <- median(pagesTIMESUMsStage1$TIME_SUM)
+  for(i in 1:nrow(pagesTIMESUMsStage1)){
+    pagesTIMESUMsStage1$TIME_RSI[i] <- medianTimeRsi / pagesTIMESUMsStage1$TIME_SUM[i]
+  }
+  # add time_rsi_calc and miss_rel_calc
+  # Condition A DataFrame
+  `participent_id-1_DataFrame`$TIMERSICalc <- pagesTIMESUMsStage1$TIME_RSI[1]
+  `participent_id-1_DataFrame`$MISSRELCalc <- pagesTIMESUMsStage1$MISSREL[1]
+  `participent_id-1_DataFrame`$MEDIANForTRSI <- medianTimeRsi
+  
+  `participent_id-2_DataFrame`$TIMERSICalc <- pagesTIMESUMsStage1$TIME_RSI[2]
+  `participent_id-2_DataFrame`$MISSRELCalc <- pagesTIMESUMsStage1$MISSREL[2]
+  `participent_id-2_DataFrame`$MEDIANForTRSI <- medianTimeRsi
+  
+  `participent_id-3_DataFrame`$TIMERSICalc <- pagesTIMESUMsStage1$TIME_RSI[3]
+  `participent_id-3_DataFrame`$MISSRELCalc <- pagesTIMESUMsStage1$MISSREL[3]
+  `participent_id-3_DataFrame`$MEDIANForTRSI <- medianTimeRsi
+  
+  `participent_id-4_DataFrame`$TIMERSICalc <- pagesTIMESUMsStage1$TIME_RSI[4]
+  `participent_id-4_DataFrame`$MISSRELCalc <- pagesTIMESUMsStage1$MISSREL[4]
+  `participent_id-4_DataFrame`$MEDIANForTRSI <- medianTimeRsi
+  
+  `participent_id-5_DataFrame`$TIMERSICalc <- pagesTIMESUMsStage1$TIME_RSI[5]
+  `participent_id-5_DataFrame`$MISSRELCalc <- pagesTIMESUMsStage1$MISSREL[5]
+  `participent_id-5_DataFrame`$MEDIANForTRSI <- medianTimeRsi
+  
+  `participent_id-6_DataFrame`$TIMERSICalc <- pagesTIMESUMsStage1$TIME_RSI[6]
+  `participent_id-6_DataFrame`$MISSRELCalc <- pagesTIMESUMsStage1$MISSREL[6]
+  `participent_id-6_DataFrame`$MEDIANForTRSI <- medianTimeRsi
+  
+  `participent_id-7_DataFrame`$TIMERSICalc <- pagesTIMESUMsStage1$TIME_RSI[7]
+  `participent_id-7_DataFrame`$MISSRELCalc <- pagesTIMESUMsStage1$MISSREL[7]
+  `participent_id-7_DataFrame`$MEDIANForTRSI <- medianTimeRsi
+  
+  `participent_id-10_DataFrame`$TIMERSICalc <- pagesTIMESUMsStage1$TIME_RSI[8]
+  `participent_id-10_DataFrame`$MISSRELCalc <- pagesTIMESUMsStage1$MISSREL[8]
+  `participent_id-10_DataFrame`$MEDIANForTRSI <- medianTimeRsi
+  
+  #TIMERSI <- 0
   
   
   
-  return(TIMERSI)
+  #return(TIMERSI)
 }
 
 
