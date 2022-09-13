@@ -2,7 +2,6 @@
 
 upsamplingTransformedBitalinoEdeDataFrame <- function(stage)
 {
-  #if(automationStage == 3)
   {
     countTransformedEdaBitalinoSamples <- 0
     countTransformedBitalinoSamples <- 1
@@ -27,15 +26,15 @@ upsamplingTransformedBitalinoEdeDataFrame <- function(stage)
       tempDataFrame <- transformedBitalinoECGDataFrameStage2
     }
     
-    print(countTransformedEdaBitalinoSamples, zero.print = ".") # quite nicer,
-    print(countTransformedBitalinoSamples, zero.print = ".") # quite nicer,
+    print(countTransformedEdaBitalinoSamples) # quite nicer,
+    print(countTransformedBitalinoSamples) # quite nicer,
     
     factor <- countTransformedBitalinoSamples - countTransformedEdaBitalinoSamples
-    print(factor, zero.print = ".") # quite nicer,
+    print(factor) # quite nicer,
     
     samplesCounter <- 1
     upsampledEdaBitalinoDataFrame <- NULL
-    if (factor > 0){
+    if (factor > 0 && countTransformedEdaBitalinoSamples > 0){
       for(j in 1:countTransformedBitalinoSamples) {
         isSetValue <- FALSE
         ecgTimeInS <- (as.integer(tempDataFrame[j,1]))
@@ -78,8 +77,35 @@ upsamplingTransformedBitalinoEdeDataFrame <- function(stage)
           upsampledEdaBitalinoDataFrame <- upsampledTempDataFrame
         }
       }
+      
+      upsampledEdaBitalinoDataFrame$time <- as.integer(upsampledEdaBitalinoDataFrame$time)
+    } else if (countTransformedEdaBitalinoSamples == 0) {
+      for(j in 1:countTransformedBitalinoSamples) {
+        ecgTimeInS <- (as.integer(tempDataFrame[j,1]))
+        if (is.null(upsampledEdaBitalinoDataFrame)){ 
+          upsampledEdaBitalinoDataFrame <- data.frame("time"   = c(as.integer(tempDataFrame[j,1])),      
+                                                      "onsets" = c(as.numeric(0)), 
+                                                      "peaks"  = c(as.numeric(0)), 
+                                                      "amps"   = c(as.numeric(0)));
+          isSetValue <- TRUE
+        } else {
+          row <- c(as.integer(tempDataFrame[j,1]), 
+                   as.numeric(0), 
+                   as.numeric(0), 
+                   as.numeric(0))
+          upsampledTempDataFrame <- upsampledEdaBitalinoDataFrame                   
+          upsampledTempDataFrame[nrow(upsampledEdaBitalinoDataFrame) + 1, ] <- row
+          upsampledEdaBitalinoDataFrame <- upsampledTempDataFrame
+        }
+      }
+      upsampledEdaBitalinoDataFrame$time <- as.integer(upsampledEdaBitalinoDataFrame$time)
     }
-    upsampledEdaBitalinoDataFrame$time <- as.integer(upsampledEdaBitalinoDataFrame$time)
+    
+    if (is.null(upsampledEdaBitalinoDataFrame)){
+      upsampledEdaBitalinoDataFrame <- tempResultDataFrame
+      upsampledEdaBitalinoDataFrame$time <- as.integer(upsampledEdaBitalinoDataFrame$time)
+    }
+    
     return(upsampledEdaBitalinoDataFrame)
   }
 }
