@@ -1,7 +1,13 @@
 # automation build process
 library(dplyr)
 library(magrittr)
-
+library(psych)
+library(stringi)
+library(stringr)
+library(jsonlite)
+library(glue)
+library(magrittr)
+library(mnormt)
 
 # Conditions Ids:
 # A -> id-1, id-2, id-3, id-4, id-5, id-6, id-7, id-10, (id-42 eeg-quality 0%) => 8 (9) Participents
@@ -411,6 +417,36 @@ rm(participent_variable_name)
 rm(path)
 rm(pathCSV)
 rm(pathTXT)
+
+# 11.3 fuse all conditions dataframes
+conditionADataFrame <- read.csv2(file = "All_A_Participents_DataFrame.csv")
+head(conditionADataFrame)
+
+conditionBDataFrame <- read.csv2(file = "All_B_Participents_DataFrame.csv")
+head(conditionBDataFrame)
+
+all_participent_dataframe <- conditionADataFrame
+all_participent_dataframe <- rbind(all_participent_dataframe, conditionBDataFrame)
+
+temp_dataframe <- all_participent_dataframe
+temp_dataframe <- replace(temp_dataframe, is.na(temp_dataframe), 0)
+
+temp_dataframe$pId <- str_replace(temp_dataframe$pId, "id-", "")
+temp_dataframe$pId <- str_replace(temp_dataframe$pId, "b", "")
+
+temp_dataframe <- subset(temp_dataframe, select=-c(STARTED, LASTDATA))
+
+#summary.default(temp_dataframe)
+
+#mode(temp_dataframe[,1:110])
+
+temp_dataframe[,1:111] <- lapply(temp_dataframe[,1:111], function (x) as.numeric(x))
+
+list <- sapply(temp_dataframe, class)
+
+
+
+write.csv2(temp_dataframe, "./All_Participents_DataFrame.csv", row.names = FALSE)
 
 #--------------------------------------------------
 # 12. Run Cluster-Algorithmen
