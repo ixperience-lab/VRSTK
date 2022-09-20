@@ -13,6 +13,7 @@ signals, also known as Galvanic Skin Response (GSR).
 # Imports
 # compat
 from __future__ import absolute_import, division, print_function
+from signal import Signals
 from six.moves import range
 
 # 3rd party
@@ -101,20 +102,13 @@ def eda(signal=None, sampling_rate=1000.0, path=None, show=True, min_amplitude=0
             peaks=peaks,
             amplitudes=amps,
             path=path.split(" # ")[0],
-            show=True,
+            show=False,
         )
     
     # hewl1012 creating a single file with results 
     #---------------------------------------------
-    eda_results_str = ""
     
-    #print(ts.size)
-    #print(signal.size)
-    #print(filtered.size)
-    #print(peaks.size)
-    #print(onsets.size)
-    #print(amps.size)
-
+    eda_results_str = ""
     for index, data_element in enumerate(peaks):
         eda_results_str += str(onsets[index]) + " ; " + str(data_element) + " ; " + str(amps[index]) + "\n"
     #print(eda_results_str)  # for debug only 
@@ -125,19 +119,12 @@ def eda(signal=None, sampling_rate=1000.0, path=None, show=True, min_amplitude=0
     
     with open(path_to_eda_results_file, 'w', encoding='utf-8') as f:
         f.writelines(eda_results_str)
-    #if exists(path_to_eda_results_file):
-    #    with open(path_to_eda_results_file, 'a', encoding='utf-8') as f:
-    #        f.writelines(eda_results_str)
-    #else:
-    #    with open(path_to_eda_results_file, 'w', encoding='utf-8') as f:
-    #        f.writelines(eda_results_str)
     
+    #----
     
     filtered_eda_results_str = ""
-    
     for index, data_element in enumerate(filtered):
         filtered_eda_results_str += str(data_element) + "\n"
-    #print(filtered_eda_results_str)  # for debug only 
     
     path_to_filtered_eda_results_file = "./results/" + path.split(" # ")[1] + "_FilteredEdaResults.txt"
     if exists(path_to_filtered_eda_results_file):
@@ -145,14 +132,32 @@ def eda(signal=None, sampling_rate=1000.0, path=None, show=True, min_amplitude=0
     
     with open(path_to_filtered_eda_results_file, 'w', encoding='utf-8') as f:
         f.writelines(filtered_eda_results_str)
-    #if exists(path_to_filtered_eda_results_file):
-    #    with open(path_to_filtered_eda_results_file, 'a', encoding='utf-8') as f:
-    #        f.writelines(filtered_eda_results_str)
-    #else:
-    #    with open(path_to_filtered_eda_results_file, 'w', encoding='utf-8') as f:
-    #        f.writelines(filtered_eda_results_str)
-    #---------------------------------------------
     
+    #----
+
+    #transferfuction from raw value to siemens
+    eda_siemens_results_str = ""
+
+    eda_value = 0.0
+    eda_filtered_value = 0.0
+    vcc = 3.3
+    numberOfBits = 10
+    eda_constant = 0.132
+    for index, data_element in enumerate(signal):
+        eda_value = (((data_element/(2**numberOfBits)) * vcc)/eda_constant)
+        eda_filtered_value = (((filtered[index]/(2**numberOfBits)) * vcc)/eda_constant)
+        eda_siemens_results_str += str(eda_value)  + " ; " + str(eda_filtered_value) + "\n"
+    
+    path_to_siemens_eda_results_file = "./results/" + path.split(" # ")[1] + "_SiemensEdaResults.txt"
+    if exists(path_to_siemens_eda_results_file):
+        os.remove(path_to_siemens_eda_results_file)
+    
+    with open(path_to_siemens_eda_results_file, 'w', encoding='utf-8') as f:
+        f.writelines(eda_siemens_results_str)
+
+
+    #---------------------------------------------
+
     # output
     args = (ts, filtered, onsets, peaks, amps)
     names = ("ts", "filtered", "onsets", "peaks", "amplitudes")

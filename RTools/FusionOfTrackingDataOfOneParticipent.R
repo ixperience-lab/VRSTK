@@ -3,25 +3,15 @@ library(dplyr)
 
 fuseParticipentDataFrames <- function(id, condition, stage)
 {
-  print (sapply(transformedBitalinoECGDataFrameStage1, class))
-  print (sapply(transformedBitalinoEDADataFrameStage1, class))
-  print (sapply(bandPowerDataFrameStage1, class))
-  print (sapply(performanceMetricDataFrameStage1, class))
-  print (sapply(eyeTrackingInformationStage1, class))
-  print (sapply(pagesQualityParametersStage1, class))
-  
-  #fusedDataFrames <- transformedBilinoECGDataFrameStage1 %>% 
-  #                   left_join(bandPowerDataFrameStage1, by='time') %>% 
-  #                   left_join(performanceMetricDataFrameStage1, by='time')  %>%
-  #                   left_join(eyeTrackingInformationStage1, by='time')  %>%
-  #                   left_join(pagesQualityParametersStage1, by='time')  
-                     #%>% left_join(UncannyValleyQualityPrameters, by='time')
-  
-  #fusedDataFrames <- cbind(transformedBilinoECGDataFrameStage1, bandPowerDataFrameStage1)
-  
-  #fusedDataFrames <- merge(transformedBilinoECGDataFrameStage1, bandPowerDataFrameStage1, by="time")
+  # print (sapply(transformedBitalinoECGDataFrameStage1, class)) # debug only
+  # print (sapply(transformedBitalinoEDADataFrameStage1, class)) # debug only
+  # print (sapply(bandPowerDataFrameStage1, class))              # debug only
+  # print (sapply(performanceMetricDataFrameStage1, class))      # debug only
+  # print (sapply(eyeTrackingInformationStage1, class))          # debug only
+  # print (sapply(pagesQualityParametersStage1, class))          # debug only
    
   fusedDataFrames <- merge(transformedBitalinoECGDataFrameStage1, transformedBitalinoEDADataFrameStage1, by="time", all = TRUE)
+  fusedDataFrames <- merge(fusedDataFrames, transformedBitalinoEDASiemensDataFrameStage1, by="time", all = TRUE)
   fusedDataFrames <- merge(fusedDataFrames, bandPowerDataFrameStage1, by="time", all = TRUE)
   fusedDataFrames <- merge(fusedDataFrames, performanceMetricDataFrameStage1, by="time", all = TRUE)
   fusedDataFrames <- merge(fusedDataFrames, eyeTrackingInformationStage1, by="time", all = TRUE)

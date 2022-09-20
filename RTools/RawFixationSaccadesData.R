@@ -48,10 +48,10 @@ for(i in 1:nrow(rawEyeTrackingInformationStage0)) {
     if (is.null(rawEyeTrackingInformationDataFrameStage0))
     {
       rawEyeTrackingInformationDataFrameStage0 <- data.frame("time" = c(as.numeric(rowTimeValue)), 
-                                                             "LeftEyeOpenness" = c(as.numeric(splittedLeftEyeInformationsValue[3])), 
-                                                             "LeftPupilDiameter" = c(as.numeric(splittedLeftEyeInformationsValue[4])), 
-                                                             "RightEyeOpenness" = c(as.numeric(splittedRightEyeInformationsValue[3])), 
-                                                             "RightPupilDiameter" = c(as.numeric(splittedRightEyeInformationsValue[4])), 
+                                                             "LeftEyeOpenness" = c(as.numeric(splittedLeftEyeInformationsValue[4])), 
+                                                             "LeftPupilDiameter" = c(as.numeric(splittedLeftEyeInformationsValue[5])), 
+                                                             "RightEyeOpenness" = c(as.numeric(splittedRightEyeInformationsValue[4])), 
+                                                             "RightPupilDiameter" = c(as.numeric(splittedRightEyeInformationsValue[5])), 
                                                              "TotalFixationCounter" = c(as.numeric(splittedFixationsInformationValue[1])), 
                                                              "FixationCounter" = c(as.numeric(splittedFixationsInformationValue[2])), 
                                                              "TotalFixationDuration" = c(as.numeric(splittedFixationsInformationValue[3])),
@@ -62,10 +62,10 @@ for(i in 1:nrow(rawEyeTrackingInformationStage0)) {
     else
     {
       row <- c(as.numeric(rowTimeValue), 
-               as.numeric(splittedLeftEyeInformationsValue[3]), 
                as.numeric(splittedLeftEyeInformationsValue[4]), 
-               as.numeric(splittedRightEyeInformationsValue[3]), 
+               as.numeric(splittedLeftEyeInformationsValue[5]), 
                as.numeric(splittedRightEyeInformationsValue[4]), 
+               as.numeric(splittedRightEyeInformationsValue[5]), 
                as.numeric(splittedFixationsInformationValue[1]), 
                as.numeric(splittedFixationsInformationValue[2]), 
                as.numeric(splittedFixationsInformationValue[3]),
@@ -116,10 +116,10 @@ for(i in 1:nrow(rawEyeTrackingInformationStage1)) {
     if (is.null(rawEyeTrackingInformationDataFrameStage1))
     {
       rawEyeTrackingInformationDataFrameStage1 <- data.frame("time" = c(as.numeric(rowTimeValue)), 
-                                                             "LeftEyeOpenness" = c(as.numeric(splittedLeftEyeInformationsValue[3])), 
-                                                             "LeftPupilDiameter" = c(as.numeric(splittedLeftEyeInformationsValue[4])), 
-                                                             "RightEyeOpenness" = c(as.numeric(splittedRightEyeInformationsValue[3])), 
-                                                             "RightPupilDiameter" = c(as.numeric(splittedRightEyeInformationsValue[4])), 
+                                                             "LeftEyeOpenness" = c(as.numeric(splittedLeftEyeInformationsValue[4])), 
+                                                             "LeftPupilDiameter" = c(as.numeric(splittedLeftEyeInformationsValue[5])), 
+                                                             "RightEyeOpenness" = c(as.numeric(splittedRightEyeInformationsValue[4])), 
+                                                             "RightPupilDiameter" = c(as.numeric(splittedRightEyeInformationsValue[5])), 
                                                              "TotalFixationCounter" = c(as.numeric(splittedFixationsInformationValue[1])), 
                                                              "FixationCounter" = c(as.numeric(splittedFixationsInformationValue[2])), 
                                                              "TotalFixationDuration" = c(as.numeric(splittedFixationsInformationValue[3])),
@@ -130,10 +130,10 @@ for(i in 1:nrow(rawEyeTrackingInformationStage1)) {
     else
     {
       row <- c(as.numeric(rowTimeValue), 
-               as.numeric(splittedLeftEyeInformationsValue[3]), 
                as.numeric(splittedLeftEyeInformationsValue[4]), 
-               as.numeric(splittedRightEyeInformationsValue[3]), 
+               as.numeric(splittedLeftEyeInformationsValue[5]), 
                as.numeric(splittedRightEyeInformationsValue[4]), 
+               as.numeric(splittedRightEyeInformationsValue[5]), 
                as.numeric(splittedFixationsInformationValue[1]), 
                as.numeric(splittedFixationsInformationValue[2]), 
                as.numeric(splittedFixationsInformationValue[3]),
@@ -184,10 +184,10 @@ for(i in 1:nrow(rawEyeTrackingInformationStage2)) {
     if (is.null(rawEyeTrackingInformationDataFrameStage2))
     {
       rawEyeTrackingInformationDataFrameStage2 <- data.frame("time" = c(as.numeric(rowTimeValue)), 
-                                                             "LeftEyeOpenness" = c(as.numeric(splittedLeftEyeInformationsValue[3])), 
-                                                             "LeftPupilDiameter" = c(as.numeric(splittedLeftEyeInformationsValue[4])), 
-                                                             "RightEyeOpenness" = c(as.numeric(splittedRightEyeInformationsValue[3])), 
-                                                             "RightPupilDiameter" = c(as.numeric(splittedRightEyeInformationsValue[4])), 
+                                                             "LeftEyeOpenness" = c(as.numeric(splittedLeftEyeInformationsValue[4])), 
+                                                             "LeftPupilDiameter" = c(as.numeric(splittedLeftEyeInformationsValue[5])), 
+                                                             "RightEyeOpenness" = c(as.numeric(splittedRightEyeInformationsValue[4])), 
+                                                             "RightPupilDiameter" = c(as.numeric(splittedRightEyeInformationsValue[5])), 
                                                              "TotalFixationCounter" = c(as.numeric(splittedFixationsInformationValue[1])), 
                                                              "FixationCounter" = c(as.numeric(splittedFixationsInformationValue[2])), 
                                                              "TotalFixationDuration" = c(as.numeric(splittedFixationsInformationValue[3])),
@@ -198,10 +198,10 @@ for(i in 1:nrow(rawEyeTrackingInformationStage2)) {
     else
     {
       row <- c(as.numeric(rowTimeValue), 
-               as.numeric(splittedLeftEyeInformationsValue[3]), 
                as.numeric(splittedLeftEyeInformationsValue[4]), 
-               as.numeric(splittedRightEyeInformationsValue[3]), 
+               as.numeric(splittedLeftEyeInformationsValue[5]), 
                as.numeric(splittedRightEyeInformationsValue[4]), 
+               as.numeric(splittedRightEyeInformationsValue[5]), 
                as.numeric(splittedFixationsInformationValue[1]), 
                as.numeric(splittedFixationsInformationValue[2]), 
                as.numeric(splittedFixationsInformationValue[3]),

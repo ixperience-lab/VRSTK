@@ -5,6 +5,87 @@
 
 downsampling <- function(automationStage, stage)
 {
+  if(automationStage == 2)
+  {
+    countSiemensSamples <- 0
+    countTransformedBitalinoSamples <- 1
+    tempResultDataFrame <- NULL
+    tempDataFrame <- NULL
+    if(stage == 0){
+      countSiemensSamples <- nrow(transformedBitalinoEDASiemensDataFrameStage0)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage0)
+      tempResultDataFrame <- transformedBitalinoEDASiemensDataFrameStage0
+      tempDataFrame <- transformedBitalinoECGDataFrameStage0
+    }
+    if(stage == 1){
+      countSiemensSamples <- nrow(transformedBitalinoEDASiemensDataFrameStage1)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage1)
+      tempResultDataFrame <- transformedBitalinoEDASiemensDataFrameStage1
+      tempDataFrame <- transformedBitalinoECGDataFrameStage1
+    }
+    if(stage == 2){
+      countSiemensSamples <- nrow(transformedBitalinoEDASiemensDataFrameStage2)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage2)
+      tempResultDataFrame <- transformedBitalinoEDASiemensDataFrameStage2
+      tempDataFrame <- transformedBitalinoECGDataFrameStage2
+    }
+    
+    print(countSiemensSamples, zero.print = ".") # quite nicer,
+    print(countTransformedBitalinoSamples, zero.print = ".") # quite nicer,
+    
+    factor <- countSiemensSamples %/% countTransformedBitalinoSamples
+    print(factor, zero.print = ".") # quite nicer,
+    
+    samplesCounter <- 1
+    downsampledSiemensDataFrame <- NULL
+    for(i in 1:countSiemensSamples) {
+      if (samplesCounter == factor && is.null(downsampledSiemensDataFrame)) {
+        downsampledSiemensDataFrame <- data.frame("RawValueInMicroSiemens"       = c(as.numeric(tempResultDataFrame[i, 1])), 
+                                                  "FilteredValueInMicroSiemens"  = c(as.numeric(tempResultDataFrame[i, 2])));
+        
+        samplesCounter <- 0
+      }
+      else if(samplesCounter == factor){
+        row <- c(as.numeric(tempResultDataFrame[i, 1]), 
+                 as.numeric(tempResultDataFrame[i, 2]))
+        
+        downsampledSiemensTemp <- downsampledSiemensDataFrame                   
+        downsampledSiemensTemp[nrow(downsampledSiemensDataFrame) + 1, ] <- row
+        downsampledSiemensDataFrame <- downsampledSiemensTemp
+        samplesCounter <- 0
+      } 
+      
+      if (samplesCounter == 0)
+        samplesCounter <- 1
+      else
+        samplesCounter <- samplesCounter + 1
+    }
+    
+    countSiemensSamples <- nrow(downsampledSiemensDataFrame)
+    countTransformedBitalinoSamples <- nrow(tempDataFrame)
+    print("results_lengths: ")
+    print(countSiemensSamples, zero.print = ".") # quite nicer,
+    print(countTransformedBitalinoSamples, zero.print = ".") # quite nicer,
+    
+    if (countSiemensSamples > countTransformedBitalinoSamples){
+      downsampledSiemensDataFrame$time[1] <- 0
+      downsampledSiemensDataFrame$time[2:countSiemensSamples] <-tempDataFrame$time  
+    } 
+     
+    if (countSiemensSamples < countTransformedBitalinoSamples){
+      downsampledSiemensDataFrame$time <-tempDataFrame$time[2:countTransformedBitalinoSamples]  
+    } 
+    
+    if (countSiemensSamples == countTransformedBitalinoSamples){
+      downsampledSiemensDataFrame$time <-tempDataFrame$time
+    }
+    
+    downsampledSiemensDataFrame$time <- as.integer(downsampledSiemensDataFrame$time)
+    downsampledSiemensDataFrame <- downsampledSiemensDataFrame[, c(3, 1, 2)]
+    return(downsampledSiemensDataFrame)
+  }
+  
+  
   if(automationStage == 3)
   {
     countBandPowerSamples <- 0
@@ -101,6 +182,7 @@ downsampling <- function(automationStage, stage)
     return(downsampledBandPowerDataFrame)
   }
   
+  
   if(automationStage == 4)
   {
     countPerformanceMetricSamples <- 0
@@ -163,6 +245,7 @@ downsampling <- function(automationStage, stage)
     downsampledBandPowerDataFrame$time <- as.integer(downsampledBandPowerDataFrame$time)
     return(downsampledBandPowerDataFrame)
   }
+  
   
   if(automationStage == 5)
   {
@@ -231,6 +314,7 @@ downsampling <- function(automationStage, stage)
     downsampledPageQualityParmetersDataFrame$time <- as.integer(downsampledPageQualityParmetersDataFrame$time)
     return(downsampledPageQualityParmetersDataFrame)
   }
+  
   
   if(automationStage == 6)
   {

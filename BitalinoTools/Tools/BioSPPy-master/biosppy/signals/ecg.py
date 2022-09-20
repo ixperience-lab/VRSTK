@@ -205,7 +205,7 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
                 heart_rate_ts=ts_hr,
                 heart_rate=hr,
                 path=path.split(" # ")[0],
-                show=True,
+                show=False,
             )
 
         else:
@@ -219,7 +219,7 @@ def ecg(signal=None, sampling_rate=1000.0, path=None, show=True, interactive=Tru
                 heart_rate_ts=ts_hr,
                 heart_rate=hr,
                 path=path.split(" # ")[0],
-                show=True,
+                show=False,
             )
 
     # output

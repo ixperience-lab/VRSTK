@@ -7,39 +7,19 @@ from sklearn.cluster import MiniBatchKMeans
 from matplotlib import pyplot
 
 import pandas as pd
-import numpy as np
-import pickle
-
-#import matplotlib.pyplot as plt
-#import seaborn as sns
-#sns.set()
-
 
 # read csv input file
 input_data = pd.read_csv("All_Participents_DataFrame.csv", sep=";", decimal=',')
 
-print(input_data.head(1))
-print(input_data.dtypes)
-
-#input_data
-#print(input_data.columns)
-#input_data[:] = pd.to_numeric(input_data[:], downcast="float")
-#print(input_data.head[2])
-
-# define dataset
-#X, _ = make_classification(n_samples=1000, n_features=2, n_informative=2, n_redundant=0, n_clusters_per_class=1, random_state=4)
+#print(input_data.head(1))
+#print(input_data.dtypes)
 
 # define the model
 model = MiniBatchKMeans(n_clusters=2)
 
 input_data["Cluster"] = model.fit_predict(input_data)
 input_data["Cluster"] = input_data["Cluster"].astype("int")
-print(input_data.head(1)) 
-
-#sns.relplot(data=input_data, x="time", y="pId", hue="Cluster")
-#plt.show()
-
-
+#print(input_data.head(1)) 
 
 # fit the model
 """ model.fit(input_data)
@@ -65,10 +45,31 @@ for cluster in clusters:
 # show the plot
 print(test) """
 
-ax2 = input_data.plot.scatter(x='HeartRate',
+ax2 = input_data.plot.scatter(x='Cluster',
                        	      y='pId',
                               c='Cluster',
                               colormap='viridis')
 #pyplot.scatter(input_data[:, 0], input_data[:, 1], marker='o', c=yhat)
 #pyplot.scatter(test[0][0], test[1][0])
+pyplot.show()
+
+
+
+#-----------------------------------------------------------------------------------------
+# read csv input file
+#input_data = pd.read_csv("All_Participents_Mean_DataFrame.csv", sep=";", decimal=',')
+input_data = pd.read_csv("All_Participents_WaveSum_DataFrame.csv", sep=";", decimal=',')
+
+#print(input_data.head(1))
+#print(input_data.dtypes)
+
+# define the model
+model = MiniBatchKMeans(n_clusters=2)
+
+input_data["Cluster"] = model.fit_predict(input_data)
+input_data["Cluster"] = input_data["Cluster"].astype("int")
+print(input_data.head(1)) 
+
+ax2 = input_data.plot.scatter(x='Cluster', y='pId', c='Cluster', colormap='viridis')
+# show the plot
 pyplot.show()
