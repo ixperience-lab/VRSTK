@@ -11,10 +11,13 @@ import numpy as np
 
 #------ load dataset into Pandas DataFrame
 #input_data = pd.read_csv("All_Participents_DataFrame.csv", sep=";", decimal=',')
-input_data = pd.read_csv("All_Participents_WaveSum_DataFrame.csv", sep=";", decimal=',')
+#input_data = pd.read_csv("All_Participents_WaveSum_DataFrame.csv", sep=";", decimal=',')
+input_data = pd.read_csv("All_Participents_WaveSum_Mean_DataFrame.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_DataFrame_Filtered_BandPower.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_DataFrame_Filtered_PerformanceMetric.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_Mean_DataFrame.csv", sep=";", decimal=',')
+#input_data = pd.read_csv("All_Participents_WaveSum_Mean_DataFrame.csv", sep=";", decimal=',')
+
 
 #colnames = list (input_data.columns)
 #input_data.reset_index().plot(x="index", y=colnames[1:], kind = 'line', legend=False, 

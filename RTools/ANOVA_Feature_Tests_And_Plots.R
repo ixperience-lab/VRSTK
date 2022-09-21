@@ -70,6 +70,7 @@ allConscientiousFeaturesTrackedFromStage1 <- read.csv2(file = './Condition A/RRe
 allNoneConscientiousFeaturesTrackedFromStage1 <- read.csv2(file = './Condition B/RResults/All_Participents_DataFrame.csv')
 allNoneFeaturesTrackedFromStage1 <- read.csv2(file = './Condition C/RResults/All_Participents_DataFrame.csv')
 allFeaturesTrackedFromStage1 <- read.csv2(file = 'All_Participents_DataFrame.csv')
+allMeanFeaturesTrackedFromStage1 <- read.csv2(file = 'All_Participents_Mean_DataFrame.csv')
 
 # Condition A
 temp <- allConscientiousFeaturesTrackedFromStage1
@@ -79,7 +80,8 @@ temp$betaL <- temp$AF3.betaL + temp$F7.betaL + temp$F3.betaL + temp$FC5.betaL + 
 temp$betaH <- temp$AF3.betaH + temp$F7.betaH + temp$F3.betaH + temp$FC5.betaH + temp$T7.betaH + temp$P7.betaH + temp$O1.betaH + temp$O2.betaH + temp$P8.betaH + temp$T8.betaH + temp$AF4.betaH + temp$F8.betaH + temp$F4.betaH + temp$FC6.betaH
 temp$gamma <- temp$AF3.gamma + temp$F7.gamma + temp$F3.gamma + temp$FC5.gamma + temp$T7.gamma + temp$P7.gamma + temp$O1.gamma + temp$O2.gamma + temp$P8.gamma + temp$T8.gamma + temp$AF4.gamma + temp$F8.gamma + temp$F4.gamma + temp$FC6.gamma
 allConscientiousFeaturesTrackedFromStage1 <- temp
-barplot(colSums(allConscientiousFeaturesTrackedFromStage1[,121:125]))
+#barplot(colSums(allConscientiousFeaturesTrackedFromStage1[,121:125]))
+barplot(colSums(allConscientiousFeaturesTrackedFromStage1[,123:125]))
 
 # Condition B
 temp <- allNoneConscientiousFeaturesTrackedFromStage1
@@ -89,7 +91,8 @@ temp$betaL <- temp$AF3.betaL + temp$F7.betaL + temp$F3.betaL + temp$FC5.betaL + 
 temp$betaH <- temp$AF3.betaH + temp$F7.betaH + temp$F3.betaH + temp$FC5.betaH + temp$T7.betaH + temp$P7.betaH + temp$O1.betaH + temp$O2.betaH + temp$P8.betaH + temp$T8.betaH + temp$AF4.betaH + temp$F8.betaH + temp$F4.betaH + temp$FC6.betaH
 temp$gamma <- temp$AF3.gamma + temp$F7.gamma + temp$F3.gamma + temp$FC5.gamma + temp$T7.gamma + temp$P7.gamma + temp$O1.gamma + temp$O2.gamma + temp$P8.gamma + temp$T8.gamma + temp$AF4.gamma + temp$F8.gamma + temp$F4.gamma + temp$FC6.gamma
 allNoneConscientiousFeaturesTrackedFromStage1 <- temp
-barplot(colSums(allNoneConscientiousFeaturesTrackedFromStage1[,121:125]))
+#barplot(colSums(allNoneConscientiousFeaturesTrackedFromStage1[,121:125]))
+barplot(colSums(allNoneConscientiousFeaturesTrackedFromStage1[,123:125]))
 
 # Condition C
 temp <- allNoneFeaturesTrackedFromStage1
@@ -99,7 +102,8 @@ temp$betaL <- temp$AF3.betaL + temp$F7.betaL + temp$F3.betaL + temp$FC5.betaL + 
 temp$betaH <- temp$AF3.betaH + temp$F7.betaH + temp$F3.betaH + temp$FC5.betaH + temp$T7.betaH + temp$P7.betaH + temp$O1.betaH + temp$O2.betaH + temp$P8.betaH + temp$T8.betaH + temp$AF4.betaH + temp$F8.betaH + temp$F4.betaH + temp$FC6.betaH
 temp$gamma <- temp$AF3.gamma + temp$F7.gamma + temp$F3.gamma + temp$FC5.gamma + temp$T7.gamma + temp$P7.gamma + temp$O1.gamma + temp$O2.gamma + temp$P8.gamma + temp$T8.gamma + temp$AF4.gamma + temp$F8.gamma + temp$F4.gamma + temp$FC6.gamma
 allNoneFeaturesTrackedFromStage1 <- temp
-barplot(colSums(allNoneFeaturesTrackedFromStage1[,121:125]))
+#barplot(colSums(allNoneFeaturesTrackedFromStage1[,121:125]))
+barplot(colSums(allNoneFeaturesTrackedFromStage1[,123:125]))
 
 # Condition A-B-C
 temp <- allFeaturesTrackedFromStage1
@@ -109,9 +113,21 @@ temp$betaL <- temp$AF3.betaL + temp$F7.betaL + temp$F3.betaL + temp$FC5.betaL + 
 temp$betaH <- temp$AF3.betaH + temp$F7.betaH + temp$F3.betaH + temp$FC5.betaH + temp$T7.betaH + temp$P7.betaH + temp$O1.betaH + temp$O2.betaH + temp$P8.betaH + temp$T8.betaH + temp$AF4.betaH + temp$F8.betaH + temp$F4.betaH + temp$FC6.betaH
 temp$gamma <- temp$AF3.gamma + temp$F7.gamma + temp$F3.gamma + temp$FC5.gamma + temp$T7.gamma + temp$P7.gamma + temp$O1.gamma + temp$O2.gamma + temp$P8.gamma + temp$T8.gamma + temp$AF4.gamma + temp$F8.gamma + temp$F4.gamma + temp$FC6.gamma
 allFeaturesTrackedFromStage1 <- temp
-barplot(colSums(allFeaturesTrackedFromStage1[,114:118]))
-
+#barplot(colSums(allFeaturesTrackedFromStage1[,114:118]))
+barplot(colSums(allFeaturesTrackedFromStage1[,116:118]))
 write.csv2(allFeaturesTrackedFromStage1, "All_Participents_WaveSum_DataFrame.csv", row.names = FALSE)
+
+# Condition A-B-C Mean
+temp <- allMeanFeaturesTrackedFromStage1
+temp$theta <- temp$AF3.theta + temp$F7.theta + temp$F3.theta + temp$FC5.theta + temp$T7.theta + temp$P7.theta + temp$O1.theta + temp$O2.theta + temp$P8.theta + temp$T8.theta + temp$AF4.theta + temp$F8.theta + temp$F4.theta + temp$FC6.theta
+temp$alpha <- temp$AF3.alpha + temp$F7.alpha + temp$F3.alpha + temp$FC5.alpha + temp$T7.alpha + temp$P7.alpha + temp$O1.alpha + temp$O2.alpha + temp$P8.alpha + temp$T8.alpha + temp$AF4.alpha + temp$F8.alpha + temp$F4.alpha + temp$FC6.alpha 
+temp$betaL <- temp$AF3.betaL + temp$F7.betaL + temp$F3.betaL + temp$FC5.betaL + temp$T7.betaL + temp$P7.betaL + temp$O1.betaL + temp$O2.betaL + temp$P8.betaL + temp$T8.betaL + temp$AF4.betaL + temp$F8.betaL + temp$F4.betaL + temp$FC6.betaL
+temp$betaH <- temp$AF3.betaH + temp$F7.betaH + temp$F3.betaH + temp$FC5.betaH + temp$T7.betaH + temp$P7.betaH + temp$O1.betaH + temp$O2.betaH + temp$P8.betaH + temp$T8.betaH + temp$AF4.betaH + temp$F8.betaH + temp$F4.betaH + temp$FC6.betaH
+temp$gamma <- temp$AF3.gamma + temp$F7.gamma + temp$F3.gamma + temp$FC5.gamma + temp$T7.gamma + temp$P7.gamma + temp$O1.gamma + temp$O2.gamma + temp$P8.gamma + temp$T8.gamma + temp$AF4.gamma + temp$F8.gamma + temp$F4.gamma + temp$FC6.gamma
+allMeanFeaturesTrackedFromStage1 <- temp
+#barplot(colSums(allMeanFeaturesTrackedFromStage1[,114:118]))
+barplot(colSums(allMeanFeaturesTrackedFromStage1[,116:118]))
+write.csv2(allMeanFeaturesTrackedFromStage1, "All_Participents_WaveSum_Mean_DataFrame.csv", row.names = FALSE)
 
 
 rowConscientiousCounter     <- nrow(allConscientiousFeaturesTrackedFromStage1)

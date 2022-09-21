@@ -23,7 +23,9 @@ from sklearn.linear_model import RidgeCV, LassoCV, Ridge, Lasso
 #df.head()
 
 # read csv input file
-input_data = pd.read_csv("All_Participents_DataFrame.csv", sep=";", decimal=',')
+#input_data = pd.read_csv("All_Participents_DataFrame.csv", sep=";", decimal=',')
+#input_data = pd.read_csv("All_Participents_WaveSum_DataFrame.csv", sep=";", decimal=',')
+input_data = pd.read_csv("All_Participents_WaveSum_Mean_DataFrame.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_DataFrame_Filtered_BandPower.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_Mean_DataFrame.csv", sep=";", decimal=',')
 
@@ -58,6 +60,6 @@ plt.figure();
 radviz(input_data, "pId");
 plt.show()
 
-from pandas.plotting import scatter_matrix
-scatter_matrix(input_data, alpha=0.2, figsize=(6, 6), diagonal="kde");
-plt.show()
+#from pandas.plotting import scatter_matrix
+#scatter_matrix(input_data, alpha=0.2, figsize=(6, 6), diagonal="kde");
+#plt.show()

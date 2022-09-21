@@ -498,7 +498,7 @@ rm(list)
 
 # 12.1 create fuse mean data frame all participants
 
-condition <- 'Condition C'
+condition <- 'Condition A'
 condition_list <- NULL
 if (str_detect(condition, "Condition A")){
   # Conditions Ids:

@@ -9,7 +9,8 @@ from matplotlib import pyplot
 import pandas as pd
 
 # read csv input file
-input_data = pd.read_csv("All_Participents_DataFrame.csv", sep=";", decimal=',')
+#input_data = pd.read_csv("All_Participents_DataFrame.csv", sep=";", decimal=',')
+input_data = pd.read_csv("All_Participents_WaveSum_DataFrame.csv", sep=";", decimal=',')
 
 #print(input_data.head(1))
 #print(input_data.dtypes)
@@ -58,7 +59,7 @@ pyplot.show()
 #-----------------------------------------------------------------------------------------
 # read csv input file
 #input_data = pd.read_csv("All_Participents_Mean_DataFrame.csv", sep=";", decimal=',')
-input_data = pd.read_csv("All_Participents_WaveSum_DataFrame.csv", sep=";", decimal=',')
+input_data = pd.read_csv("All_Participents_WaveSum_Mean_DataFrame.csv", sep=";", decimal=',')
 
 #print(input_data.head(1))
 #print(input_data.dtypes)
