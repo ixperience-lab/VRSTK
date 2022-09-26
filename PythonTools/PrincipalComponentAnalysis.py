@@ -10,32 +10,22 @@ import pandas as pd
 import numpy as np
 
 #------ load dataset into Pandas DataFrame
-#input_data = pd.read_csv("All_Participents_DataFrame.csv", sep=";", decimal=',')
+#input_data = pd.read_csv("All_Participents_Stage1_DataFrame.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_WaveSum_DataFrame.csv", sep=";", decimal=',')
-input_data = pd.read_csv("All_Participents_WaveSum_Mean_DataFrame.csv", sep=";", decimal=',')
+#input_data = pd.read_csv("All_Participents_WaveSum_Mean_DataFrame.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_DataFrame_Filtered_BandPower.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_DataFrame_Filtered_PerformanceMetric.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_Mean_DataFrame.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_WaveSum_Mean_DataFrame.csv", sep=";", decimal=',')
-
-
-#colnames = list (input_data.columns)
-#input_data.reset_index().plot(x="index", y=colnames[1:], kind = 'line', legend=False, 
-#                 subplots = True, sharex = True, figsize = (5.5,4), ls="none", marker="o")
-#plt.show()
-
+input_data = pd.read_csv("All_Participents_Mean_Diff_Of_Stages_DataFrame.csv", sep=";", decimal=',')
 
 #------ Normalizing
-#features = ['sepal length', 'sepal width', 'petal length', 'petal width']
 # Separating out the features
 x = input_data.loc[:, :].values
-#print(x) # Debug only
 # Separating out the target
 y = input_data.loc[:,['pId']].values
-#print(y) # Debug only
 # Standardizing the features
 x = StandardScaler().fit_transform(x)
-#print(x) # Debug only
 
 #------ Principal Component Analysis n_components=2
 pca = PCA(n_components=4)
@@ -44,48 +34,67 @@ print(pca.explained_variance_ratio_)  # Debug only
 #print(principalComponents) # Debug only
 principalDataFrame = pd.DataFrame(data = principalComponents)#, columns = ['principal component 1', 'principal component 2'])#, 'principal component 3', 'principal component 4'])
 #print(principalDataFrame) # Debug only
-
-colnames = list (principalDataFrame.columns)
-principalDataFrame.reset_index().plot(x="index", y=colnames[0:], kind = 'line', legend=False, 
-                 subplots = True, sharex = True, figsize = (5.5,4), ls="none", marker="o")
-
+#------ correlation matrix
+f = plt.figure(figsize=(28, 32))
+plt.matshow(principalDataFrame.corr(), fignum=f.number)
+plt.xticks(range(principalDataFrame.select_dtypes(['number']).shape[1]), principalDataFrame.select_dtypes(['number']).columns, fontsize=8, rotation=45)
+plt.yticks(range(principalDataFrame.select_dtypes(['number']).shape[1]), principalDataFrame.select_dtypes(['number']).columns, fontsize=8)
+cb = plt.colorbar()
+cb.ax.tick_params(labelsize=8)
+plt.title('Correlation Matrix', fontsize=16);
 plt.show()
 
-#------ Principal Component Analysis n_components=1
-""" pca = PCA(n_components=1)
-principalComponents = pca.fit_transform(x)
-print(principalComponents) # Debug only
-principalDataFrame = pd.DataFrame(data = principalComponents, columns = ['principal component 1'])
-#print(principalDataFrame) # Debug only """
+#colnames = list (principalDataFrame.columns)
+#principalDataFrame.reset_index().plot(x="index", y=colnames[0:], kind = 'line', legend=False, 
+#                 subplots = True, sharex = True, figsize = (5.5,4), ls="none", marker="o")
+
+#plt.show()
 
 resultDataFrame = pd.concat([principalDataFrame, input_data[['pId']]], axis = 1)
-print(resultDataFrame) # Debug only
-
-""" fig = plt.figure(figsize = (8,8))
-ax = fig.add_subplot(1,1,1) 
-ax.set_xlabel('Principal Component 1', fontsize = 15)
-ax.set_ylabel('Principal Component 2', fontsize = 15)
-ax.set_title('2 component PCA', fontsize = 20)
-targets = ['1', '2', '13']
-colors = ['r', 'g', 'b']
-for target, color in zip(targets,colors):
-    indicesToKeep = resultDataFrame['pId'] == target
-    ax.scatter(resultDataFrame.loc[indicesToKeep, 'principal component 1'], resultDataFrame.loc[indicesToKeep, 'principal component 2'], c = color, s = 50)
-ax.legend(targets)
-ax.grid() """
+#print(resultDataFrame) # Debug only
 
 #ax2 = resultDataFrame.plot.scatter(x='principal component 1', y='principal component 2', c='pId', colormap='viridis')
 # show the plot
 #plt.show()
 
-#copyDataFrame = resultDataFrame
-#copyDataFrame['Y_Val'] = np.zeros_like(resultDataFrame['principal component 1'])
-#ax2 = copyDataFrame.plot.scatter(x='principal component 1', y='Y_Val' , c='pId', colormap='viridis')
+gaussianDataFrame = input_data
+
+# GaussianMixture
+# define the model
+#model = GaussianMixture(n_components=2)
+
+#gaussianDataFrame["Cluster"] = model.fit_predict(gaussianDataFrame)
+#gaussianDataFrame["Cluster"] = gaussianDataFrame["Cluster"].astype("int")
+#print(gaussianDataFrame.head()) 
+
+#print("=================================================== gaussianDataFrame normal plot")
+
+#ax2 = gaussianDataFrame.plot.scatter(x='Cluster', y='pId', c='Cluster', colormap='viridis')
+# show the plot
 #plt.show()
 
-#ax2 = copyDataFrame.plot.scatter(x='principal component 2', y='Y_Val' , c='pId', colormap='viridis')
+#--------------------
+
+#_Ids = [ 1,2,3,4,5,6,7,10,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,31,34]
+#for id in _Ids:
+#   temp = gaussianDataFrame.loc[gaussianDataFrame["pId"] == id]
+#    first =  temp[temp.Cluster == 0].shape[0]
+#    second =  temp[temp.Cluster == 1].shape[0]
+#    print(first)
+#    print(second)
+#    print ("test")
+#    if first > second: 
+#        gaussianDataFrame.Cluster[gaussianDataFrame.pId == id] = 0
+#    if first < second: 
+#        gaussianDataFrame.Cluster[gaussianDataFrame.pId == id] = 1
+
+#print("=================================================== gaussianDataFrame ids filter plot")
+
+#ax2 = gaussianDataFrame.plot.scatter(x='Cluster', y='pId', c='Cluster', colormap='viridis')
+# show the plot
 #plt.show()
 
+#--------------------
 
 gaussianDataFrame = resultDataFrame
 
@@ -95,11 +104,72 @@ model = GaussianMixture(n_components=2)
 
 gaussianDataFrame["Cluster"] = model.fit_predict(gaussianDataFrame)
 gaussianDataFrame["Cluster"] = gaussianDataFrame["Cluster"].astype("int")
-print(gaussianDataFrame.head()) 
+#print(gaussianDataFrame.head()) 
+
+print("=================================================== gaussianDataFrame principal component plot")
 
 ax2 = gaussianDataFrame.plot.scatter(x='Cluster', y='pId', c='Cluster', colormap='viridis')
 # show the plot
 plt.show()
+
+_Ids = [ 1,2,3,4,5,6,7,10,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,31,34]
+for id in _Ids:
+    temp = gaussianDataFrame.loc[gaussianDataFrame["pId"] == id]
+    first =  temp[temp.Cluster == 0].shape[0]
+    second =  temp[temp.Cluster == 1].shape[0]
+    print(first)
+    print(second)
+    print ("test")
+    if first > second: 
+        gaussianDataFrame.Cluster[gaussianDataFrame.pId == id] = 0
+    if first < second: 
+        gaussianDataFrame.Cluster[gaussianDataFrame.pId == id] = 1
+
+print("=================================================== gaussianDataFrame principal component ids filter plot")
+
+ax2 = gaussianDataFrame.plot.scatter(x='Cluster', y='pId', c='Cluster', colormap='viridis')
+# show the plot
+plt.show()
+
+
+#======================================================= K-MEANS
+
+kMeansDataFrame = input_data
+
+# define the model
+model = MiniBatchKMeans(n_clusters=2)
+
+kMeansDataFrame["Cluster"] = model.fit_predict(kMeansDataFrame)
+kMeansDataFrame["Cluster"] = kMeansDataFrame["Cluster"].astype("int")
+
+print("=================================================== kMeansDataFrame normal plot")
+
+ax2 = kMeansDataFrame.plot.scatter(x='Cluster', y='pId', c='Cluster', colormap='viridis')
+# show the plot
+plt.show()
+
+#--------------------
+
+_Ids = [ 1,2,3,4,5,6,7,10,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,31,34]
+for id in _Ids:
+    temp = kMeansDataFrame.loc[kMeansDataFrame["pId"] == id]
+    first =  temp[temp.Cluster == 0].shape[0]
+    second =  temp[temp.Cluster == 1].shape[0]
+    print(first)
+    print(second)
+    print ("test")
+    if first > second: 
+        kMeansDataFrame.Cluster[kMeansDataFrame.pId == id] = 0
+    if first < second: 
+        kMeansDataFrame.Cluster[kMeansDataFrame.pId == id] = 1
+
+print("=================================================== kMeansDataFrame ids filter plot")
+
+ax2 = kMeansDataFrame.plot.scatter(x='Cluster', y='pId', c='Cluster', colormap='viridis')
+# show the plot
+plt.show()
+
+#--------------------
 
 kMeansDataFrame = resultDataFrame
 
@@ -108,6 +178,8 @@ model = MiniBatchKMeans(n_clusters=2)
 
 kMeansDataFrame["Cluster"] = model.fit_predict(kMeansDataFrame)
 kMeansDataFrame["Cluster"] = kMeansDataFrame["Cluster"].astype("int")
+
+print("=================================================== kMeansDataFrame principal component plot")
 
 ax2 = kMeansDataFrame.plot.scatter(x='Cluster', y='pId', c='Cluster', colormap='viridis')
 # show the plot

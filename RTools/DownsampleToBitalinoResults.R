@@ -381,5 +381,51 @@ downsampling <- function(automationStage, stage)
     downsampledFixationSaccadsDataFrame$time <- as.integer(downsampledFixationSaccadsDataFrame$time)
     return(downsampledFixationSaccadsDataFrame)
   }
+  
+  
+  if(automationStage == 7)
+  {
+    countCenterOfViewSamples <- 0
+    countTransformedBitalinoSamples <- 1
+    tempResultDataFrame <- NULL
+    tempDataFrame <- NULL
+    if(stage == 1){
+      countCenterOfViewSamples <- nrow(centerOfViewInformationDataFrameStage1)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage1)
+      tempResultDataFrame <- centerOfViewInformationDataFrameStage1
+      tempDataFrame <- transformedBitalinoECGDataFrameStage1
+    }
+    
+    print(countCenterOfViewSamples, zero.print = ".") # quite nicer,
+    print(countTransformedBitalinoSamples, zero.print = ".") # quite nicer,
+    
+    factor <- countCenterOfViewSamples %/% countTransformedBitalinoSamples
+    print(factor, zero.print = ".") # quite nicer,
+    
+    samplesCounter <- 1
+    downsampledCenterOfViewDataFrame <- NULL
+    for(i in 1:countCenterOfViewSamples) {
+      if (samplesCounter == factor && is.null(downsampledCenterOfViewDataFrame)) {
+        downsampledCenterOfViewDataFrame <- data.frame("time"                = c(as.integer(tempResultDataFrame[i, 1])), 
+                                                       "ActivatedModelIndex" = c(as.numeric(tempResultDataFrame[i, 2])));
+        
+        samplesCounter <- 0
+      }
+      else if(samplesCounter == factor){
+        row<-tempResultDataFrame[i,]
+        downsampledCenterOfViewTemp <- downsampledCenterOfViewDataFrame                   
+        downsampledCenterOfViewTemp[nrow(downsampledCenterOfViewDataFrame) + 1, ] <- row
+        downsampledCenterOfViewDataFrame <- downsampledCenterOfViewTemp
+        samplesCounter <- 0
+      } 
+      
+      if (samplesCounter == 0)
+        samplesCounter <- 1
+      else
+        samplesCounter <- samplesCounter + 1
+    }
+    downsampledCenterOfViewDataFrame$time <- as.integer(downsampledCenterOfViewDataFrame$time)
+    return(downsampledCenterOfViewDataFrame)
+  }
 
 }

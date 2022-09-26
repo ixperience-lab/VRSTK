@@ -66,22 +66,26 @@ library(ggstatsplot)
 # manuell clustert (0 = conscientious, 1 = none-conscientious)
 # =======
 # read csv file as data frame
-allConscientiousFeaturesTrackedFromStage1 <- read.csv2(file = './Condition A/RResults/All_Participents_DataFrame.csv')
-allNoneConscientiousFeaturesTrackedFromStage1 <- read.csv2(file = './Condition B/RResults/All_Participents_DataFrame.csv')
-allNoneFeaturesTrackedFromStage1 <- read.csv2(file = './Condition C/RResults/All_Participents_DataFrame.csv')
-allFeaturesTrackedFromStage1 <- read.csv2(file = 'All_Participents_DataFrame.csv')
-allMeanFeaturesTrackedFromStage1 <- read.csv2(file = 'All_Participents_Mean_DataFrame.csv')
+allConscientiousFeaturesTrackedFromStage1 <- read.csv2(file = './Condition A/RResults/All_Participents_Stage1_DataFrame.csv')
+allNoneConscientiousFeaturesTrackedFromStage1 <- read.csv2(file = './Condition B/RResults/All_Participents_Stage1_DataFrame.csv')
+allNoneFeaturesTrackedFromStage1 <- read.csv2(file = './Condition C/RResults/All_Participents_Stage1_DataFrame.csv')
+allFeaturesTrackedFromStage1 <- read.csv2(file = 'All_Participents_Stage1_DataFrame.csv')
+allMeanFeaturesTrackedFromStage1 <- read.csv2(file = 'All_Participents_Mean_Stage1_DataFrame.csv')
 
 # Condition A
 temp <- allConscientiousFeaturesTrackedFromStage1
+#================= 1 ============== 2 ============== 3 ============== 4 ============== 5 ============= 6 ============ 7 ============= 8 ============ 9 ============== 10 ============ 11 ============= 12 ============ 13 ============ 14 =====
 temp$theta <- temp$AF3.theta + temp$F7.theta + temp$F3.theta + temp$FC5.theta + temp$T7.theta + temp$P7.theta + temp$O1.theta + temp$O2.theta + temp$P8.theta + temp$T8.theta + temp$AF4.theta + temp$F8.theta + temp$F4.theta + temp$FC6.theta
 temp$alpha <- temp$AF3.alpha + temp$F7.alpha + temp$F3.alpha + temp$FC5.alpha + temp$T7.alpha + temp$P7.alpha + temp$O1.alpha + temp$O2.alpha + temp$P8.alpha + temp$T8.alpha + temp$AF4.alpha + temp$F8.alpha + temp$F4.alpha + temp$FC6.alpha 
 temp$betaL <- temp$AF3.betaL + temp$F7.betaL + temp$F3.betaL + temp$FC5.betaL + temp$T7.betaL + temp$P7.betaL + temp$O1.betaL + temp$O2.betaL + temp$P8.betaL + temp$T8.betaL + temp$AF4.betaL + temp$F8.betaL + temp$F4.betaL + temp$FC6.betaL
 temp$betaH <- temp$AF3.betaH + temp$F7.betaH + temp$F3.betaH + temp$FC5.betaH + temp$T7.betaH + temp$P7.betaH + temp$O1.betaH + temp$O2.betaH + temp$P8.betaH + temp$T8.betaH + temp$AF4.betaH + temp$F8.betaH + temp$F4.betaH + temp$FC6.betaH
 temp$gamma <- temp$AF3.gamma + temp$F7.gamma + temp$F3.gamma + temp$FC5.gamma + temp$T7.gamma + temp$P7.gamma + temp$O1.gamma + temp$O2.gamma + temp$P8.gamma + temp$T8.gamma + temp$AF4.gamma + temp$F8.gamma + temp$F4.gamma + temp$FC6.gamma
+# eeg band power column number = 70 and begin with 10
 allConscientiousFeaturesTrackedFromStage1 <- temp
-#barplot(colSums(allConscientiousFeaturesTrackedFromStage1[,121:125]))
-barplot(colSums(allConscientiousFeaturesTrackedFromStage1[,123:125]))
+columnConscientiousCounter <- ncol(allConscientiousFeaturesTrackedFromStage1)
+barplot(colSums(allConscientiousFeaturesTrackedFromStage1[,(34):103]))
+barplot(colSums(allConscientiousFeaturesTrackedFromStage1[,(columnConscientiousCounter - 4):columnConscientiousCounter]))
+barplot(colSums(allConscientiousFeaturesTrackedFromStage1[,(columnConscientiousCounter - 2):columnConscientiousCounter]))
 
 # Condition B
 temp <- allNoneConscientiousFeaturesTrackedFromStage1
@@ -91,8 +95,10 @@ temp$betaL <- temp$AF3.betaL + temp$F7.betaL + temp$F3.betaL + temp$FC5.betaL + 
 temp$betaH <- temp$AF3.betaH + temp$F7.betaH + temp$F3.betaH + temp$FC5.betaH + temp$T7.betaH + temp$P7.betaH + temp$O1.betaH + temp$O2.betaH + temp$P8.betaH + temp$T8.betaH + temp$AF4.betaH + temp$F8.betaH + temp$F4.betaH + temp$FC6.betaH
 temp$gamma <- temp$AF3.gamma + temp$F7.gamma + temp$F3.gamma + temp$FC5.gamma + temp$T7.gamma + temp$P7.gamma + temp$O1.gamma + temp$O2.gamma + temp$P8.gamma + temp$T8.gamma + temp$AF4.gamma + temp$F8.gamma + temp$F4.gamma + temp$FC6.gamma
 allNoneConscientiousFeaturesTrackedFromStage1 <- temp
-#barplot(colSums(allNoneConscientiousFeaturesTrackedFromStage1[,121:125]))
-barplot(colSums(allNoneConscientiousFeaturesTrackedFromStage1[,123:125]))
+columnNoneConscientiousCounter <- ncol(allNoneConscientiousFeaturesTrackedFromStage1)
+barplot(colSums(allNoneConscientiousFeaturesTrackedFromStage1[,(34):103]))
+barplot(colSums(allNoneConscientiousFeaturesTrackedFromStage1[,(columnConscientiousCounter - 4):columnConscientiousCounter]))
+barplot(colSums(allNoneConscientiousFeaturesTrackedFromStage1[,(columnConscientiousCounter - 2):columnConscientiousCounter]))
 
 # Condition C
 temp <- allNoneFeaturesTrackedFromStage1
@@ -102,8 +108,12 @@ temp$betaL <- temp$AF3.betaL + temp$F7.betaL + temp$F3.betaL + temp$FC5.betaL + 
 temp$betaH <- temp$AF3.betaH + temp$F7.betaH + temp$F3.betaH + temp$FC5.betaH + temp$T7.betaH + temp$P7.betaH + temp$O1.betaH + temp$O2.betaH + temp$P8.betaH + temp$T8.betaH + temp$AF4.betaH + temp$F8.betaH + temp$F4.betaH + temp$FC6.betaH
 temp$gamma <- temp$AF3.gamma + temp$F7.gamma + temp$F3.gamma + temp$FC5.gamma + temp$T7.gamma + temp$P7.gamma + temp$O1.gamma + temp$O2.gamma + temp$P8.gamma + temp$T8.gamma + temp$AF4.gamma + temp$F8.gamma + temp$F4.gamma + temp$FC6.gamma
 allNoneFeaturesTrackedFromStage1 <- temp
-#barplot(colSums(allNoneFeaturesTrackedFromStage1[,121:125]))
-barplot(colSums(allNoneFeaturesTrackedFromStage1[,123:125]))
+columnNoneCounter <- ncol(allNoneFeaturesTrackedFromStage1)
+barplot(colSums(allNoneFeaturesTrackedFromStage1[,(34):103]))
+barplot(colSums(allNoneFeaturesTrackedFromStage1[,(columnConscientiousCounter - 4):columnConscientiousCounter]))
+barplot(colSums(allNoneFeaturesTrackedFromStage1[,(columnConscientiousCounter - 2):columnConscientiousCounter]))
+write.csv2(allNoneFeaturesTrackedFromStage1, "All_Participents_Condition-C_WaveSum_DataFrame.csv", row.names = FALSE)
+
 
 # Condition A-B-C
 temp <- allFeaturesTrackedFromStage1
@@ -113,8 +123,10 @@ temp$betaL <- temp$AF3.betaL + temp$F7.betaL + temp$F3.betaL + temp$FC5.betaL + 
 temp$betaH <- temp$AF3.betaH + temp$F7.betaH + temp$F3.betaH + temp$FC5.betaH + temp$T7.betaH + temp$P7.betaH + temp$O1.betaH + temp$O2.betaH + temp$P8.betaH + temp$T8.betaH + temp$AF4.betaH + temp$F8.betaH + temp$F4.betaH + temp$FC6.betaH
 temp$gamma <- temp$AF3.gamma + temp$F7.gamma + temp$F3.gamma + temp$FC5.gamma + temp$T7.gamma + temp$P7.gamma + temp$O1.gamma + temp$O2.gamma + temp$P8.gamma + temp$T8.gamma + temp$AF4.gamma + temp$F8.gamma + temp$F4.gamma + temp$FC6.gamma
 allFeaturesTrackedFromStage1 <- temp
-#barplot(colSums(allFeaturesTrackedFromStage1[,114:118]))
-barplot(colSums(allFeaturesTrackedFromStage1[,116:118]))
+columnAllCounter <- ncol(allFeaturesTrackedFromStage1)
+barplot(colSums(allFeaturesTrackedFromStage1[,(34):103]))
+barplot(colSums(allFeaturesTrackedFromStage1[,(columnAllCounter - 4):columnAllCounter]))
+barplot(colSums(allFeaturesTrackedFromStage1[,(columnAllCounter - 2):columnAllCounter]))
 write.csv2(allFeaturesTrackedFromStage1, "All_Participents_WaveSum_DataFrame.csv", row.names = FALSE)
 
 # Condition A-B-C Mean
@@ -125,15 +137,31 @@ temp$betaL <- temp$AF3.betaL + temp$F7.betaL + temp$F3.betaL + temp$FC5.betaL + 
 temp$betaH <- temp$AF3.betaH + temp$F7.betaH + temp$F3.betaH + temp$FC5.betaH + temp$T7.betaH + temp$P7.betaH + temp$O1.betaH + temp$O2.betaH + temp$P8.betaH + temp$T8.betaH + temp$AF4.betaH + temp$F8.betaH + temp$F4.betaH + temp$FC6.betaH
 temp$gamma <- temp$AF3.gamma + temp$F7.gamma + temp$F3.gamma + temp$FC5.gamma + temp$T7.gamma + temp$P7.gamma + temp$O1.gamma + temp$O2.gamma + temp$P8.gamma + temp$T8.gamma + temp$AF4.gamma + temp$F8.gamma + temp$F4.gamma + temp$FC6.gamma
 allMeanFeaturesTrackedFromStage1 <- temp
-#barplot(colSums(allMeanFeaturesTrackedFromStage1[,114:118]))
-barplot(colSums(allMeanFeaturesTrackedFromStage1[,116:118]))
+columnAllMeanCounter <- ncol(allMeanFeaturesTrackedFromStage1)
+barplot(colSums(allMeanFeaturesTrackedFromStage1[,(34):103]))
+barplot(colSums(allMeanFeaturesTrackedFromStage1[,(columnAllMeanCounter - 4):columnAllMeanCounter]))
+barplot(colSums(allMeanFeaturesTrackedFromStage1[,(columnAllMeanCounter - 2):columnAllMeanCounter]))
 write.csv2(allMeanFeaturesTrackedFromStage1, "All_Participents_WaveSum_Mean_DataFrame.csv", row.names = FALSE)
 
 
 rowConscientiousCounter     <- nrow(allConscientiousFeaturesTrackedFromStage1)
 rowNoneConscientiousCounter <- nrow(allNoneConscientiousFeaturesTrackedFromStage1)
-rowNoneCounter              <- nrow(allNoneFeaturesTrackedFromStage1)
+#rowNoneCounter              <- nrow(allNoneFeaturesTrackedFromStage1)
 rowAllCounter               <- nrow(allFeaturesTrackedFromStage1)
+
+# ANOVA test one-way (overall variance of the data, statistically significant)
+any.way <- aov(EvaluatedGlobalTIMERSICalc ~ ., data = allFeaturesTrackedFromStage1)
+
+# create descriptive statistic
+summary(any.way)
+
+
+# ANOVA test one-way (overall variance of the data, statistically significant)
+any.way <- aov(DegTimeLowQuality ~ ., data = allFeaturesTrackedFromStage1)
+
+# create descriptive statistic
+summary(any.way)
+
 
 #allFeaturesTrackedFromStage1$theta <- 0
 #allFeaturesTrackedFromStage1$alpha <- 0
@@ -156,8 +184,10 @@ rowAllCounter               <- nrow(allFeaturesTrackedFromStage1)
 
 # only if Condition A-B manuel set to clusters (Conscientious = 0 and None-Conscientious = 1) 
 # =======================================================================================================================
-#allFeaturesTrackedFromStage1$Conscientious <- 1
-#allFeaturesTrackedFromStage1$Conscientious[1:rowCounter] <- 0
+allFeaturesTrackedFromStage1$Conscientious <- 1
+allFeaturesTrackedFromStage1$Conscientious[1:rowConscientiousCounter] <- 0
+write.csv2(allFeaturesTrackedFromStage1, "All_Participents_Clusterd_WaveSum_DataFrame.csv", row.names = FALSE)
+
 
 # with out pIDs (14, 15, 16)
 #allFeaturesTrackedFromStage1 <- allFeaturesTrackedFromStage1[ !(allFeaturesTrackedFromStage1$pId %in% c(14,15,16)), ]
@@ -287,7 +317,7 @@ rowAllCounter               <- nrow(allFeaturesTrackedFromStage1)
 #qqPlot(conscientious.way$residuals, id = FALSE) # id = FALSE to remove point identification
 
 
-eegHist<- allFeaturesTrackedFromStage1[1:rowCounter, c('theta', 'alpha', 'betaL', 'betaH', 'gamma')]
+eegHist<- allFeaturesTrackedFromStage1[1:rowAllCounter, c('theta', 'alpha', 'betaL', 'betaH', 'gamma')]
 par(las = 1) # all axis labels horizontal
 boxplot(eegHist, main = "boxplot(*, horizontal = FALSE)", horizontal = FALSE)
 #
@@ -296,26 +326,26 @@ boxplot(eegHist, main = "boxplot(*, horizontal = FALSE)", horizontal = FALSE)
 #ggplot(gather(eegHist, cols, value), aes(x = value)) + geom_histogram(binwidth = 20, bins=5 ) + facet_grid(.~cols)
 
 
-eegHist<- allFeaturesTrackedFromStage1[rowCounter+1:rowNoneCounter, c('theta', 'alpha', 'betaL', 'betaH', 'gamma')]
+#eegHist<- allFeaturesTrackedFromStage1[rowAllCounter + 1:rowNoneCounter, c('theta', 'alpha', 'betaL', 'betaH', 'gamma')]
 #
-par(las = 1) # all axis labels horizontal
-boxplot(eegHist, main = "boxplot(*, horizontal = FALSE)", horizontal = FALSE)
+#par(las = 1) # all axis labels horizontal
+#boxplot(eegHist, main = "boxplot(*, horizontal = FALSE)", horizontal = FALSE)
 #
-#ggplot(gather(eegHist, cols, value), aes(x = value)) + geom_histogram(binwidth = 20, bins=5 ) + facet_grid(.~cols)
+##ggplot(gather(eegHist, cols, value), aes(x = value)) + geom_histogram(binwidth = 20, bins=5 ) + facet_grid(.~cols)
 
 
-eegHist<- allFeaturesTrackedFromStage1[, c('theta', 'alpha', 'betaL', 'betaH', 'gamma', 'Conscientious')]
+#eegHist<- allFeaturesTrackedFromStage1[, c('theta', 'alpha', 'betaL', 'betaH', 'gamma', 'Conscientious')]
 #
-#ggplot(eegHist, aes(x = Conscientious)) + geom_bar()
-par(las = 1) # all axis labels horizontal
-boxplot(eegHist, main = "boxplot(*, horizontal = FALSE)", horizontal = FALSE)
+##ggplot(eegHist, aes(x = Conscientious)) + geom_bar()
+#par(las = 1) # all axis labels horizontal
+#boxplot(eegHist, main = "boxplot(*, horizontal = FALSE)", horizontal = FALSE)
 #
-hist.data.frame(eegHist)
+#hist.data.frame(eegHist)
 #
-#ggplot(gather(eegHist, cols, value), aes(x = value)) + geom_histogram(binwidth = 20, bins=5 ) + facet_grid(.~cols)
+##ggplot(gather(eegHist, cols, value), aes(x = value)) + geom_histogram(binwidth = 20, bins=5 ) + facet_grid(.~cols)
 
 
-
+### Validity Score mit DegTimeLowQuality
 # gamma
 ggbetweenstats(data = allFeaturesTrackedFromStage1, x = DegTimeLowQuality, y = gamma, type = "parametric", # ANOVA or Kruskal-Wallis
   var.equal = TRUE, # ANOVA or Welch ANOVA
@@ -326,6 +356,14 @@ ggbetweenstats(data = allFeaturesTrackedFromStage1, x = DegTimeLowQuality, y = b
                plot.type = "box", pairwise.comparisons = TRUE, pairwise.display = "significant", centrality.plotting = FALSE, bf.message = FALSE)
 # HeartRate
 ggbetweenstats(data = allFeaturesTrackedFromStage1, x = DegTimeLowQuality, y = HeartRate, type = "parametric", # ANOVA or Kruskal-Wallis
+               var.equal = TRUE, # ANOVA or Welch ANOVA
+               plot.type = "box", pairwise.comparisons = TRUE, pairwise.display = "significant", centrality.plotting = FALSE, bf.message = FALSE)
+# SD1SD2Ratio
+ggbetweenstats(data = allFeaturesTrackedFromStage1, x = DegTimeLowQuality, y = SD1SD2Ratio, type = "parametric", # ANOVA or Kruskal-Wallis
+               var.equal = TRUE, # ANOVA or Welch ANOVA
+               plot.type = "box", pairwise.comparisons = TRUE, pairwise.display = "significant", centrality.plotting = FALSE, bf.message = FALSE)
+# LFHFRatio
+ggbetweenstats(data = allFeaturesTrackedFromStage1, x = DegTimeLowQuality, y = LFHFRatio, type = "parametric", # ANOVA or Kruskal-Wallis
                var.equal = TRUE, # ANOVA or Welch ANOVA
                plot.type = "box", pairwise.comparisons = TRUE, pairwise.display = "significant", centrality.plotting = FALSE, bf.message = FALSE)
 # CognitiveActivityRightPupilDiamter
@@ -340,6 +378,40 @@ ggbetweenstats(data = allFeaturesTrackedFromStage1, x = DegTimeLowQuality, y = T
 ggbetweenstats(data = allFeaturesTrackedFromStage1, x = DegTimeLowQuality, y = SaccadeCounter, type = "parametric", # ANOVA or Kruskal-Wallis
                var.equal = TRUE, # ANOVA or Welch ANOVA
                plot.type = "box", pairwise.comparisons = TRUE, pairwise.display = "significant", centrality.plotting = FALSE, bf.message = FALSE)
+
+### Validity Score mit EvaluatedTIMERSICalc
+ggbetweenstats(data = allFeaturesTrackedFromStage1, x = EvaluatedGlobalTIMERSICalc, y = gamma, type = "parametric", # ANOVA or Kruskal-Wallis
+               var.equal = TRUE, # ANOVA or Welch ANOVA
+               plot.type = "box", pairwise.comparisons = TRUE, pairwise.display = "significant", centrality.plotting = FALSE, bf.message = FALSE)
+# betaH
+ggbetweenstats(data = allFeaturesTrackedFromStage1, x = EvaluatedGlobalTIMERSICalc, y = betaH, type = "parametric", # ANOVA or Kruskal-Wallis
+               var.equal = TRUE, # ANOVA or Welch ANOVA
+               plot.type = "box", pairwise.comparisons = TRUE, pairwise.display = "significant", centrality.plotting = FALSE, bf.message = FALSE)
+# HeartRate
+ggbetweenstats(data = allFeaturesTrackedFromStage1, x = EvaluatedGlobalTIMERSICalc, y = HeartRate, type = "parametric", # ANOVA or Kruskal-Wallis
+               var.equal = TRUE, # ANOVA or Welch ANOVA
+               plot.type = "box", pairwise.comparisons = TRUE, pairwise.display = "significant", centrality.plotting = FALSE, bf.message = FALSE)
+# SD1SD2Ratio
+ggbetweenstats(data = allFeaturesTrackedFromStage1, x = EvaluatedGlobalTIMERSICalc, y = SD1SD2Ratio, type = "parametric", # ANOVA or Kruskal-Wallis
+               var.equal = TRUE, # ANOVA or Welch ANOVA
+               plot.type = "box", pairwise.comparisons = TRUE, pairwise.display = "significant", centrality.plotting = FALSE, bf.message = FALSE)
+# LFHFRatio
+ggbetweenstats(data = allFeaturesTrackedFromStage1, x = EvaluatedGlobalTIMERSICalc, y = LFHFRatio, type = "parametric", # ANOVA or Kruskal-Wallis
+               var.equal = TRUE, # ANOVA or Welch ANOVA
+               plot.type = "box", pairwise.comparisons = TRUE, pairwise.display = "significant", centrality.plotting = FALSE, bf.message = FALSE)
+# CognitiveActivityRightPupilDiamter
+ggbetweenstats(data = allFeaturesTrackedFromStage1, x = EvaluatedGlobalTIMERSICalc, y = CognitiveActivityRightPupilDiamter, type = "parametric", # ANOVA or Kruskal-Wallis
+               var.equal = TRUE, # ANOVA or Welch ANOVA
+               plot.type = "box", pairwise.comparisons = TRUE, pairwise.display = "significant", centrality.plotting = FALSE, bf.message = FALSE)
+# TotalFixationDuration
+ggbetweenstats(data = allFeaturesTrackedFromStage1, x = EvaluatedGlobalTIMERSICalc, y = TotalFixationDuration, type = "parametric", # ANOVA or Kruskal-Wallis
+               var.equal = TRUE, # ANOVA or Welch ANOVA
+               plot.type = "box", pairwise.comparisons = TRUE, pairwise.display = "significant", centrality.plotting = FALSE, bf.message = FALSE)
+# SaccadeCounter
+ggbetweenstats(data = allFeaturesTrackedFromStage1, x = EvaluatedGlobalTIMERSICalc, y = SaccadeCounter, type = "parametric", # ANOVA or Kruskal-Wallis
+               var.equal = TRUE, # ANOVA or Welch ANOVA
+               plot.type = "box", pairwise.comparisons = TRUE, pairwise.display = "significant", centrality.plotting = FALSE, bf.message = FALSE)
+
 
 
 #  Shapiro-Wilk normality test

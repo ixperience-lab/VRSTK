@@ -1,22 +1,65 @@
 # Evaluate Quality Paramters known as Validityscore
-# - TIMERSI  = EvaluateTimeRsi()  # Eibezogen werden Alle Probanden einer Condition
-# - MISSRELS = 0                  # Alle Fragen sind Pflichtfelder -> GEWICHTUNG aller Teilnemer ist 1 und MISSING 0 ->  MISSING * GEWICHTUNG -> 0 
-# - DEGTIME  = _DEGTIME           # Aus PageQualityParameters rauslesen
-# - MISSING  = 0                  # Alle Fragen sind Pflichtfelder -> 0
-                                  # Es gab bis jetzt auch keine Unterbrechungen
-# - Median                        # wird berechnet
+# - TIMERSI  = EvaluateValidityScores(stage)  # Eibezogen werden Alle Probanden einer Condition
+# - MISSRELS = 0                              # Alle Fragen sind Pflichtfelder -> GEWICHTUNG aller Teilnemer ist 1 und MISSING 0 ->  MISSING * GEWICHTUNG -> 0 
+# - DEGTIME  = _DEGTIME                       # Aus PageQualityParameters rauslesen
+# - MISSING  = 0                              # Alle Fragen sind Pflichtfelder -> 0
+                                              # Es gab bis jetzt auch keine Unterbrechungen
+#-------------------------------------------------------------------------------------------------------
+# - TIME_RSI                                  # median_time (of all Proband of one condition) / time_sum
+# - Median                                    # wird berechnet
+# - EvaluatedTIMERSICalc                      # 1 value over 1 and 0 value under 1 (worst case 2 value over 2)
 
-EvaluateTimeRsi <- function()
+EvaluateValidityScores <- function(stage)
 {
   
   medianTimeRsi <- 0
-  medianTimeRsi <- median(pagesTIMESUMsStage1$TIME_SUM)
-  for(i in 1:nrow(pagesTIMESUMsStage1)){
-    pagesTIMESUMsStage1$TIME_RSI[i] <- medianTimeRsi / pagesTIMESUMsStage1$TIME_SUM[i]
-  }
-  pagesTIMESUMsStage1$MEDIANForTRSI <- medianTimeRsi
+  pagesTIMESUMs <- NULL
   
-  return(pagesTIMESUMsStage1)
+  # stage 1 calc
+  if (stage == 1){
+    pagesTIMESUMs <- pagesTIMESUMsStage1
+    medianTimeRsi <- median(pagesTIMESUMs$TIME_SUM)
+    for(i in 1:nrow(pagesTIMESUMs)){
+      pagesTIMESUMs$TIME_RSI[i] <- medianTimeRsi / pagesTIMESUMs$TIME_SUM[i]
+    }
+    pagesTIMESUMs$MEDIANForTRSI <- medianTimeRsi
+    pagesTIMESUMs$EvaluatedTIMERSICalc <- 0 
+    for(i in 1:nrow(pagesTIMESUMs)){
+      if(pagesTIMESUMs$TIME_RSI[i] < 1){
+        pagesTIMESUMs$EvaluatedTIMERSICalc[i] <- 0   
+      }
+      if(pagesTIMESUMs$TIME_RSI[i] >= 1){
+        pagesTIMESUMs$EvaluatedTIMERSICalc[i] <- 1
+      }
+      if(pagesTIMESUMs$TIME_RSI[i] >= 2){
+        pagesTIMESUMs$EvaluatedTIMERSICalc[i] <- 2
+      }
+    }
+  }
+  
+  # stage 2 calc
+  if (stage == 2){
+    pagesTIMESUMs <- pagesTIMESUMsStage2
+    medianTimeRsi <- median(pagesTIMESUMs$TIME_SUM)
+    for(i in 1:nrow(pagesTIMESUMs)){
+      pagesTIMESUMs$TIME_RSI[i] <- medianTimeRsi / pagesTIMESUMs$TIME_SUM[i]
+    }
+    pagesTIMESUMs$MEDIANForTRSI <- medianTimeRsi
+    pagesTIMESUMs$EvaluatedTIMERSICalc <- 0
+    for(i in 1:nrow(pagesTIMESUMs)){
+      if(pagesTIMESUMs$TIME_RSI[i] < 1.0){
+        pagesTIMESUMs$EvaluatedTIMERSICalc[i] <- 0   
+      }
+      if(pagesTIMESUMs$TIME_RSI[i] >= 1.0){
+        pagesTIMESUMs$EvaluatedTIMERSICalc[i] <- 1
+      }
+      if(pagesTIMESUMs$TIME_RSI[i] >= 2.0){
+        pagesTIMESUMs$EvaluatedTIMERSICalc[i] <- 2
+      }
+    }
+  }
+  
+  return(pagesTIMESUMs)
 }
 
 

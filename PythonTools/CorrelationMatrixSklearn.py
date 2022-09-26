@@ -23,9 +23,9 @@ from sklearn.linear_model import RidgeCV, LassoCV, Ridge, Lasso
 #df.head()
 
 # read csv input file
-#input_data = pd.read_csv("All_Participents_DataFrame.csv", sep=";", decimal=',')
+input_data = pd.read_csv("All_Participents_DataFrame.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_WaveSum_DataFrame.csv", sep=";", decimal=',')
-input_data = pd.read_csv("All_Participents_WaveSum_Mean_DataFrame.csv", sep=";", decimal=',')
+#input_data = pd.read_csv("All_Participents_WaveSum_Mean_DataFrame.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_DataFrame_Filtered_BandPower.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_Mean_DataFrame.csv", sep=";", decimal=',')
 

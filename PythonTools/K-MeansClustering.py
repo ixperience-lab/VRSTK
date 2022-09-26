@@ -4,13 +4,15 @@ from numpy import unique
 from numpy import where
 from sklearn.datasets import make_classification
 from sklearn.cluster import MiniBatchKMeans
+# import KMeans
+from sklearn.cluster import KMeans
 from matplotlib import pyplot
 
 import pandas as pd
 
 # read csv input file
-#input_data = pd.read_csv("All_Participents_DataFrame.csv", sep=";", decimal=',')
-input_data = pd.read_csv("All_Participents_WaveSum_DataFrame.csv", sep=";", decimal=',')
+input_data = pd.read_csv("All_Participents_DataFrame.csv", sep=";", decimal=',')
+#input_data = pd.read_csv("All_Participents_WaveSum_DataFrame.csv", sep=";", decimal=',')
 
 #print(input_data.head(1))
 #print(input_data.dtypes)
@@ -58,8 +60,8 @@ pyplot.show()
 
 #-----------------------------------------------------------------------------------------
 # read csv input file
-#input_data = pd.read_csv("All_Participents_Mean_DataFrame.csv", sep=";", decimal=',')
-input_data = pd.read_csv("All_Participents_WaveSum_Mean_DataFrame.csv", sep=";", decimal=',')
+input_data = pd.read_csv("All_Participents_Mean_DataFrame.csv", sep=";", decimal=',')
+#input_data = pd.read_csv("All_Participents_WaveSum_Mean_DataFrame.csv", sep=";", decimal=',')
 
 #print(input_data.head(1))
 #print(input_data.dtypes)
@@ -74,3 +76,22 @@ print(input_data.head(1))
 ax2 = input_data.plot.scatter(x='Cluster', y='pId', c='Cluster', colormap='viridis')
 # show the plot
 pyplot.show()
+
+
+
+#input_data = pd.read_csv("All_Participents_DataFrame.csv", sep=";", decimal=',')
+#input_Features = input_data
+# create kmeans object
+#kmeans = KMeans(n_clusters=2)
+# fit kmeans object to data
+#kmeans.fit(input_Features)
+# print location of clusters learned by kmeans object
+#print(kmeans.cluster_centers_)
+# save new clusters for chart
+#output_Features = input_Features
+#output_Features["Cluster"] = kmeans.fit_predict(input_Features)
+#output_Features["Cluster"] = output_Features["Cluster"].astype("int")
+#print(output_Features["Cluster"])
+
+#ax2 = input_data.plot.scatter(x='Cluster', y='pId', c='Cluster', colormap='viridis')
+#pyplot.show()
