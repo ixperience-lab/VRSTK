@@ -17,7 +17,7 @@ import numpy as np
 #input_data = pd.read_csv("All_Participents_DataFrame_Filtered_PerformanceMetric.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_Mean_DataFrame.csv", sep=";", decimal=',')
 #input_data = pd.read_csv("All_Participents_WaveSum_Mean_DataFrame.csv", sep=";", decimal=',')
-input_data = pd.read_csv("All_Participents_Mean_Diff_Of_Stages_DataFrame.csv", sep=";", decimal=',')
+input_data = pd.read_csv("All_Participents_Clusterd_WaveSum_DataFrame.csv", sep=";", decimal=',')
 
 #------ Normalizing
 # Separating out the features
@@ -30,6 +30,7 @@ x = StandardScaler().fit_transform(x)
 #------ Principal Component Analysis n_components=2
 pca = PCA(n_components=4)
 principalComponents = pca.fit_transform(x)
+print(pca.score(x)) # Debug only
 print(pca.explained_variance_ratio_)  # Debug only
 #print(principalComponents) # Debug only
 principalDataFrame = pd.DataFrame(data = principalComponents)#, columns = ['principal component 1', 'principal component 2'])#, 'principal component 3', 'principal component 4'])
