@@ -6,6 +6,7 @@ import numpy as np
 from sklearn.datasets import make_classification
 from sklearn.cluster import MiniBatchKMeans
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics.pairwise import pairwise_distances_argmin
 # import KMeans
 from sklearn.cluster import KMeans
 from matplotlib import pyplot
@@ -16,42 +17,59 @@ import pandas as pd
 
 # read csv input file
 input_data = pd.read_csv("All_Participents_EEG_Clusterd_WaveSum_DataFrame.csv", sep=";", decimal=',')
-
-# nomalize input data to create more varianz in the data
-#scaler = StandardScaler()
-
+# drop columns conscientious, time, pId
 input_x = input_data.drop(columns=['Conscientious', 'time', 'pId'])
-#print(input_x.head(1))
-
+# count rows and columns
 #r_num = input_x.shape[0]
 #print(r_num)
-#c_num = input_x.shape[1]
-#print(c_num)
+c_num = input_x.shape[1]
+print(c_num)
 
-#scaler.fit(input_x)
+# nomalize input data to create more varianz in the data (because of statictical values like mean, std, max, counts, ...)
+scaler = StandardScaler()
+scaler.fit(input_x)
 #print(scaler.mean_)
-#transformed_input_x = scaler.transform(input_x)
-#print(transformed_input_x)
-#print(transformed_input_x[0])
+transformed_input_x = scaler.transform(input_x)
+print(transformed_input_x[0])
 
-# define the model
-#miniBatchKMeans = MiniBatchKMeans(n_clusters=2).fit(transformed_input_x)
-#input_score = miniBatchKMeans.score(transformed_input_x)
-
-miniBatchKMeans = MiniBatchKMeans(n_clusters=2).fit(input_x)
-input_score = miniBatchKMeans.score(np.array(input_x)[0:1])
+# define and fit the model
+miniBatchKMeans = MiniBatchKMeans(init="k-means++", n_clusters=2, batch_size=10, n_init=10, max_no_improvement=10, verbose=0,).fit(transformed_input_x) #miniBatchKMeans = MiniBatchKMeans(n_clusters=2).fit(input_x)
+input_score = miniBatchKMeans.score(transformed_input_x) #input_score = miniBatchKMeans.score(np.array(input_x)[0:1])
 input_cluster_centers_ = miniBatchKMeans.cluster_centers_
 print(input_score)
 print(input_cluster_centers_)
 
-#input_x["Cluster"] = miniBatchKMeans.predict(transformed_input_x)
-input_x["Cluster"] = miniBatchKMeans.predict(input_x)
+input_x["Cluster"] = miniBatchKMeans.predict(transformed_input_x) #input_x["Cluster"] = miniBatchKMeans.predict(input_x)
 input_x["Cluster"] = input_x["Cluster"].astype("int")
 
 input_x["pId"] = input_data["pId"]
-input_x["ClusterFactor"] = pd.Series(data = np.zeros(input_x.shape[0]))
+#input_x["ClusterFactor"] = pd.Series(data = np.zeros(input_x.shape[0]))
 
-_Ids = [ 1,2,3,4,5,6,7,10,13,14,15,16,17,18,19,20,31,34]
+input_means_labels = pairwise_distances_argmin(transformed_input_x, input_cluster_centers_)
+print(input_means_labels)
+
+fig = pyplot.figure(figsize=(10, 10))
+colors = ["#4EACC5", "#FF9C34"]
+
+# KMeans
+ax = fig.add_subplot(1, 1, 1)
+for k, col in zip(range(2), colors):
+	my_members = input_means_labels == k
+	cluster_center = input_cluster_centers_[k]
+	for i in range(c_num - 1):
+		ax.plot(transformed_input_x[my_members, i], transformed_input_x[my_members, i+1], "w", markerfacecolor=col, marker=".")
+	ax.plot(cluster_center[0], cluster_center[1], "o", markerfacecolor=col, markeredgecolor="k", markersize=6 )
+ax.set_title("MiniBatchKMeans")
+ax.set_xticks(())
+ax.set_yticks(())
+pyplot.text(-3.5, 1.8, "inertia: %f" % (miniBatchKMeans.inertia_))
+pyplot.show()
+
+
+ax2 = input_x.plot.scatter(x='Cluster',  y='pId', c='Cluster', colormap='viridis')
+pyplot.show()
+
+""" _Ids = [ 1,2,3,4,5,6,7,10,13,14,15,16,17,18,19,20,31,34]
 for id in _Ids:
 	temp = input_x.loc[input_x["pId"] == id]
 	component_C0 =  temp[temp.Cluster == 0].shape[0]
@@ -67,7 +85,7 @@ for id in _Ids:
 		input_x.ClusterFactor[input_x.pId == id] = faktor_C1
 
 ax2 = input_x.plot.scatter(x='pId',  y='ClusterFactor', c='Cluster', colormap='viridis')
-pyplot.show()
+pyplot.show() """
 
 # ------- pair (column_x_column) wise k-means cluster
 
