@@ -67,8 +67,6 @@ load_test_data = pd.read_csv("All_Participents_Condition-C_WaveSum_DataFrame.csv
 # ------- fitler columns of train data
 train_data = input_data.drop(columns=['Conscientious', 'time', 'pId'])
 # count rows and columns
-#r_num = train_data.shape[0]
-#print(r_num)
 c_num = train_data.shape[1]
 print(c_num)
 
@@ -81,7 +79,8 @@ test_x = test_data.iloc[:, :].values
 # Separating out the features
 x = train_data.loc[:, :].values
 # Separating out the target
-y = np.array(input_data[["Conscientious"]].values.flatten())
+y_result_output = np.array(input_data[["Conscientious"]].values.flatten())
+print(y_result_output)
 # Standardizing the features of train data
 x = StandardScaler().fit_transform(x)
 # Standardizing the features of Test data
@@ -89,11 +88,18 @@ transformed_test_x = StandardScaler().fit_transform(test_x)
 
 print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of train data")
 # ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of train data
-
 X_embedded = TSNE(n_components=2, learning_rate='auto', init='random', perplexity=3).fit_transform(x)
 print(X_embedded.shape)
 plt.scatter(X_embedded[:,0], X_embedded[:,1])
-plt.title('T-Distributed Stochastic Neighbor Embedding n_components=2 plot', fontsize=16)
+plt.title('T-Distributed Stochastic Neighbor Embedding train data n_components=2 plot', fontsize=16)
+plt.show()
+
+print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of test data")
+# ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of test data
+test_x_embedded = TSNE(n_components=2, learning_rate='auto', init='random', perplexity=3).fit_transform(transformed_test_x)
+print(test_x_embedded.shape)
+plt.scatter(test_x_embedded[:,0], test_x_embedded[:,1])
+plt.title('T-Distributed Stochastic Neighbor Embedding test data n_components=2 plot', fontsize=16)
 plt.show()
 
 print("------- Mini-Batch-K-Means Model")
@@ -132,37 +138,37 @@ print(miniBatchKMeans.get_params(deep=True))
 print(miniBatchKMeans.labels_)
 
 # get probability score of each sample
-loss = log_loss(input_data['Conscientious'], mbkm_train_data['Conscientious'])
+loss = log_loss(y_result_output, mbkm_train_data['Conscientious'])
 print(loss)
 
 input_means_labels = pairwise_distances_argmin(mbkm_x_embedded_data_frame[:].values.copy(order='C'), input_cluster_centers_.copy(order='C'))
 print(input_means_labels)
 
 # ----------- miniBatchKMeans Cluster plot of principalDataFrame
-p_num = mbkm_x_embedded_data_frame.shape[1]
-print(p_num)
-fig = plt.figure(figsize=(10, 10))
-ax = fig.add_subplot(1, 1, 1)
-for i in range(p_num - 1):
-	ax.plot(mbkm_x_embedded_data_frame[:].values[input_means_labels == 0, i], mbkm_x_embedded_data_frame[:].values[input_means_labels == 0, i+1], "w", markerfacecolor='b', marker=".", zorder=1)
-	ax.plot(mbkm_x_embedded_data_frame[:].values[input_means_labels == 1, i], mbkm_x_embedded_data_frame[:].values[input_means_labels == 1, i+1], "w", markerfacecolor='r', marker=".", zorder=1)
-cluster_center = input_cluster_centers_[0]
-ax.plot(cluster_center[0], cluster_center[1], "o", markerfacecolor='b', markeredgecolor="k", markersize=6, zorder=2)
-cluster_center = input_cluster_centers_[1]
-ax.plot(cluster_center[0], cluster_center[1], "o", markerfacecolor='r', markeredgecolor="k", markersize=6, zorder=2)
-ax.set_title('Mini-Batch-K-Means-Model PCA features plot', fontsize=16)
-ax.set_xticks(())
-ax.set_yticks(())
-plt.show()
+# p_num = mbkm_x_embedded_data_frame.shape[1]
+# print(p_num)
+# fig = plt.figure(figsize=(10, 10))
+# ax = fig.add_subplot(1, 1, 1)
+# for i in range(p_num - 1):
+# 	ax.plot(mbkm_x_embedded_data_frame[:].values[input_means_labels == 0, i], mbkm_x_embedded_data_frame[:].values[input_means_labels == 0, i+1], "w", markerfacecolor='b', marker=".", zorder=1)
+# 	ax.plot(mbkm_x_embedded_data_frame[:].values[input_means_labels == 1, i], mbkm_x_embedded_data_frame[:].values[input_means_labels == 1, i+1], "w", markerfacecolor='r', marker=".", zorder=1)
+# cluster_center = input_cluster_centers_[0]
+# ax.plot(cluster_center[0], cluster_center[1], "o", markerfacecolor='b', markeredgecolor="k", markersize=6, zorder=2)
+# cluster_center = input_cluster_centers_[1]
+# ax.plot(cluster_center[0], cluster_center[1], "o", markerfacecolor='r', markeredgecolor="k", markersize=6, zorder=2)
+# ax.set_title('Mini-Batch-K-Means-Model PCA features plot', fontsize=16)
+# ax.set_xticks(())
+# ax.set_yticks(())
+# plt.show()
 
-colors = {0:'b', 1:'r'}
-plt.scatter(x=mbkm_train_data['Conscientious'], y=mbkm_train_data['pId'], alpha=0.5, c=mbkm_train_data['Conscientious'].map(colors))
-plt.title('Mini-Batch-K-Means-Model PCA Conscientious-pId plot', fontsize=16)
-plt.show()
+# colors = {0:'b', 1:'r'}
+# plt.scatter(x=mbkm_train_data['Conscientious'], y=mbkm_train_data['pId'], alpha=0.5, c=mbkm_train_data['Conscientious'].map(colors))
+# plt.title('Mini-Batch-K-Means-Model PCA Conscientious-pId plot', fontsize=16)
+# plt.show()
 
-ax2 = mbkm_train_data.plot.scatter(x='pId',  y='Confidence', alpha=0.5, c=mbkm_train_data['Conscientious'].map(colors))
-ax2.set_title("Mini-Batch-K-Means-Model PCA pId-Confidence plot", fontsize=16)
-plt.show()
+# ax2 = mbkm_train_data.plot.scatter(x='pId',  y='Confidence', alpha=0.5, c=mbkm_train_data['Conscientious'].map(colors))
+# ax2.set_title("Mini-Batch-K-Means-Model PCA pId-Confidence plot", fontsize=16)
+# plt.show()
 
 # ----------- miniBatchKMeans Cluster IDs plot with heighest confidence
 _ids = [ 1,2,3,4,5,6,7,10,13,14,15,16,17,18,19,20,31,34]
@@ -173,13 +179,13 @@ for id in _ids:
     highest_confidet = temp.at[highest_confidet_index, 'Conscientious']
     mbkm_train_data.loc[mbkm_train_data.pId == id, 'Conscientious'] = highest_confidet
 
-ax2 = mbkm_train_data.plot.scatter(x='Conscientious',  y='pId', c=mbkm_train_data['Conscientious'].map(colors))
-ax2.set_title("Mini-Batch-K-Means-Model PCA Conscientious-pId (with heighest confidence) plot", fontsize=16)
-plt.show()
+# ax2 = mbkm_train_data.plot.scatter(x='Conscientious',  y='pId', c=mbkm_train_data['Conscientious'].map(colors))
+# ax2.set_title("Mini-Batch-K-Means-Model PCA Conscientious-pId (with heighest confidence) plot", fontsize=16)
+# plt.show()
 
 # # ------- display roc_auc curve
-model_roc_auc = roc_auc_score(input_data["Conscientious"], miniBatchKMeans.predict(mbkm_x_embedded_data_frame))
-fpr, tpr, thresholds = roc_curve(input_data["Conscientious"], mbkm_train_data["Confidence"])
+model_roc_auc = roc_auc_score(y_result_output, miniBatchKMeans.predict(mbkm_x_embedded_data_frame))
+fpr, tpr, thresholds = roc_curve(y_result_output, mbkm_train_data["Confidence"])
 plt.figure()
 plt.plot(fpr, tpr, label='Mini-Batch-K-Means-Model (area = %0.2f)' % model_roc_auc)
 plt.plot([0, 1], [0, 1],'r--')
@@ -225,40 +231,40 @@ plt.show()
 print(gaussianMixture.get_params(deep=True))
 
 # get probability score of each sample
-loss = log_loss(input_data['Conscientious'], gaussian_train_data['Conscientious'])
+loss = log_loss(y_result_output, gaussian_train_data['Conscientious'])
 print(loss)
 
 input_means_labels = pairwise_distances_argmin(gaussian_x_embedded_data_frame[:].values.copy(order='C'), input_mean.copy(order='C'))
 print(input_means_labels)
 
 # GaussianMixture
-p_num = gaussian_x_embedded_data_frame.shape[1]
-print(p_num)
-fig = plt.figure(figsize=(10, 10))
-colors = ["#4EACC5", "#FF9C34"]
-ax = fig.add_subplot(1, 1, 1)
-for i in range(p_num - 1):
-	ax.plot(gaussian_x_embedded_data_frame[:].values[input_means_labels == 0, i], gaussian_x_embedded_data_frame[:].values[input_means_labels == 0, i+1], "w", markerfacecolor='b', marker=".", zorder=1)
-	ax.plot(gaussian_x_embedded_data_frame[:].values[input_means_labels == 1, i], gaussian_x_embedded_data_frame[:].values[input_means_labels == 1, i+1], "w", markerfacecolor='r', marker=".", zorder=1)
-cluster_center = input_mean[0]
-ax.plot(cluster_center[0], cluster_center[1], "o", markerfacecolor='b', markeredgecolor="k", markersize=6, zorder=2)
-cluster_center = input_mean[1]
-ax.plot(cluster_center[0], cluster_center[1], "o", markerfacecolor='r', markeredgecolor="k", markersize=6, zorder=2)
-ax.set_title("Gaussian-Mixtures-Cluster PCA features plot")
-ax.set_xticks(())
-ax.set_yticks(())
-plt.show()
+# p_num = gaussian_x_embedded_data_frame.shape[1]
+# print(p_num)
+# fig = plt.figure(figsize=(10, 10))
+# colors = ["#4EACC5", "#FF9C34"]
+# ax = fig.add_subplot(1, 1, 1)
+# for i in range(p_num - 1):
+# 	ax.plot(gaussian_x_embedded_data_frame[:].values[input_means_labels == 0, i], gaussian_x_embedded_data_frame[:].values[input_means_labels == 0, i+1], "w", markerfacecolor='b', marker=".", zorder=1)
+# 	ax.plot(gaussian_x_embedded_data_frame[:].values[input_means_labels == 1, i], gaussian_x_embedded_data_frame[:].values[input_means_labels == 1, i+1], "w", markerfacecolor='r', marker=".", zorder=1)
+# cluster_center = input_mean[0]
+# ax.plot(cluster_center[0], cluster_center[1], "o", markerfacecolor='b', markeredgecolor="k", markersize=6, zorder=2)
+# cluster_center = input_mean[1]
+# ax.plot(cluster_center[0], cluster_center[1], "o", markerfacecolor='r', markeredgecolor="k", markersize=6, zorder=2)
+# ax.set_title("Gaussian-Mixtures-Cluster PCA features plot")
+# ax.set_xticks(())
+# ax.set_yticks(())
+# plt.show()
 
 gaussian_train_data["pId"] = input_data["pId"]
-colors = {0:'b', 1:'r'}
 
-plt.scatter(x=gaussian_train_data['Conscientious'], y=gaussian_train_data['pId'], alpha=0.5, c=gaussian_train_data['Conscientious'].map(colors))
-plt.title('Gaussian-Mixtures-Model PCA Conscientious-pId plot', fontsize=16)
-plt.show()
+#colors = {0:'b', 1:'r'}
+# plt.scatter(x=gaussian_train_data['Conscientious'], y=gaussian_train_data['pId'], alpha=0.5, c=gaussian_train_data['Conscientious'].map(colors))
+# plt.title('Gaussian-Mixtures-Model PCA Conscientious-pId plot', fontsize=16)
+# plt.show()
 
-ax2 = gaussian_train_data.plot.scatter(x='pId',  y='Confidence', alpha=0.5, c=gaussian_train_data['Conscientious'].map(colors))
-ax2.set_title("Gaussian-Mixtures-Model PCA pId-Confidence plot", fontsize=16)
-plt.show()
+# ax2 = gaussian_train_data.plot.scatter(x='pId',  y='Confidence', alpha=0.5, c=gaussian_train_data['Conscientious'].map(colors))
+# ax2.set_title("Gaussian-Mixtures-Model PCA pId-Confidence plot", fontsize=16)
+# plt.show()
 
 # ----------- gaussianMixture Cluster IDs plot with heighest confidence
 _ids = [ 1,2,3,4,5,6,7,10,13,14,15,16,17,18,19,20,31,34]
@@ -269,13 +275,13 @@ for id in _ids:
     highest_confidet = temp.at[highest_confidet_index, 'Conscientious']
     gaussian_train_data.loc[gaussian_train_data.pId == id, 'Conscientious'] = highest_confidet
     
-ax2 = gaussian_train_data.plot.scatter(x='Conscientious',  y='pId', c=gaussian_train_data['Conscientious'].map(colors))
-ax2.set_title("Gaussian-Mixtures-Model PCA Conscientious-pId (with heighest confidence) plot", fontsize=16)
-plt.show()
+# ax2 = gaussian_train_data.plot.scatter(x='Conscientious',  y='pId', c=gaussian_train_data['Conscientious'].map(colors))
+# ax2.set_title("Gaussian-Mixtures-Model PCA Conscientious-pId (with heighest confidence) plot", fontsize=16)
+# plt.show()
 
 # ------- display roc_auc curve
-model_roc_auc = roc_auc_score(input_data["Conscientious"], gaussianMixture.predict(gaussian_x_embedded_data_frame))
-fpr, tpr, thresholds = roc_curve(input_data["Conscientious"], gaussian_train_data["Confidence"])
+model_roc_auc = roc_auc_score(y_result_output, gaussianMixture.predict(gaussian_x_embedded_data_frame))
+fpr, tpr, thresholds = roc_curve(y_result_output, gaussian_train_data["Confidence"])
 plt.figure()
 plt.plot(fpr, tpr, label='Gaussian-Mixtures-Model (area = %0.2f)' % model_roc_auc)
 plt.plot([0, 1], [0, 1],'r--')
@@ -294,7 +300,7 @@ print("------- Linear Discriminant Analysis Model")
 lda_x_embedded_data_frame = pd.DataFrame(data = X_embedded)
 lda_train_data = train_data.copy()
 linearDiscriminantAnalysis = LinearDiscriminantAnalysis(solver='lsqr', shrinkage='auto')
-linearDiscriminantAnalysis.fit(lda_x_embedded_data_frame, y)
+linearDiscriminantAnalysis.fit(lda_x_embedded_data_frame, y_result_output)
 
 df11=pd.DataFrame(linearDiscriminantAnalysis.coef_[0].reshape(-1,1), lda_x_embedded_data_frame.columns, columns=["Weight"])
 df12=pd.DataFrame(linearDiscriminantAnalysis.intercept_[0].reshape(-1,1), ["Bias"], columns=["Weight"])
@@ -321,12 +327,14 @@ plt.show()
 print(linearDiscriminantAnalysis.get_params(deep=True))
 
 # Linear Discriminant Analysis
+# p_num = lda_x_embedded_data_frame.shape[1]
+# print(p_num)
 # fig = plt.figure(figsize=(10, 10))
 # colors = ["#4EACC5", "#FF9C34"]
 # ax = fig.add_subplot(1, 1, 1)
-# for i in range(c_num - 1):
-# 	ax.plot(lda_x_embedded_data_frame[0, i], lda_x_embedded_data_frame[0, i+1], "w", markerfacecolor='b', marker=".", zorder=1)
-# 	ax.plot(lda_x_embedded_data_frame[1, i], lda_x_embedded_data_frame[1, i+1], "w", markerfacecolor='r', marker=".", zorder=1)
+# for i in range(p_num - 1):
+# 	ax.plot(lda_x_embedded_data_frame[:].values[0, i], lda_x_embedded_data_frame[:].values[0, i+1], "w", markerfacecolor='b', marker=".", zorder=1)
+# 	ax.plot(lda_x_embedded_data_frame[:].values[1, i], lda_x_embedded_data_frame[:].values[1, i+1], "w", markerfacecolor='r', marker=".", zorder=1)
 # ax.set_title("Linear Discriminant Analysis Training Data Plot")
 # ax.set_xticks(())
 # ax.set_yticks(())
@@ -343,14 +351,30 @@ plt.show()
 
 _ids = [ 1,2,3,4,5,6,7,10,13,14,15,16,17,18,19,20,31,34]
 for id in _ids:
-	temp = lda_train_data.loc[lda_train_data["pId"] == id]
-	max_confi = temp['Confidence'].max()
-	highest_confidet_index = temp[temp.Confidence == max_confi].index.tolist()[0]
-	temp['Conscientious'] = temp.at[highest_confidet_index, 'Conscientious']
-	lda_train_data.Conscientious[lda_train_data.pId == id] = temp['Conscientious'].values[0]
+    temp = lda_train_data.loc[lda_train_data["pId"] == id]
+    max_confi = temp['Confidence'].max()
+    highest_confidet_index = temp[temp.Confidence == max_confi].index.tolist()[0]
+    highest_confidet = temp.at[highest_confidet_index, 'Conscientious']
+    lda_train_data.loc[lda_train_data.pId == id, 'Conscientious'] = highest_confidet
 	
 ax2 = lda_train_data.plot.scatter(x='Conscientious',  y='pId', c=lda_train_data['Conscientious'].map(colors))
 plt.show()
+
+# ------- display roc_auc curve
+lda_roc_auc = roc_auc_score(y_result_output, linearDiscriminantAnalysis.predict(lda_x_embedded_data_frame))
+fpr, tpr, thresholds = roc_curve(y_result_output, linearDiscriminantAnalysis.predict_proba(lda_x_embedded_data_frame)[:,1])
+plt.figure()
+plt.plot(fpr, tpr, label='Linear-Discriminant-Analysis-Model (area = %0.2f)' % lda_roc_auc)
+plt.plot([0, 1], [0, 1],'r--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver operating characteristic')
+plt.legend(loc="lower right")
+plt.savefig('Linear-Discriminant-Analysis-Model ROC curve')
+plt.show()
+
 
 print("================ transformend test validation input predictions informations")
 true_value_test_data = []
@@ -359,14 +383,14 @@ test_data['pId'] = load_test_data['pId']
 # set real Conscientious values
 for i in range(r_num_test_data):
     true_value_test_data.append([0])
-    if test_data['pId'].values[i] == 24 or test_data['pId'].values[i] == 25 or test_data['pId'].values[i] == 29:
+    if test_data['pId'].values[i] == 24 or test_data['pId'].values[i] == 25: #or test_data['pId'].values[i] == 29:
         true_value_test_data[i] = [1]
 
-result_array = linearDiscriminantAnalysis.predict(transformed_test_x)
+result_array = linearDiscriminantAnalysis.predict(test_x_embedded)
 test_data["Conscientious"] = result_array
 test_data["Conscientious"] = test_data["Conscientious"].astype("int")
 
-prediction = linearDiscriminantAnalysis.predict_proba(transformed_test_x)
+prediction = linearDiscriminantAnalysis.predict_proba(test_x_embedded)
 test_data["Confidence"] = np.max(prediction, axis = 1)
 
 plt.figure(figsize=(15,7))
@@ -378,16 +402,18 @@ plt.legend(fontsize=15)
 plt.tick_params(axis='both', labelsize=25, pad=5)
 plt.show() 
 
-fig = plt.figure(figsize=(10, 10))
-colors = ["#4EACC5", "#FF9C34"]
-ax = fig.add_subplot(1, 1, 1)
-for i in range(c_num - 1):
-	ax.plot(transformed_test_x[0, i], transformed_test_x[0, i+1], "w", markerfacecolor='b', marker=".", zorder=1)
-	ax.plot(transformed_test_x[1, i], transformed_test_x[1, i+1], "w", markerfacecolor='r', marker=".", zorder=1)
-ax.set_title("Linear Discriminant Analysis Test Data Plot")
-ax.set_xticks(())
-ax.set_yticks(())
-plt.show()
+# p_num = test_x_embedded.shape[1]
+# print(p_num)
+# fig = plt.figure(figsize=(10, 10))
+# colors = ["#4EACC5", "#FF9C34"]
+# ax = fig.add_subplot(1, 1, 1)
+# for i in range(p_num - 1):
+# 	ax.plot(test_x_embedded[0, i], test_x_embedded[0, i+1], "w", markerfacecolor='b', marker=".", zorder=1)
+# 	ax.plot(test_x_embedded[1, i], test_x_embedded[1, i+1], "w", markerfacecolor='r', marker=".", zorder=1)
+# ax.set_title("Linear Discriminant Analysis Test Data Plot")
+# ax.set_xticks(())
+# ax.set_yticks(())
+# plt.show()
 
 colors = {0:'b', 1:'r'}
 plt.scatter(x=test_data['Conscientious'], y=test_data['pId'], alpha=0.5, c=test_data['Conscientious'].map(colors))
@@ -399,18 +425,18 @@ plt.show()
 # ----------- linearDiscriminantAnalysis Cluster IDs plot with heighest confidence
 _ids = [21, 22, 23, 24, 25, 26, 27, 28, 29]
 for id in _ids:
-	temp = test_data.loc[test_data["pId"] == id]
-	max_confi = temp['Confidence'].max()
-	highest_confidet_index = temp[temp.Confidence == max_confi].index.tolist()[0]
-	temp['Conscientious'] = temp.at[highest_confidet_index, 'Conscientious']
-	test_data.Conscientious[test_data.pId == id] = temp['Conscientious'].values[0]
+    temp = test_data.loc[test_data["pId"] == id]
+    max_confi = temp['Confidence'].max()
+    highest_confidet_index = temp[temp.Confidence == max_confi].index.tolist()[0]
+    highest_confidet = temp.at[highest_confidet_index, 'Conscientious']
+    test_data.loc[test_data.pId == id, 'Conscientious'] = highest_confidet
 	
 ax2 = test_data.plot.scatter(x='Conscientious',  y='pId', c=test_data['Conscientious'].map(colors))
 plt.show()
 
 # ------- display roc_auc curve
-lda_roc_auc = roc_auc_score(true_value_test_data, linearDiscriminantAnalysis.predict(transformed_test_x))
-fpr, tpr, thresholds = roc_curve(true_value_test_data, linearDiscriminantAnalysis.predict_proba(transformed_test_x)[:,1])
+lda_roc_auc = roc_auc_score(true_value_test_data, linearDiscriminantAnalysis.predict(test_x_embedded))
+fpr, tpr, thresholds = roc_curve(true_value_test_data, linearDiscriminantAnalysis.predict_proba(test_x_embedded)[:,1])
 plt.figure()
 plt.plot(fpr, tpr, label='Linear-Discriminant-Analysis-Model (area = %0.2f)' % lda_roc_auc)
 plt.plot([0, 1], [0, 1],'r--')

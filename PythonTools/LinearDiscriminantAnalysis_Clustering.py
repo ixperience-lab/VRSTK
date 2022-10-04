@@ -82,7 +82,7 @@ df12=pd.DataFrame(linearDiscriminantAnalysis.intercept_[0].reshape(-1,1), ["Bias
 resulty = pd.concat([df12, df11], axis=0)
 print("====================== fit informations")
 #np.set_printoptions(threshold=np.inf)
-#print(resulty)
+print(resulty)
 
 result_array = linearDiscriminantAnalysis.predict(transformed_x)
 input_x["Conscientious"] = result_array
