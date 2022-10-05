@@ -93,8 +93,17 @@ pca = PCA(n_components=2)
 principalComponents = pca.fit_transform(x)
 print(pca.score(x)) # Debug only
 print(pca.explained_variance_ratio_)  # Debug only
-principalDataFrame = pd.DataFrame(data = principalComponents)#, columns = ['principal component 1', 'principal component 2'])#, 'principal component 3', 'principal component 4'])
+#print(principalComponents.shape) # df.loc[:, ["City", "Salary"]] .iloc[:, [0, 1]] .loc[df['favorite_color'] == 'yellow'] indices = np.where(input_data['Conscientious'] == 0)
+#print(input_data.index[input_data['Conscientious'] == 0].tolist())
+principalDataFrame = pd.DataFrame(data = principalComponents)
+conscientious_indeces = input_data.index[input_data['Conscientious'] == 0]
+none_conscientious_indeces = input_data.index[input_data['Conscientious'] == 1]
+plt.scatter(principalComponents[conscientious_indeces.tolist(),0], principalComponents[conscientious_indeces.tolist(),1], c="b")
+plt.scatter(principalComponents[none_conscientious_indeces.tolist(),0], principalComponents[none_conscientious_indeces.tolist(),1], c="r")
+plt.title('Principal Component Analysis train data n_components=2 plot', fontsize=16)
+plt.show()
 
+sys.exit()
 #------ correlation matrix of train data
 #f = plt.figure(figsize=(28, 32))
 #plt.matshow(principalDataFrame.corr(), fignum=f.number)

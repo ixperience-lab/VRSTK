@@ -90,9 +90,14 @@ print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of trai
 # ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of train data
 X_embedded = TSNE(n_components=2, learning_rate='auto', init='random', perplexity=3).fit_transform(x)
 print(X_embedded.shape)
-plt.scatter(X_embedded[:,0], X_embedded[:,1])
+conscientious_indeces = input_data.index[input_data['Conscientious'] == 0]
+none_conscientious_indeces = input_data.index[input_data['Conscientious'] == 1]
+plt.scatter(X_embedded[conscientious_indeces.tolist(),0], X_embedded[conscientious_indeces.tolist(),1], c="b")
+plt.scatter(X_embedded[none_conscientious_indeces.tolist(),0], X_embedded[none_conscientious_indeces.tolist(),1], c="r")
 plt.title('T-Distributed Stochastic Neighbor Embedding train data n_components=2 plot', fontsize=16)
 plt.show()
+
+sys.exit()
 
 print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of test data")
 # ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of test data
