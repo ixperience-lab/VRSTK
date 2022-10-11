@@ -53,7 +53,7 @@ def soft_clustering_weights(data, cluster_centres, **kwargs):
 
 def plot_roc_curve(true_positive_rate, false_positive_rate, legend_label, title, file_name, show=False, save=False):
     plt.figure(figsize=(15,10))
-    plt.plot(false_positive_rate, true_positive_rate, label=legend_label + ' (area = %0.2f)' % knc_roc_auc)
+    plt.plot(false_positive_rate, true_positive_rate, label=legend_label)
     plt.plot([0, 1], [0, 1],'r--')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.05])
@@ -126,6 +126,10 @@ selected_column_array = ['HeartRate', 'RPeaks', 'RRI', 'RRMin', 'RRMean', 'RRMax
 train_data = input_data.drop(columns=['Conscientious', 'time', 'pId'])
 #train_data = train_data[selected_column_array]
 
+# exc_cols = [col for col in train_data.columns if col not in ['DegTimeLowQuality', 'EvaluatedGlobalTIMERSICalc']]
+# train_data.loc[train_data.DegTimeLowQuality > 0, exc_cols] *= 1.5
+# train_data.loc[train_data.EvaluatedGlobalTIMERSICalc >= 1, exc_cols] *= 1.5
+
 # count rows and columns
 c_num = train_data.shape[1]
 print(c_num)
@@ -133,6 +137,11 @@ print(c_num)
 # -------  filter columns of test data 
 test_data = load_test_data.drop(columns=['time', 'pId'])
 #test_data = test_data[selected_column_array]
+
+# exc_cols = [col for col in test_data.columns if col not in ['DegTimeLowQuality', 'EvaluatedGlobalTIMERSICalc']]
+# test_data.loc[test_data.DegTimeLowQuality > 0, exc_cols] *= 1.5
+# test_data.loc[test_data.EvaluatedGlobalTIMERSICalc >= 1, exc_cols] *= 1.5
+
 r_num_test_data = test_data.shape[0]
 test_x = test_data.iloc[:, :].values
 print("================ transformend test validation input predictions informations")
@@ -141,7 +150,7 @@ true_value_test_data = []
 # set real Conscientious values
 for i in range(r_num_test_data):
     true_value_test_data.append(0)
-    if load_test_data['pId'].values[i] == 24 or load_test_data['pId'].values[i] == 25 or load_test_data['pId'].values[i] == 28:
+    if load_test_data['pId'].values[i] == 24 or load_test_data['pId'].values[i] == 25: # or load_test_data['pId'].values[i] == 28:
         true_value_test_data[i] = 1
 true_value_test_data = pd.DataFrame({ "Conscientious" : true_value_test_data})      
 print(true_value_test_data["Conscientious"].values)
@@ -201,6 +210,8 @@ if input_data_type == 5:
 print("Create output directory")
 # --- create dir
 mode = 0o666
+if not os.path.exists("./output"):
+    os.mkdir("./output", mode)
 path = "./output/T-Distributed_Stochastic_Neighbor_Embedding_{}".format(input_data_type)
 #if os.path.exists(path):
 #    shutil.rmtree(path, ignore_errors=True)
@@ -218,9 +229,9 @@ if not os.path.exists(path_gmm):
 path_lda = "{}/Linear-Discriminant-Analysis-Model".format(path)
 if not os.path.exists(path_lda):
     os.mkdir(path_lda, mode)
-path_dbscan = "{}/Spectral-Clustering-Model".format(path)
-if not os.path.exists(path_dbscan):
-    os.mkdir(path_dbscan, mode)
+path_sc = "{}/Spectral-Clustering-Model".format(path)
+if not os.path.exists(path_sc):
+    os.mkdir(path_sc, mode)
 
 print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) train data ")
 # ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of train data
@@ -232,6 +243,18 @@ none_conscientious_indeces = input_data.index[input_data['Conscientious'] == 1]
 file_name = '{}/True_train_data_plot.png'.format(path)
 plot_data_cluster(X_embedded, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
                  'T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) train data  plot', file_name, show=False, save=True)
+
+# fig = plt.figure(figsize=(15,10))
+# ax = fig.add_subplot(1, 1, 1)
+# for i in range(c_num - 1):
+#     ax.scatter(x[conscientious_indeces.tolist(), i], x[conscientious_indeces.tolist(), i+1], c="b")
+#     ax.scatter(x[none_conscientious_indeces.tolist(), i], x[none_conscientious_indeces.tolist(), i+1], c="r")
+# ax.set_title("Not transformed (True) train data  plot", fontsize=16)
+# file_name = '{}/Not_Transformed_True_train_data_plot.png'.format(path)
+# plt.savefig(file_name)
+# plt.show()
+# plt.close()
+
 # plt.figure(figsize=(15,10))
 # ax = plt.axes(projection='3d')
 # ax.scatter(X_embedded[conscientious_indeces.tolist(),0], X_embedded[conscientious_indeces.tolist(),1], X_embedded[conscientious_indeces.tolist(),2], c="b", linewidth=0.5)
@@ -249,6 +272,18 @@ none_conscientious_indeces = true_value_test_data.index[true_value_test_data['Co
 file_name = '{}/True_test_data_plot.png'.format(path)
 plot_data_cluster(test_x_embedded, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
                  'T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) test data plot', file_name, show=False, save=True)
+
+# fig = plt.figure(figsize=(15,10))
+# ax = fig.add_subplot(1, 1, 1)
+# for i in range(c_num - 1):
+#     ax.scatter(transformed_test_x[conscientious_indeces.tolist(), i], transformed_test_x[conscientious_indeces.tolist(), i+1], c="b")
+#     ax.scatter(transformed_test_x[none_conscientious_indeces.tolist(), i], transformed_test_x[none_conscientious_indeces.tolist(), i+1], c="r")
+# ax.set_title("Not transformed (True) test data plot", fontsize=16)
+# file_name = '{}/Not_Transformed_True_test_data_plot.png'.format(path)
+# plt.savefig(file_name)
+# plt.show()
+# plt.close()
+
 # plt.figure(figsize=(15,10))
 # ax = plt.axes(projection='3d')
 # ax.scatter(test_x_embedded[conscientious_indeces.tolist(),0], test_x_embedded[conscientious_indeces.tolist(),1], test_x_embedded[conscientious_indeces.tolist(),2], c="b", linewidth=0.5)
@@ -284,16 +319,16 @@ knc_train_data["pId"] = input_data["pId"]
 prediction = k_neigbors_classifier.predict_proba(knc_x_embedded_data_frame)
 knc_train_data["Confidence"] = np.max(prediction, axis = 1)
 
-plt.figure(figsize=(15,10))
-plt.title('K-Neighbors-Classifier-Model train data Confidence-Histogram plot', fontsize=16)
-plt.hist(knc_train_data['Confidence'][knc_train_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.5, color='b')
-plt.hist(knc_train_data['Confidence'][knc_train_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.5, color='r')
-plt.xlabel('Calculated Probability', fontsize=25)
-plt.ylabel('Number of records', fontsize=25)
-plt.legend(fontsize=15)
-plt.tick_params(axis='both', labelsize=25, pad=5)
-#plt.show() 
-plt.close()
+# plt.figure(figsize=(15,10))
+# plt.title('K-Neighbors-Classifier-Model train data Confidence-Histogram plot', fontsize=16)
+# plt.hist(knc_train_data['Confidence'][knc_train_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.5, color='b')
+# plt.hist(knc_train_data['Confidence'][knc_train_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.5, color='r')
+# plt.xlabel('Calculated Probability', fontsize=25)
+# plt.ylabel('Number of records', fontsize=25)
+# plt.legend(fontsize=15)
+# plt.tick_params(axis='both', labelsize=25, pad=5)
+# #plt.show() 
+# plt.close()
 
 print(k_neigbors_classifier.get_params(deep=True))
 
@@ -311,7 +346,7 @@ plot_data_cluster(X_embedded, conscientious_indeces.tolist(), none_conscientious
 knc_roc_auc = roc_auc_score(input_data[["Conscientious"]], k_neigbors_classifier.predict(knc_x_embedded_data_frame))
 fpr, tpr, thresholds = roc_curve(input_data[["Conscientious"]], k_neigbors_classifier.predict_proba(knc_x_embedded_data_frame)[:,1])
 file_name = '{}/K-Neighbors-Classifier-Model_train_data_roc-curve.png'.format(path_knc)
-plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'K-Neighbors-Classifier-Model train data', 
+plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'K-Neighbors-Classifier-Model train data (area = %0.2f)' % knc_roc_auc, 
                title = 'K-Neighbors-Classifier-Model train data', file_name = file_name, show=False, save=True)
 
 # --- test data predictions 
@@ -338,16 +373,16 @@ ax2 = knc_test_data.plot.scatter(x='Conscientious',  y='pId', c=knc_test_data['C
 plt.show()
 plt.close()
 
-plt.figure(figsize=(15,7))
-plt.title('K-Neighbors-Classifier-Model test data Confidence-Histogram plot', fontsize=16)
-plt.hist(knc_test_data['Confidence'][knc_test_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.5, color='b')
-plt.hist(knc_test_data['Confidence'][knc_test_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.5, color='r')
-plt.xlabel('Calculated Probability', fontsize=25)
-plt.ylabel('Number of records', fontsize=25)
-plt.legend(fontsize=15)
-plt.tick_params(axis='both', labelsize=25, pad=5)
-#plt.show() 
-plt.close()
+# plt.figure(figsize=(15,7))
+# plt.title('K-Neighbors-Classifier-Model test data Confidence-Histogram plot', fontsize=16)
+# plt.hist(knc_test_data['Confidence'][knc_test_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.5, color='b')
+# plt.hist(knc_test_data['Confidence'][knc_test_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.5, color='r')
+# plt.xlabel('Calculated Probability', fontsize=25)
+# plt.ylabel('Number of records', fontsize=25)
+# plt.legend(fontsize=15)
+# plt.tick_params(axis='both', labelsize=25, pad=5)
+# #plt.show() 
+# plt.close()
 
 print(k_neigbors_classifier.get_params(deep=True))
 
@@ -365,10 +400,10 @@ plot_data_cluster(test_x_embedded, conscientious_indeces.tolist(), none_conscien
 knc_roc_auc = roc_auc_score(true_value_test_data['Conscientious'], k_neigbors_classifier.predict(knc_test_x_embedded_data_frame))
 fpr, tpr, thresholds = roc_curve(true_value_test_data['Conscientious'], k_neigbors_classifier.predict_proba(knc_test_x_embedded_data_frame)[:,1])
 file_name = '{}/K-Neighbors-Classifier-Model_test_data_roc-curve.png'.format(path_knc)
-plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'K-Neighbors-Classifier-Model test data', 
+plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'K-Neighbors-Classifier-Model test data (area = %0.2f)' % knc_roc_auc,
                title = 'K-Neighbors-Classifier-Model test data', file_name = file_name, show=False, save=True)
 
-sys.exit()
+#sys.exit()
 
 print("------- Mini-Batch-K-Means Model")
 # ------- Mini-Batch-K-Means Model
@@ -394,16 +429,16 @@ df[['p0', 'p1']] = soft_clustering_weights(mbkm_x_embedded_data_frame, input_clu
 df['confidence'] = np.max(df[['p0', 'p1']].values, axis = 1)
 mbkm_train_data["Confidence"] = df['confidence']
 
-plt.figure(figsize=(15,7))
-plt.title('Mini-Batch-K-Means-Model Confidence-Histogram plot', fontsize=16)
-plt.hist(df['confidence'][mbkm_train_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.5, color='b')
-plt.hist(df['confidence'][mbkm_train_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.5, color='r')
-plt.xlabel('Calculated Probability', fontsize=25)
-plt.ylabel('Number of records', fontsize=25)
-plt.legend(fontsize=15)
-plt.tick_params(axis='both', labelsize=25, pad=5)
-plt.show() 
-plt.close()
+# plt.figure(figsize=(15,7))
+# plt.title('Mini-Batch-K-Means-Model Confidence-Histogram plot', fontsize=16)
+# plt.hist(df['confidence'][mbkm_train_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.5, color='b')
+# plt.hist(df['confidence'][mbkm_train_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.5, color='r')
+# plt.xlabel('Calculated Probability', fontsize=25)
+# plt.ylabel('Number of records', fontsize=25)
+# plt.legend(fontsize=15)
+# plt.tick_params(axis='both', labelsize=25, pad=5)
+# plt.show() 
+# plt.close()
 
 print(miniBatchKMeans.get_params(deep=True))
 print(miniBatchKMeans.labels_)
@@ -439,7 +474,7 @@ for id in _ids:
 model_roc_auc = roc_auc_score(y_result_output, miniBatchKMeans.predict(mbkm_x_embedded_data_frame))
 fpr, tpr, thresholds = roc_curve(y_result_output, mbkm_train_data["Confidence"])
 file_name = '{}/Mini-Batch-K-Means-Model_training-data_ROC_curve.png'.format(path_mbkm)
-plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'Mini-Batch-K-Means-Model train data', 
+plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'Mini-Batch-K-Means-Model train data (area = %0.2f)' % model_roc_auc, 
                title = 'Mini-Batch-K-Means-Model train data', file_name = file_name, show=False, save=True)
 
 print(" --- test data mbkm")
@@ -463,16 +498,16 @@ df[['p0', 'p1']] = soft_clustering_weights(mbkm_test_x_embedded_data_frame, inpu
 df['confidence'] = np.max(df[['p0', 'p1']].values, axis = 1)
 mbkm_test_data["Confidence"] = df['confidence']
 
-plt.figure(figsize=(15,7))
-plt.title('Mini-Batch-K-Means-Model Confidence-Histogram plot', fontsize=16)
-plt.hist(df['confidence'][mbkm_test_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.5, color='b')
-plt.hist(df['confidence'][mbkm_test_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.5, color='r')
-plt.xlabel('Calculated Probability', fontsize=25)
-plt.ylabel('Number of records', fontsize=25)
-plt.legend(fontsize=15)
-plt.tick_params(axis='both', labelsize=25, pad=5)
-plt.show() 
-plt.close()
+# plt.figure(figsize=(15,7))
+# plt.title('Mini-Batch-K-Means-Model Confidence-Histogram plot', fontsize=16)
+# plt.hist(df['confidence'][mbkm_test_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.5, color='b')
+# plt.hist(df['confidence'][mbkm_test_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.5, color='r')
+# plt.xlabel('Calculated Probability', fontsize=25)
+# plt.ylabel('Number of records', fontsize=25)
+# plt.legend(fontsize=15)
+# plt.tick_params(axis='both', labelsize=25, pad=5)
+# plt.show() 
+# plt.close()
 
 print(miniBatchKMeans.get_params(deep=True))
 print(miniBatchKMeans.labels_)
@@ -483,14 +518,6 @@ none_conscientious_indeces = mbkm_test_data.index[mbkm_test_data['Conscientious'
 file_name = '{}/Mini-Batch-K-Means-Model_predicted_test_data_plot.png'.format(path_mbkm)
 plot_data_cluster(test_x_embedded, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
                  'Mini-Batch-K-Means-Model n_components=2 of (predicted) test data plot', file_name, show=False, save=True)
-# plt.figure(figsize=(15,10))
-# plt.scatter(test_x_embedded[conscientious_indeces,0], test_x_embedded[conscientious_indeces,1], c="b")
-# plt.scatter(test_x_embedded[none_conscientious_indeces,0], test_x_embedded[none_conscientious_indeces,1], c="r")
-# plt.title('Mini-Batch-K-Means-Model n_components=2 of (predicted) test data plot', fontsize=16)
-# file_name = '{}/Mini-Batch-K-Means-Model_predicted_test_data_plot.png'.format(path_mbkm)
-# plt.savefig(file_name)
-# #plt.show()
-# plt.close()
 
 # get probability score of each sample
 loss = log_loss(true_value_test_data['Conscientious'], mbkm_test_data['Conscientious'])
@@ -503,7 +530,7 @@ print(input_means_labels)
 mbkm_roc_auc = roc_auc_score(true_value_test_data['Conscientious'], miniBatchKMeans.predict(knc_test_x_embedded_data_frame))
 fpr, tpr, thresholds = roc_curve(true_value_test_data['Conscientious'],  mbkm_test_data["Confidence"])
 file_name = '{}/Mini-Batch-K-Means-Model_test-data_ROC_curve.png'.format(path_mbkm)
-plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'Mini-Batch-K-Means-Model test data', 
+plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'Mini-Batch-K-Means-Model test data (area = %0.2f)' % mbkm_roc_auc,
                title = 'Mini-Batch-K-Means-Model test data', file_name = file_name, show=False, save=True)
 
 print("------- Gaussian Mixtures Model")
@@ -527,16 +554,16 @@ prediction=gaussianMixture.predict_proba(gaussian_x_embedded_data_frame)#[:,1]
 print(prediction)
 gaussian_train_data["Confidence"] = np.max(prediction, axis = 1)
 
-plt.figure(figsize=(15,7))
-plt.title('Gaussian-Mixtures-Model Confidence-Histogram plot', fontsize=16)
-plt.hist(gaussian_train_data['Confidence'][gaussian_train_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.5, color='b')
-plt.hist(gaussian_train_data['Confidence'][gaussian_train_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.5, color='r')
-plt.xlabel('Calculated Probability', fontsize=25)
-plt.ylabel('Number of records', fontsize=25)
-plt.legend(fontsize=15)
-plt.tick_params(axis='both', labelsize=25, pad=5)
-plt.show() 
-plt.close()
+# plt.figure(figsize=(15,7))
+# plt.title('Gaussian-Mixtures-Model Confidence-Histogram plot', fontsize=16)
+# plt.hist(gaussian_train_data['Confidence'][gaussian_train_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.5, color='b')
+# plt.hist(gaussian_train_data['Confidence'][gaussian_train_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.5, color='r')
+# plt.xlabel('Calculated Probability', fontsize=25)
+# plt.ylabel('Number of records', fontsize=25)
+# plt.legend(fontsize=15)
+# plt.tick_params(axis='both', labelsize=25, pad=5)
+# plt.show() 
+# plt.close()
 
 print(gaussianMixture.get_params(deep=True))
 
@@ -582,7 +609,7 @@ for id in _ids:
 model_roc_auc = roc_auc_score(y_result_output, gaussianMixture.predict(gaussian_x_embedded_data_frame))
 fpr, tpr, thresholds = roc_curve(y_result_output, gaussian_train_data["Confidence"])
 file_name = '{}/Gaussian-Mixtures-Model_training-data_ROC-curve.png'.format(path_gmm)
-plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'Gaussian-Mixtures-Model training data', 
+plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'Gaussian-Mixtures-Model training data (area = %0.2f)' % model_roc_auc, 
                title = 'Gaussian-Mixtures-Model training data', file_name = file_name, show=False, save=True)
 
 print("--- test data gmm")
@@ -596,16 +623,16 @@ prediction=gaussianMixture.predict_proba(gmm_test_x_embedded_data_frame)#[:,1]
 print(prediction)
 gmm_test_data["Confidence"] = np.max(prediction, axis = 1)
 
-plt.figure(figsize=(15,7))
-plt.title('Gaussian-Mixtures-Model PCA Confidence-Histogram plot', fontsize=16)
-plt.hist(gmm_test_data['Confidence'][gmm_test_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.5, color='b')
-plt.hist(gmm_test_data['Confidence'][gmm_test_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.5, color='r')
-plt.xlabel('Calculated Probability', fontsize=25)
-plt.ylabel('Number of records', fontsize=25)
-plt.legend(fontsize=15)
-plt.tick_params(axis='both', labelsize=25, pad=5)
-plt.show() 
-plt.close()
+# plt.figure(figsize=(15,7))
+# plt.title('Gaussian-Mixtures-Model PCA Confidence-Histogram plot', fontsize=16)
+# plt.hist(gmm_test_data['Confidence'][gmm_test_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.5, color='b')
+# plt.hist(gmm_test_data['Confidence'][gmm_test_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.5, color='r')
+# plt.xlabel('Calculated Probability', fontsize=25)
+# plt.ylabel('Number of records', fontsize=25)
+# plt.legend(fontsize=15)
+# plt.tick_params(axis='both', labelsize=25, pad=5)
+# plt.show() 
+# plt.close()
 
 print(gaussianMixture.get_params(deep=True))
 
@@ -638,7 +665,7 @@ for id in _ids:
 model_roc_auc = roc_auc_score(true_value_test_data['Conscientious'], gaussianMixture.predict(gmm_test_x_embedded_data_frame))
 fpr, tpr, thresholds = roc_curve(true_value_test_data['Conscientious'], gmm_test_data["Confidence"])
 file_name = '{}/Gaussian-Mixtures-Model_test-data_ROC-curve.png'.format(path_gmm)
-plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'Gaussian-Mixtures-Model test data', 
+plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'Gaussian-Mixtures-Model test data (area = %0.2f)' % model_roc_auc, 
                title = 'Gaussian-Mixtures-Model test data', file_name = file_name, show=False, save=True)
 
 print("------- Linear Discriminant Analysis Model")
@@ -661,15 +688,15 @@ lda_train_data["Conscientious"] = lda_train_data["Conscientious"].astype("int")
 prediction = linearDiscriminantAnalysis.predict_proba(lda_x_embedded_data_frame)
 lda_train_data["Confidence"] = np.max(prediction, axis = 1)
 
-plt.figure(figsize=(15,7))
-plt.hist(lda_train_data['Confidence'][lda_train_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.7, color='b')
-plt.hist(lda_train_data['Confidence'][lda_train_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.7, color='r')
-plt.xlabel('Calculated Probability', fontsize=25)
-plt.ylabel('Number of records', fontsize=25)
-plt.legend(fontsize=15)
-plt.tick_params(axis='both', labelsize=25, pad=5)
-plt.show() 
-plt.close()
+# plt.figure(figsize=(15,7))
+# plt.hist(lda_train_data['Confidence'][lda_train_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.7, color='b')
+# plt.hist(lda_train_data['Confidence'][lda_train_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.7, color='r')
+# plt.xlabel('Calculated Probability', fontsize=25)
+# plt.ylabel('Number of records', fontsize=25)
+# plt.legend(fontsize=15)
+# plt.tick_params(axis='both', labelsize=25, pad=5)
+# plt.show() 
+# plt.close()
 
 print(linearDiscriminantAnalysis.get_params(deep=True))
 
@@ -707,18 +734,10 @@ plt.close()
 lda_roc_auc = roc_auc_score(y_result_output, linearDiscriminantAnalysis.predict(lda_x_embedded_data_frame))
 fpr, tpr, thresholds = roc_curve(y_result_output, linearDiscriminantAnalysis.predict_proba(lda_x_embedded_data_frame)[:,1])
 file_name = '{}/Linear-Discriminant-Analysis-Model_traingin-data_ROC-curve.png'.format(path_lda)
-plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'Linear-Discriminant-Analysis-Model train data', 
+plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'Linear-Discriminant-Analysis-Model train data (area = %0.2f)' % lda_roc_auc, 
                title = 'Linear-Discriminant-Analysis-Model train data', file_name = file_name, show=False, save=True)
 
 print("================ transformend test validation input predictions informations")
-true_value_test_data = []
-#test_data['pId'] = load_test_data['pId']
-#ids = [21, 22, 23, 24, 25, 26, 27, 28, 29]
-# set real Conscientious values
-for i in range(r_num_test_data):
-    true_value_test_data.append([0])
-    if load_test_data['pId'].values[i] == 24 or load_test_data['pId'].values[i] == 25: #or load_test_data['pId'].values[i] == 29:
-        true_value_test_data[i] = [1]
 
 lda_test_x_embedded_data_frame = pd.DataFrame(data = test_x_embedded)
 lda_test_data = test_data.copy()
@@ -730,15 +749,15 @@ lda_test_data["Conscientious"] = lda_test_data["Conscientious"].astype("int")
 prediction = linearDiscriminantAnalysis.predict_proba(lda_test_x_embedded_data_frame)
 lda_test_data["Confidence"] = np.max(prediction, axis = 1)
 
-plt.figure(figsize=(15,7))
-plt.hist(lda_test_data['Confidence'][lda_test_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.7, color='b')
-plt.hist(lda_test_data['Confidence'][lda_test_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.7, color='r')
-plt.xlabel('Calculated Probability', fontsize=25)
-plt.ylabel('Number of records', fontsize=25)
-plt.legend(fontsize=15)
-plt.tick_params(axis='both', labelsize=25, pad=5)
-plt.show() 
-plt.close()
+# plt.figure(figsize=(15,7))
+# plt.hist(lda_test_data['Confidence'][lda_test_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.7, color='b')
+# plt.hist(lda_test_data['Confidence'][lda_test_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.7, color='r')
+# plt.xlabel('Calculated Probability', fontsize=25)
+# plt.ylabel('Number of records', fontsize=25)
+# plt.legend(fontsize=15)
+# plt.tick_params(axis='both', labelsize=25, pad=5)
+# plt.show() 
+# plt.close()
 
 lda_test_data['pId'] = load_test_data['pId']
 
@@ -773,41 +792,40 @@ plt.show()
 plt.close()
 
 # ------- display roc_auc curve
-lda_roc_auc = roc_auc_score(true_value_test_data, linearDiscriminantAnalysis.predict(lda_test_x_embedded_data_frame))
-fpr, tpr, thresholds = roc_curve(true_value_test_data, linearDiscriminantAnalysis.predict_proba(lda_test_x_embedded_data_frame)[:,1])
+lda_roc_auc = roc_auc_score(true_value_test_data["Conscientious"], linearDiscriminantAnalysis.predict(lda_test_x_embedded_data_frame))
+fpr, tpr, thresholds = roc_curve(true_value_test_data["Conscientious"], linearDiscriminantAnalysis.predict_proba(lda_test_x_embedded_data_frame)[:,1])
 file_name = '{}/Linear-Discriminant-Analysis-Model_test-data_ROC-curve.png'.format(path_lda)
-plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'Linear-Discriminant-Analysis-Model test data', 
+plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'Linear-Discriminant-Analysis-Model test data (area = %0.2f)' % lda_roc_auc, 
                title = 'Linear-Discriminant-Analysis-Model test data', file_name = file_name, show=False, save=True)
 
 
-print(" --- SpectralClustering-Model")
-# --- SpectralClustering-Model
-dbscan_x_embedded_data_frame = pd.DataFrame(data = X_embedded)
-dbscan_train_data = train_data.copy()
-spectral_clustring_model = SpectralClustering(n_clusters=2, assign_labels='cluster_qr', affinity='nearest_neighbors')
-print(" --- created cluster")
-spectral_clustring_model.fit(dbscan_x_embedded_data_frame)
-print(" --- created cluster")
-print(spectral_clustring_model.labels_)
-print(" --- created cluster")
+# print(" --- SpectralClustering-Model")
+# # --- SpectralClustering-Model
+# sc_x_embedded_data_frame = pd.DataFrame(data = X_embedded)
+# sc_train_data = train_data.copy()
+# spectral_clustring_model = SpectralClustering(n_clusters=2, assign_labels='cluster_qr', affinity='nearest_neighbors')
+# print(" --- created cluster")
+# spectral_clustring_model.fit(sc_x_embedded_data_frame)
+# print(" --- created cluster")
+# print(spectral_clustring_model.labels_)
+# print(" --- created cluster")
 
-dbscan_train_data["Conscientious"] = spectral_clustring_model.fit_predict(dbscan_x_embedded_data_frame)
-dbscan_train_data["Conscientious"] = dbscan_train_data["Conscientious"].astype("int")
+# sc_train_data["Conscientious"] = spectral_clustring_model.fit_predict(sc_x_embedded_data_frame)
+# sc_train_data["Conscientious"] = sc_train_data["Conscientious"].astype("int")
 
-dbscan_train_data[dbscan_train_data["Conscientious"] > 0] = 1
-dbscan_train_data[dbscan_train_data["Conscientious"] == -1] = 0
+# sc_train_data[sc_train_data["Conscientious"] > 0] = 1
+# sc_train_data[sc_train_data["Conscientious"] == -1] = 0
 
-#print(dbscan_train_data["Conscientious"].values.tolist())
+# print(spectral_clustring_model.get_params(deep=True))
+# sc_train_data["pId"] = input_data["pId"]
 
-print(spectral_clustring_model.get_params(deep=True))
-dbscan_train_data["pId"] = input_data["pId"]
+# conscientious_indeces = sc_train_data.index[sc_train_data['Conscientious'] == 0]
+# none_conscientious_indeces = sc_train_data.index[sc_train_data['Conscientious'] == 1]
+# file_name = '{}/SpectralClustering-Model_predicted_train_data_plot.png'.format(path_sc)
+# plot_data_cluster(X_embedded, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
+#                  'SpectralClustering-Model n_components=2 of (predicted) train data plot', file_name, show=False, save=True)
 
-colors = {0:'b', 1:'r'}
-plt.scatter(x=dbscan_train_data['Conscientious'], y=dbscan_train_data['pId'], alpha=0.5, c=dbscan_train_data['Conscientious'].map(colors))
-plt.show()
-plt.close()
-
-	
-ax2 = dbscan_train_data.plot.scatter(x='Conscientious',  y='pId', c=dbscan_train_data['Conscientious'].map(colors))
-plt.show()
-plt.close()
+# colors = {0:'b', 1:'r'}
+# plt.scatter(x=sc_train_data['Conscientious'], y=sc_train_data['pId'], alpha=0.5, c=sc_train_data['Conscientious'].map(colors))
+# plt.show()
+# plt.close()
