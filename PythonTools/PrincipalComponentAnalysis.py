@@ -108,6 +108,12 @@ if input_data_type == 4:
 if input_data_type == 5: 
 	load_test_data = pd.read_csv("All_Participents_Condition-C_PAGES_WaveSum_DataFrame.csv", sep=";", decimal=',') 	# weight with 4/10
 
+
+# updates Conscientious to subjektive 
+# for i in range(input_data.shape[1]):
+#     if input_data['pId'].values[i] == 14 or input_data['pId'].values[i] == 15 or input_data['pId'].values[i] == 16: # or load_test_data['pId'].values[i] == 28:
+#         input_data['Conscientious'].values[i] = 1
+
 # ------- fitler columns of train data
 train_data = input_data.drop(columns=['Conscientious', 'time', 'pId'])
 # count rows and columns

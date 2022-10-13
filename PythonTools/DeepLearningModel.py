@@ -28,9 +28,10 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 
-#from xgboost import XGBRegressor
+from xgboost import XGBRegressor
 #from catboost import CatBoostRegressor, Pool
 from pytorch_tabnet.tab_model import TabNetClassifier
+import torch
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -118,6 +119,11 @@ selected_column_array = ['HeartRate', 'RPeaks', 'RRI', 'RRMin', 'RRMean', 'RRMax
                          'AbsoluteDerivationOfResponseValue', 'MEDIANForTRSI', 'EvaluatedTIMERSICalc', 'LightReflexesLeftPupilDiamter', 'LeftPupilDiameterDifferenceToMean', 'LightReflexesRightPupilDiamter',
                          'RightMeanPupilDiameter', 'RightPupilDiameterDifferenceToMean', 'GlobalTIMERSICalc', 'EvaluatedGlobalTIMERSICalc', 'theta', 'alpha', 'betaL', 'betaH', 'gamma']
 
+# updates Conscientious to subjektive 
+for i in range(input_data.shape[1]):
+    if input_data['pId'].values[i] == 14 or input_data['pId'].values[i] == 15 or input_data['pId'].values[i] == 16: # or load_test_data['pId'].values[i] == 28:
+        input_data['Conscientious'].values[i] = 1
+
 # ------- fitler columns of train data
 train_data = input_data.drop(columns=['Conscientious', 'time', 'pId'])
 #train_data = train_data[selected_column_array]
@@ -167,46 +173,46 @@ transformed_train_x = StandardScaler().fit_transform(x_train)
 # Standardizing the features of Test data
 transformed_test_x = StandardScaler().fit_transform(test_x)
 
-# set sensor and validity score weights
-weight_ecg = 1       #train_data.loc[:,1:26]                                 -> count() = 26
-weight_eda = 1       #train_data.loc[:,27:31]                                -> count() = 5
-weight_eeg = 1       #train_data.loc[:,32:107]  , train_data.loc[:,141:145]  -> count() = 76, 5
-weight_eye = 1       #train_data.loc[:,108:117] , train_data.loc[:,130:137]  -> count() = 10, 8
-weight_pages = 1       #train_data.loc[:,118:129] , train_data.loc[:,138:140]  -> count() = 12, 3
+# # set sensor and validity score weights
+# weight_ecg = 1       #train_data.loc[:,1:26]                                 -> count() = 26
+# weight_eda = 1       #train_data.loc[:,27:31]                                -> count() = 5
+# weight_eeg = 1       #train_data.loc[:,32:107]  , train_data.loc[:,141:145]  -> count() = 76, 5
+# weight_eye = 1       #train_data.loc[:,108:117] , train_data.loc[:,130:137]  -> count() = 10, 8
+# weight_pages = 1       #train_data.loc[:,118:129] , train_data.loc[:,138:140]  -> count() = 12, 3
 
-if input_data_type == 0:
-	transformed_train_x[:,0:26]    = transformed_train_x[:,0:26]    * weight_ecg
-	transformed_train_x[:,26:31]   = transformed_train_x[:,26:31]   * weight_eda
-	transformed_train_x[:,31:107]  = transformed_train_x[:,31:107]  * weight_eeg
-	transformed_train_x[:,140:145] = transformed_train_x[:,140:145] * weight_eeg
-	transformed_train_x[:,107:117] = transformed_train_x[:,107:117] * weight_eye
-	transformed_train_x[:,129:137] = transformed_train_x[:,129:137] * weight_eye
-	transformed_train_x[:,117:129] = transformed_train_x[:,117:129] * weight_pages
-	transformed_train_x[:,137:140] = transformed_train_x[:,137:140] * weight_pages
+# if input_data_type == 0:
+# 	transformed_train_x[:,0:26]    = transformed_train_x[:,0:26]    * weight_ecg
+# 	transformed_train_x[:,26:31]   = transformed_train_x[:,26:31]   * weight_eda
+# 	transformed_train_x[:,31:107]  = transformed_train_x[:,31:107]  * weight_eeg
+# 	transformed_train_x[:,140:145] = transformed_train_x[:,140:145] * weight_eeg
+# 	transformed_train_x[:,107:117] = transformed_train_x[:,107:117] * weight_eye
+# 	transformed_train_x[:,129:137] = transformed_train_x[:,129:137] * weight_eye
+# 	transformed_train_x[:,117:129] = transformed_train_x[:,117:129] * weight_pages
+# 	transformed_train_x[:,137:140] = transformed_train_x[:,137:140] * weight_pages
 
-	transformed_test_x[:,0:26]    = transformed_test_x[:,0:26]    * weight_ecg
-	transformed_test_x[:,26:31]   = transformed_test_x[:,26:31]   * weight_eda
-	transformed_test_x[:,31:107]  = transformed_test_x[:,31:107]  * weight_eeg
-	transformed_test_x[:,140:145] = transformed_test_x[:,140:145] * weight_eeg
-	transformed_test_x[:,107:117] = transformed_test_x[:,107:117] * weight_eye
-	transformed_test_x[:,129:137] = transformed_test_x[:,129:137] * weight_eye
-	transformed_test_x[:,117:129] = transformed_test_x[:,117:129] * weight_pages
-	transformed_test_x[:,137:140] = transformed_test_x[:,137:140] * weight_pages
-if input_data_type == 1:
-	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_ecg
-	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_ecg
-if input_data_type == 2:
-	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_eda
-	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_eda
-if input_data_type == 3:
-	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_eeg
-	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_eeg
-if input_data_type == 4:
-	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_eye
-	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_eye
-if input_data_type == 5:
-	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_pages
-	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_pages
+# 	transformed_test_x[:,0:26]    = transformed_test_x[:,0:26]    * weight_ecg
+# 	transformed_test_x[:,26:31]   = transformed_test_x[:,26:31]   * weight_eda
+# 	transformed_test_x[:,31:107]  = transformed_test_x[:,31:107]  * weight_eeg
+# 	transformed_test_x[:,140:145] = transformed_test_x[:,140:145] * weight_eeg
+# 	transformed_test_x[:,107:117] = transformed_test_x[:,107:117] * weight_eye
+# 	transformed_test_x[:,129:137] = transformed_test_x[:,129:137] * weight_eye
+# 	transformed_test_x[:,117:129] = transformed_test_x[:,117:129] * weight_pages
+# 	transformed_test_x[:,137:140] = transformed_test_x[:,137:140] * weight_pages
+# if input_data_type == 1:
+# 	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_ecg
+# 	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_ecg
+# if input_data_type == 2:
+# 	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_eda
+# 	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_eda
+# if input_data_type == 3:
+# 	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_eeg
+# 	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_eeg
+# if input_data_type == 4:
+# 	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_eye
+# 	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_eye
+# if input_data_type == 5:
+# 	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_pages
+# 	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_pages
 
 print("Create output directory")
 # --- create dir
@@ -234,26 +240,26 @@ file_name = '{}/Transformed_True_test_data_plot.png'.format(path)
 plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
                  'Transformed (True) test data (True) test data plot', file_name, show=False, save=True)
 
-# print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) train data ")
-# # ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of train data
-# tsne_model = TSNE(n_components=2, learning_rate=500.0 , init='pca', perplexity=30.0)
-# transformed_train_x = tsne_model.fit_transform(transformed_train_x)
-# print(transformed_train_x.shape)
-# conscientious_indeces = input_data.index[input_data['Conscientious'] == 0]
-# none_conscientious_indeces = input_data.index[input_data['Conscientious'] == 1]
-# file_name = '{}/tsne_True_train_data_plot.png'.format(path)
-# plot_data_cluster(transformed_train_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
-#                  'T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) train data  plot', file_name, show=False, save=True)
+print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) train data ")
+# ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of train data
+tsne_model = TSNE(n_components=2, learning_rate=500.0 , init='pca', perplexity=30.0)
+transformed_train_x = tsne_model.fit_transform(transformed_train_x)
+print(transformed_train_x.shape)
+conscientious_indeces = input_data.index[input_data['Conscientious'] == 0]
+none_conscientious_indeces = input_data.index[input_data['Conscientious'] == 1]
+file_name = '{}/tsne_True_train_data_plot.png'.format(path)
+plot_data_cluster(transformed_train_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
+                 'T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) train data  plot', file_name, show=False, save=True)
 
-# print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) test data")
-# # ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of test data
-# transformed_test_x = tsne_model.fit_transform(transformed_test_x)
-# print(transformed_test_x.shape)
-# conscientious_indeces = true_value_test_data.index[true_value_test_data['Conscientious'] == 0]
-# none_conscientious_indeces = true_value_test_data.index[true_value_test_data['Conscientious'] == 1]
-# file_name = '{}/tsne_True_test_data_plot.png'.format(path)
-# plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
-#                  'T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) test data plot', file_name, show=False, save=True)
+print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) test data")
+# ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of test data
+transformed_test_x = tsne_model.fit_transform(transformed_test_x)
+print(transformed_test_x.shape)
+conscientious_indeces = true_value_test_data.index[true_value_test_data['Conscientious'] == 0]
+none_conscientious_indeces = true_value_test_data.index[true_value_test_data['Conscientious'] == 1]
+file_name = '{}/tsne_True_test_data_plot.png'.format(path)
+plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
+                 'T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) test data plot', file_name, show=False, save=True)
 
 # print("------ Principal Component Analysis n_components=2 of train data")
 # # ------ Principal Component Analysis n_components=2 of train data
@@ -339,47 +345,48 @@ print(t_Y.shape)
 
 # ---- hyper parameters
 learning_rate = 0.01
-dropout_rate  = 0.2
-batch_size    = 256
+dropout_rate  = 0.25
+batch_size    = 512
 num_epochs    = 100
 #19 # adam-op
 num_classes   = 1
 
 # # model creation
 # model = Sequential()
-# #model.add(Flatten(input_dim = X.shape[1]))
-# model.add(Dense(1024, input_dim = X.shape[1], activation = 'relu')) # input layer requires input_dim param
+# model.add(Flatten(input_dim = X.shape[1]))
+# model.add(Dense(16, activation = 'relu'))
+# #model.add(Dense(1024, input_dim = X.shape[1], activation = 'relu')) # input layer requires input_dim param
 # model.add(BatchNormalization())
 # #model.add(Dropout(dropout_rate))
-# model.add(Dense(128, activation = 'relu'))
+# model.add(Dense(16, activation = 'relu'))
 # model.add(BatchNormalization())
 # #model.add(Dropout(dropout_rate))
-# # model.add(Dense(128, activation = 'relu'))
-# # model.add(BatchNormalization())
-# model.add(Dense(256, activation = 'relu'))
+# model.add(Dense(8, activation = 'relu'))
 # model.add(BatchNormalization())
+# #model.add(Dense(256, activation = 'relu'))
+# #model.add(BatchNormalization())
 # #model.add(Dropout(dropout_rate))
-# model.add(Dense(512, activation = 'relu'))
-# model.add(BatchNormalization())
+# #model.add(Dense(512, activation = 'relu'))
+# #model.add(BatchNormalization())
 # #model.add(Dropout(dropout_rate))
-# model.add(Dense(256, activation = 'relu'))
-# model.add(BatchNormalization())
+# #model.add(Dense(256, activation = 'relu'))
+# #model.add(BatchNormalization())
 # #model.add(Dropout(dropout_rate))
-# model.add(Dense(128, activation = 'relu'))
-# model.add(BatchNormalization())
+# #model.add(Dense(128, activation = 'relu'))
+# #model.add(BatchNormalization())
 # #model.add(Dropout(dropout_rate))
 # #model.add(Dense(64, activation = 'sigmoid'))
 # #model.add(BatchNormalization())
 # model.add(Flatten())
 # model.add(Dense(num_classes, activation='sigmoid'))#activation='softmax'))
 
-# #optimizer = keras.optimizers.Adam(learning_rate=learning_rate)
+# optimizer = keras.optimizers.Adam(learning_rate=learning_rate)
 # # lr_schedule = keras.optimizers.schedules.ExponentialDecay(
 # #     initial_learning_rate=learning_rate,
 # #     decay_steps=1000,
 # #     decay_rate=0.9)
 # # optimizer = keras.optimizers.SGD(learning_rate=lr_schedule)
-# optimizer = keras.optimizers.SGD(lr=learning_rate, decay=1e-6, momentum=0.9, nesterov=True)
+# #optimizer = keras.optimizers.SGD(lr=learning_rate, decay=1e-6, momentum=0.9, nesterov=True)
 # #model.compile(loss="categorical_crossentropy", optimizer=optimizer, metrics=['accuracy'])
 # model.compile(loss="binary_crossentropy", optimizer=optimizer, metrics=['accuracy'])
 
@@ -420,7 +427,7 @@ num_classes   = 1
 # # predictions_transformed = tf.argmax(predictions, axis=-1).numpy()
 # predictions_transformed = []
 # for i, predicted in enumerate(predictions):
-#     if predicted[0] > 0.4:
+#     if predicted[0] > 0.5:
 #         predictions_transformed.append(1)
 #     else:
 #         predictions_transformed.append(0)
@@ -459,7 +466,7 @@ num_classes   = 1
 
 
 
-# ---- xgboost model
+# # ---- xgboost model
 # my_model = XGBRegressor(n_estimators=1000, learning_rate=0.05)
 # my_model.fit(X, Y, eval_set=[(v_X, v_Y)], verbose=False)
 
@@ -469,7 +476,7 @@ num_classes   = 1
 # predictions_transformed = []
 # for i, predicted in enumerate(predictions):
 #     print(predicted)
-#     if predicted > 0.25:
+#     if predicted > 0.5:
 #         predictions_transformed.append(1)
 #     else:
 #         predictions_transformed.append(0)
@@ -553,9 +560,14 @@ num_classes   = 1
 
 
 # ---- tabnet
-
-classifier = TabNetClassifier(verbose=2, seed=42)
-classifier.fit(X_train=X, y_train=Y, patience=5, max_epochs=100, eval_metric=['auc'])
+classifier = TabNetClassifier(optimizer_fn=torch.optim.Adam,
+                       optimizer_params=dict(lr=2e-2),
+                       scheduler_params={"step_size":10, # how to use learning rate scheduler
+                                         "gamma":0.9},
+                       scheduler_fn=torch.optim.lr_scheduler.StepLR,
+                       mask_type='entmax') # "sparsemax"#verbose=1, seed=42)
+classifier.fit(X_train=X, y_train=Y, eval_set=[(X,Y),(v_X, v_Y)], eval_name=['train', 'valid'], max_epochs=1000 , patience=50, 
+               batch_size=256, virtual_batch_size=128, eval_metric=['auc','accuracy'], num_workers=0, weights=1, drop_last=False)
 
 predictions = classifier.predict_proba(t_X)[:,1]
 print(predictions)
@@ -563,7 +575,7 @@ print(predictions)
 predictions_transformed = []
 for i, predicted in enumerate(predictions):
     #print(predicted)
-    if predicted > 0.25:
+    if predicted > 0.4:
         predictions_transformed.append(1)
     else:
         predictions_transformed.append(0)
