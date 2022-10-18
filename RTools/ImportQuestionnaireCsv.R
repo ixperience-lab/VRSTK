@@ -32,7 +32,8 @@ ImportAllMSSQAnswers <- function(filePath)
   return(allMSSQAnswersRawData);
 }
 
-
+# --- get all participants questionnairy answers from one condition group/class/cluster
+# ----- groups/cluster/class "A" has all answers off all participants in "_ALL_UncannyValleyAnswers*"
 condition <- 'Condition C'
 condition_for_filename <- str_replace(condition, " ", "-")
 type_q_answers <- 'Questionnaires/Answers'

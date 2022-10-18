@@ -182,6 +182,84 @@ summary(any.way)
 #allFeaturesTrackedFromStage1$gamma[rowCounter+1:rowNoneCounter] <- allNoneConscientiousFeaturesTrackedFromStage1$gamma
 
 
+# normalize data frame
+# -------------------------------------------------------------------------------------------------------------------------------
+#allFeaturesTrackedFromStage1 <- as.data.frame(scale(allFeaturesTrackedFromStage1)) 
+
+# -- get all columns type infos too
+# summary.default(allConscientiousFeaturesTrackedFromStage1)
+
+
+# Condition A
+scale_ConscientiousFeaturesTrackedFromStage1 <- allConscientiousFeaturesTrackedFromStage1
+
+scale_ConscientiousFeaturesTrackedFromStage1 <- subset(scale_ConscientiousFeaturesTrackedFromStage1, , -pId )
+scale_ConscientiousFeaturesTrackedFromStage1 <- subset(scale_ConscientiousFeaturesTrackedFromStage1, , -STARTED )
+scale_ConscientiousFeaturesTrackedFromStage1 <- subset(scale_ConscientiousFeaturesTrackedFromStage1, , -LASTDATA )
+#summary.default(scale_ConscientiousFeaturesTrackedFromStage1)
+
+scale_ConscientiousFeaturesTrackedFromStage1 <- as.data.frame(scale(scale_ConscientiousFeaturesTrackedFromStage1))
+scale_columnConscientiousCounter <- ncol(scale_ConscientiousFeaturesTrackedFromStage1)
+barplot(colSums(scale_ConscientiousFeaturesTrackedFromStage1[,(scale_columnConscientiousCounter - 4):scale_columnConscientiousCounter]))
+barplot(colSums(scale_ConscientiousFeaturesTrackedFromStage1[,(scale_columnConscientiousCounter - 2):scale_columnConscientiousCounter]))
+
+# Condition B
+scale_NoneConscientiousFeaturesTrackedFromStage1 <- allNoneConscientiousFeaturesTrackedFromStage1
+
+scale_NoneConscientiousFeaturesTrackedFromStage1 <- subset(scale_NoneConscientiousFeaturesTrackedFromStage1, , -pId  )
+scale_NoneConscientiousFeaturesTrackedFromStage1 <- subset(scale_NoneConscientiousFeaturesTrackedFromStage1, , -STARTED )
+scale_NoneConscientiousFeaturesTrackedFromStage1 <- subset(scale_NoneConscientiousFeaturesTrackedFromStage1, , -LASTDATA )
+
+scale_NoneConscientiousFeaturesTrackedFromStage1 <- as.data.frame(scale(scale_NoneConscientiousFeaturesTrackedFromStage1))
+scale_columnNoneConscientiousCounter <- ncol(scale_NoneConscientiousFeaturesTrackedFromStage1)
+barplot(colSums(scale_NoneConscientiousFeaturesTrackedFromStage1[,(scale_columnNoneConscientiousCounter - 4):scale_columnNoneConscientiousCounter]))
+barplot(colSums(scale_NoneConscientiousFeaturesTrackedFromStage1[,(scale_columnNoneConscientiousCounter - 2):scale_columnNoneConscientiousCounter]))
+
+# Condition C
+scale_NoneFeaturesTrackedFromStage1 <- allNoneFeaturesTrackedFromStage1
+
+scale_NoneFeaturesTrackedFromStage1 <- subset(scale_NoneFeaturesTrackedFromStage1, , -pId )
+scale_NoneFeaturesTrackedFromStage1 <- subset(scale_NoneFeaturesTrackedFromStage1, , -STARTED )
+scale_NoneFeaturesTrackedFromStage1 <- subset(scale_NoneFeaturesTrackedFromStage1, , -LASTDATA )
+
+scale_NoneFeaturesTrackedFromStage1 <- as.data.frame(scale(scale_NoneFeaturesTrackedFromStage1))
+scale_columnNoneCounter <- ncol(scale_NoneFeaturesTrackedFromStage1)
+barplot(colSums(scale_NoneFeaturesTrackedFromStage1[,(scale_columnNoneCounter - 4):scale_columnNoneCounter]))
+barplot(colSums(scale_NoneFeaturesTrackedFromStage1[,(scale_columnNoneCounter - 2):scale_columnNoneCounter]))
+
+con_columns_sum <- colSums(scale_ConscientiousFeaturesTrackedFromStage1[,(scale_columnConscientiousCounter - 2):scale_columnConscientiousCounter])
+none_con_columns_sum <- colSums(scale_NoneConscientiousFeaturesTrackedFromStage1[,(scale_columnNoneConscientiousCounter - 2):scale_columnNoneConscientiousCounter])
+none_features_columns_sum <- colSums(scale_NoneFeaturesTrackedFromStage1[,(scale_columnNoneCounter - 2):scale_columnNoneCounter])
+
+print(con_columns_sum)
+print(none_con_columns_sum)
+print(none_features_columns_sum)
+
+col_names <- colnames(scale_ConscientiousFeaturesTrackedFromStage1[,(scale_columnConscientiousCounter - 2):scale_columnConscientiousCounter])
+print(col_names)
+data <- data.frame(values = c(8.383442e-14, -4.973799e-14, 1.473821e-14, 
+                              -8.710047e-14, 3.001072e-14, -2.008810e-14, 
+                              7.211245e-14, -5.431506e-14, 9.946688e-14),
+                   group = rep(c("Conscientious",
+                                 "None-Conscientious",
+                                 "Free"), each = 3), subgroup = col_names)
+
+print(data)
+
+data_base <- reshape(data, idvar = "subgroup", timevar = "group", direction = "wide")
+print(data_base)
+
+row.names(data_base) <- data_base$subgroup
+data_base <- data_base[ , 2:ncol(data_base)]
+colnames(data_base) <- c("Conscientious", "None-Conscientious", "Free")
+data_base <- as.matrix(data_base)
+print(data_base)                                        
+
+# ----- group data barplot
+barplot(height = data_base, beside = TRUE)
+ggplot(data, aes(x = group, y = values, fill = subgroup)) + geom_bar(stat = "identity", position = "dodge")
+
+
 # only if Condition A-B manuel set to clusters (Conscientious = 0 and None-Conscientious = 1) 
 # =======================================================================================================================
 allFeaturesTrackedFromStage1$Conscientious <- 1
@@ -343,6 +421,7 @@ boxplot(eegHist, main = "boxplot(*, horizontal = FALSE)", horizontal = FALSE)
 #hist.data.frame(eegHist)
 #
 ##ggplot(gather(eegHist, cols, value), aes(x = value)) + geom_histogram(binwidth = 20, bins=5 ) + facet_grid(.~cols)
+
 
 
 ### Validity Score mit DegTimeLowQuality

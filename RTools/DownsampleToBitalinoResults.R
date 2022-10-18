@@ -427,5 +427,61 @@ downsampling <- function(automationStage, stage)
     downsampledCenterOfViewDataFrame$time <- as.integer(downsampledCenterOfViewDataFrame$time)
     return(downsampledCenterOfViewDataFrame)
   }
+  
+  if(automationStage == 8)
+  {
+    countSaccadesPositionsInfoSamples <- 0
+    countTransformedBitalinoSamples <- 1
+    tempResultDataFrame <- NULL
+    tempDataFrame <- NULL
+    if(stage == 1){
+      countSaccadesPositionsInfoSamples <- nrow(rawEyeTrackingSaccadesPositionsInformationStage1)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage1)
+      tempResultDataFrame <- rawEyeTrackingSaccadesPositionsInformationStage1
+      tempDataFrame <- transformedBitalinoECGDataFrameStage1
+    }
+    
+    print(countSaccadesPositionsInfoSamples, zero.print = ".") # quite nicer,
+    print(countTransformedBitalinoSamples, zero.print = ".") # quite nicer,
+    
+    factor <- countSaccadesPositionsInfoSamples %/% countTransformedBitalinoSamples
+    print(factor, zero.print = ".") # quite nicer,
+    
+    samplesCounter <- 1
+    downsampledSaccadesPositionsInfoDataFrame <- NULL
+    for(i in 1:countSaccadesPositionsInfoSamples) {
+      if (samplesCounter == factor && is.null(downsampledSaccadesPositionsInfoDataFrame)) {
+        downsampledSaccadesPositionsInfoDataFrame <- data.frame("time"      = c(as.integer(tempResultDataFrame[i, 1])), 
+                                                                "Saccade0X" = c(as.numeric(tempResultDataFrame[i, 2])), 
+                                                                "Saccade0Y" = c(as.numeric(tempResultDataFrame[i, 3])), 
+                                                                "Saccade0Z" = c(as.numeric(tempResultDataFrame[i, 4])), 
+                                                                "Saccade1X" = c(as.numeric(tempResultDataFrame[i, 5])), 
+                                                                "Saccade1Y" = c(as.numeric(tempResultDataFrame[i, 6])), 
+                                                                "Saccade1Z" = c(as.numeric(tempResultDataFrame[i, 7])),
+                                                                "QuestionId"    = c(as.numeric(tempResultDataFrame[i, 8])),
+                                                                "SaccadesDiffX" = c(as.numeric(tempResultDataFrame[i, 9])),
+                                                                "SaccadesMeanX" = c(as.numeric(tempResultDataFrame[i, 10])),
+                                                                "SaccadesSdX"   = c(as.numeric(tempResultDataFrame[i, 11])),
+                                                                "SaccadesMinX"  = c(as.numeric(tempResultDataFrame[i, 12])),
+                                                                "SaccadesMaxX"  = c(as.numeric(tempResultDataFrame[i, 13])));
+        
+        samplesCounter <- 0
+      }
+      else if(samplesCounter == factor){
+        row<-tempResultDataFrame[i,]
+        downsampledSaccadesPositionsInfoTemp <- downsampledSaccadesPositionsInfoDataFrame                   
+        downsampledSaccadesPositionsInfoTemp[nrow(downsampledSaccadesPositionsInfoDataFrame) + 1, ] <- row
+        downsampledSaccadesPositionsInfoDataFrame <- downsampledSaccadesPositionsInfoTemp
+        samplesCounter <- 0
+      } 
+      
+      if (samplesCounter == 0)
+        samplesCounter <- 1
+      else
+        samplesCounter <- samplesCounter + 1
+    }
+    downsampledSaccadesPositionsInfoDataFrame$time <- as.integer(downsampledSaccadesPositionsInfoDataFrame$time)
+    return(downsampledSaccadesPositionsInfoDataFrame)
+  }
 
 }

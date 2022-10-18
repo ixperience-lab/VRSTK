@@ -10,7 +10,7 @@ library(magrittr)
 library(mnormt)
 
 
-for (condition in c("Condition A", "Condition B")){#, "Condition C")){#condition <- 'Condition C'
+for (condition in c("Condition A", "Condition B", "Condition C")){#condition <- 'Condition C'
   condition_list <- NULL
   if (str_detect(condition, "Condition A")){
     # Conditions Ids:
@@ -238,31 +238,39 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){#condition
     eyeTrackingInformationStage1 <- downsampling(6,1)
     eyeTrackingInformationStage2 <- downsampling(6,2)
     
-    
+
     # 7. CenterOfViewData only for stage 1 data frame
     source("CenterOfViewData.r", echo=TRUE)
     #   7.1 Downsampling/Upsampling
     centerOfViewInformationDataFrameStage1 <- downsampling(7,1)
+
     
-    # 8. RawVRQuestionnaireToolkitUncannyValleyData
+    # 8. RawFixationSaccadsData
+    source("RawFixationSaccadesPositionsData.r", echo=TRUE)
+    #   8.1 Downsampling/Upsampling
+    source("DownsampleToBitalinoResults.r", echo=TRUE)
+    eyeTrackingSaccadesInformationStage1 <- downsampling(8,1)    
+    
+    
+    # 9. RawVRQuestionnaireToolkitUncannyValleyData
     source("RawVRQuestionnaireToolkitUncannyValleyData.r", echo=TRUE)
-    #   8.1 create quality dataframe for all probands to calc. the validityscore
-    
-    
-    # 9. RawVRQuestionnaireToolkitSSQDataFrame
-    source("RawVRQuestionnaireToolkitSSQDataFrame.r", echo=TRUE)
     #   9.1 create quality dataframe for all probands to calc. the validityscore
     
     
-    # 10. Clear environment
+    # 10. RawVRQuestionnaireToolkitSSQDataFrame
+    source("RawVRQuestionnaireToolkitSSQDataFrame.r", echo=TRUE)
+    #   10.1 create quality dataframe for all probands to calc. the validityscore
+    
+    
+    # 11. Clear environment
     source("CleanUpEnvironmentFromTemporaryUsedVariables.r", echo=TRUE)
     
     
     #--------------------------------------------------
-    # 11. Data-Fusion of one Participant 
+    # 12. Data-Fusion of one Participant 
     source("FusionOfTrackingDataOfOneParticipent.r", echo=TRUE)
     
-    # 11.1.1 Data-Fusion of one Participant stage 0
+    # 12.1.1 Data-Fusion of one Participant stage 0
     participent_variable_name <- paste("participent_", id, "_Stage0_DataFrame", sep="") #'participent_'+ as.character(id) + '_DataFrame'
     # call fuseParticipentDataFrames
     assign(participent_variable_name, fuseParticipentDataFrames(id, condition, 0))
@@ -274,7 +282,7 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){#condition
     
     assign(participent_variable_name, get(participent_variable_name) %>% distinct(time, .keep_all = TRUE))
     
-    # 11.1.2.1 add participent id to dataframe
+    # 12.1.2.1 add participent id to dataframe
     nRows <- nrow(get(participent_variable_name))
     tempDataFrame <- NULL
     tempDataFrame <- data.frame(pId = character())
@@ -282,7 +290,7 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){#condition
     tempDataFrame <- cbind(tempDataFrame, get(participent_variable_name))
     assign(participent_variable_name, tempDataFrame)
     
-    # 11.1.2 Data-Fusion of one Participant stage 1
+    # 12.1.2 Data-Fusion of one Participant stage 1
     participent_variable_name <- paste("participent_", id, "_Stage1_DataFrame", sep="") #'participent_'+ as.character(id) + '_DataFrame'
     # call fuseParticipentDataFrames
     assign(participent_variable_name, fuseParticipentDataFrames(id, condition, 1))
@@ -294,7 +302,7 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){#condition
     
     assign(participent_variable_name, get(participent_variable_name) %>% distinct(time, .keep_all = TRUE))
     
-    # 11.1.2.1 add participent id to dataframe
+    # 12.1.2.1 add participent id to dataframe
     nRows <- nrow(get(participent_variable_name))
     tempDataFrame <- NULL
     tempDataFrame <- data.frame(pId = character())
@@ -302,7 +310,7 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){#condition
     tempDataFrame <- cbind(tempDataFrame, get(participent_variable_name))
     assign(participent_variable_name, tempDataFrame)
     
-    # 11.1.3 Data-Fusion of one Participant stage 2
+    # 12.1.3 Data-Fusion of one Participant stage 2
     participent_variable_name <- paste("participent_", id, "_Stage2_DataFrame", sep="") #'participent_'+ as.character(id) + '_DataFrame'
     # call fuseParticipentDataFrames
     assign(participent_variable_name, fuseParticipentDataFrames(id, condition, 2))
@@ -314,7 +322,7 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){#condition
     
     assign(participent_variable_name, get(participent_variable_name) %>% distinct(time, .keep_all = TRUE))
     
-    # 11.1.4.1 add participent id to dataframe
+    # 12.1.4.1 add participent id to dataframe
     nRows <- nrow(get(participent_variable_name))
     tempDataFrame <- NULL
     tempDataFrame <- data.frame(pId = character())
@@ -322,7 +330,7 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){#condition
     tempDataFrame <- cbind(tempDataFrame, get(participent_variable_name))
     assign(participent_variable_name, tempDataFrame)
     
-    # 11.2 cleanup 
+    # 12.2 cleanup 
     rm(pagesTIMESUMsStage1Temp)
     rm(pagesQualityParametersStage1)
     rm(pagesQualityParametersStage2)
@@ -361,7 +369,7 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){#condition
   }
   
   
-  #   11.3 Complete dataframes
+  #   12.3 Complete dataframes
   if (!(is.null(pagesTIMESUMsStage1)) && nrow(pagesTIMESUMsStage1) == condition_length) {
     source("EvaluateQualityParamtersAsValidityscore.r", echo=TRUE)
     pagesTIMESUMsStage1 <- EvaluateValidityScores(1)
@@ -386,9 +394,9 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){#condition
     }
     c_index <- c_index + 1
   }
+
   
-  
-  #   11.4 Filter data frame and complete with missing values
+  #   12.4 Filter data frame and complete with missing values
   for (cid in condition_list){ 
     for(stage in c("Stage1", "Stage2")){
       dataframe_name <- paste("participent_", cid, "_", stage, "_DataFrame", sep="") 
@@ -473,12 +481,108 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){#condition
         tempDataFrame$RightPupilDiameterDifferenceToMean[i] <- tempDataFrame$RightPupilDiameter[i] - rightMeanPupilDiameter
       }
       
+      
+      if(stage == "Stage1"){
+        # calculate saccads informations
+        # Q-1-ROI (h=20px; w=560; scale_factor=0.005): X[1.465, -1.37]; Y[1.73, 1.83]; Z[-7]
+        # Q-2-ROI (h=20px; w=560; scale_factor=0.005): X[1.465, -1.37]; Y[1.27, 1.37]; Z[-7]
+        # Q-3-ROI (h=20px; w=560; scale_factor=0.005): X[1.465, -1.37]; Y[0.8, 0.9];   Z[-7]
+        q1XSaccads   <- array(numeric())
+        indexQ1      <- array(numeric())
+        q2XSaccads   <- array(numeric())
+        indexQ2      <- array(numeric())
+        q3XSaccads   <- array(numeric())
+        indexQ3      <- array(numeric())
+        oldPageIndex <- 1
+        
+        for(i in 1:nrow(tempDataFrame)) {
+          tempDataFrame$SaccadesDiffX[i] <- abs(tempDataFrame$Saccade0X[i] - tempDataFrame$Saccade1X[i])
+          if(tempDataFrame$CurrentPageNumbe[i] > 0){
+            if(tempDataFrame$CurrentPageNumbe[i] != oldPageIndex){
+              
+              if (length(indexQ1) > 0 ){
+                tempDataFrame$SaccadesMeanX[indexQ1] <- mean(q1XSaccads)
+                print("saccades info:")
+                print(tempDataFrame$SaccadesMeanX[indexQ1])
+                if(length(indexQ1) > 1) {
+                  tempDataFrame$SaccadesSdX[indexQ1]   <- sd(q1XSaccads)
+                }
+                tempDataFrame$SaccadesMinX[indexQ1]  <- min(q1XSaccads)
+                tempDataFrame$SaccadesMaxX[indexQ1]  <- max(q1XSaccads)
+                q1XSaccads <- array(numeric())
+                indexQ1    <- array(numeric())
+              }
+              
+              if (length(indexQ2) > 0 ){
+                tempDataFrame$SaccadesMeanX[indexQ2] <- mean(q2XSaccads)
+                if(length(indexQ2) > 1) {
+                  tempDataFrame$SaccadesSdX[indexQ2]   <- sd(q2XSaccads)
+                }
+                tempDataFrame$SaccadesMinX[indexQ2]  <- min(q2XSaccads)
+                tempDataFrame$SaccadesMaxX[indexQ2]  <- max(q2XSaccads)
+                q2XSaccads <- array(numeric())
+                indexQ2    <- array(numeric())
+              }
+              
+              if (length(indexQ3) > 0 ){
+                tempDataFrame$SaccadesMeanX[indexQ3] <- mean(q3XSaccads)
+                if(length(indexQ3) > 1) {
+                  tempDataFrame$SaccadesSdX[indexQ3]   <- sd(q3XSaccads)
+                }
+                tempDataFrame$SaccadesMinX[indexQ3]  <- min(q3XSaccads)
+                tempDataFrame$SaccadesMaxX[indexQ3]  <- max(q3XSaccads)
+                q3XSaccads <- array(numeric())
+                indexQ3    <- array(numeric())
+              }
+            }
+            
+            # Q-1-ROI:
+            if((tempDataFrame$Saccade0X[i] >= -1.4 && tempDataFrame$Saccade0X[i] <=  1.48) &&
+               (tempDataFrame$Saccade0Y[i] >= 1.67  && tempDataFrame$Saccade0Y[i] <=  1.91)   &&
+               (tempDataFrame$Saccade0Z[i] < -6.9) &&
+               (tempDataFrame$Saccade1X[i] >= -1.4 && tempDataFrame$Saccade1X[i] <=  1.48) &&
+               (tempDataFrame$Saccade1Y[i] >= 1.67  && tempDataFrame$Saccade1Y[i] <=  1.91)   &&
+               (tempDataFrame$Saccade1Z[i] < -6.9)) {
+              tempDataFrame$QuestionId[i] <- 1
+              q1XSaccads <- append(q1XSaccads, tempDataFrame$SaccadesDiffX[i])
+              indexQ1    <- append(indexQ1, i)
+            }
+            
+            # Q-2-ROI:
+            if((tempDataFrame$Saccade0X[i] >= -1.4 && tempDataFrame$Saccade0X[i] <=  1.48) &&
+               (tempDataFrame$Saccade0Y[i] >= 1.22  && tempDataFrame$Saccade0Y[i] <=  1.42)  &&
+               (tempDataFrame$Saccade0Z[i] < -6.9) &&
+               (tempDataFrame$Saccade1X[i] >= -1.4 && tempDataFrame$Saccade1X[i] <=  1.48) &&
+               (tempDataFrame$Saccade1Y[i] >= 1.22  && tempDataFrame$Saccade1Y[i] <=  1.42)  &&
+               (tempDataFrame$Saccade1Z[i] < -6.9)) {
+              tempDataFrame$QuestionId[i] <- 2
+              q2XSaccads <- append(q2XSaccads, tempDataFrame$SaccadesDiffX[i])
+              indexQ2    <- append(indexQ2, i)
+            }
+            
+            # Q-3-ROI:
+            if((tempDataFrame$Saccade0X[i] >= -1.4 && tempDataFrame$Saccade0X[i] <=  1.48) &&
+               (tempDataFrame$Saccade0Y[i] >= 0.75  && tempDataFrame$Saccade0Y[i] <=  0.95)  &&
+               (tempDataFrame$Saccade0Z[i] < -6.9) &&
+               (tempDataFrame$Saccade1X[i] >= -1.4 && tempDataFrame$Saccade1X[i] <=  1.48) &&
+               (tempDataFrame$Saccade1Y[i] >= 0.75  && tempDataFrame$Saccade1Y[i] <=  0.95)  &&
+               (tempDataFrame$Saccade1Z[i] < -6.9)) {
+              tempDataFrame$QuestionId[i] <- 3
+              q3XSaccads <- append(q3XSaccads, tempDataFrame$SaccadesDiffX[i])
+              indexQ3    <- append(indexQ3, i)
+            }
+            
+            oldPageIndex <- tempDataFrame$CurrentPageNumbe[i]
+          }
+        }
+      }
+      
       assign(dataframe_name, tempDataFrame)
     }
   }
   
   
-  #   11.5 Save data frames as backup
+  #   12.5 Save data frames as backup
   path <- file.path(condition,  "RResults", "/")
   
   pathCSV <- file.path(path,  "PagesTIMESUMsStage1_DataFrame.csv", "")
@@ -510,7 +614,7 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){#condition
   
   
   #--------------------------------------------------
-  # 12. Data-Fusion for all Probands in one condition
+  # 13. Data-Fusion for all Probands in one condition
   for(stage in c("Stage0","Stage1", "Stage2")){
     all_participent_dataframe <- NULL
     for (cid in condition_list){ 
@@ -590,14 +694,14 @@ rm(cid)
 # -------------------------------------- End of one Condition fusion -----------------------------------
 
 
-# 12.2 create global time rsi result of stage 1 and stage 2 for a better evaluation value
+# 13.2 create global time rsi result of stage 1 and stage 2 for a better evaluation value
 
 pagesTIMESUMsStage1CA <- read.csv2(file = './Condition A/RResults/PagesTIMESUMsStage1_DataFrame.csv')
 pagesTIMESUMsStage1CB <- read.csv2(file = './Condition B/RResults/PagesTIMESUMsStage1_DataFrame.csv')
-#pagesTIMESUMsStage1CC <- read.csv2(file = './Condition C/RResults/PagesTIMESUMsStage1_DataFrame.csv')
+pagesTIMESUMsStage1CC <- read.csv2(file = './Condition C/RResults/PagesTIMESUMsStage1_DataFrame.csv')
 allpagesTIMESUMsStage1 <- pagesTIMESUMsStage1CA
 allpagesTIMESUMsStage1 <- rbind(allpagesTIMESUMsStage1, pagesTIMESUMsStage1CB)
-#allpagesTIMESUMsStage1 <- rbind(allpagesTIMESUMsStage1, pagesTIMESUMsStage1CC)
+allpagesTIMESUMsStage1 <- rbind(allpagesTIMESUMsStage1, pagesTIMESUMsStage1CC)
 
 # stage 1 calc
 medianTimeRsi <- 0
@@ -629,13 +733,13 @@ pagesTIMESUMsStage1CB$GlobalTIMERSICalc <- 0
 pagesTIMESUMsStage1CB$GlobalMEDIANForTRSI <- 0
 pagesTIMESUMsStage1CB$EvaluatedGlobalTIMERSICalc <- 0
 
-#pagesTIMESUMsStage1CC$GlobalTIMERSICalc <- 0
-#pagesTIMESUMsStage1CC$GlobalMEDIANForTRSI <- 0
-#pagesTIMESUMsStage1CC$EvaluatedGlobalTIMERSICalc <- 0
+pagesTIMESUMsStage1CC$GlobalTIMERSICalc <- 0
+pagesTIMESUMsStage1CC$GlobalMEDIANForTRSI <- 0
+pagesTIMESUMsStage1CC$EvaluatedGlobalTIMERSICalc <- 0
 
 countCa <- nrow(pagesTIMESUMsStage1CA)
 countCB <- nrow(pagesTIMESUMsStage1CA) + nrow(pagesTIMESUMsStage1CB)
-#countCC <- nrow(allpagesTIMESUMsStage1)
+countCC <- nrow(allpagesTIMESUMsStage1)
   
 for(i in 1:nrow(allpagesTIMESUMsStage1)){
   if(i <= countCa){
@@ -646,11 +750,11 @@ for(i in 1:nrow(allpagesTIMESUMsStage1)){
     pagesTIMESUMsStage1CB$GlobalTIMERSICalc[i - countCa] <- allpagesTIMESUMsStage1$GlobalTIMERSICalc[i]
     pagesTIMESUMsStage1CB$EvaluatedGlobalTIMERSICalc[i - countCa] <- allpagesTIMESUMsStage1$EvaluatedGlobalTIMERSICalc[i]
     pagesTIMESUMsStage1CB$GlobalMEDIANForTRSI[i - countCa] <- allpagesTIMESUMsStage1$GlobalMEDIANForTRSI[i]
-  }#else if(i <= countCC){
-  #  pagesTIMESUMsStage1CC$GlobalTIMERSICalc[i - countCB] <- allpagesTIMESUMsStage1$GlobalTIMERSICalc[i]
-  #  pagesTIMESUMsStage1CC$EvaluatedGlobalTIMERSICalc[i - countCB] <- allpagesTIMESUMsStage1$EvaluatedGlobalTIMERSICalc[i]
-  #  pagesTIMESUMsStage1CC$GlobalMEDIANForTRSI[i- countCB] <- allpagesTIMESUMsStage1$GlobalMEDIANForTRSI[i]
-  #}
+  }else if(i <= countCC){
+    pagesTIMESUMsStage1CC$GlobalTIMERSICalc[i - countCB] <- allpagesTIMESUMsStage1$GlobalTIMERSICalc[i]
+    pagesTIMESUMsStage1CC$EvaluatedGlobalTIMERSICalc[i - countCB] <- allpagesTIMESUMsStage1$EvaluatedGlobalTIMERSICalc[i]
+    pagesTIMESUMsStage1CC$GlobalMEDIANForTRSI[i- countCB] <- allpagesTIMESUMsStage1$GlobalMEDIANForTRSI[i]
+  }
 }
 
 pathCSV <- './Condition A/RResults/PagesTIMESUMsStage1_DataFrame.csv'
@@ -663,12 +767,12 @@ pathTXT <- './Condition B/RResults/PagesTIMESUMsStage1_DataFrame.txt'
 write.csv2(pagesTIMESUMsStage1CB, pathCSV, row.names = FALSE)
 write.table(pagesTIMESUMsStage1CB, pathTXT, sep=" # ", row.names=FALSE)
 
-#pathCSV <- './Condition C/RResults/PagesTIMESUMsStage1_DataFrame.csv'
-#pathTXT <- './Condition C/RResults/PagesTIMESUMsStage1_DataFrame.txt'
-#write.csv2(pagesTIMESUMsStage1CC, pathCSV, row.names = FALSE)
-#write.table(pagesTIMESUMsStage1CC, pathTXT, sep=" # ", row.names=FALSE)
+pathCSV <- './Condition C/RResults/PagesTIMESUMsStage1_DataFrame.csv'
+pathTXT <- './Condition C/RResults/PagesTIMESUMsStage1_DataFrame.txt'
+write.csv2(pagesTIMESUMsStage1CC, pathCSV, row.names = FALSE)
+write.table(pagesTIMESUMsStage1CC, pathTXT, sep=" # ", row.names=FALSE)
 
-for (condition in c("Condition A", "Condition B")){#, "Condition C")){
+for (condition in c("Condition A", "Condition B", "Condition C")){
   condition_list <- NULL
   if (str_detect(condition, "Condition A")){
     condition_list <- c("id-1", "id-2", "id-3", "id-4", "id-5", "id-6", "id-7", "id-10")
@@ -730,7 +834,7 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){
 # -------------------------------------- End of one extension to gobal time rsi value fusion -----------------------------------
 
 
-# 13 Fuse all conditions dataframes
+# 14 Fuse all conditions dataframes
 
 for(stage in c("Stage0","Stage1", "Stage2")){
   # load files
@@ -742,14 +846,14 @@ for(stage in c("Stage0","Stage1", "Stage2")){
   pathCSV <- file.path("./Condition B/RResults/", file_name, "")
   conditionBDataFrame <- read.csv2(file = pathCSV)
   
-  #file_name <- paste("All_Participents_", stage, "_DataFrame.csv", sep="")
-  #pathCSV <- file.path("./Condition C/RResults/", file_name, "")
-  #conditionCDataFrame <- read.csv2(file = pathCSV)
+  file_name <- paste("All_Participents_", stage, "_DataFrame.csv", sep="")
+  pathCSV <- file.path("./Condition C/RResults/", file_name, "")
+  conditionCDataFrame <- read.csv2(file = pathCSV)
   
   # fuse all 3 conditions
   all_participent_dataframe <- conditionADataFrame
   all_participent_dataframe <- rbind(all_participent_dataframe, conditionBDataFrame)
-  #all_participent_dataframe <- rbind(all_participent_dataframe, conditionCDataFrame)
+  all_participent_dataframe <- rbind(all_participent_dataframe, conditionCDataFrame)
   # create a copy of fused dataframe
   temp_dataframe <- all_participent_dataframe
   
@@ -791,9 +895,9 @@ for(stage in c("Stage0","Stage1", "Stage2")){
 }
 
 
-# 13.1 create fuse mean data frame all participants
+# 14.1 create fuse mean data frame all participants
 
-for (condition in c("Condition A", "Condition B")){#, "Condition C")){
+for (condition in c("Condition A", "Condition B", "Condition C")){
   condition_list <- NULL
   if (str_detect(condition, "Condition A")){
     # Conditions Ids:
@@ -861,7 +965,7 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){
 }
 
 
-# 13.2.1 create complete fuse mean data frame all participants
+# 14.2.1 create complete fuse mean data frame all participants
 
 for(stage in c("Stage0","Stage1", "Stage2")){
   # load files
@@ -871,19 +975,19 @@ for(stage in c("Stage0","Stage1", "Stage2")){
   file_name <- paste("All_Participents_Mean_", stage, "_DataFrame.csv", sep="")
   pathCSV <- file.path("./Condition B/RResults/", file_name, "")
   conditionBMeanDataFrame <- read.csv2(file = pathCSV)
-  #file_name <- paste("All_Participents_Mean_", stage, "_DataFrame.csv", sep="")
-  #pathCSV <- file.path("./Condition C/RResults/", file_name, "")
-  #conditionCMeanDataFrame <- read.csv2(file = pathCSV)
+  file_name <- paste("All_Participents_Mean_", stage, "_DataFrame.csv", sep="")
+  pathCSV <- file.path("./Condition C/RResults/", file_name, "")
+  conditionCMeanDataFrame <- read.csv2(file = pathCSV)
   # fuse data frames
   all_participent_Mean_dataframes <- conditionAMeanDataFrame
   all_participent_Mean_dataframes <- rbind(all_participent_Mean_dataframes, conditionBMeanDataFrame)
-  #all_participent_Mean_dataframes <- rbind(all_participent_Mean_dataframes, conditionCMeanDataFrame)
+  all_participent_Mean_dataframes <- rbind(all_participent_Mean_dataframes, conditionCMeanDataFrame)
   # save fused data frame
   file_name <- paste("All_Participents_Mean_", stage, "_DataFrame.csv", sep="")
   write.csv2(all_participent_Mean_dataframes, file_name, row.names = FALSE)
 }
 
-# 13.2.2 cleanup global environment
+# 14.2.2 cleanup global environment
 
 rm(all_participent_Mean_dataframes)
 rm(All_Participents_Mean_DataFrame)
@@ -905,8 +1009,7 @@ rm(numberOfColumns)
 rm(pathCSV)
 rm(stage)
 
-# 13.3 create diff data frame from stage1 mean with stage0 mean data frame
-
+# 14.3 create diff data frame from stage1 mean with stage0 mean data frame
 # load files
 file_name <- paste("All_Participents_Mean_Stage0_DataFrame.csv", sep="")
 meanStage0DataFrame <- read.csv2(file = file_name)
@@ -933,18 +1036,62 @@ temp_df <- cbind(meanStage1DataFrame[, filtertcnames], temp_df)
 file_name <- paste("All_Participents_Mean_Diff_Of_Stages_DataFrame.csv", sep="")
 write.csv2(temp_df, file_name, row.names = FALSE)
 
-#--------------------------------------------------
-# 14. Run Cluster-Algorithm en
-# 14.1 Load it with python as Data Frame
-# 14.2 Run and test two selected cluster algorithm en
-# 14.2.1 K-Means-Clustering
-# 14.2.2 Gaussian-Mixtures-Clustering
+# 14.4 last cleanup stage
+rm(allpagesTIMESUMsStage1)
+rm(eyeTrackingSaccadesInformationStage1)
+rm(meanStage0DataFrame)
+rm(meanStage1DataFrame)
+rm(pagesTIMESUMs)
+rm(pagesTIMESUMsStage1CA)
+rm(pagesTIMESUMsStage1CB)
+rm(pagesTIMESUMsStage1CC)
+rm(rawEyeTrackingSaccadesPositionsInformationStage1)
+rm(rawFixationSaccadesPositionsDataStage1)
+rm(temp_df)
+rm(tempDataFrame)
+rm(allcnames)
+rm(c_index)
+rm(countCa)
+rm(countCB)
+rm(countCC)
+rm(file_name)
+rm(file_name_csv)
+rm(file_name_txt)
+rm(filtertcnames)
+rm(i)
+rm(index)
+rm(indexQ1)
+rm(indexQ2)
+rm(indexQ3)
+rm(name)
+rm(oldPageIndex)
+rm(cnames)
+rm(desired_length)
+rm(pathTXT)
+rm(medianTimeRsi)
+rm(rawEyeTrackingSaccadesPositionsInformationStage1Temp)
+rm(rawSaccadsPositionsInformationsAsMessage)
+rm(replacedSaccade_0_Values)
+rm(replacedSaccade_1_Values)
+rm(q1XSaccads)
+rm(q2XSaccads)
+rm(q3XSaccads)
+rm(rowModelName)
+rm(rowModelNameIndex)
+rm(saccade_0_position)
+rm(saccade_1_position)
+rm(splittedSaccadsPositionsInformations)
+
 
 #--------------------------------------------------
-# 15. Run if there are results ANOVA
-# 15.1 Display the covarianz-Matrix of all features
-# 15.2 Run ANOVA with covarianz results features
-# 15.3 Run ANOVA with the rest features
+# 15. Run Cluster-Algorithm en
+# 15.1 Load it with python as Data Frame
+# 15.2 Run and test two selected cluster algorithm en
+# 15.2.1 K-Means-Clustering
+# 15.2.2 Gaussian-Mixtures-Clustering
 
-
-
+#--------------------------------------------------
+# 16. Run if there are results ANOVA
+# 16.1 Display the covarianz-Matrix of all features
+# 16.2 Run ANOVA with covarianz results features
+# 16.3 Run ANOVA with the rest features

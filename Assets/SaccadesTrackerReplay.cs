@@ -71,9 +71,9 @@ public class SaccadesTrackerReplay : MonoBehaviour
             Vector3 p1 = new Vector3(float.Parse(pArray[0].Substring(1, pArray[0].Length - 1).Trim()), float.Parse(pArray[1].Trim()), float.Parse(pArray[2].Substring(0, pArray[2].Length - 1).Trim()));
 
             // Correction of z-values while theres no raycast on page stage 1
-            //if (p0.z < -7.0f) p0.z = -6.99f;
-            //if (p1.z < -7.0f) p1.z = -6.99f;
-
+            //if (p0.z <= -7.0f) p0 *= (7.0f / Mathf.Abs(p0[2]));
+            //if (p1.z <= -7.0f) p1 *= (7.0f / Mathf.Abs(p1[2]));
+            
             LineRenderer lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.positionCount += 2;
             lineRenderer.SetPosition(lineRenderer.positionCount - 2, p0);
@@ -139,17 +139,11 @@ public class SaccadesTrackerReplay : MonoBehaviour
                 string tagName = "ReplaySphere_";
                 Debug.Log(objectName);
                 {
-                    //// Correction of z-values while theres no raycast on page
-                    //if (position.z < -7.0f) position.z = -6.99f;
-                    //// Correction of start position 
+                    // Correction of z-values while theres no raycast on page
+                    //if (position.z <= -7.0f) position = (7.0f / Mathf.Abs(position[2])) * position;
+                    // Correction of start position 
                     //if (position.z > -2.0f) continue;
-                    //// Correction of centerofview
-                    //if ((position.z < -5.9f) && (position.z > -6.6f))
-                    //{
-                    //    position.x -= 0.8f; 
-                    //    position.z = -5.2f;
-                    //}
-
+                    
                     GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                     sphere.tag = tagName;
                     sphere.name = objectName;

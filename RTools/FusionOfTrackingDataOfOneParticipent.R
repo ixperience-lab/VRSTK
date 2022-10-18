@@ -20,6 +20,7 @@ fuseParticipentDataFrames <- function(id, condition, stage)
     fusedDataFrames <- merge(fusedDataFrames, bandPowerDataFrameStage1, by="time", all = TRUE)
     fusedDataFrames <- merge(fusedDataFrames, performanceMetricDataFrameStage1, by="time", all = TRUE)
     fusedDataFrames <- merge(fusedDataFrames, eyeTrackingInformationStage1, by="time", all = TRUE)
+    fusedDataFrames <- merge(fusedDataFrames, eyeTrackingSaccadesInformationStage1, by="time", all = TRUE)
     fusedDataFrames <- merge(fusedDataFrames, centerOfViewInformationDataFrameStage1, by="time", all = TRUE)
     fusedDataFrames <- merge(fusedDataFrames, pagesQualityParametersStage1, by="time", all = TRUE)
   }
