@@ -30,7 +30,7 @@ Visit our wiki for quickstart instructions
 
 ## Requirements
 - Unity3D 2020.3.x
-- OpenXR Unity Package min. 4.2.X
+- XR Unity Packages
 	- OpenXR min. 1.3.1
 	- XR XR Plugin Management min. 4.2.x
 	- XR Interaction Toolkit min. 2.2.0
