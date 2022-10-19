@@ -151,7 +151,7 @@ true_value_test_data = []
 for i in range(r_num_test_data):
     true_value_test_data.append(0)
     if load_test_data['pId'].values[i] == 24 or load_test_data['pId'].values[i] == 25: # or load_test_data['pId'].values[i] == 28:
-        true_value_test_data[i] = 1
+        true_value_test_data[i] = 1        
 true_value_test_data = pd.DataFrame({ "Conscientious" : true_value_test_data})      
 print(true_value_test_data["Conscientious"].values)
 
@@ -166,6 +166,10 @@ x = StandardScaler().fit_transform(x)
 # Standardizing the features of Test data
 transformed_test_x = StandardScaler().fit_transform(test_x)
 
+#print(x.shape)
+#print(transformed_test_x.shape)
+#sys.exit()
+
 # set sensor and validity score weights
 weight_ecg = 2/5       #train_data.loc[:,1:26]                                 -> count() = 26
 weight_eda = 3/5       #train_data.loc[:,27:31]                                -> count() = 5
@@ -177,20 +181,20 @@ if input_data_type == 0:
 	x[:,0:26]    = x[:,0:26]    * weight_ecg
 	x[:,26:31]   = x[:,26:31]   * weight_eda
 	x[:,31:107]  = x[:,31:107]  * weight_eeg
-	x[:,140:145] = x[:,140:145] * weight_eeg
-	x[:,107:117] = x[:,107:117] * weight_eye
-	x[:,129:137] = x[:,129:137] * weight_eye
-	x[:,117:129] = x[:,117:129] * weight_pages
-	x[:,137:140] = x[:,137:140] * weight_pages
+	x[:,152:157] = x[:,152:157] * weight_eeg
+	x[:,107:129] = x[:,107:129] * weight_eye
+	x[:,141:149] = x[:,141:149] * weight_eye
+	x[:,129:141] = x[:,129:141] * weight_pages
+	x[:,149:152] = x[:,149:152] * weight_pages
 
 	transformed_test_x[:,0:26]    = transformed_test_x[:,0:26]    * weight_ecg
 	transformed_test_x[:,26:31]   = transformed_test_x[:,26:31]   * weight_eda
 	transformed_test_x[:,31:107]  = transformed_test_x[:,31:107]  * weight_eeg
-	transformed_test_x[:,140:145] = transformed_test_x[:,140:145] * weight_eeg
-	transformed_test_x[:,107:117] = transformed_test_x[:,107:117] * weight_eye
-	transformed_test_x[:,129:137] = transformed_test_x[:,129:137] * weight_eye
-	transformed_test_x[:,117:129] = transformed_test_x[:,117:129] * weight_pages
-	transformed_test_x[:,137:140] = transformed_test_x[:,137:140] * weight_pages
+	transformed_test_x[:,152:157] = transformed_test_x[:,152:157] * weight_eeg
+	transformed_test_x[:,107:129] = transformed_test_x[:,107:129] * weight_eye
+	transformed_test_x[:,141:149] = transformed_test_x[:,141:149] * weight_eye
+	transformed_test_x[:,129:141] = transformed_test_x[:,129:141] * weight_pages
+	transformed_test_x[:,149:152] = transformed_test_x[:,149:152] * weight_pages
 if input_data_type == 1:
 	x[:,:] = x[:,:] * weight_ecg
 	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_ecg
@@ -269,9 +273,12 @@ test_x_embedded = tsne_model.fit_transform(transformed_test_x)
 print(test_x_embedded.shape)
 conscientious_indeces = true_value_test_data.index[true_value_test_data['Conscientious'] == 0]
 none_conscientious_indeces = true_value_test_data.index[true_value_test_data['Conscientious'] == 1]
+
 file_name = '{}/True_test_data_plot.png'.format(path)
 plot_data_cluster(test_x_embedded, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
                  'T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) test data plot', file_name, show=False, save=True)
+
+#sys.exit()
 
 # fig = plt.figure(figsize=(15,10))
 # ax = fig.add_subplot(1, 1, 1)
@@ -363,11 +370,11 @@ knc_test_data["Confidence"] = np.max(prediction, axis = 1)
 colors = {0:'b', 1:'r'}
 _ids = [21, 22, 23, 24, 25, 26, 27, 28, 29]
 for id in _ids:
-	temp = knc_test_data.loc[knc_test_data["pId"] == id]
-	max_confi = temp['Confidence'].max()
-	highest_confidet_index = temp[temp.Confidence == max_confi].index.tolist()[0]
-	highest_confidet = temp.at[highest_confidet_index, 'Conscientious']
-	knc_test_data.loc[knc_test_data.pId == id, 'Conscientious'] = highest_confidet 
+    temp = knc_test_data.loc[knc_test_data["pId"] == id]
+    max_confi = temp['Confidence'].max()
+    highest_confidet_index = temp[temp.Confidence == max_confi].index.tolist()[0]
+    highest_confidet = temp.at[highest_confidet_index, 'Conscientious']
+    knc_test_data.loc[knc_test_data.pId == id, 'Conscientious'] = highest_confidet 
 	
 ax2 = knc_test_data.plot.scatter(x='Conscientious',  y='pId', c=knc_test_data['Conscientious'].map(colors))
 plt.show()

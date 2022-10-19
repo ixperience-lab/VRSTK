@@ -165,27 +165,27 @@ transformed_test_x = StandardScaler().fit_transform(test_x)
 weight_ecg = 1/5       #train_data.loc[:,1:26]                                 -> count() = 26
 weight_eda = 2/5       #train_data.loc[:,27:31]                                -> count() = 5
 weight_eeg = 1/5       #train_data.loc[:,32:107]  , train_data.loc[:,141:145]  -> count() = 76, 5
-weight_eye = 1/5       #train_data.loc[:,108:117] , train_data.loc[:,130:137]  -> count() = 10, 8
+weight_eye = 3/5     #train_data.loc[:,108:117] , train_data.loc[:,130:137]  -> count() = 10, 8
 weight_pages = 1       #train_data.loc[:,118:129] , train_data.loc[:,138:140]  -> count() = 12, 3
 
 if input_data_type == 0:
 	x[:,0:26]    = x[:,0:26]    * weight_ecg
 	x[:,26:31]   = x[:,26:31]   * weight_eda
 	x[:,31:107]  = x[:,31:107]  * weight_eeg
-	x[:,140:145] = x[:,140:145] * weight_eeg
-	x[:,107:117] = x[:,107:117] * weight_eye
-	x[:,129:137] = x[:,129:137] * weight_eye
-	x[:,117:129] = x[:,117:129] * weight_pages
-	x[:,137:140] = x[:,137:140] * weight_pages
+	x[:,152:157] = x[:,152:157] * weight_eeg
+	x[:,107:129] = x[:,107:129] * weight_eye
+	x[:,141:149] = x[:,141:149] * weight_eye
+	x[:,129:141] = x[:,129:141] * weight_pages
+	x[:,149:152] = x[:,149:152] * weight_pages
 
 	transformed_test_x[:,0:26]    = transformed_test_x[:,0:26]    * weight_ecg
 	transformed_test_x[:,26:31]   = transformed_test_x[:,26:31]   * weight_eda
 	transformed_test_x[:,31:107]  = transformed_test_x[:,31:107]  * weight_eeg
-	transformed_test_x[:,140:145] = transformed_test_x[:,140:145] * weight_eeg
-	transformed_test_x[:,107:117] = transformed_test_x[:,107:117] * weight_eye
-	transformed_test_x[:,129:137] = transformed_test_x[:,129:137] * weight_eye
-	transformed_test_x[:,117:129] = transformed_test_x[:,117:129] * weight_pages
-	transformed_test_x[:,137:140] = transformed_test_x[:,137:140] * weight_pages
+	transformed_test_x[:,152:157] = transformed_test_x[:,152:157] * weight_eeg
+	transformed_test_x[:,107:129] = transformed_test_x[:,107:129] * weight_eye
+	transformed_test_x[:,141:149] = transformed_test_x[:,141:149] * weight_eye
+	transformed_test_x[:,129:141] = transformed_test_x[:,129:141] * weight_pages
+	transformed_test_x[:,149:152] = transformed_test_x[:,149:152] * weight_pages
 if input_data_type == 1:
 	x[:,:] = x[:,:] * weight_ecg
 	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_ecg

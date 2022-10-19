@@ -112,6 +112,21 @@ columnNoneCounter <- ncol(allNoneFeaturesTrackedFromStage1)
 barplot(colSums(allNoneFeaturesTrackedFromStage1[,(34):103]))
 barplot(colSums(allNoneFeaturesTrackedFromStage1[,(columnConscientiousCounter - 4):columnConscientiousCounter]))
 barplot(colSums(allNoneFeaturesTrackedFromStage1[,(columnConscientiousCounter - 2):columnConscientiousCounter]))
+# Filter C Condition data frame
+# alls cells with "NA" = 0, all rows with "NA" to cut out
+allNoneFeaturesTrackedFromStage1 <- na.omit(allNoneFeaturesTrackedFromStage1)
+# clean ids -> only numbers
+allNoneFeaturesTrackedFromStage1$pId <- str_replace(allNoneFeaturesTrackedFromStage1$pId, "id-", "")
+allNoneFeaturesTrackedFromStage1$pId <- str_replace(allNoneFeaturesTrackedFromStage1$pId, "b", "")
+# switch time and id
+numberOfColumns <- ncol(allNoneFeaturesTrackedFromStage1)
+allNoneFeaturesTrackedFromStage1 <- allNoneFeaturesTrackedFromStage1[, c(2,1,3:numberOfColumns)] # leave the row index blank to keep all rows
+# filter: remove unused/bad/const_to_zero/strings  columns
+allNoneFeaturesTrackedFromStage1 <- subset(allNoneFeaturesTrackedFromStage1, select=-c(lex))
+allNoneFeaturesTrackedFromStage1 <- subset(allNoneFeaturesTrackedFromStage1, select=-c(STARTED, LASTDATA, MAXPAGE, DegTimeThreshold, DegTimeThresholdForOnePage, DegTimeValueForOnePage)) # MAXPAGE is optional
+# convert all columns to numeric
+numberOfColumns <- ncol(allNoneFeaturesTrackedFromStage1)
+allNoneFeaturesTrackedFromStage1[,1:numberOfColumns] <- lapply(allNoneFeaturesTrackedFromStage1[,1:numberOfColumns], function (x) as.numeric(x))
 write.csv2(allNoneFeaturesTrackedFromStage1, "All_Participents_Condition-C_WaveSum_DataFrame.csv", row.names = FALSE)
 
 

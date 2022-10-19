@@ -10,7 +10,7 @@ library(magrittr)
 library(mnormt)
 
 
-for (condition in c("Condition A", "Condition B", "Condition C")){#condition <- 'Condition C'
+for (condition in c("Condition A", "Condition B")){#, "Condition C")){
   condition_list <- NULL
   if (str_detect(condition, "Condition A")){
     # Conditions Ids:
@@ -846,14 +846,14 @@ for(stage in c("Stage0","Stage1", "Stage2")){
   pathCSV <- file.path("./Condition B/RResults/", file_name, "")
   conditionBDataFrame <- read.csv2(file = pathCSV)
   
-  file_name <- paste("All_Participents_", stage, "_DataFrame.csv", sep="")
-  pathCSV <- file.path("./Condition C/RResults/", file_name, "")
-  conditionCDataFrame <- read.csv2(file = pathCSV)
+  #file_name <- paste("All_Participents_", stage, "_DataFrame.csv", sep="")
+  #pathCSV <- file.path("./Condition C/RResults/", file_name, "")
+  #conditionCDataFrame <- read.csv2(file = pathCSV)
   
   # fuse all 3 conditions
   all_participent_dataframe <- conditionADataFrame
   all_participent_dataframe <- rbind(all_participent_dataframe, conditionBDataFrame)
-  all_participent_dataframe <- rbind(all_participent_dataframe, conditionCDataFrame)
+  #all_participent_dataframe <- rbind(all_participent_dataframe, conditionCDataFrame)
   # create a copy of fused dataframe
   temp_dataframe <- all_participent_dataframe
   
@@ -897,7 +897,7 @@ for(stage in c("Stage0","Stage1", "Stage2")){
 
 # 14.1 create fuse mean data frame all participants
 
-for (condition in c("Condition A", "Condition B", "Condition C")){
+for (condition in c("Condition A", "Condition B")){#, "Condition C")){
   condition_list <- NULL
   if (str_detect(condition, "Condition A")){
     # Conditions Ids:
