@@ -31,6 +31,9 @@ Visit our wiki for quickstart instructions
 ## Requirements
 - Unity3D 2020.3.x
 - OpenXR Unity Package min. 4.2.X
+	- OpenXR min. 1.3.1
+	- XR XR Plugin Management min. 4.2.x
+	- XR Interaction Toolkit min. 2.2.0
 - New Unity Input System
 #### Optional Requirements
 - :eyes: [Eye-Tracking with Vive Pro Eye](https://developer-express.vive.com/resources/vive-sense/eye-and-facial-tracking-sdk/)
