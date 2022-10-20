@@ -5,6 +5,7 @@ from sklearn.cluster import MiniBatchKMeans
 from sklearn.cluster import SpectralClustering
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
 from sklearn.model_selection import RepeatedStratifiedKFold
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import ShuffleSplit
@@ -229,17 +230,6 @@ knc_train_data["pId"] = input_data["pId"]
 prediction = k_neigbors_classifier.predict_proba(knc_x_embedded_data_frame)
 knc_train_data["Confidence"] = np.max(prediction, axis = 1)
 
-# plt.figure(figsize=(15,10))
-# plt.title('K-Neighbors-Classifier-Model train data Confidence-Histogram plot', fontsize=16)
-# plt.hist(knc_train_data['Confidence'][knc_train_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.5, color='b')
-# plt.hist(knc_train_data['Confidence'][knc_train_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.5, color='r')
-# plt.xlabel('Calculated Probability', fontsize=25)
-# plt.ylabel('Number of records', fontsize=25)
-# plt.legend(fontsize=15)
-# plt.tick_params(axis='both', labelsize=25, pad=5)
-# #plt.show() 
-# plt.close()
-
 print(k_neigbors_classifier.get_params(deep=True))
 
 # get probability score of each sample
@@ -279,22 +269,12 @@ for id in _ids:
 	highest_confidet = temp.at[highest_confidet_index, 'Conscientious']
 	knc_test_data.loc[knc_test_data.pId == id, 'Conscientious'] = highest_confidet 
 	
-ax2 = knc_test_data.plot.scatter(x='Conscientious',  y='pId', c=knc_test_data['Conscientious'].map(colors))
-plt.show()
-plt.close()
-
-# plt.figure(figsize=(15,7))
-# plt.title('K-Neighbors-Classifier-Model test data Confidence-Histogram plot', fontsize=16)
-# plt.hist(knc_test_data['Confidence'][knc_test_data["Conscientious"]==0], bins=50, label='Cluster Conscientious', alpha=0.5, color='b')
-# plt.hist(knc_test_data['Confidence'][knc_test_data["Conscientious"]==1], bins=50, label='Cluster None-Conscientious', alpha=0.5, color='r')
-# plt.xlabel('Calculated Probability', fontsize=25)
-# plt.ylabel('Number of records', fontsize=25)
-# plt.legend(fontsize=15)
-# plt.tick_params(axis='both', labelsize=25, pad=5)
-# #plt.show() 
+# ax2 = knc_test_data.plot.scatter(x='Conscientious',  y='pId', c=knc_test_data['Conscientious'].map(colors))
+# plt.show()
 # plt.close()
 
 print(k_neigbors_classifier.get_params(deep=True))
+print(accuracy_score(true_value_test_data['Conscientious'], knc_test_data['Conscientious']))
 input_score = k_neigbors_classifier.score(knc_test_x_embedded_data_frame,  true_value_test_data['Conscientious']) 
 print(input_score)
 # get probability score of each sample

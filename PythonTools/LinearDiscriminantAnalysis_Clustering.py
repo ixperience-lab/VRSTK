@@ -151,20 +151,21 @@ if input_data_type == 0:
 	transformed_train_data_x[:,0:26]    = transformed_train_data_x[:,0:26]    * weight_ecg
 	transformed_train_data_x[:,26:31]   = transformed_train_data_x[:,26:31]   * weight_eda
 	transformed_train_data_x[:,31:107]  = transformed_train_data_x[:,31:107]  * weight_eeg
-	transformed_train_data_x[:,140:145] = transformed_train_data_x[:,140:145] * weight_eeg
-	transformed_train_data_x[:,107:117] = transformed_train_data_x[:,107:117] * weight_eye
-	transformed_train_data_x[:,129:137] = transformed_train_data_x[:,129:137] * weight_eye
-	transformed_train_data_x[:,117:129] = transformed_train_data_x[:,117:129] * weight_pages
-	transformed_train_data_x[:,137:140] = transformed_train_data_x[:,137:140] * weight_pages
+	transformed_train_data_x[:,152:157] = transformed_train_data_x[:,152:157] * weight_eeg
+	transformed_train_data_x[:,107:129] = transformed_train_data_x[:,107:129] * weight_eye
+	transformed_train_data_x[:,141:149] = transformed_train_data_x[:,141:149] * weight_eye
+	transformed_train_data_x[:,129:141] = transformed_train_data_x[:,129:141] * weight_pages
+	transformed_train_data_x[:,149:152] = transformed_train_data_x[:,149:152] * weight_pages
 
 	transformed_test_data_x[:,0:26]    = transformed_test_data_x[:,0:26]    * weight_ecg
 	transformed_test_data_x[:,26:31]   = transformed_test_data_x[:,26:31]   * weight_eda
 	transformed_test_data_x[:,31:107]  = transformed_test_data_x[:,31:107]  * weight_eeg
-	transformed_test_data_x[:,140:145] = transformed_test_data_x[:,140:145] * weight_eeg
-	transformed_test_data_x[:,107:117] = transformed_test_data_x[:,107:117] * weight_eye
-	transformed_test_data_x[:,129:137] = transformed_test_data_x[:,129:137] * weight_eye
-	transformed_test_data_x[:,117:129] = transformed_test_data_x[:,117:129] * weight_pages
-	transformed_test_data_x[:,137:140] = transformed_test_data_x[:,137:140] * weight_pages
+	transformed_test_data_x[:,152:157] = transformed_test_data_x[:,152:157] * weight_eeg
+	transformed_test_data_x[:,107:129] = transformed_test_data_x[:,107:129] * weight_eye
+	transformed_test_data_x[:,141:149] = transformed_test_data_x[:,141:149] * weight_eye
+	transformed_test_data_x[:,129:141] = transformed_test_data_x[:,129:141] * weight_pages
+	transformed_test_data_x[:,149:152] = transformed_test_data_x[:,149:152] * weight_pages
+
 if input_data_type == 1:
 	transformed_train_data_x[:,:] = transformed_train_data_x[:,:] * weight_ecg
 	transformed_test_data_x[:,:]  = transformed_test_data_x[:,:]  * weight_ecg
@@ -261,6 +262,7 @@ plt.close()
 linearDiscriminantAnalysis = LinearDiscriminantAnalysis(solver='eigen', shrinkage='auto')
 # ------ training lda fit
 linearDiscriminantAnalysis.fit(transformed_train_data_x, true_value_train_data_y)
+
 n_repeats=5
 # ------ training lda with splitter : train_test_split 
 #X_train, X_test, y_train, y_test = train_test_split(transformed_train_data_x, true_value_train_data_y, test_size=0.4, random_state=0)
@@ -287,6 +289,21 @@ prediction = linearDiscriminantAnalysis.predict_proba(transformed_train_data_x)
 _confidence = np.max(prediction, axis = 1)
 print(_confidence)
 print(transformed_train_data_x.shape)
+print("acc train data")
+print(accuracy_score(true_value_train_data_y, _conscientious))
+
+conscientious_indeces = input_data.index[_conscientious == 0]
+none_conscientious_indeces = input_data.index[_conscientious == 1]
+
+file_name = '{}/Transformed_predicted_train_data_plot.png'.format(path)
+fig = plt.figure(figsize=(15,10))
+ax = fig.add_subplot(1, 1, 1)
+for i in range(c_num - 1):
+    ax.scatter(transformed_train_data_x[conscientious_indeces.tolist(), i], transformed_train_data_x[conscientious_indeces.tolist(), i+1], c="b")
+    ax.scatter(transformed_train_data_x[none_conscientious_indeces.tolist(), i], transformed_train_data_x[none_conscientious_indeces.tolist(), i+1], c="r")
+ax.set_title("Transformed (True) train data  plot", fontsize=16)
+plt.savefig(file_name)
+plt.close()
 
 lda_roc_auc = roc_auc_score(true_value_train_data_y, linearDiscriminantAnalysis.predict(transformed_train_data_x))
 fpr, tpr, thresholds = roc_curve(true_value_train_data_y, linearDiscriminantAnalysis.predict_proba(transformed_train_data_x)[:,1])
@@ -303,9 +320,9 @@ test_data["Confidence"] = np.max(prediction, axis = 1)
 
 colors = {0:'b', 1:'r'}
 test_data['pId'] = load_test_data['pId']
-ax2 = test_data.plot.scatter(x='pId',  y='Confidence', alpha=0.5, c=test_data['Conscientious'].map(colors))
-plt.show()
-plt.close()
+# ax2 = test_data.plot.scatter(x='pId',  y='Confidence', alpha=0.5, c=test_data['Conscientious'].map(colors))
+# plt.show()
+# plt.close()
 
 # ----------- linearDiscriminantAnalysis Cluster IDs plot with heighest confidence
 _ids = [21, 22, 23, 24, 25, 26, 27, 28, 29]
@@ -316,9 +333,11 @@ for id in _ids:
 	highest_confidet = temp.at[highest_confidet_index, 'Conscientious']
 	test_data.loc[test_data.pId == id, 'Conscientious'] = highest_confidet 
 	
-ax2 = test_data.plot.scatter(x='Conscientious',  y='pId', c=test_data['Conscientious'].map(colors))
-plt.show()
-plt.close()
+# ax2 = test_data.plot.scatter(x='Conscientious',  y='pId', c=test_data['Conscientious'].map(colors))
+# plt.show()
+# plt.close()
+print("acc test data")
+print(accuracy_score(true_value_test_data['Conscientious'], test_data["Conscientious"]))
 
 # ------- display roc_auc curve
 lda_roc_auc = roc_auc_score(true_value_test_data['Conscientious'], linearDiscriminantAnalysis.predict(transformed_test_data_x))
@@ -326,6 +345,21 @@ fpr, tpr, thresholds = roc_curve(true_value_test_data['Conscientious'], linearDi
 file_name = '{}/Linear-Discriminant-Analysis-Model_test_data_roc-curve.png'.format(path)
 plot_roc_curve(true_positive_rate=tpr, false_positive_rate=fpr, legend_label='Linear-Discriminant-Analysis-Model test data (area = %0.2f)' % lda_roc_auc, 
                title='Linear-Discriminant-Analysis-Model test data', file_name=file_name, show=False, save=True)
+
+# ------ test data plot
+conscientious_indeces = test_data.index[test_data["Conscientious"] == 0]
+none_conscientious_indeces = test_data.index[test_data["Conscientious"] == 1]
+
+file_name = '{}/Transformed_predicted_test_data_plot.png'.format(path)
+fig = plt.figure(figsize=(15,10))
+ax = fig.add_subplot(1, 1, 1)
+for i in range(c_num - 1):
+    ax.scatter(transformed_test_data_x[conscientious_indeces.tolist(), i], transformed_test_data_x[conscientious_indeces.tolist(), i+1], c="b")
+    ax.scatter(transformed_test_data_x[none_conscientious_indeces.tolist(), i], transformed_test_data_x[none_conscientious_indeces.tolist(), i+1], c="r")
+ax.set_title("Transformed (True) test data plot", fontsize=16)
+plt.savefig(file_name)
+plt.close()
+
 
 sys.exit()
 

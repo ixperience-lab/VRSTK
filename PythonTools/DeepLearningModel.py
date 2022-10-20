@@ -23,7 +23,7 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 
-from xgboost import XGBRegressor
+#from xgboost import XGBRegressor
 #from catboost import CatBoostRegressor, Pool
 from pytorch_tabnet.tab_model import TabNetClassifier
 from pytorch_tabnet.augmentations import ClassificationSMOTE
@@ -565,67 +565,67 @@ plt.close()
 
 
 # ---- tabnet
-# tab_net_model = TabNetClassifier(optimizer_fn=torch.optim.Adam, optimizer_params=dict(lr=0.01), scheduler_params={"step_size":20, "gamma":0.9},
-#                        scheduler_fn=torch.optim.lr_scheduler.StepLR, mask_type='entmax', seed=42) # "sparsemax"#verbose=1, seed=42)
+tab_net_model = TabNetClassifier(optimizer_fn=torch.optim.Adam, optimizer_params=dict(lr=0.01), scheduler_params={"step_size":20, "gamma":0.9},
+                       scheduler_fn=torch.optim.lr_scheduler.StepLR, mask_type='entmax', seed=42) # "sparsemax"#verbose=1, seed=42)
 
-# aug = ClassificationSMOTE(p=0.2)
+aug = ClassificationSMOTE(p=0.2)
 
-# tab_net_model.fit(X_train=X, y_train=Y, eval_set=[(X,Y),(v_X, v_Y)], eval_name=['train', 'valid'], max_epochs=1000 , patience=20, augmentations=aug,
-#                batch_size=64, virtual_batch_size=32, eval_metric=['auc','accuracy'], num_workers=0, weights=1, drop_last=False)
+tab_net_model.fit(X_train=X, y_train=Y, eval_set=[(X,Y),(v_X, v_Y)], eval_name=['train', 'valid'], max_epochs=1000 , patience=20, augmentations=aug,
+               batch_size=64, virtual_batch_size=32, eval_metric=['auc','accuracy'], num_workers=0, weights=1, drop_last=False)
 
-# predictions = tab_net_model.predict_proba(t_X)[:,1]
-# print(predictions)
+predictions = tab_net_model.predict_proba(t_X)[:,1]
+print(predictions)
 
-# predictions_transformed = []
-# for i, predicted in enumerate(predictions):
-#     #print(predicted)
-#     if predicted > 0.7:
-#         predictions_transformed.append(1)
-#     else:
-#         predictions_transformed.append(0)
+predictions_transformed = []
+for i, predicted in enumerate(predictions):
+    #print(predicted)
+    if predicted > 0.7:
+        predictions_transformed.append(1)
+    else:
+        predictions_transformed.append(0)
 
-# # summarize history for accuracy
-# plt.plot(tab_net_model.history['train_accuracy'])
-# plt.plot(tab_net_model.history['valid_accuracy'])
-# plt.title('tabnet accuracy')
-# plt.ylabel('accuracy')
-# plt.xlabel('epoch')
-# plt.legend(['train', 'test'], loc='upper left')
-# file_name = '{}/tabnet_history_accuracy_plot.png'.format(path)
-# plt.savefig(file_name)
-# plt.close()
+# summarize history for accuracy
+plt.plot(tab_net_model.history['train_accuracy'])
+plt.plot(tab_net_model.history['valid_accuracy'])
+plt.title('tabnet accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+file_name = '{}/tabnet_history_accuracy_plot.png'.format(path)
+plt.savefig(file_name)
+plt.close()
 
-# _test_data_copy['Conscientious'] = predictions_transformed
-# conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 0]
-# none_conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 1]
-# file_name = '{}/TabNetClassifier_Predicted_test_data_plot.png'.format(path)
-# plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
-#               'Tabnet predicted test data plot', file_name, show=False, save=True)
+_test_data_copy['Conscientious'] = predictions_transformed
+conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 0]
+none_conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 1]
+file_name = '{}/TabNetClassifier_Predicted_test_data_plot.png'.format(path)
+plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
+              'Tabnet predicted test data plot', file_name, show=False, save=True)
 
-# # ------- display roc_auc curve
-# lda_roc_auc = roc_auc_score(true_value_test_data["Conscientious"], predictions_transformed)
-# fpr, tpr, thresholds = roc_curve(true_value_test_data["Conscientious"], predictions)#predictions[:,1])
-# file_name = '{}/TabNetClassifier_DL-Model_test-data_ROC-curve.png'.format(path)
-# plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'DL-Model test data auc (area = %0.2f)' % lda_roc_auc, 
-#                title = 'Tabnet-Model test data', file_name = file_name, show=False, save=True)
+# ------- display roc_auc curve
+lda_roc_auc = roc_auc_score(true_value_test_data["Conscientious"], predictions_transformed)
+fpr, tpr, thresholds = roc_curve(true_value_test_data["Conscientious"], predictions)#predictions[:,1])
+file_name = '{}/TabNetClassifier_DL-Model_test-data_ROC-curve.png'.format(path)
+plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'DL-Model test data auc (area = %0.2f)' % lda_roc_auc, 
+               title = 'Tabnet-Model test data', file_name = file_name, show=False, save=True)
 
-# precision, recall, thresholds = precision_recall_curve(true_value_test_data["Conscientious"], predictions_transformed)
-# print(precision)
-# print(recall)
-# print(thresholds)
+precision, recall, thresholds = precision_recall_curve(true_value_test_data["Conscientious"], predictions_transformed)
+print(precision)
+print(recall)
+print(thresholds)
 
-# f1_score_value = f1_score(true_value_test_data["Conscientious"], predictions_transformed, average=None)
-# print(f1_score_value)
+f1_score_value = f1_score(true_value_test_data["Conscientious"], predictions_transformed, average=None)
+print(f1_score_value)
 
-# test_acc = accuracy_score(y_pred=true_value_test_data["Conscientious"], y_true=predictions_transformed)
-# print(test_acc)
+test_acc = accuracy_score(y_pred=true_value_test_data["Conscientious"], y_true=predictions_transformed)
+print(test_acc)
 
-# display = PrecisionRecallDisplay.from_predictions(true_value_test_data["Conscientious"], predictions_transformed, name="DL-Model")
-# _ = display.ax_.set_title("2-class Precision-Recall curve")
-# file_name = '{}/TabNetClassifier_DL-Model_test-data_Precision-Recall-curve.png'.format(path)
-# plt.savefig(file_name)
-# plt.close()
+display = PrecisionRecallDisplay.from_predictions(true_value_test_data["Conscientious"], predictions_transformed, name="DL-Model")
+_ = display.ax_.set_title("2-class Precision-Recall curve")
+file_name = '{}/TabNetClassifier_DL-Model_test-data_Precision-Recall-curve.png'.format(path)
+plt.savefig(file_name)
+plt.close()
 
-# # --- save tabnet model
-# file_name = '{}/trained_tabnet_model'.format(path)
-# saved_filepath = tab_net_model.save_model(file_name)
+# --- save tabnet model
+file_name = '{}/trained_tabnet_model'.format(path)
+saved_filepath = tab_net_model.save_model(file_name)
