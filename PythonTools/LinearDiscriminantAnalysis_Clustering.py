@@ -259,9 +259,13 @@ plt.savefig(file_name)
 plt.close()
 
 # ------ create and train linearDiscriminantAnalysis
-linearDiscriminantAnalysis = LinearDiscriminantAnalysis(solver='eigen', shrinkage='auto')
+#linearDiscriminantAnalysis = LinearDiscriminantAnalysis(solver='eigen', shrinkage='auto')
+linearDiscriminantAnalysis = LinearDiscriminantAnalysis()
 # ------ training lda fit
-linearDiscriminantAnalysis.fit(transformed_train_data_x, true_value_train_data_y)
+#linearDiscriminantAnalysis.fit(transformed_train_data_x, true_value_train_data_y)
+linearDiscriminantAnalysis.fit(transformed_train_data_x)
+
+sys.exit()
 
 n_repeats=5
 # ------ training lda with splitter : train_test_split 

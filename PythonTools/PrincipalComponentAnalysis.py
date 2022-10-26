@@ -156,17 +156,17 @@ x = StandardScaler().fit_transform(x)
 transformed_test_x = StandardScaler().fit_transform(test_x)
 
 # set sensor and validity score weights
-# weight_ecg = 2/5       #train_data.loc[:,1:26]                                 -> count() = 26
-# weight_eda = 3/5       #train_data.loc[:,27:31]                                -> count() = 5
-# weight_eeg = 1/5       #train_data.loc[:,32:107]  , train_data.loc[:,141:145]  -> count() = 76, 5
-# weight_eye = 2/5       #train_data.loc[:,108:117] , train_data.loc[:,130:137]  -> count() = 10, 8
-# weight_pages = 1       #train_data.loc[:,118:129] , train_data.loc[:,138:140]  -> count() = 12, 3
-# ------
-weight_ecg = 1/5       #train_data.loc[:,1:26]                                 -> count() = 26
-weight_eda = 2/5       #train_data.loc[:,27:31]                                -> count() = 5
-weight_eeg = 1/5       #train_data.loc[:,32:107]  , train_data.loc[:,141:145]  -> count() = 76, 5
-weight_eye = 3/5     #train_data.loc[:,108:117] , train_data.loc[:,130:137]  -> count() = 10, 8
+weight_ecg = 1       #train_data.loc[:,1:26]                                 -> count() = 26
+weight_eda = 1       #train_data.loc[:,27:31]                                -> count() = 5
+weight_eeg = 1       #train_data.loc[:,32:107]  , train_data.loc[:,141:145]  -> count() = 76, 5
+weight_eye = 1       #train_data.loc[:,108:117] , train_data.loc[:,130:137]  -> count() = 10, 8
 weight_pages = 1       #train_data.loc[:,118:129] , train_data.loc[:,138:140]  -> count() = 12, 3
+# ------
+# weight_ecg = 1/5       #train_data.loc[:,1:26]                                 -> count() = 26
+# weight_eda = 2/5       #train_data.loc[:,27:31]                                -> count() = 5
+# weight_eeg = 1/5       #train_data.loc[:,32:107]  , train_data.loc[:,141:145]  -> count() = 76, 5
+# weight_eye = 3/5     #train_data.loc[:,108:117] , train_data.loc[:,130:137]  -> count() = 10, 8
+# weight_pages = 1       #train_data.loc[:,118:129] , train_data.loc[:,138:140]  -> count() = 12, 3
 
 if input_data_type == 0:
 	x[:,0:26]    = x[:,0:26]    * weight_ecg
@@ -241,16 +241,34 @@ plt.savefig(file_name)
 #plt.show()
 plt.close()
 
+print("------ Principal Component Analysis test explainable variance of given features in train data")
+# test explainable variance of given features
+pca = PCA()
+test_principal_components = pca.fit_transform(x)
+test_pca_explained_variance_ratio = pca.explained_variance_ratio_
+print(test_pca_explained_variance_ratio)
+print(test_pca_explained_variance_ratio.shape)
+print(range(c_num - 2))
+plt.figure(figsize=(19, 10))
+plt.bar(range(157), test_pca_explained_variance_ratio, alpha=0.5, align='center', label='individual variance %')
+plt.legend()
+plt.ylabel('Variance ratio')
+plt.xlabel('Principal components')
+file_name = '{}/Tested_pca_explained_variance_on_ratio_train_data_plot.png'.format(path)
+plt.savefig(file_name)
+#plt.show()
+plt.close()
+
 print("------ Principal Component Analysis n_components=2 of train data")
 # ------ Principal Component Analysis n_components=2 of train data
-pca = PCA(n_components=2)
+pca = PCA(n_components=6)
 principalComponents = pca.fit_transform(x)
 print(pca.score(x)) # Debug only
 print(pca.explained_variance_ratio_)  # Debug only
 pca_explained_variance = pca.explained_variance_
 print(pca_explained_variance)
 plt.figure(figsize=(19, 10))
-plt.bar(range(2), pca_explained_variance, alpha=0.5, align='center', label='individual variance')
+plt.bar(range(6), pca_explained_variance, alpha=0.5, align='center', label='individual variance')
 plt.legend()
 plt.ylabel('Variance ratio')
 plt.xlabel('Principal components')
@@ -258,6 +276,8 @@ file_name = '{}/Tested_pca_explained_variance_on_dimension_reduced_train_data_pl
 plt.savefig(file_name)
 #plt.show()
 plt.close()
+
+#sys.exit()
 
 conscientious_indeces = input_data.index[input_data['Conscientious'] == 0]
 none_conscientious_indeces = input_data.index[input_data['Conscientious'] == 1]
