@@ -14,6 +14,14 @@ library(Hmisc)
 library(car)
 library(ggstatsplot)
 
+# custom function to implement min max scaling
+minMax <- function(x) {
+  if((max(x) - min(x)) == 0) {
+    x <- 0
+  }else{
+    (x - min(x)) / (max(x) - min(x))
+  }
+}
 
 
 # Test anova method
@@ -280,6 +288,32 @@ ggplot(data, aes(x = group, y = values, fill = subgroup)) + geom_bar(stat = "ide
 allFeaturesTrackedFromStage1$Conscientious <- 1
 allFeaturesTrackedFromStage1$Conscientious[1:rowConscientiousCounter] <- 0
 write.csv2(allFeaturesTrackedFromStage1, "All_Participents_Clusterd_WaveSum_DataFrame.csv", row.names = FALSE)
+
+
+#normalise data using custom function
+scale_ConscientiousFeatures <- allConscientiousFeaturesTrackedFromStage1
+scale_ConscientiousFeatures <- subset(scale_ConscientiousFeatures, , -pId )
+scale_ConscientiousFeatures <- subset(scale_ConscientiousFeatures, , -STARTED )
+scale_ConscientiousFeatures <- subset(scale_ConscientiousFeatures, , -LASTDATA )
+min_max_normalised_data_frame <- as.data.frame(lapply(scale_ConscientiousFeatures, minMax))
+selected_features_as_data_frame <- min_max_normalised_data_frame[1:nrow(min_max_normalised_data_frame), c('theta', 'alpha', 'betaL', 'betaH', 'gamma')]
+boxplot(selected_features_as_data_frame, main = "BCI sum vlaues", horizontal = FALSE)
+
+scale_NoneConscientious <- allNoneConscientiousFeaturesTrackedFromStage1
+scale_NoneConscientious <- subset(scale_NoneConscientious, , -pId )
+scale_NoneConscientious <- subset(scale_NoneConscientious, , -STARTED )
+scale_NoneConscientious <- subset(scale_NoneConscientious, , -LASTDATA )
+min_max_normalised_data_frame <- as.data.frame(lapply(scale_NoneConscientious, minMax))
+selected_features_as_data_frame <- min_max_normalised_data_frame[1:nrow(min_max_normalised_data_frame), c('theta', 'alpha', 'betaL', 'betaH', 'gamma')]
+boxplot(selected_features_as_data_frame, main = "BCI sum vlaues", horizontal = FALSE)
+
+scale_NoneFeatured <- allNoneFeaturesTrackedFromStage1
+scale_NoneFeatured <- subset(scale_NoneFeatured, , -pId )
+scale_NoneFeatured <- subset(scale_NoneFeatured, , -STARTED )
+scale_NoneFeatured <- subset(scale_NoneFeatured, , -LASTDATA )
+min_max_normalised_data_frame <- as.data.frame(lapply(scale_NoneFeatured, minMax))
+selected_features_as_data_frame <- min_max_normalised_data_frame[1:nrow(min_max_normalised_data_frame), c('theta', 'alpha', 'betaL', 'betaH', 'gamma')]
+boxplot(selected_features_as_data_frame, main = "BCI sum vlaues", horizontal = FALSE)
 
 
 # with out pIDs (14, 15, 16)
