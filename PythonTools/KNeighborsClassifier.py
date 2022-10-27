@@ -1,29 +1,21 @@
 from sklearn.manifold import TSNE
 from sklearn.preprocessing import StandardScaler
-from sklearn.mixture import GaussianMixture
-from sklearn.cluster import MiniBatchKMeans
-from sklearn.cluster import SpectralClustering
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn import metrics
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.decomposition import PCA
 from sklearn.metrics import confusion_matrix, classification_report
 from sklearn.metrics import accuracy_score
-from sklearn.model_selection import RepeatedStratifiedKFold
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import ShuffleSplit
-from sklearn.metrics.pairwise import pairwise_distances_argmin
 from sklearn.metrics import log_loss
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import roc_curve
 import matplotlib.pyplot as plt
 import pandas as pd
-from pandas import DataFrame
 import numpy as np
 import numpy.matlib
 import sys
 import os
+from os.path import exists
 
 def plot_roc_curve(true_positive_rate, false_positive_rate, legend_label, title, file_name, show=False, save=False):
     plt.figure(figsize=(15,10))
@@ -53,11 +45,17 @@ def plot_data_cluster(data, conscientious_indeces_list, none_conscientious_indec
         plt.show()
     plt.close()
 
+def write_matrix_and_report_to_file(file_name, content):
+    if exists(file_name):
+        os.remove(file_name)
+    file = open(file_name, "w")
+    file.write(content)
+    file.close()
 
 # input_data_type = { all_sensors = 0, ecg = 1, eda = 2, eeg = 3, eye = 4, pages = 5 }
 input_data_type = 0
 
-input_data_copy = pd.read_csv("All_Participents_Clusterd_WaveSum_DataFrameKopie.csv", sep=";", decimal=',')			# plan of sensors weighting:
+#input_data_copy = pd.read_csv("All_Participents_Clusterd_WaveSum_DataFrameKopie.csv", sep=";", decimal=',')			# plan of sensors weighting:
 # read csv train data as pandas data frame
 input_data = pd.read_csv("All_Participents_Clusterd_WaveSum_DataFrame.csv", sep=";", decimal=',')			# plan of sensors weighting:
 if input_data_type == 1: 
@@ -84,27 +82,10 @@ if input_data_type == 4:
 if input_data_type == 5: 
 	load_test_data = pd.read_csv("All_Participents_Condition-C_PAGES_WaveSum_DataFrame.csv", sep=";", decimal=',') 	# weight with 4/10
 
-# selected colums from feature selection algorithmen
-selected_column_array = ['HeartRate', 'RPeaks', 'RRI', 'RRMin', 'RRMean', 'RRMax', 'SDSD', 'SD1', 'SD2', 'SDNN', 'RMSSD', 'SEllipseArea', 'VLFAbs', 'LFAbs', 'HFAbs', 'VLFLog', 'LFLog',
-                         'HFLog', 'LFNorm', 'HFNorm', 'LFHFRatio', 'FBTotal', 'onsets', 'peaks', 'amps', 'RawValueInMicroSiemens', 'FilteredValueInMicroSiemens', 'AF3.theta', 'AF3.alpha', 
-                         'AF3.betaL', 'AF3.betaH', 'AF3.gamma', 'F7.theta', 'F7.alpha', 'F7.betaL', 'F7.betaH', 'F7.gamma', 'F3.theta', 'F3.alpha', 'F3.betaL', 'F3.betaH', 'F3.gamma', 
-                         'FC5.theta', 'FC5.alpha', 'FC5.betaL', 'FC5.betaH', 'FC5.gamma', 'T7.theta', 'T7.alpha', 'T7.betaL', 'T7.betaH', 'T7.gamma', 'P7.theta', 'P7.alpha', 'P7.betaL', 
-                         'P7.betaH', 'P7.gamma', 'O1.theta', 'O1.alpha', 'O1.betaL', 'O1.betaH', 'O1.gamma', 'O2.theta', 'O2.alpha', 'O2.betaL', 'O2.betaH', 'O2.gamma', 'P8.theta', 'P8.alpha',
-                         'P8.betaL', 'P8.betaH', 'P8.gamma', 'T8.theta', 'T8.alpha', 'T8.betaL', 'T8.betaH', 'T8.gamma', 'FC6.theta', 'FC6.alpha', 'FC6.betaL', 'FC6.betaH', 'FC6.gamma', 
-                         'F4.theta', 'F4.alpha', 'F4.betaL', 'F4.betaH', 'F4.gamma', 'F8.theta', 'F8.alpha', 'F8.betaL', 'F8.betaH', 'F8.gamma', 'AF4.theta', 'AF4.alpha', 'AF4.betaL', 
-                         'AF4.betaH', 'AF4.gamma', 'LeftPupilDiameter', 'RightPupilDiameter', 'TotalFixationCounter', 'FixationCounter', 'TotalFixationDuration', 'FixationDuration', 
-                         'MeasuredVelocity', 'SaccadeCounter', 'ActivatedModelIndex', 'LASTPAGE', 'TIME_SUM', 'DEG_TIME', 'CurrentPageNumber', 'StandardDeviationStraightLineAnswer',
-                         'AbsoluteDerivationOfResponseValue', 'MEDIANForTRSI', 'EvaluatedTIMERSICalc', 'LightReflexesLeftPupilDiamter', 'LeftPupilDiameterDifferenceToMean', 'LightReflexesRightPupilDiamter',
-                         'RightMeanPupilDiameter', 'RightPupilDiameterDifferenceToMean', 'GlobalTIMERSICalc', 'EvaluatedGlobalTIMERSICalc', 'theta', 'alpha', 'betaL', 'betaH', 'gamma']
-
 # ------- fitler columns of train data
-train_data_copy = input_data_copy.drop(columns=['Conscientious', 'time', 'pId'])
+#train_data_copy = input_data_copy.drop(columns=['Conscientious', 'time', 'pId'])
 train_data = input_data.drop(columns=['Conscientious', 'time', 'pId'])
 #train_data = train_data[selected_column_array]
-
-# exc_cols = [col for col in train_data.columns if col not in ['DegTimeLowQuality', 'EvaluatedGlobalTIMERSICalc']]
-# train_data.loc[train_data.DegTimeLowQuality > 0, exc_cols] *= 1.5
-# train_data.loc[train_data.EvaluatedGlobalTIMERSICalc >= 1, exc_cols] *= 1.5
 
 # count rows and columns
 c_num = train_data.shape[1]
@@ -113,10 +94,6 @@ print(c_num)
 # -------  filter columns of test data 
 test_data = load_test_data.drop(columns=['time', 'pId'])
 #test_data = test_data[selected_column_array]
-
-# exc_cols = [col for col in test_data.columns if col not in ['DegTimeLowQuality', 'EvaluatedGlobalTIMERSICalc']]
-# test_data.loc[test_data.DegTimeLowQuality > 0, exc_cols] *= 1.5
-# test_data.loc[test_data.EvaluatedGlobalTIMERSICalc >= 1, exc_cols] *= 1.5
 
 r_num_test_data = test_data.shape[0]
 test_x = test_data.iloc[:, :].values
@@ -133,30 +110,24 @@ print(true_value_test_data["Conscientious"].values)
 
 # ------ Normalizing
 # Separating out the features
-x_train_copy = train_data_copy.loc[:, :].values
+#x_train_copy = train_data_copy.loc[:, :].values
 x_train = train_data.loc[:, :].values
 # Separating out the target
-y_result_output_copy = np.array(input_data_copy[["Conscientious"]].values.flatten())
+#y_result_output_copy = np.array(input_data_copy[["Conscientious"]].values.flatten())
 y_result_output = np.array(input_data[["Conscientious"]].values.flatten())
 print(y_result_output)
 # Standardizing the features of train data
-transformed_train_x_copy = StandardScaler().fit_transform(x_train_copy)
+#transformed_train_x_copy = StandardScaler().fit_transform(x_train_copy)
 transformed_train_x = StandardScaler().fit_transform(x_train)
 # Standardizing the features of Test data
 transformed_test_x = StandardScaler().fit_transform(test_x)
 
 # set sensor and validity score weights
-# weight_ecg = 2/5       #train_data.loc[:,1:26]                                 -> count() = 26
-# weight_eda = 3/5       #train_data.loc[:,27:31]                                -> count() = 5
-# weight_eeg = 1/5       #train_data.loc[:,32:107]  , train_data.loc[:,141:145]  -> count() = 76, 5
-# weight_eye = 3/5       #train_data.loc[:,108:117] , train_data.loc[:,130:137]  -> count() = 10, 8
-# weight_pages = 1       #train_data.loc[:,118:129] , train_data.loc[:,138:140]  -> count() = 12, 3
-
-weight_ecg = 1       #train_data.loc[:,1:26]                                 -> count() = 26
-weight_eda = 1       #train_data.loc[:,27:31]                                -> count() = 5
-weight_eeg = 1       #train_data.loc[:,32:107]  , train_data.loc[:,141:145]  -> count() = 76, 5
-weight_eye = 1       #train_data.loc[:,108:117] , train_data.loc[:,130:137]  -> count() = 10, 8
-weight_pages = 1       #train_data.loc[:,118:129] , train_data.loc[:,138:140]  -> count() = 12, 3
+weight_ecg = 1  # 2/5     
+weight_eda = 1  # 3/5     
+weight_eeg = 1  # 1/5     
+weight_eye = 1  # 3/5     
+weight_pages = 1 # 1
 
 if input_data_type == 0:
     transformed_train_x[:,0:26]    = transformed_train_x[:,0:26]    * weight_ecg
@@ -195,12 +166,11 @@ if input_data_type == 5:
 print("Create output directory")
 # --- create dir
 mode = 0o666
-if not os.path.exists("./output"):
+if not exists("./output"):
     os.mkdir("./output", mode)
 path = "./output/K-Neighbors-Classifier-Model_{}".format(input_data_type)
-if not os.path.exists(path):
+if not exists(path):
     os.mkdir(path, mode)
-
 
 print("------ Transformed (True) train data")
 # ------ Transformed (True) train data
@@ -224,31 +194,38 @@ print("------- K-Neighbors-Classifier-Model")
 knc_train_data = train_data.copy()
 # --- training (fitting)
 
-# print("------ Principal Component Analysis test explainable variance of given features in train data")
-# # test explainable variance of given features
-# pca = PCA(n_components=2)
-# transformed_train_x = pca.fit_transform(transformed_train_x)
-# transformed_test_x = pca.fit_transform(transformed_test_x)
+print("------ Principal Component Analysis test explainable variance of given features in train data")
+# test explainable variance of given features
+pca = PCA(n_components=3)
+transformed_train_x = pca.fit_transform(transformed_train_x)
+transformed_test_x = pca.fit_transform(transformed_test_x)
 
-print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) train data ")
-# ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of train data
-tsne_model = TSNE(n_components=2, learning_rate=500.0 , init='pca', perplexity=30.0)
-transformed_train_x_copy = tsne_model.fit_transform(transformed_train_x_copy)
-transformed_train_x = tsne_model.fit_transform(transformed_train_x)
-transformed_test_x = tsne_model.fit_transform(transformed_test_x)
+# print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) train data ")
+# # ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of train data
+# tsne_model = TSNE(n_components=3, learning_rate=500.0 , init='pca', perplexity=30.0)
+# # transformed_train_x_copy = tsne_model.fit_transform(transformed_train_x_copy)
+# transformed_train_x = tsne_model.fit_transform(transformed_train_x)
+# transformed_test_x = tsne_model.fit_transform(transformed_test_x)
 
 knc_x_embedded_data_frame = pd.DataFrame(data = transformed_train_x)
-knc_x_embedded_data_frame_copy = pd.DataFrame(data = transformed_train_x_copy)
-X_train, X_test, y_train, y_test = train_test_split(knc_x_embedded_data_frame_copy, y_result_output_copy, test_size=0.3)
+# knc_x_embedded_data_frame_copy = pd.DataFrame(data = transformed_train_x_copy)
+# X_train, X_test, y_train, y_test = train_test_split(knc_x_embedded_data_frame_copy, y_result_output_copy, test_size=0.3)
+# X_train, X_test, y_train, y_test = train_test_split(knc_x_embedded_data_frame, y_result_output, test_size=0.25)
+
+X_train = transformed_train_x
+X_test = transformed_test_x
+y_train = y_result_output
+y_test = true_value_test_data['Conscientious']
+
 error_rates = []
-max_range = 70
+max_range = 200
 #knc_test_x_embedded_data_frame = pd.DataFrame(data = transformed_test_x)
 for a in range(1, max_range):
     k = a
     knn = KNeighborsClassifier(n_neighbors=k)
     knn.fit(X_train, y_train)
     preds = knn.predict(X_test)
-    error_rates.append(np.mean(y_test - preds))
+    error_rates.append(np.mean(abs(y_test - preds)))
 
 plt.figure(figsize=(15,10))
 plt.plot(range(1, max_range),error_rates,color='blue', linestyle='dashed', marker='o',
@@ -258,14 +235,20 @@ plt.xlabel('K')
 plt.ylabel('Error Rate')
 file_name = '{}/K-Neighbors-Classifier-Model_error_rate_vs_K_value.png'.format(path)
 plt.savefig(file_name)
-#plt.show()
+plt.show()
 plt.close()
 
-print(confusion_matrix(y_test, preds))
-print(classification_report(y_test, preds))
+matrix = confusion_matrix(y_test, preds)
+print(matrix)
+file_name = '{}/K-Neighbors-Classifier-Model_error_rate_vs_K_value_confusion_Matrix.txt'.format(path)
+write_matrix_and_report_to_file(file_name, np.array2string(matrix))
+
+report = classification_report(y_test, preds)
+print(report)
+file_name = '{}/K-Neighbors-Classifier-Model_error_rate_vs_K_value_report.txt'.format(path)
+write_matrix_and_report_to_file(file_name, report)
 
 acc = []
-max_range = 10
 # Will take some time
 for i in range(1, max_range):
     neigh = KNeighborsClassifier(n_neighbors = i).fit(X_train,y_train)
@@ -280,30 +263,25 @@ plt.xlabel('K')
 plt.ylabel('Accuracy')
 file_name = '{}/K-Neighbors-Classifier-Model_accuracy_vs_K_value.png'.format(path)
 plt.savefig(file_name)
-#plt.show()
+plt.show()
 plt.close()
 print("Maximum accuracy: ",max(acc),"at K =",acc.index(max(acc)))
 
 n_neighbors = acc.index(max(acc))
-if n_neighbors == 0:
+if n_neighbors == 0 or n_neighbors == 1:
     acc[0] = 0
+    acc[1] = 0
     n_neighbors = acc.index(max(acc))
 
+print("Maximum accuracy: ", acc[n_neighbors],"at K =", n_neighbors)
+file_name = '{}/K-Neighbors-Classifier-Model_maximum_accuracy_report.txt'.format(path)
+write_matrix_and_report_to_file(file_name, "Maximum accuracy: {}  at K = {}".format(acc[n_neighbors], n_neighbors))
+
 #sys.exit()
-
-n_neighbors = 5
-
-k_neigbors_classifier = KNeighborsClassifier(n_neighbors=n_neighbors)#, weights='distance', algorithm='ball_tree')
+# ------------------------------------------------------------------------------------------------------------------
+n_neighbors = n_neighbors
+k_neigbors_classifier = KNeighborsClassifier(n_neighbors=n_neighbors)
 k_neigbors_classifier.fit(knc_x_embedded_data_frame, y_result_output) 
-
-# --- splitter
-# splitter = ShuffleSplit(n_splits=9, train_size=0.4, test_size=0.4)
-# #splitter = RepeatedStratifiedKFold(n_splits=10, n_repeats=20, random_state=36851234)
-# for train_index, test_index in splitter.split(knc_x_embedded_data_frame): # , y_result_output):
-# 	print("TRAIN:", train_index, "TEST:", test_index)
-# 	X_train, X_test = knc_x_embedded_data_frame.values[train_index], knc_x_embedded_data_frame.values[test_index]
-# 	y_train, y_test = y_result_output[train_index], y_result_output[test_index]
-# 	k_neigbors_classifier.fit(X_train, y_train)
 
 input_score = k_neigbors_classifier.score(knc_x_embedded_data_frame, y_result_output) 
 print(input_score)
@@ -316,10 +294,19 @@ prediction = k_neigbors_classifier.predict_proba(knc_x_embedded_data_frame)
 knc_train_data["Confidence"] = np.max(prediction, axis = 1)
 
 print(k_neigbors_classifier.get_params(deep=True))
+matrix = confusion_matrix(y_result_output, knc_train_data['Conscientious'])
+print(matrix)
+file_name = '{}/K-Neighbors-Classifier-Model_train_data_confusion_Matrix.txt'.format(path)
+write_matrix_and_report_to_file(file_name, np.array2string(matrix))
+
+report = classification_report(y_result_output, knc_train_data["Conscientious"])
+print(report)
+file_name = '{}/K-Neighbors-Classifier-Model_train_deta_report.txt'.format(path)
+write_matrix_and_report_to_file(file_name, report)
 
 # get probability score of each sample
-loss = log_loss(y_result_output, knc_train_data['Conscientious'])
-print(loss)
+# loss = log_loss(y_result_output, knc_train_data['Conscientious'])
+# print(loss)
 print("------ K-Neighbors-Classifier-Model n_components=2 of (predicted) train data ")
 conscientious_indeces = knc_train_data.index[knc_train_data['Conscientious'] == 0]
 none_conscientious_indeces = knc_train_data.index[knc_train_data['Conscientious'] == 1]
@@ -354,20 +341,23 @@ for id in _ids:
 	highest_confidet = temp.at[highest_confidet_index, 'Conscientious']
 	knc_test_data.loc[knc_test_data.pId == id, 'Conscientious'] = highest_confidet 
 	
-# ax2 = knc_test_data.plot.scatter(x='Conscientious',  y='pId', c=knc_test_data['Conscientious'].map(colors))
-# plt.show()
-# plt.close()
+matrix = confusion_matrix(true_value_test_data['Conscientious'], knc_test_data['Conscientious'])
+print(matrix)
+file_name = '{}/K-Neighbors-Classifier-Model_test_data_confusion_Matrix.txt'.format(path)
+write_matrix_and_report_to_file(file_name, np.array2string(matrix))
+
+report = classification_report(true_value_test_data['Conscientious'], knc_test_data['Conscientious'])
+print(report)
+file_name = '{}/K-Neighbors-Classifier-Model_test_deta_report.txt'.format(path)
+write_matrix_and_report_to_file(file_name, report)
 
 print(k_neigbors_classifier.get_params(deep=True))
 print(accuracy_score(true_value_test_data['Conscientious'], knc_test_data['Conscientious']))
 input_score = k_neigbors_classifier.score(knc_test_x_embedded_data_frame,  true_value_test_data['Conscientious']) 
 print(input_score)
 # get probability score of each sample
-loss = log_loss(true_value_test_data['Conscientious'], knc_test_data['Conscientious'])
-print(loss)
-
-print(confusion_matrix(true_value_test_data['Conscientious'], knc_test_data['Conscientious']))
-print(classification_report(true_value_test_data['Conscientious'], knc_test_data['Conscientious']))
+# loss = log_loss(true_value_test_data['Conscientious'], knc_test_data['Conscientious'])
+# print(loss)
 
 print("------ K-Neighbors-Classifier-Model n_components=2 of (predicted) test data ")
 conscientious_indeces = knc_test_data.index[knc_test_data['Conscientious'] == 0]

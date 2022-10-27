@@ -1,13 +1,8 @@
 from sklearn.manifold import TSNE
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
-from sklearn.mixture import GaussianMixture
-from sklearn.cluster import MiniBatchKMeans
-from sklearn.cluster import SpectralClustering
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics.pairwise import pairwise_distances_argmin
-from sklearn.metrics import precision_recall_curve, log_loss, accuracy_score, f1_score, roc_auc_score, roc_curve 
+from sklearn.metrics import precision_recall_curve, log_loss, accuracy_score, f1_score, roc_auc_score, roc_curve, confusion_matrix, classification_report
 from sklearn.metrics import PrecisionRecallDisplay
 from sklearn.model_selection import RepeatedStratifiedKFold
 from sklearn.model_selection import ShuffleSplit
@@ -16,19 +11,9 @@ from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import KFold
 from sklearn.preprocessing import MinMaxScaler
-from keras.models import Sequential
-from keras.layers import Dense, Flatten, BatchNormalization, Dropout
-from keras.utils import np_utils
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import layers
-
-#from xgboost import XGBRegressor
-#from catboost import CatBoostRegressor, Pool
 from pytorch_tabnet.tab_model import TabNetClassifier
 from pytorch_tabnet.augmentations import ClassificationSMOTE
 import torch
-
 import matplotlib.pyplot as plt
 import pandas as pd
 from pandas import DataFrame
@@ -36,6 +21,7 @@ import numpy as np
 import numpy.matlib
 import sys
 import os
+from os.path import exists
 
 def plot_roc_curve(true_positive_rate, false_positive_rate, legend_label, title, file_name, show=False, save=False):
     plt.figure(figsize=(15,10))
@@ -65,13 +51,12 @@ def plot_data_cluster(data, conscientious_indeces_list, none_conscientious_indec
         plt.show()
     plt.close()
 
-# method to random shuffle a data frame
-def dataframe_to_dataset(dataframe):
-    dataframe = dataframe.copy()
-    labels = dataframe.pop('Conscientious')
-    ds = tf.data.Dataset.from_tensor_slices((dict(dataframe), labels))
-    ds = ds.shuffle(buffer_size=len(dataframe))
-    return ds
+def write_matrix_and_report_to_file(file_name, content):
+    if exists(file_name):
+        os.remove(file_name)
+    file = open(file_name, "w")
+    file.write(content)
+    file.close()
 
 # input_data_type = { all_sensors = 0, ecg = 1, eda = 2, eeg = 3, eye = 4, pages = 5 }
 input_data_type = 0
@@ -102,31 +87,9 @@ if input_data_type == 4:
 if input_data_type == 5: 
 	load_test_data = pd.read_csv("All_Participents_Condition-C_PAGES_WaveSum_DataFrame.csv", sep=";", decimal=',') 	# weight with 4/10
 
-# selected colums from feature selection algorithmen
-selected_column_array = ['HeartRate', 'RPeaks', 'RRI', 'RRMin', 'RRMean', 'RRMax', 'SDSD', 'SD1', 'SD2', 'SDNN', 'RMSSD', 'SEllipseArea', 'VLFAbs', 'LFAbs', 'HFAbs', 'VLFLog', 'LFLog',
-                         'HFLog', 'LFNorm', 'HFNorm', 'LFHFRatio', 'FBTotal', 'onsets', 'peaks', 'amps', 'RawValueInMicroSiemens', 'FilteredValueInMicroSiemens', 'AF3.theta', 'AF3.alpha', 
-                         'AF3.betaL', 'AF3.betaH', 'AF3.gamma', 'F7.theta', 'F7.alpha', 'F7.betaL', 'F7.betaH', 'F7.gamma', 'F3.theta', 'F3.alpha', 'F3.betaL', 'F3.betaH', 'F3.gamma', 
-                         'FC5.theta', 'FC5.alpha', 'FC5.betaL', 'FC5.betaH', 'FC5.gamma', 'T7.theta', 'T7.alpha', 'T7.betaL', 'T7.betaH', 'T7.gamma', 'P7.theta', 'P7.alpha', 'P7.betaL', 
-                         'P7.betaH', 'P7.gamma', 'O1.theta', 'O1.alpha', 'O1.betaL', 'O1.betaH', 'O1.gamma', 'O2.theta', 'O2.alpha', 'O2.betaL', 'O2.betaH', 'O2.gamma', 'P8.theta', 'P8.alpha',
-                         'P8.betaL', 'P8.betaH', 'P8.gamma', 'T8.theta', 'T8.alpha', 'T8.betaL', 'T8.betaH', 'T8.gamma', 'FC6.theta', 'FC6.alpha', 'FC6.betaL', 'FC6.betaH', 'FC6.gamma', 
-                         'F4.theta', 'F4.alpha', 'F4.betaL', 'F4.betaH', 'F4.gamma', 'F8.theta', 'F8.alpha', 'F8.betaL', 'F8.betaH', 'F8.gamma', 'AF4.theta', 'AF4.alpha', 'AF4.betaL', 
-                         'AF4.betaH', 'AF4.gamma', 'LeftPupilDiameter', 'RightPupilDiameter', 'TotalFixationCounter', 'FixationCounter', 'TotalFixationDuration', 'FixationDuration', 
-                         'MeasuredVelocity', 'SaccadeCounter', 'ActivatedModelIndex', 'LASTPAGE', 'TIME_SUM', 'DEG_TIME', 'CurrentPageNumber', 'StandardDeviationStraightLineAnswer',
-                         'AbsoluteDerivationOfResponseValue', 'MEDIANForTRSI', 'EvaluatedTIMERSICalc', 'LightReflexesLeftPupilDiamter', 'LeftPupilDiameterDifferenceToMean', 'LightReflexesRightPupilDiamter',
-                         'RightMeanPupilDiameter', 'RightPupilDiameterDifferenceToMean', 'GlobalTIMERSICalc', 'EvaluatedGlobalTIMERSICalc', 'theta', 'alpha', 'betaL', 'betaH', 'gamma']
-
-# # updates Conscientious to subjektive 
-# for i in range(input_data.shape[1]):
-#     if input_data['pId'].values[i] == 14 or input_data['pId'].values[i] == 15 or input_data['pId'].values[i] == 16: # or load_test_data['pId'].values[i] == 28:
-#         input_data['Conscientious'].values[i] = 1
-
 # ------- fitler columns of train data
 train_data = input_data.drop(columns=['Conscientious', 'time', 'pId'])
 #train_data = train_data[selected_column_array]
-
-# exc_cols = [col for col in train_data.columns if col not in ['DegTimeLowQuality', 'EvaluatedGlobalTIMERSICalc']]
-# train_data.loc[train_data.DegTimeLowQuality > 0, exc_cols] *= 1.5
-# train_data.loc[train_data.EvaluatedGlobalTIMERSICalc >= 1, exc_cols] *= 1.5
 
 # count rows and columns
 c_num = train_data.shape[1]
@@ -135,10 +98,6 @@ print(c_num)
 # -------  filter columns of test data 
 test_data = load_test_data.drop(columns=['time', 'pId'])
 #test_data = test_data[selected_column_array]
-
-# exc_cols = [col for col in test_data.columns if col not in ['DegTimeLowQuality', 'EvaluatedGlobalTIMERSICalc']]
-# test_data.loc[test_data.DegTimeLowQuality > 0, exc_cols] *= 1.5
-# test_data.loc[test_data.EvaluatedGlobalTIMERSICalc >= 1, exc_cols] *= 1.5
 
 r_num_test_data = test_data.shape[0]
 test_x = test_data.iloc[:, :].values
@@ -169,18 +128,12 @@ transformed_train_x = StandardScaler().fit_transform(x_train)
 # Standardizing the features of Test data
 transformed_test_x = StandardScaler().fit_transform(test_x)
 
-# # set sensor and validity score weights
-weight_ecg = 1       #train_data.loc[:,1:26]                                 -> count() = 26
-weight_eda = 1       #train_data.loc[:,27:31]                                -> count() = 5
-weight_eeg = 1       #train_data.loc[:,32:107]  , train_data.loc[:,141:145]  -> count() = 76, 5
-weight_eye = 1       #train_data.loc[:,108:117] , train_data.loc[:,130:137]  -> count() = 10, 8
-weight_pages = 1       #train_data.loc[:,118:129] , train_data.loc[:,138:140]  -> count() = 12, 3
-
-# weight_ecg = 1/5       #train_data.loc[:,1:26]                                 -> count() = 26
-# weight_eda = 2/5       #train_data.loc[:,27:31]                                -> count() = 5
-# weight_eeg = 1/5       #train_data.loc[:,32:107]  , train_data.loc[:,141:145]  -> count() = 76, 5
-# weight_eye = 1/5       #train_data.loc[:,108:117] , train_data.loc[:,130:137]  -> count() = 10, 8
-# weight_pages = 2       #train_data.loc[:,118:129] , train_data.loc[:,138:140]  -> count() = 12, 3
+# set sensor and validity score weights
+weight_ecg = 1 # 1/5      
+weight_eda = 1 # 2/5      
+weight_eeg = 1 # 1/5      
+weight_eye = 1 # 1/5 
+weight_pages = 1 # 2      
 
 if input_data_type == 0:
     transformed_train_x[:,0:26]    = transformed_train_x[:,0:26]    * weight_ecg
@@ -226,7 +179,6 @@ path = "./output/DeepLearning-Model_{}".format(input_data_type)
 if not os.path.exists(path):
     os.mkdir(path, mode)
 
-
 print("------ Transformed (True) train data")
 # ------ Transformed (True) train data
 conscientious_indeces = input_data.index[input_data['Conscientious'] == 0]
@@ -245,7 +197,7 @@ plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_consc
 
 # print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) train data ")
 # # ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of train data
-# tsne_model = TSNE(n_components=2, learning_rate=500.0 , init='pca', perplexity=30.0)
+# tsne_model = TSNE(n_components=3, learning_rate=500.0 , init='pca', perplexity=30.0)
 # transformed_train_x = tsne_model.fit_transform(transformed_train_x)
 # print(transformed_train_x.shape)
 # conscientious_indeces = input_data.index[input_data['Conscientious'] == 0]
@@ -264,37 +216,36 @@ plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_consc
 # plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
 #                  'T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) test data plot', file_name, show=False, save=True)
 
-# print("------ Principal Component Analysis n_components=2 of train data")
-# # ------ Principal Component Analysis n_components=2 of train data
-# pca = PCA(n_components=2)
-# transformed_train_x = pca.fit_transform(transformed_train_x)
-# #print(pca.score(x)) # Debug only
-# print(pca.explained_variance_ratio_)  # Debug only
+print("------ Principal Component Analysis n_components=2 of train data")
+# ------ Principal Component Analysis n_components=2 of train data
+pca = PCA(n_components=3)
+transformed_train_x = pca.fit_transform(transformed_train_x)
+#print(pca.score(x)) # Debug only
+print(pca.explained_variance_ratio_)  # Debug only
 
-# conscientious_indeces = input_data.index[input_data['Conscientious'] == 0]
-# none_conscientious_indeces = input_data.index[input_data['Conscientious'] == 1]
-# plt.figure(figsize=(15,10))
-# plt.scatter(transformed_train_x[conscientious_indeces.tolist(),0], transformed_train_x[conscientious_indeces.tolist(),1], c="b")
-# plt.scatter(transformed_train_x[none_conscientious_indeces.tolist(),0], transformed_train_x[none_conscientious_indeces.tolist(),1], c="r")
-# plt.title('Principal Component Analysis train data n_components=2 plot', fontsize=16)
-# file_name = '{}/True_principal_components_train_data_plot.png'.format(path)
-# plt.savefig(file_name)
-# plt.close()
+conscientious_indeces = input_data.index[input_data['Conscientious'] == 0]
+none_conscientious_indeces = input_data.index[input_data['Conscientious'] == 1]
+plt.figure(figsize=(15,10))
+plt.scatter(transformed_train_x[conscientious_indeces.tolist(),0], transformed_train_x[conscientious_indeces.tolist(),1], c="b")
+plt.scatter(transformed_train_x[none_conscientious_indeces.tolist(),0], transformed_train_x[none_conscientious_indeces.tolist(),1], c="r")
+plt.title('Principal Component Analysis train data n_components=2 plot', fontsize=16)
+file_name = '{}/True_principal_components_train_data_plot.png'.format(path)
+plt.savefig(file_name)
+plt.close()
 
+transformed_test_x = pca.fit_transform(transformed_test_x)
+#print(pca.score(transformed_test_x)) # Debug only
+print(pca.explained_variance_ratio_)  # Debug only
 
-# transformed_test_x = pca.fit_transform(transformed_test_x)
-# #print(pca.score(transformed_test_x)) # Debug only
-# print(pca.explained_variance_ratio_)  # Debug only
-
-# conscientious_indeces = true_value_test_data.index[true_value_test_data['Conscientious'] == 0]
-# none_conscientious_indeces = true_value_test_data.index[true_value_test_data['Conscientious'] == 1]
-# plt.figure(figsize=(15,10))
-# plt.scatter(transformed_test_x[conscientious_indeces.tolist(),0], transformed_test_x[conscientious_indeces.tolist(),1], c="b")
-# plt.scatter(transformed_test_x[none_conscientious_indeces.tolist(),0], transformed_test_x[none_conscientious_indeces.tolist(),1], c="r")
-# plt.title('Principal Component Analysis test data n_components=2 plot', fontsize=16)
-# file_name = '{}/True_principal_components_test_data_plot.png'.format(path)
-# plt.savefig(file_name)
-# plt.close()
+conscientious_indeces = true_value_test_data.index[true_value_test_data['Conscientious'] == 0]
+none_conscientious_indeces = true_value_test_data.index[true_value_test_data['Conscientious'] == 1]
+plt.figure(figsize=(15,10))
+plt.scatter(transformed_test_x[conscientious_indeces.tolist(),0], transformed_test_x[conscientious_indeces.tolist(),1], c="b")
+plt.scatter(transformed_test_x[none_conscientious_indeces.tolist(),0], transformed_test_x[none_conscientious_indeces.tolist(),1], c="r")
+plt.title('Principal Component Analysis test data n_components=2 plot', fontsize=16)
+file_name = '{}/True_principal_components_test_data_plot.png'.format(path)
+plt.savefig(file_name)
+plt.close()
 
 # ---- creates tensorflow tensors as shuffled datasets
 # shuffled_train_dataset = dataframe_to_dataset(train_dataframe) 
@@ -348,236 +299,22 @@ print(t_Y.shape)
 
 # ---- hyper parameters
 learning_rate = 0.001
-dropout_rate  = 0.1
-batch_size    = 64
-num_epochs    = 100
-#19 # adam-op
-num_classes   = 1
-
-# # model creation
-# model = Sequential()
-# model.add(Flatten(input_dim = X.shape[1]))
-# model.add(BatchNormalization())
-# model.add(Dropout(dropout_rate))
-# model.add(Dense(2048, activation = 'relu'))
-# model.add(BatchNormalization())
-# model.add(Dropout(dropout_rate))
-# model.add(Dense(2048, activation = 'relu'))
-# model.add(BatchNormalization())
-# model.add(Dropout(dropout_rate))
-# model.add(Dense(2048, activation = 'relu'))
-# #model.add(Dense(2048, input_dim = X.shape[1], activation = 'relu')) # input layer requires input_dim param
-# model.add(BatchNormalization())
-# model.add(Dropout(dropout_rate))
-# #model.add(Dense(32, activation = 'sigmoid'))
-# #model.add(BatchNormalization())
-# #model.add(Dropout(dropout_rate))
-# #model.add(Dense(8, activation = 'relu'))
-# #model.add(BatchNormalization())
-# #model.add(Dense(256, activation = 'relu'))
-# #model.add(BatchNormalization())
-# #model.add(Dropout(dropout_rate))
-# #model.add(Dense(512, activation = 'relu'))
-# #model.add(BatchNormalization())
-# #model.add(Dropout(dropout_rate))
-# #model.add(Dense(256, activation = 'relu'))
-# #model.add(BatchNormalization())
-# #model.add(Dropout(dropout_rate))
-# #model.add(Dense(128, activation = 'relu'))
-# #model.add(BatchNormalization())
-# #model.add(Dropout(dropout_rate))
-# #model.add(Dense(64, activation = 'sigmoid'))
-# #model.add(BatchNormalization())
-# #model.add(Flatten())
-# model.add(Dense(num_classes, activation='sigmoid'))#activation='softmax'))
-
-# #optimizer = keras.optimizers.Adam(learning_rate=learning_rate)
-# # lr_schedule = keras.optimizers.schedules.ExponentialDecay(
-# #     initial_learning_rate=learning_rate,
-# #     decay_steps=1000,
-# #     decay_rate=0.9)
-# # optimizer = keras.optimizers.SGD(learning_rate=lr_schedule)
-# optimizer = keras.optimizers.SGD(lr=learning_rate, decay=1e-6, momentum=0.9, nesterov=True)
-# #model.compile(loss="categorical_crossentropy", optimizer=optimizer, metrics=['accuracy'])
-# model.compile(loss="binary_crossentropy", optimizer=optimizer, metrics=['accuracy'])
-
-# # model training
-# history = model.fit(X, Y, epochs=num_epochs, shuffle=True, batch_size=batch_size, verbose=2,  validation_data = (v_X, v_Y))
-
-# # list all data in history
-# print(history.history.keys())
-# # summarize history for accuracy
-# plt.plot(history.history['accuracy'])
-# plt.plot(history.history['val_accuracy'])
-# plt.title('model accuracy')
-# plt.ylabel('accuracy')
-# plt.xlabel('epoch')
-# plt.legend(['train', 'test'], loc='upper left')
-# file_name = '{}/model_history_accuracy_plot.png'.format(path)
-# plt.savefig(file_name)
-# #plt.show()
-# plt.close()
-# # summarize history for loss
-# plt.plot(history.history['loss'])
-# plt.plot(history.history['val_loss'])
-# plt.title('model loss')
-# plt.ylabel('loss')
-# plt.xlabel('epoch')
-# plt.legend(['train', 'test'], loc='upper left')
-# file_name = '{}/model_history_loss_plot.png'.format(path)
-# plt.savefig(file_name)
-# #plt.show()
-# plt.close()
-
-# loss, acc =  model.evaluate(v_X, v_Y)
-# print("model loss: %.2f, acc: (%.2f%%)" % (loss*100, acc*100))
-
-# predictions =  model.predict(t_X)
-# # print(predictions)
-# # print(tf.argmax(predictions, axis=-1).numpy())
-# # predictions_transformed = tf.argmax(predictions, axis=-1).numpy()
-# predictions_transformed = []
-# for i, predicted in enumerate(predictions):
-#     if predicted[0] > 0.5:
-#         predictions_transformed.append(1)
-#     else:
-#         predictions_transformed.append(0)
-
-# loss, acc =  model.evaluate(t_X, t_Y)
-# print("model loss: %.2f, acc: (%.2f%%)" % (loss*100, acc*100))
-# _test_data_copy['Conscientious'] = predictions_transformed
-
-# conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 0]
-# none_conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 1]
-# file_name = '{}/Predicted_test_data_plot.png'.format(path)
-# plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
-#               'Predicted test data plot', file_name, show=False, save=True)
-
-# # ------- display roc_auc curve
-# lda_roc_auc = roc_auc_score(true_value_test_data["Conscientious"], predictions_transformed)
-# fpr, tpr, thresholds = roc_curve(true_value_test_data["Conscientious"], predictions)#predictions[:,1])
-# file_name = '{}/DL-Model_test-data_ROC-curve.png'.format(path)
-# plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'DL-Model test data auc (area = %0.2f)' % lda_roc_auc, 
-#                title = 'DL-Model test data', file_name = file_name, show=False, save=True)
-
-# precision, recall, thresholds = precision_recall_curve(true_value_test_data["Conscientious"], predictions_transformed)
-# print(precision)
-# print(recall)
-# print(thresholds)
-
-# f1_score_value = f1_score(true_value_test_data["Conscientious"], predictions_transformed, average=None)
-# print(f1_score_value)
-
-# display = PrecisionRecallDisplay.from_predictions(true_value_test_data["Conscientious"], predictions_transformed, name="DL-Model")
-# _ = display.ax_.set_title("2-class Precision-Recall curve")
-# file_name = '{}/DL-Model_test-data_Precision-Recall-curve.png'.format(path)
-# plt.savefig(file_name)
-# #plt.show()
-# plt.close()
-
-
-
-# # ---- xgboost model
-# my_model = XGBRegressor(n_estimators=1000, learning_rate=0.05)
-# my_model.fit(X, Y, eval_set=[(v_X, v_Y)], verbose=False)
-
-# predictions =  my_model.predict(t_X)
-# print(predictions)
-
-# predictions_transformed = []
-# for i, predicted in enumerate(predictions):
-#     print(predicted)
-#     if predicted > 0.5:
-#         predictions_transformed.append(1)
-#     else:
-#         predictions_transformed.append(0)
-
-# _test_data_copy['Conscientious'] = predictions_transformed
-# conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 0]
-# none_conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 1]
-# file_name = '{}/xgboost_Predicted_test_data_plot.png'.format(path)
-# plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
-#               'Predicted test data plot', file_name, show=False, save=True)
-
-# # ------- display roc_auc curve
-# lda_roc_auc = roc_auc_score(true_value_test_data["Conscientious"], predictions_transformed)
-# fpr, tpr, thresholds = roc_curve(true_value_test_data["Conscientious"], predictions)#predictions[:,1])
-# file_name = '{}/xgboost_DL-Model_test-data_ROC-curve.png'.format(path)
-# plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'DL-Model test data auc (area = %0.2f)' % lda_roc_auc, 
-#                title = 'DL-Model test data', file_name = file_name, show=False, save=True)
-
-# precision, recall, thresholds = precision_recall_curve(true_value_test_data["Conscientious"], predictions_transformed)
-# print(precision)
-# print(recall)
-# print(thresholds)
-
-# f1_score_value = f1_score(true_value_test_data["Conscientious"], predictions_transformed, average=None)
-# print(f1_score_value)
-
-# display = PrecisionRecallDisplay.from_predictions(true_value_test_data["Conscientious"], predictions_transformed, name="DL-Model")
-# _ = display.ax_.set_title("2-class Precision-Recall curve")
-# file_name = '{}/xgboost_DL-Model_test-data_Precision-Recall-curve.png'.format(path)
-# plt.savefig(file_name)
-# plt.close()
-
-
-# ---- catboost model
-# PARAMS_CATBOOST_REGRESSOR = dict()
-# PARAMS_CATBOOST_REGRESSOR['learning_rate']=0.1
-# PARAMS_CATBOOST_REGRESSOR['use_best_model']= True
-# PARAMS_CATBOOST_REGRESSOR['logging_level'] = 'Silent'
-# PARAMS_CATBOOST_REGRESSOR['l2_leaf_reg'] = 1.0 # lambda, default 3, S: 300
-# clf = CatBoostRegressor(**PARAMS_CATBOOST_REGRESSOR)
-# clf.fit([(X, Y)], use_best_model=True, eval_set=[(v_X, v_Y)])
-
-# predictions =  clf.predict(t_X)
-# print(predictions)
-
-# predictions_transformed = []
-# for i, predicted in enumerate(predictions):
-#     print(predicted)
-#     if predicted > 0.25:
-#         predictions_transformed.append(1)
-#     else:
-#         predictions_transformed.append(0)
-
-# _test_data_copy['Conscientious'] = predictions_transformed
-# conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 0]
-# none_conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 1]
-# file_name = '{}/xgboost_Predicted_test_data_plot.png'.format(path)
-# plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
-#               'Predicted test data plot', file_name, show=False, save=True)
-
-# # ------- display roc_auc curve
-# lda_roc_auc = roc_auc_score(true_value_test_data["Conscientious"], predictions_transformed)
-# fpr, tpr, thresholds = roc_curve(true_value_test_data["Conscientious"], predictions)#predictions[:,1])
-# file_name = '{}/xgboost_DL-Model_test-data_ROC-curve.png'.format(path)
-# plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'DL-Model test data auc (area = %0.2f)' % lda_roc_auc, 
-#                title = 'DL-Model test data', file_name = file_name, show=False, save=True)
-
-# precision, recall, thresholds = precision_recall_curve(true_value_test_data["Conscientious"], predictions_transformed)
-# print(precision)
-# print(recall)
-# print(thresholds)
-
-# f1_score_value = f1_score(true_value_test_data["Conscientious"], predictions_transformed, average=None)
-# print(f1_score_value)
-
-# display = PrecisionRecallDisplay.from_predictions(true_value_test_data["Conscientious"], predictions_transformed, name="DL-Model")
-# _ = display.ax_.set_title("2-class Precision-Recall curve")
-# file_name = '{}/xgboost_DL-Model_test-data_Precision-Recall-curve.png'.format(path)
-# plt.savefig(file_name)
-# plt.close()
-
+step_size = 10
+gamma = 0.9
+batch_size = 512
+virtual_batch_size = 64
+num_epochs = 100
+patience = 10
+num_classes = 1
 
 # ---- tabnet
-tab_net_model = TabNetClassifier(optimizer_fn=torch.optim.Adam, optimizer_params=dict(lr=0.001), scheduler_params={"step_size":10, "gamma":0.9},
+tab_net_model = TabNetClassifier(optimizer_fn=torch.optim.Adam, optimizer_params=dict(lr=learning_rate), scheduler_params={"step_size":step_size, "gamma":gamma},
                                  scheduler_fn=torch.optim.lr_scheduler.StepLR, mask_type='entmax')#, seed=42) # "sparsemax"#verbose=1, seed=42)
 
 aug = ClassificationSMOTE(p=0.2)
 
-tab_net_model.fit(X_train=X, y_train=Y, eval_set=[(X,Y),(v_X, v_Y)], eval_name=['train', 'valid'], max_epochs=100 , patience=20, augmentations=aug,
-               batch_size=512, virtual_batch_size=128, eval_metric=['auc','accuracy'], num_workers=0, weights=1, drop_last=False)
+tab_net_model.fit(X_train=X, y_train=Y, eval_set=[(X,Y),(v_X, v_Y)], eval_name=['train', 'valid'], max_epochs=num_epochs , patience=10, augmentations=aug,
+               batch_size=batch_size, virtual_batch_size=virtual_batch_size, eval_metric=['auc','accuracy'], drop_last=False)
 
 predictions = tab_net_model.predict_proba(t_X)[:,1]
 print(predictions)
@@ -619,6 +356,16 @@ precision, recall, thresholds = precision_recall_curve(true_value_test_data["Con
 print(precision)
 print(recall)
 print(thresholds)
+
+matrix = confusion_matrix(true_value_test_data['Conscientious'], predictions_transformed)
+print(matrix)
+file_name = '{}/TabNetClassifier_DL-Model_test_data_confusion_Matrix.txt'.format(path)
+write_matrix_and_report_to_file(file_name, np.array2string(matrix))
+
+report = classification_report(true_value_test_data['Conscientious'], predictions_transformed)
+print(report)
+file_name = '{}/TabNetClassifier_DL-Model_test_deta_report.txt'.format(path)
+write_matrix_and_report_to_file(file_name, report)
 
 f1_score_value = f1_score(true_value_test_data["Conscientious"], predictions_transformed, average=None)
 print(f1_score_value)
