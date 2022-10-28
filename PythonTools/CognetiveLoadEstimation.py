@@ -1,5 +1,6 @@
 from re import S
 from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -78,13 +79,18 @@ if input_data_type == 5:
 # mean_value_zombie_pupil_size = input_data_copy.loc[(input_data_copy["ActivatedModelIndex"] == 13) & 
 #                                                    (input_data_copy["LeftEyeOpenness"] > 0.8) & (input_data_copy["RightEyeOpenness"] > 0.8)]
 
-input_data_copy[["LeftPupilDiameter_scaled"]] = StandardScaler().fit_transform(input_data_copy[["LeftPupilDiameter"]])
-input_data_copy[["RightPupilDiameter_scaled"]] = StandardScaler().fit_transform(input_data_copy[["RightPupilDiameter"]])
-input_data_copy[["CognitiveActivityLeftPupilDiamter_scaled"]] = StandardScaler().fit_transform(input_data_copy[["CognitiveActivityLeftPupilDiamter"]])
-input_data_copy[["CognitiveActivityRightPupilDiamter_scaled"]] = StandardScaler().fit_transform(input_data_copy[["CognitiveActivityRightPupilDiamter"]])
+input_data_copy["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transform(input_data_copy[["LeftPupilDiameter"]])
+input_data_copy["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(input_data_copy[["RightPupilDiameter"]])
+input_data_copy["CognitiveActivityLeftPupilDiamter_scaled"] = MinMaxScaler().fit_transform(input_data_copy[["CognitiveActivityLeftPupilDiamter"]])
+input_data_copy["CognitiveActivityRightPupilDiamter_scaled"] = MinMaxScaler().fit_transform(input_data_copy[["CognitiveActivityRightPupilDiamter"]])
 print(input_data_copy.head(1))
 
 # sys.exit()
+
+l_pupil_d_scaled = []
+r_pupil_d_scaled = []
+l_c_a_pupil_d_scaled = []
+r_c_a_pupil_d_scaled = []
 
 avg_l_pupil_d = []
 max_l_pupil_d = []
@@ -97,18 +103,26 @@ max_r_c_a_pupil_d = []
 
 for id in range(16):
     print("--------------------------------- id: ", id)
-    mean_value_zombie_pupil_size = input_data_copy.loc[(input_data_copy["ActivatedModelIndex"] == id) & (input_data_copy["Conscientious"] == 0) & 
+    mean_value_zombie_pupil_size = input_data_copy.loc[(input_data_copy["ActivatedModelIndex"] == id) & (input_data_copy["Conscientious"] == 1) & 
                                                        (input_data_copy["LeftEyeOpenness"] > 0.8) & (input_data_copy["RightEyeOpenness"] > 0.8)]
+
+    l_pupil_d_scaled.append(mean_value_zombie_pupil_size["LeftPupilDiameter_scaled"].values.reshape(1,-1)[0].sum())
+    
     print("AVG pupil size left: ", mean_value_zombie_pupil_size[["LeftPupilDiameter_scaled"]].mean())
     avg_l_pupil_d.append(mean_value_zombie_pupil_size[["LeftPupilDiameter_scaled"]].mean())
     print("MAX pupil size left: ", mean_value_zombie_pupil_size[["LeftPupilDiameter_scaled"]].max())
     max_l_pupil_d.append(mean_value_zombie_pupil_size[["LeftPupilDiameter_scaled"]].max())
+
+    r_pupil_d_scaled.append(mean_value_zombie_pupil_size["RightPupilDiameter_scaled"].values.reshape(1,-1)[0].sum())
 
     print("AVG pupil size right: ", mean_value_zombie_pupil_size[["RightPupilDiameter_scaled"]].mean())
     avg_r_pupil_d.append(mean_value_zombie_pupil_size[["RightPupilDiameter_scaled"]].mean())
     print("MAX pupil size right: ", mean_value_zombie_pupil_size[["RightPupilDiameter_scaled"]].max())
     max_r_pupil_d.append(mean_value_zombie_pupil_size[["RightPupilDiameter_scaled"]].max())
     
+    l_c_a_pupil_d_scaled.append(mean_value_zombie_pupil_size["CognitiveActivityLeftPupilDiamter_scaled"].values.reshape(1,-1)[0])
+    #l_c_a_pupil_d_scaled.append([mean_value_zombie_pupil_size["CognitiveActivityLeftPupilDiamter_scaled"].values.reshape(1,-1)[0].sum()])
+
     print("CA-AVG pupil size left: ", mean_value_zombie_pupil_size[["CognitiveActivityLeftPupilDiamter_scaled"]].mean())
     avg_l_c_a_pupil_d.append(mean_value_zombie_pupil_size[["CognitiveActivityLeftPupilDiamter_scaled"]].mean())
     print("CA-MAX pupil size left: ", mean_value_zombie_pupil_size[["CognitiveActivityLeftPupilDiamter_scaled"]].max())
@@ -129,15 +143,21 @@ plt.scatter(range(16),max_l_c_a_pupil_d, c="burlywood", label="max lefet cogniti
 plt.scatter(range(16),avg_r_c_a_pupil_d, c="k", label="avg right cognitive activity")
 plt.scatter(range(16),max_r_c_a_pupil_d, c="lightcoral", label="max right cognitive activity")
 plt.title("CL EYE Sensor with pupilometry ", fontsize=16)
-plt.show()
+plt.legend()
+#plt.show()
 plt.close()
 
-# data_1 = np.random.normal(100, 10, 200)
-# data_2 = np.random.normal(90, 20, 200)
-# data_3 = np.random.normal(80, 30, 200)
-# data_4 = np.random.normal(70, 40, 200)
-# data = [data_1, data_2, data_3, data_4]
-# plt.figure(figsize=(15,10))
-# plt.boxplot(data)
-# plt.show()
-# plt.close()
+print(l_pupil_d_scaled)
+
+data_1 = np.random.normal(100, 10, 200)
+data_2 = np.random.normal(90, 20, 200)
+data_3 = np.random.normal(80, 30, 200)
+data_4 = np.random.normal(70, 40, 200)
+data = [data_1, data_2, data_3, data_4]
+#print(data)
+plt.figure(figsize=(15,10))
+#plt.boxplot(l_pupil_d_scaled)
+#plt.boxplot(r_pupil_d_scaled)
+plt.boxplot(l_c_a_pupil_d_scaled)
+plt.show()
+plt.close()

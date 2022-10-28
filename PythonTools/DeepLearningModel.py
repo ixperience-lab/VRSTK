@@ -195,26 +195,26 @@ file_name = '{}/Transformed_True_test_data_plot.png'.format(path)
 plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
                  'Transformed (True) test data (True) test data plot', file_name, show=False, save=True)
 
-print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) train data ")
-# ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of train data
-tsne_model = TSNE(n_components=3, learning_rate=500.0 , init='pca', perplexity=30.0)
-transformed_train_x = tsne_model.fit_transform(transformed_train_x)
-print(transformed_train_x.shape)
-conscientious_indeces = input_data.index[input_data['Conscientious'] == 0]
-none_conscientious_indeces = input_data.index[input_data['Conscientious'] == 1]
-file_name = '{}/tsne_True_train_data_plot.png'.format(path)
-plot_data_cluster(transformed_train_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
-                 'T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) train data  plot', file_name, show=False, save=True)
+# print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) train data ")
+# # ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of train data
+# tsne_model = TSNE(n_components=3, learning_rate=500.0 , init='pca', perplexity=30.0)
+# transformed_train_x = tsne_model.fit_transform(transformed_train_x)
+# print(transformed_train_x.shape)
+# conscientious_indeces = input_data.index[input_data['Conscientious'] == 0]
+# none_conscientious_indeces = input_data.index[input_data['Conscientious'] == 1]
+# file_name = '{}/tsne_True_train_data_plot.png'.format(path)
+# plot_data_cluster(transformed_train_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
+#                  'T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) train data  plot', file_name, show=False, save=True)
 
-print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) test data")
-# ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of test data
-transformed_test_x = tsne_model.fit_transform(transformed_test_x)
-print(transformed_test_x.shape)
-conscientious_indeces = true_value_test_data.index[true_value_test_data['Conscientious'] == 0]
-none_conscientious_indeces = true_value_test_data.index[true_value_test_data['Conscientious'] == 1]
-file_name = '{}/tsne_True_test_data_plot.png'.format(path)
-plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
-                 'T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) test data plot', file_name, show=False, save=True)
+# print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) test data")
+# # ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of test data
+# transformed_test_x = tsne_model.fit_transform(transformed_test_x)
+# print(transformed_test_x.shape)
+# conscientious_indeces = true_value_test_data.index[true_value_test_data['Conscientious'] == 0]
+# none_conscientious_indeces = true_value_test_data.index[true_value_test_data['Conscientious'] == 1]
+# file_name = '{}/tsne_True_test_data_plot.png'.format(path)
+# plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
+#                  'T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) test data plot', file_name, show=False, save=True)
 
 # print("------ Principal Component Analysis n_components=2 of train data")
 # # ------ Principal Component Analysis n_components=2 of train data
@@ -263,7 +263,7 @@ _train_data = train_data.copy()
 # y_train_true_output, y_validation_true_output = np.array(input_data["Conscientious"].values.flatten())[train_index], np.array(input_data["Conscientious"].values.flatten())[test_index]
 
 # ---- hyper parameters
-iterration = 100
+iterration = 1
 learning_rate = 0.001
 step_size = 10
 gamma = 0.9
@@ -283,8 +283,12 @@ for iter in range(iterration):
     if not os.path.exists(path):
         os.mkdir(path, mode)
     train_dataframe, validation_dataframe, y_train_true_output, y_validation_true_output = train_test_split(transformed_train_x, 
-                                        np.array(input_data["Conscientious"].values.flatten()), test_size=0.25,  shuffle=True, 
-                                        stratify=np.array(input_data["Conscientious"].values.flatten()))#, random_state=42)
+                                        np.array(input_data["Conscientious"].values.flatten()), test_size=0.4,  shuffle=True, 
+                                        stratify=np.array(input_data["Conscientious"].values.flatten()))
+
+    test_dataframe, validation_dataframe, y_test_true_output, y_validation_true_output = train_test_split(validation_dataframe, 
+                                    y_validation_true_output, test_size=0.5,  shuffle=True, 
+                                    stratify=y_validation_true_output)
 
     #validation_dataframe = x_train_data_frame.sample(frac=0.5, random_state=1337)
     #train_dataframe = x_train_data_frame.drop(validation_dataframe.index)
@@ -311,8 +315,8 @@ for iter in range(iterration):
     print(v_Y.shape)
     #sys.exit()
 
-    t_X = x_test_data_frame.to_numpy(dtype='float32')
-    t_Y = np.array(true_value_test_data["Conscientious"].values.flatten())
+    t_X = test_dataframe.astype('float32') #x_test_data_frame.to_numpy(dtype='float32')
+    t_Y = y_test_true_output #np.array(true_value_test_data["Conscientious"].values.flatten())
     #t_Y = np_utils.to_categorical(t_Y, num_classes=2)
     print(t_X.shape)
     print(t_Y.shape)
@@ -342,42 +346,48 @@ for iter in range(iterration):
     plt.savefig(file_name)
     plt.close()
 
-    _test_data_copy['Conscientious'] = predictions_transformed
-    conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 0]
-    none_conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 1]
-    file_name = '{}/TabNetClassifier_Predicted_test_data_plot.png'.format(path)
-    plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
-                'Tabnet predicted test data plot', file_name, show=False, save=True)
+    # _test_data_copy['Conscientious'] = predictions_transformed
+    # conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 0]
+    # none_conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 1]
+    # file_name = '{}/TabNetClassifier_Predicted_test_data_plot.png'.format(path)
+    # plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
+    #             'Tabnet predicted test data plot', file_name, show=False, save=True)
 
-    # ------- display roc_auc curve
-    lda_roc_auc = roc_auc_score(true_value_test_data["Conscientious"], predictions_transformed)
-    fpr, tpr, thresholds = roc_curve(true_value_test_data["Conscientious"], predictions)#predictions[:,1])
-    file_name = '{}/TabNetClassifier_DL-Model_test-data_ROC-curve.png'.format(path)
-    plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'DL-Model test data auc (area = %0.2f)' % lda_roc_auc, 
-                title = 'Tabnet-Model test data', file_name = file_name, show=False, save=True)
+    # # ------- display roc_auc curve
+    # lda_roc_auc = roc_auc_score(true_value_test_data["Conscientious"], predictions_transformed)
+    # fpr, tpr, thresholds = roc_curve(true_value_test_data["Conscientious"], predictions)#predictions[:,1])
+    # file_name = '{}/TabNetClassifier_DL-Model_test-data_ROC-curve.png'.format(path)
+    # plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'DL-Model test data auc (area = %0.2f)' % lda_roc_auc, 
+    #             title = 'Tabnet-Model test data', file_name = file_name, show=False, save=True)
 
-    precision, recall, thresholds = precision_recall_curve(true_value_test_data["Conscientious"], predictions)
+    #precision, recall, thresholds = precision_recall_curve(true_value_test_data["Conscientious"], predictions)
+    precision, recall, thresholds = precision_recall_curve(t_Y, predictions)
     print(precision)
     print(recall)
     print(thresholds)
 
-    matrix = confusion_matrix(true_value_test_data['Conscientious'], predictions_transformed)
+    #matrix = confusion_matrix(true_value_test_data['Conscientious'], predictions_transformed)
+    matrix = confusion_matrix(t_Y, predictions_transformed)
     print(matrix)
     file_name = '{}/TabNetClassifier_DL-Model_test_data_confusion_Matrix.txt'.format(path)
     write_matrix_and_report_to_file(file_name, np.array2string(matrix))
 
-    report = classification_report(true_value_test_data['Conscientious'], predictions_transformed)
+    #report = classification_report(true_value_test_data['Conscientious'], predictions_transformed)
+    report = classification_report(t_Y, predictions_transformed)
     print(report)
     file_name = '{}/TabNetClassifier_DL-Model_test_deta_report.txt'.format(path)
     write_matrix_and_report_to_file(file_name, report)
 
-    f1_score_value = f1_score(true_value_test_data["Conscientious"], predictions_transformed, average=None)
+    #f1_score_value = f1_score(true_value_test_data["Conscientious"], predictions_transformed, average=None)
+    f1_score_value = f1_score(t_Y, predictions_transformed, average=None)
     print(f1_score_value)
 
-    test_acc = accuracy_score(y_pred=true_value_test_data["Conscientious"], y_true=predictions_transformed)
+    #test_acc = accuracy_score(y_pred=true_value_test_data["Conscientious"], y_true=predictions_transformed)
+    test_acc = accuracy_score(y_pred=t_Y, y_true=predictions_transformed)
     print(test_acc)
 
-    display = PrecisionRecallDisplay.from_predictions(true_value_test_data["Conscientious"], predictions_transformed, name="DL-Model")
+    #display = PrecisionRecallDisplay.from_predictions(true_value_test_data["Conscientious"], predictions_transformed, name="DL-Model")
+    display = PrecisionRecallDisplay.from_predictions(t_Y, predictions_transformed, name="DL-Model")
     _ = display.ax_.set_title("2-class Precision-Recall curve")
     file_name = '{}/TabNetClassifier_DL-Model_test-data_Precision-Recall-curve.png'.format(path)
     plt.savefig(file_name)
