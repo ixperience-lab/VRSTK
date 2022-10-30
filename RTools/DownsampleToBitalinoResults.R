@@ -434,11 +434,24 @@ downsampling <- function(automationStage, stage)
     countTransformedBitalinoSamples <- 1
     tempResultDataFrame <- NULL
     tempDataFrame <- NULL
+    tempDataFrame <- NULL
+    if(stage == 0){
+      countSaccadesPositionsInfoSamples <- nrow(rawEyeTrackingSaccadesPositionsInformationStage0)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage0)
+      tempResultDataFrame <- rawEyeTrackingSaccadesPositionsInformationStage0
+      tempDataFrame <- transformedBitalinoECGDataFrameStage0
+    }
     if(stage == 1){
       countSaccadesPositionsInfoSamples <- nrow(rawEyeTrackingSaccadesPositionsInformationStage1)
       countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage1)
       tempResultDataFrame <- rawEyeTrackingSaccadesPositionsInformationStage1
       tempDataFrame <- transformedBitalinoECGDataFrameStage1
+    }
+    if(stage == 2){
+      countSiemensSamples <- nrow(rawEyeTrackingSaccadesPositionsInformationStage2)
+      countTransformedBitalinoSamples <- nrow(transformedBitalinoECGDataFrameStage2)
+      tempResultDataFrame <- rawEyeTrackingSaccadesPositionsInformationStage2
+      tempDataFrame <- transformedBitalinoECGDataFrameStage2
     }
     
     print(countSaccadesPositionsInfoSamples, zero.print = ".") # quite nicer,

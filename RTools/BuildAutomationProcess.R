@@ -10,7 +10,7 @@ library(magrittr)
 library(mnormt)
 
 
-for (condition in c("Condition A", "Condition B")){#, "Condition C")){
+for (condition in c("Condition A", "Condition B", "Condition C")){
   condition_list <- NULL
   if (str_detect(condition, "Condition A")){
     # Conditions Ids:
@@ -249,8 +249,9 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){
     source("RawFixationSaccadesPositionsData.r", echo=TRUE)
     #   8.1 Downsampling/Upsampling
     source("DownsampleToBitalinoResults.r", echo=TRUE)
+    eyeTrackingSaccadesInformationStage0 <- downsampling(8,0)
     eyeTrackingSaccadesInformationStage1 <- downsampling(8,1)    
-    
+    eyeTrackingSaccadesInformationStage2 <- downsampling(8,2)
     
     # 9. RawVRQuestionnaireToolkitUncannyValleyData
     source("RawVRQuestionnaireToolkitUncannyValleyData.r", echo=TRUE)
@@ -398,7 +399,7 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){
   
   #   12.4 Filter data frame and complete with missing values
   for (cid in condition_list){ 
-    for(stage in c("Stage1", "Stage2")){
+    for(stage in c("Stage0", "Stage1", "Stage2")){
       dataframe_name <- paste("participent_", cid, "_", stage, "_DataFrame", sep="") 
       
       tempDataFrame <- get(dataframe_name)
@@ -408,17 +409,21 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){
       
       # convert from bool to numeric
       numberOfRows <- nrow(tempDataFrame)
-      if ( tempDataFrame$DEG_TIME[numberOfRows] > 0 && tempDataFrame$DEG_TIME[numberOfRows] >= tempDataFrame$DegTimeThreshold[numberOfRows]){
-        tempDataFrame$DegTimeLowQuality = 1
-      }else {
-        tempDataFrame$DegTimeLowQuality = 0
-      }
-      tempDataFrame$DegTimeLowQuality <- as.numeric(tempDataFrame$DegTimeLowQuality)
       
-      # remove known columns with zeros
-      tempDataFrame$MISSING     <- NULL
-      tempDataFrame$TIME_RSI    <- NULL
-      tempDataFrame$MISSRELCalc <- NULL
+      if(stage == "Stage1" && stage == "Stage2"){
+      
+        if ( tempDataFrame$DEG_TIME[numberOfRows] > 0 && tempDataFrame$DEG_TIME[numberOfRows] >= tempDataFrame$DegTimeThreshold[numberOfRows]){
+          tempDataFrame$DegTimeLowQuality = 1
+        }else {
+          tempDataFrame$DegTimeLowQuality = 0
+        }
+        tempDataFrame$DegTimeLowQuality <- as.numeric(tempDataFrame$DegTimeLowQuality)
+        
+        # remove known columns with zeros
+        tempDataFrame$MISSING     <- NULL
+        tempDataFrame$TIME_RSI    <- NULL
+        tempDataFrame$MISSRELCalc <- NULL
+      }
       
       # calculate tatal features again, while there is a bug
       # TotalFixationCounter
@@ -481,6 +486,12 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){
         tempDataFrame$RightPupilDiameterDifferenceToMean[i] <- tempDataFrame$RightPupilDiameter[i] - rightMeanPupilDiameter
       }
       
+      if(stage == "Stage0" && stage == "Stage2"){
+        # calculate saccads informations
+        for(i in 1:nrow(tempDataFrame)) {
+          tempDataFrame$SaccadesDiffX[i] <- abs(tempDataFrame$Saccade0X[i] - tempDataFrame$Saccade1X[i])
+        }
+      }
       
       if(stage == "Stage1"){
         # calculate saccads informations
@@ -502,8 +513,8 @@ for (condition in c("Condition A", "Condition B")){#, "Condition C")){
               
               if (length(indexQ1) > 0 ){
                 tempDataFrame$SaccadesMeanX[indexQ1] <- mean(q1XSaccads)
-                print("saccades info:")
-                print(tempDataFrame$SaccadesMeanX[indexQ1])
+                #print("saccades info:")
+                #print(tempDataFrame$SaccadesMeanX[indexQ1])
                 if(length(indexQ1) > 1) {
                   tempDataFrame$SaccadesSdX[indexQ1]   <- sd(q1XSaccads)
                 }
@@ -846,14 +857,14 @@ for(stage in c("Stage0","Stage1", "Stage2")){
   pathCSV <- file.path("./Condition B/RResults/", file_name, "")
   conditionBDataFrame <- read.csv2(file = pathCSV)
   
-  #file_name <- paste("All_Participents_", stage, "_DataFrame.csv", sep="")
-  #pathCSV <- file.path("./Condition C/RResults/", file_name, "")
-  #conditionCDataFrame <- read.csv2(file = pathCSV)
+  file_name <- paste("All_Participents_", stage, "_DataFrame.csv", sep="")
+  pathCSV <- file.path("./Condition C/RResults/", file_name, "")
+  conditionCDataFrame <- read.csv2(file = pathCSV)
   
   # fuse all 3 conditions
   all_participent_dataframe <- conditionADataFrame
   all_participent_dataframe <- rbind(all_participent_dataframe, conditionBDataFrame)
-  #all_participent_dataframe <- rbind(all_participent_dataframe, conditionCDataFrame)
+  all_participent_dataframe <- rbind(all_participent_dataframe, conditionCDataFrame)
   # create a copy of fused dataframe
   temp_dataframe <- all_participent_dataframe
   
@@ -897,7 +908,7 @@ for(stage in c("Stage0","Stage1", "Stage2")){
 
 # 14.1 create fuse mean data frame all participants
 
-for (condition in c("Condition A", "Condition B")){#, "Condition C")){
+for (condition in c("Condition A", "Condition B", "Condition C")){
   condition_list <- NULL
   if (str_detect(condition, "Condition A")){
     # Conditions Ids:

@@ -287,6 +287,14 @@ ggplot(data, aes(x = group, y = values, fill = subgroup)) + geom_bar(stat = "ide
 # =======================================================================================================================
 allFeaturesTrackedFromStage1$Conscientious <- 1
 allFeaturesTrackedFromStage1$Conscientious[1:rowConscientiousCounter] <- 0
+
+allFeaturesTrackedFromStage1$Conscientious[allFeaturesTrackedFromStage1$pId == 21] <- 0
+allFeaturesTrackedFromStage1$Conscientious[allFeaturesTrackedFromStage1$pId == 22] <- 0
+allFeaturesTrackedFromStage1$Conscientious[allFeaturesTrackedFromStage1$pId == 23] <- 0
+allFeaturesTrackedFromStage1$Conscientious[allFeaturesTrackedFromStage1$pId == 26] <- 0
+allFeaturesTrackedFromStage1$Conscientious[allFeaturesTrackedFromStage1$pId == 27] <- 0
+allFeaturesTrackedFromStage1$Conscientious[allFeaturesTrackedFromStage1$pId == 28] <- 0
+allFeaturesTrackedFromStage1$Conscientious[allFeaturesTrackedFromStage1$pId == 29] <- 0
 write.csv2(allFeaturesTrackedFromStage1, "All_Participents_Clusterd_WaveSum_DataFrame.csv", row.names = FALSE)
 
 

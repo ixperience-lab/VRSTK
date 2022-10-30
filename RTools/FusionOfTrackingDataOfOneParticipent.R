@@ -12,6 +12,7 @@ fuseParticipentDataFrames <- function(id, condition, stage)
     fusedDataFrames <- merge(fusedDataFrames, bandPowerDataFrameStage0, by="time", all = TRUE)
     fusedDataFrames <- merge(fusedDataFrames, performanceMetricDataFrameStage0, by="time", all = TRUE)
     fusedDataFrames <- merge(fusedDataFrames, eyeTrackingInformationStage0, by="time", all = TRUE)
+    fusedDataFrames <- merge(fusedDataFrames, eyeTrackingSaccadesInformationStage0, by="time", all = TRUE)
   }
   if (stage == 1){
     fusedDataFrames <- merge(transformedBitalinoECGDataFrameStage1, transformedBitalinoECGHRVDataFrameStage1, by="time", all = TRUE)
@@ -31,6 +32,7 @@ fuseParticipentDataFrames <- function(id, condition, stage)
     fusedDataFrames <- merge(fusedDataFrames, bandPowerDataFrameStage2, by="time", all = TRUE)
     fusedDataFrames <- merge(fusedDataFrames, performanceMetricDataFrameStage2, by="time", all = TRUE)
     fusedDataFrames <- merge(fusedDataFrames, eyeTrackingInformationStage2, by="time", all = TRUE)
+    fusedDataFrames <- merge(fusedDataFrames, eyeTrackingSaccadesInformationStage2, by="time", all = TRUE)
     fusedDataFrames <- merge(fusedDataFrames, pagesQualityParametersStage2, by="time", all = TRUE)
   }
   
