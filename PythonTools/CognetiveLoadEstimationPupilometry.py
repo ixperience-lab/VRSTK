@@ -82,7 +82,7 @@ for i in [ 1, 2, 3, 4, 5, 6, 7, 10, 13, 14, 15, 16, 17, 18, 19, 20, 31, 34, 21, 
                                                 (input_stage_1["CognitiveActivityLeftPupilDiamter"] > 0) & (input_stage_1["CognitiveActivityRightPupilDiamter"] > 0)]
 
     pupil_size_pId_stage_1["LeftPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["LeftPupilDiameter"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
-    pupil_size_pId_stage_1["RightPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["RightPupilDiameter"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
+    pupil_size_pId_stage_1["RightPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["RightPupilDiameter"] - base_line_mean_r_pupil_diameter) / base_line_mean_r_pupil_diameter
     
     left_percent_change_pupil_dialtions = []
     left_mean_percent_change_pupil_dialtions = []
@@ -129,7 +129,7 @@ pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transfor
 pupil_size_pId_stage_1["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(pupil_size_pId_stage_1[["RightPupilDiameter"]])
 
 pupil_size_pId_stage_1["LeftPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
-pupil_size_pId_stage_1["RightPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["RightPupilDiameter_scaled"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
+pupil_size_pId_stage_1["RightPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["RightPupilDiameter_scaled"] - base_line_mean_r_pupil_diameter) / base_line_mean_r_pupil_diameter
 
 left_percent_change_pupil_dialtions = []
 left_mean_percent_change_pupil_dialtions = []
@@ -178,7 +178,7 @@ pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transfor
 pupil_size_pId_stage_1["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(pupil_size_pId_stage_1[["RightPupilDiameter"]])
 
 pupil_size_pId_stage_1["LeftPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
-pupil_size_pId_stage_1["RightPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["RightPupilDiameter_scaled"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
+pupil_size_pId_stage_1["RightPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["RightPupilDiameter_scaled"] - base_line_mean_r_pupil_diameter) / base_line_mean_r_pupil_diameter
 
 left_percent_change_pupil_dialtions = []
 left_mean_percent_change_pupil_dialtions = []
@@ -222,7 +222,7 @@ pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transfor
 pupil_size_pId_stage_1["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(pupil_size_pId_stage_1[["RightPupilDiameter"]])
 
 pupil_size_pId_stage_1["LeftPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
-pupil_size_pId_stage_1["RightPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["RightPupilDiameter_scaled"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
+pupil_size_pId_stage_1["RightPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["RightPupilDiameter_scaled"] - base_line_mean_r_pupil_diameter) / base_line_mean_r_pupil_diameter
 
 left_percent_change_pupil_dialtions = []
 left_mean_percent_change_pupil_dialtions = []
@@ -266,7 +266,7 @@ pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transfor
 pupil_size_pId_stage_1["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(pupil_size_pId_stage_1[["RightPupilDiameter"]])
 
 pupil_size_pId_stage_1["LeftPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
-pupil_size_pId_stage_1["RightPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["RightPupilDiameter_scaled"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
+pupil_size_pId_stage_1["RightPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["RightPupilDiameter_scaled"] - base_line_mean_r_pupil_diameter) / base_line_mean_r_pupil_diameter
 
 left_percent_change_pupil_dialtions = []
 left_mean_percent_change_pupil_dialtions = []

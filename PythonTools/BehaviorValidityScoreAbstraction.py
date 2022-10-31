@@ -24,9 +24,17 @@ if not exists(path_eeg):
 input_stage_0 = pd.read_csv("All_Participents_Stage0_DataFrame.csv", sep=";", decimal=',')
 input_stage_1 = pd.read_csv("All_Participents_Stage1_DataFrame.csv", sep=";", decimal=',')
 
-# EEG bandpower with alpha wave for each sensor on headset:  Event related synchronization/event related desynchronization, 
-# congnitive load index = ((baseline interval band power - test interval band power) / baseline interval band power) * 100
-
+# EEG bandpower waves for each sensor on headset
+input_stage_0["theta"] = (input_stage_0["AF3.theta"] + input_stage_0["F7.theta"]  + input_stage_0["F3.theta"] + 
+                          input_stage_0["FC5.theta"] + input_stage_0["T7.theta"]  + input_stage_0["P7.theta"] + 
+                          input_stage_0["O1.theta"]  + input_stage_0["O2.theta"]  + input_stage_0["P8.theta"] + 
+                          input_stage_0["T8.theta"]  + input_stage_0["AF4.theta"] + input_stage_0["F8.theta"] + 
+                          input_stage_0["F4.theta"]  + input_stage_0["FC6.theta"])
+input_stage_0["alpha"] = (input_stage_0["AF3.alpha"] + input_stage_0["F7.alpha"]  + input_stage_0["F3.alpha"] + 
+                          input_stage_0["FC5.alpha"] + input_stage_0["T7.alpha"]  + input_stage_0["P7.alpha"] + 
+                          input_stage_0["O1.alpha"]  + input_stage_0["O2.alpha"]  + input_stage_0["P8.alpha"] + 
+                          input_stage_0["T8.alpha"]  + input_stage_0["AF4.alpha"] + input_stage_0["F8.alpha"] + 
+                          input_stage_0["F4.alpha"]  + input_stage_0["FC6.alpha"]) 
 input_stage_0["betaL"] = (input_stage_0["AF3.betaL"] + input_stage_0["F7.betaL"]  + input_stage_0["F3.betaL"] + 
                           input_stage_0["FC5.betaL"] + input_stage_0["T7.betaL"]  + input_stage_0["P7.betaL"] + 
                           input_stage_0["O1.betaL"]  + input_stage_0["O2.betaL"]  + input_stage_0["P8.betaL"] + 
@@ -43,10 +51,22 @@ input_stage_0["gamma"] = (input_stage_0["AF3.gamma"] + input_stage_0["F7.gamma"]
                           input_stage_0["T8.gamma"]  + input_stage_0["AF4.gamma"] + input_stage_0["F8.gamma"] + 
                           input_stage_0["F4.gamma"]  + input_stage_0["FC6.gamma"]) 
 
+input_stage_0["theta_scaled"] = StandardScaler().fit_transform(input_stage_0[["theta"]])
+input_stage_0["alpha_scaled"] = StandardScaler().fit_transform(input_stage_0[["alpha"]])
 input_stage_0["betaL_scaled"] = StandardScaler().fit_transform(input_stage_0[["betaL"]])
 input_stage_0["betaH_scaled"] = StandardScaler().fit_transform(input_stage_0[["betaH"]])
 input_stage_0["gamma_scaled"] = StandardScaler().fit_transform(input_stage_0[["gamma"]])
 
+input_stage_1["theta"] = (input_stage_1["AF3.theta"] + input_stage_1["F7.theta"]  + input_stage_1["F3.theta"] + 
+                          input_stage_1["FC5.theta"] + input_stage_1["T7.theta"]  + input_stage_1["P7.theta"] + 
+                          input_stage_1["O1.theta"]  + input_stage_1["O2.theta"]  + input_stage_1["P8.theta"] + 
+                          input_stage_1["T8.theta"]  + input_stage_1["AF4.theta"] + input_stage_1["F8.theta"] + 
+                          input_stage_1["F4.theta"]  + input_stage_1["FC6.theta"])
+input_stage_1["alpha"] = (input_stage_1["AF3.alpha"] + input_stage_1["F7.alpha"]  + input_stage_1["F3.alpha"] + 
+                          input_stage_1["FC5.alpha"] + input_stage_1["T7.alpha"]  + input_stage_1["P7.alpha"] + 
+                          input_stage_1["O1.alpha"]  + input_stage_1["O2.alpha"]  + input_stage_1["P8.alpha"] + 
+                          input_stage_1["T8.alpha"]  + input_stage_1["AF4.alpha"] + input_stage_1["F8.alpha"] + 
+                          input_stage_1["F4.alpha"]  + input_stage_1["FC6.alpha"])
 input_stage_1["betaL"] = (input_stage_1["AF3.betaL"] + input_stage_1["F7.betaL"]  + input_stage_1["F3.betaL"] + 
                           input_stage_1["FC5.betaL"] + input_stage_1["T7.betaL"]  + input_stage_1["P7.betaL"] + 
                           input_stage_1["O1.betaL"]  + input_stage_1["O2.betaL"]  + input_stage_1["P8.betaL"] + 
@@ -63,84 +83,146 @@ input_stage_1["gamma"] = (input_stage_1["AF3.gamma"] + input_stage_1["F7.gamma"]
                           input_stage_1["T8.gamma"]  + input_stage_1["AF4.gamma"] + input_stage_1["F8.gamma"] + 
                           input_stage_1["F4.gamma"]  + input_stage_1["FC6.gamma"]) 
 
+input_stage_1["theta_scaled"] = StandardScaler().fit_transform(input_stage_1[["theta"]])
+input_stage_1["alpha_scaled"] = StandardScaler().fit_transform(input_stage_1[["alpha"]])
 input_stage_1["betaL_scaled"] = StandardScaler().fit_transform(input_stage_1[["betaL"]])
 input_stage_1["betaH_scaled"] = StandardScaler().fit_transform(input_stage_1[["betaH"]])
 input_stage_1["gamma_scaled"] = StandardScaler().fit_transform(input_stage_1[["gamma"]])
 
-cluster_conscientious = [ 1, 2, 3, 4, 5, 6, 7, 10 ]
-cluster_non_conscientious = [ 13, 14, 15, 16, 17, 18, 19, 20, 31, 34 ]
-cluster_filtered_non_conscientious = [ 15, 16, 17, 18, 19, 20, 31, 34 ]
+eeg_conscientious_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] == 0)] #& (input_stage_1["DegTimeLowQuality"] == 0)]
 
-base_line_eeg_conscientious_stage_0 = input_stage_0.loc[ (input_stage_0['pId'].isin(cluster_conscientious))]
-eeg_conscientious_stage_1 = input_stage_1.loc[ (input_stage_1['pId'].isin(cluster_conscientious)) ]
-
-conscientious_event_related_index_betaL = []
-conscientious_event_related_index_betaH = []
-conscientious_event_related_index_gamma = []
-for id in cluster_conscientious:
-    base_line_conscientious_stage_0 = input_stage_0.loc[(input_stage_0["pId"] == id)]
-    conscientious_stage_1 = input_stage_1.loc[(input_stage_1["pId"] == id)]
-    conscientious_event_related_index_betaL.append([((base_line_conscientious_stage_0["betaL_scaled"].mean() - conscientious_stage_1["betaL_scaled"].mean()) / base_line_conscientious_stage_0["betaL_scaled"].mean()) * 100])
-    conscientious_event_related_index_betaH.append([((base_line_conscientious_stage_0["betaH_scaled"].mean() - conscientious_stage_1["betaH_scaled"].mean()) / base_line_conscientious_stage_0["betaH_scaled"].mean()) * 100])
-    conscientious_event_related_index_gamma.append([((base_line_conscientious_stage_0["gamma_scaled"].mean() - conscientious_stage_1["gamma_scaled"].mean()) / base_line_conscientious_stage_0["gamma_scaled"].mean()) * 100])
-
-    # conscientious_event_related_index_betaL.append([conscientious_stage_1["betaL_scaled"].mean()])
-    # conscientious_event_related_index_betaH.append([conscientious_stage_1["betaH_scaled"].mean()])
-    # conscientious_event_related_index_gamma.append([conscientious_stage_1["gamma_scaled"].mean()])
-
-base_line_eeg_non_conscientious_stage_0 = input_stage_0.loc[ (input_stage_0['pId'].isin(cluster_non_conscientious))]
-eeg_non_conscientious_stage_1 = input_stage_1.loc[ (input_stage_1['pId'].isin(cluster_non_conscientious)) ]
-
-non_conscientious_event_related_index_betaL = []
-non_conscientious_event_related_index_betaH = []
-non_conscientious_event_related_index_gamma = []
-for id in cluster_filtered_non_conscientious:
-    base_line_non_conscientious_stage_0 = input_stage_0.loc[(input_stage_0["pId"] == id)]
-    non_conscientious_stage_1 = input_stage_1.loc[(input_stage_1["pId"] == id)]
-    non_conscientious_event_related_index_betaL.append([((base_line_non_conscientious_stage_0["betaL_scaled"].mean() - non_conscientious_stage_1["betaL_scaled"].mean()) / base_line_non_conscientious_stage_0["betaL_scaled"].mean()) * 100])
-    non_conscientious_event_related_index_betaH.append([((base_line_non_conscientious_stage_0["betaH_scaled"].mean() - non_conscientious_stage_1["betaH_scaled"].mean()) / base_line_non_conscientious_stage_0["betaH_scaled"].mean()) * 100])
-    non_conscientious_event_related_index_gamma.append([((base_line_non_conscientious_stage_0["gamma_scaled"].mean() - non_conscientious_stage_1["gamma_scaled"].mean()) / base_line_non_conscientious_stage_0["gamma_scaled"].mean()) * 100])
-
-    # non_conscientious_event_related_index_betaL.append([non_conscientious_stage_1["betaL_scaled"].mean()])
-    # non_conscientious_event_related_index_betaH.append([non_conscientious_stage_1["betaH_scaled"].mean()])
-    # non_conscientious_event_related_index_gamma.append([non_conscientious_stage_1["gamma_scaled"].mean()])
+eeg_non_conscientious_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] > 0)]# & (input_stage_1["DegTimeLowQuality"] > 0)]
 
 file_name = '{}/EEG_beta_gamma_boxplot.png'.format(path_eeg)
 plt.figure(figsize=(15,10))
 plt.title("EEG Behavior Validity Score Abstraction")
 width = 0.2
-plt.boxplot(base_line_eeg_conscientious_stage_0["betaL_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="green"), positions=[-0.75], widths=width)
-plt.boxplot(base_line_eeg_conscientious_stage_0["betaH_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="green"), positions=[-0.5], widths=width)
-plt.boxplot(base_line_eeg_conscientious_stage_0["gamma_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="green"), positions=[-0.25], widths=width)
+plt.boxplot(eeg_conscientious_stage_1["theta_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[-0.25], widths=width)
+plt.boxplot(eeg_conscientious_stage_1["alpha_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0], widths=width)
 plt.boxplot(eeg_conscientious_stage_1["betaL_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0.25], widths=width)
 plt.boxplot(eeg_conscientious_stage_1["betaH_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0.5], widths=width)
 plt.boxplot(eeg_conscientious_stage_1["gamma_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0.75], widths=width)
 
-plt.boxplot(base_line_eeg_non_conscientious_stage_0["betaL_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="red"), positions=[1.5], widths=width)
-plt.boxplot(base_line_eeg_non_conscientious_stage_0["betaH_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="red"), positions=[1.75], widths=width)
-plt.boxplot(base_line_eeg_non_conscientious_stage_0["gamma_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="red"), positions=[2], widths=width)
+plt.boxplot(eeg_non_conscientious_stage_1["theta_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[1.75], widths=width)
+plt.boxplot(eeg_non_conscientious_stage_1["alpha_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2], widths=width)
 plt.boxplot(eeg_non_conscientious_stage_1["betaL_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2.25], widths=width)
 plt.boxplot(eeg_non_conscientious_stage_1["betaH_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2.5], widths=width)
 plt.boxplot(eeg_non_conscientious_stage_1["gamma_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2.75], widths=width)
-labels_list = ['0','1']
-plt.xticks(range(2), labels=labels_list)
-#plt.legend()
+labels_list = ['theta-low_score', 'alpha-low_score', 'betaL-low_score', 'betaH-low_score', 'gamma-low_score', 'theta-heigh_score', 'alpha-heigh_score', 'betaL-heigh_score', 'betaH-heigh_score', 'gamma']
+plt.xticks([-0.25, 0, 0.25, 0.5, 0.75, 1.75, 2, 2.25, 2.5, 2.75], labels=labels_list)
 plt.savefig(file_name)
 plt.close()
 
-file_name = '{}/EEG_beta_gamma_scatterplot.png'.format(path_eeg)
+
+
+# HRV with LFHFRatio, SD1SD2Ratio and HeartRate
+# -----------------------------------------------------
+path_hrv = "{}/HeartRateVariability".format(path)
+if not exists(path_hrv):
+    os.mkdir(path_hrv, mode)
+
+hrv_low_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] == 0)] #& (input_stage_1["DegTimeLowQuality"] == 0)]
+
+hrv_heigh_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] > 0)] # & (input_stage_1["DegTimeLowQuality"] > 0)]
+
+file_name = '{}/HRV_LFHFRatio_HeartRate_boxplot.png'.format(path_hrv)
 plt.figure(figsize=(15,10))
-plt.title("EEG Behavior Validity Score Abstraction")
-plt.scatter(range(len(cluster_conscientious)), conscientious_event_related_index_betaL, color="darkblue", label="conscientious event related index betaL", alpha=0.5, marker="s", zorder=1)
-plt.scatter(range(len(cluster_conscientious)), conscientious_event_related_index_betaH, color="blue", label="conscientious event related index betaH", alpha=0.5, marker="s", zorder=1)
-plt.scatter(range(len(cluster_conscientious)), conscientious_event_related_index_gamma, color="green", label="conscientious event related index gamma", alpha=0.5, marker="s", zorder=1)
+plt.title("HRV Behavior Validity Score Abstraction")
+width = 0.2
+plt.boxplot(hrv_low_score_stage_1["LFHFRatio"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[-0.25], widths=width)
+plt.boxplot(hrv_low_score_stage_1["SD1SD2Ratio"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0.25], widths=width)
 
-plt.scatter(range(len(cluster_filtered_non_conscientious)), non_conscientious_event_related_index_betaL, color="red", label="non-conscientious event related index betaL", alpha=0.5, marker="s", zorder=1)
-plt.scatter(range(len(cluster_filtered_non_conscientious)), non_conscientious_event_related_index_betaH, color="orange", label="non-conscientious event related index betaH", alpha=0.5, marker="s", zorder=1)
-plt.scatter(range(len(cluster_filtered_non_conscientious)), non_conscientious_event_related_index_gamma, color="yellow", label="non-conscientious event related index gamma", alpha=0.5, marker="s", zorder=1)
-labels_list = ['1','2','3','4','5','6','7','8']
-plt.xticks(range(len(cluster_conscientious)), labels=labels_list)
-plt.legend()
+plt.boxplot(hrv_heigh_score_stage_1["LFHFRatio"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[1.75], widths=width)
+plt.boxplot(hrv_heigh_score_stage_1["SD1SD2Ratio"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2.25], widths=width)
+labels_list = ['LFHFRatio-low_score', 'SD1SD2Ratio-low_score', 'LFHFRatio-low_score', 'SD1SD2Ratio-low_score']
+plt.xticks([-0.25, 0.25, 1.75, 2.25], labels=labels_list)
 plt.savefig(file_name)
 plt.close()
 
+
+# Skin Conductance FilteredValueInMicroSiemens
+# -----------------------------------------------------
+path_eda = "{}/SkinConductance".format(path)
+if not exists(path_eda):
+    os.mkdir(path_eda, mode)
+
+eda_low_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] == 0)] #& (input_stage_1["DegTimeLowQuality"] == 0)]
+
+eda_heigh_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] > 0)] # & (input_stage_1["DegTimeLowQuality"] > 0)]
+
+file_name = '{}/EDA_FilteredValueInMicroSiemens_boxplot.png'.format(path_eda)
+plt.figure(figsize=(15,10))
+plt.title("EDA Behavior Validity Score Abstraction")
+width = 0.2
+plt.boxplot(eda_low_score_stage_1["FilteredValueInMicroSiemens"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0], widths=width)
+
+plt.boxplot(eda_heigh_score_stage_1["FilteredValueInMicroSiemens"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[1], widths=width)
+labels_list = ['FilteredValueInMicroSiemens-low_score', 'FilteredValueInMicroSiemens-low_score']
+plt.xticks([0, 1], labels=labels_list)
+plt.savefig(file_name)
+plt.close()
+
+
+# Eye Tracking with pupillomentry
+# -----------------------------------------------------
+path_eye = "{}/EyeTracking".format(path)
+if not exists(path_eye):
+    os.mkdir(path_eye, mode)
+
+input_stage_1["LeftPercentChangePupilDialtion"] = 0.0
+input_stage_1["RightPercentChangePupilDialtion"] = 0.0
+
+for i in [ 1, 2, 3, 4, 5, 6, 7, 10, 13, 14, 15, 16, 17, 18, 19, 20, 31, 34, 21, 22, 23, 24, 25, 26, 27, 28, 29 ]:
+    pId = i
+    # stage 0
+    base_line_pupil_diameter_stage_0 = input_stage_0.loc[(input_stage_0["pId"] == pId)]
+    base_line_mean_l_pupil_diameter = base_line_pupil_diameter_stage_0["LeftPupilDiameter"].mean()
+    base_line_mean_r_pupil_diameter = base_line_pupil_diameter_stage_0["RightPupilDiameter"].mean()
+
+    pupil_size_pId_stage_1 = input_stage_1.loc[(input_stage_1["pId"] == pId)]
+
+    input_stage_1.loc[(input_stage_1["pId"] == pId), ["LeftPercentChangePupilDialtion"]] = (
+                       pupil_size_pId_stage_1["LeftPupilDiameter"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
+
+    input_stage_1.loc[(input_stage_1["pId"] == pId), ["RightPercentChangePupilDialtion"]] = (
+                       pupil_size_pId_stage_1["RightPupilDiameter"] - base_line_mean_r_pupil_diameter) / base_line_mean_r_pupil_diameter
+    
+eye_low_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] == 0)] #& (input_stage_1["DegTimeLowQuality"] == 0)]
+
+eye_heigh_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] > 0)] # & (input_stage_1["DegTimeLowQuality"] > 0)]
+
+# print(eye_low_score_stage_1.shape)
+# print(eye_low_score_stage_1.head(5))
+
+# print(eye_heigh_score_stage_1.shape)
+# print(eye_heigh_score_stage_1.head(5))
+
+file_name = '{}/Eye_pupillometry_boxplot.png'.format(path_eye)
+plt.figure(figsize=(15,10))
+plt.title("Eye-Tracking Behavior Validity Score Abstraction")
+width = 0.2
+plt.boxplot(eye_low_score_stage_1["LeftPercentChangePupilDialtion"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0], widths=width)
+plt.boxplot(eye_low_score_stage_1["RightPercentChangePupilDialtion"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[1], widths=width)
+
+plt.boxplot(eye_heigh_score_stage_1["LeftPercentChangePupilDialtion"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2], widths=width)
+plt.boxplot(eye_heigh_score_stage_1["RightPercentChangePupilDialtion"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[3], widths=width)
+
+labels_list = ['LeftPercentChangePupilDialtion-low_score', 'RightPercentChangePupilDialtion-low_score', 'LeftPercentChangePupilDialtion-heigh_score', 'RightPercentChangePupilDialtion-heigh_score']
+plt.xticks([0, 1, 2, 3], labels=labels_list)
+plt.savefig(file_name)
+plt.close()
+
+file_name = '{}/Eye_saccads_fixation_boxplot.png'.format(path_eye)
+plt.figure(figsize=(15,10))
+plt.title("Eye-Tracking Behavior Validity Score Abstraction")
+width = 0.2
+plt.boxplot(eye_low_score_stage_1["TotalFixationCounter"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0], widths=width)
+plt.boxplot(eye_low_score_stage_1["SaccadeCounter"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[1], widths=width)
+
+plt.boxplot(eye_heigh_score_stage_1["TotalFixationCounter"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2], widths=width)
+plt.boxplot(eye_heigh_score_stage_1["SaccadeCounter"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[3], widths=width)
+
+labels_list = ['TotalFixationCounter-low_score', 'SaccadeCounter-low_score', 'TotalFixationCounter-heigh_score', 'SaccadeCounter-heigh_score']
+plt.xticks([0, 1, 2, 3], labels=labels_list)
+plt.savefig(file_name)
+plt.close()
