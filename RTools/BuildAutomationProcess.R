@@ -410,7 +410,7 @@ for (condition in c("Condition A", "Condition B", "Condition C")){
       # convert from bool to numeric
       numberOfRows <- nrow(tempDataFrame)
       
-      if(stage == "Stage1" && stage == "Stage2"){
+      if(stage != "Stage0"){
       
         if ( tempDataFrame$DEG_TIME[numberOfRows] > 0 && tempDataFrame$DEG_TIME[numberOfRows] >= tempDataFrame$DegTimeThreshold[numberOfRows]){
           tempDataFrame$DegTimeLowQuality = 1
@@ -486,7 +486,7 @@ for (condition in c("Condition A", "Condition B", "Condition C")){
         tempDataFrame$RightPupilDiameterDifferenceToMean[i] <- tempDataFrame$RightPupilDiameter[i] - rightMeanPupilDiameter
       }
       
-      if(stage == "Stage0" && stage == "Stage2"){
+      if(stage != "Stage1"){
         # calculate saccads informations
         for(i in 1:nrow(tempDataFrame)) {
           tempDataFrame$SaccadesDiffX[i] <- abs(tempDataFrame$Saccade0X[i] - tempDataFrame$Saccade1X[i])
@@ -1106,3 +1106,4 @@ rm(splittedSaccadsPositionsInformations)
 # 16.1 Display the covarianz-Matrix of all features
 # 16.2 Run ANOVA with covarianz results features
 # 16.3 Run ANOVA with the rest features
+

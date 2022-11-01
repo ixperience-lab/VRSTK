@@ -62,34 +62,13 @@ def write_matrix_and_report_to_file(file_name, content):
 input_data_type = 0
 
 # read csv train data as pandas data frame
-input_data = pd.read_csv("All_Participents_Clusterd_WaveSum_DataFrameKopie.csv", sep=";", decimal=',')			# plan of sensors weighting:
-if input_data_type == 1: 
-	input_data = pd.read_csv("All_Participents_ECG_Clusterd_WaveSum_DataFrame.csv", sep=";", decimal=',') 		# weight with 2/10
-if input_data_type == 2: 
-	input_data = pd.read_csv("All_Participents_EDA_Clusterd_WaveSum_DataFrame.csv", sep=";", decimal=',') 		# weight with 1/10
-if input_data_type == 3: 
-	input_data = pd.read_csv("All_Participents_EEG_Clusterd_WaveSum_DataFrame.csv", sep=";", decimal=',') 		# weight with 1/10
-if input_data_type == 4: 
-	input_data = pd.read_csv("All_Participents_EYE_Clusterd_WaveSum_DataFrame.csv", sep=";", decimal=',') 		# weight with 2/10
-if input_data_type == 5: 
-	input_data = pd.read_csv("All_Participents_PAGES_Clusterd_WaveSum_DataFrame.csv", sep=";", decimal=',') 	# weight with 4/10
+input_data = pd.read_csv("All_Participents_Clusterd_WaveSum_DataFrame.csv", sep=";", decimal=',')			# plan of sensors weighting:
 
 # read cvs test data
 load_test_data = pd.read_csv("All_Participents_Condition-C_WaveSum_DataFrame.csv", sep=";", decimal=',')			# plan of sensors weighting:
-if input_data_type == 1: 
-	load_test_data = pd.read_csv("All_Participents_Condition-C_ECG_WaveSum_DataFrame.csv", sep=";", decimal=',') 		# weight with 2/10
-if input_data_type == 2: 
-	load_test_data = pd.read_csv("All_Participents_Condition-C_EDA_WaveSum_DataFrame.csv", sep=";", decimal=',') 		# weight with 1/10
-if input_data_type == 3: 
-	load_test_data = pd.read_csv("All_Participents_Condition-C_EEG_WaveSum_DataFrame.csv", sep=";", decimal=',') 		# weight with 1/10
-if input_data_type == 4: 
-	load_test_data = pd.read_csv("All_Participents_Condition-C_EYE_WaveSum_DataFrame.csv", sep=";", decimal=',') 		# weight with 2/10
-if input_data_type == 5: 
-	load_test_data = pd.read_csv("All_Participents_Condition-C_PAGES_WaveSum_DataFrame.csv", sep=";", decimal=',') 	# weight with 4/10
 
 # ------- fitler columns of train data
 train_data = input_data.drop(columns=['Conscientious', 'time', 'pId'])
-#train_data = train_data[selected_column_array]
 
 # count rows and columns
 c_num = train_data.shape[1]
@@ -153,22 +132,6 @@ if input_data_type == 0:
     transformed_test_x[:,141:149] = transformed_test_x[:,141:149] * weight_eye
     transformed_test_x[:,129:141] = transformed_test_x[:,129:141] * weight_pages
     transformed_test_x[:,149:152] = transformed_test_x[:,149:152] * weight_pages
-
-# if input_data_type == 1:
-# 	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_ecg
-# 	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_ecg
-# if input_data_type == 2:
-# 	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_eda
-# 	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_eda
-# if input_data_type == 3:
-# 	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_eeg
-# 	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_eeg
-# if input_data_type == 4:
-# 	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_eye
-# 	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_eye
-# if input_data_type == 5:
-# 	transformed_train_x[:,:] = transformed_train_x[:,:] * weight_pages
-# 	transformed_test_x[:,:]  = transformed_test_x[:,:]  * weight_pages
 
 print("Create output directory")
 # --- create dir
@@ -247,23 +210,13 @@ plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_consc
 # plt.savefig(file_name)
 # plt.close()
 
-# ---- creates tensorflow tensors as shuffled datasets
-# shuffled_train_dataset = dataframe_to_dataset(train_dataframe) 
-# shuffled_validation_dataset = dataframe_to_dataset(validation_dataframe)
-
 print("------- -Model")
 # ------- -Model
 x_train_data_frame = pd.DataFrame(data = transformed_train_x)
-#x_train_data_frame['Conscientious'] = input_data['Conscientious']
 _train_data = train_data.copy()
 
-# sss = StratifiedShuffleSplit(n_splits=1, test_size=0.5, random_state=0)
-# train_index, test_index = sss.split(x_train_data_frame, np.array(input_data["Conscientious"].values.flatten()))
-# train_dataframe, validation_dataframe = transformed_train_x[train_index], transformed_train_x[test_index]
-# y_train_true_output, y_validation_true_output = np.array(input_data["Conscientious"].values.flatten())[train_index], np.array(input_data["Conscientious"].values.flatten())[test_index]
-
 # ---- hyper parameters
-iterration = 1
+iterration = 10
 learning_rate = 0.001
 step_size = 10
 gamma = 0.9
@@ -283,41 +236,31 @@ for iter in range(iterration):
     if not os.path.exists(path):
         os.mkdir(path, mode)
     train_dataframe, validation_dataframe, y_train_true_output, y_validation_true_output = train_test_split(transformed_train_x, 
-                                        np.array(input_data["Conscientious"].values.flatten()), test_size=0.4,  shuffle=True, 
-                                        stratify=np.array(input_data["Conscientious"].values.flatten()))
+                                                                                                            np.array(input_data["Conscientious"].values.flatten()), test_size=0.4,  shuffle=True, 
+                                                                                                            stratify=np.array(input_data["Conscientious"].values.flatten()))
 
     test_dataframe, validation_dataframe, y_test_true_output, y_validation_true_output = train_test_split(validation_dataframe, 
-                                    y_validation_true_output, test_size=0.5,  shuffle=True, 
-                                    stratify=y_validation_true_output)
+                                                                                                          y_validation_true_output, test_size=0.5,  shuffle=True, 
+                                                                                                          stratify=y_validation_true_output)
 
-    #validation_dataframe = x_train_data_frame.sample(frac=0.5, random_state=1337)
-    #train_dataframe = x_train_data_frame.drop(validation_dataframe.index)
-    #y_train_true_output = np.array(input_data.Conscientious.drop(validation_dataframe.index).values.flatten())
-    #y_validation_true_output = np.array(input_data.Conscientious.values[validation_dataframe.index].flatten())
     print(y_train_true_output)
     print(y_validation_true_output)
     print("Using %d samples for training and %d for validation"  % (len(train_dataframe), len(validation_dataframe)))
 
     x_test_data_frame = pd.DataFrame(data=transformed_test_x)
-    _test_data_copy = test_data.copy()
-
-    # For Keras, convert dataframe to array values (Inbuilt requirement of Keras)
-    X = train_dataframe.astype('float32')#.to_numpy(dtype='float32')
+    
+    X = train_dataframe.astype('float32')
     print(X.shape)
     Y = y_train_true_output
-    #Y = np_utils.to_categorical(Y, num_classes=2)
     print(Y.shape)
 
-    v_X = validation_dataframe.astype('float32')#.to_numpy(dtype='float32')
+    v_X = validation_dataframe.astype('float32')
     print(v_X.shape)
     v_Y = y_validation_true_output
-    #v_Y = np_utils.to_categorical(v_Y, num_classes=2)
     print(v_Y.shape)
-    #sys.exit()
-
-    t_X = test_dataframe.astype('float32') #x_test_data_frame.to_numpy(dtype='float32')
-    t_Y = y_test_true_output #np.array(true_value_test_data["Conscientious"].values.flatten())
-    #t_Y = np_utils.to_categorical(t_Y, num_classes=2)
+   
+    t_X = test_dataframe.astype('float32')
+    t_Y = y_test_true_output 
     print(t_X.shape)
     print(t_Y.shape)
 
@@ -335,23 +278,53 @@ for iter in range(iterration):
         else:
             predictions_transformed.append(0)
 
+    # summarize history for loss
+    plt.plot(tab_net_model.history['loss'])
+    plt.title('TabNetClassifier Loss plot')
+    plt.ylabel('Loss')
+    plt.xlabel('Epoch')
+    plt.legend(['Train'], loc='upper left')
+    file_name = '{}/tabnet_history_loss_plot.png'.format(path)
+    plt.savefig(file_name)
+    plt.close()
+
+    # plot auc
+    plt.plot(tab_net_model.history['train_auc'])
+    plt.plot(tab_net_model.history['valid_auc'])
+    plt.title('TabNetClassifier AUC plot')
+    plt.ylabel('AUC')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', 'Valid'], loc='upper left')
+    file_name = '{}/tabnet_history_auc_plot.png'.format(path)
+    plt.savefig(file_name)
+    plt.close()
+
+    # plot learning rates
+    plt.plot(tab_net_model.history['lr'])
+    plt.title('TabNetClassifier Learning Rate plot')
+    plt.ylabel('Learning Rate')
+    plt.xlabel('Epoch')
+    plt.legend(['Train'], loc='upper left')
+    file_name = '{}/tabnet_history_lr_plot.png'.format(path)
+    plt.savefig(file_name)
+    plt.close()
+
     # summarize history for accuracy
     plt.plot(tab_net_model.history['train_accuracy'])
     plt.plot(tab_net_model.history['valid_accuracy'])
-    plt.title('tabnet accuracy')
-    plt.ylabel('accuracy')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'test'], loc='upper left')
+    plt.title('TabNetClassifier Accuracy plot')
+    plt.ylabel('Accuracy')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', 'Validition'], loc='upper left')
     file_name = '{}/tabnet_history_accuracy_plot.png'.format(path)
     plt.savefig(file_name)
     plt.close()
 
-    # _test_data_copy['Conscientious'] = predictions_transformed
-    # conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 0]
-    # none_conscientious_indeces = _test_data_copy.index[_test_data_copy['Conscientious'] == 1]
+    # conscientious_indeces = t_X.index[predictions_transformed == 0]
+    # none_conscientious_indeces = t_X.index[predictions_transformed == 1]
     # file_name = '{}/TabNetClassifier_Predicted_test_data_plot.png'.format(path)
-    # plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
-    #             'Tabnet predicted test data plot', file_name, show=False, save=True)
+    # plot_data_cluster(t_X, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
+    #              'TabNetClassifier predicted test data plot', file_name, show=False, save=True)
 
     # # ------- display roc_auc curve
     # lda_roc_auc = roc_auc_score(true_value_test_data["Conscientious"], predictions_transformed)
@@ -360,33 +333,32 @@ for iter in range(iterration):
     # plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'DL-Model test data auc (area = %0.2f)' % lda_roc_auc, 
     #             title = 'Tabnet-Model test data', file_name = file_name, show=False, save=True)
 
-    #precision, recall, thresholds = precision_recall_curve(true_value_test_data["Conscientious"], predictions)
     precision, recall, thresholds = precision_recall_curve(t_Y, predictions)
     print(precision)
     print(recall)
     print(thresholds)
 
-    #matrix = confusion_matrix(true_value_test_data['Conscientious'], predictions_transformed)
     matrix = confusion_matrix(t_Y, predictions_transformed)
     print(matrix)
     file_name = '{}/TabNetClassifier_DL-Model_test_data_confusion_Matrix.txt'.format(path)
     write_matrix_and_report_to_file(file_name, np.array2string(matrix))
 
-    #report = classification_report(true_value_test_data['Conscientious'], predictions_transformed)
     report = classification_report(t_Y, predictions_transformed)
     print(report)
     file_name = '{}/TabNetClassifier_DL-Model_test_deta_report.txt'.format(path)
     write_matrix_and_report_to_file(file_name, report)
 
-    #f1_score_value = f1_score(true_value_test_data["Conscientious"], predictions_transformed, average=None)
     f1_score_value = f1_score(t_Y, predictions_transformed, average=None)
     print(f1_score_value)
 
-    #test_acc = accuracy_score(y_pred=true_value_test_data["Conscientious"], y_true=predictions_transformed)
     test_acc = accuracy_score(y_pred=t_Y, y_true=predictions_transformed)
     print(test_acc)
 
-    #display = PrecisionRecallDisplay.from_predictions(true_value_test_data["Conscientious"], predictions_transformed, name="DL-Model")
+    print(f"BEST VALID SCORE: {tab_net_model.best_cost}")
+    #print("-- feature importances:")
+    #print(tab_net_model.feature_importances_)
+    #print("--")
+
     display = PrecisionRecallDisplay.from_predictions(t_Y, predictions_transformed, name="DL-Model")
     _ = display.ax_.set_title("2-class Precision-Recall curve")
     file_name = '{}/TabNetClassifier_DL-Model_test-data_Precision-Recall-curve.png'.format(path)

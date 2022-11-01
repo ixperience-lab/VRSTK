@@ -71,27 +71,32 @@ for id in range(16):
 
 file_name = '{}/EEG_alpha_theta_boxplot.png'.format(path_eeg)
 plt.figure(figsize=(15,10))
-plt.title("EEG and cognitive load effect")
+plt.title("EEG and Cognitive Load Effect")
 width = 0.3
-plt.boxplot(input_stage_0["theta_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="green"), positions=[-0.25], widths=width)
-plt.boxplot(input_stage_1["theta_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0.75], widths=width)
-plt.boxplot(input_stage_0["alpha_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[0.25], widths=width)
-plt.boxplot(input_stage_1["alpha_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="red"), positions=[1.25], widths=width)
-labels_list = ['0','1']
-plt.xticks(range(2), labels=labels_list)
-#plt.legend()
+plt.boxplot(input_stage_0["theta_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="green"), positions=[0], widths=width)
+plt.boxplot(input_stage_0["alpha_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[1], widths=width)
+plt.boxplot(input_stage_1["theta_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[2], widths=width)
+plt.boxplot(input_stage_1["alpha_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="red"), positions=[3], widths=width)
+labels_list = ['theta (stage 0)', 'alpha (stage 0)', 'theta (stage 1)', 'alpha (stage 1)']
+plt.xticks(range(4), labels=labels_list, rotation=45, ha='right')
+plt.ylabel("Scaled theta and alpha values", fontsize=12)
+plt.grid(which="major", alpha=0.6)
+plt.grid(which="minor", alpha=0.6)
 plt.savefig(file_name)
 plt.close()
 
 file_name = '{}/EEG_alpha_theta_scatterplot.png'.format(path_eeg)
 plt.figure(figsize=(15,10))
-plt.title("EEG and cognitive load effect")
+plt.title("EEG and Cognitive Load Effect")
 plt.plot(range(16), cognitive_load_index_theta_waves, color="blue", alpha=0.5, marker="s", zorder=2)
 plt.scatter(range(16), cognitive_load_index_theta_waves, color="blue", label="theta congnitive load index", alpha=0.5, marker="s", zorder=1)
 plt.plot(range(16), cognitive_load_index_alpha_waves, alpha=0.5, marker="o", zorder=2)
 plt.scatter(range(16), cognitive_load_index_alpha_waves, label="alpha congnitive load index", alpha=0.5, marker="o", zorder=1)
-labels_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14', '15','16']
-plt.xticks(range(16), labels=labels_list)
+labels_list = ['Gettie', 'Eyebot','Turret','JRRobo','Lloid','Atlas','Ribbot','Katie','Alice','Freddy','MedicBot','link','Duchess','Zombie','MixamoGirl', 'Remy']
+plt.xticks(range(16), labels=labels_list, rotation=45, ha='right')
+plt.ylabel("Scaled cognitive load index of theta and alpha values", fontsize=12)
+plt.grid(which="major", alpha=0.6)
+plt.grid(which="minor", alpha=0.6)
 plt.legend()
 plt.savefig(file_name)
 plt.close()

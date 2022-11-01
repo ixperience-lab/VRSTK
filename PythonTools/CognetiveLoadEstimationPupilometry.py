@@ -9,15 +9,19 @@ from os.path import exists
 
 def plot_cognetive_activity_as_boxplot(data_l, data_r, legend_label, title, file_name, show=False, save=False):
     plt.figure(figsize=(15,10))
-    plt.title(title)
+    plt.title(title, fontsize=16)
     xlocations  = range(len(data_l))
     width       = 0.3
     positions_group1 = [x-(width+0.01) for x in xlocations]
     positions_group2 = xlocations
-    labels_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14', '15','16']
+    #labels_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14', '15','16']
     plt.boxplot(data_l, medianprops=dict(color="red"), positions=positions_group1, widths=width)
     plt.boxplot(data_r, medianprops=dict(color="blue"), positions=positions_group2, widths=width)
-    plt.xticks(xlocations, labels=labels_list)
+    labels_list = ['Gettie', 'Eyebot','Turret','JRRobo','Lloid','Atlas','Ribbot','Katie','Alice','Freddy','MedicBot','link','Duchess','Zombie','MixamoGirl', 'Remy']
+    plt.xticks(xlocations, labels=labels_list, rotation=45, ha='right')
+    plt.grid(which="major", alpha=0.6)
+    plt.grid(which="minor", alpha=0.6)
+    #plt.xticks(xlocations, labels=labels_list)
     if save:
         plt.savefig(file_name)
     if show:
@@ -26,11 +30,19 @@ def plot_cognetive_activity_as_boxplot(data_l, data_r, legend_label, title, file
 
 def plot_cognetive_activity_as_scatterplot(data_l_mean, data_l_max, data_r_mean, data_r_max, legend_label, title, file_name, show=False, save=False):
     plt.figure(figsize=(15,10))
-    plt.title(title)
-    plt.scatter(range(16), data_l_mean, color="orange", label="left mean percent change pupil dialtions", alpha=0.5, marker="s")
-    plt.scatter(range(16), data_l_max,  color="red",    label="left max percent change pupil dialtions", alpha=0.5, marker="s")
-    plt.scatter(range(16), data_r_mean, color="blue",   label="right mean percent change pupil dialtions", alpha=0.5, marker="o")
-    plt.scatter(range(16), data_r_max,  color="green",  label="right max percent change pupil dialtions", alpha=0.5, marker="o")
+    plt.title(title, fontsize=16)
+    plt.plot(range(16), data_l_mean, color="orange", alpha=0.5, zorder=2)
+    plt.scatter(range(16), data_l_mean, color="orange", label="Left mean percent change pupil dialtions", alpha=0.5, marker="s", zorder=1)
+    plt.plot(range(16), data_l_max, color="red", alpha=0.5, zorder=2)
+    plt.scatter(range(16), data_l_max,  color="red", label="Left max percent change pupil dialtions", alpha=0.5, marker="s", zorder=1)
+    plt.plot(range(16), data_r_mean, color="blue", alpha=0.5, zorder=2)
+    plt.scatter(range(16), data_r_mean, color="blue", label="Right mean percent change pupil dialtions", alpha=0.5, marker="o", zorder=1)
+    plt.plot(range(16), data_r_max, color="green", alpha=0.5, zorder=2)
+    plt.scatter(range(16), data_r_max,  color="green", label="Right max percent change pupil dialtions", alpha=0.5, marker="o", zorder=1)
+    labels_list = ['Gettie', 'Eyebot','Turret','JRRobo','Lloid','Atlas','Ribbot','Katie','Alice','Freddy','MedicBot','link','Duchess','Zombie','MixamoGirl', 'Remy']
+    plt.xticks(range(16), labels=labels_list, rotation=45, ha='right')
+    plt.grid(which="major", alpha=0.6)
+    plt.grid(which="minor", alpha=0.6)
     plt.legend()
     if save:
         plt.savefig(file_name)

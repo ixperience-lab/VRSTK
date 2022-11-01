@@ -16,6 +16,7 @@ if not exists("./output"):
 path = "./output/BehaviorValidityScoreAbstraction"
 if not exists(path):
     os.mkdir(path, mode)
+
 path_eeg = "{}/EEG".format(path)
 if not exists(path_eeg):
     os.mkdir(path_eeg, mode)
@@ -89,31 +90,36 @@ input_stage_1["betaL_scaled"] = StandardScaler().fit_transform(input_stage_1[["b
 input_stage_1["betaH_scaled"] = StandardScaler().fit_transform(input_stage_1[["betaH"]])
 input_stage_1["gamma_scaled"] = StandardScaler().fit_transform(input_stage_1[["gamma"]])
 
-eeg_conscientious_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] == 0)] #& (input_stage_1["DegTimeLowQuality"] == 0)]
+eeg_low_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] == 0) & (input_stage_1["DegTimeLowQuality"] == 0)]
 
-eeg_non_conscientious_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] > 0)]# & (input_stage_1["DegTimeLowQuality"] > 0)]
+eeg_high_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] > 0) & (input_stage_1["DegTimeLowQuality"] > 0)]
 
 file_name = '{}/EEG_beta_gamma_boxplot.png'.format(path_eeg)
 plt.figure(figsize=(15,10))
-plt.title("EEG Behavior Validity Score Abstraction")
+plt.rcParams["figure.autolayout"] = True
+plt.title("EEG Behavior Validity Score Abstraction", fontsize=16)
 width = 0.2
-plt.boxplot(eeg_conscientious_stage_1["theta_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[-0.25], widths=width)
-plt.boxplot(eeg_conscientious_stage_1["alpha_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0], widths=width)
-plt.boxplot(eeg_conscientious_stage_1["betaL_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0.25], widths=width)
-plt.boxplot(eeg_conscientious_stage_1["betaH_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0.5], widths=width)
-plt.boxplot(eeg_conscientious_stage_1["gamma_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0.75], widths=width)
+plt.boxplot(eeg_low_score_stage_1["theta_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[-0.25], widths=width)
+plt.boxplot(eeg_low_score_stage_1["alpha_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0], widths=width)
+plt.boxplot(eeg_low_score_stage_1["betaL_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0.25], widths=width)
+plt.boxplot(eeg_low_score_stage_1["betaH_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0.5], widths=width)
+plt.boxplot(eeg_low_score_stage_1["gamma_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0.75], widths=width)
 
-plt.boxplot(eeg_non_conscientious_stage_1["theta_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[1.75], widths=width)
-plt.boxplot(eeg_non_conscientious_stage_1["alpha_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2], widths=width)
-plt.boxplot(eeg_non_conscientious_stage_1["betaL_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2.25], widths=width)
-plt.boxplot(eeg_non_conscientious_stage_1["betaH_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2.5], widths=width)
-plt.boxplot(eeg_non_conscientious_stage_1["gamma_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2.75], widths=width)
-labels_list = ['theta-low_score', 'alpha-low_score', 'betaL-low_score', 'betaH-low_score', 'gamma-low_score', 'theta-heigh_score', 'alpha-heigh_score', 'betaL-heigh_score', 'betaH-heigh_score', 'gamma']
-plt.xticks([-0.25, 0, 0.25, 0.5, 0.75, 1.75, 2, 2.25, 2.5, 2.75], labels=labels_list)
+plt.boxplot(eeg_high_score_stage_1["theta_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[1.75], widths=width)
+plt.boxplot(eeg_high_score_stage_1["alpha_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2], widths=width)
+plt.boxplot(eeg_high_score_stage_1["betaL_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2.25], widths=width)
+plt.boxplot(eeg_high_score_stage_1["betaH_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2.5], widths=width)
+plt.boxplot(eeg_high_score_stage_1["gamma_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2.75], widths=width)
+labels_list = ['theta (low-score)', 'alpha (low-score)', 'betaL (low-score)', 'betaH (low-score)', 'gamma (low-score)', 
+               'theta (high-score)', 'alpha (high-score)', 'betaL (high-score)', 'betaH (high-score)', 'gamma (high-score)']
+plt.xticks([-0.25, 0, 0.25, 0.5, 0.75, 1.75, 2, 2.25, 2.5, 2.75], labels=labels_list, rotation=45, ha='right')
+plt.ylabel("Scaled sum EEG Bandpower values", fontsize=12)
+plt.grid(which="major", alpha=0.6)
+plt.grid(which="minor", alpha=0.6)
 plt.savefig(file_name)
 plt.close()
 
-
+#sys.exit()
 
 # HRV with LFHFRatio, SD1SD2Ratio and HeartRate
 # -----------------------------------------------------
@@ -121,24 +127,24 @@ path_hrv = "{}/HeartRateVariability".format(path)
 if not exists(path_hrv):
     os.mkdir(path_hrv, mode)
 
-hrv_low_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] == 0)] #& (input_stage_1["DegTimeLowQuality"] == 0)]
-
-hrv_heigh_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] > 0)] # & (input_stage_1["DegTimeLowQuality"] > 0)]
+hrv_low_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] == 0) & (input_stage_1["DegTimeLowQuality"] == 0)]
+hrv_high_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] > 0) & (input_stage_1["DegTimeLowQuality"] > 0)]
 
 file_name = '{}/HRV_LFHFRatio_HeartRate_boxplot.png'.format(path_hrv)
 plt.figure(figsize=(15,10))
-plt.title("HRV Behavior Validity Score Abstraction")
+plt.title("HRV Behavior Validity Score Abstraction", fontsize=16)
 width = 0.2
 plt.boxplot(hrv_low_score_stage_1["LFHFRatio"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[-0.25], widths=width)
 plt.boxplot(hrv_low_score_stage_1["SD1SD2Ratio"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0.25], widths=width)
-
-plt.boxplot(hrv_heigh_score_stage_1["LFHFRatio"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[1.75], widths=width)
-plt.boxplot(hrv_heigh_score_stage_1["SD1SD2Ratio"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2.25], widths=width)
-labels_list = ['LFHFRatio-low_score', 'SD1SD2Ratio-low_score', 'LFHFRatio-low_score', 'SD1SD2Ratio-low_score']
-plt.xticks([-0.25, 0.25, 1.75, 2.25], labels=labels_list)
+plt.boxplot(hrv_high_score_stage_1["LFHFRatio"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[1.75], widths=width)
+plt.boxplot(hrv_high_score_stage_1["SD1SD2Ratio"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2.25], widths=width)
+labels_list = ['LF\HF Ratio (low-score)', 'SD1\SD2 Ratio (low-score)', 'LF\HF Ratio (high-score)', 'SD1\SD2 Ratio (low-score)']
+plt.xticks([-0.25, 0.25, 1.75, 2.25], labels=labels_list, rotation=45, ha='right')
+plt.ylabel("HRV ratio values", fontsize=12)
+plt.grid(which="major", alpha=0.6)
+plt.grid(which="minor", alpha=0.6)
 plt.savefig(file_name)
 plt.close()
-
 
 # Skin Conductance FilteredValueInMicroSiemens
 # -----------------------------------------------------
@@ -146,22 +152,26 @@ path_eda = "{}/SkinConductance".format(path)
 if not exists(path_eda):
     os.mkdir(path_eda, mode)
 
-eda_low_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] == 0)] #& (input_stage_1["DegTimeLowQuality"] == 0)]
+input_stage_1["FilteredValueInMicroSiemens_scaled"] = StandardScaler().fit_transform(input_stage_1[["FilteredValueInMicroSiemens"]])
 
-eda_heigh_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] > 0)] # & (input_stage_1["DegTimeLowQuality"] > 0)]
+eda_low_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] == 0) & (input_stage_1["DegTimeLowQuality"] == 0)]
+eda_high_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] > 0) & (input_stage_1["DegTimeLowQuality"] > 0)]
 
 file_name = '{}/EDA_FilteredValueInMicroSiemens_boxplot.png'.format(path_eda)
 plt.figure(figsize=(15,10))
-plt.title("EDA Behavior Validity Score Abstraction")
+plt.title("EDA Behavior Validity Score Abstraction", fontsize=16)
 width = 0.2
-plt.boxplot(eda_low_score_stage_1["FilteredValueInMicroSiemens"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0], widths=width)
-
-plt.boxplot(eda_heigh_score_stage_1["FilteredValueInMicroSiemens"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[1], widths=width)
-labels_list = ['FilteredValueInMicroSiemens-low_score', 'FilteredValueInMicroSiemens-low_score']
-plt.xticks([0, 1], labels=labels_list)
+plt.boxplot(eda_low_score_stage_1["FilteredValueInMicroSiemens_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0], widths=width)
+plt.boxplot(eda_high_score_stage_1["FilteredValueInMicroSiemens_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[1], widths=width)
+labels_list = ['Filtered EDA Value (low-score)', 'Filtered EDA Value (high-score)']
+plt.xticks([0, 1], labels=labels_list, rotation=45, ha='right')
+plt.ylabel("Scaled EDA values in (Micro Siemens)", fontsize=12)
+plt.grid(which="major", alpha=0.6)
+plt.grid(which="minor", alpha=0.6)
 plt.savefig(file_name)
 plt.close()
 
+#sys.exit()
 
 # Eye Tracking with pupillomentry
 # -----------------------------------------------------
@@ -186,43 +196,46 @@ for i in [ 1, 2, 3, 4, 5, 6, 7, 10, 13, 14, 15, 16, 17, 18, 19, 20, 31, 34, 21, 
 
     input_stage_1.loc[(input_stage_1["pId"] == pId), ["RightPercentChangePupilDialtion"]] = (
                        pupil_size_pId_stage_1["RightPupilDiameter"] - base_line_mean_r_pupil_diameter) / base_line_mean_r_pupil_diameter
-    
-eye_low_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] == 0)] #& (input_stage_1["DegTimeLowQuality"] == 0)]
 
-eye_heigh_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] > 0)] # & (input_stage_1["DegTimeLowQuality"] > 0)]
+input_stage_1["LeftPercentChangePupilDialtion_scaled"] = StandardScaler().fit_transform(input_stage_1[["LeftPercentChangePupilDialtion"]])
+input_stage_1["RightPercentChangePupilDialtion_scaled"] = StandardScaler().fit_transform(input_stage_1[["RightPercentChangePupilDialtion"]])
 
-# print(eye_low_score_stage_1.shape)
-# print(eye_low_score_stage_1.head(5))
+input_stage_1["TotalFixationCounter_scaled"] = StandardScaler().fit_transform(input_stage_1[["TotalFixationCounter"]])
+input_stage_1["SaccadeCounter_scaled"] = StandardScaler().fit_transform(input_stage_1[["SaccadeCounter"]])
 
-# print(eye_heigh_score_stage_1.shape)
-# print(eye_heigh_score_stage_1.head(5))
+eye_low_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] == 0) & (input_stage_1["DegTimeLowQuality"] == 0)]
+eye_high_score_stage_1 = input_stage_1.loc[(input_stage_1["EvaluatedGlobalTIMERSICalc"] > 0) & (input_stage_1["DegTimeLowQuality"] > 0)]
 
 file_name = '{}/Eye_pupillometry_boxplot.png'.format(path_eye)
 plt.figure(figsize=(15,10))
-plt.title("Eye-Tracking Behavior Validity Score Abstraction")
+plt.title("Eye-Tracking (Pupillometry) Behavior Validity Score Abstraction", fontsize=16)
 width = 0.2
-plt.boxplot(eye_low_score_stage_1["LeftPercentChangePupilDialtion"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0], widths=width)
-plt.boxplot(eye_low_score_stage_1["RightPercentChangePupilDialtion"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[1], widths=width)
+plt.boxplot(eye_low_score_stage_1["LeftPercentChangePupilDialtion_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0], widths=width)
+plt.boxplot(eye_low_score_stage_1["RightPercentChangePupilDialtion_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[1], widths=width)
 
-plt.boxplot(eye_heigh_score_stage_1["LeftPercentChangePupilDialtion"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2], widths=width)
-plt.boxplot(eye_heigh_score_stage_1["RightPercentChangePupilDialtion"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[3], widths=width)
-
-labels_list = ['LeftPercentChangePupilDialtion-low_score', 'RightPercentChangePupilDialtion-low_score', 'LeftPercentChangePupilDialtion-heigh_score', 'RightPercentChangePupilDialtion-heigh_score']
-plt.xticks([0, 1, 2, 3], labels=labels_list)
+plt.boxplot(eye_high_score_stage_1["LeftPercentChangePupilDialtion_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2], widths=width)
+plt.boxplot(eye_high_score_stage_1["RightPercentChangePupilDialtion_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[3], widths=width)
+labels_list = ['Left pupil dialtion (low-score)', 'Right pupil dialtion (low-score)', 'Left pupil dialtion (high-score)', 'Right pupil dialtion (high-score)']
+plt.xticks([0, 1, 2, 3], labels=labels_list, rotation=45, ha='right')
+plt.ylabel("Scaled pupil dialtion values", fontsize=12)
+plt.grid(which="major", alpha=0.6)
+plt.grid(which="minor", alpha=0.6)
 plt.savefig(file_name)
 plt.close()
 
 file_name = '{}/Eye_saccads_fixation_boxplot.png'.format(path_eye)
 plt.figure(figsize=(15,10))
-plt.title("Eye-Tracking Behavior Validity Score Abstraction")
+plt.title("Eye-Tracking (Fixation and Saccades) Behavior Validity Score Abstraction", fontsize=16)
 width = 0.2
-plt.boxplot(eye_low_score_stage_1["TotalFixationCounter"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0], widths=width)
-plt.boxplot(eye_low_score_stage_1["SaccadeCounter"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[1], widths=width)
+plt.boxplot(eye_low_score_stage_1["TotalFixationCounter_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[0], widths=width)
+plt.boxplot(eye_low_score_stage_1["SaccadeCounter_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="blue"), positions=[1], widths=width)
 
-plt.boxplot(eye_heigh_score_stage_1["TotalFixationCounter"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2], widths=width)
-plt.boxplot(eye_heigh_score_stage_1["SaccadeCounter"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[3], widths=width)
-
-labels_list = ['TotalFixationCounter-low_score', 'SaccadeCounter-low_score', 'TotalFixationCounter-heigh_score', 'SaccadeCounter-heigh_score']
-plt.xticks([0, 1, 2, 3], labels=labels_list)
+plt.boxplot(eye_high_score_stage_1["TotalFixationCounter_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[2], widths=width)
+plt.boxplot(eye_high_score_stage_1["SaccadeCounter_scaled"].values.reshape(1, -1)[0], medianprops=dict(color="orange"), positions=[3], widths=width)
+labels_list = ['Total fixation number (low-score)', 'Total saccades number (low-score)', 'Total fixation number (high-score)', 'Total saccades number (high-score)']
+plt.xticks([0, 1, 2, 3], labels=labels_list, rotation=45, ha='right')
+plt.ylabel("Scaled total numbers of fixation and saccades", fontsize=12)
+plt.grid(which="major", alpha=0.6)
+plt.grid(which="minor", alpha=0.6)
 plt.savefig(file_name)
 plt.close()
