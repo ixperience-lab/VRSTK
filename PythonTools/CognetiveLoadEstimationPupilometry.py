@@ -9,7 +9,7 @@ from os.path import exists
 
 def plot_cognetive_activity_as_boxplot(data_l, data_r, legend_label, title, file_name, show=False, save=False):
     plt.figure(figsize=(15,10))
-    plt.title(title, fontsize=16)
+    plt.title(title, fontsize=18)
     xlocations  = range(len(data_l))
     width       = 0.3
     positions_group1 = [x-(width+0.01) for x in xlocations]
@@ -18,9 +18,11 @@ def plot_cognetive_activity_as_boxplot(data_l, data_r, legend_label, title, file
     plt.boxplot(data_l, medianprops=dict(color="red"), positions=positions_group1, widths=width)
     plt.boxplot(data_r, medianprops=dict(color="blue"), positions=positions_group2, widths=width)
     labels_list = ['Gettie', 'Eyebot','Turret','JRRobo','Lloid','Atlas','Ribbot','Katie','Alice','Freddy','MedicBot','link','Duchess','Zombie','MixamoGirl', 'Remy']
-    plt.xticks(xlocations, labels=labels_list, rotation=45, ha='right')
+    plt.xticks(xlocations, labels=labels_list, rotation=45, ha='right', fontsize=14)
+    plt.yticks(fontsize=14)
     plt.grid(which="major", alpha=0.6)
     plt.grid(which="minor", alpha=0.6)
+    plt.tight_layout()
     #plt.xticks(xlocations, labels=labels_list)
     if save:
         plt.savefig(file_name)
@@ -30,20 +32,22 @@ def plot_cognetive_activity_as_boxplot(data_l, data_r, legend_label, title, file
 
 def plot_cognetive_activity_as_scatterplot(data_l_mean, data_l_max, data_r_mean, data_r_max, legend_label, title, file_name, show=False, save=False):
     plt.figure(figsize=(15,10))
-    plt.title(title, fontsize=16)
+    plt.title(title, fontsize=18)
     plt.plot(range(16), data_l_mean, color="orange", alpha=0.5, zorder=2)
     plt.scatter(range(16), data_l_mean, color="orange", label="Left mean percent change pupil dialtions", alpha=0.5, marker="s", zorder=1)
-    plt.plot(range(16), data_l_max, color="red", alpha=0.5, zorder=2)
-    plt.scatter(range(16), data_l_max,  color="red", label="Left max percent change pupil dialtions", alpha=0.5, marker="s", zorder=1)
+    #plt.plot(range(16), data_l_max, color="red", alpha=0.5, zorder=2)
+    #plt.scatter(range(16), data_l_max,  color="red", label="Left max percent change pupil dialtions", alpha=0.5, marker="s", zorder=1)
     plt.plot(range(16), data_r_mean, color="blue", alpha=0.5, zorder=2)
     plt.scatter(range(16), data_r_mean, color="blue", label="Right mean percent change pupil dialtions", alpha=0.5, marker="o", zorder=1)
-    plt.plot(range(16), data_r_max, color="green", alpha=0.5, zorder=2)
-    plt.scatter(range(16), data_r_max,  color="green", label="Right max percent change pupil dialtions", alpha=0.5, marker="o", zorder=1)
+    #plt.plot(range(16), data_r_max, color="green", alpha=0.5, zorder=2)
+    #plt.scatter(range(16), data_r_max,  color="green", label="Right max percent change pupil dialtions", alpha=0.5, marker="o", zorder=1)
     labels_list = ['Gettie', 'Eyebot','Turret','JRRobo','Lloid','Atlas','Ribbot','Katie','Alice','Freddy','MedicBot','link','Duchess','Zombie','MixamoGirl', 'Remy']
-    plt.xticks(range(16), labels=labels_list, rotation=45, ha='right')
+    plt.xticks(range(16), labels=labels_list, rotation=45, ha='right', fontsize=14)
+    plt.yticks(fontsize=14)
     plt.grid(which="major", alpha=0.6)
     plt.grid(which="minor", alpha=0.6)
-    plt.legend()
+    plt.legend(bbox_to_anchor=(1, 0.5), loc='center left', fontsize=16)
+    plt.tight_layout()
     if save:
         plt.savefig(file_name)
     if show:
@@ -116,20 +120,24 @@ for i in [ 1, 2, 3, 4, 5, 6, 7, 10, 13, 14, 15, 16, 17, 18, 19, 20, 31, 34, 21, 
 
     file_name = '{}/Cognitive_Activity_Pupilometry_id_{}_boxplot.png'.format(path_all_seperate, pId)
     plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
-                                       legend_label="", title="Cognitive Activity Pupilometry boxplot" , file_name=file_name, save=True)
+                                       legend_label="", title="Cognitive Activity Pupilometry" , file_name=file_name, save=True)
     
     file_name = '{}/Cognitive_Activity_Pupilometry_id_{}_scatterplot.png'.format(path_all_seperate, pId)
     plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
                                            data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
-                                           legend_label="", title="Cognitive Activity Pupilometry scatter", file_name=file_name, save=True)
+                                           legend_label="", title="Cognitive Activity Pupilometry", file_name=file_name, save=True)
     
 
 # -----------------------------------------------------------------
 # all cluster/groups pupilomentry with all 3D models
 base_line_pupil_diameter_stage_0 = input_stage_0.loc[(input_stage_0["LeftEyeOpenness"] > 0.8) & (input_stage_0["RightEyeOpenness"] > 0.8) & 
                                                      (input_stage_0["CognitiveActivityLeftPupilDiamter"] > 0) & (input_stage_0["CognitiveActivityRightPupilDiamter"] > 0)]
-base_line_pupil_diameter_stage_0["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transform(base_line_pupil_diameter_stage_0[["LeftPupilDiameter"]])
-base_line_pupil_diameter_stage_0["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(base_line_pupil_diameter_stage_0[["RightPupilDiameter"]])
+
+#base_line_pupil_diameter_stage_0["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transform(base_line_pupil_diameter_stage_0[["LeftPupilDiameter"]])
+#base_line_pupil_diameter_stage_0["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(base_line_pupil_diameter_stage_0[["RightPupilDiameter"]])
+base_line_pupil_diameter_stage_0["LeftPupilDiameter_scaled"] = base_line_pupil_diameter_stage_0[["LeftPupilDiameter"]]
+base_line_pupil_diameter_stage_0["RightPupilDiameter_scaled"] = base_line_pupil_diameter_stage_0[["RightPupilDiameter"]]
+
 
 base_line_mean_l_pupil_diameter = base_line_pupil_diameter_stage_0["LeftPupilDiameter_scaled"].mean()
 base_line_mean_r_pupil_diameter = base_line_pupil_diameter_stage_0["RightPupilDiameter_scaled"].mean()
@@ -137,8 +145,11 @@ base_line_mean_r_pupil_diameter = base_line_pupil_diameter_stage_0["RightPupilDi
 pupil_size_pId_stage_1 = input_stage_1.loc[(input_stage_1["LeftEyeOpenness"] > 0.8) & (input_stage_1["RightEyeOpenness"] > 0.8) & 
                                             (input_stage_1["CognitiveActivityLeftPupilDiamter"] > 0) & (input_stage_1["CognitiveActivityRightPupilDiamter"] > 0)]
 
-pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transform(pupil_size_pId_stage_1[["LeftPupilDiameter"]])
-pupil_size_pId_stage_1["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(pupil_size_pId_stage_1[["RightPupilDiameter"]])
+#pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transform(pupil_size_pId_stage_1[["LeftPupilDiameter"]])
+#pupil_size_pId_stage_1["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(pupil_size_pId_stage_1[["RightPupilDiameter"]])
+pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] = pupil_size_pId_stage_1[["LeftPupilDiameter"]]
+pupil_size_pId_stage_1["RightPupilDiameter_scaled"] = pupil_size_pId_stage_1[["RightPupilDiameter"]]
+
 
 pupil_size_pId_stage_1["LeftPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
 pupil_size_pId_stage_1["RightPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["RightPupilDiameter_scaled"] - base_line_mean_r_pupil_diameter) / base_line_mean_r_pupil_diameter
@@ -162,12 +173,160 @@ for id in range(16):
 
 file_name = '{}/Cognitive_Activity_Pupilometry_boxplot_all_groups.png'.format(path_all)
 plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
-                                   legend_label="", title="Cognitive Activity Pupilometry all groups  boxplot" , file_name=file_name, save=True)
+                                   legend_label="", title="Cognitive Activity Pupilometry all groups" , file_name=file_name, save=True)
 
 file_name = '{}/Cognitive_Activity_Pupilometry_scatterplot_all_groups.png'.format(path_all)
 plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
                                        data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
-                                       legend_label="", title="Cognitive Activity Pupilometry all groups scatter", file_name=file_name, save=True)
+                                       legend_label="", title="Cognitive Activity Pupilometry all groups", file_name=file_name, save=True)
+
+# -----------------------------------------------------------------
+# all cluster/groups pupilomentry with all 3D models without CognitiveActivityRightPupilDiamter
+base_line_pupil_diameter_stage_0 = input_stage_0.loc[(input_stage_0["LeftEyeOpenness"] > 0.8) & (input_stage_0["RightEyeOpenness"] > 0.8)]
+
+#base_line_pupil_diameter_stage_0["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transform(base_line_pupil_diameter_stage_0[["LeftPupilDiameter"]])
+#base_line_pupil_diameter_stage_0["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(base_line_pupil_diameter_stage_0[["RightPupilDiameter"]])
+base_line_pupil_diameter_stage_0["LeftPupilDiameter_scaled"] = base_line_pupil_diameter_stage_0[["LeftPupilDiameter"]]
+base_line_pupil_diameter_stage_0["RightPupilDiameter_scaled"] = base_line_pupil_diameter_stage_0[["RightPupilDiameter"]]
+
+base_line_mean_l_pupil_diameter = base_line_pupil_diameter_stage_0["LeftPupilDiameter_scaled"].mean()
+base_line_mean_r_pupil_diameter = base_line_pupil_diameter_stage_0["RightPupilDiameter_scaled"].mean()
+
+pupil_size_pId_stage_1 = input_stage_1.loc[(input_stage_1["LeftEyeOpenness"] > 0.8) & (input_stage_1["RightEyeOpenness"] > 0.8)]
+
+#pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transform(pupil_size_pId_stage_1[["LeftPupilDiameter"]])
+#pupil_size_pId_stage_1["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(pupil_size_pId_stage_1[["RightPupilDiameter"]])
+pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] = pupil_size_pId_stage_1[["LeftPupilDiameter"]]
+pupil_size_pId_stage_1["RightPupilDiameter_scaled"] = pupil_size_pId_stage_1[["RightPupilDiameter"]]
+
+pupil_size_pId_stage_1["LeftPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
+pupil_size_pId_stage_1["RightPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["RightPupilDiameter_scaled"] - base_line_mean_r_pupil_diameter) / base_line_mean_r_pupil_diameter
+
+left_percent_change_pupil_dialtions = []
+left_mean_percent_change_pupil_dialtions = []
+left_max_percent_change_pupil_dialtions = []
+right_percent_change_pupil_dialtions = []
+right_mean_percent_change_pupil_dialtions = []
+right_max_percent_change_pupil_dialtions = []
+for id in range(16):
+    print("--------------------------------- id: ", id)
+    figure_percent_change_pupil_dialtions = pupil_size_pId_stage_1.loc[(pupil_size_pId_stage_1["ActivatedModelIndex"] == id)]
+    left_percent_change_pupil_dialtions.append(figure_percent_change_pupil_dialtions["LeftPercentChangePupilDialtion"].values.reshape(1, -1)[0])
+    left_mean_percent_change_pupil_dialtions.append([figure_percent_change_pupil_dialtions["LeftPercentChangePupilDialtion"].mean()])
+    left_max_percent_change_pupil_dialtions.append([figure_percent_change_pupil_dialtions["LeftPercentChangePupilDialtion"].max()])
+
+    right_percent_change_pupil_dialtions.append(figure_percent_change_pupil_dialtions["RightPercentChangePupilDialtion"].values.reshape(1, -1)[0])
+    right_mean_percent_change_pupil_dialtions.append([figure_percent_change_pupil_dialtions["RightPercentChangePupilDialtion"].mean()])
+    right_max_percent_change_pupil_dialtions.append([figure_percent_change_pupil_dialtions["RightPercentChangePupilDialtion"].max()])
+
+file_name = '{}/Cognitive_Activity_Pupilometry_boxplot_all_without_clc_groups.png'.format(path_all)
+plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
+                                   legend_label="", title="Cognitive Activity Pupilometry all groups" , file_name=file_name, save=True)
+
+file_name = '{}/Cognitive_Activity_Pupilometry_scatterplot_all_without_clc_groups.png'.format(path_all)
+plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
+                                       data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
+                                       legend_label="", title="Cognitive Activity Pupilometry all groups", file_name=file_name, save=True)
+
+# -----------------------------------------------------------------
+# all cluster/groups pupilomentry with all 3D models with LightReflexesLeftPupilDiamter
+base_line_pupil_diameter_stage_0 = input_stage_0.loc[(input_stage_0["LeftEyeOpenness"] > 0.8) & (input_stage_0["RightEyeOpenness"] > 0.8) & 
+                                                     (input_stage_0["LightReflexesRightPupilDiamter"] > 0) & (input_stage_0["LightReflexesLeftPupilDiamter"] > 0)]
+
+#base_line_pupil_diameter_stage_0["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transform(base_line_pupil_diameter_stage_0[["LeftPupilDiameter"]])
+#base_line_pupil_diameter_stage_0["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(base_line_pupil_diameter_stage_0[["RightPupilDiameter"]])
+base_line_pupil_diameter_stage_0["LeftPupilDiameter_scaled"] = base_line_pupil_diameter_stage_0[["LeftPupilDiameter"]]
+base_line_pupil_diameter_stage_0["RightPupilDiameter_scaled"] = base_line_pupil_diameter_stage_0[["RightPupilDiameter"]]
+
+base_line_mean_l_pupil_diameter = base_line_pupil_diameter_stage_0["LeftPupilDiameter_scaled"].mean()
+base_line_mean_r_pupil_diameter = base_line_pupil_diameter_stage_0["RightPupilDiameter_scaled"].mean()
+
+pupil_size_pId_stage_1 = input_stage_1.loc[(input_stage_1["LeftEyeOpenness"] > 0.8) & (input_stage_1["RightEyeOpenness"] > 0.8) & 
+                                                     (input_stage_1["LightReflexesRightPupilDiamter"] > 0) & (input_stage_1["LightReflexesLeftPupilDiamter"] > 0)]
+
+#pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transform(pupil_size_pId_stage_1[["LeftPupilDiameter"]])
+#pupil_size_pId_stage_1["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(pupil_size_pId_stage_1[["RightPupilDiameter"]])
+pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] = pupil_size_pId_stage_1[["LeftPupilDiameter"]]
+pupil_size_pId_stage_1["RightPupilDiameter_scaled"] = pupil_size_pId_stage_1[["RightPupilDiameter"]]
+
+pupil_size_pId_stage_1["LeftPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
+pupil_size_pId_stage_1["RightPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["RightPupilDiameter_scaled"] - base_line_mean_r_pupil_diameter) / base_line_mean_r_pupil_diameter
+
+left_percent_change_pupil_dialtions = []
+left_mean_percent_change_pupil_dialtions = []
+left_max_percent_change_pupil_dialtions = []
+right_percent_change_pupil_dialtions = []
+right_mean_percent_change_pupil_dialtions = []
+right_max_percent_change_pupil_dialtions = []
+for id in range(16):
+    print("--------------------------------- id: ", id)
+    figure_percent_change_pupil_dialtions = pupil_size_pId_stage_1.loc[(pupil_size_pId_stage_1["ActivatedModelIndex"] == id)]
+    left_percent_change_pupil_dialtions.append(figure_percent_change_pupil_dialtions["LeftPercentChangePupilDialtion"].values.reshape(1, -1)[0])
+    left_mean_percent_change_pupil_dialtions.append([figure_percent_change_pupil_dialtions["LeftPercentChangePupilDialtion"].mean()])
+    left_max_percent_change_pupil_dialtions.append([figure_percent_change_pupil_dialtions["LeftPercentChangePupilDialtion"].max()])
+
+    right_percent_change_pupil_dialtions.append(figure_percent_change_pupil_dialtions["RightPercentChangePupilDialtion"].values.reshape(1, -1)[0])
+    right_mean_percent_change_pupil_dialtions.append([figure_percent_change_pupil_dialtions["RightPercentChangePupilDialtion"].mean()])
+    right_max_percent_change_pupil_dialtions.append([figure_percent_change_pupil_dialtions["RightPercentChangePupilDialtion"].max()])
+
+file_name = '{}/Cognitive_Activity_Pupilometry_boxplot_all_with_light_groups.png'.format(path_all)
+plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
+                                   legend_label="", title="Cognitive Activity Pupilometry all groups and light reflexes" , file_name=file_name, save=True)
+
+file_name = '{}/Cognitive_Activity_Pupilometry_scatterplot_all_with_light_groups.png'.format(path_all)
+plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
+                                       data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
+                                       legend_label="", title="Cognitive Activity Pupilometry all groups and light reflexes", file_name=file_name, save=True)
+
+
+# -----------------------------------------------------------------
+# all cluster/groups pupilomentry with all 3D models without filter
+base_line_pupil_diameter_stage_0 = input_stage_0
+
+#base_line_pupil_diameter_stage_0["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transform(base_line_pupil_diameter_stage_0[["LeftPupilDiameter"]])
+#base_line_pupil_diameter_stage_0["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(base_line_pupil_diameter_stage_0[["RightPupilDiameter"]])
+base_line_pupil_diameter_stage_0["LeftPupilDiameter_scaled"] = base_line_pupil_diameter_stage_0[["LeftPupilDiameter"]]
+base_line_pupil_diameter_stage_0["RightPupilDiameter_scaled"] = base_line_pupil_diameter_stage_0[["RightPupilDiameter"]]
+
+base_line_mean_l_pupil_diameter = base_line_pupil_diameter_stage_0["LeftPupilDiameter_scaled"].mean()
+base_line_mean_r_pupil_diameter = base_line_pupil_diameter_stage_0["RightPupilDiameter_scaled"].mean()
+
+pupil_size_pId_stage_1 = input_stage_1
+
+#pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] = MinMaxScaler().fit_transform(pupil_size_pId_stage_1[["LeftPupilDiameter"]])
+#pupil_size_pId_stage_1["RightPupilDiameter_scaled"] = MinMaxScaler().fit_transform(pupil_size_pId_stage_1[["RightPupilDiameter"]])
+pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] = pupil_size_pId_stage_1[["LeftPupilDiameter"]]
+pupil_size_pId_stage_1["RightPupilDiameter_scaled"] = pupil_size_pId_stage_1[["RightPupilDiameter"]]
+
+pupil_size_pId_stage_1["LeftPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["LeftPupilDiameter_scaled"] - base_line_mean_l_pupil_diameter) / base_line_mean_l_pupil_diameter
+pupil_size_pId_stage_1["RightPercentChangePupilDialtion"] = (pupil_size_pId_stage_1["RightPupilDiameter_scaled"] - base_line_mean_r_pupil_diameter) / base_line_mean_r_pupil_diameter
+
+left_percent_change_pupil_dialtions = []
+left_mean_percent_change_pupil_dialtions = []
+left_max_percent_change_pupil_dialtions = []
+right_percent_change_pupil_dialtions = []
+right_mean_percent_change_pupil_dialtions = []
+right_max_percent_change_pupil_dialtions = []
+for id in range(16):
+    print("--------------------------------- id: ", id)
+    figure_percent_change_pupil_dialtions = pupil_size_pId_stage_1.loc[(pupil_size_pId_stage_1["ActivatedModelIndex"] == id)]
+    left_percent_change_pupil_dialtions.append(figure_percent_change_pupil_dialtions["LeftPercentChangePupilDialtion"].values.reshape(1, -1)[0])
+    left_mean_percent_change_pupil_dialtions.append([figure_percent_change_pupil_dialtions["LeftPercentChangePupilDialtion"].mean()])
+    left_max_percent_change_pupil_dialtions.append([figure_percent_change_pupil_dialtions["LeftPercentChangePupilDialtion"].max()])
+
+    right_percent_change_pupil_dialtions.append(figure_percent_change_pupil_dialtions["RightPercentChangePupilDialtion"].values.reshape(1, -1)[0])
+    right_mean_percent_change_pupil_dialtions.append([figure_percent_change_pupil_dialtions["RightPercentChangePupilDialtion"].mean()])
+    right_max_percent_change_pupil_dialtions.append([figure_percent_change_pupil_dialtions["RightPercentChangePupilDialtion"].max()])
+
+file_name = '{}/Cognitive_Activity_Pupilometry_boxplot_all_without_filter_groups.png'.format(path_all)
+plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
+                                   legend_label="", title="Cognitive Activity Pupilometry all groups" , file_name=file_name, save=True)
+
+file_name = '{}/Cognitive_Activity_Pupilometry_scatterplot_all_without_filter_groups.png'.format(path_all)
+plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
+                                       data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
+                                       legend_label="", title="Cognitive Activity Pupilometry all groups", file_name=file_name, save=True)
+
 
 # -----------------------------------------------------------------
 # seperate cluster/groups pupilomentry with all 3D models
@@ -211,12 +370,12 @@ for id in range(16):
 
 file_name = '{}/Cognitive_Activity_Pupilometry_boxplot_cluster_conscientious.png'.format(path_seperate_cluster)
 plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
-                                   legend_label="", title="Cognitive Activity Pupilometry conscientious boxplot" , file_name=file_name, save=True)
+                                   legend_label="", title="Cognitive Activity Pupilometry conscientious" , file_name=file_name, save=True)
 
 file_name = '{}/Cognitive_Activity_Pupilometry_scatterplot_cluster_conscientious.png'.format(path_seperate_cluster)
 plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
                                        data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
-                                       legend_label="", title="Cognitive Activity Pupilometry conscientious scatter", file_name=file_name, save=True)
+                                       legend_label="", title="Cognitive Activity Pupilometry conscientious", file_name=file_name, save=True)
 
 
 base_line_pupil_diameter_stage_0 = input_stage_0.loc[ (input_stage_0['pId'].isin(cluster_non_conscientious)) & (input_stage_0["LeftEyeOpenness"] > 0.8) & (input_stage_0["RightEyeOpenness"] > 0.8) & 
@@ -255,12 +414,12 @@ for id in range(16):
 
 file_name = '{}/Cognitive_Activity_Pupilometry_boxplot_cluster_non_conscientious.png'.format(path_seperate_cluster)
 plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
-                                   legend_label="", title="Cognitive Activity Pupilometry non-conscientious boxplot" , file_name=file_name, save=True)
+                                   legend_label="", title="Cognitive Activity Pupilometry non-conscientious" , file_name=file_name, save=True)
 
 file_name = '{}/Cognitive_Activity_Pupilometry_scatterplot_cluster_non_conscientious.png'.format(path_seperate_cluster)
 plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
                                        data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
-                                       legend_label="", title="Cognitive Activity Pupilometry non-conscientious scatter", file_name=file_name, save=True)
+                                       legend_label="", title="Cognitive Activity Pupilometry non-conscientious", file_name=file_name, save=True)
 
 
 base_line_pupil_diameter_stage_0 = input_stage_0.loc[ (input_stage_0['pId'].isin(cluster_no_specifications)) & (input_stage_0["LeftEyeOpenness"] > 0.8) & (input_stage_0["RightEyeOpenness"] > 0.8) & 
@@ -299,11 +458,11 @@ for id in range(16):
 
 file_name = '{}/Cognitive_Activity_Pupilometry_boxplot_cluster_no_specifications.png'.format(path_seperate_cluster)
 plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
-                                   legend_label="", title="Cognitive Activity Pupilometry no specifications boxplot" , file_name=file_name, save=True)
+                                   legend_label="", title="Cognitive Activity Pupilometry no specifications" , file_name=file_name, save=True)
 
 file_name = '{}/Cognitive_Activity_Pupilometry_scatterplot_cluster_no_specifications.png'.format(path_seperate_cluster)
 plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
                                        data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
-                                       legend_label="", title="Cognitive Activity Pupilometry no specifications scatter", file_name=file_name, save=True)
+                                       legend_label="", title="Cognitive Activity Pupilometry no specifications", file_name=file_name, save=True)
 
 #sys.exit()

@@ -11,6 +11,18 @@ library(car)
 library(ggstatsplot)
 library(psych)
 library(lsr)
+library(tidyr)
+#install.packages("coin")
+library("coin")
+#install.packages("rstatix")
+library("rstatix")
+#install.packages("nortest")
+library(nortest)
+#install.packages("stargazer") #Use this to install it, do this only once
+#library(stargazer)
+library(data.table)
+
+
 
 wilcoxon_dir <- file.path("./wilcoxon_test", "")
 if (!dir.exists(wilcoxon_dir)){
@@ -24,7 +36,9 @@ input_stage_1 <- read.csv2(file = './All_Participents_Stage1_DataFrame.csv')
 
 input_stage_1[input_stage_1$EvaluatedGlobalTIMERSICalc > 0, ]$EvaluatedGlobalTIMERSICalc <- 1
 input_stage_1$ValidityScore <- 0
+input_stage_1$ValidityScore_Group <- "high"
 input_stage_1[(input_stage_1$EvaluatedGlobalTIMERSICalc > 0) & (input_stage_1$DegTimeLowQuality > 0), ]$ValidityScore <- 1
+input_stage_1[(input_stage_1$EvaluatedGlobalTIMERSICalc > 0) & (input_stage_1$DegTimeLowQuality > 0), ]$ValidityScore_Group <- "low"
 
 # eeg
 # ---------
@@ -52,53 +66,71 @@ if (!dir.exists(wilcoxon_subfolder_dir)){
   dir.create(wilcoxon_subfolder_dir)
 }
 
-# theta
-descriptive_statistic_result <- describeBy(theta ~ ValidityScore, data = input_stage_1)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "descriptive_statistic_eeg_theta_validityscore_result.txt", "")
-capture.output(descriptive_statistic_result, file = path_txt_file)
-wilcoxon_summary <-  wilcox.test(input_stage_1$theta ~ input_stage_1$ValidityScore, exact = FALSE, correct = FALSE, conf.int = FALSE)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_eeg_theta_summary_results.txt", "")
-capture.output(wilcoxon_summary, file = path_txt_file)
-boxplot(theta ~ ValidityScore, data = input_stage_1)
-
-shapiro.test(input_stage_1[3:5000, ]$theta)
-hist(input_stage_1$theta)
-
-# alpha
-descriptive_statistic_result <- describeBy(alpha ~ ValidityScore, data = input_stage_1)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "descriptive_statistic_eeg_alpha_validityscore_result.txt", "")
-capture.output(descriptive_statistic_result, file = path_txt_file)
-wilcoxon_summary <-  wilcox.test(input_stage_1$alpha~ input_stage_1$ValidityScore, exact = TRUE, correct = FALSE, conf.int = FALSE)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_eeg_alpha_summary_results.txt", "")
-capture.output(wilcoxon_summary, file = path_txt_file)
-boxplot(alpha ~ ValidityScore, data = input_stage_1)
-
-# betaL
-descriptive_statistic_result <- describeBy(betaL ~ ValidityScore, data = input_stage_1)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "descriptive_statistic_eeg_betaL_validityscore_result.txt", "")
-capture.output(descriptive_statistic_result, file = path_txt_file)
-wilcoxon_summary <-  wilcox.test(input_stage_1$betaL~ input_stage_1$ValidityScore, exact = TRUE, correct = FALSE, conf.int = FALSE)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_eeg_betaL_summary_results.txt", "")
-capture.output(wilcoxon_summary, file = path_txt_file)
-boxplot(betaL ~ ValidityScore, data = input_stage_1)
-
-# betaH
-descriptive_statistic_result <- describeBy(betaH ~ ValidityScore, data = input_stage_1)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "descriptive_statistic_eeg_betaH_validityscore_result.txt", "")
-capture.output(descriptive_statistic_result, file = path_txt_file)
-wilcoxon_summary <-  wilcox.test(input_stage_1$betaH~ input_stage_1$ValidityScore, exact = TRUE, correct = FALSE, conf.int = FALSE)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_eeg_betaH_summary_results.txt", "")
-capture.output(wilcoxon_summary, file = path_txt_file)
-boxplot(betaH ~ ValidityScore, data = input_stage_1)
-
-# gamma
-descriptive_statistic_result <- describeBy(gamma ~ ValidityScore, data = input_stage_1)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "descriptive_statistic_eeg_gamma_validityscore_result.txt", "")
-capture.output(descriptive_statistic_result, file = path_txt_file)
-wilcoxon_summary <-  wilcox.test(input_stage_1$gamma~ input_stage_1$ValidityScore, exact = TRUE, correct = FALSE, conf.int = FALSE)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_eeg_gamma_summary_results.txt", "")
-capture.output(wilcoxon_summary, file = path_txt_file)
-boxplot(gamma ~ ValidityScore, data = input_stage_1)
+for (test_variable in c("theta", "alpha", "betaL", "betaH", "gamma", "eng", "exc", "str", "rel", "int", "foc")){
+  temp_column <- eval(call(name = "$", as.symbol("input_stage_1"), as.symbol(test_variable)))
+  temp_df <- data.frame (t_variable  = temp_column, ValidityScore = input_stage_1$ValidityScore, ValidityScore_Group=input_stage_1$ValidityScore_Group)
+  
+  path_txt_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_eeg_",paste0(test_variable, "_results.txt")))
+  sink(path_txt_file)
+  
+  cat("======================================================================================================================================================\n")
+  cat(paste("EEG Variance test between test_variable: ", test_variable, " and Group: ValidityScore" ,"\n", sep=""))
+  cat("======================================================================================================================================================\n")
+  
+  print(ad.test(temp_df$t_variable))
+  
+  print(describeBy(t_variable ~ ValidityScore, data = temp_df))
+  
+  print(wilcox.test(temp_df$t_variable ~ temp_df$ValidityScore, exact = FALSE, correct = FALSE, conf.int = FALSE))
+  
+  print(temp_df %>%  wilcox_effsize(t_variable ~ ValidityScore))
+  
+  sink()
+  
+  path_png_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_eeg_",paste0(test_variable, "_hist_plot.png")))
+  ggplot(temp_df, aes(t_variable)) + 
+    geom_histogram(aes(y=..density..), color='gray50', fill='blue', alpha=0.2, position = "identity", outlier.shape = NA) +
+    scale_x_continuous(limits = quantile(temp_df$t_variable, c(0.01, 0.99))) + 
+    labs(title=paste0(test_variable, " histogram plot"))  +
+    xlab(label=test_variable) +
+    ylab(label="density") +
+    geom_density(alpha=0.2, color='red', fill='red', adjust=1, outlier.shape = NA)  +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    scale_x_continuous(limits = quantile(temp_df$t_variable, c(0.1, 0.9)))
+  ggsave(path_png_file, width = 15, height = 10)
+  
+  path_png_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_eeg_",paste0(test_variable, "_boxplot.png")))
+  ggplot(temp_df, aes(x=ValidityScore, y=t_variable, fill=ValidityScore_Group, group=ValidityScore)) + 
+    stat_boxplot(geom = "errorbar", width = 0.25) +
+    geom_boxplot(outlier.shape = NA, outlier.size= NA, width = 0.5) + 
+    labs(title=paste0(test_variable, " box plot")) +
+    xlab(label="ValidityScore") +
+    ylab(label=test_variable) +
+    theme(legend.position="none") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    scale_y_continuous(limits = quantile(temp_df$t_variable, c(0.01, 0.99))) 
+  ggsave(path_png_file, width = 15, height = 10)
+  
+  #png(file=path_png_file, width=1500, height=1000)
+  #h <- hist(temp_df$t_variable, main="", xlab="", ylab="", prob = TRUE, col="blue", cex.axis=1.5)
+  #grid(col = "lightgray", lty = "dotted", lwd = par("lwd"), equilogs = TRUE)
+  #hist(temp_df$t_variable, main="", xlab="", ylab="", prob = TRUE, col="blue", cex.axis=1.5, add = TRUE)
+  #mtext(side=1, line=2.5, test_variable, cex=2)
+  #mtext(side=2, line=2.5, "density", cex=2)
+  #mtext(side=3, line=0.5, paste0(test_variable, "-Value Histogram"), cex=3) 
+  #lines(density(temp_df$t_variable), lwd = 2, col = "red")
+  #dev.off()
+  
+  #path_png_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_eeg_",paste0(test_variable, "_boxplot.png")))
+  #png(file=path_png_file, width=1500, height=1000)
+  #b <- boxplot(t_variable ~ ValidityScore, data = temp_df,  xlab="", ylab="", outline=FALSE)
+  #grid(col = "lightgray", lty = "dotted", lwd = par("lwd"), equilogs = TRUE)
+  #boxplot(t_variable ~ ValidityScore, data = temp_df,   xlab="", ylab="", outline=FALSE)
+  #mtext(side=1, line=2.5, "ValidityScore", cex=2)
+  #mtext(side=2, line=2.5, test_variable, cex=2)
+  #mtext(side=3, line=0.5, paste0(test_variable, "-Value Boxplot"), cex=3) 
+  #dev.off()
+}
 
 
 # hrv 
@@ -108,26 +140,87 @@ if (!dir.exists(wilcoxon_subfolder_dir)){
   dir.create(wilcoxon_subfolder_dir)
 }
 
-# LFHFRatio
-descriptive_statistic_result <- describeBy(LFHFRatio ~ ValidityScore, data = input_stage_1)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "descriptive_statistic_hrv_LFHFRatio_validityscore_result.txt", "")
-capture.output(descriptive_statistic_result, file = path_txt_file)
-wilcoxon_summary <-  wilcox.test(input_stage_1$LFHFRatio~ input_stage_1$ValidityScore, exact = TRUE, correct = FALSE, conf.int = FALSE)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_hrv_LFHFRatio_summary_results.txt", "")
-capture.output(wilcoxon_summary, file = path_txt_file)
-boxplot(LFHFRatio ~ ValidityScore, data = input_stage_1)
+for (test_variable in c("HeartRate", "RPeaks", "RRI", "RRMin", "RRMean", "RRMax", "SDSD", "SD1", "SD2", "SDNN", "RMSSD",
+                        "SD1SD2Ratio", "VLFPeak", "HFPeak", "VLFAbs", "LFAbs", "HFAbs", "VLFLog", "LFLog", "HFLog", "LFNorm", 
+                        "HFNorm", "LFHFRatio", "FBTotal")){
+  temp_column <- eval(call(name = "$", as.symbol("input_stage_1"), as.symbol(test_variable)))
+  temp_df <- data.frame (t_variable  = temp_column, ValidityScore = input_stage_1$ValidityScore, ValidityScore_Group=input_stage_1$ValidityScore_Group)
+  
+  
+  path_txt_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_hrv_",paste0(test_variable, "_results.txt")))
+  sink(path_txt_file)
+  
+  cat("======================================================================================================================================================\n")
+  cat(paste("HRV Variance test between test_variable: ", test_variable, " and Group: ValidityScore" ,"\n", sep=""))
+  cat("======================================================================================================================================================\n")
+  
+  print(ad.test(temp_df$t_variable))
+  
+  print(describeBy(t_variable ~ ValidityScore, data = temp_df))
+  
+  print(wilcox.test(temp_df$t_variable ~ temp_df$ValidityScore, exact = FALSE, correct = FALSE, conf.int = FALSE))
+  
+  print(temp_df %>%  wilcox_effsize(t_variable ~ ValidityScore))
+  
+  sink()
+  
+  path_png_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_hrv_",paste0(test_variable, "_hist_plot.png")))
+  ggplot(temp_df, aes(t_variable)) + 
+    geom_histogram(aes(y=..density..), color='gray50', fill='blue', alpha=0.2, position = "identity", outlier.shape = NA) +
+    #scale_x_continuous(limits = quantile(temp_df$t_variable, c(0.01, 0.99))) + 
+    labs(title=paste0(test_variable, " histogram plot"))  +
+    xlab(label=test_variable) +
+    ylab(label="density") +
+    geom_density(alpha=0.2, color='red', fill='red', adjust=1, outlier.shape = NA)  +
+    theme(plot.title = element_text(hjust = 0.5)) #+
+    #scale_x_continuous(limits = quantile(itemp_df$t_variable, c(0.1, 0.9)))
+  ggsave(path_png_file, width = 15, height = 10)
+  
+  path_png_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_hrv_",paste0(test_variable, "_boxplot.png")))
+  ggplot(temp_df, aes(x=ValidityScore, y=t_variable, fill=ValidityScore_Group, group=ValidityScore)) + 
+    stat_boxplot(geom = "errorbar", width = 0.25) +
+    geom_boxplot(outlier.shape = NA, outlier.size= NA, width = 0.5) + 
+    labs(title=paste0(test_variable, " box plot")) +
+    xlab(label="ValidityScore") +
+    ylab(label=test_variable) +
+    theme(legend.position="none") +
+    theme(plot.title = element_text(hjust = 0.5)) #+
+    #scale_y_continuous(limits = quantile(temp_df$t_variable, c(0.01, 0.99))) 
+  ggsave(path_png_file, width = 15, height = 10)
+  
+}
 
-shapiro.test(input_stage_1[3:5000, ]$LFHFRatio)
-hist(input_stage_1$LFHFRatio)
 
-# SD1SD2Ratio
-descriptive_statistic_result <- describeBy(SD1SD2Ratio ~ ValidityScore, data = input_stage_1)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "descriptive_statistic_hrv_SD1SD2Ratio_validityscore_result.txt", "")
-capture.output(descriptive_statistic_result, file = path_txt_file)
-wilcoxon_summary <-  wilcox.test(input_stage_1$SD1SD2Ratio~ input_stage_1$ValidityScore, exact = TRUE, correct = FALSE, conf.int = FALSE)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_hrv_SD1SD2Ratio_summary_results.txt", "")
-capture.output(wilcoxon_summary, file = path_txt_file)
-boxplot(SD1SD2Ratio ~ ValidityScore, data = input_stage_1)
+# test
+# ------
+#wilcoxon_subfolder_dir <- file.path("./wilcoxon_test", "hrv")
+#if (!dir.exists(wilcoxon_subfolder_dir)){
+#  dir.create(wilcoxon_subfolder_dir)
+#}
+#path_png_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_hrv_",paste0(test_variable, "_Test_________box_plot.png")))
+#ggplot(input_stage_1, aes(x=ValidityScore, y=theta, fill=ValidityScore_Group, group=ValidityScore)) + 
+#  stat_boxplot(geom = "errorbar", width = 0.25) +
+#  geom_boxplot(outlier.shape = NA, outlier.size= NA, width = 0.5) + 
+#  labs(title="theta histogram plot") +
+#  xlab(label="test_variable") +
+#  ylab(label="density___AAA") +
+#  theme(legend.position="none") +
+#  theme(plot.title = element_text(hjust = 0.5)) +
+#  scale_y_continuous(limits = quantile(input_stage_1$theta, c(0.01, 0.99))) 
+#ggsave(path_png_file, width = 15, height = 10)
+
+#path_png_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_hrv_",paste0(test_variable, "_Test_________hist_plot.png")))
+#ggplot(input_stage_1, aes(theta)) + 
+#  geom_histogram(aes(y=..density..), color='gray50', fill='blue', alpha=0.2, position = "identity", outlier.shape = NA) +
+#  scale_x_continuous(limits = quantile(input_stage_1$theta, c(0.01, 0.99))) + 
+#  labs(title="theta histogram plot") +
+#  xlab(label="test_variable") +
+#  ylab(label="density___AAA") +
+#  geom_density(alpha=0.2, color='red', fill='red', adjust=1, outlier.shape = NA)  +
+#  theme(plot.title = element_text(hjust = 0.5)) +
+#  scale_x_continuous(limits = quantile(input_stage_1$theta, c(0.1, 0.9)))
+#ggsave(path_png_file, width = 15, height = 10)
+
 
 # eda 
 # ------
@@ -136,17 +229,54 @@ if (!dir.exists(wilcoxon_subfolder_dir)){
   dir.create(wilcoxon_subfolder_dir)
 }
 
-# FilteredValueInMicroSiemens
-descriptive_statistic_result <- describeBy(FilteredValueInMicroSiemens ~ ValidityScore, data = input_stage_1)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "descriptive_statistic_eda_FilteredValueInMicroSiemens_validityscore_result.txt", "")
-capture.output(descriptive_statistic_result, file = path_txt_file)
-wilcoxon_summary <-  wilcox.test(input_stage_1$FilteredValueInMicroSiemens~ input_stage_1$ValidityScore, exact = TRUE, correct = FALSE, conf.int = FALSE)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_eda_FilteredValueInMicroSiemens_summary_results.txt", "")
-capture.output(wilcoxon_summary, file = path_txt_file)
-boxplot(FilteredValueInMicroSiemens ~ ValidityScore, data = input_stage_1)
+for (test_variable in c("FilteredValueInMicroSiemens", "onsets", "peaks", "amps", "RawValueInMicroSiemens")){
+  temp_column <- eval(call(name = "$", as.symbol("input_stage_1"), as.symbol(test_variable)))
+  temp_df <- data.frame (t_variable  = temp_column, ValidityScore = input_stage_1$ValidityScore, ValidityScore_Group=input_stage_1$ValidityScore_Group)
+  
+  
+  path_txt_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_eda_",paste0(test_variable, "_results.txt")))
+  sink(path_txt_file)
+  
+  cat("======================================================================================================================================================\n")
+  cat(paste("EDA Variance test between test_variable: ", test_variable, " and Group: ValidityScore" ,"\n", sep=""))
+  cat("======================================================================================================================================================\n")
+  
+  print(ad.test(temp_df$t_variable))
+  
+  print(describeBy(t_variable ~ ValidityScore, data = temp_df))
+  
+  print(wilcox.test(temp_df$t_variable ~ temp_df$ValidityScore, exact = FALSE, correct = FALSE, conf.int = FALSE))
+  
+  print(temp_df %>%  wilcox_effsize(t_variable ~ ValidityScore))
+  
+  sink()
+  
+  path_png_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_eda_",paste0(test_variable, "_hist_plot.png")))
+  ggplot(temp_df, aes(t_variable)) + 
+    geom_histogram(aes(y=..density..), color='gray50', fill='blue', alpha=0.2, position = "identity", outlier.shape = NA) +
+    #scale_x_continuous(limits = quantile(temp_df$t_variable, c(0.01, 0.99))) + 
+    labs(title=paste0(test_variable, " histogram plot"))  +
+    xlab(label=test_variable) +
+    ylab(label="density") +
+    geom_density(alpha=0.2, color='red', fill='red', adjust=1, outlier.shape = NA)  +
+    theme(plot.title = element_text(hjust = 0.5)) #+
+    #scale_x_continuous(limits = quantile(itemp_df$t_variable, c(0.1, 0.9)))
+  ggsave(path_png_file, width = 15, height = 10)
+  
+  path_png_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_eda_",paste0(test_variable, "_boxplot.png")))
+  ggplot(temp_df, aes(x=ValidityScore, y=t_variable, fill=ValidityScore_Group, group=ValidityScore)) + 
+    stat_boxplot(geom = "errorbar", width = 0.25) +
+    geom_boxplot(outlier.shape = NA, outlier.size= NA, width = 0.5) + 
+    labs(title=paste0(test_variable, " box plot")) +
+    xlab(label="ValidityScore") +
+    ylab(label=test_variable) +
+    theme(legend.position="none") +
+    theme(plot.title = element_text(hjust = 0.5)) #+
+    #scale_y_continuous(limits = quantile(temp_df$t_variable, c(0.01, 0.99))) 
+  ggsave(path_png_file, width = 15, height = 10)
+  
+}
 
-shapiro.test(input_stage_1[3:5000, ]$FilteredValueInMicroSiemens)
-hist(input_stage_1$FilteredValueInMicroSiemens)
 
 # eye
 # ---------
@@ -169,45 +299,52 @@ for (i in seq){
   input_stage_1[input_stage_1$pId == pId, ]$RightPercentChangePupilDialtion  <- (input_stage_1[input_stage_1$pId == pId, ]$RightPupilDiameter - base_line_mean_r_pupil_diameter) / base_line_mean_r_pupil_diameter
 }
 
-# LeftPercentChangePupilDialtion
-descriptive_statistic_result <- describeBy(LeftPercentChangePupilDialtion ~ ValidityScore, data = input_stage_1)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "descriptive_statistic_eye_LeftPercentChangePupilDialtion_validityscore_result.txt", "")
-capture.output(descriptive_statistic_result, file = path_txt_file)
-wilcoxon_summary <-  wilcox.test(input_stage_1$LeftPercentChangePupilDialtion~ input_stage_1$ValidityScore, exact = TRUE, correct = FALSE, conf.int = FALSE)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_eye_LeftPercentChangePupilDialtion_summary_results.txt", "")
-capture.output(wilcoxon_summary, file = path_txt_file)
-boxplot(LeftPercentChangePupilDialtion ~ ValidityScore, data = input_stage_1)
-
-shapiro.test(input_stage_1[3:5000, ]$LeftPercentChangePupilDialtion)
-hist(input_stage_1$LeftPercentChangePupilDialtion)
-
-# RightPercentChangePupilDialtion
-descriptive_statistic_result <- describeBy(RightPercentChangePupilDialtion ~ ValidityScore, data = input_stage_1)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "descriptive_statistic_eye_RightPercentChangePupilDialtion_validityscore_result.txt", "")
-capture.output(descriptive_statistic_result, file = path_txt_file)
-wilcoxon_summary <-  wilcox.test(input_stage_1$RightPercentChangePupilDialtion~ input_stage_1$ValidityScore, exact = TRUE, correct = FALSE, conf.int = FALSE)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_eye_RightPercentChangePupilDialtion_summary_results.txt", "")
-capture.output(wilcoxon_summary, file = path_txt_file)
-boxplot(RightPercentChangePupilDialtion ~ ValidityScore, data = input_stage_1)
-
-# TotalFixationCounter
-descriptive_statistic_result <- describeBy(TotalFixationCounter ~ ValidityScore, data = input_stage_1)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "descriptive_statistic_eye_TotalFixationCounter_validityscore_result.txt", "")
-capture.output(descriptive_statistic_result, file = path_txt_file)
-wilcoxon_summary <-  wilcox.test(input_stage_1$TotalFixationCounter~ input_stage_1$ValidityScore, exact = TRUE, correct = FALSE, conf.int = FALSE)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_eye_TotalFixationCounter_summary_results.txt", "")
-capture.output(wilcoxon_summary, file = path_txt_file)
-boxplot(TotalFixationCounter ~ ValidityScore, data = input_stage_1)
-
-# SaccadeCounter
-descriptive_statistic_result <- describeBy(SaccadeCounter ~ ValidityScore, data = input_stage_1)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "descriptive_statistic_eye_SaccadeCounter_validityscore_result.txt", "")
-capture.output(descriptive_statistic_result, file = path_txt_file)
-wilcoxon_summary <-  wilcox.test(input_stage_1$SaccadeCounter~ input_stage_1$ValidityScore, exact = TRUE, correct = FALSE, conf.int = FALSE)
-path_txt_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_eye_SaccadeCounter_summary_results.txt", "")
-capture.output(wilcoxon_summary, file = path_txt_file)
-boxplot(SaccadeCounter ~ ValidityScore, data = input_stage_1)
-
-shapiro.test(input_stage_1[3:5000, ]$SaccadeCounter)
-hist(input_stage_1$SaccadeCounter)
-
+for (test_variable in c("TotalFixationCounter", "SaccadeCounter", "LeftPercentChangePupilDialtion", "RightPercentChangePupilDialtion", "LeftPupilDiameter", 
+                        "RightPupilDiameter", "FixationCounter", "FixationDuration", "MeasuredVelocity", "SaccadesDiffX", "SaccadesMeanX", "SaccadesSdX", 
+                        "SaccadesMinX", "SaccadesMaxX", "CognitiveActivityLeftPupilDiamter", "CognitiveActivityLeftPupilDiamter", "CognitiveActivityRightPupilDiamter", 
+                        "LeftMeanPupilDiameter", "LeftPupilDiameterDifferenceToMean", "RightMeanPupilDiameter", "RightPupilDiameterDifferenceToMean")){
+  temp_column <- eval(call(name = "$", as.symbol("input_stage_1"), as.symbol(test_variable)))
+  temp_df <- data.frame (t_variable  = temp_column, ValidityScore = input_stage_1$ValidityScore, ValidityScore_Group=input_stage_1$ValidityScore_Group)
+  
+  path_txt_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_eye_",paste0(test_variable, "_results.txt")))
+  sink(path_txt_file)
+  
+  cat("======================================================================================================================================================\n")
+  cat(paste("EYE Variance test between test_variable: ", test_variable, " and Group: ValidityScore" ,"\n", sep=""))
+  cat("======================================================================================================================================================\n")
+  
+  print(ad.test(temp_df$t_variable))
+  
+  print(describeBy(t_variable ~ ValidityScore, data = temp_df))
+  
+  print(wilcox.test(temp_df$t_variable ~ temp_df$ValidityScore, exact = FALSE, correct = FALSE, conf.int = FALSE))
+  
+  print(temp_df %>%  wilcox_effsize(t_variable ~ ValidityScore))
+  
+  sink()
+  
+  path_png_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_eye_",paste0(test_variable, "_hist_plot.png")))
+  ggplot(temp_df, aes(t_variable)) + 
+    geom_histogram(aes(y=..density..), color='gray50', fill='blue', alpha=0.2, position = "identity", outlier.shape = NA) +
+    #scale_x_continuous(limits = quantile(temp_df$t_variable, c(0.01, 0.99))) + 
+    labs(title=paste0(test_variable, " histogram plot"))  +
+    xlab(label=test_variable) +
+    ylab(label="density") +
+    geom_density(alpha=0.2, color='red', fill='red', adjust=1, outlier.shape = NA)  +
+    theme(plot.title = element_text(hjust = 0.5)) #+
+    #scale_x_continuous(limits = quantile(itemp_df$t_variable, c(0.1, 0.9)))
+  ggsave(path_png_file, width = 15, height = 10)
+  
+  path_png_file <- file.path(wilcoxon_subfolder_dir, paste0("wilcoxon_eye_",paste0(test_variable, "_box_plot.png")))
+  ggplot(temp_df, aes(x=ValidityScore, y=t_variable, fill=ValidityScore_Group, group=ValidityScore)) + 
+    stat_boxplot(geom = "errorbar", width = 0.25) +
+    geom_boxplot(outlier.shape = NA, outlier.size= NA, width = 0.5) + 
+    labs(title=paste0(test_variable, " box plot")) +
+    xlab(label="ValidityScore") +
+    ylab(label=test_variable) +
+    theme(legend.position="none") +
+    theme(plot.title = element_text(hjust = 0.5)) #+
+    #scale_y_continuous(limits = quantile(temp_df$t_variable, c(0.01, 0.99))) 
+  ggsave(path_png_file, width = 15, height = 10)
+  
+}

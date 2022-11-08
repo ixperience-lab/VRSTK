@@ -123,6 +123,17 @@ if (!dir.exists(kruskal_subfolder_dir)){
   dir.create(kruskal_subfolder_dir)
 }
 
+descriptive_statistic_result <- describeBy(HeartRate ~ ValidityScore, data = input_stage_1)
+path_txt_file <- file.path(kruskal_subfolder_dir, "descriptive_statistic_hrv_HeartRate_validityscore_result.txt", "")
+capture.output(descriptive_statistic_result, file = path_txt_file)
+kruskal_summary <- kruskal.test(input_stage_1$HeartRate ~ input_stage_1$ValidityScore)
+path_txt_file <- file.path(kruskal_subfolder_dir, "kruskal_hrv_HeartRate_summary_results.txt", "")
+capture.output(kruskal_summary, file = path_txt_file)
+pairwise_wilcox <- pairwise.wilcox.test(input_stage_1$HeartRate, input_stage_1$ValidityScore, paired = FALSE, p.adjust.method = "bonferroni")
+path_txt_file <- file.path(t_test_subfolder_dir, "pairwise_wilcox_hrv_HeartRate_summary_results.txt", "")
+capture.output(pairwise_wilcox, file = path_txt_file)
+boxplot(HeartRate ~ ValidityScore, data = input_stage_1)
+
 # LFHFRatio
 descriptive_statistic_result <- describeBy(LFHFRatio ~ ValidityScore, data = input_stage_1)
 path_txt_file <- file.path(kruskal_subfolder_dir, "descriptive_statistic_hrv_LFHFRatio_validityscore_result.txt", "")

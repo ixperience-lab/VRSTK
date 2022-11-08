@@ -16,21 +16,21 @@ import os
 def plot_uncanny_valley_results(title, xlabel, ylabel, x, y, original_y, original_color, color, original_legend_lebel, legend_label, file_path, save=False, show=False, invert_y_axis=False):
     major_ticks_top=np.linspace(0,20,41)
     
-    plt.figure(figsize=(12,7))
+    plt.figure(figsize=(15,10))
     plt.rcParams["figure.autolayout"] = True
     plt.tick_params(axis='x', pad=60)
-    plt.xticks(rotation=45, ha='right')
-    plt.yticks(major_ticks_top, labels="0 1 2 3 4 5 6 7")
-    plt.title(title, fontsize=16)
-    plt.xlabel(xlabel, fontsize=12)
-    plt.ylabel(ylabel, fontsize=12)
+    plt.xticks(rotation=45, ha='right', fontsize=14)
+    plt.yticks(major_ticks_top, labels="0 1 2 3 4 5 6 7", fontsize=14)
+    plt.title(title, fontsize=18)
+    plt.xlabel(xlabel, fontsize=16)
+    plt.ylabel(ylabel, fontsize=16)
     plt.plot(x, y, color=color, zorder=1)
     plt.scatter(x, y, color=color, zorder=3, label=legend_label) 
     plt.plot(x, original_y, color=original_color, zorder=1)
     plt.scatter(x, original_y, color=original_color, zorder=3, label=original_legend_lebel) 
     plt.grid(which="major", alpha=0.6)
     plt.grid(which="minor", alpha=0.6)
-    plt.legend(title="Device: ", title_fontsize=12, bbox_to_anchor=(1, 0.5),loc='center left',)
+    plt.legend(title="Device: ", title_fontsize=18, bbox_to_anchor=(1, 0.5), loc='center left', fontsize=16)
     plt.tight_layout()    
 
     if invert_y_axis:
@@ -62,7 +62,7 @@ def compute_numpy_arrays_for_plot(data_frame, questionId, models_names_alias_ind
     return np.array(models_names_alias_index_mean_array_np[:][:,1]), np.array(models_names_alias_index_mean_array_np[:][:,3]).astype('float32') 
 
 
-condition = "C"
+condition = "A"
 selected_condition = "Condition " + condition
 folder_path = "../RTools/{}/RResults/Questionnaires".format(selected_condition)
 
@@ -73,13 +73,16 @@ models_names_alias_index_mean_array = [["Eyebot", "Eyebot", 1, 0.0], ["Turret", 
                                        ["MedicBot", "MedicBot", 10, 0.0], ["link", "link", 11, 0.0], ["Duchess", "Duchess", 12, 0.0], 
                                        ["Pose_Zombiegirl", "Zombie", 13, 0.0], ["Pose_MixamoGirl", "MixamoGirl", 14, 0.0], ["Pose_remy", "Remy", 15, 0.0]]
 
-original_mean_human_likeness_array_np = np.array([1.6, 2.4, 2.2, 3.4, 4.5, 4.9, 5.3, 5.6, 5.8, 6.4, 7.1, 6.8, 8.2, 8.4, 8.7])
+# original eerniness mean values from paper 
+original_mean_human_likeness_array_np = np.array([1.57, 2.43, 2.14, 3.36, 4.5, 4.93, 5.29, 5.57, 5.79, 6.36, 7.07, 6.79, 8.14, 8.36, 8.64])
 original_mean_human_likeness_array_np = (original_mean_human_likeness_array_np / 9) * 7
 print(original_mean_human_likeness_array_np)
 
-original_mean_eerniness_array_np = np.array([4.8, 3.9, 3.5, 2.8, 3.75, 3.45, 2.35, 2.65, 5.2, 5.1, 5.6, 5.65, 6.2, 1.2, 2.6])
+# original eerniness mean values from paper 
+original_mean_eerniness_array_np = np.array([4.79, 3.93, 3.5, 2.79, 3.71, 3.43, 2.29, 2.71, 5.14, 5.07, 5.57, 5.64, 6.14, 1.14, 2.57])
 
-original_mean_likability_array_np = np.array([2.4, 3.2, 3.85, 5.4, 3.8, 4.8, 5.35, 4.5, 2.7, 2.8, 3.4, 2.1, 1.65, 6.1, 4.0])
+# original likability mean values from paper 
+original_mean_likability_array_np = np.array([2.43 , 3.14, 3.86, 5.43, 3.79, 4.71, 5.29, 4.5, 2.64, 2.79, 3.36, 2.07, 1.64, 6.07, 4.0])
 
 # -----------------------------------------------------------------------------------------------------------------------
 # Uncanny Valley of one conditions statistic results file
