@@ -7,6 +7,9 @@ import numpy as np
 import sys
 import os
 
+# einfaktorielle anaylse anova
+from scipy.stats import f_oneway
+
 # org_indexes_from_paper: All different characters used for evaluation. 1. Eyebot, 2. Turret, 3. JRRobo, 4. Lloyd, 5. Atlas, 6. 
 #                         Ribbot, 7. Katie, 8. Alice, 9. Freddy, 10. Medic, 11. Link, 12. Dutchess, 13. Zombie, 14. MixamoGirl, 15. Remy
 # Index_numbers:  Gettie (not include in the massure of UV) = 0; Eyebot = 1; Turret = 2; minitrileglv1galaxy(JRRobo) = 3; Lloid = 4; Atlas = 5; 
@@ -62,7 +65,7 @@ def compute_numpy_arrays_for_plot(data_frame, questionId, models_names_alias_ind
     return np.array(models_names_alias_index_mean_array_np[:][:,1]), np.array(models_names_alias_index_mean_array_np[:][:,3]).astype('float32') 
 
 
-condition = "A"
+condition = "C"
 selected_condition = "Condition " + condition
 folder_path = "../RTools/{}/RResults/Questionnaires".format(selected_condition)
 
@@ -103,6 +106,30 @@ plot_uncanny_valley_results("Perceived human likeness of all evaluated 3D-Models
                             "3D-Models", "Avg. human likeness", 
                             nameArray_np, avgArray_np, original_mean_human_likeness_array_np, "red", "blue", 
                             "HMD paper version", "HMD {}".format(selected_condition), plot_file_name_to_save, save=True, show=True)
+
+# anova test
+# ------------
+anova_test_content = "ANOVA human likeness  (F-Value)   (p-Value)   conditions-based\n------------------------------------------------------------\n"
+print("ANOVA human likeness")
+print("------------------------------------------------------------ ")
+fvalue, pvalue = f_oneway(avgArray_np, original_mean_human_likeness_array_np)
+anova_test_content = "{}Over All: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("Over All")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[0:7], original_mean_human_likeness_array_np[0:7])
+anova_test_content = "{}Befor Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("Befor Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[7:12], original_mean_human_likeness_array_np[7:12])
+anova_test_content = "{}In Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("In Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[12:14], original_mean_human_likeness_array_np[12:14])
+anova_test_content = "{}After Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+anova_test_content = "{}\n------------------------------------------------------------\n".format(anova_test_content)
+print("After Vallay")
+print("F-Valeu: {}  p-Value: {}".format(fvalue, pvalue))
+print("------------------------------------------------------------ ")
 # ---------------------------------------------------
 
 # ---------------------------------------------------
@@ -116,6 +143,30 @@ plot_uncanny_valley_results("Perceived eeriness of all evaluated 3D-Models of {}
                             "3D-Models", "Avg. eeriness", 
                             nameArray_np, avgArray_np, original_mean_eerniness_array_np, "red", "blue", 
                             "HMD paper version", "HMD {}".format(selected_condition), plot_file_name_to_save, save=True, show=False, invert_y_axis=True)
+
+# anova test
+# ------------
+anova_test_content = "{}ANOVA Eeriness  (F-Value)   (p-Value)   conditions-based\n------------------------------------------------------------\n".format(anova_test_content)
+print("ANOVA Eeriness")
+print("------------------------------------------------------------ ")
+fvalue, pvalue = f_oneway(avgArray_np, original_mean_eerniness_array_np)
+anova_test_content = "{}Over All: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("Over All")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[0:7], original_mean_eerniness_array_np[0:7])
+anova_test_content = "{}Befor Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("Befor Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[7:12], original_mean_eerniness_array_np[7:12])
+anova_test_content = "{}In Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("In Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[12:14], original_mean_eerniness_array_np[12:14])
+anova_test_content = "{}After Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+anova_test_content = "{}\n------------------------------------------------------------\n".format(anova_test_content)
+print("After Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+print("------------------------------------------------------------ ")
 # ---------------------------------------------------
 
 # ---------------------------------------------------
@@ -129,6 +180,30 @@ plot_uncanny_valley_results("Perceived likability of all evaluated 3D-Models of 
                             "3D-Models", "Avg. likability", 
                             nameArray_np, avgArray_np, original_mean_likability_array_np, "red", "blue", 
                             "HMD paper version", "HMD {}".format(selected_condition), plot_file_name_to_save, save=True, show=False)
+
+# anova test
+# ------------
+anova_test_content = "{}ANOVA Likability  (F-Value)   (p-Value)   conditions-based\n------------------------------------------------------------\n".format(anova_test_content)
+print("ANOVA likability")
+print("------------------------------------------------------------ ")
+fvalue, pvalue = f_oneway(avgArray_np, original_mean_likability_array_np)
+anova_test_content = "{}Over All: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("Over All")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[0:7], original_mean_likability_array_np[0:7])
+anova_test_content = "{}Befor Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("Befor Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[7:12], original_mean_likability_array_np[7:12])
+anova_test_content = "{}In Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("In Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[12:14], original_mean_likability_array_np[12:14])
+anova_test_content = "{}After Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+anova_test_content = "{}\n------------------------------------------------------------\n".format(anova_test_content)
+print("After Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+print("------------------------------------------------------------ ")
 # ---------------------------------------------------
 
 #sys.exit()
@@ -152,6 +227,30 @@ plot_uncanny_valley_results("Perceived human likeness of all evaluated 3D-Models
                             "3D-Models", "Avg. human likeness", 
                             nameArray_np, avgArray_np, original_mean_human_likeness_array_np, "red", "blue", 
                             "HMD paper version", "HMD {}".format("all Conditions"), plot_file_name_to_save, save=True, show=False)
+
+# anova test
+# ------------
+anova_test_content = "{}ANOVA human likeness  (F-Value)   (p-Value)     all Conditions\n------------------------------------------------------------\n".format(anova_test_content)
+print("ANOVA human likeness")
+print("------------------------------------------------------------ ")
+fvalue, pvalue = f_oneway(avgArray_np, original_mean_human_likeness_array_np)
+anova_test_content = "{}Over All: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("Over All")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[0:7], original_mean_human_likeness_array_np[0:7])
+anova_test_content = "{}Befor Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("Befor Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[7:12], original_mean_human_likeness_array_np[7:12])
+anova_test_content = "{}In Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("In Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[12:14], original_mean_human_likeness_array_np[12:14])
+anova_test_content = "{}After Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+anova_test_content = "{}\n------------------------------------------------------------\n".format(anova_test_content)
+print("After Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+print("------------------------------------------------------------ ")
 # ---------------------------------------------------
 
 # ---------------------------------------------------
@@ -165,6 +264,30 @@ plot_uncanny_valley_results("Perceived eeriness of all evaluated 3D-Models of al
                             "3D-Models", "Avg. eeriness", 
                             nameArray_np, avgArray_np, original_mean_eerniness_array_np, "red", "blue", 
                             "HMD paper version", "HMD {}".format("all Conditions"), plot_file_name_to_save, save=True, show=False, invert_y_axis=True)
+
+# anova test
+# ------------
+anova_test_content = "{}ANOVA Eeriness  (F-Value)   (p-Value)     all Conditions\n------------------------------------------------------------\n".format(anova_test_content)
+print("ANOVA Eeriness")
+print("------------------------------------------------------------ ")
+fvalue, pvalue = f_oneway(avgArray_np, original_mean_eerniness_array_np)
+anova_test_content = "{}Over All: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("Over All")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[0:7], original_mean_eerniness_array_np[0:7])
+anova_test_content = "{}Befor Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("Befor Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[7:12], original_mean_eerniness_array_np[7:12])
+anova_test_content = "{}In Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("In Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[12:14], original_mean_eerniness_array_np[12:14])
+anova_test_content = "{}After Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+anova_test_content = "{}\n------------------------------------------------------------\n".format(anova_test_content)
+print("After Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+print("------------------------------------------------------------ ")
 # ---------------------------------------------------
 
 # ---------------------------------------------------
@@ -178,6 +301,36 @@ plot_uncanny_valley_results("Perceived likability of all evaluated 3D-Models of 
                             "3D-Models", "Avg. likability", 
                             nameArray_np, avgArray_np, original_mean_likability_array_np, "red", "blue", 
                             "HMD paper version", "HMD {}".format("all Conditions"), plot_file_name_to_save, save=True, show=False)
+
+# anova test
+# anova test
+# ------------
+anova_test_content = "{}ANOVA Likability  (F-Value)   (p-Value)     all Conditions\n------------------------------------------------------------\n".format(anova_test_content)
+print("ANOVA Likability")
+print("------------------------------------------------------------ ")
+fvalue, pvalue = f_oneway(avgArray_np, original_mean_likability_array_np)
+anova_test_content = "{}Over All: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("Over All")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[0:7], original_mean_likability_array_np[0:7])
+anova_test_content = "{}Befor Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("Befor Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[7:12], original_mean_likability_array_np[7:12])
+anova_test_content = "{}In Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("In Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+fvalue, pvalue = f_oneway(avgArray_np[12:14], original_mean_likability_array_np[12:14])
+anova_test_content = "{}After Vallay: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+anova_test_content = "{}\n------------------------------------------------------------\n".format(anova_test_content)
+print("After Vallay")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+print("------------------------------------------------------------ ")
+
+file_name = "{}/AllUncannyValley_ANOVA_Results.txt".format(folder_path)
+file = open(file_name, "w")
+file.write(anova_test_content)
+file.close()
 # ---------------------------------------------------
 
 #sys.exit()
