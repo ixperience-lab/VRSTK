@@ -1,29 +1,29 @@
 Using pre-set license
-Built from '2020.3/staging' branch; Version is '2020.3.30f1 (1fb1bf06830e) revision 2077119'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10  (10.0.19043) 64bit Education' Language: 'de' Physical Memory: 49073 MB
+Built from '2020.3/staging' branch; Version is '2020.3.19f1 (68f137dc9bbe) revision 6877495'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Enterprise; OS build 19044.2130; Version 2009; 64bit' Language: 'de' Physical Memory: 65474 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
 COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2020.3.30f1\Editor\Unity.exe
+C:\Program Files\Unity\Hub\Editor\2020LTS\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/Wladimir Hettmann/Documents/GitHub/VRSTK
+D:/hewl/VRSTK-AutmaticDataAnalysis
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-55213
-Successfully changed project path to: C:/Users/Wladimir Hettmann/Documents/GitHub/VRSTK
-C:/Users/Wladimir Hettmann/Documents/GitHub/VRSTK
+58483
+Successfully changed project path to: D:/hewl/VRSTK-AutmaticDataAnalysis
+D:/hewl/VRSTK-AutmaticDataAnalysis
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 73.30 ms, found 11 plugins.
+Refreshing native plugins compatible for Editor in 71.19 ms, found 11 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Initialize engine version: 2020.3.30f1 (1fb1bf06830e)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/Wladimir Hettmann/Documents/GitHub/VRSTK/Assets
+Initialize engine version: 2020.3.19f1 (68f137dc9bbe)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/hewl/VRSTK-AutmaticDataAnalysis/Assets
 [Subsystems] No descriptors matched for  examples in Assets/MeshingFeaturePlugin/UnitySubsystemsManifest.json.
 [Subsystems] No descriptors matched for  inputs in Assets/MeshingFeaturePlugin/UnitySubsystemsManifest.json.
 [Subsystems] No descriptors matched for  displays in Assets/MeshingFeaturePlugin/UnitySubsystemsManifest.json.
@@ -31,100 +31,103 @@ Initialize engine version: 2020.3.30f1 (1fb1bf06830e)
 GfxDevice: creating device client; threaded=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce RTX 2060 (ID=0x1f08)
+    Renderer: NVIDIA GeForce RTX 2080 Ti (ID=0x1e04)
     Vendor:   
-    VRAM:     5980 MB
-    Driver:   30.0.15.1215
+    VRAM:     11048 MB
+    Driver:   30.0.14.7247
 Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56612
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56376
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.002015 seconds.
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0.002330 seconds.
+Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 56.73 ms, found 11 plugins.
+Refreshing native plugins compatible for Editor in 59.10 ms, found 11 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.419 seconds
+- Completed reload, in  1.099 seconds
 Domain Reload Profiling:
-	ReloadAssembly (419ms)
-		BeginReloadAssembly (46ms)
+	ReloadAssembly (1099ms)
+		BeginReloadAssembly (42ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (324ms)
-			LoadAssemblies (45ms)
+		EndReloadAssembly (364ms)
+			LoadAssemblies (41ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (87ms)
+			SetupTypeCache (118ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (21ms)
-			SetupLoadedEditorAssemblies (143ms)
+			RebuildScriptCaches (27ms)
+			SetupLoadedEditorAssemblies (160ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
+				InitializePlatformSupportModulesInManaged (5ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (57ms)
-				BeforeProcessingInitializeOnLoad (11ms)
-				ProcessInitializeOnLoadAttributes (55ms)
-				ProcessInitializeOnLoadMethodAttributes (17ms)
+				RefreshPlugins (59ms)
+				BeforeProcessingInitializeOnLoad (13ms)
+				ProcessInitializeOnLoadAttributes (61ms)
+				ProcessInitializeOnLoadMethodAttributes (21ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.010335 seconds.
+Registered in 0.006010 seconds.
 Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 57.50 ms, found 11 plugins.
+Refreshing native plugins compatible for Editor in 70.75 ms, found 11 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.871 seconds
+- Completed reload, in  1.055 seconds
 Domain Reload Profiling:
-	ReloadAssembly (872ms)
-		BeginReloadAssembly (103ms)
+	ReloadAssembly (1055ms)
+		BeginReloadAssembly (114ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (3ms)
+			DisableScriptedObjects (4ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (17ms)
-		EndReloadAssembly (725ms)
-			LoadAssemblies (84ms)
+			CreateAndSetChildDomain (15ms)
+		EndReloadAssembly (892ms)
+			LoadAssemblies (80ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (181ms)
+			SetupTypeCache (235ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (47ms)
-			SetupLoadedEditorAssemblies (333ms)
+			RebuildScriptCaches (57ms)
+			SetupLoadedEditorAssemblies (410ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (3ms)
+				InitializePlatformSupportModulesInManaged (6ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (58ms)
-				BeforeProcessingInitializeOnLoad (99ms)
-				ProcessInitializeOnLoadAttributes (136ms)
-				ProcessInitializeOnLoadMethodAttributes (31ms)
+				RefreshPlugins (71ms)
+				BeforeProcessingInitializeOnLoad (110ms)
+				ProcessInitializeOnLoadAttributes (178ms)
+				ProcessInitializeOnLoadMethodAttributes (39ms)
 				AfterProcessingInitializeOnLoad (6ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 1.25 ms, found 11 plugins.
+Refreshing native plugins compatible for Editor in 1.03 ms, found 11 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 4083 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 168.7 MB.
-System memory in use after: 168.9 MB.
+System memory in use before: 167.3 MB.
+System memory in use after: 167.5 MB.
 
-Unloading 83 unused Assets to reduce memory usage. Loaded Objects now: 4476.
-Total: 5.642900 ms (FindLiveObjects: 0.324700 ms CreateObjectMapping: 0.169800 ms MarkObjects: 5.069200 ms  DeleteObjects: 0.078600 ms)
+Unloading 83 unused Assets to reduce memory usage. Loaded Objects now: 4470.
+Total: 5.036800 ms (FindLiveObjects: 0.337000 ms CreateObjectMapping: 0.178100 ms MarkObjects: 4.431500 ms  DeleteObjects: 0.089200 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -138,1003 +141,133 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/VRSTK/Prefabs
-  artifactKey: Guid(ad293a593a52ffb4587f9494d21f4313) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs using Guid(ad293a593a52ffb4587f9494d21f4313) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a1ca17d98ab21d40ad394bb631df5a3') in 0.006593 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 483.989672 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/linearSlider/Slider.prefab
-  artifactKey: Guid(7afcf38b0e42b34449c22a5d25cd7a73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/linearSlider/Slider.prefab using Guid(7afcf38b0e42b34449c22a5d25cd7a73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16a0dcada24c9e0bf33f7ad0114d1777') in 0.079218 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002042 seconds.
-  path: Assets/Resources/Sprites
-  artifactKey: Guid(2bf7a19a63df78d43b8eb26528bda15c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites using Guid(2bf7a19a63df78d43b8eb26528bda15c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2480df211d3102478d4c61f73f110fe') in 0.001470 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.003899 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_10.prefab
-  artifactKey: Guid(6b4a30c2f0c63e54da1e26bc3615e6ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_10.prefab using Guid(6b4a30c2f0c63e54da1e26bc3615e6ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd15e462e196e8c9da09d59196b514a84') in 0.038851 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002173 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/PageController.cs
-  artifactKey: Guid(7e3cb973edb778641ae3a2ac0ebbd1a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/PageController.cs using Guid(7e3cb973edb778641ae3a2ac0ebbd1a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6aa348eb09ba21c2024204bebdef345d') in 0.007120 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002069 seconds.
-  path: Assets/Questionnaires/Scripts/Questions/LinearGrid.cs
-  artifactKey: Guid(1c808385f9106cb4b8b7ea4d63a638a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Scripts/Questions/LinearGrid.cs using Guid(1c808385f9106cb4b8b7ea4d63a638a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6231fd296f6f453ea990c60d40fac6c4') in 0.001403 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002224 seconds.
-  path: Assets/Questionnaires/Data/Questions/NASA_TLX
-  artifactKey: Guid(024b1165cff305d4db6f4848fef282af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Questions/NASA_TLX using Guid(024b1165cff305d4db6f4848fef282af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22fd881040024ffcc0579a21f3b1354d') in 0.001674 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001398 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Base
-  artifactKey: Guid(03f1c96f5f48c3142b05aa102539176e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Base using Guid(03f1c96f5f48c3142b05aa102539176e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3ebeea9c76beb2a5c089c920d6432a9') in 0.001349 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001431 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Types/Page
-  artifactKey: Guid(6ef4e95323273ba429a39d9617f7a6bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Types/Page using Guid(6ef4e95323273ba429a39d9617f7a6bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '651fd96e1a9b89b0c362d4c91accbee8') in 0.001379 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002033 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/PageConcatenationToAvatarSelection.cs
-  artifactKey: Guid(e509958f3a142f644b9e919ded433985) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/PageConcatenationToAvatarSelection.cs using Guid(e509958f3a142f644b9e919ded433985) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9ca2bccb13fed01b1c525bb5a09cea0') in 0.001386 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002383 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_8.prefab
-  artifactKey: Guid(2b7c675d16c3b8a469c6b71441461e2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_8.prefab using Guid(2b7c675d16c3b8a469c6b71441461e2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '55c4a70e7bfa906a9c94775459b5aa4f') in 0.021403 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002050 seconds.
-  path: Assets/VRSTK/Events/TrackVRQuestionnaireToolkitSSQ37936.asset
-  artifactKey: Guid(b2e7f91c87c81994aa48b4f1329252ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Events/TrackVRQuestionnaireToolkitSSQ37936.asset using Guid(b2e7f91c87c81994aa48b4f1329252ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6603de7cf0fdc84146e189b198d0e558') in 0.003281 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002188 seconds.
-  path: Assets/Resources/Sprites/Slider_12.png
-  artifactKey: Guid(b0e16f6a3a9b7e44da4b270f6c5117b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_12.png using Guid(b0e16f6a3a9b7e44da4b270f6c5117b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6eb2bd260d3a04baf0ecaee21588f501') in 0.060227 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.004139 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/radioGrid/RadioGrid.prefab
-  artifactKey: Guid(31811624d9ce08a41ab7413164253db4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/radioGrid/RadioGrid.prefab using Guid(31811624d9ce08a41ab7413164253db4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8b6a1b0a946f40a1217b6436fafabb7') in 0.016511 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002279 seconds.
-  path: Assets/Resources/Sprites/Slider_17.png
-  artifactKey: Guid(b5e50efb5ff43f249b6c3a34d87db9d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_17.png using Guid(b5e50efb5ff43f249b6c3a34d87db9d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f80079ee35e0515dd12584cfefab892c') in 0.008830 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002543 seconds.
-  path: Assets/Resources/Sprites/Slider_8.png
-  artifactKey: Guid(95b76ad173045bd46a4e59e2fc7105ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_8.png using Guid(95b76ad173045bd46a4e59e2fc7105ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3c9dc9dc1253d9ba698ff05768265ac') in 0.026092 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002420 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/Questions/SimulationSicknessQuestionnaire
-  artifactKey: Guid(dc134ce4cc2f63f42b889452283d37fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/Questions/SimulationSicknessQuestionnaire using Guid(dc134ce4cc2f63f42b889452283d37fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f3dc1cfc9127784659eec64511114751') in 0.001548 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002187 seconds.
-  path: Assets/Resources/Sprites/Slider_19.png
-  artifactKey: Guid(5a83e98f2cf7f7045ab2abead3672983) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_19.png using Guid(5a83e98f2cf7f7045ab2abead3672983) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd44fd73825793b0a4df91f1910749b53') in 0.008440 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002353 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Types/LinearSlider/Slider.prefab
-  artifactKey: Guid(0d9ce8f471afe9641a395100aaf569b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Types/LinearSlider/Slider.prefab using Guid(0d9ce8f471afe9641a395100aaf569b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '45f91c7fb8b5739762685ab27932080d') in 0.016443 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002220 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/JSONArray.cs
-  artifactKey: Guid(7b8f006428d83d94ba2b846f79f9778e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/JSONArray.cs using Guid(7b8f006428d83d94ba2b846f79f9778e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e85b70ea4cf5de8406f175b90671cd11') in 0.001695 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002020 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/PageRecorder.cs
-  artifactKey: Guid(1426b1112d138be4a838b7000eb7ae43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/PageRecorder.cs using Guid(1426b1112d138be4a838b7000eb7ae43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6cd2b71f9439029b8af0f3857872e895') in 0.001365 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002032 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/radio/RadioHorizontal.prefab
-  artifactKey: Guid(9bf3cf3c1164d3e4c949e6e5325faa98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/radio/RadioHorizontal.prefab using Guid(9bf3cf3c1164d3e4c949e6e5325faa98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fec035711381deb79f348bb9922690f9') in 0.015655 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002178 seconds.
-  path: Assets/Resources/Sprites/Slider_13.png
-  artifactKey: Guid(e065d90e40982ad45bdfa4e860401ebb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_13.png using Guid(e065d90e40982ad45bdfa4e860401ebb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1402b3ed106b02c1bc124b7768f772c0') in 0.007933 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002462 seconds.
-  path: Assets/Resources/Sprites/Slider_18.png
-  artifactKey: Guid(746d8da7433ed814da9d165e3319a9f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_18.png using Guid(746d8da7433ed814da9d165e3319a9f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4849597c4c2db4859b998e32c5745843') in 0.007910 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002382 seconds.
-  path: Assets/Questionnaires/Data/Answers/questionnaireID_exampleQE_ALL_example-answer.csv
-  artifactKey: Guid(eae6f84ac78a0374882587f721bf6466) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Answers/questionnaireID_exampleQE_ALL_example-answer.csv using Guid(eae6f84ac78a0374882587f721bf6466) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7b6a747793c2c3643fa7079c7a721bb') in 0.004336 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001352 seconds.
-  path: Assets/Questionnaires/Data
-  artifactKey: Guid(ffabbdca6f594aa478618cfa6a0fccac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data using Guid(ffabbdca6f594aa478618cfa6a0fccac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f2e864d68aa07d56fb292e0f6976eba') in 0.001341 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001987 seconds.
-  path: Assets/Questionnaires/Scripts/Questions/Dropdown.cs
-  artifactKey: Guid(4e6f19e0dc85a4e49bd2e88648dd4af9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Scripts/Questions/Dropdown.cs using Guid(4e6f19e0dc85a4e49bd2e88648dd4af9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a550bba0ac2d8b1da85981df0af052f1') in 0.001351 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002043 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/dropdown/DropdownButon.prefab
-  artifactKey: Guid(21509478b1de6b14197a19171f3d52fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/dropdown/DropdownButon.prefab using Guid(21509478b1de6b14197a19171f3d52fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e12bf521e5fd962213b62bb7bc84ed74') in 0.022405 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002164 seconds.
-  path: Assets/Questionnaires/Data/Answers/questionnaireID_exampleQE_ALL_example-answer-sheet.csv
-  artifactKey: Guid(031ee4d93cd045c4e806ff1fcc79203c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Answers/questionnaireID_exampleQE_ALL_example-answer-sheet.csv using Guid(031ee4d93cd045c4e806ff1fcc79203c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7205819cd8253f5bde498a37647c3fd') in 0.001763 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001909 seconds.
-  path: Assets/Resources/Readme.txt
-  artifactKey: Guid(11bc05f888aeb084ea35848378649fe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Readme.txt using Guid(11bc05f888aeb084ea35848378649fe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16d656674a5ac78cc2dcfe9c0932b7a0') in 0.004326 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002153 seconds.
-  path: Assets/Resources/Sprites/Slider_11.png
-  artifactKey: Guid(5ed725d5570fc184591014ed778a9c97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_11.png using Guid(5ed725d5570fc184591014ed778a9c97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '43ea2c1d1c1cbdbf00dd02b2ca27254a') in 0.008537 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002050 seconds.
-  path: Assets/Questionnaires
-  artifactKey: Guid(0a232788500f6104d94b252a5744d135) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires using Guid(0a232788500f6104d94b252a5744d135) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3df1651870d0fd419d094f3b2090a5d1') in 0.001365 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002010 seconds.
-  path: Assets/Questionnaires/Data/Questions/Virtual Embodiment Questionnaire
-  artifactKey: Guid(48d0fe18c83db5643b648c08925061b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Questions/Virtual Embodiment Questionnaire using Guid(48d0fe18c83db5643b648c08925061b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c442d8097cea051ac0f4d322be330c1') in 0.001573 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001439 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Types/Dropdown
-  artifactKey: Guid(aa3001047ffc2c640a2d0c9f488cd6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Types/Dropdown using Guid(aa3001047ffc2c640a2d0c9f488cd6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '55f62979768d9cd35028348812b1c236') in 0.001224 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001957 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Base/Page.prefab
-  artifactKey: Guid(7c1f4381e520e704ca23dc2931a50ad8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Base/Page.prefab using Guid(7c1f4381e520e704ca23dc2931a50ad8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3c142c81d0c66c4d4a796c8d4cbc2bb4') in 0.016556 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002288 seconds.
-  path: Assets/Resources/Sprites/Slider_21.png
-  artifactKey: Guid(bbd85031a4ead2e4ab04d2d3e3739230) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_21.png using Guid(bbd85031a4ead2e4ab04d2d3e3739230) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8c5a2faeddc84154d7e5d87c87a8449') in 0.008491 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002716 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_13.prefab
-  artifactKey: Guid(fb0939940be541d4db5b6fd94b4979be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_13.prefab using Guid(fb0939940be541d4db5b6fd94b4979be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26494d525900cae73106b9c4e6f9a354') in 0.021131 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.003135 seconds.
-  path: Assets/VRSTK/Scenes/QuestionnairesTracking.unity
-  artifactKey: Guid(0bf412ccb57b13a45b1eee8d124c4339) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scenes/QuestionnairesTracking.unity using Guid(0bf412ccb57b13a45b1eee8d124c4339) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4868c1233d8dd7b6d7c6d35b766928a7') in 0.001580 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001925 seconds.
-  path: Assets/Resources/saved_transform_values
-  artifactKey: Guid(e2c917fc0913a8d44b00672c58562cee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/saved_transform_values using Guid(e2c917fc0913a8d44b00672c58562cee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9a2f6dd07fb93230e82f8e2908fe500') in 0.001651 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002116 seconds.
-  path: Assets/Questionnaires/Data/Answers/questionnaireID_exampleQE_participantID_id1_condition_A_example-answer-sheet.csv
-  artifactKey: Guid(b3ddd4be92d7f5d46a93aa0e10e318d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Answers/questionnaireID_exampleQE_participantID_id1_condition_A_example-answer-sheet.csv using Guid(b3ddd4be92d7f5d46a93aa0e10e318d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a79265ed4a27865118047f6a9120b305') in 0.001653 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001307 seconds.
-  path: Assets/VRSTK/Scenes
-  artifactKey: Guid(3b1d9971e8e871845889d4349016150e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scenes using Guid(3b1d9971e8e871845889d4349016150e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77b28c9b86e129a140a17d20cdd14bb6') in 0.001350 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002015 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Types/Page/LastPage.prefab
-  artifactKey: Guid(fd4f676b99e71d24bb99b3e063da60de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Types/Page/LastPage.prefab using Guid(fd4f676b99e71d24bb99b3e063da60de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab4d4b21ea826a3556339ca5990ca71a') in 0.014913 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002159 seconds.
-  path: Assets/Resources/Sprites/Slider_3.png
-  artifactKey: Guid(4ce3cdd2aafc6144fa7e2a402b1e3aa8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_3.png using Guid(4ce3cdd2aafc6144fa7e2a402b1e3aa8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7670e2e671350a11173e1f8de98dadb3') in 0.008941 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001917 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/radio
-  artifactKey: Guid(a579a435c47035047a81dffc229d937f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/radio using Guid(a579a435c47035047a81dffc229d937f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0e4e7245b47c53e36339a0b468d30a7') in 0.001339 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001380 seconds.
-  path: Assets/Resources/Templates
-  artifactKey: Guid(9df9bb45963414e178140213c1c1c7b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Templates using Guid(9df9bb45963414e178140213c1c1c7b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2753714905ae35058826d68fee011176') in 0.001317 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002132 seconds.
-  path: Assets/Questionnaires/Data/Questions/System Usability Scale Questionnaire
-  artifactKey: Guid(e007130e851900c4883a43b85fc784e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Questions/System Usability Scale Questionnaire using Guid(e007130e851900c4883a43b85fc784e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb5be5b7aa7d76ec53ab40002b227cbd') in 0.001576 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001404 seconds.
-  path: Assets/VRSTK/Events
-  artifactKey: Guid(a4a72fda84bde364f88fc43be34690bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Events using Guid(a4a72fda84bde364f88fc43be34690bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27e21bd713e7949f46eb623bc54deb9f') in 0.001334 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001972 seconds.
-  path: Assets/Questionnaires/Data/Answers/questionnaireID_SUS_participantID_id1_condition_AB_answers.csv
-  artifactKey: Guid(d49b545498888c94f8b26f4034397812) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Answers/questionnaireID_SUS_participantID_id1_condition_AB_answers.csv using Guid(d49b545498888c94f8b26f4034397812) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '141c2cf6e3131c46341b60174a745369') in 0.001628 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002035 seconds.
-  path: Assets/Questionnaires/Scripts/Questions/RadioGrid.cs
-  artifactKey: Guid(489dabd675e0d454eb5280fdc579c307) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Scripts/Questions/RadioGrid.cs using Guid(489dabd675e0d454eb5280fdc579c307) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96f1e8bf839e05d865314ede4cfc9913') in 0.001465 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002106 seconds.
-  path: Assets/Resources/Sprites/Nasa.png
-  artifactKey: Guid(253dddb67d985ec4982448e79ec3ea48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Nasa.png using Guid(253dddb67d985ec4982448e79ec3ea48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b5131e971841f55b8e52f4fc5bef3c2') in 0.008227 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002573 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/PagesParameters.cs
-  artifactKey: Guid(0412335dfe22c4b41b169a38df670380) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/PagesParameters.cs using Guid(0412335dfe22c4b41b169a38df670380) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5ea2ccec51b9d18cd407fa086736fc6') in 0.001326 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001956 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Types/Dropdown/Dropdown.prefab
-  artifactKey: Guid(0178c88a70e13ed4b8c5f383e36f0ec5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Types/Dropdown/Dropdown.prefab using Guid(0178c88a70e13ed4b8c5f383e36f0ec5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b49631a43d3e5d1bb27697a387c35639') in 0.016940 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002461 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_2.prefab
-  artifactKey: Guid(fdf9c841f659900479dcd8cc309882c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_2.prefab using Guid(fdf9c841f659900479dcd8cc309882c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '450cfedcfedaf1c6a695a7b3c9df54c2') in 0.024585 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.004523 seconds.
   path: Assets/VRSTK/Scenes/AutomaticDataAnalysis.unity
   artifactKey: Guid(4410213cbd43325479b21bdb18be6332) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scenes/AutomaticDataAnalysis.unity using Guid(4410213cbd43325479b21bdb18be6332) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b85767da424f0f5c345dbcc9c74302e') in 0.001642 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002286 seconds.
-  path: Assets/Questionnaires/Data/Questions/questionnaire_example
-  artifactKey: Guid(eed2705d87a8b584981e0c90cf917a54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Questions/questionnaire_example using Guid(eed2705d87a8b584981e0c90cf917a54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a8b21639428c47e0945cace96ac6cc0') in 0.001535 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002011 seconds.
-  path: Assets/Questionnaires/Scripts/Questions/Slider.cs
-  artifactKey: Guid(bb709a202f426404cb6bf01845c6a121) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Scripts/Questions/Slider.cs using Guid(bb709a202f426404cb6bf01845c6a121) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2726b236de421bf6c232d32d3f27b4a') in 0.001213 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002026 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/linearGrid/LinearGridButton.prefab
-  artifactKey: Guid(f86a163b4d499b04f88927d6bba143e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/linearGrid/LinearGridButton.prefab using Guid(f86a163b4d499b04f88927d6bba143e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d2fdabef4a37f17a25f34404651f88f') in 0.015959 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001376 seconds.
-  path: Assets/Questionnaires/Scripts/Questions
-  artifactKey: Guid(47c17fcd450aaab47b61583d7f4a0e96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Scripts/Questions using Guid(47c17fcd450aaab47b61583d7f4a0e96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87d0d9f88afe66ad274598c4a7dc5d57') in 0.001365 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002174 seconds.
-  path: Assets/Resources/Sprites/Slider_20.png
-  artifactKey: Guid(7d18f20b7fda73845a3b3659cfe59d23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_20.png using Guid(7d18f20b7fda73845a3b3659cfe59d23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '875ef927e4000ad902f69704f7c698e8') in 0.008850 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002688 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_3.prefab
-  artifactKey: Guid(4d4c952499827664f9a4dd2bcf866506) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_3.prefab using Guid(4d4c952499827664f9a4dd2bcf866506) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5478edc6a57593975932b101159313b6') in 0.021456 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002574 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_6.prefab
-  artifactKey: Guid(4c4a6bed1b555b84489edea935c08afe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_6.prefab using Guid(4c4a6bed1b555b84489edea935c08afe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e845c2576a55b401648cd2e4ff96b5cf') in 0.020440 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001583 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/dropdown
-  artifactKey: Guid(b6148a6cc6cba544a858f3d291978971) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/dropdown using Guid(b6148a6cc6cba544a858f3d291978971) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30d8f1b6500b9ce17377887964eeee14') in 0.001337 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002202 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_first.prefab
-  artifactKey: Guid(401599d626774ae4f9940a115841763c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_first.prefab using Guid(401599d626774ae4f9940a115841763c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b2585e0cbba3c4308ff809badd8abc2') in 0.016477 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001447 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs
-  artifactKey: Guid(dd57fc11d9211f548aec5d7d23b7d7a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs using Guid(dd57fc11d9211f548aec5d7d23b7d7a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fcbc281fa3c06870fc2eb372ec66378e') in 0.001417 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002134 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/Answers/questionnaireID_exampleQE_ALL_UncannyValleyAnswers.csv
-  artifactKey: Guid(fb1e60150db98a34eb230875a5b54088) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/Answers/questionnaireID_exampleQE_ALL_UncannyValleyAnswers.csv using Guid(fb1e60150db98a34eb230875a5b54088) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6cc9e1ebef28268f0ac7b0429b75c911') in 0.001699 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002413 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_5.prefab
-  artifactKey: Guid(67f3ebc2c7e600648acb5bf56c01f3b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_5.prefab using Guid(67f3ebc2c7e600648acb5bf56c01f3b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '309ac2f3c90df1b5b714106cb0c4489d') in 0.020994 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001497 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires
-  artifactKey: Guid(40930e0f78bc31b4597120db005febf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires using Guid(40930e0f78bc31b4597120db005febf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd3444df4ef49c6d7f1678a25041f880a') in 0.001235 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001351 seconds.
-  path: Assets/Questionnaires/Prefabs/Types
-  artifactKey: Guid(89ceeff7771216148a8fa592e9c61b01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types using Guid(89ceeff7771216148a8fa592e9c61b01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e207f60680410990348341dfd0d90c40') in 0.001374 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002034 seconds.
-  path: Assets/Questionnaires/Data/Questions/IPQ Questionnaire
-  artifactKey: Guid(450bd52af10cd9449bd0b6c20ce802fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Questions/IPQ Questionnaire using Guid(450bd52af10cd9449bd0b6c20ce802fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4565957a3f15723ec01a3709bdbb2391') in 0.001597 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001540 seconds.
-  path: Assets/VRSTK
-  artifactKey: Guid(1adab6b41266d314bb753042b3a7d02a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK using Guid(1adab6b41266d314bb753042b3a7d02a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82314d55260b36c2f6314ebdb335e67a') in 0.001355 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001494 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/Answers
-  artifactKey: Guid(43a08772f32ba8b41bdb5bdca42230fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/Answers using Guid(43a08772f32ba8b41bdb5bdca42230fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cdd2dec95b06b93106683a716c9c93d8') in 0.001398 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001986 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/checkbox/Checkbox.prefab
-  artifactKey: Guid(3ab323f41e122204bb11120c9acf74b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/checkbox/Checkbox.prefab using Guid(3ab323f41e122204bb11120c9acf74b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '08691c682ae4066ea0e02c0de0387c63') in 0.016556 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002210 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/checkbox/CheckBoxButton.prefab
-  artifactKey: Guid(3e8106df7b4463d4b989eb7966265c79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/checkbox/CheckBoxButton.prefab using Guid(3e8106df7b4463d4b989eb7966265c79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c367141ecc29d1b054bb49b507b6033') in 0.015321 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002502 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_12.prefab
-  artifactKey: Guid(61486bd80e6250b47bc2521290e97525) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_12.prefab using Guid(61486bd80e6250b47bc2521290e97525) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f972b50a0e5fa11ec8b45d609bfb80a') in 0.020189 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002495 seconds.
-  path: Assets/Resources/Sprites/Slider_6.png
-  artifactKey: Guid(a7d3c2c4b6a23344b94ea7058a81885c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_6.png using Guid(a7d3c2c4b6a23344b94ea7058a81885c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9e6b41453591a4f98f54b5ca83013ab') in 0.008928 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001771 seconds.
-  path: Assets/VRSTK/Scripts
-  artifactKey: Guid(ce834f71ba16cc447ba7df3b74a7f043) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts using Guid(ce834f71ba16cc447ba7df3b74a7f043) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2159b091b00c0e462fe6bbaa01888eab') in 0.001392 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002115 seconds.
-  path: Assets/Questionnaires/Prefabs/VRQuestionnaireToolkit.prefab
-  artifactKey: Guid(93494b0f3d397d74ba1458871f004384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/VRQuestionnaireToolkit.prefab using Guid(93494b0f3d397d74ba1458871f004384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ed84f0058688baeec2c661fd231f8ef') in 0.003958 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001410 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/linearSlider
-  artifactKey: Guid(336ac20d87ba29b4c99b5bcb01f43d4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/linearSlider using Guid(336ac20d87ba29b4c99b5bcb01f43d4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62c395de1a98a06f3ef075f2cf0a9402') in 0.001621 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002136 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_final.prefab
-  artifactKey: Guid(430e75ce06f3e334fa0de790205a3500) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_final.prefab using Guid(430e75ce06f3e334fa0de790205a3500) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37a68cdc47496c36478f7b98d2de4249') in 0.020566 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001533 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/linearGrid
-  artifactKey: Guid(a2e6a78dbfb714f488b01ff8898ea0de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/linearGrid using Guid(a2e6a78dbfb714f488b01ff8898ea0de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '748798ebb7e7a1c9767e64ee69d244f0') in 0.001753 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002234 seconds.
-  path: Assets/Resources/Sprites/Button.png
-  artifactKey: Guid(22784ac93219dee41aa5de69030c4da1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Button.png using Guid(22784ac93219dee41aa5de69030c4da1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '558493d45d86be252f3c3755b603b337') in 0.008290 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002438 seconds.
-  path: Assets/Questionnaires/Data/Answers/questionnaireID_SSQ_participantID_id1_condition_A_example-answer-sheet.csv
-  artifactKey: Guid(ddff4df6619e29441aca482f704b6df3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Answers/questionnaireID_SSQ_participantID_id1_condition_A_example-answer-sheet.csv using Guid(ddff4df6619e29441aca482f704b6df3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a9a8aa038773103a74f69fa487310875') in 0.001828 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002573 seconds.
-  path: Assets/Resources/Sprites/Slider_14.png
-  artifactKey: Guid(c42cc71a53ee81a4e84cb6dad057f092) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_14.png using Guid(c42cc71a53ee81a4e84cb6dad057f092) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fcc71cc452510a202f090c06e6c973e7') in 0.007842 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002336 seconds.
-  path: Assets/Questionnaires/Scripts/FeedbackManager.cs
-  artifactKey: Guid(29ad5df255829514c90128aed693f12b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Scripts/FeedbackManager.cs using Guid(29ad5df255829514c90128aed693f12b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83d5cde30abc53893619a29b7bac469c') in 0.001349 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002084 seconds.
-  path: Assets/Questionnaires/Data/Questions/Simulation Sickness Questionnaire
-  artifactKey: Guid(edd0af52e1752cb499b98a9e998b760a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Questions/Simulation Sickness Questionnaire using Guid(edd0af52e1752cb499b98a9e998b760a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '894c207ba2600c4b9d417d0c73a18843') in 0.001593 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002148 seconds.
-  path: Assets/Resources/Sprites/NasaCheck.png
-  artifactKey: Guid(d25945f0f9f70624fa719cf1b89e03b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/NasaCheck.png using Guid(d25945f0f9f70624fa719cf1b89e03b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bae9a080cb9c55960503136e21d4dbd4') in 0.007760 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002430 seconds.
-  path: Assets/Resources/Sprites/Knob.png
-  artifactKey: Guid(d84be40b49093724e947c098afd56fb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Knob.png using Guid(d84be40b49093724e947c098afd56fb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca884e42c322256cb17556e78bbae9e7') in 0.007678 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002437 seconds.
-  path: Assets/Questionnaires/Data/Answers/questionnaireID_exampleQE_participantID_id3_condition_AB_example-answer-sheet.csv
-  artifactKey: Guid(3be2d60bb789070418f14458413482c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Answers/questionnaireID_exampleQE_participantID_id3_condition_AB_example-answer-sheet.csv using Guid(3be2d60bb789070418f14458413482c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e94c3cd056c4461fa1c1df512d96b16') in 0.001803 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002129 seconds.
-  path: Assets/Resources/Sprites/Slider_9.png
-  artifactKey: Guid(562a7209091c90a42a0a37dc4becb869) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_9.png using Guid(562a7209091c90a42a0a37dc4becb869) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b75b5d46f5556fad16aa056d28597ff7') in 0.008237 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002498 seconds.
-  path: Assets/VRSTK/Events/TrackVRQuestionnaireToolkitUncannyValley34206.asset
-  artifactKey: Guid(e42b7bbc185b8954abafaeb078359327) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Events/TrackVRQuestionnaireToolkitUncannyValley34206.asset using Guid(e42b7bbc185b8954abafaeb078359327) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '39ce307f7fc9f32ef49967bff81eee94') in 0.001770 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002078 seconds.
-  path: Assets/Questionnaires/Prefabs/Base/Questionnaire.prefab
-  artifactKey: Guid(4c6cc58c027d248458484da2093c22bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Base/Questionnaire.prefab using Guid(4c6cc58c027d248458484da2093c22bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fbd5d983f53e484c91adad73eadc9f78') in 0.003007 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002423 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_16.prefab
-  artifactKey: Guid(6b2280fe36317974fbaf23d678022347) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_16.prefab using Guid(6b2280fe36317974fbaf23d678022347) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c825506a27a40b12c69ec5d0914bf9d8') in 0.021049 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002261 seconds.
-  path: Assets/Resources/Sprites/Slider_7.png
-  artifactKey: Guid(13c2f707d3ab0554ab16b01a0b29b96b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_7.png using Guid(13c2f707d3ab0554ab16b01a0b29b96b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0698055fa10ffcdf066e5f02688a26b0') in 0.008043 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001808 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Types
-  artifactKey: Guid(75c72b28097cce648b67a84fa6c3c0c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Types using Guid(75c72b28097cce648b67a84fa6c3c0c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9544b6650c403f723a78c8b27b1eb113') in 0.001206 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001963 seconds.
-  path: Assets/Questionnaires/Data/Questions/SUS Presence Questionnaire
-  artifactKey: Guid(489f3a9a983a82b4988f954909b79787) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Questions/SUS Presence Questionnaire using Guid(489f3a9a983a82b4988f954909b79787) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d056394c3789d031d478049411e262b') in 0.001557 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002130 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/Answers/questionnaireID_SSQ_ALL_SSQAnswers.csv
-  artifactKey: Guid(d2ee6083875f7c643bed347d941897d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/Answers/questionnaireID_SSQ_ALL_SSQAnswers.csv using Guid(d2ee6083875f7c643bed347d941897d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd32748a8e61f39064a933b9ec300a72b') in 0.001619 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001340 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/radioGrid
-  artifactKey: Guid(947a1805c70175e409abd3c4b024b2f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/radioGrid using Guid(947a1805c70175e409abd3c4b024b2f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e39549796f1894eacc011426a2725b26') in 0.001316 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001313 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Types/Checkbox
-  artifactKey: Guid(0ed5260da7f0d80469d388053c021ede) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Types/Checkbox using Guid(0ed5260da7f0d80469d388053c021ede) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '187534a734c0d8bc08979ff000705296') in 0.001219 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002352 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_1.prefab
-  artifactKey: Guid(2cf4760490c7bba41a23e65f50e97531) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_1.prefab using Guid(2cf4760490c7bba41a23e65f50e97531) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3c87ce94cbb19d098812727c99f55b2') in 0.021383 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002197 seconds.
-  path: Assets/Questionnaires/Data/Answers/questionnaireID_exampleQE_participantID_id2_condition_B_example-answer-sheet.csv
-  artifactKey: Guid(53988c169b6212f46a713521800cdd75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Answers/questionnaireID_exampleQE_participantID_id2_condition_B_example-answer-sheet.csv using Guid(53988c169b6212f46a713521800cdd75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a633984c0be6e65633f2c8b8ebcf904b') in 0.001647 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002005 seconds.
-  path: Assets/Questionnaires/Readme.txt
-  artifactKey: Guid(53af6818b5a94d343b359d96164d574c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Readme.txt using Guid(53af6818b5a94d343b359d96164d574c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7856bcb01170fc1a4f12605b755ab230') in 0.001550 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002745 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_15.prefab
-  artifactKey: Guid(f3c324f89122047428a6f70996ba1431) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_15.prefab using Guid(f3c324f89122047428a6f70996ba1431) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1216ae3888b1245e77691562e0c24e2f') in 0.020962 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001392 seconds.
-  path: Assets/Questionnaires/Prefabs/Base
-  artifactKey: Guid(7f44c789072e83849a85a468b5fd4a0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Base using Guid(7f44c789072e83849a85a468b5fd4a0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '297e7c3cfb64dbdc1b1b99a84813d0cd') in 0.001225 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002017 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/linearSlider/LinearSlider.prefab
-  artifactKey: Guid(e93fba8e02ee4504ab86f9ae01c32180) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/linearSlider/LinearSlider.prefab using Guid(e93fba8e02ee4504ab86f9ae01c32180) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf9300d0cb4c7a7faeb1ef200c64bda5') in 0.016019 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002252 seconds.
-  path: Assets/Resources/Sprites/Slider_5.png
-  artifactKey: Guid(18616f0ca1348874299779e969b93355) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_5.png using Guid(18616f0ca1348874299779e969b93355) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23de5a5b48ae0bc68b0dffe20c376ebd') in 0.007924 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002959 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_14.prefab
-  artifactKey: Guid(5d92ac4d73c621a4aa30ed8cf53e5eb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_14.prefab using Guid(5d92ac4d73c621a4aa30ed8cf53e5eb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db22a6c5427a8fd41d4e8562d0713daf') in 0.020265 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002492 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_4.prefab
-  artifactKey: Guid(95e7305f4102b9f43a5ea5b03827e69f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_4.prefab using Guid(95e7305f4102b9f43a5ea5b03827e69f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c1b606cab583bed66de0eabb714ad8c') in 0.020284 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002172 seconds.
-  path: Assets/Questionnaires/Data/Answers/questionnaireID_exampleQE_participantID_id4_condition_B_example-answer-sheet.csv
-  artifactKey: Guid(ee2ff0a1ea8485e4096285a2738511be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Answers/questionnaireID_exampleQE_participantID_id4_condition_B_example-answer-sheet.csv using Guid(ee2ff0a1ea8485e4096285a2738511be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23532724bb38bb70a528dd2e187b19e3') in 0.001800 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001414 seconds.
-  path: Assets/Questionnaires/Scenes
-  artifactKey: Guid(6edeba5bd185a8744b958d2890fd7cd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Scenes using Guid(6edeba5bd185a8744b958d2890fd7cd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d1bff5e13bca26ca4e88b208b5cecae') in 0.001206 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001929 seconds.
-  path: Assets/Resources/BillingMode.json
-  artifactKey: Guid(271c485daf4f91d44b958f7a929004dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/BillingMode.json using Guid(271c485daf4f91d44b958f7a929004dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f3ff2ed5eda83dab1ea6e1fd1e7be7b3') in 0.004732 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001434 seconds.
-  path: Assets/VRSTK/SampleSceneData
-  artifactKey: Guid(8073f2b9af45c1e4998f33b5414087cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData using Guid(8073f2b9af45c1e4998f33b5414087cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9708d304125b6c6cf6b5c9e4823bb9df') in 0.001344 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001440 seconds.
-  path: Assets/Questionnaires/Data/Questions
-  artifactKey: Guid(1fa9d334af5d18649aa7455735784808) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Questions using Guid(1fa9d334af5d18649aa7455735784808) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f94f0ae2c291e86ec4dffa3e6b98b53') in 0.001199 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001976 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Types/Checkbox/Checkbox.prefab
-  artifactKey: Guid(43859c6bd59d8284c943160a749c0e2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Types/Checkbox/Checkbox.prefab using Guid(43859c6bd59d8284c943160a749c0e2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '890fc4c25b83beed8111e4496b3bccff') in 0.016775 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001538 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire
-  artifactKey: Guid(136de2c3ffb71384e866150e77760bb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire using Guid(136de2c3ffb71384e866150e77760bb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b1f727d00a77a8346a399707748ab8c') in 0.001446 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001440 seconds.
-  path: Assets/Questionnaires/Data/Answers
-  artifactKey: Guid(c15c4376d0552af4f9e2a081efc35ded) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Answers using Guid(c15c4376d0552af4f9e2a081efc35ded) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec58b34b432cfaa1fc7d0f9aa504bd38') in 0.001198 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001524 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Types/LinearSlider
-  artifactKey: Guid(5043184a1f2b58a41b110f9bc87ec0f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Types/LinearSlider using Guid(5043184a1f2b58a41b110f9bc87ec0f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fdd0e00f2cc39a63e070688e04896f5e') in 0.001184 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002054 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/Questions/UncannyValleyQuestionnaire
-  artifactKey: Guid(c869c273a4d8bd244bdb76c5ae0b53ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/Questions/UncannyValleyQuestionnaire using Guid(c869c273a4d8bd244bdb76c5ae0b53ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd41bef00421dafe5caada9db8694cdd') in 0.001727 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002087 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/PageParameters.cs
-  artifactKey: Guid(fc81af68954b86f4098a423e606d63ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/PageParameters.cs using Guid(fc81af68954b86f4098a423e606d63ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6792e3bc3ab08c26efda89c753cff33') in 0.001339 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001949 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/PageReplay.cs
-  artifactKey: Guid(17d13faae518bdb499ce261b7118061e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/PageReplay.cs using Guid(17d13faae518bdb499ce261b7118061e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '454a7c45a40bdbd1ac66c415a5dbf21f') in 0.001531 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001341 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/Questions
-  artifactKey: Guid(b1b6fd0008e38e8498304a80d270c330) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/Questions using Guid(b1b6fd0008e38e8498304a80d270c330) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd677dc99c72f59e7066099ffc08b7ecd') in 0.001215 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002115 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/GenerateQuestionnaire.cs
-  artifactKey: Guid(fe9e5866d96ac1848bab8f0a9b76735d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/GenerateQuestionnaire.cs using Guid(fe9e5866d96ac1848bab8f0a9b76735d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b2fa79b018cc7ef78426430d8cb8e39') in 0.001323 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002370 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_11.prefab
-  artifactKey: Guid(d7d05d858a081194898c7da4a2e9c841) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_11.prefab using Guid(d7d05d858a081194898c7da4a2e9c841) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '284451dc577a901bbb59ed48723eef3a') in 0.024861 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002432 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/radio/RadioButton.prefab
-  artifactKey: Guid(644f7c84c03fe054a9094b36a489f23a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/radio/RadioButton.prefab using Guid(644f7c84c03fe054a9094b36a489f23a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc009476641848ea2dcab862f25826a7') in 0.014607 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002038 seconds.
-  path: Assets/Resources/Sounds/sound-morse.mp3
-  artifactKey: Guid(d7d08c266925c5446947a004fde53aa0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sounds/sound-morse.mp3 using Guid(d7d08c266925c5446947a004fde53aa0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a847e0348e34f160070e2a3f60361c90') in 0.079926 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002670 seconds.
-  path: Assets/Questionnaires/Prefabs/Base/Page.prefab
-  artifactKey: Guid(10ab8be59b9f9e64aaff831af8b132a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Base/Page.prefab using Guid(10ab8be59b9f9e64aaff831af8b132a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92824f6d4079d0d3837911ed355a54ce') in 0.016531 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001920 seconds.
-  path: Assets/VRSTK/Events/TrackPages28800.asset
-  artifactKey: Guid(e7aaf89af8f2af644a5099cd611b0a90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Events/TrackPages28800.asset using Guid(e7aaf89af8f2af644a5099cd611b0a90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '78b718bcafb0dc8376ca3d863da274f4') in 0.001803 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002128 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Base/Questionnaire.prefab
-  artifactKey: Guid(7a44fb57c0f78554483ef7c4995adcbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Base/Questionnaire.prefab using Guid(7a44fb57c0f78554483ef7c4995adcbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ede569bb89a35c019a90fdb63182c73b') in 0.025506 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002181 seconds.
-  path: Assets/Questionnaires/Data/Answers/questionnaireID_exampleQE_participantID_id1_condition_A_example-answer.csv
-  artifactKey: Guid(cc1364c3174a19b4e8150ada0a67e86f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Answers/questionnaireID_exampleQE_participantID_id1_condition_A_example-answer.csv using Guid(cc1364c3174a19b4e8150ada0a67e86f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36a1c850d3e608dfc966d911502e4d59') in 0.001692 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002521 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_7.prefab
-  artifactKey: Guid(a0bcbf05aaf88634ca4dcc30b2db6030) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_7.prefab using Guid(a0bcbf05aaf88634ca4dcc30b2db6030) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97b2e98d7bb1c7c747a8871144485c13') in 0.021347 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002156 seconds.
-  path: Assets/Resources/Sprites/stick.png
-  artifactKey: Guid(84a0d8801a0fdac4e9023d61e0e94c2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/stick.png using Guid(84a0d8801a0fdac4e9023d61e0e94c2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2bd6cc6d2c75e76be087f8b5a737798') in 0.007985 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002356 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/defaultPage/LastPage.prefab
-  artifactKey: Guid(1b2cccbd184a3564e9f805c7d4321290) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/defaultPage/LastPage.prefab using Guid(1b2cccbd184a3564e9f805c7d4321290) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b34d7e671b21b863339452ba4275226') in 0.014835 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002161 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/QuestionsAnswerRecord.cs
-  artifactKey: Guid(315235904522c1f4fa22abad70afa843) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/QuestionsAnswerRecord.cs using Guid(315235904522c1f4fa22abad70afa843) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63107674970a0a4867e2b69e16817d88') in 0.001425 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002001 seconds.
-  path: Assets/Resources/Templates/survey-results.php
-  artifactKey: Guid(26dcb6c4d29cc455e8f8ae2afe5f1032) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Templates/survey-results.php using Guid(26dcb6c4d29cc455e8f8ae2afe5f1032) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d468e897ce793a3b7a5fc17ca14f1f9') in 0.002638 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002042 seconds.
-  path: Assets/Questionnaires/Scripts/Questions/Radio.cs
-  artifactKey: Guid(642379eb21d6e8d45930ab50df2fdadd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Scripts/Questions/Radio.cs using Guid(642379eb21d6e8d45930ab50df2fdadd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '618db12bffb81795110dbb60a646764c') in 0.001340 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002056 seconds.
-  path: Assets/Resources/Sprites/Slider_16.png
-  artifactKey: Guid(170c8e6377b5c5041a8655b7d504eaa6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_16.png using Guid(170c8e6377b5c5041a8655b7d504eaa6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd3766e2653878d98ea65c0d33f04895f') in 0.008944 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002378 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/dropdown/Dropdown.prefab
-  artifactKey: Guid(0ec0426addea2e143816ae67b6612e2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/dropdown/Dropdown.prefab using Guid(0ec0426addea2e143816ae67b6612e2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '462a873a9031cfa6b8298ac48e253d1a') in 0.015931 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001862 seconds.
-  path: Assets/VRSTK/Events/TrackPages.asset
-  artifactKey: Guid(fe7d8b527e21e9e41b89b87e759bd104) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Events/TrackPages.asset using Guid(fe7d8b527e21e9e41b89b87e759bd104) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa1b6e27ae47c4aa5326f7f1240da04f') in 0.001972 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002251 seconds.
-  path: Assets/Resources/Sprites/Slider_10.png
-  artifactKey: Guid(4b700f322c7a1c14fbaacf94ea8d5774) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_10.png using Guid(4b700f322c7a1c14fbaacf94ea8d5774) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e9af3da9bfc99eeeccd8ea693aa39d7') in 0.008271 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002826 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_9.prefab
-  artifactKey: Guid(3aa252666a9fe214698d7db6d4214176) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_9.prefab using Guid(3aa252666a9fe214698d7db6d4214176) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4335f71eb4731d1a032d2c408e98cd84') in 0.022574 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001546 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/checkbox
-  artifactKey: Guid(8622b4c511a56ee4a8203fc329f772f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/checkbox using Guid(8622b4c511a56ee4a8203fc329f772f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '65a0074637165399482c2195c5090bb9') in 0.001369 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002228 seconds.
-  path: Assets/Resources/Sprites/Slider_4.png
-  artifactKey: Guid(9c6f50a7e2602e54c970f00b820ab1f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_4.png using Guid(9c6f50a7e2602e54c970f00b820ab1f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f8ea6d72645ef606f2d27bd3df691d7') in 0.009274 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001849 seconds.
-  path: Assets/Questionnaires/Scripts
-  artifactKey: Guid(e6fd267a2f666004cba8e96dd8ac9a6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Scripts using Guid(e6fd267a2f666004cba8e96dd8ac9a6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c3c058d9dc6b0bbd50ff6b8c6d6ad52') in 0.001401 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002123 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/VRQuestionnaireToolkit.prefab
-  artifactKey: Guid(153de377b4ba0d148bde185bc340a990) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/VRQuestionnaireToolkit.prefab using Guid(153de377b4ba0d148bde185bc340a990) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '13489eb087f058dc47abb601572d46ad') in 0.026715 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002394 seconds.
-  path: Assets/Questionnaires/Data/Answers/questionnaireID_Usability_participantID_id1_condition_AB_answers.csv
-  artifactKey: Guid(414f2f736cf687245bc273cd47347250) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Data/Answers/questionnaireID_Usability_participantID_id1_condition_AB_answers.csv using Guid(414f2f736cf687245bc273cd47347250) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e968af49b40237551d7440d6ccc9c77') in 0.001863 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002145 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/ExportToCSV.cs
-  artifactKey: Guid(bbfcd7393ab4ddb4eb82d9adff5e4e5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/ExportToCSV.cs using Guid(bbfcd7393ab4ddb4eb82d9adff5e4e5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b37161d1aac3c6fbb309abbfc3347d2') in 0.001402 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002043 seconds.
-  path: Assets/Resources/Sounds/sound-pop.mp3
-  artifactKey: Guid(7b660b21fad7af34e806c3f3c4eb8868) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sounds/sound-pop.mp3 using Guid(7b660b21fad7af34e806c3f3c4eb8868) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e040bbb6abd3f93d35a5690bfb50edde') in 0.007432 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001734 seconds.
-  path: Assets/VRSTK/SampleSceneData/Questionnaires
-  artifactKey: Guid(262d3a562eb711643b29dbcc9acc21be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/SampleSceneData/Questionnaires using Guid(262d3a562eb711643b29dbcc9acc21be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0f740efe16b7c8a5446aab7a5d8ef60') in 0.001269 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001874 seconds.
-  path: Assets/Questionnaires/Scenes/SampleScene.unity
-  artifactKey: Guid(a96c8546eb6283648be715d838036698) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Scenes/SampleScene.unity using Guid(a96c8546eb6283648be715d838036698) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '53133511c63e096470dd6957205fc429') in 0.001827 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002056 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Types/Checkbox/CheckBoxButton.prefab
-  artifactKey: Guid(625e74e018ff2254e989b1bed611402e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Types/Checkbox/CheckBoxButton.prefab using Guid(625e74e018ff2254e989b1bed611402e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7f9a0691a923aaf1e30508db38a7d19') in 0.017466 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002397 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Types/Dropdown/DropdownButon.prefab
-  artifactKey: Guid(4f321484db31fe645a14e64c16151d23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Types/Dropdown/DropdownButon.prefab using Guid(4f321484db31fe645a14e64c16151d23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6fa8a9f39af15c96923304199ab91187') in 0.020201 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002210 seconds.
-  path: Assets/VRSTK/Events/TrackPages28114.asset
-  artifactKey: Guid(4e95894830225da48b2ddb36d3c9e8a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Events/TrackPages28114.asset using Guid(4e95894830225da48b2ddb36d3c9e8a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2cd02343a13b581bb387dd9aad7dbe6') in 0.001821 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001399 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/defaultPage
-  artifactKey: Guid(02dd9ce3d7d6bce4cb3b6f610aa1e1dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/defaultPage using Guid(02dd9ce3d7d6bce4cb3b6f610aa1e1dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '31366be4b6326669f0afb615b3c02250') in 0.001370 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002359 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/GenerateQuestionnaireEditor.cs
-  artifactKey: Guid(dd6e9bb0a7229d340990508afe42d71d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/GenerateQuestionnaireEditor.cs using Guid(dd6e9bb0a7229d340990508afe42d71d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '270cc412ac30b690e6e788720c38f1d8') in 0.001371 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002121 seconds.
-  path: Assets/Questionnaires/Scripts/StudySetup.cs
-  artifactKey: Guid(de41a7e30bb47a94fbabd5a537794de9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Scripts/StudySetup.cs using Guid(de41a7e30bb47a94fbabd5a537794de9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77c6333f37fc8353b243c1e941920d08') in 0.001389 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002096 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/radioGrid/RadioGridButton.prefab
-  artifactKey: Guid(3036da2b8a322a143a75712f880718f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/radioGrid/RadioGridButton.prefab using Guid(3036da2b8a322a143a75712f880718f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b90cdb71e45194392e823b56ed4cb4a7') in 0.016505 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002263 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/PageFactory.cs
-  artifactKey: Guid(88dc864b2626fa8428a8f327e1564540) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/PageFactory.cs using Guid(88dc864b2626fa8428a8f327e1564540) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c2d6fdc9178908b0505248411e51f26') in 0.001649 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002160 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/QualityParameters.cs
-  artifactKey: Guid(72420be921bea6e4e97919d0f4a05cf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/QualityParameters.cs using Guid(72420be921bea6e4e97919d0f4a05cf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c28d376fde44feb6b69b332d07d00443') in 0.001370 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002339 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/FeedbackManager.cs
-  artifactKey: Guid(14cf41c9b1db18c4b9930b6f0869a4c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/FeedbackManager.cs using Guid(14cf41c9b1db18c4b9930b6f0869a4c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b88e2619f12da1b7f14d7724e85710b3') in 0.001230 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002132 seconds.
-  path: Assets/Resources/Sprites/ButtonSmall.png
-  artifactKey: Guid(5c14fb68cc2af7a488f0962eefd01a90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/ButtonSmall.png using Guid(5c14fb68cc2af7a488f0962eefd01a90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab95f3fdba7c17d73b33e95691bb126c') in 0.008742 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002890 seconds.
-  path: Assets/Resources/Sprites/Slider_15.png
-  artifactKey: Guid(7d8b7249624bd9c49804f2f854c76c00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sprites/Slider_15.png using Guid(7d8b7249624bd9c49804f2f854c76c00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3251332140d5d7ab3470aaa0d8fb9b5') in 0.009280 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001863 seconds.
-  path: Assets/Resources/Sounds
-  artifactKey: Guid(dffc3a0550c23c64c8a3167281b7802e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Sounds using Guid(dffc3a0550c23c64c8a3167281b7802e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f25557cd756cc669b224e08e40b5840c') in 0.001373 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001551 seconds.
-  path: Assets/Resources
-  artifactKey: Guid(802c9f080ce8f3842a07a1c5d4be708f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources using Guid(802c9f080ce8f3842a07a1c5d4be708f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0018d04482883b38a266258a337536aa') in 0.001407 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.001486 seconds.
-  path: Assets/Questionnaires/Prefabs
-  artifactKey: Guid(a79218568520b1740b24fadc33946061) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs using Guid(a79218568520b1740b24fadc33946061) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3d26449c99eead2bca47d437a58f6d0') in 0.001245 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002171 seconds.
-  path: Assets/Questionnaires/Scripts/Questions/Checkbox.cs
-  artifactKey: Guid(0471ca62bc874fb4e8456b027b296207) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Scripts/Questions/Checkbox.cs using Guid(0471ca62bc874fb4e8456b027b296207) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3c43319107015d0647409e987daedb0e') in 0.001227 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002112 seconds.
-  path: Assets/Questionnaires/Prefabs/Types/linearGrid/LinearGrid.prefab
-  artifactKey: Guid(897062dcf793b6e498aa373709935e7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Questionnaires/Prefabs/Types/linearGrid/LinearGrid.prefab using Guid(897062dcf793b6e498aa373709935e7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5da0bafff98cd51c6898b4fcda9dca9') in 0.016771 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002076 seconds.
-  path: Assets/VRSTK/Scripts/Questionnaires/PageStatistic.cs
-  artifactKey: Guid(08ee4419f01b36e4ca2f28771c7bad2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Scripts/Questionnaires/PageStatistic.cs using Guid(08ee4419f01b36e4ca2f28771c7bad2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd597e401ac08a08be8c4e3d224ae7c8a') in 0.001369 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.002154 seconds.
-  path: Assets/VRSTK/Prefabs/Questionaire/Types/LinearSlider/LinearSlider.prefab
-  artifactKey: Guid(06f5c5fb749f5584791e089743039c9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/VRSTK/Prefabs/Questionaire/Types/LinearSlider/LinearSlider.prefab using Guid(06f5c5fb749f5584791e089743039c9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d19bc380d585217cba39dccb33cd451') in 0.016363 seconds 
+Start importing Assets/VRSTK/Scenes/AutomaticDataAnalysis.unity using Guid(4410213cbd43325479b21bdb18be6332) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e03a4eec66622d3296681eaf015f22c1') in 0.015924 seconds 
+  Import took 0.020743 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000186 seconds.
+  path: Assets/VRSTK/Scenes
+  artifactKey: Guid(3b1d9971e8e871845889d4349016150e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scenes using Guid(3b1d9971e8e871845889d4349016150e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77b28c9b86e129a140a17d20cdd14bb6') in 0.004057 seconds 
+  Import took 0.008767 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006432 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.04 ms, found 11 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.888 seconds
+Domain Reload Profiling:
+	ReloadAssembly (888ms)
+		BeginReloadAssembly (98ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (29ms)
+		EndReloadAssembly (741ms)
+			LoadAssemblies (79ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (230ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (41ms)
+			SetupLoadedEditorAssemblies (301ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (93ms)
+				ProcessInitializeOnLoadAttributes (161ms)
+				ProcessInitializeOnLoadMethodAttributes (34ms)
+				AfterProcessingInitializeOnLoad (5ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.08 ms, found 11 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3997 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 160.0 MB.
+System memory in use after: 160.3 MB.
+
+Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 4473.
+Total: 4.903600 ms (FindLiveObjects: 0.306200 ms CreateObjectMapping: 0.154900 ms MarkObjects: 4.410500 ms  DeleteObjects: 0.030500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.208270 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.25 ms, found 11 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.404 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1405ms)
+		BeginReloadAssembly (112ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (35ms)
+		EndReloadAssembly (1108ms)
+			LoadAssemblies (108ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (424ms)
+			ReleaseScriptCaches (3ms)
+			RebuildScriptCaches (51ms)
+			SetupLoadedEditorAssemblies (395ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (6ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (118ms)
+				ProcessInitializeOnLoadAttributes (215ms)
+				ProcessInitializeOnLoadMethodAttributes (47ms)
+				AfterProcessingInitializeOnLoad (6ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (8ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 2.03 ms, found 11 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3997 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 160.1 MB.
+System memory in use after: 160.3 MB.
+
+Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 4476.
+Total: 6.079700 ms (FindLiveObjects: 0.419000 ms CreateObjectMapping: 0.260400 ms MarkObjects: 5.360400 ms  DeleteObjects: 0.038200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file

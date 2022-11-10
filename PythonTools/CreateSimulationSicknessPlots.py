@@ -6,7 +6,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 import os
-
+# einfaktorielle anaylse anova
+from scipy.stats import f_oneway
+from scipy.stats import anderson
+from scipy.stats import mannwhitneyu
 
 condition = "A"
 selected_condition = "Condition " + condition
@@ -21,7 +24,7 @@ folder_path = "../RTools/{}/RResults/Questionnaires".format(selected_condition)
 if "A" in condition:
     motion_sickness_questionnairy_file_name = "{}/AllMSSQ_Pure_StatisticResults_DataFrame.csv".format(folder_path)
     print(motion_sickness_questionnairy_file_name)
-    loaded_motion_sickness_data_frame = pd.read_csv(motion_sickness_questionnairy_file_name, sep=";", decimal=",")
+    loaded_motion_sickness_data_frame = pd.read_csv(motion_sickness_questionnairy_file_name, sep=";", decimal=",", encoding='ANSI')
     print(loaded_motion_sickness_data_frame.head(5))
 
     titel = "Wie oft haben Sie sich krank gefühlt oder Übelkeit verspürt?"
@@ -116,3 +119,102 @@ plt.tight_layout()
 plt.savefig(plot_file_name_to_save)
 #plt.show()
 plt.close()
+
+
+
+# -----------------------------------------------------------------------------------------------------------------------
+# Simulation Sickness Questionnairy statistic results file anova test
+# -----------------------------------------------------------------------------------------------------------------------
+# Ratingskala: Keine = 0, Leicht = 1, Moderat = 2, Stark = 3
+
+# Condition A
+folder_path = "../RTools/Condition A/RResults/Questionnaires".format(selected_condition)
+simulation_sickness_questionnairy_file_name_a = "{}/AllSSQConditionStatisticResults_DataFrame.csv".format(folder_path)
+print(simulation_sickness_questionnairy_file_name_a)
+loaded_simulation_sickness_data_frame_a = pd.read_csv(simulation_sickness_questionnairy_file_name_a, sep=";", decimal=",")
+print(loaded_simulation_sickness_data_frame_a.head(5))
+
+# Condition B
+folder_path = "../RTools/Condition B/RResults/Questionnaires".format(selected_condition)
+simulation_sickness_questionnairy_file_name_b = "{}/AllSSQConditionStatisticResults_DataFrame.csv".format(folder_path)
+print(simulation_sickness_questionnairy_file_name_b)
+loaded_simulation_sickness_data_frame_b = pd.read_csv(simulation_sickness_questionnairy_file_name_b, sep=";", decimal=",")
+print(loaded_simulation_sickness_data_frame_b.head(5))
+
+folder_path = "../RTools/Condition C/RResults/Questionnaires".format(selected_condition)
+simulation_sickness_questionnairy_file_name_c = "{}/AllSSQConditionStatisticResults_DataFrame.csv".format(folder_path)
+print(simulation_sickness_questionnairy_file_name_c)
+loaded_simulation_sickness_data_frame_c = pd.read_csv(simulation_sickness_questionnairy_file_name_c, sep=";", decimal=",")
+print(loaded_simulation_sickness_data_frame_c.head(5))
+
+data_a = loaded_simulation_sickness_data_frame_a.loc[:, 'mean'].to_numpy(dtype='float32')
+data_b = loaded_simulation_sickness_data_frame_b.loc[:, 'mean'].to_numpy(dtype='float32')
+data_c = loaded_simulation_sickness_data_frame_c.loc[:, 'mean'].to_numpy(dtype='float32')
+
+# Anderson-Normality-Test
+print("Anderson-Test for check data to normal distribution\n------------------------------------------------------------\n")
+anova_test_content = "Anderson-Test for check data to normal distribution\n------------------------------------------------------------\n"
+statistic = anderson(data_a, dist='norm')
+anova_test_content = "{}Condition Group A :\n statistic: {} \n".format(anova_test_content, statistic)
+print(anova_test_content)
+statistic = anderson(data_b, dist='norm')
+anova_test_content = "{}Condition Group B :\n statistic: {} \n".format(anova_test_content, statistic)
+print(anova_test_content)
+statistic = anderson(data_c, dist='norm')
+anova_test_content = "{}Condition Group C :\n statistic: {} \n".format(anova_test_content, statistic)
+print(anova_test_content)
+print("\n------------------------------------------------------------\n")
+anova_test_content = "{}\n------------------------------------------------------------\n".format(anova_test_content)
+
+# ANOVA test
+# ------------
+anova_test_content = "{}ANOVA SSQ-Gruppen-Test    (F-Value)   (p-Value)   conditions-based\n------------------------------------------------------------\n".format(anova_test_content)
+print("ANOVA SSQ-Gruppen-Test")
+print("------------------------------------------------------------ ")
+
+fvalue, pvalue = f_oneway(data_a, data_b)
+anova_test_content = "{}On A and B: & \({}\)      & \({}\)\n".format(anova_test_content, fvalue, pvalue)
+print("On A and B")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+
+fvalue, pvalue = f_oneway(data_a, data_c)
+anova_test_content = "{}On A and C: & \({}\)      & \({}\)\n".format(anova_test_content, fvalue, pvalue)
+print("On A and C")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+
+fvalue, pvalue = f_oneway(data_b, data_c)
+anova_test_content = "{}On B and C: & \({}\)      & \({}\)\n".format(anova_test_content, fvalue, pvalue)
+print("On B and C")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+
+fvalue, pvalue = f_oneway(data_a, data_b, data_c)
+anova_test_content = "{}On A and B and C: & \({}\)      & \({}\)\n".format(anova_test_content,fvalue, pvalue)
+print("On A and B and C")
+print("F-Value: {}  p-Value: {}".format(fvalue, pvalue))
+anova_test_content = "{}\n------------------------------------------------------------\n".format(anova_test_content)
+
+# Mann-Whitney U test
+# ------------
+anova_test_content = "{}Mann-Whitney U test SSQ-Gruppen-Test    (W-statistic)   (p-Value)   conditions-based\n------------------------------------------------------------\n".format(anova_test_content)
+print("Mann-Whitney U test SSQ-Gruppen-Test")
+print("------------------------------------------------------------ ")
+statistic, pvalue = mannwhitneyu(data_a, data_b, method="exact")
+anova_test_content = "{}On A and B: & \({}\)      & \({}\)\n".format(anova_test_content, statistic, pvalue)
+print("On A and B")
+print("statistic: {}  p-Value: {}".format(fvalue, pvalue))
+
+statistic, pvalue = mannwhitneyu(data_a, data_c)
+anova_test_content = "{}On A and C: & \({}\)      & \({}\)\n".format(anova_test_content, statistic, pvalue)
+print("On A and C")
+print("statistic: {}  p-Value: {}".format(fvalue, pvalue))
+
+statistic, pvalue = mannwhitneyu(data_b, data_c, method="exact")
+anova_test_content = "{}On B and C: & \({}\)      & \({}\)\n".format(anova_test_content, statistic, pvalue)
+print("On B and C")
+print("statistic: {}  p-Value: {}".format(fvalue, pvalue))
+anova_test_content = "{}\n------------------------------------------------------------\n".format(anova_test_content)
+
+file_name = "../RTools/SSQ_ANOVA_Results.txt"
+file = open(file_name, "w")
+file.write(anova_test_content)
+file.close()
