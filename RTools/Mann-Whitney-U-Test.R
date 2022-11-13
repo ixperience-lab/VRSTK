@@ -348,3 +348,65 @@ for (test_variable in c("TotalFixationCounter", "SaccadeCounter", "LeftPercentCh
   ggsave(path_png_file, width = 15, height = 10)
   
 }
+
+# Test version
+# ===================================
+# read data 
+input_ssq_ca <- read.csv2(file = './Condition A/RResults/Questionnaires/AllSSQConditionStatisticResults_DataFrame.csv')
+input_ssq_cb <- read.csv2(file = './Condition B/RResults/Questionnaires/AllSSQConditionStatisticResults_DataFrame.csv')
+input_ssq_cc <- read.csv2(file = './Condition C/RResults/Questionnaires/AllSSQConditionStatisticResults_DataFrame.csv')
+
+# ssq
+# ---------
+wilcoxon_subfolder_dir <- file.path("./wilcoxon_test", "ssq")
+if (!dir.exists(wilcoxon_subfolder_dir)){
+  dir.create(wilcoxon_subfolder_dir)
+}
+
+path_txt_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_ssq_results.txt")
+sink(path_txt_file)
+
+cat("======================================================================================================================================================\n")
+cat("SSQ Variance test between Conditions: A and B \n")
+cat("======================================================================================================================================================\n")
+
+print(ad.test(input_ssq_ca$mean))
+print(ad.test(input_ssq_cb$mean))
+
+print(wilcox.test(input_ssq_ca$mean, input_ssq_cb$mean, exact = FALSE, correct = FALSE, conf.int = FALSE))
+
+sink()
+
+#xlim('Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9', 'Q10', 'Q11', 'Q12', 'Q13', 'Q14', 'Q15', 'Q16') + 
+ggplot(input_ssq_ca, aes(x=mean)) + 
+  geom_histogram() #+ scale_x_continuous(breaks=seq(0,1.5,0.1), limits=c(0,1.5))
+
+path_png_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_ssq_ca_hist_plot.png")
+ggplot(input_ssq_ca, aes(mean)) + 
+  geom_histogram(aes(y=..density..), color='gray50', stat = "bin", fill='blue', alpha=0.2, position = "identity", bins = 8) +
+  labs(title="Condition A histogram")  +
+  xlab(label="Condition A") +
+  ylab(label="Density") +
+  geom_density(alpha=0.2, color='red', fill='red', adjust=1)  +
+  theme(plot.title = element_text(hjust = 0.5)) #+
+ggsave(path_png_file, width = 15, height = 10)
+
+path_png_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_ssq_cb_hist_plot.png")
+ggplot(input_ssq_cb, aes(mean)) + 
+  geom_histogram(aes(y=..density..), color='gray50', fill='blue', alpha=0.2, position = "identity", bins = 8) +
+  labs(title="Condition B histogram")  +
+  xlab(label="Condition B") +
+  ylab(label="Density") +
+  geom_density(alpha=0.2, color='red', fill='red', adjust=1)  +
+  theme(plot.title = element_text(hjust = 0.5)) #+
+ggsave(path_png_file, width = 15, height = 10)
+
+path_png_file <- file.path(wilcoxon_subfolder_dir, "wilcoxon_ssq_cb_hist_plot.png")
+ggplot(input_ssq_cc, aes(mean)) + 
+  geom_histogram(aes(y=..density..), color='gray50', fill='blue', alpha=0.2, position = "identity", bins = 8) +
+  labs(title="Condition B histogram")  +
+  xlab(label="Condition B") +
+  ylab(label="Density") +
+  geom_density(alpha=0.2, color='red', fill='red', adjust=1)  +
+  theme(plot.title = element_text(hjust = 0.5)) #+
+ggsave(path_png_file, width = 15, height = 10)
