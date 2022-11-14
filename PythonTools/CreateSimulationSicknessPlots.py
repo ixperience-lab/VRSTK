@@ -24,7 +24,7 @@ folder_path = "../RTools/{}/RResults/Questionnaires".format(selected_condition)
 if "A" in condition:
     motion_sickness_questionnairy_file_name = "{}/AllMSSQ_Pure_StatisticResults_DataFrame.csv".format(folder_path)
     print(motion_sickness_questionnairy_file_name)
-    loaded_motion_sickness_data_frame = pd.read_csv(motion_sickness_questionnairy_file_name, sep=";", decimal=",", encoding='ANSI')
+    loaded_motion_sickness_data_frame = pd.read_csv(motion_sickness_questionnairy_file_name, sep=";", decimal=",")#, encoding='ANSI')
     print(loaded_motion_sickness_data_frame.head(5))
 
     titel = "Wie oft haben Sie sich krank gefühlt oder Übelkeit verspürt?"
@@ -44,8 +44,8 @@ if "A" in condition:
     plt.yticks(avg_motion_sickness, "0 1 2 3 4", fontsize=14) 
     plt.xlabel("Modalitäten", fontsize=16)
     plt.ylabel("Mittelwert der Ratings", fontsize=16)
-    plt.bar(questions_as_sticks - 0.10, data_young, color = 'blue', width = 0.20, label="Als Kind, jünger als 12 Jahre", zorder=2)
-    plt.bar(questions_as_sticks + 0.10, data_older, color = 'red', width = 0.20, label="Über die letzten 10 Jahre", zorder=2)
+    plt.bar(questions_as_sticks - 0.10, data_young, color = 'blue', width = 0.20, label="< 12 Jahre (Kind)", zorder=2)
+    plt.bar(questions_as_sticks + 0.10, data_older, color = 'red', width = 0.20, label="Letzten 10 Jahre", zorder=2)
     plt.grid(which="major", alpha=0.4)
     plt.grid(which="minor", alpha=0.4)
     plt.legend(title=ratingscale_info, title_fontsize=18, bbox_to_anchor=(1, 0.5), loc='center left', fontsize=16)
@@ -91,9 +91,9 @@ print(simulation_sickness_questionnairy_file_name)
 loaded_simulation_sickness_data_frame = pd.read_csv(simulation_sickness_questionnairy_file_name, sep=";", decimal=",")
 print(loaded_simulation_sickness_data_frame.head(5))
 
-titel = "Simulation-Sickness-Questionnairy anworten"
-ratingscale_info = 'Ratingskala (empfinden eines Symptoms):\n' + 'Keine = 0\n' + 'Leicht = 1\n' + 'Moderat = 2\n' + 'Stark = 3'
-questions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12', 'q13', 'q14', 'q15', 'q16']
+titel = "Simulation-Sickness-Questionnairy Anworten"
+ratingscale_info = 'Ratingskala (Symptome):\n' + 'Keine = 0\n' + 'Leicht = 1\n' + 'Moderat = 2\n' + 'Stark = 3'
+questions = ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9', 'Q10', 'Q11', 'Q12', 'Q13', 'Q14', 'Q15', 'Q16']
 avg_motion_sickness = [0, 0.5, 1, 1.5, 2, 2.5, 3]
 questions_as_sticks = np.arange(16)
 
@@ -133,6 +133,47 @@ simulation_sickness_questionnairy_file_name_a = "{}/AllSSQConditionStatisticResu
 print(simulation_sickness_questionnairy_file_name_a)
 loaded_simulation_sickness_data_frame_a = pd.read_csv(simulation_sickness_questionnairy_file_name_a, sep=";", decimal=",")
 print(loaded_simulation_sickness_data_frame_a.head(5))
+
+# questionnaire_ID_SSQ_ALL_Condition_A_SSQAnswers = "../RTools/Condition A/Questionnaires/Answers/questionnaireID_SSQ_ALL_Condition-A_SSQAnswers.csv".format(folder_path)
+# data_Condition_A = pd.read_csv(questionnaire_ID_SSQ_ALL_Condition_A_SSQAnswers, sep=";", decimal=",")
+# print(data_Condition_A.head(5))
+
+# data_Condition_A["weights"] = (data_Condition_A['Answer_Participant_id-2_condition_Condition A'].values + 
+#            data_Condition_A['Answer_Participant_id-1_condition_Condition A'].values +
+#            data_Condition_A['Answer_Participant_id-3_condition_Condition A'].values +
+#            data_Condition_A['Answer_Participant_id-5_condition_Condition A'].values +
+#            data_Condition_A['Answer_Participant_id-6_condition_Condition A'].values +
+#            data_Condition_A['Answer_Participant_id-7_condition_Condition A'].values +
+#            data_Condition_A['Answer_Participant_id-4_condition_Condition A'].values +
+#            data_Condition_A['Answer_Participant_id-10_condition_Condition A'].values)
+
+# plt.hist(x=[0, 1, 2, 3, 4, 5, 6 ,7 , 8 , 9 , 10, 11 , 12, 13, 14, 15], bins=[0, 1, 2, 3, 4, 5, 6 ,7 , 8 , 9 , 10, 11 , 12, 13, 14, 15], weights=data_Condition_A["weights"])
+# plt.ylabel('Probability')
+# plt.xlabel('Data')
+# plt.show()
+
+# questionnaire_ID_SSQ_ALL_Condition_B_SSQAnswers = "../RTools/Condition B/Questionnaires/Answers/questionnaireID_SSQ_ALL_Condition-B_SSQAnswers.csv".format(folder_path)
+# data_Condition_B = pd.read_csv(questionnaire_ID_SSQ_ALL_Condition_B_SSQAnswers, sep=";", decimal=",")
+# print(data_Condition_B.head(5))
+
+# data_Condition_B["weights"] = (data_Condition_B['Answer_Participant_id-13_condition_Condition B'].values + 
+#            data_Condition_B['Answer_Participant_id-14_condition_Condition B'].values +
+#            data_Condition_B['Answer_Participant_id-15_condition_Condition B'].values +
+#            data_Condition_B['Answer_Participant_id-16_condition_Condition B'].values +
+#            data_Condition_B['Answer_Participant_id-17b_condition_Condition B'].values +
+#            data_Condition_B['Answer_Participant_id-18_condition_Condition B'].values +
+#            data_Condition_B['Answer_Participant_id-19_condition_Condition B'].values +
+#            data_Condition_B['Answer_Participant_id-20_condition_Condition B'].values +
+#            data_Condition_B['Answer_Participant_id-31_condition_Condition B'].values +
+#            data_Condition_B['Answer_Participant_id-34_condition_Condition B'].values)
+
+# plt.hist(x=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], bins=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], weights=data_Condition_B["weights"])
+# #plt.hist(data_Condition_A, density=True, bins=30)  # density=False would make counts
+# plt.ylabel('Probability')
+# plt.xlabel('Data')
+# plt.show()
+
+
 
 # Condition B
 folder_path = "../RTools/Condition B/RResults/Questionnaires".format(selected_condition)

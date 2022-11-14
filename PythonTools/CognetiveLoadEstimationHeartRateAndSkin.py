@@ -70,14 +70,14 @@ for i in all_particepants_ids:
     sd1_sd2_ratios.append([base_line_stage_1["SD1SD2Ratio"].mean()])
 
 file_name = '{}/HeartRateVariability_lf_hf_ratio_scatterplot.png'.format(path_hrv)
-plot_heart_rate_variability(base_line_data=base_line_lf_hf_ratios, base_line_color="orange", base_line_label="base line lf\\hf ratio value", 
-                            task_data=lf_hf_ratios, task_color="red", task_label="task lf\\hf ratio value",
+plot_heart_rate_variability(base_line_data=base_line_lf_hf_ratios, base_line_color="orange", base_line_label="base line", 
+                            task_data=lf_hf_ratios, task_color="red", task_label="task",
                             title="Hearte rate variability and cognitive load effect", 
                             x_label="Particepant-ID", y_label="LF\\HF ratio", file_name=file_name, save=True)
 
 file_name = '{}/HeartRateVariability_sd1_sd2_ratio_scatterplot.png'.format(path_hrv)
-plot_heart_rate_variability(base_line_data=base_line_sd1_sd2_ratios, base_line_color="blue", base_line_label="base line sd1\\sd2 ratio value", 
-                            task_data=sd1_sd2_ratios, task_color="green", task_label="task sd1\\sd2 ratio value",
+plot_heart_rate_variability(base_line_data=base_line_sd1_sd2_ratios, base_line_color="blue", base_line_label="base line", 
+                            task_data=sd1_sd2_ratios, task_color="green", task_label="task",
                             title="Hearte rate variability and cognitive load effect",
                             x_label="Particepant-ID", y_label="SD1\\SD2 ratio", file_name=file_name, save=True)
 
@@ -128,9 +128,9 @@ for i in [ 1, 2, 3, 4, 5, 6, 7, 10, 13, 14, 15, 16, 17, 18, 19, 20, 31, 34, 21, 
     plt.figure(figsize=(15,10))
     plt.title("SkinConductance and cognitive load effect", fontsize=18)
     plt.plot(range(16), base_line_means, color="blue", alpha=0.5, marker="o", zorder=2)
-    plt.scatter(range(16), base_line_means, color="blue", label="Skin conductance mean values (base line)", alpha=0.5, marker="o", zorder=1)
+    plt.scatter(range(16), base_line_means, color="blue", label="base line", alpha=0.5, marker="o", zorder=1)
     plt.plot(range(16), task_values, alpha=0.5, marker="o", zorder=2)
-    plt.scatter(range(16), task_values, label="Skin conductance mean values (task)", alpha=0.5, marker="o", zorder=1)
+    plt.scatter(range(16), task_values, label="task", alpha=0.5, marker="o", zorder=1)
     labels_list = ['Gettie', 'Eyebot','Turret','JRRobo','Lloid','Atlas','Ribbot','Katie','Alice','Freddy','MedicBot','link','Duchess','Zombie','MixamoGirl', 'Remy']
     plt.xticks(range(16), labels=labels_list, rotation=45, ha='right', fontsize=14)
     plt.yticks(fontsize=14)

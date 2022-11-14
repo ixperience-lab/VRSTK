@@ -23,11 +23,15 @@ def plot_roc_curve(true_positive_rate, false_positive_rate, legend_label, title,
     plt.plot([0, 1], [0, 1],'r--')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.05])
-    plt.xlabel('False Positive Rate')
-    plt.ylabel('True Positive Rate')
-    title = 'Receiver operating characteristic {}'.format(title)
-    plt.title(title)
-    plt.legend(loc="lower right")
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14)
+    plt.xlabel('False Positive Rate', fontsize=16)
+    plt.ylabel('True Positive Rate', fontsize=16)
+    plt.title(title, fontsize=18)
+    plt.grid(which="major", alpha=0.6)
+    plt.grid(which="minor", alpha=0.6)
+    plt.legend(bbox_to_anchor=(1, 0.5), loc='center left', fontsize=16)
+    plt.tight_layout() 
     if save:
         plt.savefig(file_name)
     if show:
@@ -38,7 +42,12 @@ def plot_data_cluster(data, conscientious_indeces_list, none_conscientious_indec
     plt.figure(figsize=(15,10))
     plt.scatter(data[conscientious_indeces_list, 0], data[conscientious_indeces_list, 1], c="b")
     plt.scatter(data[none_conscientious_indeces_list, 0], data[none_conscientious_indeces_list, 1], c="r")
-    plt.title(title, fontsize=16)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14)
+    #plt.grid(which="major", alpha=0.6)
+    #plt.grid(which="minor", alpha=0.6)
+    plt.title(title, fontsize=18)
+    plt.tight_layout() 
     if save:
         plt.savefig(file_name)
     if show:
@@ -84,6 +93,12 @@ if input_data_type == 5:
 
 # ------- fitler columns of train data
 #train_data_copy = input_data_copy.drop(columns=['Conscientious', 'time', 'pId'])
+input_data = input_data.loc[:7106] # filter out condition c for knn
+#print(input_data.head(5))
+#print(input_data.tail(5))
+#print(input_data.shape)
+#sys.exit()
+
 train_data = input_data.drop(columns=['Conscientious', 'time', 'pId'])
 #train_data = train_data[selected_column_array]
 
@@ -194,11 +209,11 @@ print("------- K-Neighbors-Classifier-Model")
 knc_train_data = train_data.copy()
 # --- training (fitting)
 
-print("------ Principal Component Analysis test explainable variance of given features in train data")
-# test explainable variance of given features
-pca = PCA(n_components=3)
-transformed_train_x = pca.fit_transform(transformed_train_x)
-transformed_test_x = pca.fit_transform(transformed_test_x)
+# print("------ Principal Component Analysis test explainable variance of given features in train data")
+# # test explainable variance of given features
+# pca = PCA(n_components=3)
+# transformed_train_x = pca.fit_transform(transformed_train_x)
+# transformed_test_x = pca.fit_transform(transformed_test_x)
 
 # print("------ T-Distributed Stochastic Neighbor Embedding n_components=2 of (True) train data ")
 # # ------ T-Distributed Stochastic Neighbor Embedding n_components=2 of train data
@@ -207,7 +222,7 @@ transformed_test_x = pca.fit_transform(transformed_test_x)
 # transformed_train_x = tsne_model.fit_transform(transformed_train_x)
 # transformed_test_x = tsne_model.fit_transform(transformed_test_x)
 
-knc_x_embedded_data_frame = pd.DataFrame(data = transformed_train_x)
+#knc_x_embedded_data_frame = pd.DataFrame(data = transformed_train_x)
 # knc_x_embedded_data_frame_copy = pd.DataFrame(data = transformed_train_x_copy)
 # X_train, X_test, y_train, y_test = train_test_split(knc_x_embedded_data_frame_copy, y_result_output_copy, test_size=0.3)
 # X_train, X_test, y_train, y_test = train_test_split(knc_x_embedded_data_frame, y_result_output, test_size=0.25)
@@ -230,9 +245,14 @@ for a in range(1, max_range):
 plt.figure(figsize=(15,10))
 plt.plot(range(1, max_range),error_rates,color='blue', linestyle='dashed', marker='o',
          markerfacecolor='red', markersize=10)
-plt.title('Error Rate vs. K Value')
-plt.xlabel('K')
-plt.ylabel('Error Rate')
+plt.title('Error Rate vs. K Value', fontsize=18)
+plt.xlabel('K', fontsize=16)
+plt.ylabel('Error Rate', fontsize=16)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
+plt.grid(which="major", alpha=0.6)
+plt.grid(which="minor", alpha=0.6)
+plt.tight_layout() 
 file_name = '{}/K-Neighbors-Classifier-Model_error_rate_vs_K_value.png'.format(path)
 plt.savefig(file_name)
 plt.show()
@@ -254,13 +274,18 @@ for i in range(1, max_range):
     neigh = KNeighborsClassifier(n_neighbors = i).fit(X_train,y_train)
     yhat = neigh.predict(X_test)
     acc.append(metrics.accuracy_score(y_test, yhat))
-    
+
 plt.figure(figsize=(15,10))
 plt.plot(range(1, max_range),acc,color = 'blue',linestyle='dashed', 
          marker='o',markerfacecolor='red', markersize=10)
-plt.title('accuracy vs. K Value')
-plt.xlabel('K')
-plt.ylabel('Accuracy')
+plt.title('accuracy vs. K Value', fontsize=18)
+plt.xlabel('K', fontsize=16)
+plt.ylabel('Accuracy', fontsize=16)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
+plt.grid(which="major", alpha=0.6)
+plt.grid(which="minor", alpha=0.6)
+plt.tight_layout() 
 file_name = '{}/K-Neighbors-Classifier-Model_accuracy_vs_K_value.png'.format(path)
 plt.savefig(file_name)
 plt.show()
@@ -318,7 +343,7 @@ plot_data_cluster(transformed_train_x, conscientious_indeces.tolist(), none_cons
 knc_roc_auc = roc_auc_score(input_data[["Conscientious"]], k_neigbors_classifier.predict(knc_x_embedded_data_frame))
 fpr, tpr, thresholds = roc_curve(input_data[["Conscientious"]], k_neigbors_classifier.predict_proba(knc_x_embedded_data_frame)[:,1])
 file_name = '{}/K-Neighbors-Classifier-Model_train_data_roc-curve.png'.format(path)
-plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'K-Neighbors-Classifier-Model train data (area = %0.2f)' % knc_roc_auc, 
+plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'KNNC AUC (area = %0.2f)' % knc_roc_auc, 
                title = 'K-Neighbors-Classifier-Model train data', file_name = file_name, show=False, save=True)
 
 # --- test data predictions 
@@ -329,9 +354,9 @@ knc_test_data["Conscientious"] = knc_test_data["Conscientious"].astype("int")
 knc_test_data["pId"] = load_test_data["pId"]
 
 prediction = k_neigbors_classifier.predict_proba(knc_test_x_embedded_data_frame)
-knc_test_data["Confidence"] = np.max(prediction, axis = 1)
+knc_test_data["Confidence"] = np.max(prediction, axis = 1) # class with the highst confidence
 
-# ----------- Cluster IDs plot with heighest confidence
+#----------- Cluster IDs plot with heighest confidence
 colors = {0:'b', 1:'r'}
 _ids = [21, 22, 23, 24, 25, 26, 27, 28, 29]
 for id in _ids:
@@ -359,17 +384,17 @@ print(input_score)
 # loss = log_loss(true_value_test_data['Conscientious'], knc_test_data['Conscientious'])
 # print(loss)
 
-print("------ K-Neighbors-Classifier-Model n_components=2 of (predicted) test data ")
+print("------ K-Neighbors-Classifier-Model (predicted) test data ")
 conscientious_indeces = knc_test_data.index[knc_test_data['Conscientious'] == 0]
 none_conscientious_indeces = knc_test_data.index[knc_test_data['Conscientious'] == 1]
 file_name = '{}/K-Neighbors-Classifier-Model_predicted_test_data_plot.png'.format(path)
 plot_data_cluster(transformed_test_x, conscientious_indeces.tolist(), none_conscientious_indeces.tolist(), 
-                 'K-Neighbors-Classifier-Model n_components=2 of (predicted) test data plot', file_name, show=False, save=True)
+                 'K-Neighbors-Classifier-Model (predicted) test data', file_name, show=False, save=True)
 
 # ------- display roc_auc curve
 knc_roc_auc = roc_auc_score(true_value_test_data['Conscientious'], k_neigbors_classifier.predict(knc_test_x_embedded_data_frame))
 fpr, tpr, thresholds = roc_curve(true_value_test_data['Conscientious'], k_neigbors_classifier.predict_proba(knc_test_x_embedded_data_frame)[:,1])
 file_name = '{}/K-Neighbors-Classifier-Model_test_data_roc-curve.png'.format(path)
-plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'K-Neighbors-Classifier-Model test data (area = %0.2f)' % knc_roc_auc,
+plot_roc_curve(true_positive_rate = tpr, false_positive_rate = fpr, legend_label = 'KNNC AUC (area = %0.2f)' % knc_roc_auc,
                title = 'K-Neighbors-Classifier-Model test data', file_name = file_name, show=False, save=True)
 

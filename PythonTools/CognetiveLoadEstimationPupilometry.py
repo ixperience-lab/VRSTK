@@ -34,11 +34,11 @@ def plot_cognetive_activity_as_scatterplot(data_l_mean, data_l_max, data_r_mean,
     plt.figure(figsize=(15,10))
     plt.title(title, fontsize=18)
     plt.plot(range(16), data_l_mean, color="orange", alpha=0.5, zorder=2)
-    plt.scatter(range(16), data_l_mean, color="orange", label="Left mean percent change pupil dialtions", alpha=0.5, marker="s", zorder=1)
+    plt.scatter(range(16), data_l_mean, color="orange", label="Left pupil", alpha=0.5, marker="s", zorder=1)
     #plt.plot(range(16), data_l_max, color="red", alpha=0.5, zorder=2)
     #plt.scatter(range(16), data_l_max,  color="red", label="Left max percent change pupil dialtions", alpha=0.5, marker="s", zorder=1)
     plt.plot(range(16), data_r_mean, color="blue", alpha=0.5, zorder=2)
-    plt.scatter(range(16), data_r_mean, color="blue", label="Right mean percent change pupil dialtions", alpha=0.5, marker="o", zorder=1)
+    plt.scatter(range(16), data_r_mean, color="blue", label="Right pupil", alpha=0.5, marker="o", zorder=1)
     #plt.plot(range(16), data_r_max, color="green", alpha=0.5, zorder=2)
     #plt.scatter(range(16), data_r_max,  color="green", label="Right max percent change pupil dialtions", alpha=0.5, marker="o", zorder=1)
     labels_list = ['Gettie', 'Eyebot','Turret','JRRobo','Lloid','Atlas','Ribbot','Katie','Alice','Freddy','MedicBot','link','Duchess','Zombie','MixamoGirl', 'Remy']
@@ -85,7 +85,7 @@ input_stage_1 = pd.read_csv("All_Participents_Stage1_DataFrame.csv", sep=";", de
 #                                                    (input_data_copy["LeftEyeOpenness"] > 0.8) & (input_data_copy["RightEyeOpenness"] > 0.8)]
 
 # -----------------------------------------------------------------
-# all particepants pupilometry with all 3D models
+# all particepants pupillometry with all 3D models
 for i in [ 1, 2, 3, 4, 5, 6, 7, 10, 13, 14, 15, 16, 17, 18, 19, 20, 31, 34, 21, 22, 23, 24, 25, 26, 27, 28, 29 ]:
     pId = i
     # stage 0
@@ -120,12 +120,12 @@ for i in [ 1, 2, 3, 4, 5, 6, 7, 10, 13, 14, 15, 16, 17, 18, 19, 20, 31, 34, 21, 
 
     file_name = '{}/Cognitive_Activity_Pupilometry_id_{}_boxplot.png'.format(path_all_seperate, pId)
     plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
-                                       legend_label="", title="Cognitive Activity Pupilometry" , file_name=file_name, save=True)
+                                       legend_label="", title="Cognitive Activity Pupillometry" , file_name=file_name, save=True)
     
     file_name = '{}/Cognitive_Activity_Pupilometry_id_{}_scatterplot.png'.format(path_all_seperate, pId)
     plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
                                            data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
-                                           legend_label="", title="Cognitive Activity Pupilometry", file_name=file_name, save=True)
+                                           legend_label="", title="Cognitive Activity Pupillometry", file_name=file_name, save=True)
     
 
 # -----------------------------------------------------------------
@@ -173,12 +173,12 @@ for id in range(16):
 
 file_name = '{}/Cognitive_Activity_Pupilometry_boxplot_all_groups.png'.format(path_all)
 plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
-                                   legend_label="", title="Cognitive Activity Pupilometry all groups" , file_name=file_name, save=True)
+                                   legend_label="", title="Cognitive Activity Pupillometry all groups" , file_name=file_name, save=True)
 
 file_name = '{}/Cognitive_Activity_Pupilometry_scatterplot_all_groups.png'.format(path_all)
 plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
                                        data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
-                                       legend_label="", title="Cognitive Activity Pupilometry all groups", file_name=file_name, save=True)
+                                       legend_label="", title="Cognitive Activity Pupillometry all groups", file_name=file_name, save=True)
 
 # -----------------------------------------------------------------
 # all cluster/groups pupilomentry with all 3D models without CognitiveActivityRightPupilDiamter
@@ -221,12 +221,12 @@ for id in range(16):
 
 file_name = '{}/Cognitive_Activity_Pupilometry_boxplot_all_without_clc_groups.png'.format(path_all)
 plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
-                                   legend_label="", title="Cognitive Activity Pupilometry all groups" , file_name=file_name, save=True)
+                                   legend_label="", title="Cognitive Activity Pupillometry all groups" , file_name=file_name, save=True)
 
 file_name = '{}/Cognitive_Activity_Pupilometry_scatterplot_all_without_clc_groups.png'.format(path_all)
 plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
                                        data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
-                                       legend_label="", title="Cognitive Activity Pupilometry all groups", file_name=file_name, save=True)
+                                       legend_label="", title="Cognitive Activity Pupillometry all groups", file_name=file_name, save=True)
 
 # -----------------------------------------------------------------
 # all cluster/groups pupilomentry with all 3D models with LightReflexesLeftPupilDiamter
@@ -271,12 +271,12 @@ for id in range(16):
 
 file_name = '{}/Cognitive_Activity_Pupilometry_boxplot_all_with_light_groups.png'.format(path_all)
 plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
-                                   legend_label="", title="Cognitive Activity Pupilometry all groups and light reflexes" , file_name=file_name, save=True)
+                                   legend_label="", title="Cognitive Activity Pupillometry all groups and light reflexes" , file_name=file_name, save=True)
 
 file_name = '{}/Cognitive_Activity_Pupilometry_scatterplot_all_with_light_groups.png'.format(path_all)
 plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
                                        data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
-                                       legend_label="", title="Cognitive Activity Pupilometry all groups and light reflexes", file_name=file_name, save=True)
+                                       legend_label="", title="Cognitive Activity Pupillometry all groups and light reflexes", file_name=file_name, save=True)
 
 
 # -----------------------------------------------------------------
@@ -320,12 +320,12 @@ for id in range(16):
 
 file_name = '{}/Cognitive_Activity_Pupilometry_boxplot_all_without_filter_groups.png'.format(path_all)
 plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
-                                   legend_label="", title="Cognitive Activity Pupilometry all groups" , file_name=file_name, save=True)
+                                   legend_label="", title="Cognitive Activity Pupillometry all groups" , file_name=file_name, save=True)
 
 file_name = '{}/Cognitive_Activity_Pupilometry_scatterplot_all_without_filter_groups.png'.format(path_all)
 plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
                                        data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
-                                       legend_label="", title="Cognitive Activity Pupilometry all groups", file_name=file_name, save=True)
+                                       legend_label="", title="Cognitive Activity Pupillometry all groups", file_name=file_name, save=True)
 
 
 # -----------------------------------------------------------------
@@ -370,12 +370,12 @@ for id in range(16):
 
 file_name = '{}/Cognitive_Activity_Pupilometry_boxplot_cluster_conscientious.png'.format(path_seperate_cluster)
 plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
-                                   legend_label="", title="Cognitive Activity Pupilometry conscientious" , file_name=file_name, save=True)
+                                   legend_label="", title="Cognitive Activity Pupillometry conscientious" , file_name=file_name, save=True)
 
 file_name = '{}/Cognitive_Activity_Pupilometry_scatterplot_cluster_conscientious.png'.format(path_seperate_cluster)
 plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
                                        data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
-                                       legend_label="", title="Cognitive Activity Pupilometry conscientious", file_name=file_name, save=True)
+                                       legend_label="", title="Cognitive Activity Pupillometry conscientious", file_name=file_name, save=True)
 
 
 base_line_pupil_diameter_stage_0 = input_stage_0.loc[ (input_stage_0['pId'].isin(cluster_non_conscientious)) & (input_stage_0["LeftEyeOpenness"] > 0.8) & (input_stage_0["RightEyeOpenness"] > 0.8) & 
@@ -414,12 +414,12 @@ for id in range(16):
 
 file_name = '{}/Cognitive_Activity_Pupilometry_boxplot_cluster_non_conscientious.png'.format(path_seperate_cluster)
 plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
-                                   legend_label="", title="Cognitive Activity Pupilometry non-conscientious" , file_name=file_name, save=True)
+                                   legend_label="", title="Cognitive Activity Pupillometry non-conscientious" , file_name=file_name, save=True)
 
 file_name = '{}/Cognitive_Activity_Pupilometry_scatterplot_cluster_non_conscientious.png'.format(path_seperate_cluster)
 plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
                                        data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
-                                       legend_label="", title="Cognitive Activity Pupilometry non-conscientious", file_name=file_name, save=True)
+                                       legend_label="", title="Cognitive Activity Pupillometry non-conscientious", file_name=file_name, save=True)
 
 
 base_line_pupil_diameter_stage_0 = input_stage_0.loc[ (input_stage_0['pId'].isin(cluster_no_specifications)) & (input_stage_0["LeftEyeOpenness"] > 0.8) & (input_stage_0["RightEyeOpenness"] > 0.8) & 
@@ -458,11 +458,11 @@ for id in range(16):
 
 file_name = '{}/Cognitive_Activity_Pupilometry_boxplot_cluster_no_specifications.png'.format(path_seperate_cluster)
 plot_cognetive_activity_as_boxplot(data_l=left_percent_change_pupil_dialtions, data_r=right_percent_change_pupil_dialtions,
-                                   legend_label="", title="Cognitive Activity Pupilometry no specifications" , file_name=file_name, save=True)
+                                   legend_label="", title="Cognitive Activity Pupillometry no specifications" , file_name=file_name, save=True)
 
 file_name = '{}/Cognitive_Activity_Pupilometry_scatterplot_cluster_no_specifications.png'.format(path_seperate_cluster)
 plot_cognetive_activity_as_scatterplot(data_l_mean=left_mean_percent_change_pupil_dialtions, data_l_max=left_max_percent_change_pupil_dialtions, 
                                        data_r_mean=right_mean_percent_change_pupil_dialtions, data_r_max=right_max_percent_change_pupil_dialtions, 
-                                       legend_label="", title="Cognitive Activity Pupilometry no specifications", file_name=file_name, save=True)
+                                       legend_label="", title="Cognitive Activity Pupillometry no specifications", file_name=file_name, save=True)
 
 #sys.exit()
