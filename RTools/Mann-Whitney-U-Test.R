@@ -141,7 +141,7 @@ if (!dir.exists(wilcoxon_subfolder_dir)){
 }
 
 for (test_variable in c("HeartRate", "RPeaks", "RRI", "RRMin", "RRMean", "RRMax", "SDSD", "SD1", "SD2", "SDNN", "RMSSD",
-                        "SD1SD2Ratio", "VLFPeak", "HFPeak", "VLFAbs", "LFAbs", "HFAbs", "VLFLog", "LFLog", "HFLog", "LFNorm", 
+                        "SD1SD2Ratio", "VLFPeak", "LFPeak", "HFPeak", "VLFAbs", "LFAbs", "HFAbs", "VLFLog", "LFLog", "HFLog", "LFNorm", 
                         "HFNorm", "LFHFRatio", "FBTotal")){
   temp_column <- eval(call(name = "$", as.symbol("input_stage_1"), as.symbol(test_variable)))
   temp_df <- data.frame (t_variable  = temp_column, ValidityScore = input_stage_1$ValidityScore, ValidityScore_Group=input_stage_1$ValidityScore_Group)
