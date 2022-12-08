@@ -1054,9 +1054,6 @@ MonoBehaviour:
   netHead: {fileID: 8543124612527366010}
   netLeft: {fileID: 5475726362150703615}
   netRight: {fileID: 2154383691364278295}
-  netHeadOffset: {x: 0, y: 0, z: 0}
-  netLeftOffset: {x: 0, y: 0, z: 0}
-  netRightOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &4211758279289985396
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,11 +3,14 @@ using UnityEngine;
 
 namespace VRSTK.Scripts.Multiplayer
 {
+    /// <summary>
+    /// Gets transform data from the local XROrigin and copies them to the networked objects
+    /// </summary>
     public class Player : NetworkBehaviour
     {
-        [SerializeField] private GameObject netHead;
-        [SerializeField] private GameObject netLeft;
-        [SerializeField] private GameObject netRight;
+        [SerializeField] public GameObject netHead;
+        [SerializeField] public GameObject netLeft;
+        [SerializeField] public GameObject netRight;
         
         private GameObject _localHead;
         private GameObject _localLeft;
