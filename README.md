@@ -16,8 +16,8 @@ This repo is provided under a MIT License.
 - :vhs: Scene Replay
 - :file_folder: Import & Export of JSON data
 - :bar_chart: Analysis templates with R
-- :people_holding_hands: Multiplayer using [Mirror](https://github.com/vis2k/Mirror) (WiP)
-	- Embodiment (WiP)
+- :people_holding_hands: Multiplayer using [Mirror](https://github.com/vis2k/Mirror)
+	- Embodiment
 	- Asymmetric Normalization (WiP)
 
 ## Quickstart
@@ -38,7 +38,9 @@ Visit our wiki for quickstart instructions
 #### Optional Requirements
 - :eyes: [Eye-Tracking with Vive Pro Eye](https://developer-express.vive.com/resources/vive-sense/eye-and-facial-tracking-sdk/)
 - :brain: [EEG with Emotiv](https://github.com/Emotiv/unity-plugin)
-
+- :dancers: Multiplayer
+	- [Networking with Mirror](https://assetstore.unity.com/packages/tools/network/mirror-129321)
+	- [Avatars via ReadyPlayerMe](https://docs.readyplayer.me/ready-player-me/integration-guides/unity-sdk/unity-sdk-download)
 
 ## Related Work
 
