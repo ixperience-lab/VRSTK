@@ -199,13 +199,13 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
         if (_isUserNeedCalibration && !_deaktivateRunEyeCalibrationSecondTime)
         {
             Debug.LogWarning("--------------- SRanipal_Eye_API.LaunchEyeCalibration OnStart!!!");
-            if (!SRanipal_Eye_v2.LaunchEyeCalibration())//if (SRanipal_Eye_API.LaunchEyeCalibration(IntPtr.Zero) != (int)Error.WORK)//if (!SRanipal_Eye_v2.LaunchEyeCalibration()) Calibration();
-            {
-                _deaktivateRunEyeCalibrationSecondTime = false;
-                Calibration();
-            }
-            else
-                _deaktivateRunEyeCalibrationSecondTime = true;
+            //if (!SRanipal_Eye_v2.LaunchEyeCalibration())//if (SRanipal_Eye_API.LaunchEyeCalibration(IntPtr.Zero) != (int)Error.WORK)//if (!SRanipal_Eye_v2.LaunchEyeCalibration()) Calibration();
+            //{
+            //    _deaktivateRunEyeCalibrationSecondTime = false;
+            //    Calibration();
+            //}
+            //else
+            //    _deaktivateRunEyeCalibrationSecondTime = true;
         }
     }
 
@@ -336,7 +336,7 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
         {
             Debug.LogWarning("--------------- SRanipal_Eye_API.LaunchEyeCalibration OnCalibration!!!");
             Debug.LogWarning("Somthing went wrong in the calibration process the user need to recalibrate!");
-            if (SRanipal_Eye_v2.LaunchEyeCalibration())//if (SRanipal_Eye_API.LaunchEyeCalibration(IntPtr.Zero) == (int)Error.WORK)//if (SRanipal_Eye_v2.LaunchEyeCalibration())
+            if (SRanipal_Eye_v2.LaunchEyeCalibration())
             {
                 _deaktivateRunEyeCalibrationSecondTime = true;
                 Debug.Log("Calibration is done successfully.");
