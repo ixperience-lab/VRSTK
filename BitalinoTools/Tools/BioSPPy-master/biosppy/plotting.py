@@ -617,6 +617,7 @@ def plot_eda(ts=None,
         If True, show the plot immediately.
 
     """
+    # hewl1012 update figure size and settings
     plt.rcParams["figure.figsize"] = [19.20, 10.80]
     plt.rcParams["figure.autolayout"] = True
     
@@ -1195,6 +1196,7 @@ def plot_ecg(ts=None,
         If True, show the plot immediately.
 
     """
+    # hewl1012 update figure size and settings
     plt.rcParams["figure.figsize"] = [19.20, 10.80]
     plt.rcParams["figure.autolayout"] = True
     

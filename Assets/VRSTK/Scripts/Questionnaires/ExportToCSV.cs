@@ -139,12 +139,7 @@ namespace VRSTK
                                 csvTemp[0] = _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<Radio>().QType;
                                 csvTemp[1] = _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<Radio>().QText;
                                 csvTemp[2] = _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<Radio>().QId;
-                                
-                                PageConcatenationToAvatarSelection pageConcatenationToAvatarSelection = _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<Radio>()
-                                    .GetComponentInParent<Image>().GetComponentInParent<Canvas>().GetComponentInParent<PageConcatenationToAvatarSelection>();
-                                if (pageConcatenationToAvatarSelection != null)
-                                    csvTemp[2] = _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<Radio>().QId + "_" + pageConcatenationToAvatarSelection._activatedModelName;
-
+                                                                
                                 for (int j = 0; j < _pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[0].GetComponentInParent<Radio>().RadioList.Count; j++)
                                 {
                                     if (_pageFactory.GetComponent<PageFactory>().QuestionList[i].QuestionList[j].GetComponentInChildren<Toggle>().isOn)

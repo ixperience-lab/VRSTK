@@ -46,9 +46,6 @@ namespace VRSTK
                     }
                 }
 
-                [SerializeField]
-                public GameObject _cameraTracking;
-
                 private System.Int32 _lastCurrentActivePageIndex = -1;
                 private System.String _lastSelectedContentToggle = "";
 
@@ -61,17 +58,7 @@ namespace VRSTK
                     GameObject page = pf.PageList[_currentActivePageIndex];
 
                     if (_lastCurrentActivePageIndex != _currentActivePageIndex && _lastCurrentActivePageIndex > -1)
-                    {
-                        LineRenderer lineRenderer = _cameraTracking.GetComponent<LineRenderer>();
-                        lineRenderer.positionCount = 0;
-
-                        GameObject[] spheres = GameObject.FindGameObjectsWithTag("ReplaySphere_");
-                        if(spheres != null && spheres.Length != 0)
-                            for (int i = 0; i < spheres.Length; i++)
-                                GameObject.DestroyImmediate(spheres[i]);                            
-
                         pf.PageList[_lastCurrentActivePageIndex].SetActive(false);
-                    }
 
                     page.SetActive(true);
 

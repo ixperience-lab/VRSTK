@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6707981411239160810
+--- !u!1 &6427784341792122439
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,13 +8,70 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6707981411239160808}
-  - component: {fileID: 6707981411239160811}
-  - component: {fileID: 7066219339176096721}
-  - component: {fileID: 6707981411239160821}
-  - component: {fileID: 6707981411239160809}
-  - component: {fileID: 6707981411239160820}
-  - component: {fileID: 1154939863091558634}
+  - component: {fileID: 6427784341792122438}
+  - component: {fileID: 6427784341792122489}
+  m_Layer: 0
+  m_Name: ExportToCSV
+  m_TagString: ExportToCSV
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6427784341792122438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6427784341792122439}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6427784341802187068}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6427784341792122489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6427784341792122439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbfcd7393ab4ddb4eb82d9adff5e4e5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FileName: example-answer
+  Delimiter: ;
+  _compareQuestionIdsInConsolidatedContent: 0
+  Filetype: 0
+  SaveToLocal: 1
+  StorePath: /Questionnaires/Data/Answers/
+  UseGlobalPath: 0
+  SaveToServer: 0
+  TargetURI: http://www.example-server.com/survey-results.php
+  QuestionnaireFinishedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &6427784343384511146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6427784341802187068}
+  - component: {fileID: 6427784343384511138}
+  - component: {fileID: 6427784343384511139}
+  - component: {fileID: 6427784343384511136}
+  - component: {fileID: 6427784343384511137}
+  - component: {fileID: 6427784343384511150}
+  - component: {fileID: 6427784343384511151}
+  - component: {fileID: 6427784343384511148}
+  - component: {fileID: 6427784343384511149}
   m_Layer: 0
   m_Name: VRQuestionnaireToolkit
   m_TagString: VRQuestionnaireToolkit
@@ -22,33 +79,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &6707981411239160808
+--- !u!224 &6427784341802187068
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6707981411239160810}
+  m_GameObject: {fileID: 6427784343384511146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 6}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
-  - {fileID: 6707981412283293471}
+  - {fileID: 6427784341792122438}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 1.02, y: 2.82}
+  m_SizeDelta: {x: 600, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6707981411239160811
+--- !u!114 &6427784343384511138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6707981411239160810}
+  m_GameObject: {fileID: 6427784343384511146}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de41a7e30bb47a94fbabd5a537794de9, type: 3}
@@ -57,7 +114,7 @@ MonoBehaviour:
   ParticipantId: id1
   Condition: A
   ControllerTactileFeedbackOnOff: 1
-  SoundOnOff: 0
+  SoundOnOff: 1
   ConfigurationMode: 0
   AlsoConsolidateResults: 1
   VibratingDurationForHovering: 0.05
@@ -72,47 +129,47 @@ MonoBehaviour:
   SoundClipForSelecting: {fileID: 8300000, guid: 7b660b21fad7af34e806c3f3c4eb8868,
     type: 3}
   SelectingVolume: 1
---- !u!114 &7066219339176096721
+--- !u!114 &6427784343384511139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6707981411239160810}
+  m_GameObject: {fileID: 6427784343384511146}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe9e5866d96ac1848bab8f0a9b76735d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JsonInputPath_1: Assets/Questionnaires/Data/Questions/questionnaire_example
-  JsonInputPath_2: Assets/Questionnaires/Data/Questions/NASA_TLX
-  JsonInputPath_3: Assets/Questionnaires/Data/Questions/SUS Presence Questionnaire
-  JsonInputPath_4: Assets/Questionnaires/Data/Questions/Simulation Sickness Questionnaire
-  JsonInputPath_5: Assets/Questionnaires/Data/Questions/IPQ Questionnaire
-  JsonInputPath_6: Assets/Questionnaires/Data/Questions/System Usability Scale Questionnaire
-  JsonInputPath_7: Assets/Questionnaires/Data/Questions/Virtual Embodiment Questionnaire
+  JsonInputPath_1: Assets/VRSTK/SampleSceneData/Questionnaires/Questions/questionnaire_example
+  JsonInputPath_2: Assets/VRSTK/SampleSceneData/Questionnaires/Questions/SimulationSicknessQuestionnaire
+  JsonInputPath_3: Assets/VRSTK/SampleSceneData/Questionnaires/Questions/UncannyValleyQuestionnaire
+  JsonInputPath_4: 
+  JsonInputPath_5: 
+  JsonInputPath_6: 
+  JsonInputPath_7: 
   JsonInputPath_8: 
   JsonInputPath_9: 
   JsonInputPath_10: 
   _questionnaires: []
   _indexOfAQuestionnaireToSetActive: 0
   _pageFactory: {fileID: 0}
-  _exportToCsvScript: {fileID: 0}
-  _exportToCsv: {fileID: 0}
-  questionnaire: {fileID: 3951100406968845949, guid: 7a44fb57c0f78554483ef7c4995adcbd,
+  _exportToCsvScript: {fileID: 6427784341792122489}
+  _exportToCsv: {fileID: 6427784341792122439}
+  questionnaire: {fileID: 8694240406262178717, guid: 7a44fb57c0f78554483ef7c4995adcbd,
     type: 3}
-  QuestionRecTest: {fileID: 6707981411239160808}
+  QuestionRecTest: {fileID: 6427784341802187068}
   currentQuestionnaire: {fileID: 0}
-  numberQuestionnaires: 0
-  qId: 
+  numberQuestionnaires: 4
+  qId: exampleQE
   pId: 
---- !u!223 &6707981411239160821
+--- !u!223 &6427784343384511136
 Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6707981411239160810}
+  m_GameObject: {fileID: 6427784343384511146}
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
@@ -127,13 +184,13 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &6707981411239160809
+--- !u!114 &6427784343384511137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6707981411239160810}
+  m_GameObject: {fileID: 6427784343384511146}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
@@ -150,13 +207,13 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &6707981411239160820
+--- !u!114 &6427784343384511150
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6707981411239160810}
+  m_GameObject: {fileID: 6427784343384511146}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
@@ -167,13 +224,13 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!82 &1154939863091558634
+--- !u!82 &6427784343384511151
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6707981411239160810}
+  m_GameObject: {fileID: 6427784343384511146}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -263,57 +320,86 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &6707981412283293470
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6707981412283293471}
-  - component: {fileID: 1913189789934064987}
-  m_Layer: 0
-  m_Name: ExportToCSV
-  m_TagString: ExportToCSV
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6707981412283293471
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6707981412283293470}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6707981411239160808}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1913189789934064987
+--- !u!114 &6427784343384511148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6707981412283293470}
+  m_GameObject: {fileID: 6427784343384511146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbfcd7393ab4ddb4eb82d9adff5e4e5e, type: 3}
+  m_Script: {fileID: 11500000, guid: 72420be921bea6e4e97919d0f4a05cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FileName: 
-  Delimiter: 
-  Filetype: 0
-  SaveToLocal: 1
-  StorePath: 
-  UseGlobalPath: 0
-  SaveToServer: 0
-  TargetURI: http://www.example-server.com/survey-results.php
-  QuestionnaireFinishedEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  _generateQuestionnaire: {fileID: 6427784343384511139}
+  _lastQuestionnaire_TIME_SUM: 0
+  _TIME_RSI_s: []
+  _TIME_RSI_Message: 
+  _MISSREL_s: []
+  _MISSREL_Message: 
+  _MISSING_s: []
+  _MISSING_Message: 
+  _TIME_SUM_s: []
+  _TIME_SUM_Message: 
+  _questionsAnswerRecords: []
+  _DEG_TIME_s: 
+  _DEG_TIME_Message: 
+--- !u!114 &6427784343384511149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6427784343384511146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: b2e7f91c87c81994aa48b4f1329252ba, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents:
+  - {fileID: 6427784341802187068}
+  - {fileID: 6427784343384511136}
+  - {fileID: 6427784343384511137}
+  - {fileID: 6427784343384511150}
+  - {fileID: 6427784343384511148}
+  trackedVariableNames:
+    array:
+    - array:
+      - position
+    - array:
+      - enabled
+    - array:
+      - enabled
+    - array:
+      - enabled
+    - array:
+      - LastQuestionnaire_TIME_SUM
+      - TIME_RSI_Message
+      - MISSREL_Message
+      - MISSING_Message
+      - TIME_SUM_Message
+      - DEG_TIME_Message
+      - enabled
+  eventVariableNames:
+    array:
+    - array:
+      - position_RectTransform
+    - array:
+      - enabled_Canvas
+    - array:
+      - enabled_CanvasScaler
+    - array:
+      - enabled_GraphicRaycaster
+    - array:
+      - LastQuestionnaire_TIME_SUM_QualityParameters
+      - TIME_RSI_Message_QualityParameters
+      - MISSREL_Message_QualityParameters
+      - MISSING_Message_QualityParameters
+      - TIME_SUM_Message_QualityParameters
+      - DEG_TIME_Message_QualityParameters
+      - enabled_QualityParameters
+  timedInterval: 1
+  interval: 0.5
