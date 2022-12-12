@@ -302,9 +302,9 @@ public class EyeTrackingCalibrationSaccades : MonoBehaviour
 
         if (TestStage.GetStarted())
         {
-            GetComponents<EventSender>()[3].SetEventValue("SaccadesPositions_SaccadesTrackerReplay", SaccadsPositionsAsMessage);
-            GetComponents<EventSender>()[3].SetEventValue("FixationPosition_SaccadesTrackerReplay", FixationPositionsAsMessage);
-            GetComponents<EventSender>()[3].Deploy();
+            GetComponents<EventSender>()[1].SetEventValue("SaccadesPositions_SaccadesTrackerReplay", SaccadsPositionsAsMessage);
+            GetComponents<EventSender>()[1].SetEventValue("FixationPosition_SaccadesTrackerReplay", FixationPositionsAsMessage);
+            GetComponents<EventSender>()[1].Deploy();
         }
 
         _lastTime = _currentTime;

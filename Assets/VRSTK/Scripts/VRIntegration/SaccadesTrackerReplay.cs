@@ -71,58 +71,14 @@ public class SaccadesTrackerReplay : MonoBehaviour
             Vector3 p1 = new Vector3(float.Parse(pArray[0].Substring(1, pArray[0].Length - 1).Trim()), float.Parse(pArray[1].Trim()), float.Parse(pArray[2].Substring(0, pArray[2].Length - 1).Trim()));
 
             // Correction of z-values while theres no raycast on page stage 1
-            if (p0.z <= -7.0f) p0 *= (6.99f / Mathf.Abs(p0[2]));
-            if (p1.z <= -7.0f) p1 *= (6.99f / Mathf.Abs(p1[2]));
+            //if (p0.z <= -7.0f) p0 *= (6.99f / Mathf.Abs(p0[2]));
+            //if (p1.z <= -7.0f) p1 *= (6.99f / Mathf.Abs(p1[2]));
 
             LineRenderer lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.positionCount += 2;
             lineRenderer.SetPosition(lineRenderer.positionCount - 2, p0);
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, p1);
             _lastSaccdesPositions = SaccadesPositions;
-
-            //if (!_usedStartPositionOnce) //(((p0.z == -2.5f) || (p1.z == -2.5f)) && !_usedStartPositionOnce)
-            //{
-            //    // Correction of start position stage 1
-            //    if (p0.z > -2.0f) { p0.x = 0f; p0.y = 0f; p0.z = -2.5f; }
-            //    if (p1.z > -2.0f) { p1.x = 0f; p1.y = 0f; p1.z = -2.5f; }
-
-            //    lineRenderer.positionCount += 2;
-            //    lineRenderer.SetPosition(lineRenderer.positionCount - 2, p0);
-            //    lineRenderer.SetPosition(lineRenderer.positionCount - 1, p1);
-            //    _lastSaccdesPositions = SaccadesPositions;
-            //    _usedStartPositionOnce = true;
-            //}
-
-            //if (_usedStartPositionOnce ) //((((p0.z < -2.5f) || (p1.z < -2.5f)) && _usedStartPositionOnce))
-            //{
-            //    if ((p0.z < -5.9f) && (p0.z > -6.6f))
-            //    {
-            //        p0.x -= 0.8f; 
-            //        p0.z = -5.2f;
-            //    }
-            //    if ((p1.z < -5.9f) && (p1.z > -6.6f))
-            //    {
-            //        p1.x -= 0.8f; 
-            //        p1.z = -5.2f;
-            //        //float dist = Vector3.Distance(_CenterOfView.transform.position, p1);
-            //        //Vector3 dir = _CenterOfView.transform.position - p1;
-            //        //// p1 = _CenterOfView.transform.position + dir * dist;
-            //        //p1 -= (dir * dist);
-            //    }
-
-            //    // lineRenderer.positionCount += 2;
-            //    if (p0.z < -2.0f)
-            //    {
-            //        lineRenderer.positionCount += 1;
-            //        lineRenderer.SetPosition(lineRenderer.positionCount - 1, p0);
-            //    }
-            //    if (p1.z < -2.0f)
-            //    {
-            //        lineRenderer.positionCount += 1;
-            //        lineRenderer.SetPosition(lineRenderer.positionCount - 1, p1);
-            //    }
-            //    _lastSaccdesPositions = SaccadesPositions;
-            //}
         }
     }
 
@@ -140,7 +96,7 @@ public class SaccadesTrackerReplay : MonoBehaviour
                 Debug.Log(objectName);
                 {
                     // Correction of z-values while theres no raycast on page
-                    if (position.z <= -7.0f) position = (6.99f / Mathf.Abs(position[2])) * position;
+                    //if (position.z <= -7.0f) position = (6.99f / Mathf.Abs(position[2])) * position;
                     // Correction of start position 
                     //if (position.z > -2.0f) continue;
                     
