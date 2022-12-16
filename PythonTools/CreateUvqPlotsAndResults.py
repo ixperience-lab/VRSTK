@@ -1,13 +1,10 @@
 import pandas as pd
-import os
-import sys
-import math
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
 import os
 
-# einfaktorielle anaylse anova
+# anova
 from scipy.stats import f_oneway
 
 # org_indexes_from_paper: All different characters used for evaluation. 1. Eyebot, 2. Turret, 3. JRRobo, 4. Lloyd, 5. Atlas, 6. 
@@ -303,7 +300,6 @@ plot_uncanny_valley_results("Perceived likability of all evaluated 3D-Models of 
                             "HMD paper version", "HMD {}".format("all Conditions"), plot_file_name_to_save, save=True, show=False)
 
 # anova test
-# anova test
 # ------------
 anova_test_content = "{}ANOVA Likability  (F-Value)   (p-Value)     all Conditions\n------------------------------------------------------------\n".format(anova_test_content)
 print("ANOVA Likability")
@@ -332,5 +328,3 @@ file = open(file_name, "w")
 file.write(anova_test_content)
 file.close()
 # ---------------------------------------------------
-
-#sys.exit()

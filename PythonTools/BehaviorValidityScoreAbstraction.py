@@ -1,10 +1,8 @@
-from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import numpy.matlib
-import sys
 import os
 from os.path import exists
 

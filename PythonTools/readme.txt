@@ -1,0 +1,29 @@
+Note:
+- Machine learning models
+	- KNeighborsClassifier
+	- PrincipalComponentAnalysis
+- Deep learning models
+	- DeepLearningModel (TabNet Classifier)
+	- T-Distributed Stochastic Neighbor Embedding
+- HeartReate Features Generation
+	- RMSSD
+	- SDNN
+	- PoincareDiagrammFromRRIntervals
+- Cognitive Load Estimation
+	- CognitiveLoadEstimationEEG
+	- CognitiveLoadEstimationHeartRateAndSkin
+	- CognitiveLoadEstimationPupilometry
+- Feature selection
+	- FeatureSelection
+	- CorrelationMatrixSklearn
+	- BruteForceParameterOptimization_DL (DeepLearningModel)
+	- BruteForceParameterOptimization_KNM (MachineLearningModel)
+- Plots
+	- BehaviorValidityScoreAbstraction
+	- CreateSimulationSicknessPlots
+	- CreateUvqPlotsAndResults
+- Converter
+	- ConvertGoogleFormsFormatToMScvsFormat
+	- ConvertBitalinoRawDataForBioSPPy
+- Stresstest with Kaiser rule
+	- PrincipalComponentAnalysis

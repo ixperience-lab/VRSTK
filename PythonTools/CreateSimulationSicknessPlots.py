@@ -1,12 +1,8 @@
 import pandas as pd
-import os
-import sys
-import math
 import matplotlib.pyplot as plt
 import numpy as np
-import sys
-import os
-# einfaktorielle anaylse anova
+
+# anova
 from scipy.stats import f_oneway
 from scipy.stats import anderson
 from scipy.stats import mannwhitneyu
@@ -117,9 +113,7 @@ plt.legend(title=ratingscale_info, title_fontsize=18, bbox_to_anchor=(1, 0.5), l
 plt.title(titel, fontsize=18)
 plt.tight_layout()
 plt.savefig(plot_file_name_to_save)
-#plt.show()
 plt.close()
-
 
 
 # -----------------------------------------------------------------------------------------------------------------------
@@ -133,47 +127,6 @@ simulation_sickness_questionnairy_file_name_a = "{}/AllSSQConditionStatisticResu
 print(simulation_sickness_questionnairy_file_name_a)
 loaded_simulation_sickness_data_frame_a = pd.read_csv(simulation_sickness_questionnairy_file_name_a, sep=";", decimal=",")
 print(loaded_simulation_sickness_data_frame_a.head(5))
-
-# questionnaire_ID_SSQ_ALL_Condition_A_SSQAnswers = "../RTools/Condition A/Questionnaires/Answers/questionnaireID_SSQ_ALL_Condition-A_SSQAnswers.csv".format(folder_path)
-# data_Condition_A = pd.read_csv(questionnaire_ID_SSQ_ALL_Condition_A_SSQAnswers, sep=";", decimal=",")
-# print(data_Condition_A.head(5))
-
-# data_Condition_A["weights"] = (data_Condition_A['Answer_Participant_id-2_condition_Condition A'].values + 
-#            data_Condition_A['Answer_Participant_id-1_condition_Condition A'].values +
-#            data_Condition_A['Answer_Participant_id-3_condition_Condition A'].values +
-#            data_Condition_A['Answer_Participant_id-5_condition_Condition A'].values +
-#            data_Condition_A['Answer_Participant_id-6_condition_Condition A'].values +
-#            data_Condition_A['Answer_Participant_id-7_condition_Condition A'].values +
-#            data_Condition_A['Answer_Participant_id-4_condition_Condition A'].values +
-#            data_Condition_A['Answer_Participant_id-10_condition_Condition A'].values)
-
-# plt.hist(x=[0, 1, 2, 3, 4, 5, 6 ,7 , 8 , 9 , 10, 11 , 12, 13, 14, 15], bins=[0, 1, 2, 3, 4, 5, 6 ,7 , 8 , 9 , 10, 11 , 12, 13, 14, 15], weights=data_Condition_A["weights"])
-# plt.ylabel('Probability')
-# plt.xlabel('Data')
-# plt.show()
-
-# questionnaire_ID_SSQ_ALL_Condition_B_SSQAnswers = "../RTools/Condition B/Questionnaires/Answers/questionnaireID_SSQ_ALL_Condition-B_SSQAnswers.csv".format(folder_path)
-# data_Condition_B = pd.read_csv(questionnaire_ID_SSQ_ALL_Condition_B_SSQAnswers, sep=";", decimal=",")
-# print(data_Condition_B.head(5))
-
-# data_Condition_B["weights"] = (data_Condition_B['Answer_Participant_id-13_condition_Condition B'].values + 
-#            data_Condition_B['Answer_Participant_id-14_condition_Condition B'].values +
-#            data_Condition_B['Answer_Participant_id-15_condition_Condition B'].values +
-#            data_Condition_B['Answer_Participant_id-16_condition_Condition B'].values +
-#            data_Condition_B['Answer_Participant_id-17b_condition_Condition B'].values +
-#            data_Condition_B['Answer_Participant_id-18_condition_Condition B'].values +
-#            data_Condition_B['Answer_Participant_id-19_condition_Condition B'].values +
-#            data_Condition_B['Answer_Participant_id-20_condition_Condition B'].values +
-#            data_Condition_B['Answer_Participant_id-31_condition_Condition B'].values +
-#            data_Condition_B['Answer_Participant_id-34_condition_Condition B'].values)
-
-# plt.hist(x=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], bins=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], weights=data_Condition_B["weights"])
-# #plt.hist(data_Condition_A, density=True, bins=30)  # density=False would make counts
-# plt.ylabel('Probability')
-# plt.xlabel('Data')
-# plt.show()
-
-
 
 # Condition B
 folder_path = "../RTools/Condition B/RResults/Questionnaires".format(selected_condition)

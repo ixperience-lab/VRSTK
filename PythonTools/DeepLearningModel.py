@@ -1,16 +1,9 @@
 from sklearn.manifold import TSNE
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
-from sklearn.metrics.pairwise import pairwise_distances_argmin
-from sklearn.metrics import precision_recall_curve, log_loss, accuracy_score, f1_score, roc_auc_score, roc_curve, confusion_matrix, classification_report
+from sklearn.metrics import precision_recall_curve, accuracy_score, f1_score, roc_auc_score, roc_curve, confusion_matrix, classification_report
 from sklearn.metrics import PrecisionRecallDisplay
-from sklearn.model_selection import RepeatedStratifiedKFold
-from sklearn.model_selection import ShuffleSplit
 from sklearn.model_selection import train_test_split
-from sklearn.model_selection import StratifiedShuffleSplit
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import KFold
-from sklearn.preprocessing import MinMaxScaler
 from pytorch_tabnet.tab_model import TabNetClassifier
 from pytorch_tabnet.augmentations import ClassificationSMOTE
 import torch
@@ -19,7 +12,6 @@ import pandas as pd
 from pandas import DataFrame
 import numpy as np
 import numpy.matlib
-import sys
 import os
 from os.path import exists
 
@@ -65,14 +57,14 @@ def write_matrix_and_report_to_file(file_name, content):
     file.write(content)
     file.close()
 
-input_data_type = 4     # 0 = all (with pages); 1= ecg, eda, eeg, eye; 2 = ecg, eda, eeg; 3 = ecg, eda; 4 = ecg 
+# 0 = all (with pages); 1= ecg, eda, eeg, eye; 2 = ecg, eda, eeg; 3 = ecg, eda; 4 = ecg 
+input_data_type = 4     
 intervals = 3 
-dimensions = [0, 1, 2]               #0=scaled; 1=scaled+pca; 2=scaled+tSNE
+# 0=scaled; 1=scaled+pca; 2=scaled+tSNE
+dimensions = [0, 1, 2]               
 p_thresholds = [0.3, 0.5, 0.7]
-#propability_threshold = 0.3 # 0.3; 0.5; 0.7
-#max_range = 200
-#test_size=0.25
-n_components=56 # 3=Selection_over_5_ratio; 56=Kaiser_Rule;
+# 3=Selection_over_5_ratio; 56=Kaiser_Rule;
+n_components=56 
 
 # read csv train data as pandas data frame
 input_data = pd.read_csv("All_Participents_Clusterd_WaveSum_DataFrame.csv", sep=";", decimal=',')		
@@ -116,23 +108,6 @@ y_result_output = np.array(input_data[["Conscientious"]].values.flatten())
 print(y_result_output)
 
 transformed_train_x = StandardScaler().fit_transform(x_train)
-
-# set sensor and validity score weights
-# weight_ecg = 1 # 1/5      
-# weight_eda = 1 # 2/5      
-# weight_eeg = 1 # 1/5      
-# weight_eye = 1 # 1/5 
-# weight_pages = 1 # 2      
-
-# if input_data_type == 0:
-#     transformed_train_x[:,0:26]    = transformed_train_x[:,0:26]    * weight_ecg
-#     transformed_train_x[:,26:31]   = transformed_train_x[:,26:31]   * weight_eda
-#     transformed_train_x[:,31:107]  = transformed_train_x[:,31:107]  * weight_eeg
-#     transformed_train_x[:,152:157] = transformed_train_x[:,152:157] * weight_eeg
-#     transformed_train_x[:,107:129] = transformed_train_x[:,107:129] * weight_eye
-#     transformed_train_x[:,141:149] = transformed_train_x[:,141:149] * weight_eye
-#     transformed_train_x[:,129:141] = transformed_train_x[:,129:141] * weight_pages
-#     transformed_train_x[:,149:152] = transformed_train_x[:,149:152] * weight_pages
 
 print("Create output directory")
 # --- create dir

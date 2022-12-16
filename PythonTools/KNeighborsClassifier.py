@@ -6,14 +6,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.decomposition import PCA
 from sklearn.metrics import confusion_matrix, classification_report
 from sklearn.metrics import accuracy_score
-from sklearn.metrics import log_loss
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import roc_curve
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import numpy.matlib
-import sys
 import os
 from os.path import exists
 
@@ -61,14 +59,14 @@ def write_matrix_and_report_to_file(file_name, content):
 
 # input_data_type = { all_sensors = 0, ecg = 1, eda = 2, eeg = 3, eye = 4, pages = 5 }
 input_data_type = 0
-
 intervals = 3 
-dimensions = [0, 1, 2]               #0=scaled; 1=scaled+pca; 2=scaled+tSNE
-p_thresholds = [0.3, 0.5, 0.7]
-#propability_threshold = 0.3 # 0.3; 0.5; 0.7
+# 0=scaled; 1=scaled+pca; 2=scaled+tSNE
+dimensions = [0, 1, 2]               
+p_thresholds = [0.3, 0.5, 0.7] 
 max_range = 200
 test_size=0.25
-n_components=56 # 3=Selection_over_5_ratio; 56=Kaiser_Rule;
+# 3=Selection_over_5_ratio; 56=Kaiser_Rule;
+n_components=56                      
 
 # read csv train data as pandas data frame
 input_data = pd.read_csv("All_Participents_Clusterd_WaveSum_DataFrame.csv", sep=";", decimal=',')			# plan of sensors weighting:
@@ -138,7 +136,7 @@ for interval in range(1, intervals):
 
             print("------- K-Neighbors-Classifier-Model")
             # ------- K-Neighbors-Classifier-Model
-            #knc_train_data = train_data.copy()
+            # knc_train_data = train_data.copy()
             # --- training (fitting)
 
             if dimension == 1:
@@ -181,7 +179,6 @@ for interval in range(1, intervals):
             plt.tight_layout() 
             file_name = '{}/K-Neighbors-Classifier-Model_error_rate_vs_K_value.png'.format(path)
             plt.savefig(file_name)
-            #plt.show()
             plt.close()
 
             n_neighbors_error = error_rates.index(max(error_rates)) + 1
@@ -220,7 +217,6 @@ for interval in range(1, intervals):
             plt.tight_layout() 
             file_name = '{}/K-Neighbors-Classifier-Model_accuracy_vs_K_value.png'.format(path)
             plt.savefig(file_name)
-            #plt.show()
             plt.close()
             print("Maximum accuracy: ",max(acc),"at K =",acc.index(max(acc)))
 
@@ -336,7 +332,7 @@ for interval in range(1, intervals):
                 if val == 1:
                     none_conscientious_indeces.append(counter)
                 counter += 1
-            #print(none_conscientious_indeces)
+            
             file_name = '{}/K-Neighbors-Classifier-Model_predicted_test_data_plot.png'.format(path)
             plot_data_cluster(X_test, conscientious_indeces, none_conscientious_indeces, 
                             'K-Neighbors-Classifier-Model (predicted) test data', file_name, show=False, save=True)
