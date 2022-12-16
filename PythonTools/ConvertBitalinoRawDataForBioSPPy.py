@@ -1,5 +1,4 @@
 # Python Module ConvertBitalinoRawDataForBioSPPy
-
 import os
 
 def prepare_ecg_files_for_extraction(input_file = None, ouput_file_name = None):

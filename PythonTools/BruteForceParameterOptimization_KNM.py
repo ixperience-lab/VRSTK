@@ -2,20 +2,9 @@ from sklearn.manifold import TSNE
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics.pairwise import pairwise_distances_argmin
-from sklearn.metrics import precision_recall_curve, log_loss, accuracy_score, f1_score, roc_auc_score, roc_curve 
-from sklearn.model_selection import RepeatedStratifiedKFold
-from sklearn.model_selection import ShuffleSplit
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import StratifiedShuffleSplit
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import KFold
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import precision_recall_curve, accuracy_score, f1_score, roc_auc_score, roc_curve 
 import tensorflow as tf
 from tensorflow import keras
-from pytorch_tabnet.tab_model import TabNetClassifier
-from pytorch_tabnet.augmentations import ClassificationSMOTE
-import torch
 import matplotlib.pyplot as plt
 import pandas as pd
 from pandas import DataFrame
