@@ -1,5 +1,6 @@
 # ANOVA Feature tests and plots
 # ===================================
+# script for creating full features data set that is made by buildautomationprocess script
 
 # install packages that are needed
 #install.packages(c("ggplot2", "ggpubr", "tidyverse", "broom", "AICcmodavg"))

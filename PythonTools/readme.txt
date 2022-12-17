@@ -52,7 +52,7 @@ HeartReate Features Generation:
 
 Cognitive Load Estimation:
 -----------------------------------------------------------------------------------------------------------------------------
-- Used for cognitive load estimating in the given fusion dataset from the AutomationBuild script of R-Project
+- Used for cognitive load estimating in the given fusion dataset from the buildautomationprocess script of R-Project
 - Dataset stage 0 file path: "./All_Participents_Stage0_DataFrame.csv"
 - Dataset stage 1 file path: "./All_Participents_Stage1_DataFrame.csv"
 
