@@ -1,2 +1,0 @@
-pylsl==1.16.0
-python-osc==1.8.0
