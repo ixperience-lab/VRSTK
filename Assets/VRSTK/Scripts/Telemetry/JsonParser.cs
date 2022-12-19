@@ -78,10 +78,13 @@ namespace VRSTK
                         int eventListIndex = 0;
                         foreach (Event e in eventList)
                         {
-                            sb.Append("{\n\"time\": ").Append(e.time).Append(",\n");
+                            sb.Append("{\n\"time\": ").Append(e.time);//sb.Append("{\n\"time\": ").Append(e.time).Append(",\n");
                             int objectsIndex = 0;
                             foreach (string o in e.objects.Keys)
                             {
+                                if (objectsIndex == 0 && o != null && e.objects[o] != null && o != string.Empty)
+                                    sb.Append(",\n");
+
                                 sb.Append("\"").Append(o).Append("\": ").Append(FormatObject(e.objects[o])).Append("");
                                 if (objectsIndex < e.objects.Keys.Count - 1)
                                 {

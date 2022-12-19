@@ -1,0 +1,793 @@
+{
+   "qTitle":"Uncanny Valley Fragebogen",
+   "qInstructions":"Bitte bewerten Sie die folgenden Avatare.",
+   "qId":"exampleQE",
+   "questions":[
+      {
+         "pId":"page1",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page2",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page3",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page4",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page5",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page6",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page7",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page8",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page9",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page10",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+				  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page11",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page12",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page13",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page14",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page15",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page16",
+         "qType":"radio",
+         "qInstructions":"Bitte bewerten Sie diesen Avatar nach den folgenden Eigenschaften.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Stufen Sie bitte die Menschenähnlichkeit des Avatar's ein.   ",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Eindeutig roboterhaft",
+                  "Stark roboterhaft",
+                  "Leicht roboterhaft",
+                  "Dazwischen",			                    
+                  "Leicht menschlich",
+                  "Stark menschlich",  
+				  "Eindeutig menschlich"
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Ist das Erscheinungsbild des Avatares unheimlich?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Ist das Erscheinungsbild des Avatares sympathisch?",
+               "qMandatory":"true",
+               "qOptions":[
+                  "Stimme überhaupt nicht zu",
+                  "Stimme nicht zu",
+                  "Stimme eher nicht zu",  
+                  "Neutral",
+                  "Stimme eher zu",			                    
+                  "Stimme zu",
+				  "Stimme voll zu"
+               ]
+            }
+         ]
+      } 
+   ],
+   "qMessage":"Sie haben den Fragebogen abgeschlossen.",
+   "qAcknowledgments":"Folgen Sie bitte den weiteren Anweisungen!"
+}

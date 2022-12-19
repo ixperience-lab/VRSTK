@@ -34,3 +34,9 @@ sysinfo.txt
 # Builds
 *.apk
 .Rproj.user
+
+# Emotiv Client informations
+CortexAppConfig.cs
+Config.cs
+Assets/VRSTK/Scripts/VRIntegration/CortexAppConfig.cs
+Assets/Emotiv/Config.cs

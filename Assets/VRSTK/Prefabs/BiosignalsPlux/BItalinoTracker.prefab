@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1457436530762024553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4270619852247859637}
+  - component: {fileID: 1457436530762024554}
+  - component: {fileID: 1457436530762024555}
+  m_Layer: 0
+  m_Name: BItalinoTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4270619852247859637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457436530762024553}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.004622005, y: 3.058984, z: 9.890356}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1457436530762024554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457436530762024553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535d277b40a1f3442bec07bf7a9ddb47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _remoteIP: 127.0.0.1
+  _sendToPort: 9000
+  _listenerPort: 5555
+  _address: /Bitalino/OpenSinglesStream
+  _timeStamp: 
+  _sequenceNumber: -1
+  _rawReceivedMessage: 
+  _rawReceivedCurrentMessages: 
+  _messageCounter: 0
+  _path: ./Assets/VRSTK/SampleSceneData/Bitalino/RawData/
+  _fileName: 
+  _testController: {fileID: 0}
+  _rawReceivedMessages: []
+  _transferedReceivedMessage: 
+  _sigitalIOs: 00000000000000000000000000000000
+  _analogOutputs: 000000000000000000000000000000000000000000000000
+  _analogOutputsTransfered:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  _rawValue: []
+--- !u!114 &1457436530762024555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457436530762024553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: 684244e6bd3a3594c993a16fcddb73f7, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents:
+  - {fileID: 1457436530762024554}
+  trackedVariableNames:
+    array:
+    - array:
+      - enabled
+      - _rawReceivedMessage
+      - _transferedReceivedMessage
+  eventVariableNames:
+    array:
+    - array:
+      - enabled_TrackingBitalinoWithOSC
+      - _rawReceivedMessage_TrackingBitalinoWithOSC
+      - _transferedReceivedMessage_TrackingBitalinoWithOSC
+  timedInterval: 1
+  interval: 0.001

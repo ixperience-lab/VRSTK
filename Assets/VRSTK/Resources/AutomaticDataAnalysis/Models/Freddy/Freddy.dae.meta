@@ -1,0 +1,234 @@
+fileFormatVersion: 2
+guid: dcf5d72494f61d740966964d0e137af8
+timeCreated: 1581291015
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: C_World_jnt
+    100002: ExoJaw_jnt
+    100004: EyeStuffALL_jnt
+    100006: //RootNode
+    100008: Hat_jnt
+    100010: Head_jnt
+    100012: Hips_jnt
+    100014: Jaw_jnt
+    100016: Jiggle_Head_jnt
+    100018: Jiggle_Hips_jnt
+    100020: Jiggle_L_Elbow_jnt
+    100022: Jiggle_L_Knee_jnt
+    100024: Jiggle_L_Shoulder_jnt
+    100026: Jiggle_L_UpperLeg_jnt
+    100028: Jiggle_R_Elbow_jnt
+    100030: Jiggle_R_Knee_jnt
+    100032: Jiggle_R_Shoulder_jnt
+    100034: Jiggle_R_UpperLeg_jnt
+    100036: Jiggle_Spine_jnt
+    100038: L_Ankle_jnt
+    100040: L_Brow_jnt
+    100042: L_Ear_jnt
+    100044: L_Elbow_jnt
+    100046: L_Eye_jnt
+    100048: L_EyeStuffALL_jnt
+    100050: L_IndexA_jnt
+    100052: L_IndexB_jnt
+    100054: L_Knee_jnt
+    100056: L_KneePad_jnt
+    100058: L_LowerLid_jnt
+    100060: L_MiddleA_jnt
+    100062: L_MiddleB_jnt
+    100064: L_PinkyA_jnt
+    100066: L_PinkyB_jnt
+    100068: L_Prop_jnt
+    100070: L_Shoulder_jnt
+    100072: L_ShoulderPad_jnt
+    100074: L_ThumbA_jnt
+    100076: L_ThumbB_jnt
+    100078: L_UpperLeg_jnt
+    100080: L_UpperLid_jnt
+    100082: L_Wrist_jnt
+    100084: Neck_jnt
+    100086: R_Ankle_jnt
+    100088: R_Brow_jnt
+    100090: R_Ear_jnt
+    100092: R_Elbow_jnt
+    100094: R_Eye_jnt
+    100096: R_EyeStuffALL_jnt
+    100098: R_IndexA_jnt
+    100100: R_IndexB_jnt
+    100102: R_Knee_jnt
+    100104: R_KneePad_jnt
+    100106: R_LowerLid_jnt
+    100108: R_MiddleA_jnt
+    100110: R_MiddleB_jnt
+    100112: R_PinkyA_jnt
+    100114: R_PinkyB_jnt
+    100116: R_Prop_jnt
+    100118: R_Shoulder_jnt
+    100120: R_ShoulderPad_jnt
+    100122: R_ThumbA_jnt
+    100124: R_ThumbB_jnt
+    100126: R_UpperLeg_jnt
+    100128: R_UpperLid_jnt
+    100130: R_Wrist_jnt
+    100132: RIG_Freddy_ao
+    100134: RIG_Freddy_mo
+    100136: Spine_jnt
+    100138: Tie_jnt
+    400000: C_World_jnt
+    400002: ExoJaw_jnt
+    400004: EyeStuffALL_jnt
+    400006: //RootNode
+    400008: Hat_jnt
+    400010: Head_jnt
+    400012: Hips_jnt
+    400014: Jaw_jnt
+    400016: Jiggle_Head_jnt
+    400018: Jiggle_Hips_jnt
+    400020: Jiggle_L_Elbow_jnt
+    400022: Jiggle_L_Knee_jnt
+    400024: Jiggle_L_Shoulder_jnt
+    400026: Jiggle_L_UpperLeg_jnt
+    400028: Jiggle_R_Elbow_jnt
+    400030: Jiggle_R_Knee_jnt
+    400032: Jiggle_R_Shoulder_jnt
+    400034: Jiggle_R_UpperLeg_jnt
+    400036: Jiggle_Spine_jnt
+    400038: L_Ankle_jnt
+    400040: L_Brow_jnt
+    400042: L_Ear_jnt
+    400044: L_Elbow_jnt
+    400046: L_Eye_jnt
+    400048: L_EyeStuffALL_jnt
+    400050: L_IndexA_jnt
+    400052: L_IndexB_jnt
+    400054: L_Knee_jnt
+    400056: L_KneePad_jnt
+    400058: L_LowerLid_jnt
+    400060: L_MiddleA_jnt
+    400062: L_MiddleB_jnt
+    400064: L_PinkyA_jnt
+    400066: L_PinkyB_jnt
+    400068: L_Prop_jnt
+    400070: L_Shoulder_jnt
+    400072: L_ShoulderPad_jnt
+    400074: L_ThumbA_jnt
+    400076: L_ThumbB_jnt
+    400078: L_UpperLeg_jnt
+    400080: L_UpperLid_jnt
+    400082: L_Wrist_jnt
+    400084: Neck_jnt
+    400086: R_Ankle_jnt
+    400088: R_Brow_jnt
+    400090: R_Ear_jnt
+    400092: R_Elbow_jnt
+    400094: R_Eye_jnt
+    400096: R_EyeStuffALL_jnt
+    400098: R_IndexA_jnt
+    400100: R_IndexB_jnt
+    400102: R_Knee_jnt
+    400104: R_KneePad_jnt
+    400106: R_LowerLid_jnt
+    400108: R_MiddleA_jnt
+    400110: R_MiddleB_jnt
+    400112: R_PinkyA_jnt
+    400114: R_PinkyB_jnt
+    400116: R_Prop_jnt
+    400118: R_Shoulder_jnt
+    400120: R_ShoulderPad_jnt
+    400122: R_ThumbA_jnt
+    400124: R_ThumbB_jnt
+    400126: R_UpperLeg_jnt
+    400128: R_UpperLid_jnt
+    400130: R_Wrist_jnt
+    400132: RIG_Freddy_ao
+    400134: RIG_Freddy_mo
+    400136: Spine_jnt
+    400138: Tie_jnt
+    2100000: Char_Mat_Freddy_Body
+    2100002: Char_Mat_Endo
+    2100004: Char_Mat_Eye_Freddy
+    2100006: Char_Mat_Microphone
+    4300000: RIG_Freddy_mo
+    9500000: //RootNode
+    13700000: RIG_Freddy_mo
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

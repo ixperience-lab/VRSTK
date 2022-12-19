@@ -1,0 +1,59 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly BITalinoLibraryWrapperUnity, Version=0.0.*, Culture=Invariante Sprache (Invariantes Land): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class Bitalino: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    find(): PrivateScope, Public, Static, HideBySig
+    version(): PrivateScope, Public, HideBySig
+    start(Int32, Int32[], Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    start(Int32, Int32[]): PrivateScope, Public, HideBySig
+    start(Int32): PrivateScope, Public, HideBySig
+    start(): PrivateScope, Public, HideBySig
+    stop(): PrivateScope, Public, HideBySig
+    read(Frame[]): PrivateScope, Public, HideBySig
+    battery(Int32): PrivateScope, Public, HideBySig
+    trigger(Boolean[]): PrivateScope, Public, HideBySig
+    trigger(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class Bitalino+DevInfo: AutoLayout, AnsiClass, Class, NestedPublic, BeforeFieldInit
+    Void .ctor(DevInfo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.String macAddr IsConst : Public
+    System.String name IsConst : Public
+Class Bitalino+Frame: AutoLayout, AnsiClass, Class, NestedPublic, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    SByte seq IsSignUnspecifiedByte : Public
+    Boolean[] digital : Public
+    Int16[] analog : Public
+Class Bitalino+Exception: AutoLayout, AnsiClass, Class, NestedPublic, BeforeFieldInit
+  :System.ApplicationException
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Exception*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Code code : Public
+Struct Bitalino+Exception+Code: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    Code INSTANCE_CLOSED = 0 : Public, Static, Literal, HasDefault
+    Code INVALID_ADDRESS = 1 : Public, Static, Literal, HasDefault
+    Code BT_ADAPTER_NOT_FOUND = 2 : Public, Static, Literal, HasDefault
+    Code DEVICE_NOT_FOUND = 3 : Public, Static, Literal, HasDefault
+    Code CONTACTING_DEVICE = 4 : Public, Static, Literal, HasDefault
+    Code PORT_COULD_NOT_BE_OPENED = 5 : Public, Static, Literal, HasDefault
+    Code PORT_INITIALIZATION = 6 : Public, Static, Literal, HasDefault
+    Code DEVICE_NOT_IDLE = 7 : Public, Static, Literal, HasDefault
+    Code DEVICE_NOT_IN_ACQUISITION = 8 : Public, Static, Literal, HasDefault
+    Code INVALID_PARAMETER = 9 : Public, Static, Literal, HasDefault

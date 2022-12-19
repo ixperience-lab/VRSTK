@@ -130,6 +130,7 @@ namespace SimpleJSON
         Indent
     }
 
+    [Serializable]
     public abstract partial class JSONNode
     {
         #region Enumerators
@@ -706,7 +707,7 @@ namespace SimpleJSON
 
     }
     // End of JSONNode
-
+    [Serializable]
     public partial class JSONArray : JSONNode
     {
         private List<JSONNode> m_List = new List<JSONNode>();

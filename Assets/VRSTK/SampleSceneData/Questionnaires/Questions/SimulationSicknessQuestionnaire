@@ -1,0 +1,280 @@
+{
+   "qTitle":"Simulation Sickness Fragebogen",
+   "qInstructions":"Anweisung: Bitte wählen Sie aus, wie sehr jedes der folgenden Symptome Sie im Moment beeinträchtigt.",
+   "qId":"SSQ",
+   "questions":[
+      {
+         "pId":"page1",
+         "qType":"radio",
+         "qInstructions":"Bitte wählen Sie aus, wie stark jedes der folgenden Symptome Sie im Moment beeinträchtigt.",
+         "qData":[
+            {
+               "qId":"q1",
+               "qText":"Allgemeines Unwohlsein (General discomfort)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+				  "",
+                  ""
+               ]
+            },
+            {
+               "qId":"q2",
+               "qText":"Müdigkeit (Fatique)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+				  "",
+                  ""
+               ]
+            },
+            {
+               "qId":"q3",
+               "qText":"Kopfschmerzen (Headache)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+				  "",
+                  ""
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page2",
+         "qType":"radio",
+         "qInstructions":"Bitte wählen Sie aus, wie stark jedes der folgenden Symptome Sie im Moment beeinträchtigt.",
+         "qMandatory":"true",
+         "qData":[
+            {
+               "qId":"q4",
+               "qText":"Belastung der Augen (Eye strain)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+                  "",
+                  ""
+               ]
+            },
+            {
+               "qId":"q5",
+               "qText":"Schwierigkeiten bei der Fokussierung (Difficulty focusing)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+                  "",
+                  ""
+               ]
+            },
+            {
+               "qId":"q6",
+               "qText":"Zunehmende Speichelbildung (Salivation increasing)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+                  "",
+                  ""
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page3",
+         "qType":"radio",
+         "qInstructions":"Bitte wählen Sie aus, wie stark jedes der unten aufgeführten Symptome Sie im Moment beeinträchtigt.",
+         "qMandatory":"true",
+         "qData":[
+            {
+               "qId":"q7",
+               "qText":"Schwitzen (Sweating)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+                  "",
+                  ""
+               ]
+            },
+            {
+               "qId":"q8",
+               "qText":"Übelkeit (Nausea)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+                  "",
+                  ""
+               ]
+            },
+            {
+               "qId":"q9",
+               "qText":"Konzentrationsschwierigkeiten (Difficulty concentrating)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+                  "",
+                  ""
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page4",
+         "qType":"radio",
+         "qInstructions":"Bitte wählen Sie aus, wie stark jedes der unten aufgeführten Symptome Sie im Moment beeinträchtigt.",
+         "qMandatory":"true",
+         "qData":[
+            {
+               "qId":"q10",
+               "qText":"Fülle des Kopfes (Fullness of the Head)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+                  "",
+                  ""
+               ]
+            },
+            {
+               "qId":"q11",
+               "qText":"Verschwommensehen (Blurred vision)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+                  "",
+                  ""
+               ]
+            },
+            {
+               "qId":"q12",
+               "qText":"Schwindelgefühl bei geöffneten Augen (Vertigo eyes opened)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+                  "",
+                  ""
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page5",
+         "qType":"radio",
+         "qInstructions":"Bitte wählen Sie aus, wie stark jedes der unten aufgeführten Symptome Sie im Moment beeinträchtigt.",
+         "qMandatory":"true",
+         "qData":[
+            {
+               "qId":"q13",
+               "qText":"Schwindelgefühl bei geschlossenen Augen (Vertigo eyes closed)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+                  "",
+                  ""
+               ]
+            },
+            {
+               "qId":"q14",
+               "qText":"Gleichgewichtsstörung (Vertigo)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+                  "",
+                  ""
+               ]
+            },
+            {
+               "qId":"q15",
+               "qText":"Magenwahrnehmung (Unbehagen) (Stomach awareness)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+                  "",
+                  ""
+               ]
+            }
+         ]
+      },
+      {
+         "pId":"page6",
+         "qType":"radio",
+         "qInstructions":"Bitte wählen Sie aus, wie stark jedes der unten aufgeführten Symptome Sie im Moment beeinträchtigt.",
+         "qMandatory":"true",
+         "qData":[
+            {
+               "qId":"q16",
+               "qText":"Aufstoßen (Burping)",
+               "qMandatory":"true",
+               "qOptions":[
+                  "",
+                  "Keine",
+                  "Leicht",
+                  "Moderat",
+                  "Stark",
+                  "",
+                  ""
+               ]
+            }
+         ]
+      }
+   ],
+   "qMessage":"Sie haben den Fragebogen abgeschlossen.",
+   "qAcknowledgments":"Vielen Dank, dass Sie an der Studie teilgenommen haben! Wir schätzen Ihre Zeit sehr!"
+}

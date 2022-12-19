@@ -176,7 +176,7 @@ namespace VRSTK
                                     Debug.Log("Loading profile: " + _mentalCommandProfileName);
                                     if (profileList != null && profileList.Contains(_mentalCommandProfileName))
                                     {
-                                        _bciTraining.LoadProfile(_mentalCommandProfileName);
+                                        //_bciTraining.LoadProfile(_mentalCommandProfileName);
                                         Thread.Sleep(1000);
                                     }
                                     else
@@ -186,7 +186,7 @@ namespace VRSTK
                                 {
                                     //Load profile
                                     Debug.Log("UnLoad profile: " + _mentalCommandProfileName);
-                                    _bciTraining.UnLoadProfile(_mentalCommandProfileName);
+                                    //_bciTraining.UnLoadProfile(_mentalCommandProfileName);
                                     Thread.Sleep(1000);
                                 }
                                 else if (Input.GetKey(KeyCode.Alpha0))//if (keyInfo.Key == ConsoleKey.D0)
@@ -264,7 +264,7 @@ namespace VRSTK
                                     //Accept training
                                     if (_isSucceeded)
                                     {
-                                        _bciTraining.AcceptTraining(_currentAction, _currentDetektion);
+                                        //_bciTraining.AcceptTraining(_currentAction, _currentDetektion);
                                         Thread.Sleep(1000);
                                         _isSucceeded = false; // reset
                                     }
@@ -274,7 +274,7 @@ namespace VRSTK
                                     //Reject training
                                     if (_isSucceeded)
                                     {
-                                        _bciTraining.RejectTraining(_currentAction, _currentDetektion);
+                                        //_bciTraining.RejectTraining(_currentAction, _currentDetektion);
                                         Thread.Sleep(1000);
                                         _isSucceeded = false; // reset
                                     }

@@ -82,6 +82,9 @@ namespace VRSTK
                     }
 
                     lastSystemTime = t;
+
+                    // hewl1012: added the following line to playback the Questionnaire Page -> there is a rendering issue of RectTransform in pause mode of unity app
+                    UnityEditor.EditorApplication.Step();
                 }
 
 

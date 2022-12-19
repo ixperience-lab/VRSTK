@@ -1039,6 +1039,12 @@ MonoBehaviour:
   eyeHitpoint: {x: 0, y: 0, z: 0}
   eyeDirection: {x: 0, y: 0, z: 0}
   validTracking: 0
+  eyeOpennessRight: 0
+  pupilDiameterRight: 0
+  pupilPositionInSensorAreaRight: {x: 0, y: 0}
+  eyeOpennessLeft: 0
+  pupilDiameterLeft: 0
+  pupilPositionInSensorAreaLeft: {x: 0, y: 0}
 --- !u!1 &1013096816217381899
 GameObject:
   m_ObjectHideFlags: 0

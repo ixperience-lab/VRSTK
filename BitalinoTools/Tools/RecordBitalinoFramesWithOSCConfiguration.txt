@@ -1,0 +1,5 @@
+batteryThreshold=10
+samplingRate=1000
+numberOfFrames=100
+portNumber=5555
+ipAddress=127.0.0.1

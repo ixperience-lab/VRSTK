@@ -1,0 +1,218 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8035998682907772194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8818843814512030781}
+  - component: {fileID: 6788298899876900755}
+  - component: {fileID: 4631264726750693522}
+  - component: {fileID: 4253450669558759645}
+  - component: {fileID: 5219358223554929185}
+  m_Layer: 0
+  m_Name: Pages
+  m_TagString: QuestionnaireFactory
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8818843814512030781
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035998682907772194}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5210996073218624701}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6788298899876900755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035998682907772194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88dc864b2626fa8428a8f327e1564540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NumPages: 0
+  CurrentPage: 0
+  _pageList: []
+  _questionList: []
+  PageParent: {fileID: 8818843814512030781}
+  PagePrefab: {fileID: 2126233725775806772, guid: 7c1f4381e520e704ca23dc2931a50ad8,
+    type: 3}
+  RadioHorizontalPrefab: {fileID: 8080259207330096802, guid: 9bf3cf3c1164d3e4c949e6e5325faa98,
+    type: 3}
+  RadioGridPrefab: {fileID: 1842614079482050646, guid: 31811624d9ce08a41ab7413164253db4,
+    type: 3}
+  Checkbox: {fileID: 7723888752828865803, guid: 43859c6bd59d8284c943160a749c0e2c,
+    type: 3}
+  CheckboxGrid: {fileID: 0}
+  Dropdown: {fileID: 5176551976415444739, guid: 0178c88a70e13ed4b8c5f383e36f0ec5,
+    type: 3}
+  LinearGrid: {fileID: 2972589160377234563, guid: 897062dcf793b6e498aa373709935e7c,
+    type: 3}
+  LinearSlider: {fileID: 3347914053654185840, guid: 0d9ce8f471afe9641a395100aaf569b8,
+    type: 3}
+  TextInput: {fileID: 0}
+  LastPagePrefab: {fileID: 5335607307082613704, guid: fd4f676b99e71d24bb99b3e063da60de,
+    type: 3}
+--- !u!114 &4631264726750693522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035998682907772194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d13faae518bdb499ce261b7118061e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentActivePageIndex: 0
+  _selectedContentToggle: 
+  _cameraTracking: {fileID: 0}
+--- !u!114 &4253450669558759645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035998682907772194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: fe7d8b527e21e9e41b89b87e759bd104, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents:
+  - {fileID: 4631264726750693522}
+  trackedVariableNames:
+    array:
+    - array:
+      - CurrentActivePageIndex
+      - SelectedContentToggle
+  eventVariableNames:
+    array:
+    - array:
+      - CurrentActivePageIndex_PageReplay
+      - SelectedContentToggle_PageReplay
+  timedInterval: 0
+  interval: 1
+--- !u!114 &5219358223554929185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035998682907772194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0412335dfe22c4b41b169a38df670380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _STARTED: 
+  _LASTDATA: 
+  _LASTPAGE: 0
+  _MAXPAGE: 0
+  _FINISHED: 0
+  _TIME_SUM: 0
+  _TIME_RSI: 0
+  _MISSING: 0
+  _DEG_TIME: 0
+  _degTimeThreshold: 100
+  _degTimeLowQuality: 0
+  _degTimeThresholdForOnePage: 15
+  _degTimeValueForOnePage: 20
+  _questionsAnswerRecordList: []
+  _parametersAsMessage: 
+--- !u!1 &8694240406262178717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5210996073218624701}
+  - component: {fileID: 8618724625361522436}
+  - component: {fileID: 4498900326599110230}
+  m_Layer: 0
+  m_Name: Questionnaire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5210996073218624701
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8694240406262178717}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8818843814512030781}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 35}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8618724625361522436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8694240406262178717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1426b1112d138be4a838b7000eb7ae43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackPages: {fileID: 11400000, guid: fe7d8b527e21e9e41b89b87e759bd104, type: 2}
+--- !u!114 &4498900326599110230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8694240406262178717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e587abd9a01a4cba77ffb1d452b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventBase: {fileID: 11400000, guid: fe7d8b527e21e9e41b89b87e759bd104, type: 2}
+  eventToSend: {fileID: 0}
+  trackedComponents: []
+  trackedVariableNames:
+    array: []
+  eventVariableNames:
+    array: []
+  timedInterval: 0
+  interval: 1

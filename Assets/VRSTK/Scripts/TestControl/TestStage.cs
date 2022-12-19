@@ -129,6 +129,7 @@ namespace VRSTK
                         button.GetComponent<Button>().GetComponentInChildren<Text>().text = "Stop Stage";
                         foreach (GameObject g in GameobjectsToActivate)
                         {
+                            //Debug.Log(g.name);
                             g.SetActive(true);
                         }
                         for (int i = 0; i < GameobjectsToSendMessageTo.Count; i++)

@@ -1,0 +1,7 @@
+﻿  bitalino.cpp
+  dotNet_wrapper.cpp
+C:\Users\Wladimir Hettmann\source\repos\BITalinoLibraryWrapperUnity\BITalinoLibraryWrapperUnity\dotNet_wrapper.cpp(241,91): warning C4267: "Argument": Konvertierung von "size_t" nach "int", Datenverlust möglich
+  .NETFramework,Version=v4.6.AssemblyAttributes.cpp
+  Code wird generiert...
+  bitalino.obj : MSIL-Modulgefunden; inkrementelles Verknüpfen wird für MSIL deaktiviert; vollständiger Link wird durchgeführt
+  BITalinoLibraryWrapperUnity.vcxproj -> C:\Users\Wladimir Hettmann\source\repos\BITalinoLibraryWrapperUnity\x64\Debug\BITalinoLibraryWrapperUnity.dll

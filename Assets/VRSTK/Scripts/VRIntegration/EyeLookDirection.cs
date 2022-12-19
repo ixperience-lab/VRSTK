@@ -44,10 +44,38 @@ namespace VRSTK
                 //The world eye direction
                 public Vector3 eyeDirection;
 
+                //[SerializeField]
+                //public Vector3 eyeHitpointRight;
+                //[SerializeField]
+                //public Vector3 eyeHitDirectionRight;
+
+                //[SerializeField]
+                //public Vector3 eyeHitpointLeft;
+                //[SerializeField]
+                //public Vector3 eyeHitDirectionLeft;
+
                 //True if the given eye tracking points are valid and up-to-date
                 public bool validTracking = false;
                 //Variable for last Error
                 private ViveSR.Error lastError;
+
+                [SerializeField]
+                public float eyeOpennessRight;
+
+                [SerializeField]
+                public float pupilDiameterRight;
+
+                [SerializeField]
+                public Vector2 pupilPositionInSensorAreaRight;
+
+                [SerializeField]
+                public float eyeOpennessLeft;
+
+                [SerializeField]
+                public float pupilDiameterLeft;
+
+                [SerializeField]
+                public Vector2 pupilPositionInSensorAreaLeft;
 
                 void Start()
                 {
@@ -103,6 +131,20 @@ namespace VRSTK
                     var leftEye = EyeData.verbose_data.left.gaze_direction_normalized;
                     var rightEye = EyeData.verbose_data.right.gaze_direction_normalized;
 
+                    var leftEyeProperties = EyeData.verbose_data.left;
+                    eyeOpennessLeft = leftEyeProperties.eye_openness;
+                    pupilDiameterLeft = leftEyeProperties.pupil_diameter_mm;
+                    pupilPositionInSensorAreaLeft = leftEyeProperties.pupil_position_in_sensor_area;
+
+                    Debug.Log(string.Format("Left eye traking informations, Opennes: {0} , Pupil diameter: {1} , Pupil position: {2}", eyeOpennessLeft, pupilDiameterLeft, pupilPositionInSensorAreaLeft));
+
+                    var rightEyeProperties = EyeData.verbose_data.right;
+                    eyeOpennessRight = rightEyeProperties.eye_openness;
+                    pupilDiameterRight = rightEyeProperties.pupil_diameter_mm;
+                    pupilPositionInSensorAreaLeft = rightEyeProperties.pupil_position_in_sensor_area;
+
+                    Debug.Log(string.Format("Right eye traking informations, Opennes: {0} , Pupil diameter: {1} , Pupil position: {2}", eyeOpennessRight, pupilDiameterRight, pupilPositionInSensorAreaRight));
+
                     //With this conditions only one eye is tracked (here is most the left Eye)!
                     if (leftEye != Vector3.zero)
                     {
@@ -141,6 +183,31 @@ namespace VRSTK
                     Debug.Log("lookingAt.name:=(" + lookingAt.name + ") \n eyeHitpoint:=(" + eyeHitpoint + ") \n eyeDirection=(" + eyeDirection + ") \n Duration=(" + duration + ")");
 
                     GetComponent<EventSender>().Deploy();
+
+                    // Disable the spring on all HingeJoints in this game object
+                    //List<EventSender> eventSender = new List<EventSender>();
+
+                    //GetComponents(eventSender);
+                    
+                    //// EyeLookAtObjectPlayBack
+                    //eventSender[2].SetEventValue("EyeHitPoint_EyeLookAtObjectPlayBack", eyeHitpoint);
+                    //eventSender[2].SetEventValue("ObjectName_EyeLookAtObjectPlayBack", lookingAt.name);
+                    //eventSender[2].SetEventValue("Duration_EyeLookAtObjectPlayBack", duration);
+                    //eventSender[2].Deploy();
+
+                    //// CalculateLocomotionRoute
+                    //eventSender[3].SetEventValue("HeadsetPotion_CalculateLocomotionRoute", transform.position);
+                    //eventSender[3].SetEventValue("enabled_CalculateLocomotionRoute", "True");
+                    //eventSender[3].Deploy();
+
+                    //// CalculateLocomotionRoute
+                    //eventSender[4].SetEventValue("HeadsetPotion_LocomotionRouteWithLinesPlayback", transform.position);
+                    //eventSender[4].SetEventValue("HitPosition_LocomotionRouteWithLinesPlayback", eyeHitpoint);
+                    //eventSender[4].SetEventValue("Direction_LocomotionRouteWithLinesPlayback", eyeDirection);
+                    //eventSender[4].SetEventValue("Duration_LocomotionRouteWithLinesPlayback", duration);
+                    //eventSender[4].SetEventValue("enabled_LocomotionRouteWithLinesPlayback", "True");
+                    //eventSender[4].Deploy();
+
                     lookingAt = null;
                 }
 
@@ -206,41 +273,45 @@ namespace VRSTK
 
                 void RayToSphereColliderCast(Vector3 direction)
                 {
-                    int layerMask = 1 << 8;
-                    layerMask = ~layerMask;
-
-                    sphereEyeCollider.GetComponent<MeshCollider>().enabled = true;
-                    //Get radius of Sphere Collider
-                    float radius = sphereEyeCollider.transform.lossyScale.x / 2.0f;
-                    Debug.Log("sphere.radius:" + radius);
-
-                    hitTimeSphere = TestStage.GetTime();
-
-                    if (Physics.Raycast(transform.position, direction, out hitSphere, radius, layerMask))
+                    if (sphereEyeCollider)
                     {
-                        Debug.Log("Hit the Sphere Collider with direction:" + direction + " hitPoint:" + hitSphere.point);
-                        //When hit collider: Use collider as hitpoint
-                        this.eyeHitpoint = hitSphere.point;
-                        DrawLine(transform.position, eyeHitpoint, Color.green);
-                    }
-                    else
-                    {
-                        Debug.Log("No hit on the Sphere Collider!");
-                        this.eyeHitpoint = direction.normalized * 100;
+                        int layerMask = 1 << 8;
+                        layerMask = ~layerMask;
 
-                        DrawLine(transform.position, direction, Color.red);
-                    }
+                        sphereEyeCollider.GetComponent<MeshCollider>().enabled = true;
+                        //Get radius of Sphere Collider
+                        float radius = sphereEyeCollider.transform.lossyScale.x / 2.0f;
+                        Debug.Log("sphere.radius:" + radius);
 
-                    if (hitSphere.transform != null)
-                        SphereColliderEventSender();
+                        hitTimeSphere = TestStage.GetTime();
+
+                        if (Physics.Raycast(transform.position, direction, out hitSphere, radius, layerMask))
+                        {
+                            Debug.Log("Hit the Sphere Collider with direction:" + direction + " hitPoint:" + hitSphere.point);
+                            //When hit collider: Use collider as hitpoint
+                            this.eyeHitpoint = hitSphere.point;
+                            DrawLine(transform.position, eyeHitpoint, Color.green);
+                        }
+                        else
+                        {
+                            Debug.Log("No hit on the Sphere Collider!");
+                            this.eyeHitpoint = direction.normalized * 100;
+
+                            DrawLine(transform.position, direction, Color.red);
+                        }
+
+                        if (hitSphere.transform != null)
+                            SphereColliderEventSender();
+                    }
                 }
 
                 void RayToObjectColliderCast(Vector3 direction)
                 {
                     int layerMask = 1 << 8;
                     layerMask = ~layerMask;
-
-                    sphereEyeCollider.GetComponent<MeshCollider>().enabled = false;
+                    
+                    if (sphereEyeCollider)
+                        sphereEyeCollider.GetComponent<MeshCollider>().enabled = false;
 
                     if (Physics.Raycast(transform.position, direction, out hitObjects, Mathf.Infinity, layerMask))
                     {

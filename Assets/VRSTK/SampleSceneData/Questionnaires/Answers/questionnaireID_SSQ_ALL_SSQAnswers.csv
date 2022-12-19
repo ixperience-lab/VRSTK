@@ -1,0 +1,18 @@
+QuestionType;Question;QuestionID;Answer_Participant_id-2_condition_Condition A;Answer_Participant_id-1_condition_Condition A;Answer_Participant_id-3_condition_Condition A;Answer_Participant_id-5_condition_Condition A;Answer_Participant_id-21_condition_Condition C;Answer_Participant_id-13_condition_Condition B;Answer_Participant_id-6_condition_Condition A;Answer_Participant_id-22_condition_Condition C;Answer_Participant_id-23_condition_Condition C;Answer_Participant_id-14_condition_Condition B;Answer_Participant_id-7_condition_Condition A;Answer_Participant_id-16_condition_Condition B;Answer_Participant_id-4_condition_Condition A;Answer_Participant_id-15_condition_Condition B;Answer_Participant_id-17_condition_Condition B;Answer_Participant_id-17b_condition_Condition B;Answer_Participant_id-18_condition_Condition B;Answer_Participant_id-25_condition_Condition C;Answer_Participant_id-19_condition_Condition B;Answer_Participant_id-20_condition_Condition B;Answer_Participant_id-31_condition_Condition B;Answer_Participant_id-24_condition_Condition C;Answer_Participant_id-29_condition_Condition C;Answer_Participant_id-34_condition_Condition B;Answer_Participant_id-10_condition_Condition A;Answer_Participant_id-26_condition_Condition C;Answer_Participant_id-27_condition_Condition C;Answer_Participant_id-28_condition_Condition C;Answer_Participant_id-44_condition_Condition A
+radio;Allgemeines Unwohlsein (General discomfort);q1;0;0;0;0;1;2;1;1;1;0;0;2;0;0;2;1;2;0;3;1;2;0;0;2;0;0;0;1;0
+radio;M�������;q2;1;0;1;0;1;2;0;0;0;0;1;0;0;1;2;2;1;1;3;2;2;0;1;1;0;0;1;0;1
+radio;Kopfschmerzen (Headache);q3;0;1;0;0;0;2;1;0;0;0;0;1;1;0;1;3;2;0;3;2;2;0;1;2;0;0;0;0;0
+radio;Belastung der Augen (Eye strain);q4;1;0;1;1;1;2;3;1;1;1;3;2;1;2;2;3;1;0;2;0;1;0;2;1;0;1;0;2;1
+radio;Schwierigkeiten bei der Fokussierung (Difficulty focusing);q5;0;1;2;2;0;2;3;0;2;2;3;2;1;1;2;2;1;1;2;2;1;0;1;2;0;0;0;1;0
+radio;Zunehmende Speichelbildung (Salivation increasing);q6;0;0;1;0;0;2;0;0;0;0;1;1;0;0;1;1;3;0;2;1;1;0;0;2;0;0;0;0;0
+radio;Schwitzen (Sweating);q7;1;1;0;1;1;3;2;0;0;0;2;1;0;1;3;1;2;1;1;2;2;0;1;2;0;1;1;0;0
+radio;������������������������������������������������������belkeit (Nausea);q8;0;0;0;0;0;3;1;2;0;0;1;1;0;0;0;2;2;1;1;1;2;0;0;2;0;0;0;0;0
+radio;Konzentrationsschwierigkeiten (Difficulty concentrating);q9;0;0;0;1;0;3;2;0;0;0;0;2;0;1;2;3;2;0;1;2;2;0;0;2;0;0;0;1;0
+radio;F�������������;q10;0;0;0;0;2;3;2;0;1;1;0;1;0;0;3;2;1;0;0;0;3;0;1;2;0;0;0;0;0
+radio;Verschwommensehen (Blurred vision);q11;0;1;2;1;1;3;3;1;2;2;3;1;1;0;2;2;3;1;0;1;3;0;2;2;0;1;0;1;1
+radio;Schwindelgef����������������;q12;0;0;0;0;0;3;2;1;0;0;0;0;0;0;1;2;3;1;0;2;3;0;0;3;0;0;0;0;0
+radio;Schwindelgef�����������������;q13;0;0;0;0;1;3;1;0;0;0;0;1;0;2;1;1;3;2;0;1;1;0;0;2;0;0;0;0;0
+radio;Gleichgewichtsst������;q14;0;0;0;0;0;3;1;0;0;0;3;1;0;1;1;1;1;1;0;0;1;0;0;2;0;0;1;1;0
+radio;Magenwahrnehmung (Unbehagen) (Stomach awareness);q15;1;0;0;0;0;3;1;1;0;0;0;1;0;0;0;1;2;1;0;2;1;0;1;3;0;0;0;0;0
+radio;Aufsto�����;q16;0;0;0;0;0;2;0;0;0;0;0;0;0;0;0;1;2;1;0;1;1;0;0;2;0;0;0;0;0
+
