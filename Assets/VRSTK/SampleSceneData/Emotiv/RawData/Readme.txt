@@ -1,0 +1,1 @@
+Used for saving raw data from EMOTIV Prefab, in ditail the raw eeg values with therer signal quality indecator will be saved.

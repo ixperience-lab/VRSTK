@@ -30,4 +30,5 @@ To use this toolkit with VRSTK features, the VRSTK-Questionnaire-Unity package m
 Therefore, additional steps must be performed in the original toolkit package:
 - remove the content of the Prefab-Folder (./Prefab/*)
 - remove the content of the Scripts-Folder (./Scripts/*)
+- unzip the Questionnaires.zip file into current folder (./*)
 
