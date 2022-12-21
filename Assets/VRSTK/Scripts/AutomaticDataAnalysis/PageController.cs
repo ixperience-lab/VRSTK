@@ -219,7 +219,7 @@ namespace VRSTK
                                 // fill FINISHED
                                 pagesParameters.FINISHED = 1;
                             }
-                            _export.GetComponent<Questionnaire.ExportToCSV>().Save();
+                            _export.GetComponent<ExportToCSV>().Save();
                         }
                     }
                     else
