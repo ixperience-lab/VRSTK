@@ -1,0 +1,7 @@
+sklearn==
+tensorflow==
+pytorch_tabnet==
+torch==
+matplotlib==
+pandas==
+numpy==

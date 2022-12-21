@@ -1,0 +1,6 @@
+sklearn==
+matplotlib==
+numpy==
+pandas==
+seaborn==
+scipy==
