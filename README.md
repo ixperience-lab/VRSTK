@@ -15,7 +15,9 @@ This repo is provided under a MIT License.
 	- GameObjects
 - :vhs: Scene Replay
 - :file_folder: Import & Export of JSON data
-- :bar_chart: Analysis templates with R
+- :bar_chart: Analysis
+	- Templates with R
+	- Templates with Python
 - :people_holding_hands: Multiplayer using [Mirror](https://github.com/vis2k/Mirror)
 	- Embodiment
 	- Asymmetric Normalization (WiP)
