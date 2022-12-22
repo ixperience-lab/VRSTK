@@ -12,6 +12,9 @@ This repo is provided under a MIT License.
 - :movie_camera: Tracking of various elements
 	- Participant movement
 	- Gaze & Eye (with Vive Pro Eye) 
+	- EEG
+	- EDA
+	- ECG
 	- GameObjects
 - :vhs: Scene Replay
 - :file_folder: Import & Export of JSON data
