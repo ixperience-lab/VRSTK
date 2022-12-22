@@ -1,0 +1,775 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.19f1 (68f137dc9bbe) revision 6877495'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Enterprise; OS build 19044.2364; Version 2009; 64bit' Language: 'de' Physical Memory: 65474 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020LTS\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+D:/hewl/VRSTK
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+50593
+Successfully changed project path to: D:/hewl/VRSTK
+D:/hewl/VRSTK
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 408.37 ms, found 11 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.19f1 (68f137dc9bbe)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/hewl/VRSTK/Assets
+[Subsystems] No descriptors matched for  examples in Assets/MeshingFeaturePlugin/UnitySubsystemsManifest.json.
+[Subsystems] No descriptors matched for  inputs in Assets/MeshingFeaturePlugin/UnitySubsystemsManifest.json.
+[Subsystems] No descriptors matched for  displays in Assets/MeshingFeaturePlugin/UnitySubsystemsManifest.json.
+[Subsystems] 1 'meshings' descriptors matched in Assets/MeshingFeaturePlugin/UnitySubsystemsManifest.json
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 2080 Ti (ID=0x1e04)
+    Vendor:   
+    VRAM:     11048 MB
+    Driver:   30.0.14.7247
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56908
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0.001735 seconds.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 59.27 ms, found 11 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.385 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2386ms)
+		BeginReloadAssembly (93ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (597ms)
+			LoadAssemblies (102ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (333ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (24ms)
+			SetupLoadedEditorAssemblies (164ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (59ms)
+				BeforeProcessingInitializeOnLoad (13ms)
+				ProcessInitializeOnLoadAttributes (62ms)
+				ProcessInitializeOnLoadMethodAttributes (24ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.146298 seconds.
+Begin MonoManager ReloadAssembly
+Error: Could not load signature of EmotivUnityPlugin.CortexClient:WebSocketClient_DataReceived due to: Could not load file or assembly 'WebSocket4Net, Version=0.15.2.11, Culture=neutral, PublicKeyToken=eb4e154b696bf72a' or one of its dependencies. assembly:WebSocket4Net, Version=0.15.2.11, Culture=neutral, PublicKeyToken=eb4e154b696bf72a type:<unknown type> member:(null) signature:<none>
+Unloading broken assembly Library/ScriptAssemblies/Assembly-CSharp.dll, this assembly can cause crashes in the runtime
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 59.44 ms, found 11 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.784 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1784ms)
+		BeginReloadAssembly (110ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (16ms)
+		EndReloadAssembly (1626ms)
+			LoadAssemblies (151ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (274ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (58ms)
+			SetupLoadedEditorAssemblies (1032ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (60ms)
+				BeforeProcessingInitializeOnLoad (100ms)
+				ProcessInitializeOnLoadAttributes (163ms)
+				ProcessInitializeOnLoadMethodAttributes (700ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 1.00 ms, found 11 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4060 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 251.1 MB.
+System memory in use after: 251.3 MB.
+
+Unloading 80 unused Assets to reduce memory usage. Loaded Objects now: 4475.
+Total: 4.749800 ms (FindLiveObjects: 0.294100 ms CreateObjectMapping: 0.145200 ms MarkObjects: 4.225400 ms  DeleteObjects: 0.084300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/VRSTK/Scripts/VRIntegration/CortexBrainComputerInterface.cs
+  artifactKey: Guid(89fde7e9074431f4fb8dfb150b409ef7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/CortexBrainComputerInterface.cs using Guid(89fde7e9074431f4fb8dfb150b409ef7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2d6d82e12840451e1b4c9bbbe03b7ed') in 0.030008 seconds 
+  Import took 0.034591 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.078810 seconds.
+  path: Assets/VRSTK/Scripts/VRIntegration/CortexAppConfig.cs
+  artifactKey: Guid(0c0b098639498b842a79231b54993cdd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/VRIntegration/CortexAppConfig.cs using Guid(0c0b098639498b842a79231b54993cdd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '879f52aeb6a3c6c66bf27637b7be98d4') in 0.003838 seconds 
+  Import took 0.008550 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 322.935504 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/BuildAutomationProcess.R
+  artifactKey: Guid(0dc22b3fc8888634ebf06d75412f8c4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/BuildAutomationProcess.R using Guid(0dc22b3fc8888634ebf06d75412f8c4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '055febea1c1f0d8c853d267575545251') in 0.020030 seconds 
+  Import took 0.025141 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.008813 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/RawFixationSaccadesData.R
+  artifactKey: Guid(33b17d989f04b9f44a886b0f8b0582c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/RawFixationSaccadesData.R using Guid(33b17d989f04b9f44a886b0f8b0582c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e83621700d5da768d72360cb12f810f') in 0.004339 seconds 
+  Import took 0.009021 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.165920 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/CognitiveLoadEstimationEEG.py
+  artifactKey: Guid(294a57a446f511f45afa529904699560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/CognitiveLoadEstimationEEG.py using Guid(294a57a446f511f45afa529904699560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab09fedb4bd1fb4fa8691b6407e1034c') in 0.007701 seconds 
+  Import took 0.012450 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.094496 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_2.prefab
+  artifactKey: Guid(fdf9c841f659900479dcd8cc309882c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_2.prefab using Guid(fdf9c841f659900479dcd8cc309882c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a308335d2d04d6c11d1668ec097c3532') in 0.084340 seconds 
+  Import took 0.089713 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.036100 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/DeepLearningModel.py
+  artifactKey: Guid(95ba130f7ed76264f83b0559101853ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/DeepLearningModel.py using Guid(95ba130f7ed76264f83b0559101853ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '892e32246e5c882958f4adff6cb65a8d') in 0.004543 seconds 
+  Import took 0.009311 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.008744 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/SDNN.py
+  artifactKey: Guid(eafb03e727a79394aa5b24ef58a560f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/SDNN.py using Guid(eafb03e727a79394aa5b24ef58a560f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '121ffd795f6537ffc1e51a4039502f95') in 0.004097 seconds 
+  Import took 0.008904 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.015152 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/requirements_CreateSimulationSicknessPlots.txt
+  artifactKey: Guid(c59a00f6a0628b14b9f88b8200812da4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/requirements_CreateSimulationSicknessPlots.txt using Guid(c59a00f6a0628b14b9f88b8200812da4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '15ba338298337b4c638de7cccac00c25') in 0.007880 seconds 
+  Import took 0.013027 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.008305 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/ConvertBitalinoRawDataForBioSPPy.py
+  artifactKey: Guid(de580f2ee43c3ca4bbf551f77e81783b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/ConvertBitalinoRawDataForBioSPPy.py using Guid(de580f2ee43c3ca4bbf551f77e81783b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c15aaa979139de99d92b2e5028c09c00') in 0.004373 seconds 
+  Import took 0.009325 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046906 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/FusionOfTrackingDataOfOneParticipent.R
+  artifactKey: Guid(e0605b503351cb546b1f698a1bce6404) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/FusionOfTrackingDataOfOneParticipent.R using Guid(e0605b503351cb546b1f698a1bce6404) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fdeae9c7361851768f1a0d43496a8bb7') in 0.004020 seconds 
+  Import took 0.008759 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.026530 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_5.prefab
+  artifactKey: Guid(67f3ebc2c7e600648acb5bf56c01f3b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_5.prefab using Guid(67f3ebc2c7e600648acb5bf56c01f3b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e6ab980bbf6a5bd5c3d3f0f6f5d0bd7') in 0.030561 seconds 
+  Import took 0.036030 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.176718 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/requirements_CreateUvqPlotsAndResults.txt
+  artifactKey: Guid(ea644ab4abf80ee45a1372164ec438e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/requirements_CreateUvqPlotsAndResults.txt using Guid(ea644ab4abf80ee45a1372164ec438e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ffb6b83bc5a112a6386ba8555bfddb04') in 0.004209 seconds 
+  Import took 0.009300 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.075030 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/CreateUvqPlotsAndResults.py
+  artifactKey: Guid(544a423d6cfaf624a88f3107afea1879) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/CreateUvqPlotsAndResults.py using Guid(544a423d6cfaf624a88f3107afea1879) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '443f5e090198de72fbb5b4b722e9a3fc') in 0.004460 seconds 
+  Import took 0.009737 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.019087 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/requirements_KNeighborsClassifier.txt
+  artifactKey: Guid(03749d107ef4deb4092236eff9f4c1ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/requirements_KNeighborsClassifier.txt using Guid(03749d107ef4deb4092236eff9f4c1ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ab66cebc55284a0e6518096847dbcc3') in 0.004159 seconds 
+  Import took 0.009075 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.030148 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_9.prefab
+  artifactKey: Guid(3aa252666a9fe214698d7db6d4214176) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_9.prefab using Guid(3aa252666a9fe214698d7db6d4214176) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6915a12c7dadb33fbfd402363a287eb5') in 0.029586 seconds 
+  Import took 0.035457 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.048858 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/CognitiveLoadEstimationHeartRateAndSkin.py
+  artifactKey: Guid(7dabcea2a159313438f2c71015fe103a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/CognitiveLoadEstimationHeartRateAndSkin.py using Guid(7dabcea2a159313438f2c71015fe103a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f2fb74b88f52ad02451bb2d94e1e218') in 0.004596 seconds 
+  Import took 0.009880 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.040968 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/CognitiveLoadEstimationPupilometry.py
+  artifactKey: Guid(07b9dff65d038034fab4bac2ba9319c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/CognitiveLoadEstimationPupilometry.py using Guid(07b9dff65d038034fab4bac2ba9319c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97f64bc52b154d0fe1ea4be8a8ea8be7') in 0.004323 seconds 
+  Import took 0.010433 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.176510 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/RawPerformanceMetricData.R
+  artifactKey: Guid(f7733d94209b0694fbc4c2679b911211) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/RawPerformanceMetricData.R using Guid(f7733d94209b0694fbc4c2679b911211) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ac8dfdb720055028f90772946dbd2c8') in 0.004160 seconds 
+  Import took 0.009045 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.033687 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/UpsamplingTransformedBitalinoEDADataFrame.R
+  artifactKey: Guid(9fc249fc702575f40bb71a39f0d80158) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/UpsamplingTransformedBitalinoEDADataFrame.R using Guid(9fc249fc702575f40bb71a39f0d80158) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95dcb93d79021202f6c3b9c833ca1eee') in 0.004102 seconds 
+  Import took 0.009647 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.023362 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_3.prefab
+  artifactKey: Guid(4d4c952499827664f9a4dd2bcf866506) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_3.prefab using Guid(4d4c952499827664f9a4dd2bcf866506) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '534fbd49071d186ee115896eedcc11fe') in 0.030592 seconds 
+  Import took 0.036250 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.012360 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/ImportTrackingData.R
+  artifactKey: Guid(d52653b28fb748b41b5bfd9b47809c6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/ImportTrackingData.R using Guid(d52653b28fb748b41b5bfd9b47809c6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a9f782fd85b8cf56aed4fdb444647c6b') in 0.004127 seconds 
+  Import took 0.008991 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.021190 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/CreateSimulationSicknessPlots.py
+  artifactKey: Guid(892d2787242c20e4cb1160f3faeedf40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/CreateSimulationSicknessPlots.py using Guid(892d2787242c20e4cb1160f3faeedf40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '35c5e8c21df86d27da0fe077b3f0a843') in 0.004061 seconds 
+  Import took 0.008936 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.089675 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_first.prefab
+  artifactKey: Guid(401599d626774ae4f9940a115841763c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_first.prefab using Guid(401599d626774ae4f9940a115841763c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27facfeae985221e7f548e787148ed85') in 0.023307 seconds 
+  Import took 0.028480 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.079061 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/requirements_CognitiveLoadEstimation.txt
+  artifactKey: Guid(380a843bf6dd80c4f9ae3e41b5c49d37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/requirements_CognitiveLoadEstimation.txt using Guid(380a843bf6dd80c4f9ae3e41b5c49d37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d8fce5fa3415b15ce971e47ddadf034') in 0.004427 seconds 
+  Import took 0.009378 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.017815 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_6.prefab
+  artifactKey: Guid(4c4a6bed1b555b84489edea935c08afe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_6.prefab using Guid(4c4a6bed1b555b84489edea935c08afe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d55c699559ebf5ecbb38f86b53d7f28') in 0.028212 seconds 
+  Import took 0.033767 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.019480 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/ConvertGoogleFormsFormatToMScvsFormat.py
+  artifactKey: Guid(c1296cb259e75b642a04ea5656b07ad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/ConvertGoogleFormsFormatToMScvsFormat.py using Guid(c1296cb259e75b642a04ea5656b07ad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e67c8239f7d9f0c12b689b61ced5885') in 0.004189 seconds 
+  Import took 0.009128 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.009152 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/CreateDescreptiveStatisticOfQuestionnaireAnswers.R
+  artifactKey: Guid(e44c50e1261a5bc4c96df270efcff8aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/CreateDescreptiveStatisticOfQuestionnaireAnswers.R using Guid(e44c50e1261a5bc4c96df270efcff8aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd0d6b507c9e8dfab2be59fa8aec8572') in 0.004228 seconds 
+  Import took 0.009485 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.022787 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/BitalinoDataFrameFromRawTranferedBitalinoData.R
+  artifactKey: Guid(91eb256e5351d4f4b86589b2384d7e55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/BitalinoDataFrameFromRawTranferedBitalinoData.R using Guid(91eb256e5351d4f4b86589b2384d7e55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e38608e29400aca95ebffdd56caec2e6') in 0.004109 seconds 
+  Import took 0.009015 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.070232 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/requirements_FeatureSelection.txt
+  artifactKey: Guid(367365f30f3f51f4aacd73f0bd92853e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/requirements_FeatureSelection.txt using Guid(367365f30f3f51f4aacd73f0bd92853e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e63874ea93b926c7013f7603f35d31f') in 0.004730 seconds 
+  Import took 0.010011 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.136775 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/KNeighborsClassifier.py
+  artifactKey: Guid(5fddc1c0ef0c78d4690f0cb4e67ad74b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/KNeighborsClassifier.py using Guid(5fddc1c0ef0c78d4690f0cb4e67ad74b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab6a843afbf9d292c34f1ad4156c7bb1') in 0.004137 seconds 
+  Import took 0.009416 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.031795 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_4.prefab
+  artifactKey: Guid(95e7305f4102b9f43a5ea5b03827e69f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_4.prefab using Guid(95e7305f4102b9f43a5ea5b03827e69f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfe3597acbc9e7a1227247fca848942f') in 0.028198 seconds 
+  Import took 0.033713 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.010181 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/PagesQualityParameters.R
+  artifactKey: Guid(cc86652b3c3d7994ea5b6299f54215ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/PagesQualityParameters.R using Guid(cc86652b3c3d7994ea5b6299f54215ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd5b333136adf1cb1fe0c543133c274c5') in 0.004098 seconds 
+  Import took 0.008979 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.150136 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_11.prefab
+  artifactKey: Guid(d7d05d858a081194898c7da4a2e9c841) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_11.prefab using Guid(d7d05d858a081194898c7da4a2e9c841) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '639b8d4c8f373f3f3e333d550321a2c1') in 0.028342 seconds 
+  Import took 0.034785 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.007646 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/requirements_CorrelationMatrixSklearn.txt
+  artifactKey: Guid(a053ef4a22875ac47b31c3dc5f2c9cbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/requirements_CorrelationMatrixSklearn.txt using Guid(a053ef4a22875ac47b31c3dc5f2c9cbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a314690e82d1e51d9b9d26b5a61521d') in 0.004191 seconds 
+  Import took 0.009099 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.027745 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/PoincareDiagrammFromRRIntervals.py
+  artifactKey: Guid(2ca78b5d344724c49a15e67cdffdcc0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/PoincareDiagrammFromRRIntervals.py using Guid(2ca78b5d344724c49a15e67cdffdcc0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0095db95a5e71136fe909c4dfbb345d') in 0.003962 seconds 
+  Import took 0.008901 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.175700 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/RawBandPowerData.R
+  artifactKey: Guid(70da4def6add60142a61a66268e9f9f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/RawBandPowerData.R using Guid(70da4def6add60142a61a66268e9f9f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '01aeaa30eb98498ffc2f52d4dd088014') in 0.004162 seconds 
+  Import took 0.009687 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.134036 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_10.prefab
+  artifactKey: Guid(6b4a30c2f0c63e54da1e26bc3615e6ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_10.prefab using Guid(6b4a30c2f0c63e54da1e26bc3615e6ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a16284c4eb0f970e877326345929d362') in 0.027847 seconds 
+  Import took 0.033442 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.008768 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/PrincipalComponentAnalysis.py
+  artifactKey: Guid(ed293cdf16292c54cae93d75576263ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/PrincipalComponentAnalysis.py using Guid(ed293cdf16292c54cae93d75576263ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5661516fdc08c6e6114c91390aa4625a') in 0.004422 seconds 
+  Import took 0.009320 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.029305 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_8.prefab
+  artifactKey: Guid(2b7c675d16c3b8a469c6b71441461e2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_8.prefab using Guid(2b7c675d16c3b8a469c6b71441461e2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f1c65a1aa46bf1f2f8ba61108f52145') in 0.029130 seconds 
+  Import took 0.034624 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.186079 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/requirements_DeepLearningModel.txt
+  artifactKey: Guid(85402f82bd393cc4bb1a97015e9d2a4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/requirements_DeepLearningModel.txt using Guid(85402f82bd393cc4bb1a97015e9d2a4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc78455fd2ab0a38e27fe045fd92aac6') in 0.004235 seconds 
+  Import took 0.009076 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.016865 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/requirements_PrincipalComponentAnalysis.txt
+  artifactKey: Guid(96b0ce9dfe7c60d4d9a6dda80d1a1627) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/requirements_PrincipalComponentAnalysis.txt using Guid(96b0ce9dfe7c60d4d9a6dda80d1a1627) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd49a8331f3090b3df2a2216fa1a5766e') in 0.004186 seconds 
+  Import took 0.009075 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.067637 seconds.
+  path: Assets/VRSTK/Prefabs/Questionaire/Base/Page.prefab
+  artifactKey: Guid(7c1f4381e520e704ca23dc2931a50ad8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/Questionaire/Base/Page.prefab using Guid(7c1f4381e520e704ca23dc2931a50ad8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '110b28f8efa3dfda39dc5e4ecf59aac4') in 0.022682 seconds 
+  Import took 0.027877 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.148378 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/T-Test.R
+  artifactKey: Guid(6959fe24c0d506345a479027b5a853de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/T-Test.R using Guid(6959fe24c0d506345a479027b5a853de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0431221c8053916b8fa55ad4b287882') in 0.004673 seconds 
+  Import took 0.009633 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.157136 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_14.prefab
+  artifactKey: Guid(5d92ac4d73c621a4aa30ed8cf53e5eb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_14.prefab using Guid(5d92ac4d73c621a4aa30ed8cf53e5eb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0a04798bf798a4ba01b399be4f8b02e') in 0.027855 seconds 
+  Import took 0.033388 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.089579 seconds.
+  path: Assets/VRSTK/Scenes/GazeTracking.unity
+  artifactKey: Guid(9af08fb449be5bc49a629d43580130e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scenes/GazeTracking.unity using Guid(9af08fb449be5bc49a629d43580130e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e5e80bca9b44b9dc444b4e6b3b2f458') in 0.004308 seconds 
+  Import took 0.009376 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.042719 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/DownsampleToBitalinoResults.R
+  artifactKey: Guid(808cda9ae194a3d4cb9234fd32c6acda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/DownsampleToBitalinoResults.R using Guid(808cda9ae194a3d4cb9234fd32c6acda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7aa50aaa1daed891b8a7ec88b534a6ab') in 0.004437 seconds 
+  Import took 0.009416 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.028005 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/requirements_BruteForceParameterOptimization.txt
+  artifactKey: Guid(d896463e4bcff0b498b1493a4b6134e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/requirements_BruteForceParameterOptimization.txt using Guid(d896463e4bcff0b498b1493a4b6134e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e451ac2f9968aec62ddf551bf288544') in 0.004306 seconds 
+  Import took 0.009377 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.044677 seconds.
+  path: Assets/VRSTK/Prefabs/AutomaticDataAnalysis/VRQuestionnaireToolkitUncannyValley.prefab
+  artifactKey: Guid(646dc2785af132845ab08c1984701262) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/AutomaticDataAnalysis/VRQuestionnaireToolkitUncannyValley.prefab using Guid(646dc2785af132845ab08c1984701262) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d4023bd5f25d5c341b862fe1ee8b035') in 0.139383 seconds 
+  Import took 0.152340 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.007190 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/CreateHeatmap.R
+  artifactKey: Guid(7f24365fcd96b4e4dafa5edb44ecfe61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/CreateHeatmap.R using Guid(7f24365fcd96b4e4dafa5edb44ecfe61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '795bcbd7110f8e09df10e6f47625ad87') in 0.004121 seconds 
+  Import took 0.009071 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.076634 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/FeatureSelection.py
+  artifactKey: Guid(7e6d5a297e59e934d81a4614b37f7b6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/FeatureSelection.py using Guid(7e6d5a297e59e934d81a4614b37f7b6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09b9dd68fec7206fa503f59b9ae07fd8') in 0.006320 seconds 
+  Import took 0.012451 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.184584 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/RawVRQuestionnaireToolkitSSQDataFrame.R
+  artifactKey: Guid(aa057c9a3a35ccc4a9b6cd9abc9e983d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/RawVRQuestionnaireToolkitSSQDataFrame.R using Guid(aa057c9a3a35ccc4a9b6cd9abc9e983d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7bed8f94dfae585dd727e63cdb5d1d15') in 0.004232 seconds 
+  Import took 0.009209 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.010621 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/requirements_BehaviorValidityScoreAbstraction.txt
+  artifactKey: Guid(eb48c60992e6c564c92a05ffd62d42a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/requirements_BehaviorValidityScoreAbstraction.txt using Guid(eb48c60992e6c564c92a05ffd62d42a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69b642297e7b3f94d4c1d48773467a61') in 0.004387 seconds 
+  Import took 0.009480 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.147365 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/requirements_PoincareDiagrammFromRRIntervals.txt
+  artifactKey: Guid(8e0cb23ae034d49438a468c698100ad3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/requirements_PoincareDiagrammFromRRIntervals.txt using Guid(8e0cb23ae034d49438a468c698100ad3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'edd9d4ce072ab80c5d9e1bea43b86fb2') in 0.005073 seconds 
+  Import took 0.010245 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.231276 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/RawVRQuestionnaireToolkitUncannyValleyData.R
+  artifactKey: Guid(4ee48e76713c93a4baeca0175ec028ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/RawVRQuestionnaireToolkitUncannyValleyData.R using Guid(4ee48e76713c93a4baeca0175ec028ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7cb24a1d1128ea85121246c87f962cbb') in 0.004172 seconds 
+  Import took 0.009582 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.022791 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_13.prefab
+  artifactKey: Guid(fb0939940be541d4db5b6fd94b4979be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_13.prefab using Guid(fb0939940be541d4db5b6fd94b4979be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '15b8159b0046e51d67fd1ae4aa703604') in 0.029220 seconds 
+  Import took 0.034894 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.027313 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/EvaluateQualityParamtersAsValidityscore.R
+  artifactKey: Guid(76b12b4ff461efc47874d96782966f36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/EvaluateQualityParamtersAsValidityscore.R using Guid(76b12b4ff461efc47874d96782966f36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59a5a82b30192edf078bbad150f9d441') in 0.004132 seconds 
+  Import took 0.009547 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.083997 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/Kruskal-Wallis-Test.R
+  artifactKey: Guid(1ed5af1b6ce818f48aebd889b4343aee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/Kruskal-Wallis-Test.R using Guid(1ed5af1b6ce818f48aebd889b4343aee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '408b3b19e72645a6d1465807b596352a') in 0.004143 seconds 
+  Import took 0.009133 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.018871 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/Mann-Whitney-U-Test.R
+  artifactKey: Guid(8be9014e2bb8639439af80914953361b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/Mann-Whitney-U-Test.R using Guid(8be9014e2bb8639439af80914953361b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1dfa44054f11a3c538f1e177ae61064') in 0.004367 seconds 
+  Import took 0.009460 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.058204 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/CorrelationMatrixSklearn.py
+  artifactKey: Guid(fab166f692efbc04d8968def73d11dbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/CorrelationMatrixSklearn.py using Guid(fab166f692efbc04d8968def73d11dbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3af348015f5b217d530d8af95c7f297e') in 0.004085 seconds 
+  Import took 0.009109 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.017882 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_12.prefab
+  artifactKey: Guid(61486bd80e6250b47bc2521290e97525) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_12.prefab using Guid(61486bd80e6250b47bc2521290e97525) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2dea7fdf728dc4d3b2a3950c4545a0a') in 0.030374 seconds 
+  Import took 0.036077 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.026071 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/ConvertJsonFileToRtype.R
+  artifactKey: Guid(d6c5d121f2ab44740be31eae3c998db7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/ConvertJsonFileToRtype.R using Guid(d6c5d121f2ab44740be31eae3c998db7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b847fa6db97849c7339da8b9ab43d8d4') in 0.004086 seconds 
+  Import took 0.009066 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.032165 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_final.prefab
+  artifactKey: Guid(430e75ce06f3e334fa0de790205a3500) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_final.prefab using Guid(430e75ce06f3e334fa0de790205a3500) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9671c48f6ff0fbe867396a239a0c4e64') in 0.023380 seconds 
+  Import took 0.028971 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.055853 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_16.prefab
+  artifactKey: Guid(6b2280fe36317974fbaf23d678022347) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_16.prefab using Guid(6b2280fe36317974fbaf23d678022347) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c79cab07d46ad44c424e59207a9b9f89') in 0.028577 seconds 
+  Import took 0.034289 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046226 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/RawEmotivTrackingData.R
+  artifactKey: Guid(d42cb1c4424cb3843af5af1dd4313cef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/RawEmotivTrackingData.R using Guid(d42cb1c4424cb3843af5af1dd4313cef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26c8133c38a7eaf8e40f7ef2035fb38b') in 0.004257 seconds 
+  Import took 0.009333 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.008121 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/RawFixationSaccadesPositionsData.R
+  artifactKey: Guid(47ac362bcdd081c46b3604c4d7909c78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/RawFixationSaccadesPositionsData.R using Guid(47ac362bcdd081c46b3604c4d7909c78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60e41a9e0b9bf343776cbe1c359e10ca') in 0.004922 seconds 
+  Import took 0.010616 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.012015 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_1.prefab
+  artifactKey: Guid(2cf4760490c7bba41a23e65f50e97531) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_1.prefab using Guid(2cf4760490c7bba41a23e65f50e97531) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '693d8e02a0f2743d068ca57b1ff64126') in 0.028297 seconds 
+  Import took 0.033996 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.011630 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_15.prefab
+  artifactKey: Guid(f3c324f89122047428a6f70996ba1431) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_15.prefab using Guid(f3c324f89122047428a6f70996ba1431) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84c7b8f7dc823127f68ba20e4cd7bfef') in 0.028807 seconds 
+  Import took 0.034831 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.007953 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/CleanUpEnvironmentFromTemporaryUsedVariables.R
+  artifactKey: Guid(053e41da5616bd74580f7fc4204e2c61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/CleanUpEnvironmentFromTemporaryUsedVariables.R using Guid(053e41da5616bd74580f7fc4204e2c61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '01c071d497dc25b5db6acc9db4dc60e1') in 0.004612 seconds 
+  Import took 0.009673 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.026694 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/BruteForceParameterOptimization_DL.py
+  artifactKey: Guid(04b7938587c5ed4498a0f4604663adff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/BruteForceParameterOptimization_DL.py using Guid(04b7938587c5ed4498a0f4604663adff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd65f1cd9508d9349f795c6bb5b34a827') in 0.003976 seconds 
+  Import took 0.009574 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.103540 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/BruteForceParameterOptimization_KNM.py
+  artifactKey: Guid(aec3785d33a01aa458a02f2e8ebdb3db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/BruteForceParameterOptimization_KNM.py using Guid(aec3785d33a01aa458a02f2e8ebdb3db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00caf4a58b02839bd8b51e73b7b6e5b6') in 0.004063 seconds 
+  Import took 0.009016 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.078088 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/BehaviorValidityScoreAbstraction.py
+  artifactKey: Guid(c12638ec6802d474abdfd51c13523087) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/BehaviorValidityScoreAbstraction.py using Guid(c12638ec6802d474abdfd51c13523087) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ada362118a4fd58f3c543523097a250b') in 0.004412 seconds 
+  Import took 0.009934 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.019900 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/RMSSD.py
+  artifactKey: Guid(0c9b3ba706ef655499434961a56d762a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/RMSSD.py using Guid(0c9b3ba706ef655499434961a56d762a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30fbbab0908db577caf53785c51cd697') in 0.004073 seconds 
+  Import took 0.009094 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.008135 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/CenterOfViewData.R
+  artifactKey: Guid(d462e3d94a5db1a45b5a301743fbe859) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/CenterOfViewData.R using Guid(d462e3d94a5db1a45b5a301743fbe859) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7801e543af0f780791e662a6bb46954') in 0.004161 seconds 
+  Import took 0.009320 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.008415 seconds.
+  path: Assets/VRSTK/Prefabs/AutomaticDataAnalysis/VRQuestionnaireToolkitSSQ.prefab
+  artifactKey: Guid(6faedbb8f1bb62748921f38cfdc01969) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/AutomaticDataAnalysis/VRQuestionnaireToolkitSSQ.prefab using Guid(6faedbb8f1bb62748921f38cfdc01969) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'deba34693a092e4bae0e302a28abe422') in 0.053399 seconds 
+  Import took 0.060723 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.008873 seconds.
+  path: Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_7.prefab
+  artifactKey: Guid(a0bcbf05aaf88634ca4dcc30b2db6030) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/SampleSceneData/Questionnaires/TempPagesPrefabs/page_7.prefab using Guid(a0bcbf05aaf88634ca4dcc30b2db6030) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e4900aeb0ebd3686eb50e355806f0d2') in 0.030779 seconds 
+  Import took 0.036558 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.038986 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/ImportQuestionnaireCsv.R
+  artifactKey: Guid(d6c512d98875dfd41969a2eed3420891) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/ImportQuestionnaireCsv.R using Guid(d6c512d98875dfd41969a2eed3420891) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f8441309636036385389910f4847ec2') in 0.004320 seconds 
+  Import took 0.009505 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.135712 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/Python/readme.txt
+  artifactKey: Guid(53a609b54787e774baec13544c3d7081) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/Python/readme.txt using Guid(53a609b54787e774baec13544c3d7081) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f68b7deff4a1ea695dbdeb6deb248a2') in 0.004404 seconds 
+  Import took 0.009566 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.011933 seconds.
+  path: Assets/VRSTK/Scripts/Visualization/R/ANOVA_Feature_Tests_And_Plots.R
+  artifactKey: Guid(bb0254682d0ff014a998b3468b2db76e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Visualization/R/ANOVA_Feature_Tests_And_Plots.R using Guid(bb0254682d0ff014a998b3468b2db76e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '345d33037a0aad5be6f6691b903ba95c') in 0.004096 seconds 
+  Import took 0.009181 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
