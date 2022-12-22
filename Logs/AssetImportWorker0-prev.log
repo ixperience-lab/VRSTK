@@ -1,0 +1,277 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.19f1 (68f137dc9bbe) revision 6877495'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Enterprise; OS build 19044.2364; Version 2009; 64bit' Language: 'de' Physical Memory: 65474 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020LTS\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+D:/hewl/VRSTK
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+61517
+Successfully changed project path to: D:/hewl/VRSTK
+D:/hewl/VRSTK
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 75.92 ms, found 11 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.19f1 (68f137dc9bbe)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/hewl/VRSTK/Assets
+[Subsystems] No descriptors matched for  examples in Assets/MeshingFeaturePlugin/UnitySubsystemsManifest.json.
+[Subsystems] No descriptors matched for  inputs in Assets/MeshingFeaturePlugin/UnitySubsystemsManifest.json.
+[Subsystems] No descriptors matched for  displays in Assets/MeshingFeaturePlugin/UnitySubsystemsManifest.json.
+[Subsystems] 1 'meshings' descriptors matched in Assets/MeshingFeaturePlugin/UnitySubsystemsManifest.json
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 2080 Ti (ID=0x1e04)
+    Vendor:   
+    VRAM:     11048 MB
+    Driver:   30.0.14.7247
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56068
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020LTS/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0.001749 seconds.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 58.60 ms, found 11 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.874 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1874ms)
+		BeginReloadAssembly (41ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (364ms)
+			LoadAssemblies (40ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (120ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (24ms)
+			SetupLoadedEditorAssemblies (161ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (59ms)
+				BeforeProcessingInitializeOnLoad (13ms)
+				ProcessInitializeOnLoadAttributes (62ms)
+				ProcessInitializeOnLoadMethodAttributes (22ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.005314 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 59.56 ms, found 11 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.986 seconds
+Domain Reload Profiling:
+	ReloadAssembly (986ms)
+		BeginReloadAssembly (114ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (16ms)
+		EndReloadAssembly (824ms)
+			LoadAssemblies (75ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (217ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (53ms)
+			SetupLoadedEditorAssemblies (372ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (60ms)
+				BeforeProcessingInitializeOnLoad (99ms)
+				ProcessInitializeOnLoadAttributes (162ms)
+				ProcessInitializeOnLoadMethodAttributes (43ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 1.02 ms, found 11 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4060 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 250.7 MB.
+System memory in use after: 250.9 MB.
+
+Unloading 80 unused Assets to reduce memory usage. Loaded Objects now: 4475.
+Total: 4.888400 ms (FindLiveObjects: 0.302900 ms CreateObjectMapping: 0.158100 ms MarkObjects: 4.339200 ms  DeleteObjects: 0.087400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/VRSTK/Scenes/Basic.unity
+  artifactKey: Guid(29c0ea9432ede0f4fbfcc00f8ada62e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scenes/Basic.unity using Guid(29c0ea9432ede0f4fbfcc00f8ada62e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '65077acf02c1332b8455c8dc80ba7cf5') in 0.014623 seconds 
+  Import took 0.019350 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 366.640474 seconds.
+  path: Assets/VRSTK/Scenes/LocomotionTracking.unity
+  artifactKey: Guid(d03b51087d3b8eb4681c3d3bf2e60bbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scenes/LocomotionTracking.unity using Guid(d03b51087d3b8eb4681c3d3bf2e60bbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a68bb7100ff9d773e3bbbc74c25af843') in 0.005237 seconds 
+  Import took 0.010939 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 95.814580 seconds.
+  path: Assets/VRSTK/Packages/Extensions/EyeTracking.unitypackage
+  artifactKey: Guid(85a83880d8bf47e4196f2137a390b715) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Packages/Extensions/EyeTracking.unitypackage using Guid(85a83880d8bf47e4196f2137a390b715) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42bcb6d7a1fa57e659f50dddd79445de') in 0.020528 seconds 
+  Import took 0.025353 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.036812 seconds.
+  path: Assets/VRSTK/Packages/Extensions/EyeTrackingLocomotionTrackingHeatmap.unitypackage
+  artifactKey: Guid(28189b7af3c312849b0db2efbdd8f626) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Packages/Extensions/EyeTrackingLocomotionTrackingHeatmap.unitypackage using Guid(28189b7af3c312849b0db2efbdd8f626) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03b17ac0b0b372fd01fa4d9b998cbe54') in 0.004477 seconds 
+  Import took 0.009413 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.008441 seconds.
+  path: Assets/VRSTK/Scripts/SerialConnection
+  artifactKey: Guid(faa5ef13552935c4ebab9a1391ce1d33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/SerialConnection using Guid(faa5ef13552935c4ebab9a1391ce1d33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f1756b89f10a34c3347345120d692ab7') in 0.004530 seconds 
+  Import took 0.009687 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002273 seconds.
+  path: Assets/VRSTK/Packages/Extensions/EMotivCortexTracking.unitypackage
+  artifactKey: Guid(a7e3c2f34d7209649a3e17b0c7f23905) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Packages/Extensions/EMotivCortexTracking.unitypackage using Guid(a7e3c2f34d7209649a3e17b0c7f23905) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee254a6ba4f9e9e6fdf7197ed46d040e') in 0.004470 seconds 
+  Import took 0.009398 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.008778 seconds.
+  path: Assets/VRSTK/Packages/Extensions/VRSTK_Multiplayer.unitypackage
+  artifactKey: Guid(9435a4b3c065aa045ab7f19b05ca8d1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Packages/Extensions/VRSTK_Multiplayer.unitypackage using Guid(9435a4b3c065aa045ab7f19b05ca8d1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4919ff6f8c179c2a9dd8723119745077') in 0.004243 seconds 
+  Import took 0.009144 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.020921 seconds.
+  path: Assets/VRSTK/Packages
+  artifactKey: Guid(9b67509a20a8ed4428e419ebe8acd96d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Packages using Guid(9b67509a20a8ed4428e419ebe8acd96d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd06dec8054ceb1de7ec5bc7aa6488b66') in 0.003747 seconds 
+  Import took 0.008624 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.025423 seconds.
+  path: Assets/VRSTK/Prefabs/XROriginLocomotion.prefab
+  artifactKey: Guid(2de97a3bb8970fa4d80209ea6f82915d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Prefabs/XROriginLocomotion.prefab using Guid(2de97a3bb8970fa4d80209ea6f82915d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b7512cb9347c60d708a14a5c06e2f51') in 0.099436 seconds 
+  Import took 0.104709 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.007451 seconds.
+  path: Assets/VRSTK/Resources/Settings.asset
+  artifactKey: Guid(311d6decfd6a4a54d86d4a44eeef35d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Resources/Settings.asset using Guid(311d6decfd6a4a54d86d4a44eeef35d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7743075648b6d75489d43b8673a6edf9') in 0.005222 seconds 
+  Import took 0.010120 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.022652 seconds.
+  path: Assets/VRSTK/Packages/Extensions
+  artifactKey: Guid(b42ea97f99df41647b5a47ad3774edcf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Packages/Extensions using Guid(b42ea97f99df41647b5a47ad3774edcf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1df92013451318099d65303e5df73522') in 0.003685 seconds 
+  Import took 0.008456 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.017454 seconds.
+  path: Assets/VRSTK/Packages/Extensions/EyeTrackingScanPath.unitypackage
+  artifactKey: Guid(3f4954d2e746df34e9e39a24bb6d0dd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Packages/Extensions/EyeTrackingScanPath.unitypackage using Guid(3f4954d2e746df34e9e39a24bb6d0dd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0704047ad36e2ed8bcc14bba338d06d8') in 0.004142 seconds 
+  Import took 0.009007 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.096553 seconds.
+  path: Assets/VRSTK/Packages/Extensions/AutomaticDataAnalysis.unitypackage
+  artifactKey: Guid(7dedabf034c9f1e46a8f2a8fe19924b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Packages/Extensions/AutomaticDataAnalysis.unitypackage using Guid(7dedabf034c9f1e46a8f2a8fe19924b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41d346a14bf80fbd00671e94104e1cca') in 0.004668 seconds 
+  Import took 0.009634 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.013297 seconds.
+  path: Assets/VRSTK/Scripts/Settings.cs
+  artifactKey: Guid(bb96a68267fed5347b8c033e27800a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/Settings.cs using Guid(bb96a68267fed5347b8c033e27800a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae79af89a0246df14f2b3f599d693959') in 0.004138 seconds 
+  Import took 0.009325 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.010046 seconds.
+  path: Assets/VRSTK/Packages/Extensions/BitalinoTracking.unitypackage
+  artifactKey: Guid(47761b5e229dbad47b52b992ba64b453) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Packages/Extensions/BitalinoTracking.unitypackage using Guid(47761b5e229dbad47b52b992ba64b453) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb0093bb7f353070a5f3023fd9c78309') in 0.004309 seconds 
+  Import took 0.009204 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.555087 seconds.
+  path: Assets/VRSTK/Packages/Extensions/VRQuestionnaireToolkit.unitypackage
+  artifactKey: Guid(0dddff6d5c3892f479479ab9ec3ff2db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Packages/Extensions/VRQuestionnaireToolkit.unitypackage using Guid(0dddff6d5c3892f479479ab9ec3ff2db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e55e816ed6236568db16598744ce7fab') in 0.005137 seconds 
+  Import took 0.010030 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.012390 seconds.
+  path: Assets/VRSTK/Scripts/SerialConnection/ReceiveSerial.cs
+  artifactKey: Guid(99b7599f62ae11c419ddebca054134c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRSTK/Scripts/SerialConnection/ReceiveSerial.cs using Guid(99b7599f62ae11c419ddebca054134c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '859a6252e6ace46dfe69bb15c022866a') in 0.003757 seconds 
+  Import took 0.008573 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
