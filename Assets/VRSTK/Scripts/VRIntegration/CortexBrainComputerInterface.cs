@@ -184,7 +184,8 @@ namespace VRSTK
                                     {
                                         if (testStage.startProperties[j].text.text.ToLower().Contains("id"))
                                             _rawEEGFileName += "_" + testStage.startProperties[j].GetValue();
-                                        if (testStage.startProperties[j].text.text.ToLower().Contains("condition") && 
+                                        if (testStage.startProperties[j].text.text.ToLower().Contains("condition") &&
+                                            testStage.startProperties[j].GetValue() != null &&
                                             testStage.startProperties[j].GetValue().ToLower().Equals("true"))
                                             _rawEEGFileName += "_" + testStage.startProperties[j].text.text;
                                     }
