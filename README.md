@@ -16,11 +16,13 @@ This repo is provided under a MIT License.
 	- EDA (with BITalino)
 	- ECG (with BITalino)
 	- GameObjects
+	- Questionnaires (with VRQuestionnaireToolkit)
 - :vhs: Scene Replay
 - :file_folder: Import & Export of JSON data
 - :bar_chart: Analysis
 	- Templates with R
 	- Templates with Python
+	- Vilidity score with VRQuestionnaireToolkit
 - :people_holding_hands: Multiplayer using [Mirror](https://github.com/vis2k/Mirror)
 	- Embodiment
 	- Asymmetric Normalization (WiP)
