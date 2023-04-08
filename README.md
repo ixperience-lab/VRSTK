@@ -30,8 +30,8 @@ This repo is provided under a MIT License.
 ## Quickstart
 Visit our wiki for quickstart instructions
 
-[:de: Quickstart](https://github.com/ixperience-lab/VRSTK/wiki/Quickstart-German)\
-[:uk: Quickstart](https://github.com/ixperience-lab/VRSTK/wiki/Quickstart-English)
+[:de: Quickstart](https://github.com/ixperience-lab/VRSTK/wiki/2-Quickstart-German)\
+[:uk: Quickstart](https://github.com/ixperience-lab/VRSTK/wiki/1-Quickstart-English)
 
 
 
